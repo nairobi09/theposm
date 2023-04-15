@@ -1,7 +1,7 @@
 ﻿
 namespace thepos
 {
-    partial class Form1
+    partial class formMain
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -42,14 +42,14 @@ namespace thepos
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1094, 718);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "formMain";
+            this.Text = "thepos";
             this.ResumeLayout(false);
 
         }
