@@ -34,7 +34,7 @@ namespace thepos
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(187, 116);
+            this.button1.Location = new System.Drawing.Point(222, 180);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(323, 131);
             this.button1.TabIndex = 0;
