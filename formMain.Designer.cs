@@ -29,13 +29,25 @@ namespace thepos
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnView = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(116, 167);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(499, 223);
+            this.btnView.TabIndex = 0;
+            this.btnView.Text = "button1";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1343, 967);
+            this.Controls.Add(this.btnView);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "formMain";
             this.Text = "thepos";
@@ -44,6 +56,8 @@ namespace thepos
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnView;
     }
 }
 
