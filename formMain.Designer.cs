@@ -38,7 +38,7 @@ namespace thepos
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(499, 223);
             this.btnView.TabIndex = 0;
-            this.btnView.Text = "button1";
+            this.btnView.Text = "View";
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
