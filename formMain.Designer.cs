@@ -48,9 +48,9 @@ namespace thepos
             this.panelNumpad = new System.Windows.Forms.Panel();
             this.panelBack = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panelNumpad.SuspendLayout();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -295,6 +295,14 @@ namespace thepos
             this.panel1.Size = new System.Drawing.Size(507, 687);
             this.panel1.TabIndex = 7;
             // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 450);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(507, 237);
+            this.panel3.TabIndex = 9;
+            // 
             // listView1
             // 
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -314,14 +322,6 @@ namespace thepos
             this.panel2.Size = new System.Drawing.Size(1024, 81);
             this.panel2.TabIndex = 8;
             // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 450);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(507, 237);
-            this.panel3.TabIndex = 9;
-            // 
             // formMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -329,7 +329,6 @@ namespace thepos
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ControlBox = false;
             this.Controls.Add(this.panelBack);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formMain";
