@@ -51,9 +51,23 @@ namespace thepos
             this.panel3 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -274,6 +288,7 @@ namespace thepos
             // 
             // panelBack
             // 
+            this.panelBack.Controls.Add(this.flowLayoutPanel1);
             this.panelBack.Controls.Add(this.panel1);
             this.panelBack.Controls.Add(this.panel2);
             this.panelBack.Controls.Add(this.panelNumpad);
@@ -322,6 +337,136 @@ namespace thepos
             this.panel2.Size = new System.Drawing.Size(1024, 81);
             this.panel2.TabIndex = 8;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.flowLayoutPanel1.Controls.Add(this.button18);
+            this.flowLayoutPanel1.Controls.Add(this.button17);
+            this.flowLayoutPanel1.Controls.Add(this.button19);
+            this.flowLayoutPanel1.Controls.Add(this.button20);
+            this.flowLayoutPanel1.Controls.Add(this.button22);
+            this.flowLayoutPanel1.Controls.Add(this.button23);
+            this.flowLayoutPanel1.Controls.Add(this.button21);
+            this.flowLayoutPanel1.Controls.Add(this.button24);
+            this.flowLayoutPanel1.Controls.Add(this.button25);
+            this.flowLayoutPanel1.Controls.Add(this.button26);
+            this.flowLayoutPanel1.Controls.Add(this.button27);
+            this.flowLayoutPanel1.Controls.Add(this.button28);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(547, 425);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(458, 324);
+            this.flowLayoutPanel1.TabIndex = 9;
+            // 
+            // button17
+            // 
+            this.button17.CausesValidation = false;
+            this.button17.Location = new System.Drawing.Point(143, 3);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(134, 81);
+            this.button17.TabIndex = 0;
+            this.button17.Text = "1";
+            this.button17.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(3, 3);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(134, 81);
+            this.button18.TabIndex = 1;
+            this.button18.Text = "2";
+            this.button18.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(283, 3);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(134, 81);
+            this.button19.TabIndex = 2;
+            this.button19.Text = "3";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(3, 90);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(134, 81);
+            this.button20.TabIndex = 3;
+            this.button20.Text = "4";
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(3, 177);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(134, 81);
+            this.button21.TabIndex = 4;
+            this.button21.Text = "5";
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(143, 90);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(134, 81);
+            this.button22.TabIndex = 5;
+            this.button22.Text = "6";
+            this.button22.UseVisualStyleBackColor = true;
+            // 
+            // button23
+            // 
+            this.button23.Location = new System.Drawing.Point(283, 90);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(134, 81);
+            this.button23.TabIndex = 6;
+            this.button23.Text = "7";
+            this.button23.UseVisualStyleBackColor = true;
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(143, 177);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(134, 81);
+            this.button24.TabIndex = 7;
+            this.button24.Text = "8";
+            this.button24.UseVisualStyleBackColor = true;
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(283, 177);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(134, 81);
+            this.button25.TabIndex = 8;
+            this.button25.Text = "9";
+            this.button25.UseVisualStyleBackColor = true;
+            // 
+            // button26
+            // 
+            this.button26.Location = new System.Drawing.Point(3, 264);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(134, 81);
+            this.button26.TabIndex = 9;
+            this.button26.Text = "9";
+            this.button26.UseVisualStyleBackColor = true;
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(143, 264);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(134, 81);
+            this.button27.TabIndex = 10;
+            this.button27.Text = "9";
+            this.button27.UseVisualStyleBackColor = true;
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(283, 264);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(134, 81);
+            this.button28.TabIndex = 11;
+            this.button28.Text = "9";
+            this.button28.UseVisualStyleBackColor = true;
+            // 
             // formMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -339,6 +484,7 @@ namespace thepos
             this.panelNumpad.ResumeLayout(false);
             this.panelBack.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -366,6 +512,19 @@ namespace thepos
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button28;
     }
 }
 

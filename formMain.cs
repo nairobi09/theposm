@@ -19,8 +19,6 @@ namespace thepos
 
         private void formMain_Resize(object sender, EventArgs e)
         {
-            panelBack.Height = this.Height;
-            panelBack.Width = this.Width;
 
 
         }
