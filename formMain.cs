@@ -17,9 +17,17 @@ namespace thepos
             InitializeComponent();
         }
 
-        private void btnView_Click(object sender, EventArgs e)
+        private void formMain_Resize(object sender, EventArgs e)
         {
+            panelBack.Height = this.Height;
+            panelBack.Width = this.Width;
 
+
+        }
+
+        private void panelBack_Resize(object sender, EventArgs e)
+        {
+            
         }
     }
 }
