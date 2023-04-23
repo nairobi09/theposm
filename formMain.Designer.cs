@@ -84,12 +84,22 @@ namespace thepos
             this.button42 = new System.Windows.Forms.Button();
             this.button41 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.button50 = new System.Windows.Forms.Button();
+            this.button51 = new System.Windows.Forms.Button();
+            this.button52 = new System.Windows.Forms.Button();
+            this.button53 = new System.Windows.Forms.Button();
+            this.button54 = new System.Windows.Forms.Button();
+            this.button55 = new System.Windows.Forms.Button();
+            this.button56 = new System.Windows.Forms.Button();
+            this.button57 = new System.Windows.Forms.Button();
+            this.button58 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button59 = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelBack.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -97,6 +107,7 @@ namespace thepos
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -104,10 +115,10 @@ namespace thepos
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button1.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 49);
+            this.button1.Location = new System.Drawing.Point(0, 51);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 50);
+            this.button1.Size = new System.Drawing.Size(60, 50);
             this.button1.TabIndex = 1;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = false;
@@ -117,9 +128,9 @@ namespace thepos
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button3.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(110, 49);
+            this.button3.Location = new System.Drawing.Point(120, 51);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 50);
+            this.button3.Size = new System.Drawing.Size(60, 50);
             this.button3.TabIndex = 1;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = false;
@@ -129,9 +140,9 @@ namespace thepos
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button2.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(55, 49);
+            this.button2.Location = new System.Drawing.Point(60, 51);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(55, 50);
+            this.button2.Size = new System.Drawing.Size(60, 50);
             this.button2.TabIndex = 1;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = false;
@@ -141,9 +152,9 @@ namespace thepos
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button4.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 99);
+            this.button4.Location = new System.Drawing.Point(0, 101);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(55, 50);
+            this.button4.Size = new System.Drawing.Size(60, 50);
             this.button4.TabIndex = 1;
             this.button4.Text = "4";
             this.button4.UseVisualStyleBackColor = false;
@@ -153,9 +164,9 @@ namespace thepos
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button5.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(55, 99);
+            this.button5.Location = new System.Drawing.Point(60, 101);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(55, 50);
+            this.button5.Size = new System.Drawing.Size(60, 50);
             this.button5.TabIndex = 1;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = false;
@@ -165,9 +176,9 @@ namespace thepos
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button6.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(110, 99);
+            this.button6.Location = new System.Drawing.Point(120, 101);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(55, 50);
+            this.button6.Size = new System.Drawing.Size(60, 50);
             this.button6.TabIndex = 1;
             this.button6.Text = "6";
             this.button6.UseVisualStyleBackColor = false;
@@ -177,9 +188,9 @@ namespace thepos
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button7.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(0, 149);
+            this.button7.Location = new System.Drawing.Point(0, 151);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(55, 50);
+            this.button7.Size = new System.Drawing.Size(60, 50);
             this.button7.TabIndex = 1;
             this.button7.Text = "7";
             this.button7.UseVisualStyleBackColor = false;
@@ -189,9 +200,9 @@ namespace thepos
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button8.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(55, 149);
+            this.button8.Location = new System.Drawing.Point(60, 151);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(55, 50);
+            this.button8.Size = new System.Drawing.Size(60, 50);
             this.button8.TabIndex = 1;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = false;
@@ -201,9 +212,9 @@ namespace thepos
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button9.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(110, 149);
+            this.button9.Location = new System.Drawing.Point(120, 151);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(55, 50);
+            this.button9.Size = new System.Drawing.Size(60, 50);
             this.button9.TabIndex = 1;
             this.button9.Text = "9";
             this.button9.UseVisualStyleBackColor = false;
@@ -213,9 +224,9 @@ namespace thepos
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button10.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(55, 199);
+            this.button10.Location = new System.Drawing.Point(60, 201);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(55, 50);
+            this.button10.Size = new System.Drawing.Size(60, 50);
             this.button10.TabIndex = 1;
             this.button10.Text = "00";
             this.button10.UseVisualStyleBackColor = false;
@@ -225,9 +236,9 @@ namespace thepos
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button11.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(0, 199);
+            this.button11.Location = new System.Drawing.Point(0, 201);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(55, 50);
+            this.button11.Size = new System.Drawing.Size(60, 50);
             this.button11.TabIndex = 1;
             this.button11.Text = "0";
             this.button11.UseVisualStyleBackColor = false;
@@ -237,9 +248,9 @@ namespace thepos
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button14.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Location = new System.Drawing.Point(55, 249);
+            this.button14.Location = new System.Drawing.Point(60, 251);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(110, 50);
+            this.button14.Size = new System.Drawing.Size(121, 50);
             this.button14.TabIndex = 1;
             this.button14.Text = "enter";
             this.button14.UseVisualStyleBackColor = false;
@@ -249,9 +260,9 @@ namespace thepos
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button15.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button15.ForeColor = System.Drawing.Color.White;
-            this.button15.Location = new System.Drawing.Point(0, 249);
+            this.button15.Location = new System.Drawing.Point(0, 251);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(55, 50);
+            this.button15.Size = new System.Drawing.Size(60, 50);
             this.button15.TabIndex = 1;
             this.button15.Text = "c";
             this.button15.UseVisualStyleBackColor = false;
@@ -261,9 +272,9 @@ namespace thepos
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button16.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button16.ForeColor = System.Drawing.Color.White;
-            this.button16.Location = new System.Drawing.Point(110, 199);
+            this.button16.Location = new System.Drawing.Point(120, 201);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(55, 50);
+            this.button16.Size = new System.Drawing.Size(60, 50);
             this.button16.TabIndex = 1;
             this.button16.Text = "<";
             this.button16.UseVisualStyleBackColor = false;
@@ -285,11 +296,11 @@ namespace thepos
             this.panelNumpad.Controls.Add(this.button8);
             this.panelNumpad.Controls.Add(this.button7);
             this.panelNumpad.Controls.Add(this.button15);
-            this.panelNumpad.Location = new System.Drawing.Point(226, 392);
+            this.panelNumpad.Location = new System.Drawing.Point(227, 392);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(166, 304);
+            this.panelNumpad.Size = new System.Drawing.Size(181, 304);
             this.panelNumpad.TabIndex = 4;
             // 
             // panelBack
@@ -313,9 +324,9 @@ namespace thepos
             this.panel7.Controls.Add(this.button48);
             this.panel7.Controls.Add(this.button45);
             this.panel7.Controls.Add(this.button44);
-            this.panel7.Location = new System.Drawing.Point(525, 604);
+            this.panel7.Location = new System.Drawing.Point(525, 613);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(487, 151);
+            this.panel7.Size = new System.Drawing.Size(487, 141);
             this.panel7.TabIndex = 14;
             // 
             // button47
@@ -788,10 +799,11 @@ namespace thepos
             // panel6
             // 
             this.panel6.Controls.Add(this.button43);
+            this.panel6.Controls.Add(this.button59);
+            this.panel6.Controls.Add(this.button58);
             this.panel6.Controls.Add(this.button42);
             this.panel6.Controls.Add(this.button41);
             this.panel6.Controls.Add(this.button13);
-            this.panel6.Controls.Add(this.button12);
             this.panel6.Location = new System.Drawing.Point(420, 392);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(98, 303);
@@ -802,9 +814,9 @@ namespace thepos
             this.button43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
             this.button43.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button43.ForeColor = System.Drawing.Color.White;
-            this.button43.Location = new System.Drawing.Point(3, 245);
+            this.button43.Location = new System.Drawing.Point(0, 250);
             this.button43.Name = "button43";
-            this.button43.Size = new System.Drawing.Size(92, 54);
+            this.button43.Size = new System.Drawing.Size(100, 50);
             this.button43.TabIndex = 0;
             this.button43.Text = "+";
             this.button43.UseVisualStyleBackColor = false;
@@ -814,10 +826,11 @@ namespace thepos
             this.button42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
             this.button42.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button42.ForeColor = System.Drawing.Color.White;
-            this.button42.Location = new System.Drawing.Point(3, 185);
+            this.button42.Location = new System.Drawing.Point(0, 100);
             this.button42.Name = "button42";
-            this.button42.Size = new System.Drawing.Size(92, 59);
+            this.button42.Size = new System.Drawing.Size(100, 50);
             this.button42.TabIndex = 0;
+            this.button42.Text = "정산";
             this.button42.UseVisualStyleBackColor = false;
             // 
             // button41
@@ -825,9 +838,9 @@ namespace thepos
             this.button41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
             this.button41.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button41.ForeColor = System.Drawing.Color.White;
-            this.button41.Location = new System.Drawing.Point(3, 125);
+            this.button41.Location = new System.Drawing.Point(0, 50);
             this.button41.Name = "button41";
-            this.button41.Size = new System.Drawing.Size(92, 59);
+            this.button41.Size = new System.Drawing.Size(100, 50);
             this.button41.TabIndex = 0;
             this.button41.Text = "락커";
             this.button41.UseVisualStyleBackColor = false;
@@ -837,37 +850,34 @@ namespace thepos
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
             this.button13.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(3, 66);
+            this.button13.Location = new System.Drawing.Point(0, 0);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(92, 59);
+            this.button13.Size = new System.Drawing.Size(100, 50);
             this.button13.TabIndex = 0;
-            this.button13.Text = "정산";
+            this.button13.Text = "충전";
             this.button13.UseVisualStyleBackColor = false;
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
-            this.button12.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(3, 5);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(92, 59);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "대기";
-            this.button12.UseVisualStyleBackColor = false;
             // 
             // panel5
             // 
             this.panel5.Location = new System.Drawing.Point(12, 392);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(211, 304);
+            this.panel5.Size = new System.Drawing.Size(203, 304);
             this.panel5.TabIndex = 7;
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.button57);
+            this.panel4.Controls.Add(this.button56);
+            this.panel4.Controls.Add(this.button55);
+            this.panel4.Controls.Add(this.button54);
+            this.panel4.Controls.Add(this.button53);
+            this.panel4.Controls.Add(this.button52);
+            this.panel4.Controls.Add(this.button51);
+            this.panel4.Controls.Add(this.button12);
+            this.panel4.Controls.Add(this.button50);
             this.panel4.Location = new System.Drawing.Point(12, 289);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(506, 44);
+            this.panel4.Size = new System.Drawing.Size(506, 54);
             this.panel4.TabIndex = 6;
             // 
             // listView1
@@ -895,10 +905,140 @@ namespace thepos
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(4, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 40);
+            this.label1.Size = new System.Drawing.Size(172, 42);
             this.label1.TabIndex = 2;
             this.label1.Text = "12345";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // button50
+            // 
+            this.button50.BackColor = System.Drawing.Color.White;
+            this.button50.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button50.ForeColor = System.Drawing.Color.Black;
+            this.button50.Location = new System.Drawing.Point(0, 0);
+            this.button50.Name = "button50";
+            this.button50.Size = new System.Drawing.Size(55, 50);
+            this.button50.TabIndex = 0;
+            this.button50.Text = "전체\r\n취소";
+            this.button50.UseVisualStyleBackColor = false;
+            // 
+            // button51
+            // 
+            this.button51.BackColor = System.Drawing.Color.White;
+            this.button51.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button51.ForeColor = System.Drawing.Color.Black;
+            this.button51.Location = new System.Drawing.Point(55, 1);
+            this.button51.Name = "button51";
+            this.button51.Size = new System.Drawing.Size(55, 50);
+            this.button51.TabIndex = 0;
+            this.button51.Text = "선택\r\n취소";
+            this.button51.UseVisualStyleBackColor = false;
+            // 
+            // button52
+            // 
+            this.button52.BackColor = System.Drawing.Color.White;
+            this.button52.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button52.ForeColor = System.Drawing.Color.Black;
+            this.button52.Location = new System.Drawing.Point(110, 1);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(55, 50);
+            this.button52.TabIndex = 0;
+            this.button52.Text = "할인\r\n적용";
+            this.button52.UseVisualStyleBackColor = false;
+            // 
+            // button53
+            // 
+            this.button53.BackColor = System.Drawing.Color.White;
+            this.button53.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button53.ForeColor = System.Drawing.Color.Black;
+            this.button53.Location = new System.Drawing.Point(165, 1);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(55, 50);
+            this.button53.TabIndex = 0;
+            this.button53.Text = "수량\r\n변경";
+            this.button53.UseVisualStyleBackColor = false;
+            // 
+            // button54
+            // 
+            this.button54.BackColor = System.Drawing.Color.White;
+            this.button54.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button54.ForeColor = System.Drawing.Color.Black;
+            this.button54.Location = new System.Drawing.Point(220, 1);
+            this.button54.Name = "button54";
+            this.button54.Size = new System.Drawing.Size(55, 50);
+            this.button54.TabIndex = 0;
+            this.button54.Text = "-";
+            this.button54.UseVisualStyleBackColor = false;
+            // 
+            // button55
+            // 
+            this.button55.BackColor = System.Drawing.Color.White;
+            this.button55.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button55.ForeColor = System.Drawing.Color.Black;
+            this.button55.Location = new System.Drawing.Point(275, 1);
+            this.button55.Name = "button55";
+            this.button55.Size = new System.Drawing.Size(55, 50);
+            this.button55.TabIndex = 0;
+            this.button55.Text = "+";
+            this.button55.UseVisualStyleBackColor = false;
+            // 
+            // button56
+            // 
+            this.button56.BackColor = System.Drawing.Color.White;
+            this.button56.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button56.ForeColor = System.Drawing.Color.Black;
+            this.button56.Location = new System.Drawing.Point(393, 1);
+            this.button56.Name = "button56";
+            this.button56.Size = new System.Drawing.Size(55, 50);
+            this.button56.TabIndex = 0;
+            this.button56.Text = "Up";
+            this.button56.UseVisualStyleBackColor = false;
+            // 
+            // button57
+            // 
+            this.button57.BackColor = System.Drawing.Color.White;
+            this.button57.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button57.ForeColor = System.Drawing.Color.Black;
+            this.button57.Location = new System.Drawing.Point(448, 1);
+            this.button57.Name = "button57";
+            this.button57.Size = new System.Drawing.Size(55, 50);
+            this.button57.TabIndex = 0;
+            this.button57.Text = "Dn";
+            this.button57.UseVisualStyleBackColor = false;
+            // 
+            // button58
+            // 
+            this.button58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
+            this.button58.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button58.ForeColor = System.Drawing.Color.White;
+            this.button58.Location = new System.Drawing.Point(0, 150);
+            this.button58.Name = "button58";
+            this.button58.Size = new System.Drawing.Size(100, 50);
+            this.button58.TabIndex = 0;
+            this.button58.UseVisualStyleBackColor = false;
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.White;
+            this.button12.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button12.ForeColor = System.Drawing.Color.Black;
+            this.button12.Location = new System.Drawing.Point(335, 1);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(55, 50);
+            this.button12.TabIndex = 0;
+            this.button12.Text = "대기\r\n보류";
+            this.button12.UseVisualStyleBackColor = false;
+            // 
+            // button59
+            // 
+            this.button59.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(121)))), ((int)(((byte)(52)))));
+            this.button59.Font = new System.Drawing.Font("NanumSquare Neo ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button59.ForeColor = System.Drawing.Color.White;
+            this.button59.Location = new System.Drawing.Point(0, 200);
+            this.button59.Name = "button59";
+            this.button59.Size = new System.Drawing.Size(100, 50);
+            this.button59.TabIndex = 0;
+            this.button59.UseVisualStyleBackColor = false;
             // 
             // formMain
             // 
@@ -922,6 +1062,7 @@ namespace thepos
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -985,9 +1126,19 @@ namespace thepos
         private System.Windows.Forms.Button button42;
         private System.Windows.Forms.Button button41;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button49;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button57;
+        private System.Windows.Forms.Button button56;
+        private System.Windows.Forms.Button button55;
+        private System.Windows.Forms.Button button54;
+        private System.Windows.Forms.Button button53;
+        private System.Windows.Forms.Button button52;
+        private System.Windows.Forms.Button button51;
+        private System.Windows.Forms.Button button50;
+        private System.Windows.Forms.Button button59;
+        private System.Windows.Forms.Button button58;
+        private System.Windows.Forms.Button button12;
     }
 }
 
