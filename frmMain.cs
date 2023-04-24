@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace thepos
 {
-    public partial class FormMain : Form
+    public partial class frmMain : Form
     {
-        public FormMain()
+        public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
