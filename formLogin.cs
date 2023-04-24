@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace thepos
 {
-    public partial class FormMain : Form
+    public partial class formLogin : Form
     {
-        public FormMain()
+        public formLogin()
         {
             InitializeComponent();
         }
