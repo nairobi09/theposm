@@ -96,12 +96,12 @@ namespace thepos
             this.button36 = new System.Windows.Forms.Button();
             this.button39 = new System.Windows.Forms.Button();
             this.button40 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button60 = new System.Windows.Forms.Button();
             this.button61 = new System.Windows.Forms.Button();
-            this.button62 = new System.Windows.Forms.Button();
-            this.button63 = new System.Windows.Forms.Button();
+            this.button60 = new System.Windows.Forms.Button();
             this.button64 = new System.Windows.Forms.Button();
+            this.button63 = new System.Windows.Forms.Button();
+            this.button62 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panelNumpad.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -203,7 +203,6 @@ namespace thepos
             // 
             // panelNumpad
             // 
-            this.panelNumpad.Controls.Add(this.label1);
             this.panelNumpad.Controls.Add(this.button1);
             this.panelNumpad.Controls.Add(this.button2);
             this.panelNumpad.Controls.Add(this.button11);
@@ -218,11 +217,11 @@ namespace thepos
             this.panelNumpad.Controls.Add(this.button8);
             this.panelNumpad.Controls.Add(this.button7);
             this.panelNumpad.Controls.Add(this.button15);
-            this.panelNumpad.Location = new System.Drawing.Point(225, 450);
+            this.panelNumpad.Location = new System.Drawing.Point(225, 501);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(181, 304);
+            this.panelNumpad.Size = new System.Drawing.Size(181, 253);
             this.panelNumpad.TabIndex = 23;
             // 
             // label1
@@ -231,7 +230,7 @@ namespace thepos
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 6);
+            this.label1.Location = new System.Drawing.Point(229, 453);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(172, 42);
             this.label1.TabIndex = 2;
@@ -243,7 +242,7 @@ namespace thepos
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button1.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 51);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(60, 50);
@@ -256,7 +255,7 @@ namespace thepos
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button2.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(60, 51);
+            this.button2.Location = new System.Drawing.Point(60, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(60, 50);
             this.button2.TabIndex = 1;
@@ -268,7 +267,7 @@ namespace thepos
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button11.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(0, 201);
+            this.button11.Location = new System.Drawing.Point(0, 150);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(60, 50);
             this.button11.TabIndex = 1;
@@ -280,7 +279,7 @@ namespace thepos
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button3.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(120, 51);
+            this.button3.Location = new System.Drawing.Point(120, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(60, 50);
             this.button3.TabIndex = 1;
@@ -292,7 +291,7 @@ namespace thepos
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button4.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 101);
+            this.button4.Location = new System.Drawing.Point(0, 50);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(60, 50);
             this.button4.TabIndex = 1;
@@ -304,7 +303,7 @@ namespace thepos
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button10.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(60, 201);
+            this.button10.Location = new System.Drawing.Point(60, 150);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(60, 50);
             this.button10.TabIndex = 1;
@@ -316,7 +315,7 @@ namespace thepos
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button14.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Location = new System.Drawing.Point(60, 251);
+            this.button14.Location = new System.Drawing.Point(60, 200);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(121, 50);
             this.button14.TabIndex = 1;
@@ -328,7 +327,7 @@ namespace thepos
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button16.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button16.ForeColor = System.Drawing.Color.White;
-            this.button16.Location = new System.Drawing.Point(120, 201);
+            this.button16.Location = new System.Drawing.Point(120, 150);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(60, 50);
             this.button16.TabIndex = 1;
@@ -340,7 +339,7 @@ namespace thepos
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button5.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(60, 101);
+            this.button5.Location = new System.Drawing.Point(60, 50);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(60, 50);
             this.button5.TabIndex = 1;
@@ -352,7 +351,7 @@ namespace thepos
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button9.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(120, 151);
+            this.button9.Location = new System.Drawing.Point(120, 100);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(60, 50);
             this.button9.TabIndex = 1;
@@ -364,7 +363,7 @@ namespace thepos
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button6.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(120, 101);
+            this.button6.Location = new System.Drawing.Point(120, 50);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(60, 50);
             this.button6.TabIndex = 1;
@@ -376,7 +375,7 @@ namespace thepos
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button8.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(60, 151);
+            this.button8.Location = new System.Drawing.Point(60, 100);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(60, 50);
             this.button8.TabIndex = 1;
@@ -388,7 +387,7 @@ namespace thepos
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button7.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(0, 151);
+            this.button7.Location = new System.Drawing.Point(0, 100);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(60, 50);
             this.button7.TabIndex = 1;
@@ -400,7 +399,7 @@ namespace thepos
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.button15.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button15.ForeColor = System.Drawing.Color.White;
-            this.button15.Location = new System.Drawing.Point(0, 251);
+            this.button15.Location = new System.Drawing.Point(0, 200);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(60, 50);
             this.button15.TabIndex = 1;
@@ -999,19 +998,19 @@ namespace thepos
             this.button40.Text = "일반 성인\r\n17,000";
             this.button40.UseVisualStyleBackColor = false;
             // 
-            // button12
+            // button61
             // 
-            this.button12.BackColor = System.Drawing.Color.White;
-            this.button12.CausesValidation = false;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button12.ForeColor = System.Drawing.Color.Black;
-            this.button12.Location = new System.Drawing.Point(195, 307);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(90, 70);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "일반 성인\r\n17,000";
-            this.button12.UseVisualStyleBackColor = false;
+            this.button61.BackColor = System.Drawing.Color.White;
+            this.button61.CausesValidation = false;
+            this.button61.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button61.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button61.ForeColor = System.Drawing.Color.Black;
+            this.button61.Location = new System.Drawing.Point(195, 231);
+            this.button61.Name = "button61";
+            this.button61.Size = new System.Drawing.Size(90, 70);
+            this.button61.TabIndex = 0;
+            this.button61.Text = "일반 성인\r\n17,000";
+            this.button61.UseVisualStyleBackColor = false;
             // 
             // button60
             // 
@@ -1027,33 +1026,19 @@ namespace thepos
             this.button60.Text = "일반 성인\r\n17,000";
             this.button60.UseVisualStyleBackColor = false;
             // 
-            // button61
+            // button64
             // 
-            this.button61.BackColor = System.Drawing.Color.White;
-            this.button61.CausesValidation = false;
-            this.button61.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button61.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button61.ForeColor = System.Drawing.Color.Black;
-            this.button61.Location = new System.Drawing.Point(195, 231);
-            this.button61.Name = "button61";
-            this.button61.Size = new System.Drawing.Size(90, 70);
-            this.button61.TabIndex = 0;
-            this.button61.Text = "일반 성인\r\n17,000";
-            this.button61.UseVisualStyleBackColor = false;
-            // 
-            // button62
-            // 
-            this.button62.BackColor = System.Drawing.Color.White;
-            this.button62.CausesValidation = false;
-            this.button62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button62.ForeColor = System.Drawing.Color.Black;
-            this.button62.Location = new System.Drawing.Point(99, 307);
-            this.button62.Name = "button62";
-            this.button62.Size = new System.Drawing.Size(90, 70);
-            this.button62.TabIndex = 0;
-            this.button62.Text = "일반 성인\r\n17,000";
-            this.button62.UseVisualStyleBackColor = false;
+            this.button64.BackColor = System.Drawing.Color.White;
+            this.button64.CausesValidation = false;
+            this.button64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button64.ForeColor = System.Drawing.Color.Black;
+            this.button64.Location = new System.Drawing.Point(387, 231);
+            this.button64.Name = "button64";
+            this.button64.Size = new System.Drawing.Size(90, 70);
+            this.button64.TabIndex = 0;
+            this.button64.Text = "일반 성인\r\n17,000";
+            this.button64.UseVisualStyleBackColor = false;
             // 
             // button63
             // 
@@ -1069,19 +1054,33 @@ namespace thepos
             this.button63.Text = "일반 성인\r\n17,000";
             this.button63.UseVisualStyleBackColor = false;
             // 
-            // button64
+            // button62
             // 
-            this.button64.BackColor = System.Drawing.Color.White;
-            this.button64.CausesValidation = false;
-            this.button64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button64.ForeColor = System.Drawing.Color.Black;
-            this.button64.Location = new System.Drawing.Point(387, 231);
-            this.button64.Name = "button64";
-            this.button64.Size = new System.Drawing.Size(90, 70);
-            this.button64.TabIndex = 0;
-            this.button64.Text = "일반 성인\r\n17,000";
-            this.button64.UseVisualStyleBackColor = false;
+            this.button62.BackColor = System.Drawing.Color.White;
+            this.button62.CausesValidation = false;
+            this.button62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button62.ForeColor = System.Drawing.Color.Black;
+            this.button62.Location = new System.Drawing.Point(99, 307);
+            this.button62.Name = "button62";
+            this.button62.Size = new System.Drawing.Size(90, 70);
+            this.button62.TabIndex = 0;
+            this.button62.Text = "일반 성인\r\n17,000";
+            this.button62.UseVisualStyleBackColor = false;
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.White;
+            this.button12.CausesValidation = false;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button12.ForeColor = System.Drawing.Color.Black;
+            this.button12.Location = new System.Drawing.Point(195, 307);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(90, 70);
+            this.button12.TabIndex = 0;
+            this.button12.Text = "일반 성인\r\n17,000";
+            this.button12.UseVisualStyleBackColor = false;
             // 
             // frmSale
             // 
@@ -1089,6 +1088,7 @@ namespace thepos
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ControlBox = false;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panelNumpad);
