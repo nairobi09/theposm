@@ -17,5 +17,16 @@ namespace thepos
             InitializeComponent();
         }
 
+        private void btnItemScrollUp_Click(object sender, EventArgs e)
+        {
+            int change = flowLayoutPanelIGoodsItem.VerticalScroll.Value - flowLayoutPanelIGoodsItem.HorizontalScroll.LargeChange * 10;
+            flowLayoutPanelIGoodsItem.AutoScrollPosition = new Point(0, change);
+        }
+
+        private void btnItemScrollDn_Click(object sender, EventArgs e)
+        {
+            int change = flowLayoutPanelIGoodsItem.VerticalScroll.Value + flowLayoutPanelIGoodsItem.HorizontalScroll.LargeChange * 10;
+            flowLayoutPanelIGoodsItem.AutoScrollPosition = new Point(0, change);
+        }
     }
 }
