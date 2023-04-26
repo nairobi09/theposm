@@ -79,13 +79,9 @@ namespace thepos
             this.button24 = new System.Windows.Forms.Button();
             this.button49 = new System.Windows.Forms.Button();
             this.flowLayoutPanelIGoodsItem = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnItemScrollUp = new System.Windows.Forms.Button();
-            this.btnItemScrollDn = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
-            this.btnGroupScrollUp = new System.Windows.Forms.Button();
-            this.btnGroupScrollDn = new System.Windows.Forms.Button();
             this.button36 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
@@ -105,6 +101,29 @@ namespace thepos
             this.button80 = new System.Windows.Forms.Button();
             this.button81 = new System.Windows.Forms.Button();
             this.button82 = new System.Windows.Forms.Button();
+            this.btnItemScrollUp = new System.Windows.Forms.Button();
+            this.btnItemScrollDn = new System.Windows.Forms.Button();
+            this.btnGroupScrollUp = new System.Windows.Forms.Button();
+            this.btnGroupScrollDn = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
+            this.button32 = new System.Windows.Forms.Button();
+            this.button33 = new System.Windows.Forms.Button();
+            this.button34 = new System.Windows.Forms.Button();
+            this.button35 = new System.Windows.Forms.Button();
+            this.button37 = new System.Windows.Forms.Button();
+            this.button39 = new System.Windows.Forms.Button();
+            this.button40 = new System.Windows.Forms.Button();
+            this.button60 = new System.Windows.Forms.Button();
+            this.button64 = new System.Windows.Forms.Button();
+            this.button65 = new System.Windows.Forms.Button();
+            this.button66 = new System.Windows.Forms.Button();
+            this.button70 = new System.Windows.Forms.Button();
+            this.button71 = new System.Windows.Forms.Button();
+            this.button77 = new System.Windows.Forms.Button();
+            this.button78 = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panelNumpad.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -433,7 +452,7 @@ namespace thepos
             this.button57.Name = "button57";
             this.button57.Size = new System.Drawing.Size(46, 50);
             this.button57.TabIndex = 0;
-            this.button57.Text = "Dn";
+            this.button57.Text = "▽";
             this.button57.UseVisualStyleBackColor = false;
             // 
             // button56
@@ -445,31 +464,31 @@ namespace thepos
             this.button56.Name = "button56";
             this.button56.Size = new System.Drawing.Size(46, 50);
             this.button56.TabIndex = 0;
-            this.button56.Text = "Up";
+            this.button56.Text = "△";
             this.button56.UseVisualStyleBackColor = false;
             // 
             // button55
             // 
             this.button55.BackColor = System.Drawing.Color.White;
-            this.button55.Font = new System.Drawing.Font("Spoqa Han Sans Neo", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button55.Font = new System.Drawing.Font("Spoqa Han Sans Neo", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button55.ForeColor = System.Drawing.Color.Black;
             this.button55.Location = new System.Drawing.Point(275, 0);
             this.button55.Name = "button55";
             this.button55.Size = new System.Drawing.Size(58, 50);
             this.button55.TabIndex = 0;
-            this.button55.Text = "+";
+            this.button55.Text = "＋";
             this.button55.UseVisualStyleBackColor = false;
             // 
             // button54
             // 
             this.button54.BackColor = System.Drawing.Color.White;
-            this.button54.Font = new System.Drawing.Font("Spoqa Han Sans Neo", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button54.Font = new System.Drawing.Font("Spoqa Han Sans Neo", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button54.ForeColor = System.Drawing.Color.Black;
             this.button54.Location = new System.Drawing.Point(217, 0);
             this.button54.Name = "button54";
             this.button54.Size = new System.Drawing.Size(58, 50);
             this.button54.TabIndex = 0;
-            this.button54.Text = "-";
+            this.button54.Text = "－";
             this.button54.UseVisualStyleBackColor = false;
             // 
             // button53
@@ -531,14 +550,16 @@ namespace thepos
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.button25);
             this.panel7.Controls.Add(this.button47);
             this.panel7.Controls.Add(this.button46);
+            this.panel7.Controls.Add(this.button17);
             this.panel7.Controls.Add(this.button48);
             this.panel7.Controls.Add(this.button45);
             this.panel7.Controls.Add(this.button44);
-            this.panel7.Location = new System.Drawing.Point(524, 632);
+            this.panel7.Location = new System.Drawing.Point(524, 639);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(427, 120);
+            this.panel7.Size = new System.Drawing.Size(500, 120);
             this.panel7.TabIndex = 22;
             // 
             // button47
@@ -546,9 +567,9 @@ namespace thepos
             this.button47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.button47.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button47.ForeColor = System.Drawing.Color.White;
-            this.button47.Location = new System.Drawing.Point(210, 56);
+            this.button47.Location = new System.Drawing.Point(196, 57);
             this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(105, 59);
+            this.button47.Size = new System.Drawing.Size(98, 59);
             this.button47.TabIndex = 0;
             this.button47.Text = "단순현금";
             this.button47.UseVisualStyleBackColor = false;
@@ -558,9 +579,9 @@ namespace thepos
             this.button46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.button46.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button46.ForeColor = System.Drawing.Color.White;
-            this.button46.Location = new System.Drawing.Point(210, 0);
+            this.button46.Location = new System.Drawing.Point(196, 1);
             this.button46.Name = "button46";
-            this.button46.Size = new System.Drawing.Size(105, 57);
+            this.button46.Size = new System.Drawing.Size(98, 57);
             this.button46.TabIndex = 0;
             this.button46.Text = "현금\r\n";
             this.button46.UseVisualStyleBackColor = false;
@@ -570,9 +591,9 @@ namespace thepos
             this.button48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.button48.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button48.ForeColor = System.Drawing.Color.White;
-            this.button48.Location = new System.Drawing.Point(105, 0);
+            this.button48.Location = new System.Drawing.Point(98, 0);
             this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(105, 116);
+            this.button48.Size = new System.Drawing.Size(98, 116);
             this.button48.TabIndex = 0;
             this.button48.Text = "신용카드";
             this.button48.UseVisualStyleBackColor = false;
@@ -582,9 +603,9 @@ namespace thepos
             this.button45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(117)))), ((int)(((byte)(180)))));
             this.button45.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button45.ForeColor = System.Drawing.Color.White;
-            this.button45.Location = new System.Drawing.Point(315, 0);
+            this.button45.Location = new System.Drawing.Point(392, 2);
             this.button45.Name = "button45";
-            this.button45.Size = new System.Drawing.Size(105, 115);
+            this.button45.Size = new System.Drawing.Size(98, 115);
             this.button45.TabIndex = 0;
             this.button45.Text = "영수증\r\n관리";
             this.button45.UseVisualStyleBackColor = false;
@@ -596,7 +617,7 @@ namespace thepos
             this.button44.ForeColor = System.Drawing.Color.White;
             this.button44.Location = new System.Drawing.Point(0, 0);
             this.button44.Name = "button44";
-            this.button44.Size = new System.Drawing.Size(105, 116);
+            this.button44.Size = new System.Drawing.Size(98, 116);
             this.button44.TabIndex = 0;
             this.button44.Text = "복합결제";
             this.button44.UseVisualStyleBackColor = false;
@@ -755,32 +776,29 @@ namespace thepos
             this.flowLayoutPanelIGoodsItem.Controls.Add(this.button80);
             this.flowLayoutPanelIGoodsItem.Controls.Add(this.button81);
             this.flowLayoutPanelIGoodsItem.Controls.Add(this.button82);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button29);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button31);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button32);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button33);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button34);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button35);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button37);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button39);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button40);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button60);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button64);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button65);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button66);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button70);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button71);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button77);
+            this.flowLayoutPanelIGoodsItem.Controls.Add(this.button78);
             this.flowLayoutPanelIGoodsItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.flowLayoutPanelIGoodsItem.ForeColor = System.Drawing.Color.Gray;
             this.flowLayoutPanelIGoodsItem.Location = new System.Drawing.Point(524, 205);
             this.flowLayoutPanelIGoodsItem.Name = "flowLayoutPanelIGoodsItem";
             this.flowLayoutPanelIGoodsItem.Size = new System.Drawing.Size(488, 384);
             this.flowLayoutPanelIGoodsItem.TabIndex = 20;
-            // 
-            // btnItemScrollUp
-            // 
-            this.btnItemScrollUp.Location = new System.Drawing.Point(953, 635);
-            this.btnItemScrollUp.Name = "btnItemScrollUp";
-            this.btnItemScrollUp.Size = new System.Drawing.Size(58, 53);
-            this.btnItemScrollUp.TabIndex = 28;
-            this.btnItemScrollUp.Text = "Up";
-            this.btnItemScrollUp.UseVisualStyleBackColor = true;
-            this.btnItemScrollUp.Click += new System.EventHandler(this.btnItemScrollUp_Click);
-            // 
-            // btnItemScrollDn
-            // 
-            this.btnItemScrollDn.Location = new System.Drawing.Point(953, 694);
-            this.btnItemScrollDn.Name = "btnItemScrollDn";
-            this.btnItemScrollDn.Size = new System.Drawing.Size(58, 53);
-            this.btnItemScrollDn.TabIndex = 28;
-            this.btnItemScrollDn.Text = "Dn";
-            this.btnItemScrollDn.UseVisualStyleBackColor = true;
-            this.btnItemScrollDn.Click += new System.EventHandler(this.btnItemScrollDn_Click);
             // 
             // button26
             // 
@@ -826,26 +844,6 @@ namespace thepos
             this.button38.TabStop = false;
             this.button38.Text = "일반 성인\r\n17,000";
             this.button38.UseVisualStyleBackColor = false;
-            // 
-            // btnGroupScrollUp
-            // 
-            this.btnGroupScrollUp.Location = new System.Drawing.Point(967, 64);
-            this.btnGroupScrollUp.Name = "btnGroupScrollUp";
-            this.btnGroupScrollUp.Size = new System.Drawing.Size(44, 62);
-            this.btnGroupScrollUp.TabIndex = 28;
-            this.btnGroupScrollUp.Text = "Up";
-            this.btnGroupScrollUp.UseVisualStyleBackColor = true;
-            this.btnGroupScrollUp.Click += new System.EventHandler(this.btnItemScrollUp_Click);
-            // 
-            // btnGroupScrollDn
-            // 
-            this.btnGroupScrollDn.Location = new System.Drawing.Point(967, 133);
-            this.btnGroupScrollDn.Name = "btnGroupScrollDn";
-            this.btnGroupScrollDn.Size = new System.Drawing.Size(44, 62);
-            this.btnGroupScrollDn.TabIndex = 28;
-            this.btnGroupScrollDn.Text = "Dn";
-            this.btnGroupScrollDn.UseVisualStyleBackColor = true;
-            this.btnGroupScrollDn.Click += new System.EventHandler(this.btnItemScrollDn_Click);
             // 
             // button36
             // 
@@ -1132,6 +1130,325 @@ namespace thepos
             this.button82.Text = "일반 성인\r\n17,000";
             this.button82.UseVisualStyleBackColor = false;
             // 
+            // btnItemScrollUp
+            // 
+            this.btnItemScrollUp.Location = new System.Drawing.Point(893, 595);
+            this.btnItemScrollUp.Name = "btnItemScrollUp";
+            this.btnItemScrollUp.Size = new System.Drawing.Size(58, 39);
+            this.btnItemScrollUp.TabIndex = 28;
+            this.btnItemScrollUp.Text = "△";
+            this.btnItemScrollUp.UseVisualStyleBackColor = true;
+            this.btnItemScrollUp.Click += new System.EventHandler(this.btnItemScrollUp_Click);
+            // 
+            // btnItemScrollDn
+            // 
+            this.btnItemScrollDn.Location = new System.Drawing.Point(953, 595);
+            this.btnItemScrollDn.Name = "btnItemScrollDn";
+            this.btnItemScrollDn.Size = new System.Drawing.Size(58, 39);
+            this.btnItemScrollDn.TabIndex = 28;
+            this.btnItemScrollDn.Text = "▽";
+            this.btnItemScrollDn.UseVisualStyleBackColor = true;
+            this.btnItemScrollDn.Click += new System.EventHandler(this.btnItemScrollDn_Click);
+            // 
+            // btnGroupScrollUp
+            // 
+            this.btnGroupScrollUp.Location = new System.Drawing.Point(967, 64);
+            this.btnGroupScrollUp.Name = "btnGroupScrollUp";
+            this.btnGroupScrollUp.Size = new System.Drawing.Size(44, 62);
+            this.btnGroupScrollUp.TabIndex = 28;
+            this.btnGroupScrollUp.Text = "△";
+            this.btnGroupScrollUp.UseVisualStyleBackColor = true;
+            this.btnGroupScrollUp.Click += new System.EventHandler(this.btnItemScrollUp_Click);
+            // 
+            // btnGroupScrollDn
+            // 
+            this.btnGroupScrollDn.Location = new System.Drawing.Point(967, 133);
+            this.btnGroupScrollDn.Name = "btnGroupScrollDn";
+            this.btnGroupScrollDn.Size = new System.Drawing.Size(44, 62);
+            this.btnGroupScrollDn.TabIndex = 28;
+            this.btnGroupScrollDn.Text = "▽";
+            this.btnGroupScrollDn.UseVisualStyleBackColor = true;
+            this.btnGroupScrollDn.Click += new System.EventHandler(this.btnItemScrollDn_Click);
+            // 
+            // button17
+            // 
+            this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
+            this.button17.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button17.ForeColor = System.Drawing.Color.White;
+            this.button17.Location = new System.Drawing.Point(294, 2);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(98, 56);
+            this.button17.TabIndex = 0;
+            this.button17.Text = "▲";
+            this.button17.UseVisualStyleBackColor = false;
+            // 
+            // button25
+            // 
+            this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
+            this.button25.Font = new System.Drawing.Font("Spoqa Han Sans Neo Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button25.ForeColor = System.Drawing.Color.White;
+            this.button25.Location = new System.Drawing.Point(294, 57);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(98, 59);
+            this.button25.TabIndex = 0;
+            this.button25.Text = "간편결제";
+            this.button25.UseVisualStyleBackColor = false;
+            // 
+            // button29
+            // 
+            this.button29.BackColor = System.Drawing.Color.White;
+            this.button29.CausesValidation = false;
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button29.ForeColor = System.Drawing.Color.Black;
+            this.button29.Location = new System.Drawing.Point(195, 307);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(90, 70);
+            this.button29.TabIndex = 87;
+            this.button29.TabStop = false;
+            this.button29.Text = "일반 성인\r\n17,000";
+            this.button29.UseVisualStyleBackColor = false;
+            // 
+            // button31
+            // 
+            this.button31.BackColor = System.Drawing.Color.White;
+            this.button31.CausesValidation = false;
+            this.button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button31.ForeColor = System.Drawing.Color.Black;
+            this.button31.Location = new System.Drawing.Point(291, 307);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(90, 70);
+            this.button31.TabIndex = 88;
+            this.button31.TabStop = false;
+            this.button31.Text = "일반 성인\r\n17,000";
+            this.button31.UseVisualStyleBackColor = false;
+            // 
+            // button32
+            // 
+            this.button32.BackColor = System.Drawing.Color.White;
+            this.button32.CausesValidation = false;
+            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button32.ForeColor = System.Drawing.Color.Black;
+            this.button32.Location = new System.Drawing.Point(387, 307);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(90, 70);
+            this.button32.TabIndex = 89;
+            this.button32.TabStop = false;
+            this.button32.Text = "일반 성인\r\n17,000";
+            this.button32.UseVisualStyleBackColor = false;
+            // 
+            // button33
+            // 
+            this.button33.BackColor = System.Drawing.Color.White;
+            this.button33.CausesValidation = false;
+            this.button33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button33.ForeColor = System.Drawing.Color.Black;
+            this.button33.Location = new System.Drawing.Point(3, 383);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(90, 70);
+            this.button33.TabIndex = 90;
+            this.button33.TabStop = false;
+            this.button33.Text = "일반 성인\r\n17,000";
+            this.button33.UseVisualStyleBackColor = false;
+            // 
+            // button34
+            // 
+            this.button34.BackColor = System.Drawing.Color.White;
+            this.button34.CausesValidation = false;
+            this.button34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button34.ForeColor = System.Drawing.Color.Black;
+            this.button34.Location = new System.Drawing.Point(99, 383);
+            this.button34.Name = "button34";
+            this.button34.Size = new System.Drawing.Size(90, 70);
+            this.button34.TabIndex = 91;
+            this.button34.TabStop = false;
+            this.button34.Text = "일반 성인\r\n17,000";
+            this.button34.UseVisualStyleBackColor = false;
+            // 
+            // button35
+            // 
+            this.button35.BackColor = System.Drawing.Color.White;
+            this.button35.CausesValidation = false;
+            this.button35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button35.ForeColor = System.Drawing.Color.Black;
+            this.button35.Location = new System.Drawing.Point(195, 383);
+            this.button35.Name = "button35";
+            this.button35.Size = new System.Drawing.Size(90, 70);
+            this.button35.TabIndex = 92;
+            this.button35.TabStop = false;
+            this.button35.Text = "일반 성인\r\n17,000";
+            this.button35.UseVisualStyleBackColor = false;
+            // 
+            // button37
+            // 
+            this.button37.BackColor = System.Drawing.Color.White;
+            this.button37.CausesValidation = false;
+            this.button37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button37.ForeColor = System.Drawing.Color.Black;
+            this.button37.Location = new System.Drawing.Point(291, 383);
+            this.button37.Name = "button37";
+            this.button37.Size = new System.Drawing.Size(90, 70);
+            this.button37.TabIndex = 93;
+            this.button37.TabStop = false;
+            this.button37.Text = "일반 성인\r\n17,000";
+            this.button37.UseVisualStyleBackColor = false;
+            // 
+            // button39
+            // 
+            this.button39.BackColor = System.Drawing.Color.White;
+            this.button39.CausesValidation = false;
+            this.button39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button39.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button39.ForeColor = System.Drawing.Color.Black;
+            this.button39.Location = new System.Drawing.Point(387, 383);
+            this.button39.Name = "button39";
+            this.button39.Size = new System.Drawing.Size(90, 70);
+            this.button39.TabIndex = 94;
+            this.button39.TabStop = false;
+            this.button39.Text = "일반 성인\r\n17,000";
+            this.button39.UseVisualStyleBackColor = false;
+            // 
+            // button40
+            // 
+            this.button40.BackColor = System.Drawing.Color.White;
+            this.button40.CausesValidation = false;
+            this.button40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button40.ForeColor = System.Drawing.Color.Black;
+            this.button40.Location = new System.Drawing.Point(3, 459);
+            this.button40.Name = "button40";
+            this.button40.Size = new System.Drawing.Size(90, 70);
+            this.button40.TabIndex = 95;
+            this.button40.TabStop = false;
+            this.button40.Text = "일반 성인\r\n17,000";
+            this.button40.UseVisualStyleBackColor = false;
+            // 
+            // button60
+            // 
+            this.button60.BackColor = System.Drawing.Color.White;
+            this.button60.CausesValidation = false;
+            this.button60.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button60.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button60.ForeColor = System.Drawing.Color.Black;
+            this.button60.Location = new System.Drawing.Point(99, 459);
+            this.button60.Name = "button60";
+            this.button60.Size = new System.Drawing.Size(90, 70);
+            this.button60.TabIndex = 96;
+            this.button60.TabStop = false;
+            this.button60.Text = "일반 성인\r\n17,000";
+            this.button60.UseVisualStyleBackColor = false;
+            // 
+            // button64
+            // 
+            this.button64.BackColor = System.Drawing.Color.White;
+            this.button64.CausesValidation = false;
+            this.button64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button64.ForeColor = System.Drawing.Color.Black;
+            this.button64.Location = new System.Drawing.Point(195, 459);
+            this.button64.Name = "button64";
+            this.button64.Size = new System.Drawing.Size(90, 70);
+            this.button64.TabIndex = 97;
+            this.button64.TabStop = false;
+            this.button64.Text = "일반 성인\r\n17,000";
+            this.button64.UseVisualStyleBackColor = false;
+            // 
+            // button65
+            // 
+            this.button65.BackColor = System.Drawing.Color.White;
+            this.button65.CausesValidation = false;
+            this.button65.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button65.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button65.ForeColor = System.Drawing.Color.Black;
+            this.button65.Location = new System.Drawing.Point(291, 459);
+            this.button65.Name = "button65";
+            this.button65.Size = new System.Drawing.Size(90, 70);
+            this.button65.TabIndex = 98;
+            this.button65.TabStop = false;
+            this.button65.Text = "일반 성인\r\n17,000";
+            this.button65.UseVisualStyleBackColor = false;
+            // 
+            // button66
+            // 
+            this.button66.BackColor = System.Drawing.Color.White;
+            this.button66.CausesValidation = false;
+            this.button66.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button66.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button66.ForeColor = System.Drawing.Color.Black;
+            this.button66.Location = new System.Drawing.Point(387, 459);
+            this.button66.Name = "button66";
+            this.button66.Size = new System.Drawing.Size(90, 70);
+            this.button66.TabIndex = 99;
+            this.button66.TabStop = false;
+            this.button66.Text = "일반 성인\r\n17,000";
+            this.button66.UseVisualStyleBackColor = false;
+            // 
+            // button70
+            // 
+            this.button70.BackColor = System.Drawing.Color.White;
+            this.button70.CausesValidation = false;
+            this.button70.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button70.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button70.ForeColor = System.Drawing.Color.Black;
+            this.button70.Location = new System.Drawing.Point(3, 535);
+            this.button70.Name = "button70";
+            this.button70.Size = new System.Drawing.Size(90, 70);
+            this.button70.TabIndex = 100;
+            this.button70.TabStop = false;
+            this.button70.Text = "일반 성인\r\n17,000";
+            this.button70.UseVisualStyleBackColor = false;
+            // 
+            // button71
+            // 
+            this.button71.BackColor = System.Drawing.Color.White;
+            this.button71.CausesValidation = false;
+            this.button71.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button71.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button71.ForeColor = System.Drawing.Color.Black;
+            this.button71.Location = new System.Drawing.Point(99, 535);
+            this.button71.Name = "button71";
+            this.button71.Size = new System.Drawing.Size(90, 70);
+            this.button71.TabIndex = 101;
+            this.button71.TabStop = false;
+            this.button71.Text = "일반 성인\r\n17,000";
+            this.button71.UseVisualStyleBackColor = false;
+            // 
+            // button77
+            // 
+            this.button77.BackColor = System.Drawing.Color.White;
+            this.button77.CausesValidation = false;
+            this.button77.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button77.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button77.ForeColor = System.Drawing.Color.Black;
+            this.button77.Location = new System.Drawing.Point(195, 535);
+            this.button77.Name = "button77";
+            this.button77.Size = new System.Drawing.Size(90, 70);
+            this.button77.TabIndex = 102;
+            this.button77.TabStop = false;
+            this.button77.Text = "일반 성인\r\n17,000";
+            this.button77.UseVisualStyleBackColor = false;
+            // 
+            // button78
+            // 
+            this.button78.BackColor = System.Drawing.Color.White;
+            this.button78.CausesValidation = false;
+            this.button78.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button78.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button78.ForeColor = System.Drawing.Color.Black;
+            this.button78.Location = new System.Drawing.Point(291, 535);
+            this.button78.Name = "button78";
+            this.button78.Size = new System.Drawing.Size(90, 70);
+            this.button78.TabIndex = 103;
+            this.button78.TabStop = false;
+            this.button78.Text = "일반 성인\r\n17,000";
+            this.button78.UseVisualStyleBackColor = false;
+            // 
             // frmSale
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1246,6 +1563,25 @@ namespace thepos
         private System.Windows.Forms.Button button82;
         private System.Windows.Forms.Button btnGroupScrollUp;
         private System.Windows.Forms.Button btnGroupScrollDn;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button29;
+        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button button32;
+        private System.Windows.Forms.Button button33;
+        private System.Windows.Forms.Button button34;
+        private System.Windows.Forms.Button button35;
+        private System.Windows.Forms.Button button37;
+        private System.Windows.Forms.Button button39;
+        private System.Windows.Forms.Button button40;
+        private System.Windows.Forms.Button button60;
+        private System.Windows.Forms.Button button64;
+        private System.Windows.Forms.Button button65;
+        private System.Windows.Forms.Button button66;
+        private System.Windows.Forms.Button button70;
+        private System.Windows.Forms.Button button71;
+        private System.Windows.Forms.Button button77;
+        private System.Windows.Forms.Button button78;
     }
 }
 

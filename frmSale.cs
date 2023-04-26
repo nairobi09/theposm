@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎
+
 namespace thepos
 {
     public partial class frmSale : Form
