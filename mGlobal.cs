@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace thepos
+{
+    class global
+    {
+
+        public struct GoodsGroup
+        {
+            public string code;  // 3
+            public string name;
+            public string type;  // 사용가능한 pos_type : 모든POS = "ALL", 그룹POS= "G00"
+
+        }
+
+        public struct GoodsItem
+        {
+            public string code;  // 6
+            public string name;
+            public int amt;
+        }
+
+
+
+
+
+        public GoodsGroup[] mGoodsGroup;
+        public GoodsItem[] mGoodsItem;
+
+
+
+
+        public void get_goodsgroup()
+        {
+
+            String[,] group = new String[,]
+            {
+                {"100","티켓","ALL"},
+                {"101","커피","G01"},
+                {"102","식사","G02"},
+                {"103","후식","G01"},
+                {"104","직원방문","G01"},
+                {"105","야간","G01"},
+                {"106","VIP","G01"},
+                {"107","장애인","G01"},
+                {"108","단체","G01"},
+/*
+                {"109","쿠폰","G01"},
+                {"110","행사","G01"},
+                {"111","주말전용","G01"},
+                {"112","지역주민","G01"},
+                {"113","후식","G01"},
+                {"114","직원방문","G01"},
+                {"115","야간","G01"},
+                {"116","VIP","G01"},
+                {"117","장애인","G01"},
+                {"118","단체","G01"},
+                {"119","쿠폰","G01"},
+                {"200","행사","G01"}
+*/
+            };
+
+
+            int len = group.Length / 3;
+
+
+            mGoodsGroup = new GoodsGroup[len];
+
+            for (int i = 0; i < len ; i++)
+            {
+                mGoodsGroup[i].code = group[i, 0];
+                mGoodsGroup[i].name = group[i, 1];
+                mGoodsGroup[i].type = group[i, 2];
+            }
+
+
+            
+        }
+
+        public void get_goodsitem()
+        {
+            mGoodsItem = new GoodsItem[36];
+
+            String[,] item = new String[,]
+            {
+                { "100100","성인","100000"},
+                { "100101","어린이","5000"},
+                { "100102","반려견","3000"},
+                { "100103","반려묘","2000"},
+                { "101104","바닐라라떼","8000"},
+                { "101102","카페라떼","6000"},
+                { "101103","카푸치노","7000"},
+                { "102101","밥","9000"},
+                { "102102","술","11000"},
+                { "102103","소주","9000"},
+                { "102104","멕주","11000"},
+                { "102105","치킨","9000"},
+                { "102106","콜라","11000"},
+                { "101105","아이스라떼","6500"},
+                { "101101","아메리카노","5000"},
+            };
+
+
+            int len = item.Length / 3;
+
+
+            mGoodsItem = new GoodsItem[len];
+
+            for (int i = 0; i < len; i++)
+            {
+                mGoodsItem[i].code = item[i, 0];
+                mGoodsItem[i].name = item[i, 1];
+                mGoodsItem[i].amt = Int32.Parse(item[i, 2]);
+            }
+
+
+
+        }
+
+    }
+}
