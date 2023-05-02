@@ -153,6 +153,9 @@ namespace thepos
             lblOrderAmountReceive.Font = fontBold;
             lblOrderAmountRest.Font = fontBold;
 
+            // item 클릭시 선택바 (backcolor=blue) 표시를 위해서...
+            lvwOrderItem.HideSelection = true;
+
         }
 
 

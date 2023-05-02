@@ -69,8 +69,10 @@ namespace thepos
             this.dc_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amt_9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cnt_9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc_amount_9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.goods_amount_9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnPaySimple = new System.Windows.Forms.Button();
             this.btnPayCash = new System.Windows.Forms.Button();
             this.btnPayCashReceipt = new System.Windows.Forms.Button();
@@ -120,8 +122,6 @@ namespace thepos
             this.btnFunction5 = new System.Windows.Forms.Button();
             this.panelDisplayAlarmWhite = new System.Windows.Forms.Panel();
             this.lblDisplayAlarm = new System.Windows.Forms.Label();
-            this.goods_amount_9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.amt_9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelNumpad.SuspendLayout();
             this.panel4.SuspendLayout();
             this.flowLayoutPanelGoodsGroup.SuspendLayout();
@@ -613,7 +613,6 @@ namespace thepos
             this.lvwOrderItem.View = System.Windows.Forms.View.Details;
             this.lvwOrderItem.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwOrderItem_ColumnWidthChanging);
             this.lvwOrderItem.SelectedIndexChanged += new System.EventHandler(this.lvwOrderItem_SelectedIndexChanged);
-            this.lvwOrderItem.Click += new System.EventHandler(this.lvwOrderItem_Click);
             // 
             // no
             // 
@@ -655,6 +654,11 @@ namespace thepos
             this.memo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.memo.Width = 84;
             // 
+            // amt_9
+            // 
+            this.amt_9.DisplayIndex = 10;
+            this.amt_9.Width = 0;
+            // 
             // cnt_9
             // 
             this.cnt_9.DisplayIndex = 7;
@@ -668,6 +672,11 @@ namespace thepos
             this.dc_amount_9.Text = "dc_amount_9";
             this.dc_amount_9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dc_amount_9.Width = 0;
+            // 
+            // goods_amount_9
+            // 
+            this.goods_amount_9.DisplayIndex = 9;
+            this.goods_amount_9.Width = 0;
             // 
             // btnPaySimple
             // 
@@ -1332,16 +1341,6 @@ namespace thepos
             this.lblDisplayAlarm.TabIndex = 2;
             this.lblDisplayAlarm.Text = "주문알림창입니다. ";
             this.lblDisplayAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // goods_amount_9
-            // 
-            this.goods_amount_9.DisplayIndex = 9;
-            this.goods_amount_9.Width = 0;
-            // 
-            // amt_9
-            // 
-            this.amt_9.DisplayIndex = 10;
-            this.amt_9.Width = 0;
             // 
             // frmSale
             // 
