@@ -13,6 +13,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 
 
+/* 과제
+
+    1. 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
+    2. 
+
+
+
+
+*/
 
 // ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎
 //   ＋
@@ -43,11 +52,14 @@ namespace thepos
 
         struct OrderItemInfo
         {
-            public String code;
-            public String name;
+            public String code;     // 상품code(6) or 전체할인코드고정("DC")
+            public String name;     // 상품name or 전체할인명("할인")
             public int cnt;
             public int amt;
-            public int dc_amount;
+            public int amount;      // 실결제금액*
+            public int dc_amount;   // 실할인금액
+            public String dc_type;  // type - "A" : 정액, "B" : 정율 
+            public String dc_rate;     // 정액: "" or 정율값("20") - 20%경우
         }
 
 
@@ -98,7 +110,8 @@ namespace thepos
             lvwOrderItem.SmallImageList = imgList;
 
 
-            //lblTime.Font = fontBold;
+            lblDate.Font = fontMedium;
+            lblTime.Font = fontBold;
 
             lblDisplayAlarm.Font = fontMedium;
 
@@ -128,7 +141,6 @@ namespace thepos
             btnKeyClear.Font = fontMedium; btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
             btnKeyEnter.Font = fontMedium;
 
-            btnFunction1.Font = fontMedium;
             btnFunction2.Font = fontMedium;
             btnFunction3.Font = fontMedium;
             btnFunction4.Font = fontMedium;
@@ -147,7 +159,7 @@ namespace thepos
             lblOrderAmountChargeTitle.Font = fontMedium;
             lblOrderAmountReceiveTitle.Font = fontMedium;
             lblOrderAmountRestTitle.Font = fontMedium;
-            lblOrderAmountSum.Font = fontBold;
+            lblOrderGoodsAmount.Font = fontBold;
             lblOrderAmountDC.Font = fontBold;
             lblOrderAmountCharge.Font = fontBold;
             lblOrderAmountReceive.Font = fontBold;
@@ -244,6 +256,9 @@ namespace thepos
                 orderItemInfo.amt = mGloval.mGoodsItem[i].amt;
                 orderItemInfo.cnt = 1;
                 orderItemInfo.dc_amount = 0;
+                orderItemInfo.amount = mGloval.mGoodsItem[i].amt;
+                orderItemInfo.dc_type = "";
+                orderItemInfo.dc_rate = "";
 
                 item.Tag = orderItemInfo;
 
@@ -261,15 +276,8 @@ namespace thepos
             }
             else
             {
-                orderItemInfo = (OrderItemInfo)lvwOrderItem.Items[lv_idx].Tag;
-                orderItemInfo.cnt++;
 
-                int amount = (orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount;
-
-                lvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItemInfo.cnt.ToString("N0");           // cnt
-                lvwOrderItem.Items[lv_idx].SubItems[5].Text = amount.ToString("N0");        // amount
-
-                lvwOrderItem.Items[lv_idx].Tag = orderItemInfo;
+                set_item_change_ordercnt(lv_idx, "add", 1);
 
                 lvwOrderItem.Items[lv_idx].Selected = true;
             }
@@ -284,21 +292,121 @@ namespace thepos
         private void btnOrderCancelAll_Click(object sender, EventArgs e)
         {
             lvwOrderItem.Items.Clear();
+
+            ReCalculateAmount();
         }
 
         private void btnOrderCancelSelect_Click(object sender, EventArgs e)
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
+                int idx = lvwOrderItem.SelectedItems[0].Index;
+
                 lvwOrderItem.SelectedItems[0].Remove();
+
+                if (idx == lvwOrderItem.Items.Count & idx == 0)
+                {
+                    // 
+                }
+                else if (idx == lvwOrderItem.Items.Count)
+                {
+                    lvwOrderItem.Items[idx - 1].Selected = true;
+                }
+                else
+                {
+                    lvwOrderItem.Items[idx].Selected = true;
+                }
+
+
+                // renumbering
+                for (int i = idx; i < lvwOrderItem.Items.Count; i++)
+                {
+                    lvwOrderItem.Items[i].Text = (i+1).ToString();
+                }
+
+
+
+                ReCalculateAmount();
+            }
+        }
+
+        private void btnOrderAmountDC_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOrderWating_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOrderCntDn_Click(object sender, EventArgs e)
+        {
+            if (lvwOrderItem.SelectedItems.Count > 0)
+            {
+                int lv_idx = lvwOrderItem.SelectedItems[0].Index;
+                set_item_change_ordercnt(lv_idx, "add", -1);
+                ReCalculateAmount();
+            }
+        }
+
+        private void btnOrderCntUp_Click(object sender, EventArgs e)
+        {
+            if (lvwOrderItem.SelectedItems.Count > 0)
+            {
+                int lv_idx = lvwOrderItem.SelectedItems[0].Index;
+                set_item_change_ordercnt(lv_idx, "add", 1);
+                ReCalculateAmount();
+            }
+        }
+
+        private void btnOrderCntChange_Click(object sender, EventArgs e)
+        {
+            if (lvwOrderItem.SelectedItems.Count > 0)
+            {
+                if (lblKeyDisplay.Text.Length > 3) return;
+
+                int cnt = 0;
+                bool result = int.TryParse(lblKeyDisplay.Text, out cnt);
+
+                if (result)
+                {
+                    if (cnt > 0 & cnt < 1000)
+                    {
+                        set_item_change_ordercnt(lvwOrderItem.SelectedItems[0].Index, "set", cnt);
+                        lblKeyDisplay.Text = "";
+                        ReCalculateAmount();
+                    }
+                }
             }
         }
 
 
 
+        private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
+        {
+            OrderItemInfo orderItemInfo = (OrderItemInfo)lvwOrderItem.Items[lv_idx].Tag;
 
+            if (jobtype == "add")
+            {
+                orderItemInfo.cnt += cnt;
+            }
+            else if (jobtype == "set")
+            {
+                orderItemInfo.cnt = cnt;
+            }
+            else
+            {
+                return;
+            }
 
+            orderItemInfo.amount = (orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount;
 
+            lvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItemInfo.cnt.ToString("N0");           // cnt
+            lvwOrderItem.Items[lv_idx].SubItems[5].Text = orderItemInfo.amount.ToString("N0");        // amount
+
+            lvwOrderItem.Items[lv_idx].Tag = orderItemInfo;
+        }
 
         private void ReCalculateAmount()
         {
@@ -306,20 +414,25 @@ namespace thepos
             Int32 dcAmount = 0;
             Int32 Amount = 0;
 
+            OrderItemInfo orderItemInfo;
 
             for (int i = 0; i < lvwOrderItem.Items.Count; i++)
             {
-
-
+                orderItemInfo = (OrderItemInfo)lvwOrderItem.Items[i].Tag;
+                goodsAmount += (orderItemInfo.cnt * orderItemInfo.amt);
+                dcAmount += orderItemInfo.dc_amount;
+                Amount += orderItemInfo.amount;
             }
-        
-        
-        
+
+            lblOrderGoodsAmount.Text = goodsAmount.ToString("N0");
+            lblOrderAmountDC.Text = dcAmount.ToString("N0");
+            lblOrderAmountCharge.Text = Amount.ToString("N0");
+
         }
 
 
 
-
+        //  스크롤 selected up down
         private void btnOrderItemScrollUp_Click(object sender, EventArgs e)
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
@@ -373,11 +486,6 @@ namespace thepos
                 }
             }
         }
-
-
-
-
-
 
 
 
@@ -461,6 +569,21 @@ namespace thepos
                 lblTime.Text = DateTime.Now.ToString("HH mm");
                 timer1.Tag = "0";
             }
+
+
+            String strWeek = "";
+            DateTime nowDt = DateTime.Now;
+
+            if (nowDt.DayOfWeek == DayOfWeek.Monday) strWeek = "월";
+            else if (nowDt.DayOfWeek == DayOfWeek.Tuesday) strWeek ="화";
+            else if (nowDt.DayOfWeek == DayOfWeek.Wednesday) strWeek ="수";
+            else if (nowDt.DayOfWeek == DayOfWeek.Thursday) strWeek ="목";
+            else if (nowDt.DayOfWeek == DayOfWeek.Friday) strWeek ="금";
+            else if (nowDt.DayOfWeek == DayOfWeek.Saturday) strWeek ="토";
+            else if (nowDt.DayOfWeek == DayOfWeek.Sunday) strWeek ="일";
+
+            lblDate.Text = DateTime.Now.ToString("yyyy.MM.dd") + " [" + strWeek + "]";
+
         }
 
         private void lvwOrderItem_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -490,9 +613,6 @@ namespace thepos
             this.Close();
         }
 
-        private void lvwOrderItem_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }
