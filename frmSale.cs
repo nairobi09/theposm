@@ -16,9 +16,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 /* 과제
 
     + 마우스 포인터 표시 : pc pos 구분필요 
-    1. 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
-    2. 
-
+    + 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
+    + 리스트부 헤더 backcolor 변경필요
+    
 
 
 
@@ -614,7 +614,6 @@ namespace thepos
         {
             this.Close();
         }
-
 
     }
 }
