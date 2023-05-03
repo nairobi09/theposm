@@ -15,6 +15,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 /* 과제
 
+    + 마우스 포인터 표시 : pc pos 구분필요 
     1. 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
     2. 
 
@@ -86,22 +87,24 @@ namespace thepos
 
 
 
-
-
-
-
-
         private void initialize_the()
         {
             //fontCollectionThin.AddFontFile("SpoqaHanSansNeo-Thin.ttf");
             //fontCollection.AddFontFile("SpoqaHanSansNeo-Light.ttf");
             //fontCollection.AddFontFile("SpoqaHanSansNeo-Regular.ttf");
-            fontCollectionMedium.AddFontFile("SpoqaHanSansNeo-Medium.ttf");
-            fontCollectionBold.AddFontFile("SpoqaHanSansNeo-Bold.ttf");
+
+            //fontCollectionMedium.AddFontFile("SpoqaHanSansNeo-Medium.ttf");
+            //fontCollectionBold.AddFontFile("SpoqaHanSansNeo-Bold.ttf");
+
+
+            fontCollectionMedium.AddFontFile("Pretendard-Medium.ttf");
+            fontCollectionBold.AddFontFile("Pretendard-Bold.ttf");
+
 
             //fontThin = new Font(fontCollectionThin.Families[0], 14f);
             fontMedium = new Font(fontCollectionMedium.Families[0], 10f);
             fontBold = new Font(fontCollectionBold.Families[0], 14f);
+
 
             lvwOrderItem.Font = fontMedium;
 
@@ -145,7 +148,6 @@ namespace thepos
             btnFunction3.Font = fontMedium;
             btnFunction4.Font = fontMedium;
             btnFunction5.Font = fontMedium;
-            btnFunction6.Font = fontMedium;
 
             btnPayCashReceipt.Font = fontMedium;
             btnPayCash.Font = fontMedium;
