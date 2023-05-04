@@ -45,7 +45,7 @@ namespace thepos
 
 
         System.Windows.Forms.Button[] btnGoodsGroup = new System.Windows.Forms.Button[10];
-        System.Windows.Forms.Button[] btnGoodsItem = new System.Windows.Forms.Button[25];
+
 
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
@@ -208,33 +208,60 @@ namespace thepos
                 return;
             }
 
+            System.Windows.Forms.Button btnGoodsItem = new System.Windows.Forms.Button();
+
+
             flowLayoutPanelGoodsItem.Controls.Clear();
             setGroupButtonColor(last_groupcode, false);
             setGroupButtonColor(groupcode, true);
 
-            int lv_item_idx = 0;
 
             for (int i = 0; i < mGloval.mGoodsItem.Length; i++)
             {
                 if (groupcode == mGloval.mGoodsItem[i].code.Substring(0,3))
                 {
                     int idx = i;
-                    btnGoodsItem[lv_item_idx] = new System.Windows.Forms.Button();
-                    btnGoodsItem[lv_item_idx].Text = mGloval.mGoodsItem[i].name + "\n" + mGloval.mGoodsItem[i].amt.ToString("N0");
-                    btnGoodsItem[lv_item_idx].Tag = mGloval.mGoodsItem[i].code;
-                    btnGoodsItem[lv_item_idx].Height = 70;
-                    btnGoodsItem[lv_item_idx].Width = 90;
-                    btnGoodsItem[lv_item_idx].Font = fontMedium;
+                    btnGoodsItem = new System.Windows.Forms.Button();
+                    //btnGoodsItem.Text = mGloval.mGoodsItem[i].name + "\n" + mGloval.mGoodsItem[i].amt.ToString("N0");
+                    btnGoodsItem.Tag = mGloval.mGoodsItem[i].code;
+                    btnGoodsItem.Height = 70;
+                    btnGoodsItem.Width = 90;
+                    btnGoodsItem.Font = fontMedium;
 
-                    btnGoodsItem[lv_item_idx].FlatStyle = FlatStyle.Flat;
-                    btnGoodsItem[lv_item_idx].ForeColor = Color.Maroon;
-                    btnGoodsItem[lv_item_idx].BackColor = Color.Transparent;
+                    btnGoodsItem.FlatStyle = FlatStyle.Flat;
+                    btnGoodsItem.ForeColor = Color.Maroon;
+                    btnGoodsItem.BackColor = Color.Transparent;
 
-                    btnGoodsItem[lv_item_idx].TabStop = false;
-                    btnGoodsItem[lv_item_idx].Margin = new Padding(2, 2, 2, 2);
+                    btnGoodsItem.TabStop = false;
+                    btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
 
-                    btnGoodsItem[lv_item_idx].Click += (sender, args) => ClickedGoodsItem(idx);
-                    flowLayoutPanelGoodsItem.Controls.Add(btnGoodsItem[lv_item_idx]);
+
+                    Panel pan = new Panel();
+                    Label lbl_name = new Label();
+                    Label lbl_amt = new Label();
+
+
+                    pan.Parent = btnGoodsItem;
+                    pan.Location = new Point(0, 40);
+                    pan.Size = new Size(90, 70);
+
+
+
+
+                    lbl_name.Parent = pan;
+                    lbl_name.Location = new Point(0, 40);
+                    lbl_name.Size = new Size(90, 15);
+                    lbl_name.Text = mGloval.mGoodsItem[i].name;
+                    lbl_name.Font = fontMedium;
+
+                    lbl_amt.Parent = pan;
+                    lbl_amt.Location = new Point(0, 55);
+                    lbl_amt.Size = new Size(90, 15);
+                    lbl_amt.Text = mGloval.mGoodsItem[i].amt.ToString("N0");
+                    lbl_amt.Font = fontMedium;
+
+                    btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
+                    flowLayoutPanelGoodsItem.Controls.Add(btnGoodsItem);
                 }
             }
  
@@ -615,5 +642,16 @@ namespace thepos
             this.Close();
         }
 
+        private void btnScrollItemDn_Click(object sender, EventArgs e)
+        {
+            this.flowLayoutPanelGoodsItem.VerticalScroll.Value += this.flowLayoutPanelGoodsItem.VerticalScroll.SmallChange * 15;
+            flowLayoutPanelGoodsItem.PerformLayout();
+        }
+
+        private void btnScrollItemUp_Click(object sender, EventArgs e)
+        {
+            this.flowLayoutPanelGoodsItem.VerticalScroll.Value -= this.flowLayoutPanelGoodsItem.VerticalScroll.SmallChange * 15;
+            flowLayoutPanelGoodsItem.PerformLayout();
+        }
     }
 }
