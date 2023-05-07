@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
+using System.Windows.Forms.VisualStyles;
+
 
 
 
@@ -17,10 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
     + 마우스 포인터 표시 : pc pos 구분필요 
     + 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
-    + 리스트부 헤더 backcolor 변경필요
+    + 리스트뷰 HeaderColumn backcolor 변경필요 - DrawColumnHeader
     
-
-
+panelProduct : 488, 56 529, 547
 
 */
 
@@ -33,23 +28,22 @@ namespace thepos
 {
     public partial class frmSale : Form
     {
-        global mGloval = new global();
-
-        PrivateFontCollection fontCollectionThin = new PrivateFontCollection();
-        PrivateFontCollection fontCollectionMedium = new PrivateFontCollection();
-        PrivateFontCollection fontCollectionBold = new PrivateFontCollection();
-
-        //Font fontThin;
-        Font fontMedium;
-        Font fontBold;
-
-
-        System.Windows.Forms.Button[] btnGoodsGroup = new System.Windows.Forms.Button[10];
+        thepos the = new thepos();
 
 
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
+
+        //Color groupColor = Color.DarkOrange;
+        //Color itemColor = Color.DarkOrange;
+
+        Color groupColor = SystemColors.Highlight;
+        Color itemColor = SystemColors.Highlight;
+        Color pickColor;
+
+
+        int waiting_count = 0;
 
         struct OrderItemInfo
         {
@@ -63,7 +57,7 @@ namespace thepos
             public String dc_rate;     // 정액: "" or 정율값("20") - 20%경우
         }
 
-
+        System.Windows.Forms.Button[] btnGoodsGroup;
 
 
 
@@ -74,14 +68,15 @@ namespace thepos
             //? PC가 아니면 마우스 포인터 표시안함.
             //Cursor.Hide();
 
+            //the.initial_font();
             initialize_the();
 
-            mGloval.get_goodsgroup();
-            mGloval.get_goodsitem();
+            the.get_goodsgroup();
+            the.get_goodsitem();
 
 
             display_goodsgroup();
-            ClickedGoodsGroup(mGloval.mGoodsGroup[0].code);   // 최초실행후 첮 구룹을 선택한 화면을 보여주자...
+            ClickedGoodsGroup(the.mGoodsGroup[0].code);   // 최초실행후 첮 구룹을 선택한 화면을 보여주자...
 
         }
 
@@ -89,86 +84,87 @@ namespace thepos
 
         private void initialize_the()
         {
-            //fontCollectionThin.AddFontFile("SpoqaHanSansNeo-Thin.ttf");
-            //fontCollection.AddFontFile("SpoqaHanSansNeo-Light.ttf");
-            //fontCollection.AddFontFile("SpoqaHanSansNeo-Regular.ttf");
-
-            //fontCollectionMedium.AddFontFile("SpoqaHanSansNeo-Medium.ttf");
-            //fontCollectionBold.AddFontFile("SpoqaHanSansNeo-Bold.ttf");
 
 
-            fontCollectionMedium.AddFontFile("Pretendard-Medium.ttf");
-            fontCollectionBold.AddFontFile("Pretendard-Bold.ttf");
-
-
-            //fontThin = new Font(fontCollectionThin.Families[0], 14f);
-            fontMedium = new Font(fontCollectionMedium.Families[0], 10f);
-            fontBold = new Font(fontCollectionBold.Families[0], 14f);
-
-
-            lvwOrderItem.Font = fontMedium;
+            lvwOrderItem.Font = the.fontMedium_10;
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
             lvwOrderItem.SmallImageList = imgList;
-
-
-            lblDate.Font = fontMedium;
-            lblTime.Font = fontBold;
-
-            lblDisplayAlarm.Font = fontMedium;
-
-            btnOrderCancelAll.Font = fontMedium;
-            btnOrderCancelSelect.Font = fontMedium;
-            btnOrderCntDn.Font = fontMedium;
-            btnOrderCntUp.Font = fontMedium;
-            btnOrderCntChange.Font = fontMedium;
-            btnOrderAmountDC.Font = fontMedium;
-            btnOrderWating.Font = fontMedium;
-            btnOrderItemScrollUp.Font = fontMedium;
-            btnOrderItemScrollDn.Font = fontMedium;
-
-            lblKeyDisplay.Font = fontBold;
-            btnKey1.Font = fontMedium; btnKey1.Click += (sender, args) => ClickedKey("1");
-            btnKey2.Font = fontMedium; btnKey2.Click += (sender, args) => ClickedKey("2");
-            btnKey3.Font = fontMedium; btnKey3.Click += (sender, args) => ClickedKey("3");
-            btnKey4.Font = fontMedium; btnKey4.Click += (sender, args) => ClickedKey("4");
-            btnKey5.Font = fontMedium; btnKey5.Click += (sender, args) => ClickedKey("5");
-            btnKey6.Font = fontMedium; btnKey6.Click += (sender, args) => ClickedKey("6");
-            btnKey7.Font = fontMedium; btnKey7.Click += (sender, args) => ClickedKey("7");
-            btnKey8.Font = fontMedium; btnKey8.Click += (sender, args) => ClickedKey("8");
-            btnKey9.Font = fontMedium; btnKey9.Click += (sender, args) => ClickedKey("9");
-            btnKey0.Font = fontMedium; btnKey0.Click += (sender, args) => ClickedKey("0");
-            btnKey00.Font = fontMedium; btnKey00.Click += (sender, args) => ClickedKey("00");
-            btnKeyBS.Font = fontMedium; btnKeyBS.Click += (sender, args) => ClickedKey("BS");
-            btnKeyClear.Font = fontMedium; btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
-            btnKeyEnter.Font = fontMedium;
-
-            btnFunction2.Font = fontMedium;
-            btnFunction3.Font = fontMedium;
-            btnFunction4.Font = fontMedium;
-            btnFunction5.Font = fontMedium;
-
-            btnPayCashReceipt.Font = fontMedium;
-            btnPayCash.Font = fontMedium;
-            btnPayCredit.Font = fontMedium;
-            btnPaySimple.Font = fontMedium;
-            btnPayComplex.Font = fontMedium;
-            btnOrderManager.Font = fontMedium;
-
-            lblOrderAmountSumTitle.Font = fontMedium;
-            lblOrderAmountDCTitle.Font = fontMedium;
-            lblOrderAmountChargeTitle.Font = fontMedium;
-            lblOrderAmountReceiveTitle.Font = fontMedium;
-            lblOrderAmountRestTitle.Font = fontMedium;
-            lblOrderGoodsAmount.Font = fontBold;
-            lblOrderAmountDC.Font = fontBold;
-            lblOrderAmountCharge.Font = fontBold;
-            lblOrderAmountReceive.Font = fontBold;
-            lblOrderAmountRest.Font = fontBold;
-
             // item 클릭시 선택바 (backcolor=blue) 표시를 위해서...
             lvwOrderItem.HideSelection = true;
+
+
+            lblTitle01.Font = the.fontMedium_8;
+            lblTitle02.Font = the.fontMedium_8;
+            lblTitle03.Font = the.fontMedium_8;
+            lblTitle04.Font = the.fontMedium_8;
+
+
+            lblDate.Font = the.fontMedium_10;
+            lblTime.Font = the.fontMedium_15;
+
+            btnClose.Font = the.fontMedium_10;
+
+            lblDisplayAlarm.Font = the.fontMedium_10;
+
+            btnOrderCancelAll.Font = the.fontMedium_10;
+            btnOrderCancelSelect.Font = the.fontMedium_10;
+            btnOrderCntDn.Font = the.fontMedium_15;
+            btnOrderCntUp.Font = the.fontMedium_15;
+            btnOrderCntChange.Font = the.fontMedium_10;
+            btnOrderAmountDC.Font = the.fontMedium_10;
+            btnOrderWaiting.Font = the.fontMedium_10;
+            btnOrderItemScrollUp.Font = the.fontMedium_10;
+            btnOrderItemScrollDn.Font = the.fontMedium_10;
+
+
+            lblOrderAmountSumTitle.Font = the.fontMedium_10;
+            lblOrderAmountDCTitle.Font = the.fontMedium_10;
+            lblOrderAmountChargeTitle.Font = the.fontMedium_10;
+            lblOrderAmountReceiveTitle.Font = the.fontMedium_10;
+            lblOrderAmountRestTitle.Font = the.fontMedium_10;
+            lblOrderGoodsAmount.Font = the.fontBold_14;
+            lblOrderAmountDC.Font = the.fontBold_14;
+            lblOrderAmountCharge.Font = the.fontBold_14;
+            lblOrderAmountReceive.Font = the.fontBold_14;
+            lblOrderAmountRest.Font = the.fontBold_14;
+
+
+            lblKeyDisplay.Font = the.fontBold_14;
+            btnKey1.Font = the.fontMedium_10; btnKey1.Click += (sender, args) => ClickedKey("1");
+            btnKey2.Font = the.fontMedium_10; btnKey2.Click += (sender, args) => ClickedKey("2");
+            btnKey3.Font = the.fontMedium_10; btnKey3.Click += (sender, args) => ClickedKey("3");
+            btnKey4.Font = the.fontMedium_10; btnKey4.Click += (sender, args) => ClickedKey("4");
+            btnKey5.Font = the.fontMedium_10; btnKey5.Click += (sender, args) => ClickedKey("5");
+            btnKey6.Font = the.fontMedium_10; btnKey6.Click += (sender, args) => ClickedKey("6");
+            btnKey7.Font = the.fontMedium_10; btnKey7.Click += (sender, args) => ClickedKey("7");
+            btnKey8.Font = the.fontMedium_10; btnKey8.Click += (sender, args) => ClickedKey("8");
+            btnKey9.Font = the.fontMedium_10; btnKey9.Click += (sender, args) => ClickedKey("9");
+            btnKey0.Font = the.fontMedium_10; btnKey0.Click += (sender, args) => ClickedKey("0");
+            btnKey00.Font = the.fontMedium_10; btnKey00.Click += (sender, args) => ClickedKey("00");
+            btnKeyBS.Font = the.fontMedium_10; btnKeyBS.Click += (sender, args) => ClickedKey("BS");
+            btnKeyClear.Font = the.fontMedium_10; btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
+            btnKeyEnter.Font = the.fontMedium_10;
+
+            btnFunction2.Font = the.fontMedium_10;
+            btnFunction3.Font = the.fontMedium_10;
+            btnFunction4.Font = the.fontMedium_10;
+            btnFunction5.Font = the.fontMedium_10;
+
+            btnScrollGroupUp.Font = the.fontMedium_10;
+            btnScrollGroupDn.Font = the.fontMedium_10;
+
+            btnScrollItemUp.Font = the.fontMedium_10;
+            btnScrollItemDn.Font = the.fontMedium_10;
+
+            btnPayCredit.Font = the.fontMedium_10;
+            btnPaySimple.Font = the.fontMedium_10;
+            btnPayComplex.Font = the.fontMedium_10;
+            btnOrderManager.Font = the.fontMedium_10;
+
+
+
 
         }
 
@@ -176,21 +172,26 @@ namespace thepos
 
         private void display_goodsgroup()
         {
+            btnGoodsGroup = new System.Windows.Forms.Button[the.mGoodsGroup.Length];
+
+
             flowLayoutPanelGoodsGroup.Controls.Clear();
 
-            for (int i = 0; i < mGloval.mGoodsGroup.Length; i++)
+            for (int i = 0; i < the.mGoodsGroup.Length; i++)
             {
-                String groupcode = mGloval.mGoodsGroup[i].code;
+                String groupcode = the.mGoodsGroup[i].code;
                 btnGoodsGroup[i] = new System.Windows.Forms.Button();
-                btnGoodsGroup[i].Text = mGloval.mGoodsGroup[i].name;
-                btnGoodsGroup[i].Tag = mGloval.mGoodsGroup[i].code;
+                btnGoodsGroup[i].Text = the.mGoodsGroup[i].name;
+                btnGoodsGroup[i].Tag = the.mGoodsGroup[i].code;
                 btnGoodsGroup[i].Height = 60;
-                btnGoodsGroup[i].Width = 90;
-                btnGoodsGroup[i].Font = fontMedium;
+                btnGoodsGroup[i].Width = 92;
+                btnGoodsGroup[i].Font = the.fontBold_12;
 
                 btnGoodsGroup[i].FlatStyle = FlatStyle.Flat;
-                btnGoodsGroup[i].ForeColor = Color.Navy;
-                btnGoodsGroup[i].BackColor = Color.Transparent;
+                btnGoodsGroup[i].ForeColor = groupColor;
+                btnGoodsGroup[i].BackColor = Color.White;
+                btnGoodsGroup[i].FlatAppearance.BorderSize = 2;
+
                 btnGoodsGroup[i].Margin = new Padding(2, 2, 2, 2);
 
                 btnGoodsGroup[i].Click += (sender, args) => ClickedGoodsGroup(groupcode);
@@ -209,59 +210,63 @@ namespace thepos
             }
 
             System.Windows.Forms.Button btnGoodsItem = new System.Windows.Forms.Button();
-
-
-            flowLayoutPanelGoodsItem.Controls.Clear();
+            
+            tableLayoutPanelGoodsItem.Controls.Clear();
             setGroupButtonColor(last_groupcode, false);
             setGroupButtonColor(groupcode, true);
 
 
-            for (int i = 0; i < mGloval.mGoodsItem.Length; i++)
+            this.tableLayoutPanelGoodsItem.VerticalScroll.Value = 0;
+            tableLayoutPanelGoodsItem.PerformLayout();
+
+
+            for (int i = 0; i < the.mGoodsItem.Length; i++)
             {
-                if (groupcode == mGloval.mGoodsItem[i].code.Substring(0,3))
+                if (groupcode == the.mGoodsItem[i].code.Substring(0,3))
                 {
                     int idx = i;
                     btnGoodsItem = new System.Windows.Forms.Button();
-                    //btnGoodsItem.Text = mGloval.mGoodsItem[i].name + "\n" + mGloval.mGoodsItem[i].amt.ToString("N0");
-                    btnGoodsItem.Tag = mGloval.mGoodsItem[i].code;
-                    btnGoodsItem.Height = 70;
-                    btnGoodsItem.Width = 90;
-                    btnGoodsItem.Font = fontMedium;
+
+
+                    btnGoodsItem.Tag = the.mGoodsItem[i].code;
+                    btnGoodsItem.Height = 76;
+                    btnGoodsItem.Width = 100;
+
 
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
-                    btnGoodsItem.ForeColor = Color.Maroon;
-                    btnGoodsItem.BackColor = Color.Transparent;
+                    btnGoodsItem.ForeColor = Color.White;
+                    btnGoodsItem.BackColor = itemColor;
 
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
 
+                    btnGoodsItem.Text = the.mGoodsItem[i].name + "\n" + the.mGoodsItem[i].amt.ToString("N0");
 
-                    Panel pan = new Panel();
-                    Label lbl_name = new Label();
-                    Label lbl_amt = new Label();
+                    if (the.mGoodsItem[i].columnspan == 1 | the.mGoodsItem[i].rowspan == 1)
+                    {
+                        btnGoodsItem.Font = the.fontMedium_8;
 
+                    }
+                    else if (the.mGoodsItem[i].columnspan == 2 | the.mGoodsItem[i].rowspan == 2)
+                    {
+                        btnGoodsItem.Font = the.fontMedium_12;
+                    }
+                    else
+                    {
+                        btnGoodsItem.Font = the.fontMedium_18;
+                    }
 
-                    pan.Parent = btnGoodsItem;
-                    pan.Location = new Point(0, 40);
-                    pan.Size = new Size(90, 70);
-
-
-
-
-                    lbl_name.Parent = pan;
-                    lbl_name.Location = new Point(0, 40);
-                    lbl_name.Size = new Size(90, 15);
-                    lbl_name.Text = mGloval.mGoodsItem[i].name;
-                    lbl_name.Font = fontMedium;
-
-                    lbl_amt.Parent = pan;
-                    lbl_amt.Location = new Point(0, 55);
-                    lbl_amt.Size = new Size(90, 15);
-                    lbl_amt.Text = mGloval.mGoodsItem[i].amt.ToString("N0");
-                    lbl_amt.Font = fontMedium;
+                    
 
                     btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
-                    flowLayoutPanelGoodsItem.Controls.Add(btnGoodsItem);
+
+                    btnGoodsItem.Dock = DockStyle.Fill;
+
+
+
+                    tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, the.mGoodsItem[i].column, the.mGoodsItem[i].row);
+                    tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, the.mGoodsItem[i].columnspan);
+                    tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsItem, the.mGoodsItem[i].rowspan);
                 }
             }
  
@@ -274,29 +279,29 @@ namespace thepos
             OrderItemInfo orderItemInfo = new OrderItemInfo();
 
 
-            int lv_idx = (get_lvitem_idx(mGloval.mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = (get_lvitem_idx(the.mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {
                 ListViewItem item = new ListViewItem();
 
-                orderItemInfo.code = mGloval.mGoodsItem[i].code.ToString();
-                orderItemInfo.name = mGloval.mGoodsItem[i].name.ToString();
-                orderItemInfo.amt = mGloval.mGoodsItem[i].amt;
+                orderItemInfo.code = the.mGoodsItem[i].code.ToString();
+                orderItemInfo.name = the.mGoodsItem[i].name.ToString();
+                orderItemInfo.amt = the.mGoodsItem[i].amt;
                 orderItemInfo.cnt = 1;
                 orderItemInfo.dc_amount = 0;
-                orderItemInfo.amount = mGloval.mGoodsItem[i].amt;
+                orderItemInfo.amount = the.mGoodsItem[i].amt;
                 orderItemInfo.dc_type = "";
                 orderItemInfo.dc_rate = "";
 
                 item.Tag = orderItemInfo;
 
                 item.Text = (lvwOrderItem.Items.Count + 1).ToString();
-                item.SubItems.Add(mGloval.mGoodsItem[i].name);                // 1: name 상품명
-                item.SubItems.Add(mGloval.mGoodsItem[i].amt.ToString("N0"));  // 2: amt 단가
+                item.SubItems.Add(the.mGoodsItem[i].name);                // 1: name 상품명
+                item.SubItems.Add(the.mGoodsItem[i].amt.ToString("N0"));  // 2: amt 단가
                 item.SubItems.Add("1");                                       // 3: cnt 수량
                 item.SubItems.Add("");                                        // 4: dc_amount 할인
-                item.SubItems.Add(mGloval.mGoodsItem[i].amt.ToString("N0"));  // 5: amount 금액
+                item.SubItems.Add(the.mGoodsItem[i].amt.ToString("N0"));  // 5: amount 금액
                 item.SubItems.Add("");          
 
                 lvwOrderItem.Items.Add(item);
@@ -354,7 +359,6 @@ namespace thepos
                 }
 
 
-
                 ReCalculateAmount();
             }
         }
@@ -362,10 +366,33 @@ namespace thepos
         private void btnOrderAmountDC_Click(object sender, EventArgs e)
         {
 
+
         }
 
-        private void btnOrderWating_Click(object sender, EventArgs e)
+        private void btnOrderWaiting_Click(object sender, EventArgs e)
         {
+            // 웨이팅 저장, 불러오기 겸용버튼
+
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                // 웨이팅 목록으로 저장
+            }
+            else
+            {
+                if (waiting_count == 1)
+                {
+                    // 바로 불러오기
+
+                }
+                else if (waiting_count > 1)
+                {
+                    Point thisPoint = new Point();
+                    thisPoint = this.Location;
+                    frmProductWaiting fProductWaiting = new frmProductWaiting(thisPoint);
+                    fProductWaiting.ShowDialog();
+                }
+            }
+
 
         }
 
@@ -480,10 +507,13 @@ namespace thepos
             }
             else
             {
-                int top_idx = this.lvwOrderItem.TopItem.Index;
-                if (top_idx > 0 & top_idx < lvwOrderItem.Items.Count - 1)
+                if (lvwOrderItem.Items.Count > 0)
                 {
-                    lvwOrderItem.TopItem = lvwOrderItem.Items[top_idx - 1];
+                    int top_idx = this.lvwOrderItem.TopItem.Index;
+                    if (top_idx > 0 & top_idx < lvwOrderItem.Items.Count - 1)
+                    {
+                        lvwOrderItem.TopItem = lvwOrderItem.Items[top_idx - 1];
+                    }
                 }
             }
         }
@@ -508,11 +538,16 @@ namespace thepos
             }
             else
             {
-                int curItem = this.lvwOrderItem.TopItem.Index;
-                if (curItem < this.lvwOrderItem.Items.Count - 1)
+                if (lvwOrderItem.Items.Count > 0)
                 {
-                    this.lvwOrderItem.TopItem = this.lvwOrderItem.Items[curItem + 1];
+                    int curItem = this.lvwOrderItem.TopItem.Index;
+                    if (curItem < this.lvwOrderItem.Items.Count - 1)
+                    {
+                        this.lvwOrderItem.TopItem = this.lvwOrderItem.Items[curItem + 1];
+                    }
                 }
+
+
             }
         }
 
@@ -551,9 +586,9 @@ namespace thepos
         {
             int button_idx = -1;
 
-            for (int i = 0; i < mGloval.mGoodsGroup.Length; i++)
+            for (int i = 0; i < the.mGoodsGroup.Length; i++)
             {
-                if (mGloval.mGoodsGroup[i].code == groupcode)
+                if (the.mGoodsGroup[i].code == groupcode)
                 {
                     button_idx = i;
                 }
@@ -564,14 +599,14 @@ namespace thepos
 
             if (!isPressed)
             {
-                btnGoodsGroup[button_idx].ForeColor = Color.Navy;
-                btnGoodsGroup[button_idx].BackColor = Color.Transparent;
-                btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 1;
+                btnGoodsGroup[button_idx].ForeColor = groupColor;
+                btnGoodsGroup[button_idx].BackColor = Color.White;
+                btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 2;
             }
             else
             {
-                btnGoodsGroup[button_idx].ForeColor = Color.Transparent;
-                btnGoodsGroup[button_idx].BackColor = Color.Navy;
+                btnGoodsGroup[button_idx].ForeColor = Color.White;
+                btnGoodsGroup[button_idx].BackColor = groupColor;
                 btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 0;
             }
         }
@@ -586,17 +621,18 @@ namespace thepos
             return -1;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timerSecondEvent_Tick(object sender, EventArgs e)
         {
-            if (timer1.Tag.ToString() == "0")
+            if (timerSecondEvent.Tag.ToString() == "0")
             {
                 lblTime.Text = DateTime.Now.ToString("HH:mm");
-                timer1.Tag = "1";
+                timerSecondEvent.Tag = "1";
+
             }
             else
             {
                 lblTime.Text = DateTime.Now.ToString("HH mm");
-                timer1.Tag = "0";
+                timerSecondEvent.Tag = "0";
             }
 
 
@@ -604,12 +640,12 @@ namespace thepos
             DateTime nowDt = DateTime.Now;
 
             if (nowDt.DayOfWeek == DayOfWeek.Monday) strWeek = "월";
-            else if (nowDt.DayOfWeek == DayOfWeek.Tuesday) strWeek ="화";
-            else if (nowDt.DayOfWeek == DayOfWeek.Wednesday) strWeek ="수";
-            else if (nowDt.DayOfWeek == DayOfWeek.Thursday) strWeek ="목";
-            else if (nowDt.DayOfWeek == DayOfWeek.Friday) strWeek ="금";
-            else if (nowDt.DayOfWeek == DayOfWeek.Saturday) strWeek ="토";
-            else if (nowDt.DayOfWeek == DayOfWeek.Sunday) strWeek ="일";
+            else if (nowDt.DayOfWeek == DayOfWeek.Tuesday) strWeek = "화";
+            else if (nowDt.DayOfWeek == DayOfWeek.Wednesday) strWeek = "수";
+            else if (nowDt.DayOfWeek == DayOfWeek.Thursday) strWeek = "목";
+            else if (nowDt.DayOfWeek == DayOfWeek.Friday) strWeek = " 금";
+            else if (nowDt.DayOfWeek == DayOfWeek.Saturday) strWeek = "토";
+            else if (nowDt.DayOfWeek == DayOfWeek.Sunday) strWeek = "일";
 
             lblDate.Text = DateTime.Now.ToString("yyyy.MM.dd") + " [" + strWeek + "]";
 
@@ -621,6 +657,127 @@ namespace thepos
             e.NewWidth = lvwOrderItem.Columns[e.ColumnIndex].Width;
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnScrollGroupUp_Click(object sender, EventArgs e)
+        {
+            if (this.flowLayoutPanelGoodsGroup.VerticalScroll.Value > 0)
+            {
+                this.flowLayoutPanelGoodsGroup.VerticalScroll.Value -= 64;
+                flowLayoutPanelGoodsGroup.PerformLayout();
+            }
+        }
+
+        private void btnScrollGroupDn_Click(object sender, EventArgs e)
+        {
+            this.flowLayoutPanelGoodsGroup.VerticalScroll.Value += 64;
+            flowLayoutPanelGoodsGroup.PerformLayout();
+        }
+
+
+        private void btnGoodsItemMode_Click(object sender, EventArgs e)
+        {
+            // location 488, 55
+            /*
+            frmSetup frmSetup = new frmSetup();
+            frmSetup.Owner = this;
+            frmSetup.StartPosition = FormStartPosition.Manual;
+
+            Point p = new Point(488, 55);
+
+            Point p1 = this.Location;
+
+            frmSetup.Location = Point.Add(p1, (Size)p);
+
+            frmSetup.Show(this);
+            */
+
+            ColorDialog MyDialog = new ColorDialog();
+            // Keeps the user from selecting a custom color.
+            MyDialog.AllowFullOpen = false;
+            // Allows the user to get help. (The default is false.)
+            MyDialog.ShowHelp = true;
+            // Sets the initial color select to the current text color.
+            MyDialog.Color = itemColor;
+
+            // Update the text box color if the user clicks OK 
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+            {
+                pickColor = MyDialog.Color;
+
+                if (pickColor != itemColor)
+                {
+                    ReflashColor();
+                }
+
+                
+            }
+
+        }
+
+        private void ReflashColor()
+        {
+            itemColor = pickColor;
+            groupColor = pickColor;
+
+
+            ///
+            int button_idx = -1;
+
+            for (int i = 0; i < the.mGoodsGroup.Length; i++)
+            {
+                if (the.mGoodsGroup[i].code == last_groupcode)
+                {
+                    button_idx = i;
+                }
+            }
+
+            for (int i = 0; i < flowLayoutPanelGoodsGroup.Controls.Count; i++)
+            {
+                if (button_idx == i)
+                {
+                    flowLayoutPanelGoodsGroup.Controls[i].BackColor = itemColor;
+                }
+                else
+                {
+                    flowLayoutPanelGoodsGroup.Controls[i].ForeColor = itemColor;
+                }
+            }
+
+            ///
+            for (int i = 0; i < tableLayoutPanelGoodsItem.Controls.Count; i++)
+            {
+                tableLayoutPanelGoodsItem.Controls[i].BackColor = itemColor;
+            }
+
+            ///
+            if (lvwOrderItem.SelectedItems.Count > 0)
+                lvwOrderItem.SelectedItems[0].BackColor = itemColor;
+
+
+
+        }
+
+
+        private void btnScrollItemUp_Click(object sender, EventArgs e)
+        {
+            if (this.tableLayoutPanelGoodsItem.VerticalScroll.Value > 0)
+            {
+                this.tableLayoutPanelGoodsItem.VerticalScroll.Value -= 49;
+                tableLayoutPanelGoodsItem.PerformLayout();
+            }
+        }
+
+        private void btnScrollItemDn_Click(object sender, EventArgs e)
+        {
+            this.tableLayoutPanelGoodsItem.VerticalScroll.Value += 49;
+            tableLayoutPanelGoodsItem.PerformLayout();
+        }
+
+        
         private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.lvwOrderItem.Items.Cast<ListViewItem>()
@@ -632,26 +789,27 @@ namespace thepos
             this.lvwOrderItem.SelectedItems.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
                 {
-                    item.BackColor = SystemColors.Highlight;
+                    item.BackColor = itemColor;
                     item.ForeColor = SystemColors.HighlightText;
                 });
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void lvwOrderItem_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            this.Close();
+            e.Graphics.FillRectangle(Brushes.Red, e.Bounds);
+            e.DrawText();
         }
 
-        private void btnScrollItemDn_Click(object sender, EventArgs e)
+        private void lvwOrderItem_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            this.flowLayoutPanelGoodsItem.VerticalScroll.Value += this.flowLayoutPanelGoodsItem.VerticalScroll.SmallChange * 15;
-            flowLayoutPanelGoodsItem.PerformLayout();
+            e.DrawDefault = true;
         }
 
-        private void btnScrollItemUp_Click(object sender, EventArgs e)
+        private void lvwOrderItem_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
-            this.flowLayoutPanelGoodsItem.VerticalScroll.Value -= this.flowLayoutPanelGoodsItem.VerticalScroll.SmallChange * 15;
-            flowLayoutPanelGoodsItem.PerformLayout();
+            e.DrawDefault = true;
         }
+
+
     }
 }

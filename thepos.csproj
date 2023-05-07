@@ -52,20 +52,38 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProductWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductWaiting.Designer.cs">
+      <DependentUpon>frmProductWaiting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSale.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSale.Designer.cs">
       <DependentUpon>frmSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="mGlobal.cs" />
+    <Compile Include="frmSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetup.Designer.cs">
+      <DependentUpon>frmSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="thepos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProductWaiting.resx">
+      <DependentUpon>frmProductWaiting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSale.resx">
       <DependentUpon>frmSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetup.resx">
+      <DependentUpon>frmSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,21 +130,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SpoqaHanSansNeo-Bold.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="SpoqaHanSansNeo-Light.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="SpoqaHanSansNeo-Medium.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="SpoqaHanSansNeo-Regular.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="SpoqaHanSansNeo-Thin.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
