@@ -48,6 +48,23 @@ namespace thepos
         }
 
 
+
+        public struct Waiting
+        {
+            public int waiting_no;
+            public String order_no;  // 대기번호 = order_no(20) : 00000yymmddHHMMSS000 
+            public int cnt;         // 항목수
+            public DateTime dt;
+            public int amount;      //합계
+            public int rcv_amount;  //받은금액
+            public String type;     // 주문중(1)  결제중(2)
+        }
+
+        public List<Waiting> listWaiting = new List<Waiting>();
+
+
+
+
         public thepos()
         {
             PrivateFontCollection fontCollectionThin = new PrivateFontCollection();
@@ -201,16 +218,17 @@ namespace thepos
         public String create_order_no()
         {
 
-            // order no를 언제 부여하는가?
-            // - 결제들어갈때
-            // - 
-            // 
-            // 언제 클리어 하는가?
-            // - 결제 완료
+            /* order no
+            
+            1.부여하고 저장
+             - 최초 결제들어갈때
+             - 최초 대기로 저장하면 부여
+            
+            2.클리어
+            
 
 
-
-
+            */
 
             // 사업장코드(3) + POS코드(2) + TIMESTAMP(10) 
 

@@ -38,6 +38,8 @@
             this.rcv_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnDelete = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,6 +47,7 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.Silver;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.btnDelete);
             this.panelback.Controls.Add(this.btnOK);
             this.panelback.Controls.Add(this.lvwWaiting);
             this.panelback.Controls.Add(this.lblTitle);
@@ -56,11 +59,12 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(209, 469);
+            this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOK.Location = new System.Drawing.Point(194, 480);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(89, 41);
+            this.btnOK.Size = new System.Drawing.Size(136, 41);
             this.btnOK.TabIndex = 42;
-            this.btnOK.Text = "선택";
+            this.btnOK.Text = "확인";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -71,25 +75,27 @@
             this.item_cnt,
             this.dt,
             this.amount,
-            this.rcv_amount});
+            this.rcv_amount,
+            this.status});
             this.lvwWaiting.FullRowSelect = true;
             this.lvwWaiting.HideSelection = false;
             this.lvwWaiting.Location = new System.Drawing.Point(11, 63);
             this.lvwWaiting.MultiSelect = false;
             this.lvwWaiting.Name = "lvwWaiting";
-            this.lvwWaiting.Size = new System.Drawing.Size(501, 263);
+            this.lvwWaiting.Size = new System.Drawing.Size(501, 306);
             this.lvwWaiting.TabIndex = 41;
             this.lvwWaiting.UseCompatibleStateImageBehavior = false;
             this.lvwWaiting.View = System.Windows.Forms.View.Details;
             // 
             // waiting_no
             // 
-            this.waiting_no.Text = "대기번호";
+            this.waiting_no.Text = "번호";
             // 
             // item_cnt
             // 
             this.item_cnt.Text = "항목수";
             this.item_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.item_cnt.Width = 50;
             // 
             // dt
             // 
@@ -100,13 +106,13 @@
             // 
             this.amount.Text = "주문금액";
             this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amount.Width = 90;
+            this.amount.Width = 80;
             // 
             // rcv_amount
             // 
             this.rcv_amount.Text = "받은금액";
             this.rcv_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.rcv_amount.Width = 90;
+            this.rcv_amount.Width = 80;
             // 
             // lblTitle
             // 
@@ -135,6 +141,20 @@
             this.btnClose.Text = "×";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // status
+            // 
+            this.status.Text = "상태";
+            this.status.Width = 100;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(446, 375);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(64, 39);
+            this.btnDelete.TabIndex = 43;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // frmProductWaiting
             // 
@@ -165,5 +185,7 @@
         private System.Windows.Forms.ColumnHeader waiting_no;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ColumnHeader item_cnt;
+        private System.Windows.Forms.ColumnHeader status;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
+using static thepos.thepos;
 
 
 
@@ -44,26 +45,31 @@ namespace thepos
         Color pickColor;
 
 
-        int waiting_count_ = 0;
-
-        List<WaitingInfo> listWaiting = new List<WaitingInfo>();
 
 
+        String runningOrderNo = "";
+
+        public int waiting_count = 0;
 
 
 
-        struct WaitingInfo
+
+
+
+
+
+        public struct WaitingItem
         {
-            public String waiting_no;  // 대기번호 = order_no(20) : 00000yymmddHHMMSS000 + waiting_count(3)
-            public int cnt;         // 항목수
-            public DateTime dt;
-            public int amount;      //합계
-            public int rcv_amount;  //받은금액
-
+            public String order_no;
+            public OrderItem order_item;
         }
 
+        List<WaitingItem> listWaitingItem = new List<WaitingItem>();
 
-        struct OrderItemInfo
+
+
+
+       public struct OrderItem
         {
             public String code;     // 상품code(6) or 전체할인코드고정("DC")
             public String name;     // 상품name or 전체할인명("할인")
@@ -74,6 +80,7 @@ namespace thepos
             public String dc_type;  // type - "A" : 정액, "B" : 정율 
             public String dc_rate;     // 정액: "" or 정율값("20") - 20%경우
         }
+
 
 
         Button[] btnGoodsGroup;
@@ -291,7 +298,7 @@ namespace thepos
         private void ClickedGoodsItem(int i)
         {
 
-            OrderItemInfo orderItemInfo = new OrderItemInfo();
+            OrderItem orderItem = new OrderItem();
 
             int lv_idx = (get_lvitem_idx(the.mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
@@ -299,16 +306,16 @@ namespace thepos
             {
                 ListViewItem item = new ListViewItem();
 
-                orderItemInfo.code = the.mGoodsItem[i].code.ToString();
-                orderItemInfo.name = the.mGoodsItem[i].name.ToString();
-                orderItemInfo.amt = the.mGoodsItem[i].amt;
-                orderItemInfo.cnt = 1;
-                orderItemInfo.dc_amount = 0;
-                orderItemInfo.amount = the.mGoodsItem[i].amt;
-                orderItemInfo.dc_type = "";
-                orderItemInfo.dc_rate = "";
+                orderItem.code = the.mGoodsItem[i].code.ToString();
+                orderItem.name = the.mGoodsItem[i].name.ToString();
+                orderItem.amt = the.mGoodsItem[i].amt;
+                orderItem.cnt = 1;
+                orderItem.dc_amount = 0;
+                orderItem.amount = the.mGoodsItem[i].amt;
+                orderItem.dc_type = "";
+                orderItem.dc_rate = "";
 
-                item.Tag = orderItemInfo;
+                item.Tag = orderItem;
 
                 item.Text = (lvwOrderItem.Items.Count + 1).ToString();
                 item.SubItems.Add(the.mGoodsItem[i].name);                // 1: name 상품명
@@ -427,23 +434,48 @@ namespace thepos
         private void btnOrderWaiting_Click(object sender, EventArgs e)
         {
             // 웨이팅 저장, 불러오기 겸용버튼
-
             if (lvwOrderItem.Items.Count > 0)
             {
-                // order_no 생성
-                the.create_order_no();
+                Waiting waiting = new Waiting();
+
+                if (runningOrderNo == "")
+                {
+                    runningOrderNo = the.create_order_no();
+                }
+
+                waiting.order_no = runningOrderNo;
+                waiting.waiting_no = ++waiting_count;
+
+                waiting.cnt = 0;
+                waiting.dt = DateTime.Now;
+                waiting.amount = 0;
+                waiting.rcv_amount = 0;
+                waiting.type = "1";    // 주문중
 
 
-                // 웨이팅 목록으로 저장
+                for (int i = 0; i < lvwOrderItem.Items.Count; i++)
+                {
+                    OrderItem orderItem = (OrderItem)lvwOrderItem.Items[i].Tag;
+
+                    waiting.cnt++;
+                    waiting.amount += (orderItem.cnt * orderItem.amt);
+
+                    WaitingItem waitingItem = new WaitingItem();
+                    waitingItem.order_no = waiting.order_no;
+                    waitingItem.order_item = orderItem;
+                    listWaitingItem.Add(waitingItem);
+                }
+
+                the.listWaiting.Add(waiting);
+
+
+                lvwOrderItem.Items.Clear();
+                btnOrderWaiting.Text = "대기\n[" + the.listWaiting.Count + "]";
+
             }
             else
             {
-                if (listWaiting.Count == 1)
-                {
-                    // 바로 불러오기
-
-                }
-                else if (listWaiting.Count > 1)
+                if (the.listWaiting.Count > 0)
                 {
                     Point thisPoint = new Point();
                     thisPoint = this.Location;
@@ -472,27 +504,27 @@ namespace thepos
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////
         private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
         {
-            OrderItemInfo orderItemInfo = (OrderItemInfo)lvwOrderItem.Items[lv_idx].Tag;
+            OrderItem orderItem = (OrderItem)lvwOrderItem.Items[lv_idx].Tag;
 
             if (jobtype == "add")
             {
-                orderItemInfo.cnt += cnt;
+                orderItem.cnt += cnt;
             }
             else if (jobtype == "set")
             {
-                orderItemInfo.cnt = cnt;
+                orderItem.cnt = cnt;
             }
             else
             {
                 return;
             }
 
-            orderItemInfo.amount = (orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount;
+            orderItem.amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
 
-            lvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItemInfo.cnt.ToString("N0");           // cnt
-            lvwOrderItem.Items[lv_idx].SubItems[5].Text = orderItemInfo.amount.ToString("N0");        // amount
+            lvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
+            lvwOrderItem.Items[lv_idx].SubItems[5].Text = orderItem.amount.ToString("N0");        // amount
 
-            lvwOrderItem.Items[lv_idx].Tag = orderItemInfo;
+            lvwOrderItem.Items[lv_idx].Tag = orderItem;
         }
 
         private void ReCalculateAmount()
@@ -501,11 +533,11 @@ namespace thepos
             Int32 dcAmount = 0;
             Int32 Amount = 0;
 
-            OrderItemInfo orderItemInfo;
+            OrderItem orderItemInfo;
 
             for (int i = 0; i < lvwOrderItem.Items.Count; i++)
             {
-                orderItemInfo = (OrderItemInfo)lvwOrderItem.Items[i].Tag;
+                orderItemInfo = (OrderItem)lvwOrderItem.Items[i].Tag;
                 goodsAmount += (orderItemInfo.cnt * orderItemInfo.amt);
                 dcAmount += orderItemInfo.dc_amount;
                 Amount += orderItemInfo.amount;
@@ -646,7 +678,7 @@ namespace thepos
         {
             for (int i = 0; i < lvwOrderItem.Items.Count; i++)
             {
-                if (code == ((OrderItemInfo)(lvwOrderItem.Items[i].Tag)).code)
+                if (code == ((OrderItem)(lvwOrderItem.Items[i].Tag)).code)
                 { return i; }
             }
             return -1;
