@@ -563,7 +563,7 @@ namespace thepos
             this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAmountDC.Location = new System.Drawing.Point(0, 52);
+            this.btnOrderAmountDC.Location = new System.Drawing.Point(0, 0);
             this.btnOrderAmountDC.Name = "btnOrderAmountDC";
             this.btnOrderAmountDC.Size = new System.Drawing.Size(87, 48);
             this.btnOrderAmountDC.TabIndex = 0;
@@ -578,7 +578,7 @@ namespace thepos
             this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
-            this.btnOrderWaiting.Location = new System.Drawing.Point(0, 0);
+            this.btnOrderWaiting.Location = new System.Drawing.Point(0, 52);
             this.btnOrderWaiting.Name = "btnOrderWaiting";
             this.btnOrderWaiting.Size = new System.Drawing.Size(87, 48);
             this.btnOrderWaiting.TabIndex = 0;
@@ -862,7 +862,7 @@ namespace thepos
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 217);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
-            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(76, 17);
+            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(63, 14);
             this.lblOrderAmountRestTitle.TabIndex = 0;
             this.lblOrderAmountRestTitle.Text = "거스름돈";
             // 
@@ -872,7 +872,7 @@ namespace thepos
             this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 182);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
-            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(76, 17);
+            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(63, 14);
             this.lblOrderAmountReceiveTitle.TabIndex = 0;
             this.lblOrderAmountReceiveTitle.Text = "받은금액";
             // 
@@ -883,7 +883,7 @@ namespace thepos
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 147);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
-            this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(76, 17);
+            this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(63, 14);
             this.lblOrderAmountChargeTitle.TabIndex = 0;
             this.lblOrderAmountChargeTitle.Text = "받을금액";
             // 
@@ -893,7 +893,7 @@ namespace thepos
             this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 112);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
-            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(76, 17);
+            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(63, 14);
             this.lblOrderAmountDCTitle.TabIndex = 0;
             this.lblOrderAmountDCTitle.Text = "할인금액";
             // 
@@ -903,7 +903,7 @@ namespace thepos
             this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 78);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
-            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(76, 17);
+            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(63, 14);
             this.lblOrderAmountSumTitle.TabIndex = 0;
             this.lblOrderAmountSumTitle.Text = "합계금액";
             // 

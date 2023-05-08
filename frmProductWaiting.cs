@@ -14,6 +14,8 @@ namespace thepos
     {
         thepos the = new thepos();
 
+        //public int limit_waiting_no = 0;
+
 
         public frmProductWaiting(Point p)
         {
@@ -55,6 +57,13 @@ namespace thepos
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Windows.Forms.VisualStyles;
+using System.Collections.Generic;
 
 
 
@@ -43,7 +44,24 @@ namespace thepos
         Color pickColor;
 
 
-        int waiting_count = 0;
+        int waiting_count_ = 0;
+
+        List<WaitingInfo> listWaiting = new List<WaitingInfo>();
+
+
+
+
+
+        struct WaitingInfo
+        {
+            public String waiting_no;  // 대기번호 = order_no(20) : 00000yymmddHHMMSS000 + waiting_count(3)
+            public int cnt;         // 항목수
+            public DateTime dt;
+            public int amount;      //합계
+            public int rcv_amount;  //받은금액
+
+        }
+
 
         struct OrderItemInfo
         {
@@ -57,7 +75,8 @@ namespace thepos
             public String dc_rate;     // 정액: "" or 정율값("20") - 20%경우
         }
 
-        System.Windows.Forms.Button[] btnGoodsGroup;
+
+        Button[] btnGoodsGroup;
 
 
 
@@ -68,6 +87,7 @@ namespace thepos
             //? PC가 아니면 마우스 포인터 표시안함.
             //Cursor.Hide();
 
+            //the클래스 생성자에서 호출함. 여기서는 생략
             //the.initial_font();
             initialize_the();
 
@@ -168,11 +188,9 @@ namespace thepos
 
         }
 
-
-
         private void display_goodsgroup()
         {
-            btnGoodsGroup = new System.Windows.Forms.Button[the.mGoodsGroup.Length];
+            btnGoodsGroup = new Button[the.mGoodsGroup.Length];
 
 
             flowLayoutPanelGoodsGroup.Controls.Clear();
@@ -198,9 +216,6 @@ namespace thepos
                 flowLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup[i]);
             }
         }
-
-
-
 
         private void ClickedGoodsGroup(String groupcode)
         {
@@ -278,7 +293,6 @@ namespace thepos
 
             OrderItemInfo orderItemInfo = new OrderItemInfo();
 
-
             int lv_idx = (get_lvitem_idx(the.mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
@@ -310,7 +324,6 @@ namespace thepos
             }
             else
             {
-
                 set_item_change_ordercnt(lv_idx, "add", 1);
 
                 lvwOrderItem.Items[lv_idx].Selected = true;
@@ -322,7 +335,6 @@ namespace thepos
 
 
         // OrderItem ListView 관련 버튼들
-
         private void btnOrderCancelAll_Click(object sender, EventArgs e)
         {
             lvwOrderItem.Items.Clear();
@@ -361,39 +373,6 @@ namespace thepos
 
                 ReCalculateAmount();
             }
-        }
-
-        private void btnOrderAmountDC_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void btnOrderWaiting_Click(object sender, EventArgs e)
-        {
-            // 웨이팅 저장, 불러오기 겸용버튼
-
-            if (lvwOrderItem.Items.Count > 0)
-            {
-                // 웨이팅 목록으로 저장
-            }
-            else
-            {
-                if (waiting_count == 1)
-                {
-                    // 바로 불러오기
-
-                }
-                else if (waiting_count > 1)
-                {
-                    Point thisPoint = new Point();
-                    thisPoint = this.Location;
-                    frmProductWaiting fProductWaiting = new frmProductWaiting(thisPoint);
-                    fProductWaiting.ShowDialog();
-                }
-            }
-
-
         }
 
         private void btnOrderCntDn_Click(object sender, EventArgs e)
@@ -439,6 +418,58 @@ namespace thepos
 
 
 
+        private void btnOrderAmountDC_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void btnOrderWaiting_Click(object sender, EventArgs e)
+        {
+            // 웨이팅 저장, 불러오기 겸용버튼
+
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                // order_no 생성
+                the.create_order_no();
+
+
+                // 웨이팅 목록으로 저장
+            }
+            else
+            {
+                if (listWaiting.Count == 1)
+                {
+                    // 바로 불러오기
+
+                }
+                else if (listWaiting.Count > 1)
+                {
+                    Point thisPoint = new Point();
+                    thisPoint = this.Location;
+                    frmProductWaiting fProductWaiting = new frmProductWaiting(thisPoint);
+                    DialogResult result = fProductWaiting.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+
+                    }
+                }
+            }
+
+
+        }
+
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////
         private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
         {
             OrderItemInfo orderItemInfo = (OrderItemInfo)lvwOrderItem.Items[lv_idx].Tag;
@@ -634,6 +665,7 @@ namespace thepos
                 lblTime.Text = DateTime.Now.ToString("HH mm");
                 timerSecondEvent.Tag = "0";
             }
+
 
 
             String strWeek = "";

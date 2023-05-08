@@ -10,8 +10,6 @@ namespace thepos
 {
     class thepos
     {
-
-
         public Font fontMedium_8;
         public Font fontMedium_10;
         public Font fontMedium_12;
@@ -20,6 +18,15 @@ namespace thepos
 
         public Font fontBold_12;
         public Font fontBold_14;
+
+
+
+        public String mCustomerCode = "";
+        public String mPosNo = "";
+
+
+
+
 
 
         public struct GoodsGroup
@@ -47,13 +54,6 @@ namespace thepos
             PrivateFontCollection fontCollectionMedium = new PrivateFontCollection();
             PrivateFontCollection fontCollectionBold = new PrivateFontCollection();
 
-            //fontCollectionThin.AddFontFile("SpoqaHanSansNeo-Thin.ttf");
-            //fontCollection.AddFontFile("SpoqaHanSansNeo-Light.ttf");
-            //fontCollection.AddFontFile("SpoqaHanSansNeo-Regular.ttf");
-
-            //fontCollectionMedium.AddFontFile("SpoqaHanSansNeo-Medium.ttf");
-            //fontCollectionBold.AddFontFile("SpoqaHanSansNeo-Bold.ttf");
-
             fontCollectionThin.AddFontFile("Pretendard-Thin.ttf");
             fontCollectionMedium.AddFontFile("Pretendard-Medium.ttf");
             fontCollectionBold.AddFontFile("Pretendard-Bold.ttf");
@@ -66,6 +66,17 @@ namespace thepos
 
             fontBold_12 = new Font(fontCollectionBold.Families[0], 12f);
             fontBold_14 = new Font(fontCollectionBold.Families[0], 14f);
+
+
+
+
+            // 사업장코드, POS_NO
+            mCustomerCode = "HUSN";
+            mPosNo = "01";
+
+
+
+
         }
 
 
@@ -183,6 +194,27 @@ namespace thepos
             }
 
 
+
+        }
+
+
+        public String create_order_no()
+        {
+
+            // order no를 언제 부여하는가?
+            // - 결제들어갈때
+            // - 
+            // 
+            // 언제 클리어 하는가?
+            // - 결제 완료
+
+
+
+
+
+            // 사업장코드(3) + POS코드(2) + TIMESTAMP(10) 
+
+            return mCustomerCode + mPosNo + ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds().ToString();
 
         }
 
