@@ -8,11 +8,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
 using static thepos.thepos;
 
-
-
-
 /* 과제
-
     + 마우스 포인터 표시 : pc pos 구분필요 
     + 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
     + 리스트뷰 HeaderColumn backcolor 변경필요 - DrawColumnHeader
@@ -21,10 +17,7 @@ panelProduct : 488, 56 529, 547
 
 */
 
-// ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎
-//   ＋
-//  ＜＜＞
-//  △	▲	▽	▼
+// ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＜＞ △	▲	▽	▼
 
 namespace thepos
 {
@@ -32,19 +25,11 @@ namespace thepos
     {
         thepos the = new thepos();
 
-
-
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
-
-
-        //Color groupColor = Color.DarkOrange;
-        //Color itemColor = Color.DarkOrange;
 
         Color groupColor = SystemColors.Highlight;
         Color itemColor = SystemColors.Highlight;
         Color pickColor;
-
-
 
 
         String runningOrderNo = "";
@@ -52,21 +37,7 @@ namespace thepos
         public int waiting_count = 0;
 
 
-
-
-
-
-
-
-        public struct WaitingItem
-        {
-            public String order_no;
-            public OrderItem order_item;
-        }
-
-        List<WaitingItem> listWaitingItem = new List<WaitingItem>();
-
-
+        Button[] btnGoodsGroup;
 
 
        public struct OrderItem
@@ -83,7 +54,162 @@ namespace thepos
 
 
 
-        Button[] btnGoodsGroup;
+        public struct GoodsGroup
+        {
+            public string code;  // 3
+            public string name;
+            public string type;  // 사용가능한 pos_type : 모든POS = "ALL", 그룹POS= "G00"
+        }
+        public GoodsGroup[] mGoodsGroup;
+
+        public struct GoodsItem
+        {
+            public string code;  // 6
+            public string name;
+            public int amt;
+            public int column;
+            public int row;
+            public int columnspan;
+            public int rowspan;
+        }
+        public GoodsItem[] mGoodsItem;
+
+        public struct Waiting
+        {
+            public int waiting_no;
+            public String order_no;  // 대기번호 = order_no(20) : 00000yymmddHHMMSS000 
+            public int cnt;         // 항목수
+            public DateTime dt;
+            public int amount;      //합계
+            public int rcv_amount;  //받은금액
+            public String type;     // 주문중(1)  결제중(2)
+        }
+        public List<Waiting> listWaiting = new List<Waiting>();
+
+        public struct WaitingItem
+        {
+            public String order_no;
+            public OrderItem order_item;
+        }
+        List<WaitingItem> listWaitingItem = new List<WaitingItem>();
+
+
+
+        public void get_goodsgroup()
+        {
+
+            String[,] group = new String[,]
+            {
+                {"101","커피","G01"},
+                {"100","티켓","ALL"},
+                {"102","식사","G02"},
+                {"103","후식","G01"},
+                {"104","직원방문","G01"},
+                {"105","야간","G01"},
+                {"106","VIP","G01"},
+                {"107","장애인","G01"},
+                {"108","단체","G01"},
+                {"109","기본","G01"},
+                {"110","기부","G01"},
+                {"111","서비스","G01"},
+                {"112","학습","G01"},
+                {"113","온라인","G01"},
+                {"114","이벤트","G01"},
+                {"115","","G01"},
+                {"116","단체","G01"},
+                {"117","임시권","G01"},
+                {"118","주차","G01"},
+                {"119","단체","G01"},
+                {"120","일반","G01"},
+                {"121","단체","G01"},
+                {"122","아동","G01"},
+                {"123","청소년","G01"},
+                {"124","출근","G01"},
+                {"125","연예인","G01"},
+                {"126","정기권","G01"}
+            };
+
+
+            int len = group.Length / 3;
+
+
+            mGoodsGroup = new GoodsGroup[len];
+
+            for (int i = 0; i < len; i++)
+            {
+                mGoodsGroup[i].code = group[i, 0];
+                mGoodsGroup[i].name = group[i, 1];
+                mGoodsGroup[i].type = group[i, 2];
+            }
+
+        }
+
+        public void get_goodsitem()
+        {
+
+
+            String[,] item = new String[,]
+            {
+
+                { "101101","바닐라라떼","8000", "0","0", "2","2"},
+                { "101102","카푸치노","6000", "2","0", "2","2"},
+                { "101103","에스프레소","7000", "4","0", "2","2"},
+                { "101104","아이스라떼","6500", "6","0", "2","2"},
+                { "101105","아메리카노","5000", "0","2", "2","2"},
+                { "101106","맥심커피","8000", "2","2", "2","2"},
+                { "101108","카페라떼","7000", "4","2", "2","2"},
+                { "101107","캬라멜","6000", "6","2", "2","2"},
+                { "101109","모카","5000", "0","4", "2","2"},
+                { "101110","아리스카페모카","5000", "2","4", "2","2"},
+
+                { "100001","종일자유","10000", "0","0", "2","2"},
+                { "100002","종일어린이","8000", "2","0", "2","2"},
+
+                /*                
+                { "101101","바닐라라떼","8000", "0","0", "2","2"},
+                { "101102","카푸치노","6000", "2","0", "1","2"},
+                { "101103","에스프레소","7000", "3","0", "3","2"},
+                { "101104","아이스라떼","6500", "6","1", "2","1"},
+                { "101105","아메리카노","5000", "0","2", "4","3"},
+                { "101106","맥심커피","8000", "4","2", "4","4"},
+                { "101108","카페라떼","7000", "0","5", "3","3"},
+                { "101107","캬라멜","6000", "3","5", "1","3"},
+                { "101109","모카","5000", "4","6", "1","1"},
+                { "101110","아리스카페모카","5000", "4","7", "3","1"},
+
+                { "100001","종일성인","10000", "0","1", "4","5"},
+                { "100002","종일어린이","8000", "4","1", "4","5"},
+                */
+            };
+
+
+            int len = item.Length / 7;
+
+            mGoodsItem = new GoodsItem[len];
+
+            for (int i = 0; i < len; i++)
+            {
+                mGoodsItem[i].code = item[i, 0];
+                mGoodsItem[i].name = item[i, 1];
+                mGoodsItem[i].amt = Int32.Parse(item[i, 2]);
+
+                mGoodsItem[i].column = Int32.Parse(item[i, 3]);
+                mGoodsItem[i].row = Int32.Parse(item[i, 4]);
+                mGoodsItem[i].columnspan = Int32.Parse(item[i, 5]);
+                mGoodsItem[i].rowspan = Int32.Parse(item[i, 6]);
+            }
+
+        }
+
+
+        public String create_order_no()
+        {
+            // 사업장코드(3) + POS코드(2) + TIMESTAMP(10) 
+            return the.mCustomerCode + the.mPosNo + ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds().ToString();
+        }
+
+
+
 
 
 
@@ -94,33 +220,27 @@ namespace thepos
             //? PC가 아니면 마우스 포인터 표시안함.
             //Cursor.Hide();
 
-            //the클래스 생성자에서 호출함. 여기서는 생략
-            //the.initial_font();
             initialize_the();
 
-            the.get_goodsgroup();
-            the.get_goodsitem();
-
+            get_goodsgroup();
+            get_goodsitem();
 
             display_goodsgroup();
-            ClickedGoodsGroup(the.mGoodsGroup[0].code);   // 최초실행후 첮 구룹을 선택한 화면을 보여주자...
-
+            //ClickedGoodsGroup(mGoodsGroup[0].code);   // 최초실행후 첮 구룹을 선택한 화면을 보여주자...
         }
 
 
 
         private void initialize_the()
         {
-
-
-            lvwOrderItem.Font = the.fontMedium_10;
-
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
             lvwOrderItem.SmallImageList = imgList;
             // item 클릭시 선택바 (backcolor=blue) 표시를 위해서...
             lvwOrderItem.HideSelection = true;
 
+            // 기본폰트
+            this.Font = the.fontMedium_10;
 
             lblTitle01.Font = the.fontMedium_8;
             lblTitle02.Font = the.fontMedium_8;
@@ -128,29 +248,29 @@ namespace thepos
             lblTitle04.Font = the.fontMedium_8;
 
 
-            lblDate.Font = the.fontMedium_10;
+            //lblDate.Font = the.fontMedium_10;
             lblTime.Font = the.fontMedium_15;
 
-            btnClose.Font = the.fontMedium_10;
+            //btnClose.Font = the.fontMedium_10;
 
-            lblDisplayAlarm.Font = the.fontMedium_10;
+            //lblDisplayAlarm.Font = the.fontMedium_10;
 
-            btnOrderCancelAll.Font = the.fontMedium_10;
-            btnOrderCancelSelect.Font = the.fontMedium_10;
+            //btnOrderCancelAll.Font = the.fontMedium_10;
+            //btnOrderCancelSelect.Font = the.fontMedium_10;
             btnOrderCntDn.Font = the.fontMedium_15;
             btnOrderCntUp.Font = the.fontMedium_15;
-            btnOrderCntChange.Font = the.fontMedium_10;
-            btnOrderAmountDC.Font = the.fontMedium_10;
-            btnOrderWaiting.Font = the.fontMedium_10;
-            btnOrderItemScrollUp.Font = the.fontMedium_10;
-            btnOrderItemScrollDn.Font = the.fontMedium_10;
+            //btnOrderCntChange.Font = the.fontMedium_10;
+            //btnOrderAmountDC.Font = the.fontMedium_10;
+            //btnOrderWaiting.Font = the.fontMedium_10;
+            //btnOrderItemScrollUp.Font = the.fontMedium_10;
+            //btnOrderItemScrollDn.Font = the.fontMedium_10;
 
 
-            lblOrderAmountSumTitle.Font = the.fontMedium_10;
-            lblOrderAmountDCTitle.Font = the.fontMedium_10;
-            lblOrderAmountChargeTitle.Font = the.fontMedium_10;
-            lblOrderAmountReceiveTitle.Font = the.fontMedium_10;
-            lblOrderAmountRestTitle.Font = the.fontMedium_10;
+            //lblOrderAmountSumTitle.Font = the.fontMedium_10;
+            //lblOrderAmountDCTitle.Font = the.fontMedium_10;
+            //lblOrderAmountChargeTitle.Font = the.fontMedium_10;
+            //lblOrderAmountReceiveTitle.Font = the.fontMedium_10;
+            //lblOrderAmountRestTitle.Font = the.fontMedium_10;
             lblOrderGoodsAmount.Font = the.fontBold_14;
             lblOrderAmountDC.Font = the.fontBold_14;
             lblOrderAmountCharge.Font = the.fontBold_14;
@@ -159,21 +279,34 @@ namespace thepos
 
 
             lblKeyDisplay.Font = the.fontBold_14;
-            btnKey1.Font = the.fontMedium_10; btnKey1.Click += (sender, args) => ClickedKey("1");
-            btnKey2.Font = the.fontMedium_10; btnKey2.Click += (sender, args) => ClickedKey("2");
-            btnKey3.Font = the.fontMedium_10; btnKey3.Click += (sender, args) => ClickedKey("3");
-            btnKey4.Font = the.fontMedium_10; btnKey4.Click += (sender, args) => ClickedKey("4");
-            btnKey5.Font = the.fontMedium_10; btnKey5.Click += (sender, args) => ClickedKey("5");
-            btnKey6.Font = the.fontMedium_10; btnKey6.Click += (sender, args) => ClickedKey("6");
-            btnKey7.Font = the.fontMedium_10; btnKey7.Click += (sender, args) => ClickedKey("7");
-            btnKey8.Font = the.fontMedium_10; btnKey8.Click += (sender, args) => ClickedKey("8");
-            btnKey9.Font = the.fontMedium_10; btnKey9.Click += (sender, args) => ClickedKey("9");
-            btnKey0.Font = the.fontMedium_10; btnKey0.Click += (sender, args) => ClickedKey("0");
-            btnKey00.Font = the.fontMedium_10; btnKey00.Click += (sender, args) => ClickedKey("00");
-            btnKeyBS.Font = the.fontMedium_10; btnKeyBS.Click += (sender, args) => ClickedKey("BS");
-            btnKeyClear.Font = the.fontMedium_10; btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
-            btnKeyEnter.Font = the.fontMedium_10;
-
+            //btnKey1.Font = the.fontMedium_10;
+            btnKey1.Click += (sender, args) => ClickedKey("1");
+            //btnKey2.Font = the.fontMedium_10; 
+            btnKey2.Click += (sender, args) => ClickedKey("2");
+            //btnKey3.Font = the.fontMedium_10; 
+            btnKey3.Click += (sender, args) => ClickedKey("3");
+            //btnKey4.Font = the.fontMedium_10; 
+            btnKey4.Click += (sender, args) => ClickedKey("4");
+            //btnKey5.Font = the.fontMedium_10; 
+            btnKey5.Click += (sender, args) => ClickedKey("5");
+            //btnKey6.Font = the.fontMedium_10; 
+            btnKey6.Click += (sender, args) => ClickedKey("6");
+            //btnKey7.Font = the.fontMedium_10; 
+            btnKey7.Click += (sender, args) => ClickedKey("7");
+            //btnKey8.Font = the.fontMedium_10; 
+            btnKey8.Click += (sender, args) => ClickedKey("8");
+            //btnKey9.Font = the.fontMedium_10; 
+            btnKey9.Click += (sender, args) => ClickedKey("9");
+            //btnKey0.Font = the.fontMedium_10; 
+            btnKey0.Click += (sender, args) => ClickedKey("0");
+            //btnKey00.Font = the.fontMedium_10; 
+            btnKey00.Click += (sender, args) => ClickedKey("00");
+            //btnKeyBS.Font = the.fontMedium_10; 
+            btnKeyBS.Click += (sender, args) => ClickedKey("BS");
+            //btnKeyClear.Font = the.fontMedium_10; 
+            btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
+            //btnKeyEnter.Font = the.fontMedium_10;
+            /*
             btnFunction2.Font = the.fontMedium_10;
             btnFunction3.Font = the.fontMedium_10;
             btnFunction4.Font = the.fontMedium_10;
@@ -189,7 +322,7 @@ namespace thepos
             btnPaySimple.Font = the.fontMedium_10;
             btnPayComplex.Font = the.fontMedium_10;
             btnOrderManager.Font = the.fontMedium_10;
-
+            */
 
 
 
@@ -197,17 +330,17 @@ namespace thepos
 
         private void display_goodsgroup()
         {
-            btnGoodsGroup = new Button[the.mGoodsGroup.Length];
+            btnGoodsGroup = new Button[mGoodsGroup.Length];
 
 
             flowLayoutPanelGoodsGroup.Controls.Clear();
 
-            for (int i = 0; i < the.mGoodsGroup.Length; i++)
+            for (int i = 0; i < mGoodsGroup.Length; i++)
             {
-                String groupcode = the.mGoodsGroup[i].code;
-                btnGoodsGroup[i] = new System.Windows.Forms.Button();
-                btnGoodsGroup[i].Text = the.mGoodsGroup[i].name;
-                btnGoodsGroup[i].Tag = the.mGoodsGroup[i].code;
+                String groupcode = mGoodsGroup[i].code;
+                btnGoodsGroup[i] = new Button();
+                btnGoodsGroup[i].Text = mGoodsGroup[i].name;
+                btnGoodsGroup[i].Tag = mGoodsGroup[i].code;
                 btnGoodsGroup[i].Height = 60;
                 btnGoodsGroup[i].Width = 92;
                 btnGoodsGroup[i].Font = the.fontBold_12;
@@ -242,18 +375,16 @@ namespace thepos
             tableLayoutPanelGoodsItem.PerformLayout();
 
 
-            for (int i = 0; i < the.mGoodsItem.Length; i++)
+            for (int i = 0; i < mGoodsItem.Length; i++)
             {
-                if (groupcode == the.mGoodsItem[i].code.Substring(0,3))
+                if (groupcode == mGoodsItem[i].code.Substring(0,3))
                 {
                     int idx = i;
                     btnGoodsItem = new System.Windows.Forms.Button();
 
-
-                    btnGoodsItem.Tag = the.mGoodsItem[i].code;
+                    btnGoodsItem.Tag = mGoodsItem[i].code;
                     btnGoodsItem.Height = 76;
                     btnGoodsItem.Width = 100;
-
 
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
                     btnGoodsItem.ForeColor = Color.White;
@@ -262,14 +393,13 @@ namespace thepos
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
 
-                    btnGoodsItem.Text = the.mGoodsItem[i].name + "\n" + the.mGoodsItem[i].amt.ToString("N0");
+                    btnGoodsItem.Text = mGoodsItem[i].name + "\n" + mGoodsItem[i].amt.ToString("N0");
 
-                    if (the.mGoodsItem[i].columnspan == 1 | the.mGoodsItem[i].rowspan == 1)
+                    if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
                         btnGoodsItem.Font = the.fontMedium_8;
-
                     }
-                    else if (the.mGoodsItem[i].columnspan == 2 | the.mGoodsItem[i].rowspan == 2)
+                    else if (mGoodsItem[i].columnspan == 2 | mGoodsItem[i].rowspan == 2)
                     {
                         btnGoodsItem.Font = the.fontMedium_12;
                     }
@@ -286,9 +416,9 @@ namespace thepos
 
 
 
-                    tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, the.mGoodsItem[i].column, the.mGoodsItem[i].row);
-                    tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, the.mGoodsItem[i].columnspan);
-                    tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsItem, the.mGoodsItem[i].rowspan);
+                    tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, mGoodsItem[i].column, mGoodsItem[i].row);
+                    tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, mGoodsItem[i].columnspan);
+                    tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsItem, mGoodsItem[i].rowspan);
                 }
             }
  
@@ -300,29 +430,29 @@ namespace thepos
 
             OrderItem orderItem = new OrderItem();
 
-            int lv_idx = (get_lvitem_idx(the.mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = (get_lvitem_idx(mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {
                 ListViewItem item = new ListViewItem();
 
-                orderItem.code = the.mGoodsItem[i].code.ToString();
-                orderItem.name = the.mGoodsItem[i].name.ToString();
-                orderItem.amt = the.mGoodsItem[i].amt;
+                orderItem.code = mGoodsItem[i].code.ToString();
+                orderItem.name = mGoodsItem[i].name.ToString();
+                orderItem.amt = mGoodsItem[i].amt;
                 orderItem.cnt = 1;
                 orderItem.dc_amount = 0;
-                orderItem.amount = the.mGoodsItem[i].amt;
+                orderItem.amount = mGoodsItem[i].amt;
                 orderItem.dc_type = "";
                 orderItem.dc_rate = "";
 
                 item.Tag = orderItem;
 
                 item.Text = (lvwOrderItem.Items.Count + 1).ToString();
-                item.SubItems.Add(the.mGoodsItem[i].name);                // 1: name 상품명
-                item.SubItems.Add(the.mGoodsItem[i].amt.ToString("N0"));  // 2: amt 단가
+                item.SubItems.Add(mGoodsItem[i].name);                // 1: name 상품명
+                item.SubItems.Add(mGoodsItem[i].amt.ToString("N0"));  // 2: amt 단가
                 item.SubItems.Add("1");                                       // 3: cnt 수량
                 item.SubItems.Add("");                                        // 4: dc_amount 할인
-                item.SubItems.Add(the.mGoodsItem[i].amt.ToString("N0"));  // 5: amount 금액
+                item.SubItems.Add(mGoodsItem[i].amt.ToString("N0"));  // 5: amount 금액
                 item.SubItems.Add("");          
 
                 lvwOrderItem.Items.Add(item);
@@ -440,7 +570,7 @@ namespace thepos
 
                 if (runningOrderNo == "")
                 {
-                    runningOrderNo = the.create_order_no();
+                    runningOrderNo = create_order_no();
                 }
 
                 waiting.order_no = runningOrderNo;
@@ -466,20 +596,20 @@ namespace thepos
                     listWaitingItem.Add(waitingItem);
                 }
 
-                the.listWaiting.Add(waiting);
+                listWaiting.Add(waiting);
 
 
                 lvwOrderItem.Items.Clear();
-                btnOrderWaiting.Text = "대기\n[" + the.listWaiting.Count + "]";
+                btnOrderWaiting.Text = "대기\n[" + listWaiting.Count + "]";
 
             }
             else
             {
-                if (the.listWaiting.Count > 0)
+                if (listWaiting.Count > 0)
                 {
                     Point thisPoint = new Point();
                     thisPoint = this.Location;
-                    frmProductWaiting fProductWaiting = new frmProductWaiting(thisPoint);
+                    frmProductWaiting fProductWaiting = new frmProductWaiting(thisPoint, ref listWaiting);
                     DialogResult result = fProductWaiting.ShowDialog();
                     if (result == DialogResult.OK)
                     {
@@ -649,16 +779,17 @@ namespace thepos
         {
             int button_idx = -1;
 
-            for (int i = 0; i < the.mGoodsGroup.Length; i++)
+            for (int i = 0; i < mGoodsGroup.Length; i++)
             {
-                if (the.mGoodsGroup[i].code == groupcode)
+                if (mGoodsGroup[i].code == groupcode)
                 {
                     button_idx = i;
                 }
             }
 
-            if (button_idx == -1)
-                return;
+
+            if (button_idx == -1) return;
+
 
             if (!isPressed)
             {
@@ -791,9 +922,9 @@ namespace thepos
             ///
             int button_idx = -1;
 
-            for (int i = 0; i < the.mGoodsGroup.Length; i++)
+            for (int i = 0; i < mGoodsGroup.Length; i++)
             {
-                if (the.mGoodsGroup[i].code == last_groupcode)
+                if (mGoodsGroup[i].code == last_groupcode)
                 {
                     button_idx = i;
                 }

@@ -980,16 +980,12 @@ namespace thepos
             this.lvwOrderItem.Location = new System.Drawing.Point(-4, 0);
             this.lvwOrderItem.MultiSelect = false;
             this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.OwnerDraw = true;
             this.lvwOrderItem.Size = new System.Drawing.Size(510, 293);
             this.lvwOrderItem.TabIndex = 37;
             this.lvwOrderItem.TabStop = false;
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
             this.lvwOrderItem.View = System.Windows.Forms.View.Details;
             this.lvwOrderItem.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwOrderItem_ColumnWidthChanging);
-            this.lvwOrderItem.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.lvwOrderItem_DrawColumnHeader);
-            this.lvwOrderItem.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvwOrderItem_DrawItem);
-            this.lvwOrderItem.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.lvwOrderItem_DrawSubItem);
             this.lvwOrderItem.SelectedIndexChanged += new System.EventHandler(this.lvwOrderItem_SelectedIndexChanged);
             // 
             // no
