@@ -7,6 +7,7 @@ using System.Drawing.Text;
 using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
 using static thepos.thepos;
+using static thepos.frmSale;
 
 /* 과제
     + 마우스 포인터 표시 : pc pos 구분필요 
@@ -32,7 +33,7 @@ namespace thepos
         Color pickColor;
 
 
-        String runningOrderNo = "";
+        public String runningOrderNo = "";
 
         public int waiting_count = 0;
 
@@ -50,6 +51,7 @@ namespace thepos
             public int dc_amount;   // 실할인금액
             public String dc_type;  // type - "A" : 정액, "B" : 정율 
             public String dc_rate;     // 정액: "" or 정율값("20") - 20%경우
+            public String memo;
         }
 
 
@@ -150,7 +152,7 @@ namespace thepos
 
             String[,] item = new String[,]
             {
-
+                /*     
                 { "101101","바닐라라떼","8000", "0","0", "2","2"},
                 { "101102","카푸치노","6000", "2","0", "2","2"},
                 { "101103","에스프레소","7000", "4","0", "2","2"},
@@ -165,7 +167,7 @@ namespace thepos
                 { "100001","종일자유","10000", "0","0", "2","2"},
                 { "100002","종일어린이","8000", "2","0", "2","2"},
 
-                /*                
+                */           
                 { "101101","바닐라라떼","8000", "0","0", "2","2"},
                 { "101102","카푸치노","6000", "2","0", "1","2"},
                 { "101103","에스프레소","7000", "3","0", "3","2"},
@@ -179,7 +181,7 @@ namespace thepos
 
                 { "100001","종일성인","10000", "0","1", "4","5"},
                 { "100002","종일어린이","8000", "4","1", "4","5"},
-                */
+
             };
 
 
@@ -235,9 +237,12 @@ namespace thepos
         {
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
+
             lvwOrderItem.SmallImageList = imgList;
-            // item 클릭시 선택바 (backcolor=blue) 표시를 위해서...
             lvwOrderItem.HideSelection = true;
+
+            lvwWaiting.SmallImageList = imgList;
+            lvwWaiting.HideSelection = true;
 
             // 기본폰트
             this.Font = the.fontMedium_10;
@@ -247,84 +252,31 @@ namespace thepos
             lblTitle03.Font = the.fontMedium_8;
             lblTitle04.Font = the.fontMedium_8;
 
-
-            //lblDate.Font = the.fontMedium_10;
             lblTime.Font = the.fontMedium_15;
 
-            //btnClose.Font = the.fontMedium_10;
-
-            //lblDisplayAlarm.Font = the.fontMedium_10;
-
-            //btnOrderCancelAll.Font = the.fontMedium_10;
-            //btnOrderCancelSelect.Font = the.fontMedium_10;
             btnOrderCntDn.Font = the.fontMedium_15;
             btnOrderCntUp.Font = the.fontMedium_15;
-            //btnOrderCntChange.Font = the.fontMedium_10;
-            //btnOrderAmountDC.Font = the.fontMedium_10;
-            //btnOrderWaiting.Font = the.fontMedium_10;
-            //btnOrderItemScrollUp.Font = the.fontMedium_10;
-            //btnOrderItemScrollDn.Font = the.fontMedium_10;
 
-
-            //lblOrderAmountSumTitle.Font = the.fontMedium_10;
-            //lblOrderAmountDCTitle.Font = the.fontMedium_10;
-            //lblOrderAmountChargeTitle.Font = the.fontMedium_10;
-            //lblOrderAmountReceiveTitle.Font = the.fontMedium_10;
-            //lblOrderAmountRestTitle.Font = the.fontMedium_10;
             lblOrderGoodsAmount.Font = the.fontBold_14;
             lblOrderAmountDC.Font = the.fontBold_14;
             lblOrderAmountCharge.Font = the.fontBold_14;
             lblOrderAmountReceive.Font = the.fontBold_14;
             lblOrderAmountRest.Font = the.fontBold_14;
 
-
             lblKeyDisplay.Font = the.fontBold_14;
-            //btnKey1.Font = the.fontMedium_10;
             btnKey1.Click += (sender, args) => ClickedKey("1");
-            //btnKey2.Font = the.fontMedium_10; 
             btnKey2.Click += (sender, args) => ClickedKey("2");
-            //btnKey3.Font = the.fontMedium_10; 
             btnKey3.Click += (sender, args) => ClickedKey("3");
-            //btnKey4.Font = the.fontMedium_10; 
             btnKey4.Click += (sender, args) => ClickedKey("4");
-            //btnKey5.Font = the.fontMedium_10; 
             btnKey5.Click += (sender, args) => ClickedKey("5");
-            //btnKey6.Font = the.fontMedium_10; 
             btnKey6.Click += (sender, args) => ClickedKey("6");
-            //btnKey7.Font = the.fontMedium_10; 
             btnKey7.Click += (sender, args) => ClickedKey("7");
-            //btnKey8.Font = the.fontMedium_10; 
             btnKey8.Click += (sender, args) => ClickedKey("8");
-            //btnKey9.Font = the.fontMedium_10; 
             btnKey9.Click += (sender, args) => ClickedKey("9");
-            //btnKey0.Font = the.fontMedium_10; 
             btnKey0.Click += (sender, args) => ClickedKey("0");
-            //btnKey00.Font = the.fontMedium_10; 
             btnKey00.Click += (sender, args) => ClickedKey("00");
-            //btnKeyBS.Font = the.fontMedium_10; 
             btnKeyBS.Click += (sender, args) => ClickedKey("BS");
-            //btnKeyClear.Font = the.fontMedium_10; 
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
-            //btnKeyEnter.Font = the.fontMedium_10;
-            /*
-            btnFunction2.Font = the.fontMedium_10;
-            btnFunction3.Font = the.fontMedium_10;
-            btnFunction4.Font = the.fontMedium_10;
-            btnFunction5.Font = the.fontMedium_10;
-
-            btnScrollGroupUp.Font = the.fontMedium_10;
-            btnScrollGroupDn.Font = the.fontMedium_10;
-
-            btnScrollItemUp.Font = the.fontMedium_10;
-            btnScrollItemDn.Font = the.fontMedium_10;
-
-            btnPayCredit.Font = the.fontMedium_10;
-            btnPaySimple.Font = the.fontMedium_10;
-            btnPayComplex.Font = the.fontMedium_10;
-            btnOrderManager.Font = the.fontMedium_10;
-            */
-
-
 
         }
 
@@ -383,16 +335,15 @@ namespace thepos
                     btnGoodsItem = new System.Windows.Forms.Button();
 
                     btnGoodsItem.Tag = mGoodsItem[i].code;
+
                     btnGoodsItem.Height = 76;
-                    btnGoodsItem.Width = 100;
+                    btnGoodsItem.Width = 60;
 
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
                     btnGoodsItem.ForeColor = Color.White;
                     btnGoodsItem.BackColor = itemColor;
-
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
-
                     btnGoodsItem.Text = mGoodsItem[i].name + "\n" + mGoodsItem[i].amt.ToString("N0");
 
                     if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
@@ -408,13 +359,8 @@ namespace thepos
                         btnGoodsItem.Font = the.fontMedium_18;
                     }
 
-                    
-
                     btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
-
                     btnGoodsItem.Dock = DockStyle.Fill;
-
-
 
                     tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, mGoodsItem[i].column, mGoodsItem[i].row);
                     tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, mGoodsItem[i].columnspan);
@@ -444,16 +390,17 @@ namespace thepos
                 orderItem.amount = mGoodsItem[i].amt;
                 orderItem.dc_type = "";
                 orderItem.dc_rate = "";
+                orderItem.memo = "";
 
                 item.Tag = orderItem;
 
                 item.Text = (lvwOrderItem.Items.Count + 1).ToString();
                 item.SubItems.Add(mGoodsItem[i].name);                // 1: name 상품명
                 item.SubItems.Add(mGoodsItem[i].amt.ToString("N0"));  // 2: amt 단가
-                item.SubItems.Add("1");                                       // 3: cnt 수량
-                item.SubItems.Add("");                                        // 4: dc_amount 할인
+                item.SubItems.Add("1");                               // 3: cnt 수량
+                item.SubItems.Add("");                                // 4: dc_amount 할인
                 item.SubItems.Add(mGoodsItem[i].amt.ToString("N0"));  // 5: amount 금액
-                item.SubItems.Add("");          
+                item.SubItems.Add("");                                // 6: 비고
 
                 lvwOrderItem.Items.Add(item);
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
@@ -500,13 +447,11 @@ namespace thepos
                     lvwOrderItem.Items[idx].Selected = true;
                 }
 
-
                 // renumbering
                 for (int i = idx; i < lvwOrderItem.Items.Count; i++)
                 {
                     lvwOrderItem.Items[i].Text = (i+1).ToString();
                 }
-
 
                 ReCalculateAmount();
             }
@@ -561,6 +506,12 @@ namespace thepos
 
         }
 
+
+
+
+
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 대기 기능
         private void btnOrderWaiting_Click(object sender, EventArgs e)
         {
             // 웨이팅 저장, 불러오기 겸용버튼
@@ -598,27 +549,151 @@ namespace thepos
 
                 listWaiting.Add(waiting);
 
-
                 lvwOrderItem.Items.Clear();
-                btnOrderWaiting.Text = "대기\n[" + listWaiting.Count + "]";
+                btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
+
+                runningOrderNo = "";
 
             }
             else
             {
                 if (listWaiting.Count > 0)
                 {
-                    Point thisPoint = new Point();
-                    thisPoint = this.Location;
-                    frmProductWaiting fProductWaiting = new frmProductWaiting(thisPoint, ref listWaiting);
-                    DialogResult result = fProductWaiting.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
+                    panelProductWaiting.Visible = true;
+                    lvwWaiting.Items.Clear();
 
+                    for (int i = 0; i < listWaiting.Count; i++)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = listWaiting[i].waiting_no.ToString();
+                        item.Tag = listWaiting[i].order_no.ToString();
+                        item.SubItems.Add(listWaiting[i].cnt.ToString("N0"));
+                        item.SubItems.Add(listWaiting[i].dt.ToString("MM.dd HH:mm:ss"));
+                        item.SubItems.Add(listWaiting[i].amount.ToString("N0"));
+                        item.SubItems.Add(listWaiting[i].rcv_amount.ToString("N0"));
+
+                        String strType = "";
+                        if (listWaiting[i].type == "1") strType = "주문중";
+                        else if (listWaiting[i].type == "2") strType = "결제중";
+
+                        item.SubItems.Add(strType);
+
+                        lvwWaiting.Items.Add(item);
                     }
+
+                    if (lvwWaiting.Items.Count > 0)
+                    {
+                        lvwWaiting.Items[0].Selected = true;
+                    }
+                }
+            }
+        }
+
+        private void btnWaitingOK_Click(object sender, EventArgs e)
+        {
+
+            if (lvwWaiting.SelectedItems.Count < 1) return;
+
+
+
+            runningOrderNo = lvwWaiting.SelectedItems[0].Tag.ToString();
+
+            for (int i = 0; i < listWaitingItem.Count; i++)
+            {
+                if (listWaitingItem[i].order_no == runningOrderNo)
+                {
+                    ListViewItem item = new ListViewItem();
+
+                    item.Tag = listWaitingItem[i].order_item;
+
+                    OrderItem orderItem = new OrderItem();
+                    orderItem = listWaitingItem[i].order_item;
+
+                    item.Text = (i + 1).ToString();
+                    item.SubItems.Add(orderItem.name);                      // 1: name 상품명
+                    item.SubItems.Add(orderItem.amt.ToString("N0"));        // 2: amt 단가
+                    item.SubItems.Add(orderItem.cnt.ToString());            // 3: cnt 수량
+                    item.SubItems.Add(orderItem.dc_amount.ToString("N0"));  // 4: dc_amount 할인
+                    item.SubItems.Add(orderItem.amt.ToString("N0"));        // 5: amount 금액
+                    item.SubItems.Add(orderItem.memo);                      // 6: 메모
+
+                    lvwOrderItem.Items.Add(item);
+                    lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
+                    lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
                 }
             }
 
 
+            for (int i = listWaitingItem.Count - 1; i >= 0; i--)
+            {
+                if (listWaitingItem[i].order_no == runningOrderNo)
+                {
+                    listWaitingItem.RemoveAt(i);
+                }
+            }
+
+            for (int i = 0; i < listWaiting.Count; i++)
+            {
+                if (listWaiting[i].order_no == runningOrderNo)
+                {
+                    listWaiting.RemoveAt(i);
+                }
+            }
+
+
+            if (listWaiting.Count > 0)
+            {
+                btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
+            }
+            else
+            {
+                btnOrderWaiting.Text = "대기";
+            }
+
+            panelProductWaiting.Visible = false;
+
+        }
+
+        private void btnWaitingDelete_Click(object sender, EventArgs e)
+        {
+            if (lvwWaiting.SelectedItems.Count > 0)
+            {
+                String order_no = lvwWaiting.SelectedItems[0].Tag.ToString();
+
+                for (int i = listWaiting.Count - 1; i >= 0; i--)
+                {
+                    if (listWaiting[i].order_no == order_no)
+                    {
+                        listWaiting.RemoveAt(i);
+                    }
+                }
+
+                for (int i = listWaitingItem.Count - 1; i >= 0; i--)
+                {
+                    if (listWaitingItem[i].order_no == order_no)
+                    {
+                        listWaitingItem.RemoveAt(i);
+                    }
+                }
+
+                lvwWaiting.SelectedItems[0].Remove();
+
+                if (listWaiting.Count > 0)
+                {
+                    btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
+                }
+                else
+                {
+                    btnOrderWaiting.Text = "대기";
+                }
+            }
+
+
+        }
+
+        private void btnWaitingClose_Click(object sender, EventArgs e)
+        {
+            panelProductWaiting.Visible = false;
         }
 
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////

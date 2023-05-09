@@ -52,12 +52,6 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmProductWaiting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmProductWaiting.Designer.cs">
-      <DependentUpon>frmProductWaiting.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSale.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,9 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmProductWaiting.resx">
-      <DependentUpon>frmProductWaiting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSale.resx">
       <DependentUpon>frmSale.cs</DependentUpon>
