@@ -21,8 +21,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            frmSale fSale = new frmSale();
-
 
 
             lblTitle.Font = the.fontBold_12;
@@ -108,6 +106,12 @@ namespace thepos
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void lvwWaiting_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.Cancel = true;
+            e.NewWidth = lvwWaiting.Columns[e.ColumnIndex].Width;
         }
     }
 }

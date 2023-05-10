@@ -107,6 +107,7 @@
             this.lvwWaiting.TabIndex = 41;
             this.lvwWaiting.UseCompatibleStateImageBehavior = false;
             this.lvwWaiting.View = System.Windows.Forms.View.Details;
+            this.lvwWaiting.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwWaiting_ColumnWidthChanging);
             // 
             // waiting_no
             // 
@@ -138,7 +139,7 @@
             // status
             // 
             this.status.Text = "상태";
-            this.status.Width = 110;
+            this.status.Width = 90;
             // 
             // lblTitle
             // 
