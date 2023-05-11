@@ -28,9 +28,7 @@ namespace thepos
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
-        Color groupColor = SystemColors.Highlight;
-        Color itemColor = SystemColors.Highlight;
-        Color pickColor;
+        Color pickColor = SystemColors.Highlight;
 
 
         public static String runningOrderNo = "";
@@ -107,7 +105,7 @@ namespace thepos
                 {"105","야간","G01"},
                 {"106","VIP","G01"},
                 {"107","장애인","G01"},
-                {"108","단체","G01"},
+                {"108","","G01"},
                 {"109","기본","G01"},
                 {"110","기부","G01"},
                 {"111","서비스","G01"},
@@ -317,7 +315,7 @@ namespace thepos
                 btnGoodsGroup[i].Font = the.fontBold_12;
 
                 btnGoodsGroup[i].FlatStyle = FlatStyle.Flat;
-                btnGoodsGroup[i].ForeColor = groupColor;
+                btnGoodsGroup[i].ForeColor = pickColor;
                 btnGoodsGroup[i].BackColor = Color.White;
                 btnGoodsGroup[i].FlatAppearance.BorderSize = 2;
 
@@ -360,7 +358,7 @@ namespace thepos
 
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
                     btnGoodsItem.ForeColor = Color.White;
-                    btnGoodsItem.BackColor = itemColor;
+                    btnGoodsItem.BackColor = pickColor;
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
                     btnGoodsItem.Text = mGoodsItem[i].name + "\n" + mGoodsItem[i].amt.ToString("N0");
@@ -819,14 +817,14 @@ namespace thepos
 
             if (!isPressed)
             {
-                btnGoodsGroup[button_idx].ForeColor = groupColor;
+                btnGoodsGroup[button_idx].ForeColor = pickColor;
                 btnGoodsGroup[button_idx].BackColor = Color.White;
                 btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 2;
             }
             else
             {
                 btnGoodsGroup[button_idx].ForeColor = Color.White;
-                btnGoodsGroup[button_idx].BackColor = groupColor;
+                btnGoodsGroup[button_idx].BackColor = pickColor;
                 btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 0;
             }
         }
@@ -847,15 +845,12 @@ namespace thepos
             {
                 lblTime.Text = DateTime.Now.ToString("HH:mm");
                 timerSecondEvent.Tag = "1";
-
             }
             else
             {
                 lblTime.Text = DateTime.Now.ToString("HH mm");
                 timerSecondEvent.Tag = "0";
             }
-
-
 
             String strWeek = "";
             DateTime nowDt = DateTime.Now;
@@ -922,29 +917,20 @@ namespace thepos
             // Allows the user to get help. (The default is false.)
             MyDialog.ShowHelp = true;
             // Sets the initial color select to the current text color.
-            MyDialog.Color = itemColor;
+            MyDialog.Color = pickColor;
 
             // Update the text box color if the user clicks OK 
             if (MyDialog.ShowDialog() == DialogResult.OK)
             {
                 pickColor = MyDialog.Color;
-
-                if (pickColor != itemColor)
                 {
                     ReflashColor();
                 }
-
-                
             }
-
         }
 
         private void ReflashColor()
         {
-            itemColor = pickColor;
-            groupColor = pickColor;
-
-
             ///
             int button_idx = -1;
 
@@ -960,25 +946,23 @@ namespace thepos
             {
                 if (button_idx == i)
                 {
-                    flowLayoutPanelGoodsGroup.Controls[i].BackColor = itemColor;
+                    flowLayoutPanelGoodsGroup.Controls[i].BackColor = pickColor;
                 }
                 else
                 {
-                    flowLayoutPanelGoodsGroup.Controls[i].ForeColor = itemColor;
+                    flowLayoutPanelGoodsGroup.Controls[i].ForeColor = pickColor;
                 }
             }
 
             ///
             for (int i = 0; i < tableLayoutPanelGoodsItem.Controls.Count; i++)
             {
-                tableLayoutPanelGoodsItem.Controls[i].BackColor = itemColor;
+                tableLayoutPanelGoodsItem.Controls[i].BackColor = pickColor;
             }
 
             ///
             if (lvwOrderItem.SelectedItems.Count > 0)
-                lvwOrderItem.SelectedItems[0].BackColor = itemColor;
-
-
+                lvwOrderItem.SelectedItems[0].BackColor = pickColor;
 
         }
 
@@ -1010,7 +994,7 @@ namespace thepos
             this.lvwOrderItem.SelectedItems.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
                 {
-                    item.BackColor = itemColor;
+                    item.BackColor = pickColor;
                     item.ForeColor = SystemColors.HighlightText;
                 });
         }

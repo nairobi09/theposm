@@ -28,9 +28,13 @@ namespace thepos
             PrivateFontCollection fontCollectionMedium = new PrivateFontCollection();
             PrivateFontCollection fontCollectionBold = new PrivateFontCollection();
 
-            fontCollectionThin.AddFontFile("Pretendard-Thin.ttf");
-            fontCollectionMedium.AddFontFile("Pretendard-Medium.ttf");
-            fontCollectionBold.AddFontFile("Pretendard-Bold.ttf");
+            //fontCollectionThin.AddFontFile("Font\\Pretendard-Thin.ttf");
+            //fontCollectionMedium.AddFontFile("Font\\Pretendard-Medium.ttf");
+            //fontCollectionBold.AddFontFile("Font\\Pretendard-Bold.ttf");
+
+            fontCollectionThin.AddFontFile("Font\\TossProductSansTTF-Light.ttf");
+            fontCollectionMedium.AddFontFile("Font\\TossProductSansTTF-Regular.ttf");
+            fontCollectionBold.AddFontFile("Font\\TossProductSansTTF-Bold.ttf");
 
             fontMedium_8 = new Font(fontCollectionMedium.Families[0], 8f);
             fontMedium_10 = new Font(fontCollectionMedium.Families[0], 10f);
@@ -45,9 +49,6 @@ namespace thepos
             mCustomerCode = "HUSN";
             mPosNo = "01";
         }
-
-
-
 
     }
 }

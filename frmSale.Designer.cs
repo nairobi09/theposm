@@ -114,6 +114,7 @@ namespace thepos
             this.panelGoodsItem = new System.Windows.Forms.Panel();
             this.panelGoodsItemWhite2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanelGoodsItem = new System.Windows.Forms.TableLayoutPanel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnGoodsItemMode = new System.Windows.Forms.Button();
             this.panelGoodsItemWhite = new System.Windows.Forms.Panel();
@@ -130,7 +131,6 @@ namespace thepos
             this.button8 = new System.Windows.Forms.Button();
             this.panelGoodsGroupWhite = new System.Windows.Forms.Panel();
             this.panelPaymentConsole = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -1087,6 +1087,7 @@ namespace thepos
             this.button52.Size = new System.Drawing.Size(87, 48);
             this.button52.TabIndex = 0;
             this.button52.TabStop = false;
+            this.button52.Text = "인증";
             this.button52.UseVisualStyleBackColor = false;
             // 
             // button53
@@ -1102,6 +1103,7 @@ namespace thepos
             this.button53.Size = new System.Drawing.Size(87, 48);
             this.button53.TabIndex = 0;
             this.button53.TabStop = false;
+            this.button53.Text = "제휴할인";
             this.button53.UseVisualStyleBackColor = false;
             // 
             // btnScrollGroupDn
@@ -1229,6 +1231,22 @@ namespace thepos
             this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanelGoodsItem.Size = new System.Drawing.Size(516, 392);
             this.tableLayoutPanelGoodsItem.TabIndex = 22;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(92)))), ((int)(((byte)(159)))));
+            this.tableLayoutPanelGoodsItem.SetColumnSpan(this.button3, 2);
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(130, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.tableLayoutPanelGoodsItem.SetRowSpan(this.button3, 2);
+            this.button3.Size = new System.Drawing.Size(124, 94);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -1462,22 +1480,6 @@ namespace thepos
             this.panelPaymentConsole.Name = "panelPaymentConsole";
             this.panelPaymentConsole.Size = new System.Drawing.Size(533, 155);
             this.panelPaymentConsole.TabIndex = 47;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(92)))), ((int)(((byte)(159)))));
-            this.tableLayoutPanelGoodsItem.SetColumnSpan(this.button3, 2);
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(130, 2);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.tableLayoutPanelGoodsItem.SetRowSpan(this.button3, 2);
-            this.button3.Size = new System.Drawing.Size(124, 94);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // frmSale
             // 
