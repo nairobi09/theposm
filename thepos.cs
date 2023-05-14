@@ -10,45 +10,7 @@ namespace thepos
 {
     class thepos
     {
-        public Font fontMedium_8;
-        public Font fontMedium_10;
-        public Font fontMedium_12;
-        public Font fontMedium_15;
-        public Font fontMedium_18;
 
-        public Font fontBold_12;
-        public Font fontBold_14;
-
-        public String mCustomerCode = "";
-        public String mPosNo = "";
-
-        public thepos()
-        {
-            PrivateFontCollection fontCollectionThin = new PrivateFontCollection();
-            PrivateFontCollection fontCollectionMedium = new PrivateFontCollection();
-            PrivateFontCollection fontCollectionBold = new PrivateFontCollection();
-
-            //fontCollectionThin.AddFontFile("Font\\Pretendard-Thin.ttf");
-            //fontCollectionMedium.AddFontFile("Font\\Pretendard-Medium.ttf");
-            //fontCollectionBold.AddFontFile("Font\\Pretendard-Bold.ttf");
-
-            fontCollectionThin.AddFontFile("Font\\TossProductSansTTF-Light.ttf");
-            fontCollectionMedium.AddFontFile("Font\\TossProductSansTTF-Regular.ttf");
-            fontCollectionBold.AddFontFile("Font\\TossProductSansTTF-Bold.ttf");
-
-            fontMedium_8 = new Font(fontCollectionMedium.Families[0], 8f);
-            fontMedium_10 = new Font(fontCollectionMedium.Families[0], 10f);
-            fontMedium_12 = new Font(fontCollectionMedium.Families[0], 12f);
-            fontMedium_15 = new Font(fontCollectionMedium.Families[0], 15f);
-            fontMedium_18 = new Font(fontCollectionMedium.Families[0], 18f);
-
-            fontBold_12 = new Font(fontCollectionBold.Families[0], 12f);
-            fontBold_14 = new Font(fontCollectionBold.Families[0], 14f);
-
-            // 사업장코드, POS_NO
-            mCustomerCode = "HUSN";
-            mPosNo = "01";
-        }
 
     }
 }

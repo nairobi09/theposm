@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmWaiting
+    partial class frmPayManager
     {
         /// <summary>
         /// Required designer variable.
@@ -32,13 +32,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.lvwWaiting = new System.Windows.Forms.ListView();
-            this.waiting_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.item_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rcv_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.SuspendLayout();
@@ -50,13 +43,12 @@
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.btnDelete);
             this.panelback.Controls.Add(this.btnOK);
-            this.panelback.Controls.Add(this.lvwWaiting);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
-            this.panelback.TabIndex = 2;
+            this.panelback.TabIndex = 3;
             // 
             // btnClose
             // 
@@ -76,7 +68,6 @@
             this.btnDelete.TabIndex = 43;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnOK
             // 
@@ -87,59 +78,6 @@
             this.btnOK.TabIndex = 42;
             this.btnOK.Text = "선택";
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // lvwWaiting
-            // 
-            this.lvwWaiting.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.waiting_no,
-            this.item_cnt,
-            this.dt,
-            this.columnHeader1,
-            this.rcv_amount,
-            this.status});
-            this.lvwWaiting.FullRowSelect = true;
-            this.lvwWaiting.HideSelection = false;
-            this.lvwWaiting.Location = new System.Drawing.Point(22, 76);
-            this.lvwWaiting.MultiSelect = false;
-            this.lvwWaiting.Name = "lvwWaiting";
-            this.lvwWaiting.Size = new System.Drawing.Size(475, 373);
-            this.lvwWaiting.TabIndex = 41;
-            this.lvwWaiting.UseCompatibleStateImageBehavior = false;
-            this.lvwWaiting.View = System.Windows.Forms.View.Details;
-            this.lvwWaiting.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwWaiting_ColumnWidthChanging);
-            // 
-            // waiting_no
-            // 
-            this.waiting_no.Text = "#";
-            this.waiting_no.Width = 30;
-            // 
-            // item_cnt
-            // 
-            this.item_cnt.Text = "항목수";
-            this.item_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // dt
-            // 
-            this.dt.Text = "대기일시";
-            this.dt.Width = 110;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "주문금액";
-            this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader1.Width = 80;
-            // 
-            // rcv_amount
-            // 
-            this.rcv_amount.Text = "받은금액";
-            this.rcv_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.rcv_amount.Width = 80;
-            // 
-            // status
-            // 
-            this.status.Text = "상태";
-            this.status.Width = 90;
             // 
             // lblTitle
             // 
@@ -151,37 +89,31 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(475, 39);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "대기";
+            this.lblTitle.Text = "결제내역관리";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // frmWaiting
+            // frmPayManager
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(488, 56);
-            this.Name = "frmWaiting";
+            this.Name = "frmPayManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "frmWaiting";
+            this.Text = "frmSetup";
             this.panelback.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.ListView lvwWaiting;
-        private System.Windows.Forms.ColumnHeader waiting_no;
-        private System.Windows.Forms.ColumnHeader item_cnt;
-        private System.Windows.Forms.ColumnHeader dt;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader rcv_amount;
-        private System.Windows.Forms.ColumnHeader status;
         private System.Windows.Forms.Label lblTitle;
     }
 }

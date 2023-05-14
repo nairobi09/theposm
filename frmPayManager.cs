@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +11,25 @@ using System.Windows.Forms;
 
 namespace thepos
 {
-    public partial class frmSetup : Form
+    public partial class frmPayManager : Form
     {
-        public frmSetup()
+
+
+
+        public frmPayManager()
         {
             InitializeComponent();
+
+
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+
     }
 }
+
