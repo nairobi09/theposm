@@ -202,7 +202,13 @@ namespace thepos
 
             if (des == "S")   // 선택항목 할인
             {
-                if (mLvwOrderItem.SelectedItems.Count > 0)
+                if (((OrderItem)mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Tag).dcr_des == "E")
+                {
+                    frmSale.SetDisplayAlarm("W", "[전체할인]이 적용된경우 선택할인 적용불가.");
+                    return;
+                }
+
+                    if (mLvwOrderItem.SelectedItems.Count > 0)
                 {
                     OrderItem orderItem = (OrderItem)mLvwOrderItem.SelectedItems[0].Tag;
 
@@ -233,6 +239,7 @@ namespace thepos
                 int t_dc_amount = 0;
                 bool isExist_E = false;
 
+                // 마직막줄에 전체할인 항목이 이미 있는지 확인...
                 if (((OrderItem)mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Tag).dcr_des == "E")
                 {
                     isExist_E = true;
@@ -269,7 +276,7 @@ namespace thepos
                 orderItem.amt = 0;
                 orderItem.dc_amount = t_dc_amount;
                 orderItem.code = "DCRE";  // 전체할인을 나타내는 코드값!
-                orderItem.name = "[할인]";
+                orderItem.name = "[전체할인]";
 
                 if (isExist_E == true)
                 {
@@ -281,6 +288,8 @@ namespace thepos
                     mLvwOrderItem.Items[t_count].SubItems[5].Text = "";                                   // net_amount
                     mLvwOrderItem.Items[t_count].SubItems[6].Text = getDCRmemo(orderItem);
                     mLvwOrderItem.Items[t_count].Tag = orderItem;
+
+                    mLvwOrderItem.Items[t_count].Selected = true;
                 }
                 else
                 {
@@ -297,6 +306,8 @@ namespace thepos
 
                     mLvwOrderItem.Items.Add(lvItem);
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
                 }
 
                 frmSale.ReCalculateAmount();
@@ -305,21 +316,39 @@ namespace thepos
 
         private void btnDCCancel_Click(object sender, EventArgs e)
         {
-            if (mLvwOrderItem.SelectedItems.Count > 0)
+            if (((OrderItem)mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Tag).dcr_des == "E")
             {
-                OrderItem orderItem = (OrderItem)mLvwOrderItem.SelectedItems[0].Tag;
+                mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Remove();
 
-                orderItem.dcr_des = "";
-                orderItem.dcr_type = "";
-                orderItem.dcr_value = 0;
-                orderItem.dc_amount = 0;
-
-                mLvwOrderItem.SelectedItems[0].SubItems[4].Text = "";       // dc_amount
-                mLvwOrderItem.SelectedItems[0].SubItems[5].Text = (orderItem.cnt * orderItem.amt).ToString("N0");  // net_amount
-                mLvwOrderItem.SelectedItems[0].SubItems[6].Text = "";
-                mLvwOrderItem.SelectedItems[0].Tag = orderItem;
-
+                frmSale.SetDisplayAlarm("I", "전체할인 취소");
                 frmSale.ReCalculateAmount();
+            }
+            else
+            {
+                if (mLvwOrderItem.SelectedItems.Count > 0)
+                {
+                    OrderItem orderItem = (OrderItem)mLvwOrderItem.SelectedItems[0].Tag;
+
+                    if (orderItem.dc_amount > 0)
+                    {
+                        orderItem.dcr_des = "";
+                        orderItem.dcr_type = "";
+                        orderItem.dcr_value = 0;
+                        orderItem.dc_amount = 0;
+
+                        mLvwOrderItem.SelectedItems[0].SubItems[4].Text = "";       // dc_amount
+                        mLvwOrderItem.SelectedItems[0].SubItems[5].Text = (orderItem.cnt * orderItem.amt).ToString("N0");  // net_amount
+                        mLvwOrderItem.SelectedItems[0].SubItems[6].Text = "";
+                        mLvwOrderItem.SelectedItems[0].Tag = orderItem;
+
+                        frmSale.SetDisplayAlarm("I", "선택할인 취소");
+                        frmSale.ReCalculateAmount();
+                    }
+                    else
+                    {
+                        frmSale.SetDisplayAlarm("W", "할인취소 대상이 아닙니다.");
+                    }
+                }
             }
         }
 

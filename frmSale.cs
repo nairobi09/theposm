@@ -67,6 +67,8 @@ namespace thepos
         public static Label mLblOrderAmountDC;
         public static Label mLblOrderAmountNet;
 
+        public static Timer mTimerAlarm;
+        
 
        public struct OrderItem
         {
@@ -359,6 +361,7 @@ namespace thepos
             mPanelProductConsole = panelProductConsole;
 
             mLblDisplayAlarm = lblDisplayAlarm;
+            mTimerAlarm = timerAlarm;
 
             mLblKeyDisplay = lblKeyDisplay;
             mLvwOrderItem = lvwOrderItem;
@@ -562,16 +565,18 @@ namespace thepos
                 set_item_change_ordercnt(lv_idx, "add", -1);
                 ReCalculateAmount();
             }
-            else
-            {
-                
-            }
         }
 
         private void btnOrderCntUp_Click(object sender, EventArgs e)
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
+                if (((OrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt >= 999)
+                {
+                    SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
+                    return;
+                }
+
                 int lv_idx = lvwOrderItem.SelectedItems[0].Index;
                 set_item_change_ordercnt(lv_idx, "add", 1);
                 ReCalculateAmount();
@@ -582,16 +587,7 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (lblKeyDisplay.Text.Length > 3)
-                {
-                    SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
-                    return;
-                }
-
-                int cnt = 0;
-                bool result = int.TryParse(lblKeyDisplay.Text, out cnt);
-
-                if (result)
+                if (int.TryParse(lblKeyDisplay.Text, out int cnt))
                 {
                     if (cnt > 0 & cnt < 1000)
                     {
@@ -599,6 +595,16 @@ namespace thepos
                         lblKeyDisplay.Text = "";
                         ReCalculateAmount();
                     }
+                    else
+                    {
+                        SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
+                        return;
+                    }
+                }
+                else
+                {
+                    SetDisplayAlarm("E", "수량 입력값 오류.");
+                    return;
                 }
             }
         }
@@ -793,18 +799,16 @@ namespace thepos
 
 
 
-
-
-        public void SetDisplayAlarm(String Level, String msg)
+        public static void SetDisplayAlarm(String Level, String msg)
         {
-            if (Level == "E") lblDisplayAlarm.ForeColor = Color.OrangeRed;
-            else if (Level == "W") lblDisplayAlarm.ForeColor = Color.Orange;
-            else lblDisplayAlarm.ForeColor = Color.LightGray;
+            if (Level == "E") mLblDisplayAlarm.ForeColor = Color.OrangeRed;
+            else if (Level == "W") mLblDisplayAlarm.ForeColor = Color.Orange;
+            else mLblDisplayAlarm.ForeColor = Color.LightGray;
 
-            lblDisplayAlarm.Text = msg;
+            mLblDisplayAlarm.Text = msg;
 
-            timerAlarm.Enabled = false;
-            timerAlarm.Enabled = true;
+            mTimerAlarm.Enabled = false;
+            mTimerAlarm.Enabled = true;
         }
 
         private void timerAlarm_Tick(object sender, EventArgs e)

@@ -31,9 +31,9 @@ namespace thepos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSale));
-            this.btnFunction4 = new System.Windows.Forms.Button();
-            this.btnFunction3 = new System.Windows.Forms.Button();
-            this.btnFunction2 = new System.Windows.Forms.Button();
+            this.btnCalculating = new System.Windows.Forms.Button();
+            this.btnCharging = new System.Windows.Forms.Button();
+            this.btnTicketing = new System.Windows.Forms.Button();
             this.panelNumpad = new System.Windows.Forms.Panel();
             this.panelKeyDisplayWhite = new System.Windows.Forms.Panel();
             this.lblKeyDisplay = new System.Windows.Forms.Label();
@@ -90,7 +90,7 @@ namespace thepos
             this.lblOrderAmountDCTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountSumTitle = new System.Windows.Forms.Label();
             this.panelProductConsole = new System.Windows.Forms.Panel();
-            this.btnFunction5 = new System.Windows.Forms.Button();
+            this.btnLocker = new System.Windows.Forms.Button();
             this.panelDisplayAlarmWhite = new System.Windows.Forms.Panel();
             this.lblDisplayAlarm = new System.Windows.Forms.Label();
             this.lvwOrderItem = new System.Windows.Forms.ListView();
@@ -149,47 +149,47 @@ namespace thepos
             this.tableLayoutPanelPayControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnFunction4
+            // btnCalculating
             // 
-            this.btnFunction4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnFunction4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFunction4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFunction4.ForeColor = System.Drawing.Color.White;
-            this.btnFunction4.Location = new System.Drawing.Point(0, 208);
-            this.btnFunction4.Name = "btnFunction4";
-            this.btnFunction4.Size = new System.Drawing.Size(87, 48);
-            this.btnFunction4.TabIndex = 0;
-            this.btnFunction4.TabStop = false;
-            this.btnFunction4.Text = "정산";
-            this.btnFunction4.UseVisualStyleBackColor = false;
+            this.btnCalculating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnCalculating.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalculating.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCalculating.ForeColor = System.Drawing.Color.White;
+            this.btnCalculating.Location = new System.Drawing.Point(0, 208);
+            this.btnCalculating.Name = "btnCalculating";
+            this.btnCalculating.Size = new System.Drawing.Size(87, 48);
+            this.btnCalculating.TabIndex = 0;
+            this.btnCalculating.TabStop = false;
+            this.btnCalculating.Text = "정산";
+            this.btnCalculating.UseVisualStyleBackColor = false;
             // 
-            // btnFunction3
+            // btnCharging
             // 
-            this.btnFunction3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnFunction3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFunction3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFunction3.ForeColor = System.Drawing.Color.White;
-            this.btnFunction3.Location = new System.Drawing.Point(0, 156);
-            this.btnFunction3.Name = "btnFunction3";
-            this.btnFunction3.Size = new System.Drawing.Size(87, 48);
-            this.btnFunction3.TabIndex = 0;
-            this.btnFunction3.TabStop = false;
-            this.btnFunction3.Text = "충전";
-            this.btnFunction3.UseVisualStyleBackColor = false;
+            this.btnCharging.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnCharging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCharging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCharging.ForeColor = System.Drawing.Color.White;
+            this.btnCharging.Location = new System.Drawing.Point(0, 156);
+            this.btnCharging.Name = "btnCharging";
+            this.btnCharging.Size = new System.Drawing.Size(87, 48);
+            this.btnCharging.TabIndex = 0;
+            this.btnCharging.TabStop = false;
+            this.btnCharging.Text = "충전";
+            this.btnCharging.UseVisualStyleBackColor = false;
             // 
-            // btnFunction2
+            // btnTicketing
             // 
-            this.btnFunction2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnFunction2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFunction2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFunction2.ForeColor = System.Drawing.Color.White;
-            this.btnFunction2.Location = new System.Drawing.Point(0, 104);
-            this.btnFunction2.Name = "btnFunction2";
-            this.btnFunction2.Size = new System.Drawing.Size(87, 48);
-            this.btnFunction2.TabIndex = 0;
-            this.btnFunction2.TabStop = false;
-            this.btnFunction2.Text = "발권";
-            this.btnFunction2.UseVisualStyleBackColor = false;
+            this.btnTicketing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnTicketing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTicketing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTicketing.ForeColor = System.Drawing.Color.White;
+            this.btnTicketing.Location = new System.Drawing.Point(0, 104);
+            this.btnTicketing.Name = "btnTicketing";
+            this.btnTicketing.Size = new System.Drawing.Size(87, 48);
+            this.btnTicketing.TabIndex = 0;
+            this.btnTicketing.TabStop = false;
+            this.btnTicketing.Text = "발권";
+            this.btnTicketing.UseVisualStyleBackColor = false;
             // 
             // panelNumpad
             // 
@@ -939,10 +939,10 @@ namespace thepos
             // 
             // panelProductConsole
             // 
-            this.panelProductConsole.Controls.Add(this.btnFunction5);
-            this.panelProductConsole.Controls.Add(this.btnFunction4);
-            this.panelProductConsole.Controls.Add(this.btnFunction3);
-            this.panelProductConsole.Controls.Add(this.btnFunction2);
+            this.panelProductConsole.Controls.Add(this.btnLocker);
+            this.panelProductConsole.Controls.Add(this.btnCalculating);
+            this.panelProductConsole.Controls.Add(this.btnCharging);
+            this.panelProductConsole.Controls.Add(this.btnTicketing);
             this.panelProductConsole.Controls.Add(this.btnOrderWaiting);
             this.panelProductConsole.Controls.Add(this.btnOrderAmountDC);
             this.panelProductConsole.Location = new System.Drawing.Point(394, 451);
@@ -950,19 +950,19 @@ namespace thepos
             this.panelProductConsole.Size = new System.Drawing.Size(90, 309);
             this.panelProductConsole.TabIndex = 27;
             // 
-            // btnFunction5
+            // btnLocker
             // 
-            this.btnFunction5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnFunction5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFunction5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFunction5.ForeColor = System.Drawing.Color.White;
-            this.btnFunction5.Location = new System.Drawing.Point(0, 260);
-            this.btnFunction5.Name = "btnFunction5";
-            this.btnFunction5.Size = new System.Drawing.Size(87, 48);
-            this.btnFunction5.TabIndex = 0;
-            this.btnFunction5.TabStop = false;
-            this.btnFunction5.Text = "락커";
-            this.btnFunction5.UseVisualStyleBackColor = false;
+            this.btnLocker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnLocker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLocker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLocker.ForeColor = System.Drawing.Color.White;
+            this.btnLocker.Location = new System.Drawing.Point(0, 260);
+            this.btnLocker.Name = "btnLocker";
+            this.btnLocker.Size = new System.Drawing.Size(87, 48);
+            this.btnLocker.TabIndex = 0;
+            this.btnLocker.TabStop = false;
+            this.btnLocker.Text = "락커";
+            this.btnLocker.UseVisualStyleBackColor = false;
             // 
             // panelDisplayAlarmWhite
             // 
@@ -984,7 +984,6 @@ namespace thepos
             this.lblDisplayAlarm.Padding = new System.Windows.Forms.Padding(5);
             this.lblDisplayAlarm.Size = new System.Drawing.Size(473, 36);
             this.lblDisplayAlarm.TabIndex = 3;
-            this.lblDisplayAlarm.Text = "주문알림창입니다. ";
             this.lblDisplayAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lvwOrderItem
@@ -1430,7 +1429,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPayCert, 4, 0);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPayComplex, 4, 2);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPayManager, 8, 0);
-            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 610);
+            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 611);
             this.tableLayoutPanelPayControl.Name = "tableLayoutPanelPayControl";
             this.tableLayoutPanelPayControl.RowCount = 4;
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -1496,9 +1495,9 @@ namespace thepos
         }
 
         #endregion
-        private System.Windows.Forms.Button btnFunction4;
-        private System.Windows.Forms.Button btnFunction3;
-        private System.Windows.Forms.Button btnFunction2;
+        private System.Windows.Forms.Button btnCalculating;
+        private System.Windows.Forms.Button btnCharging;
+        private System.Windows.Forms.Button btnTicketing;
         private System.Windows.Forms.Panel panelNumpad;
         private System.Windows.Forms.Button btnKey1;
         private System.Windows.Forms.Button btnKey2;
@@ -1544,7 +1543,7 @@ namespace thepos
         private System.Windows.Forms.Label lblOrderAmountDCTitle;
         private System.Windows.Forms.Label lblOrderAmountSumTitle;
         private System.Windows.Forms.Panel panelProductConsole;
-        private System.Windows.Forms.Button btnFunction5;
+        private System.Windows.Forms.Button btnLocker;
         private System.Windows.Forms.Panel panelDisplayAlarmWhite;
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.Label lblTitle02;
