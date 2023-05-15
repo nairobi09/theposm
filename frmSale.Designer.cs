@@ -126,6 +126,7 @@ namespace thepos
             this.button8 = new System.Windows.Forms.Button();
             this.panelGoodsGroupWhite = new System.Windows.Forms.Panel();
             this.tableLayoutPanelPayControl = new System.Windows.Forms.TableLayoutPanel();
+            this.timerAlarm = new System.Windows.Forms.Timer(this.components);
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -977,7 +978,7 @@ namespace thepos
             this.lblDisplayAlarm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.lblDisplayAlarm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblDisplayAlarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDisplayAlarm.ForeColor = System.Drawing.Color.Gold;
+            this.lblDisplayAlarm.ForeColor = System.Drawing.Color.OrangeRed;
             this.lblDisplayAlarm.Location = new System.Drawing.Point(1, 1);
             this.lblDisplayAlarm.Name = "lblDisplayAlarm";
             this.lblDisplayAlarm.Padding = new System.Windows.Forms.Padding(5);
@@ -1439,6 +1440,11 @@ namespace thepos
             this.tableLayoutPanelPayControl.Size = new System.Drawing.Size(530, 150);
             this.tableLayoutPanelPayControl.TabIndex = 47;
             // 
+            // timerAlarm
+            // 
+            this.timerAlarm.Interval = 5000;
+            this.timerAlarm.Tick += new System.EventHandler(this.timerAlarm_Tick);
+            // 
             // frmSale
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1585,6 +1591,7 @@ namespace thepos
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPayControl;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timerAlarm;
     }
 }
 

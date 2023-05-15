@@ -58,6 +58,8 @@ namespace thepos
         public static Panel mPanelOrderConsole;
         public static Panel mPanelProductConsole;
 
+        public static Label mLblDisplayAlarm;
+
         public static Label mLblKeyDisplay;
         public static ListView mLvwOrderItem;
 
@@ -356,6 +358,8 @@ namespace thepos
             mPanelOrderConsole = panelOrderConsole;
             mPanelProductConsole = panelProductConsole;
 
+            mLblDisplayAlarm = lblDisplayAlarm;
+
             mLblKeyDisplay = lblKeyDisplay;
             mLvwOrderItem = lvwOrderItem;
 
@@ -548,11 +552,19 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (((OrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt == 1) return;
+                if (((OrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt == 1)
+                {
+                    SetDisplayAlarm("W", "수량은 0이하로 입력할 수 없습니다.");
+                    return;
+                }
 
                 int lv_idx = lvwOrderItem.SelectedItems[0].Index;
                 set_item_change_ordercnt(lv_idx, "add", -1);
                 ReCalculateAmount();
+            }
+            else
+            {
+                
             }
         }
 
@@ -570,7 +582,11 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (lblKeyDisplay.Text.Length > 3) return;
+                if (lblKeyDisplay.Text.Length > 3)
+                {
+                    SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
+                    return;
+                }
 
                 int cnt = 0;
                 bool result = int.TryParse(lblKeyDisplay.Text, out cnt);
@@ -779,7 +795,23 @@ namespace thepos
 
 
 
+        public void SetDisplayAlarm(String Level, String msg)
+        {
+            if (Level == "E") lblDisplayAlarm.ForeColor = Color.OrangeRed;
+            else if (Level == "W") lblDisplayAlarm.ForeColor = Color.Orange;
+            else lblDisplayAlarm.ForeColor = Color.LightGray;
 
+            lblDisplayAlarm.Text = msg;
+
+            timerAlarm.Enabled = false;
+            timerAlarm.Enabled = true;
+        }
+
+        private void timerAlarm_Tick(object sender, EventArgs e)
+        {
+            lblDisplayAlarm.Text = "";
+            timerAlarm.Enabled = false;
+        }
 
 
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1072,5 +1104,7 @@ namespace thepos
 
             fLogo.ShowDialog();
         }
+
+
     }
 }
