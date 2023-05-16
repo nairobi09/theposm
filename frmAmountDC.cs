@@ -204,7 +204,7 @@ namespace thepos
             {
                 if (((OrderItem)mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Tag).dcr_des == "E")
                 {
-                    frmSale.SetDisplayAlarm("W", "[전체할인]이 적용된경우 선택할인 적용불가.");
+                    frmSale.SetDisplayAlarm("W", "[전체할인]이 적용된경우 선택할인 불가.");
                     return;
                 }
 

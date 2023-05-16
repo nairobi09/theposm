@@ -771,8 +771,6 @@ namespace thepos
                 }
             }
 
-
-
         }
 
         public static String getDCRmemo(OrderItem orderItem)
