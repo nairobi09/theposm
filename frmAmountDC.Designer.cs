@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmAmountDC
+    partial class frmPayCash
     {
         /// <summary>
         /// Required designer variable.

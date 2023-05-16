@@ -76,6 +76,12 @@
     <Compile Include="frmWaiting.Designer.cs">
       <DependentUpon>frmWaiting.cs</DependentUpon>
     </Compile>
+    <Compile Include="pay\frmPayCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pay\frmPayCash.Designer.cs">
+      <DependentUpon>frmPayCash.cs</DependentUpon>
+    </Compile>
     <Compile Include="thepos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWaiting.resx">
       <DependentUpon>frmWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pay\frmPayCash.resx">
+      <DependentUpon>frmPayCash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -143,5 +152,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

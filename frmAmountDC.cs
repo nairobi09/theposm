@@ -24,7 +24,7 @@ using static thepos.thepos;
 
 namespace thepos
 {
-    public partial class frmAmountDC : Form
+    public partial class frmPayCash : Form
     {
 
         Font fontMedium_10;
@@ -43,7 +43,7 @@ namespace thepos
 
         System.Windows.Forms.Button[] btnDCR;
 
-        public frmAmountDC()
+        public frmPayCash()
         {
             InitializeComponent();
 
@@ -176,7 +176,6 @@ namespace thepos
             int value = mDCR[dcr_idx].dcr_value;
 
             applyDCR(des, type, value);
-
         }
 
 

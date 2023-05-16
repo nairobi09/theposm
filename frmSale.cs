@@ -18,7 +18,7 @@ panelProduct : 488, 56 529, 547
 
 */
 
-// ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＜＞ △	▲	▽	▼ ⪤ □ ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪
+// ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＜＞ △	▲	▽	▼ ⪤ □ ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
 
 namespace thepos
 {
@@ -619,7 +619,7 @@ namespace thepos
             {
                 ConsoleDisable();
 
-                frmAmountDC fAmountDC = new frmAmountDC();
+                frmPayCash fAmountDC = new frmPayCash();
 
                 fAmountDC.Left += this.Location.X;
                 fAmountDC.Top += this.Location.Y;
