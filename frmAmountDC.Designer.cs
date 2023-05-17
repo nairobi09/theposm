@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmPayCash
+    partial class frmAmountDC
     {
         /// <summary>
         /// Required designer variable.
@@ -81,10 +81,11 @@
             // 
             this.btnAllRate.BackColor = System.Drawing.Color.SteelBlue;
             this.btnAllRate.FlatAppearance.BorderSize = 0;
+            this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllRate.ForeColor = System.Drawing.Color.White;
-            this.btnAllRate.Location = new System.Drawing.Point(16, 265);
+            this.btnAllRate.Location = new System.Drawing.Point(17, 265);
             this.btnAllRate.Name = "btnAllRate";
-            this.btnAllRate.Size = new System.Drawing.Size(177, 74);
+            this.btnAllRate.Size = new System.Drawing.Size(174, 74);
             this.btnAllRate.TabIndex = 0;
             this.btnAllRate.TabStop = false;
             this.btnAllRate.Text = "전체 % 적용";
@@ -95,10 +96,11 @@
             // 
             this.btnAllAmount.BackColor = System.Drawing.Color.SteelBlue;
             this.btnAllAmount.FlatAppearance.BorderSize = 0;
+            this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllAmount.ForeColor = System.Drawing.Color.White;
             this.btnAllAmount.Location = new System.Drawing.Point(16, 185);
             this.btnAllAmount.Name = "btnAllAmount";
-            this.btnAllAmount.Size = new System.Drawing.Size(177, 74);
+            this.btnAllAmount.Size = new System.Drawing.Size(174, 74);
             this.btnAllAmount.TabIndex = 0;
             this.btnAllAmount.TabStop = false;
             this.btnAllAmount.Text = "전체 ₩ 적용";
@@ -109,10 +111,11 @@
             // 
             this.btnSelRate.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSelRate.FlatAppearance.BorderSize = 0;
+            this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelRate.ForeColor = System.Drawing.Color.White;
             this.btnSelRate.Location = new System.Drawing.Point(16, 94);
             this.btnSelRate.Name = "btnSelRate";
-            this.btnSelRate.Size = new System.Drawing.Size(177, 74);
+            this.btnSelRate.Size = new System.Drawing.Size(174, 74);
             this.btnSelRate.TabIndex = 0;
             this.btnSelRate.TabStop = false;
             this.btnSelRate.Text = "선택 % 적용";
@@ -123,10 +126,11 @@
             // 
             this.btnSelAmount.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSelAmount.FlatAppearance.BorderSize = 0;
+            this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelAmount.ForeColor = System.Drawing.Color.White;
             this.btnSelAmount.Location = new System.Drawing.Point(16, 14);
             this.btnSelAmount.Name = "btnSelAmount";
-            this.btnSelAmount.Size = new System.Drawing.Size(177, 74);
+            this.btnSelAmount.Size = new System.Drawing.Size(174, 74);
             this.btnSelAmount.TabIndex = 0;
             this.btnSelAmount.TabStop = false;
             this.btnSelAmount.Text = "선택 ₩ 적용";
@@ -195,6 +199,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(295, 600);
             this.btnClose.Name = "btnClose";
@@ -209,10 +214,11 @@
             // 
             this.btnDCCancel.BackColor = System.Drawing.Color.SteelBlue;
             this.btnDCCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDCCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDCCancel.ForeColor = System.Drawing.Color.White;
-            this.btnDCCancel.Location = new System.Drawing.Point(47, 600);
+            this.btnDCCancel.Location = new System.Drawing.Point(48, 600);
             this.btnDCCancel.Name = "btnDCCancel";
-            this.btnDCCancel.Size = new System.Drawing.Size(180, 48);
+            this.btnDCCancel.Size = new System.Drawing.Size(174, 48);
             this.btnDCCancel.TabIndex = 42;
             this.btnDCCancel.TabStop = false;
             this.btnDCCancel.Text = "할인취소";
@@ -234,7 +240,6 @@
             // 
             // frmAmountDC
             // 
-            this.AcceptButton = this.btnClose;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(529, 704);

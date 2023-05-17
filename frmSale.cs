@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
+using thepos.pay;
 
 
 
@@ -619,7 +620,7 @@ namespace thepos
             {
                 ConsoleDisable();
 
-                frmPayCash fAmountDC = new frmPayCash();
+                frmAmountDC fAmountDC = new frmAmountDC();
 
                 fAmountDC.Left += this.Location.X;
                 fAmountDC.Top += this.Location.Y;
@@ -628,20 +629,6 @@ namespace thepos
             }
         }
 
-
-        public static void ConsoleEnable()
-        {
-            mPanelTitleConsole.Enabled = true;
-            mPanelOrderConsole.Enabled = true;
-            mPanelProductConsole.Enabled = true;
-        }
-
-        void ConsoleDisable()
-        {
-            panelTitleConsole.Enabled = false;
-            panelOrderConsole.Enabled = false;
-            panelProductConsole.Enabled = false;
-        }
 
 
  
@@ -773,6 +760,63 @@ namespace thepos
 
         }
 
+
+
+
+        // Pay
+        private void btnPayCash_Click(object sender, EventArgs e)
+        {
+            ConsoleDisable();
+
+            frmPayCash fPayCash = new frmPayCash();
+
+            fPayCash.Left += this.Location.X;
+            fPayCash.Top += this.Location.Y;
+
+            fPayCash.Show();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static void ConsoleEnable()
+        {
+            mPanelTitleConsole.Enabled = true;
+            mPanelOrderConsole.Enabled = true;
+            mPanelProductConsole.Enabled = true;
+        }
+
+        void ConsoleDisable()
+        {
+            panelTitleConsole.Enabled = false;
+            panelOrderConsole.Enabled = false;
+            panelProductConsole.Enabled = false;
+        }
+
         public static String getDCRmemo(OrderItem orderItem)
         {
             string memo = "";
@@ -787,15 +831,7 @@ namespace thepos
             }
 
             return memo;
-
         }
-
-
-
-        // ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
         public static void SetDisplayAlarm(String Level, String msg)
         {
@@ -816,7 +852,6 @@ namespace thepos
         }
 
 
-        // ///////////////////////////////////////////////////////////////////////////////////////////////////////
         private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
         {
             OrderItem orderItem = (OrderItem)lvwOrderItem.Items[lv_idx].Tag;
@@ -861,9 +896,7 @@ namespace thepos
             mLblOrderAmount.Text =Amount.ToString("N0");
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
             mLblOrderAmountNet.Text = netAmount.ToString("N0");
-
         }
-
 
 
         //  스크롤 selected up down
@@ -898,7 +931,6 @@ namespace thepos
 
         private void btnOrderItemScrollDn_Click(object sender, EventArgs e)
         {
-
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
                 int sel_idx = lvwOrderItem.SelectedItems[0].Index;
@@ -924,13 +956,8 @@ namespace thepos
                         this.lvwOrderItem.TopItem = this.lvwOrderItem.Items[curItem + 1];
                     }
                 }
-
-
             }
         }
-
-
-
 
         //  지원서브루트
 
@@ -947,6 +974,7 @@ namespace thepos
             {
                 lblKeyDisplay.Text = "";
             }
+            /*
             else if (sKey == "0" | sKey == "00")
             {
                 if (lblKeyDisplay.Text.Length > 0)
@@ -954,6 +982,7 @@ namespace thepos
                     lblKeyDisplay.Text += sKey;
                 }
             }
+            */
             else
             {
                 lblKeyDisplay.Text += sKey;
@@ -1025,7 +1054,6 @@ namespace thepos
             else if (nowDt.DayOfWeek == DayOfWeek.Sunday) strWeek = "일";
 
             lblDate.Text = DateTime.Now.ToString("yyyy.MM.dd") + " [" + strWeek + "]";
-
         }
 
         private void lvwOrderItem_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -1054,9 +1082,6 @@ namespace thepos
             flowLayoutPanelGoodsGroup.PerformLayout();
         }
 
-
-
-        
         private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.lvwOrderItem.Items.Cast<ListViewItem>()
@@ -1089,8 +1114,6 @@ namespace thepos
             e.DrawDefault = true;
         }
 
-
-
         public String create_order_no()
         {
             // 사업장코드(3) + POS코드(2) + TIMESTAMP(10) 
@@ -1106,7 +1129,6 @@ namespace thepos
 
             fLogo.ShowDialog();
         }
-
 
     }
 }

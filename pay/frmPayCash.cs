@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static thepos.frmSale;
 
 namespace thepos.pay
 {
@@ -15,6 +16,30 @@ namespace thepos.pay
         public frmPayCash()
         {
             InitializeComponent();
+
+
+
+
+
+
+
+
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmPayCash_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmSale.ConsoleEnable();
+        }
+
+        private void btnKeyInput_Click(object sender, EventArgs e)
+        {
+            btnKeyInput.Text = mLblKeyDisplay.Text;
         }
     }
 }

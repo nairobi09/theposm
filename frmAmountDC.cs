@@ -24,7 +24,7 @@ using static thepos.thepos;
 
 namespace thepos
 {
-    public partial class frmPayCash : Form
+    public partial class frmAmountDC : Form
     {
 
         Font fontMedium_10;
@@ -43,7 +43,7 @@ namespace thepos
 
         System.Windows.Forms.Button[] btnDCR;
 
-        public frmPayCash()
+        public frmAmountDC()
         {
             InitializeComponent();
 
@@ -75,9 +75,7 @@ namespace thepos
                 {"004","E","R", "10"}
             };
 
-
             int len = dcr.Length / 4;
-
 
             mDCR = new DCR[len];
 
@@ -88,9 +86,7 @@ namespace thepos
                 mDCR[i].dcr_type = dcr[i, 2];
                 mDCR[i].dcr_value = Int32.Parse(dcr[i, 3]);
             }
-
         }
-
 
         void initialize_font()
         {
@@ -357,12 +353,10 @@ namespace thepos
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
-            frmSale.ConsoleEnable();
         }
 
         private void frmAmountDC_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
             frmSale.ConsoleEnable();
         }
 

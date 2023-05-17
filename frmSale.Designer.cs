@@ -614,6 +614,7 @@ namespace thepos
             this.btnPayCash.TabStop = false;
             this.btnPayCash.Text = "현금";
             this.btnPayCash.UseVisualStyleBackColor = false;
+            this.btnPayCash.Click += new System.EventHandler(this.btnPayCash_Click);
             // 
             // btnPayCredit
             // 
