@@ -42,7 +42,7 @@ namespace thepos
         String mCustomerCode = "";
         String mPosNo = "";
 
-
+        
 
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
@@ -69,9 +69,10 @@ namespace thepos
         public static Label mLblOrderAmountNet;
 
         public static Timer mTimerAlarm;
-        
 
-       public struct OrderItem
+        public static Int32 mNetAmount = 0;
+
+        public struct OrderItem
         {
             public String code;     // 상품code(6) or 전체할인코드고정("DC")
             public String name;     // 상품name or 전체할인명("할인")
@@ -776,7 +777,17 @@ namespace thepos
             fPayCash.Show();
         }
 
+        private void btnPayCredit_Click(object sender, EventArgs e)
+        {
+            ConsoleDisable();
 
+            frmPayCard fPayCard = new frmPayCard();
+
+            fPayCard.Left += this.Location.X;
+            fPayCard.Top += this.Location.Y;
+
+            fPayCard.Show();
+        }
 
 
 
@@ -881,7 +892,7 @@ namespace thepos
         {
             Int32 Amount = 0;
             Int32 dcAmount = 0;
-            Int32 netAmount = 0;
+            mNetAmount = 0;
 
             OrderItem orderItemInfo;
 
@@ -890,12 +901,12 @@ namespace thepos
                 orderItemInfo = (OrderItem)mLvwOrderItem.Items[i].Tag;
                 Amount += (orderItemInfo.cnt * orderItemInfo.amt);
                 dcAmount += orderItemInfo.dc_amount;
-                netAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
+                mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
             }
 
             mLblOrderAmount.Text =Amount.ToString("N0");
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
-            mLblOrderAmountNet.Text = netAmount.ToString("N0");
+            mLblOrderAmountNet.Text = mNetAmount.ToString("N0");
         }
 
 
@@ -1128,6 +1139,11 @@ namespace thepos
             fLogo.Top += this.Location.Y;
 
             fLogo.ShowDialog();
+        }
+
+        private void btnKeyEnter_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

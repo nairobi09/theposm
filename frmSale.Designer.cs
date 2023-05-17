@@ -335,6 +335,7 @@ namespace thepos
             this.btnKeyEnter.TabStop = false;
             this.btnKeyEnter.Text = "Enter";
             this.btnKeyEnter.UseVisualStyleBackColor = false;
+            this.btnKeyEnter.Click += new System.EventHandler(this.btnKeyEnter_Click);
             // 
             // btnKeyBS
             // 
@@ -632,6 +633,7 @@ namespace thepos
             this.btnPayCredit.TabStop = false;
             this.btnPayCredit.Text = "카드";
             this.btnPayCredit.UseVisualStyleBackColor = false;
+            this.btnPayCredit.Click += new System.EventHandler(this.btnPayCredit_Click);
             // 
             // btnPayManager
             // 

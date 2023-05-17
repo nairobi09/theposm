@@ -76,6 +76,12 @@
     <Compile Include="frmWaiting.Designer.cs">
       <DependentUpon>frmWaiting.cs</DependentUpon>
     </Compile>
+    <Compile Include="pay\frmPayCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pay\frmPayCard.Designer.cs">
+      <DependentUpon>frmPayCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="pay\frmPayCash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWaiting.resx">
       <DependentUpon>frmWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pay\frmPayCard.resx">
+      <DependentUpon>frmPayCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pay\frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
