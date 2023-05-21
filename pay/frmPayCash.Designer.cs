@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayCash));
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.button7 = new System.Windows.Forms.Button();
             this.btn50t = new System.Windows.Forms.Button();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.btnReset = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,6 +89,19 @@
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
             // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.Gray;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(406, 242);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(66, 46);
+            this.btnReset.TabIndex = 51;
+            this.btnReset.Text = "초기화";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label11);
@@ -99,9 +112,9 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.cbtypeIndividual);
             this.groupBox2.Controls.Add(this.btnKeyInput);
-            this.groupBox2.Location = new System.Drawing.Point(39, 363);
+            this.groupBox2.Location = new System.Drawing.Point(23, 363);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(445, 152);
+            this.groupBox2.Size = new System.Drawing.Size(480, 152);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             // 
@@ -186,7 +199,7 @@
             this.btnKeyInput.ForeColor = System.Drawing.Color.White;
             this.btnKeyInput.Location = new System.Drawing.Point(337, 24);
             this.btnKeyInput.Name = "btnKeyInput";
-            this.btnKeyInput.Size = new System.Drawing.Size(96, 39);
+            this.btnKeyInput.Size = new System.Drawing.Size(112, 39);
             this.btnKeyInput.TabIndex = 44;
             this.btnKeyInput.Text = "키입력";
             this.btnKeyInput.UseVisualStyleBackColor = false;
@@ -201,9 +214,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(39, 115);
+            this.groupBox1.Location = new System.Drawing.Point(23, 115);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(445, 118);
+            this.groupBox1.Size = new System.Drawing.Size(480, 118);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             // 
@@ -212,7 +225,7 @@
             this.btnCashSimple.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashSimple.ForeColor = System.Drawing.Color.White;
-            this.btnCashSimple.Location = new System.Drawing.Point(297, 19);
+            this.btnCashSimple.Location = new System.Drawing.Point(311, 19);
             this.btnCashSimple.Name = "btnCashSimple";
             this.btnCashSimple.Size = new System.Drawing.Size(136, 88);
             this.btnCashSimple.TabIndex = 44;
@@ -292,12 +305,12 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(336, 623);
+            this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(138, 46);
+            this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
             this.btnClose.TabStop = false;
-            this.btnClose.Text = "닫기";
+            this.btnClose.Text = "×";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -324,11 +337,11 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblTitle.Location = new System.Drawing.Point(22, 24);
+            this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(475, 39);
+            this.lblTitle.Size = new System.Drawing.Size(423, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "현금결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -370,7 +383,7 @@
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
             this.btnCashRecept.Location = new System.Drawing.Point(337, 521);
             this.btnCashRecept.Name = "btnCashRecept";
-            this.btnCashRecept.Size = new System.Drawing.Size(137, 57);
+            this.btnCashRecept.Size = new System.Drawing.Size(133, 57);
             this.btnCashRecept.TabIndex = 44;
             this.btnCashRecept.Text = "승인요청";
             this.btnCashRecept.UseVisualStyleBackColor = false;
@@ -412,19 +425,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.Color.Gray;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(406, 242);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(66, 46);
-            this.btnReset.TabIndex = 51;
-            this.btnReset.Text = "초기화";
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmPayCash
             // 

@@ -85,10 +85,10 @@
     <Compile Include="frmSale.Designer.cs">
       <DependentUpon>frmSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayManager.cs">
+    <Compile Include="pay\frmPayManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayManager.Designer.cs">
+    <Compile Include="pay\frmPayManager.Designer.cs">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </Compile>
     <Compile Include="frmWaiting.cs">
@@ -121,7 +121,7 @@
     <EmbeddedResource Include="frmSale.resx">
       <DependentUpon>frmSale.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayManager.resx">
+    <EmbeddedResource Include="pay\frmPayManager.resx">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWaiting.resx">
@@ -142,31 +142,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Font\Pretendard-Black.ttf">
+    <None Include="Font\TossProductSansTTF-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-Bold.ttf">
+    <None Include="Font\TossProductSansTTF-Extrabold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-ExtraBold.ttf">
+    <None Include="Font\TossProductSansTTF-Heavy.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-ExtraLight.ttf">
+    <None Include="Font\TossProductSansTTF-Light.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-Light.ttf">
+    <None Include="Font\TossProductSansTTF-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-Medium.ttf">
+    <None Include="Font\TossProductSansTTF-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-Regular.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Font\Pretendard-SemiBold.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Font\Pretendard-Thin.ttf">
+    <None Include="Font\TossProductSansTTF-Semibold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

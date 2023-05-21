@@ -31,7 +31,7 @@ namespace thepos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSale));
-            this.btnCalculating = new System.Windows.Forms.Button();
+            this.btnSettlement = new System.Windows.Forms.Button();
             this.btnCharging = new System.Windows.Forms.Button();
             this.btnTicketing = new System.Windows.Forms.Button();
             this.panelNumpad = new System.Windows.Forms.Panel();
@@ -57,15 +57,15 @@ namespace thepos
             this.btnOrderCntUp = new System.Windows.Forms.Button();
             this.btnOrderCntDn = new System.Windows.Forms.Button();
             this.btnOrderCntChange = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnOrderAmtChange = new System.Windows.Forms.Button();
             this.btnOrderCancelSelect = new System.Windows.Forms.Button();
             this.btnOrderCancelAll = new System.Windows.Forms.Button();
             this.btnOrderAmountDC = new System.Windows.Forms.Button();
             this.btnOrderWaiting = new System.Windows.Forms.Button();
-            this.btnPayCash = new System.Windows.Forms.Button();
-            this.btnPayCredit = new System.Windows.Forms.Button();
+            this.btnPay1 = new System.Windows.Forms.Button();
+            this.btnPay2 = new System.Windows.Forms.Button();
             this.btnPayManager = new System.Windows.Forms.Button();
-            this.btnPayComplex = new System.Windows.Forms.Button();
+            this.btnPay8 = new System.Windows.Forms.Button();
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
             this.lblTime = new System.Windows.Forms.Label();
             this.panelTitleWhite = new System.Windows.Forms.Panel();
@@ -102,11 +102,9 @@ namespace thepos
             this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelOrderLvw = new System.Windows.Forms.Panel();
-            this.btnPayCert = new System.Windows.Forms.Button();
-            this.btnPayKolavoDC = new System.Windows.Forms.Button();
             this.btnScrollGroupDn = new System.Windows.Forms.Button();
             this.btnScrollGroupUp = new System.Windows.Forms.Button();
-            this.btnPayEasy = new System.Windows.Forms.Button();
+            this.btnPay5 = new System.Windows.Forms.Button();
             this.panelGoodsItem = new System.Windows.Forms.Panel();
             this.panelGoodsItemWhite2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanelGoodsItem = new System.Windows.Forms.TableLayoutPanel();
@@ -126,7 +124,15 @@ namespace thepos
             this.button8 = new System.Windows.Forms.Button();
             this.panelGoodsGroupWhite = new System.Windows.Forms.Panel();
             this.tableLayoutPanelPayControl = new System.Windows.Forms.TableLayoutPanel();
-            this.timerAlarm = new System.Windows.Forms.Timer(this.components);
+            this.btnPay6 = new System.Windows.Forms.Button();
+            this.btnPay7 = new System.Windows.Forms.Button();
+            this.btnPay4 = new System.Windows.Forms.Button();
+            this.btnPay3 = new System.Windows.Forms.Button();
+            this.timerAlarmDisplay = new System.Windows.Forms.Timer(this.components);
+            this.lblPosName = new System.Windows.Forms.Label();
+            this.lblBusinessDate = new System.Windows.Forms.Label();
+            this.lblWorker = new System.Windows.Forms.Label();
+            this.lblPosNo = new System.Windows.Forms.Label();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -149,19 +155,19 @@ namespace thepos
             this.tableLayoutPanelPayControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCalculating
+            // btnSettlement
             // 
-            this.btnCalculating.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnCalculating.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCalculating.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCalculating.ForeColor = System.Drawing.Color.White;
-            this.btnCalculating.Location = new System.Drawing.Point(0, 208);
-            this.btnCalculating.Name = "btnCalculating";
-            this.btnCalculating.Size = new System.Drawing.Size(87, 48);
-            this.btnCalculating.TabIndex = 0;
-            this.btnCalculating.TabStop = false;
-            this.btnCalculating.Text = "정산";
-            this.btnCalculating.UseVisualStyleBackColor = false;
+            this.btnSettlement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettlement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSettlement.ForeColor = System.Drawing.Color.White;
+            this.btnSettlement.Location = new System.Drawing.Point(0, 208);
+            this.btnSettlement.Name = "btnSettlement";
+            this.btnSettlement.Size = new System.Drawing.Size(87, 48);
+            this.btnSettlement.TabIndex = 0;
+            this.btnSettlement.TabStop = false;
+            this.btnSettlement.Text = "정산";
+            this.btnSettlement.UseVisualStyleBackColor = false;
             // 
             // btnCharging
             // 
@@ -335,7 +341,6 @@ namespace thepos
             this.btnKeyEnter.TabStop = false;
             this.btnKeyEnter.Text = "Enter";
             this.btnKeyEnter.UseVisualStyleBackColor = false;
-            this.btnKeyEnter.Click += new System.EventHandler(this.btnKeyEnter_Click);
             // 
             // btnKeyBS
             // 
@@ -442,7 +447,7 @@ namespace thepos
             this.panelOrderConsole.Controls.Add(this.btnOrderCntUp);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntDn);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntChange);
-            this.panelOrderConsole.Controls.Add(this.button12);
+            this.panelOrderConsole.Controls.Add(this.btnOrderAmtChange);
             this.panelOrderConsole.Controls.Add(this.btnOrderCancelSelect);
             this.panelOrderConsole.Controls.Add(this.btnOrderCancelAll);
             this.panelOrderConsole.Location = new System.Drawing.Point(6, 395);
@@ -484,14 +489,14 @@ namespace thepos
             // 
             this.btnOrderCntUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnOrderCntUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderCntUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderCntUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCntUp.ForeColor = System.Drawing.Color.White;
             this.btnOrderCntUp.Location = new System.Drawing.Point(257, 0);
             this.btnOrderCntUp.Name = "btnOrderCntUp";
             this.btnOrderCntUp.Size = new System.Drawing.Size(60, 48);
             this.btnOrderCntUp.TabIndex = 0;
             this.btnOrderCntUp.TabStop = false;
-            this.btnOrderCntUp.Text = "+";
+            this.btnOrderCntUp.Text = "＋";
             this.btnOrderCntUp.UseVisualStyleBackColor = false;
             this.btnOrderCntUp.Click += new System.EventHandler(this.btnOrderCntUp_Click);
             // 
@@ -499,14 +504,14 @@ namespace thepos
             // 
             this.btnOrderCntDn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnOrderCntDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderCntDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderCntDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCntDn.ForeColor = System.Drawing.Color.White;
             this.btnOrderCntDn.Location = new System.Drawing.Point(193, 0);
             this.btnOrderCntDn.Name = "btnOrderCntDn";
             this.btnOrderCntDn.Size = new System.Drawing.Size(60, 48);
             this.btnOrderCntDn.TabIndex = 0;
             this.btnOrderCntDn.TabStop = false;
-            this.btnOrderCntDn.Text = "-";
+            this.btnOrderCntDn.Text = "－";
             this.btnOrderCntDn.UseVisualStyleBackColor = false;
             this.btnOrderCntDn.Click += new System.EventHandler(this.btnOrderCntDn_Click);
             // 
@@ -525,19 +530,20 @@ namespace thepos
             this.btnOrderCntChange.UseVisualStyleBackColor = false;
             this.btnOrderCntChange.Click += new System.EventHandler(this.btnOrderCntChange_Click);
             // 
-            // button12
+            // btnOrderAmtChange
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(128, 0);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(57, 48);
-            this.button12.TabIndex = 0;
-            this.button12.TabStop = false;
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.btnOrderCancelSelect_Click);
+            this.btnOrderAmtChange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderAmtChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderAmtChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderAmtChange.ForeColor = System.Drawing.Color.White;
+            this.btnOrderAmtChange.Location = new System.Drawing.Point(128, 0);
+            this.btnOrderAmtChange.Name = "btnOrderAmtChange";
+            this.btnOrderAmtChange.Size = new System.Drawing.Size(57, 48);
+            this.btnOrderAmtChange.TabIndex = 0;
+            this.btnOrderAmtChange.TabStop = false;
+            this.btnOrderAmtChange.Text = "단가\r\n변경";
+            this.btnOrderAmtChange.UseVisualStyleBackColor = false;
+            this.btnOrderAmtChange.Click += new System.EventHandler(this.btnOrderAmtChange_Click);
             // 
             // btnOrderCancelSelect
             // 
@@ -573,7 +579,7 @@ namespace thepos
             // 
             this.btnOrderAmountDC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
             this.btnOrderAmountDC.Location = new System.Drawing.Point(0, 0);
             this.btnOrderAmountDC.Name = "btnOrderAmountDC";
@@ -588,7 +594,7 @@ namespace thepos
             // 
             this.btnOrderWaiting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
             this.btnOrderWaiting.Location = new System.Drawing.Point(0, 52);
             this.btnOrderWaiting.Name = "btnOrderWaiting";
@@ -599,46 +605,47 @@ namespace thepos
             this.btnOrderWaiting.UseVisualStyleBackColor = false;
             this.btnOrderWaiting.Click += new System.EventHandler(this.btnOrderWaiting_Click);
             // 
-            // btnPayCash
+            // btnPay1
             // 
-            this.btnPayCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayCash, 2);
-            this.btnPayCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayCash.ForeColor = System.Drawing.Color.White;
-            this.btnPayCash.Location = new System.Drawing.Point(2, 2);
-            this.btnPayCash.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPayCash.Name = "btnPayCash";
-            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayCash, 4);
-            this.btnPayCash.Size = new System.Drawing.Size(102, 146);
-            this.btnPayCash.TabIndex = 0;
-            this.btnPayCash.TabStop = false;
-            this.btnPayCash.Text = "현금";
-            this.btnPayCash.UseVisualStyleBackColor = false;
-            this.btnPayCash.Click += new System.EventHandler(this.btnPayCash_Click);
+            this.btnPay1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay1, 2);
+            this.btnPay1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay1.ForeColor = System.Drawing.Color.White;
+            this.btnPay1.Location = new System.Drawing.Point(2, 2);
+            this.btnPay1.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay1.Name = "btnPay1";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay1, 2);
+            this.btnPay1.Size = new System.Drawing.Size(102, 70);
+            this.btnPay1.TabIndex = 0;
+            this.btnPay1.TabStop = false;
+            this.btnPay1.Text = "1";
+            this.btnPay1.UseVisualStyleBackColor = false;
             // 
-            // btnPayCredit
+            // btnPay2
             // 
-            this.btnPayCredit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayCredit, 2);
-            this.btnPayCredit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayCredit.ForeColor = System.Drawing.Color.White;
-            this.btnPayCredit.Location = new System.Drawing.Point(108, 2);
-            this.btnPayCredit.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPayCredit.Name = "btnPayCredit";
-            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayCredit, 4);
-            this.btnPayCredit.Size = new System.Drawing.Size(102, 146);
-            this.btnPayCredit.TabIndex = 0;
-            this.btnPayCredit.TabStop = false;
-            this.btnPayCredit.Text = "카드";
-            this.btnPayCredit.UseVisualStyleBackColor = false;
-            this.btnPayCredit.Click += new System.EventHandler(this.btnPayCredit_Click);
+            this.btnPay2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay2, 2);
+            this.btnPay2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay2.ForeColor = System.Drawing.Color.White;
+            this.btnPay2.Location = new System.Drawing.Point(108, 2);
+            this.btnPay2.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay2.Name = "btnPay2";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay2, 2);
+            this.btnPay2.Size = new System.Drawing.Size(102, 70);
+            this.btnPay2.TabIndex = 0;
+            this.btnPay2.TabStop = false;
+            this.btnPay2.Text = "2";
+            this.btnPay2.UseVisualStyleBackColor = false;
             // 
             // btnPayManager
             // 
             this.btnPayManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayManager, 2);
+            this.btnPayManager.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPayManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPayManager.ForeColor = System.Drawing.Color.White;
@@ -653,28 +660,29 @@ namespace thepos
             this.btnPayManager.UseVisualStyleBackColor = false;
             this.btnPayManager.Click += new System.EventHandler(this.btnPayManager_Click);
             // 
-            // btnPayComplex
+            // btnPay8
             // 
-            this.btnPayComplex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayComplex, 2);
-            this.btnPayComplex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayComplex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayComplex.ForeColor = System.Drawing.Color.White;
-            this.btnPayComplex.Location = new System.Drawing.Point(214, 76);
-            this.btnPayComplex.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPayComplex.Name = "btnPayComplex";
-            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayComplex, 2);
-            this.btnPayComplex.Size = new System.Drawing.Size(102, 72);
-            this.btnPayComplex.TabIndex = 0;
-            this.btnPayComplex.TabStop = false;
-            this.btnPayComplex.Text = "복합\r\n결제";
-            this.btnPayComplex.UseVisualStyleBackColor = false;
+            this.btnPay8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay8, 2);
+            this.btnPay8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay8.ForeColor = System.Drawing.Color.White;
+            this.btnPay8.Location = new System.Drawing.Point(320, 76);
+            this.btnPay8.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay8.Name = "btnPay8";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay8, 2);
+            this.btnPay8.Size = new System.Drawing.Size(102, 72);
+            this.btnPay8.TabIndex = 0;
+            this.btnPay8.TabStop = false;
+            this.btnPay8.Text = "8";
+            this.btnPay8.UseVisualStyleBackColor = false;
             // 
             // timerSecondEvent
             // 
             this.timerSecondEvent.Enabled = true;
             this.timerSecondEvent.Interval = 1000;
-            this.timerSecondEvent.Tag = "\"1\"";
+            this.timerSecondEvent.Tag = "\"0\"";
             this.timerSecondEvent.Tick += new System.EventHandler(this.timerSecondEvent_Tick);
             // 
             // lblTime
@@ -682,10 +690,10 @@ namespace thepos
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblTime.ForeColor = System.Drawing.Color.Gold;
-            this.lblTime.Location = new System.Drawing.Point(887, 8);
+            this.lblTime.Location = new System.Drawing.Point(887, 9);
             this.lblTime.Margin = new System.Windows.Forms.Padding(0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(78, 29);
+            this.lblTime.Size = new System.Drawing.Size(78, 28);
             this.lblTime.TabIndex = 31;
             this.lblTime.Text = "00:00";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -709,8 +717,12 @@ namespace thepos
             this.panelTitleConsole.Controls.Add(this.pictureBox1);
             this.panelTitleConsole.Controls.Add(this.lblTitle02);
             this.panelTitleConsole.Controls.Add(this.btnClose);
+            this.panelTitleConsole.Controls.Add(this.lblPosNo);
+            this.panelTitleConsole.Controls.Add(this.lblPosName);
             this.panelTitleConsole.Controls.Add(this.lblTitle01);
             this.panelTitleConsole.Controls.Add(this.lblTitle04);
+            this.panelTitleConsole.Controls.Add(this.lblWorker);
+            this.panelTitleConsole.Controls.Add(this.lblBusinessDate);
             this.panelTitleConsole.Controls.Add(this.lblTitle03);
             this.panelTitleConsole.Controls.Add(this.lblDate);
             this.panelTitleConsole.Controls.Add(this.lblTime);
@@ -732,12 +744,14 @@ namespace thepos
             // 
             // lblTitle02
             // 
+            this.lblTitle02.AutoSize = true;
             this.lblTitle02.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle02.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTitle02.ForeColor = System.Drawing.Color.White;
             this.lblTitle02.Location = new System.Drawing.Point(136, 23);
+            this.lblTitle02.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle02.Name = "lblTitle02";
-            this.lblTitle02.Size = new System.Drawing.Size(80, 13);
+            this.lblTitle02.Size = new System.Drawing.Size(61, 15);
             this.lblTitle02.TabIndex = 31;
             this.lblTitle02.Text = "포스번호 :";
             this.lblTitle02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -759,36 +773,42 @@ namespace thepos
             // 
             // lblTitle01
             // 
+            this.lblTitle01.AutoSize = true;
             this.lblTitle01.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle01.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle01.ForeColor = System.Drawing.Color.White;
-            this.lblTitle01.Location = new System.Drawing.Point(136, 4);
+            this.lblTitle01.Location = new System.Drawing.Point(136, 5);
+            this.lblTitle01.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle01.Name = "lblTitle01";
-            this.lblTitle01.Size = new System.Drawing.Size(71, 19);
+            this.lblTitle01.Size = new System.Drawing.Size(52, 15);
             this.lblTitle01.TabIndex = 31;
             this.lblTitle01.Text = "매장명 : ";
             this.lblTitle01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitle04
             // 
+            this.lblTitle04.AutoSize = true;
             this.lblTitle04.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle04.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTitle04.ForeColor = System.Drawing.Color.White;
             this.lblTitle04.Location = new System.Drawing.Point(416, 23);
+            this.lblTitle04.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle04.Name = "lblTitle04";
-            this.lblTitle04.Size = new System.Drawing.Size(80, 13);
+            this.lblTitle04.Size = new System.Drawing.Size(49, 15);
             this.lblTitle04.TabIndex = 31;
             this.lblTitle04.Text = "담당자 :";
             this.lblTitle04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitle03
             // 
+            this.lblTitle03.AutoSize = true;
             this.lblTitle03.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle03.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTitle03.ForeColor = System.Drawing.Color.White;
-            this.lblTitle03.Location = new System.Drawing.Point(415, 4);
+            this.lblTitle03.Location = new System.Drawing.Point(415, 5);
+            this.lblTitle03.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle03.Name = "lblTitle03";
-            this.lblTitle03.Size = new System.Drawing.Size(80, 19);
+            this.lblTitle03.Size = new System.Drawing.Size(64, 15);
             this.lblTitle03.TabIndex = 31;
             this.lblTitle03.Text = "영업일자 : ";
             this.lblTitle03.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -798,7 +818,7 @@ namespace thepos
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblDate.ForeColor = System.Drawing.Color.White;
-            this.lblDate.Location = new System.Drawing.Point(750, 7);
+            this.lblDate.Location = new System.Drawing.Point(750, 9);
             this.lblDate.Margin = new System.Windows.Forms.Padding(0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(134, 29);
@@ -943,7 +963,7 @@ namespace thepos
             // panelProductConsole
             // 
             this.panelProductConsole.Controls.Add(this.btnLocker);
-            this.panelProductConsole.Controls.Add(this.btnCalculating);
+            this.panelProductConsole.Controls.Add(this.btnSettlement);
             this.panelProductConsole.Controls.Add(this.btnCharging);
             this.panelProductConsole.Controls.Add(this.btnTicketing);
             this.panelProductConsole.Controls.Add(this.btnOrderWaiting);
@@ -1063,40 +1083,6 @@ namespace thepos
             this.panelOrderLvw.Size = new System.Drawing.Size(474, 295);
             this.panelOrderLvw.TabIndex = 39;
             // 
-            // btnPayCert
-            // 
-            this.btnPayCert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayCert, 2);
-            this.btnPayCert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayCert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayCert.ForeColor = System.Drawing.Color.White;
-            this.btnPayCert.Location = new System.Drawing.Point(214, 2);
-            this.btnPayCert.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPayCert.Name = "btnPayCert";
-            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayCert, 2);
-            this.btnPayCert.Size = new System.Drawing.Size(102, 70);
-            this.btnPayCert.TabIndex = 0;
-            this.btnPayCert.TabStop = false;
-            this.btnPayCert.Text = "인증";
-            this.btnPayCert.UseVisualStyleBackColor = false;
-            // 
-            // btnPayKolavoDC
-            // 
-            this.btnPayKolavoDC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayKolavoDC, 2);
-            this.btnPayKolavoDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayKolavoDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayKolavoDC.ForeColor = System.Drawing.Color.White;
-            this.btnPayKolavoDC.Location = new System.Drawing.Point(320, 2);
-            this.btnPayKolavoDC.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPayKolavoDC.Name = "btnPayKolavoDC";
-            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayKolavoDC, 2);
-            this.btnPayKolavoDC.Size = new System.Drawing.Size(102, 70);
-            this.btnPayKolavoDC.TabIndex = 0;
-            this.btnPayKolavoDC.TabStop = false;
-            this.btnPayKolavoDC.Text = "제휴할인";
-            this.btnPayKolavoDC.UseVisualStyleBackColor = false;
-            // 
             // btnScrollGroupDn
             // 
             this.btnScrollGroupDn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
@@ -1127,22 +1113,23 @@ namespace thepos
             this.btnScrollGroupUp.UseVisualStyleBackColor = false;
             this.btnScrollGroupUp.Click += new System.EventHandler(this.btnScrollGroupUp_Click);
             // 
-            // btnPayEasy
+            // btnPay5
             // 
-            this.btnPayEasy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPayEasy, 2);
-            this.btnPayEasy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayEasy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayEasy.ForeColor = System.Drawing.Color.White;
-            this.btnPayEasy.Location = new System.Drawing.Point(320, 76);
-            this.btnPayEasy.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPayEasy.Name = "btnPayEasy";
-            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayEasy, 2);
-            this.btnPayEasy.Size = new System.Drawing.Size(102, 72);
-            this.btnPayEasy.TabIndex = 0;
-            this.btnPayEasy.TabStop = false;
-            this.btnPayEasy.Text = "간편\r\n결제";
-            this.btnPayEasy.UseVisualStyleBackColor = false;
+            this.btnPay5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay5, 2);
+            this.btnPay5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay5.ForeColor = System.Drawing.Color.White;
+            this.btnPay5.Location = new System.Drawing.Point(2, 76);
+            this.btnPay5.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay5.Name = "btnPay5";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay5, 2);
+            this.btnPay5.Size = new System.Drawing.Size(102, 72);
+            this.btnPay5.TabIndex = 0;
+            this.btnPay5.TabStop = false;
+            this.btnPay5.Text = "5";
+            this.btnPay5.UseVisualStyleBackColor = false;
             // 
             // panelGoodsItem
             // 
@@ -1425,13 +1412,15 @@ namespace thepos
             this.tableLayoutPanelPayControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelPayControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelPayControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelPayControl.Controls.Add(this.btnPayEasy, 6, 2);
-            this.tableLayoutPanelPayControl.Controls.Add(this.btnPayCash, 0, 0);
-            this.tableLayoutPanelPayControl.Controls.Add(this.btnPayKolavoDC, 6, 0);
-            this.tableLayoutPanelPayControl.Controls.Add(this.btnPayCredit, 2, 0);
-            this.tableLayoutPanelPayControl.Controls.Add(this.btnPayCert, 4, 0);
-            this.tableLayoutPanelPayControl.Controls.Add(this.btnPayComplex, 4, 2);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay6, 0, 2);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay7, 4, 2);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay4, 6, 0);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay1, 0, 0);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay2, 2, 0);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay3, 4, 0);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPayManager, 8, 0);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay5, 7, 1);
+            this.tableLayoutPanelPayControl.Controls.Add(this.btnPay8, 6, 2);
             this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 611);
             this.tableLayoutPanelPayControl.Name = "tableLayoutPanelPayControl";
             this.tableLayoutPanelPayControl.RowCount = 4;
@@ -1439,13 +1428,144 @@ namespace thepos
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelPayControl.Size = new System.Drawing.Size(530, 150);
             this.tableLayoutPanelPayControl.TabIndex = 47;
             // 
-            // timerAlarm
+            // btnPay6
             // 
-            this.timerAlarm.Interval = 5000;
-            this.timerAlarm.Tick += new System.EventHandler(this.timerAlarm_Tick);
+            this.btnPay6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay6, 2);
+            this.btnPay6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay6.ForeColor = System.Drawing.Color.White;
+            this.btnPay6.Location = new System.Drawing.Point(108, 76);
+            this.btnPay6.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay6.Name = "btnPay6";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay6, 2);
+            this.btnPay6.Size = new System.Drawing.Size(102, 72);
+            this.btnPay6.TabIndex = 3;
+            this.btnPay6.TabStop = false;
+            this.btnPay6.Text = "6";
+            this.btnPay6.UseVisualStyleBackColor = false;
+            // 
+            // btnPay7
+            // 
+            this.btnPay7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay7, 2);
+            this.btnPay7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay7.ForeColor = System.Drawing.Color.White;
+            this.btnPay7.Location = new System.Drawing.Point(214, 76);
+            this.btnPay7.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay7.Name = "btnPay7";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay7, 2);
+            this.btnPay7.Size = new System.Drawing.Size(102, 72);
+            this.btnPay7.TabIndex = 2;
+            this.btnPay7.TabStop = false;
+            this.btnPay7.Text = "7";
+            this.btnPay7.UseVisualStyleBackColor = false;
+            // 
+            // btnPay4
+            // 
+            this.btnPay4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay4, 2);
+            this.btnPay4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay4.ForeColor = System.Drawing.Color.White;
+            this.btnPay4.Location = new System.Drawing.Point(320, 2);
+            this.btnPay4.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay4.Name = "btnPay4";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay4, 2);
+            this.btnPay4.Size = new System.Drawing.Size(102, 70);
+            this.btnPay4.TabIndex = 1;
+            this.btnPay4.TabStop = false;
+            this.btnPay4.Text = "4";
+            this.btnPay4.UseVisualStyleBackColor = false;
+            // 
+            // btnPay3
+            // 
+            this.btnPay3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay3, 2);
+            this.btnPay3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPay3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay3.ForeColor = System.Drawing.Color.White;
+            this.btnPay3.Location = new System.Drawing.Point(214, 2);
+            this.btnPay3.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPay3.Name = "btnPay3";
+            this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay3, 2);
+            this.btnPay3.Size = new System.Drawing.Size(102, 70);
+            this.btnPay3.TabIndex = 0;
+            this.btnPay3.TabStop = false;
+            this.btnPay3.Text = "3";
+            this.btnPay3.UseVisualStyleBackColor = false;
+            // 
+            // timerAlarmDisplay
+            // 
+            this.timerAlarmDisplay.Interval = 5000;
+            this.timerAlarmDisplay.Tick += new System.EventHandler(this.timerAlarm_Tick);
+            // 
+            // lblPosName
+            // 
+            this.lblPosName.AutoSize = true;
+            this.lblPosName.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosName.ForeColor = System.Drawing.Color.Gold;
+            this.lblPosName.Location = new System.Drawing.Point(193, 5);
+            this.lblPosName.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosName.Name = "lblPosName";
+            this.lblPosName.Size = new System.Drawing.Size(79, 15);
+            this.lblPosName.TabIndex = 31;
+            this.lblPosName.Text = "미리내곰상주";
+            this.lblPosName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblBusinessDate
+            // 
+            this.lblBusinessDate.AutoSize = true;
+            this.lblBusinessDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBusinessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblBusinessDate.ForeColor = System.Drawing.Color.Gold;
+            this.lblBusinessDate.Location = new System.Drawing.Point(473, 5);
+            this.lblBusinessDate.Margin = new System.Windows.Forms.Padding(0);
+            this.lblBusinessDate.Name = "lblBusinessDate";
+            this.lblBusinessDate.Size = new System.Drawing.Size(69, 15);
+            this.lblBusinessDate.TabIndex = 31;
+            this.lblBusinessDate.Text = "2023.05.22";
+            this.lblBusinessDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblWorker
+            // 
+            this.lblWorker.AutoSize = true;
+            this.lblWorker.BackColor = System.Drawing.Color.Transparent;
+            this.lblWorker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblWorker.ForeColor = System.Drawing.Color.Gold;
+            this.lblWorker.Location = new System.Drawing.Point(473, 23);
+            this.lblWorker.Margin = new System.Windows.Forms.Padding(0);
+            this.lblWorker.Name = "lblWorker";
+            this.lblWorker.Size = new System.Drawing.Size(43, 15);
+            this.lblWorker.TabIndex = 31;
+            this.lblWorker.Text = "김토스";
+            this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPosNo
+            // 
+            this.lblPosNo.AutoSize = true;
+            this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
+            this.lblPosNo.Location = new System.Drawing.Point(193, 23);
+            this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosNo.Name = "lblPosNo";
+            this.lblPosNo.Size = new System.Drawing.Size(21, 15);
+            this.lblPosNo.TabIndex = 31;
+            this.lblPosNo.Text = "01";
+            this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmSale
             // 
@@ -1477,6 +1597,7 @@ namespace thepos
             this.panelOrderConsole.ResumeLayout(false);
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
+            this.panelTitleConsole.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
@@ -1498,7 +1619,7 @@ namespace thepos
         }
 
         #endregion
-        private System.Windows.Forms.Button btnCalculating;
+        private System.Windows.Forms.Button btnSettlement;
         private System.Windows.Forms.Button btnCharging;
         private System.Windows.Forms.Button btnTicketing;
         private System.Windows.Forms.Panel panelNumpad;
@@ -1525,10 +1646,10 @@ namespace thepos
         private System.Windows.Forms.Button btnOrderAmountDC;
         private System.Windows.Forms.Button btnOrderCancelSelect;
         private System.Windows.Forms.Button btnOrderCancelAll;
-        private System.Windows.Forms.Button btnPayCredit;
+        private System.Windows.Forms.Button btnPay2;
         private System.Windows.Forms.Button btnPayManager;
-        private System.Windows.Forms.Button btnPayComplex;
-        private System.Windows.Forms.Button btnPayCash;
+        private System.Windows.Forms.Button btnPay8;
+        private System.Windows.Forms.Button btnPay1;
         private System.Windows.Forms.Button btnOrderWaiting;
         private System.Windows.Forms.Timer timerSecondEvent;
         private System.Windows.Forms.Label lblTime;
@@ -1567,11 +1688,9 @@ namespace thepos
         private System.Windows.Forms.Label lblDisplayAlarm;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelOrderLvw;
-        private System.Windows.Forms.Button btnPayCert;
-        private System.Windows.Forms.Button btnPayKolavoDC;
         private System.Windows.Forms.Button btnScrollGroupDn;
         private System.Windows.Forms.Button btnScrollGroupUp;
-        private System.Windows.Forms.Button btnPayEasy;
+        private System.Windows.Forms.Button btnPay5;
         private System.Windows.Forms.Panel panelGoodsItem;
         private System.Windows.Forms.Panel panelGoodsItemWhite;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsItem;
@@ -1589,11 +1708,19 @@ namespace thepos
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panelGoodsItemWhite2;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnOrderAmtChange;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPayControl;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Timer timerAlarm;
+        private System.Windows.Forms.Button btnPay3;
+        private System.Windows.Forms.Button btnPay4;
+        private System.Windows.Forms.Button btnPay6;
+        private System.Windows.Forms.Button btnPay7;
+        private System.Windows.Forms.Timer timerAlarmDisplay;
+        private System.Windows.Forms.Label lblPosNo;
+        private System.Windows.Forms.Label lblPosName;
+        private System.Windows.Forms.Label lblWorker;
+        private System.Windows.Forms.Label lblBusinessDate;
     }
 }
 

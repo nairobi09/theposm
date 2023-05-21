@@ -75,10 +75,6 @@ namespace thepos.pay
 
 
 
-
-
-
-
             ret = UPay_TX();
 
             int cnt = UPayResNameCount();

@@ -73,9 +73,9 @@
             this.groupBox1.Controls.Add(this.btnKeyInput);
             this.groupBox1.Controls.Add(this.btnInstall06);
             this.groupBox1.Controls.Add(this.btnInstall12);
-            this.groupBox1.Location = new System.Drawing.Point(42, 194);
+            this.groupBox1.Location = new System.Drawing.Point(23, 194);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(455, 134);
+            this.groupBox1.Size = new System.Drawing.Size(480, 134);
             this.groupBox1.TabIndex = 56;
             this.groupBox1.TabStop = false;
             // 
@@ -179,7 +179,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(179, 144);
+            this.lblNetAmount.Location = new System.Drawing.Point(159, 144);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
@@ -192,7 +192,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 151);
+            this.label1.Location = new System.Drawing.Point(49, 151);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 14);
             this.label1.TabIndex = 48;
@@ -204,12 +204,12 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(336, 623);
+            this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(138, 46);
+            this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
             this.btnClose.TabStop = false;
-            this.btnClose.Text = "닫기";
+            this.btnClose.Text = "×";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -217,11 +217,11 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblTitle.Location = new System.Drawing.Point(22, 24);
+            this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(475, 39);
+            this.lblTitle.Size = new System.Drawing.Size(425, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "카드결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

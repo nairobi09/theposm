@@ -27,10 +27,6 @@ namespace thepos
     public partial class frmAmountDC : Form
     {
 
-        Font fontMedium_10;
-        Font fontBold_12;
-
-
         struct DCR
         {
             public string dcr_code;
@@ -47,7 +43,7 @@ namespace thepos
         {
             InitializeComponent();
 
-            //initialize_font();
+            initialize_font();
             initialize_the();
 
             getDCRule();
@@ -72,7 +68,8 @@ namespace thepos
                 {"001","S","A", "500"},
                 {"002","S","R", "20"},
                 {"003","E","A", "1000"},
-                {"004","E","R", "10"}
+                {"004","E","R", "10"},
+                {"004","S","R", "100"}
             };
 
             int len = dcr.Length / 4;
@@ -90,27 +87,17 @@ namespace thepos
 
         void initialize_font()
         {
-            PrivateFontCollection fontCollectionMedium = new PrivateFontCollection();
-            PrivateFontCollection fontCollectionBold = new PrivateFontCollection();
+            lblTitle.Font = font12bold;
+            lblTitle1.Font = font12bold;
+            lblTitle2.Font = font12bold;
 
-            fontCollectionMedium.AddFontFile("Font\\Pretendard-Medium.ttf");
-            fontCollectionBold.AddFontFile("Font\\Pretendard-Bold.ttf");
+            btnSelAmount.Font = font12bold;
+            btnSelRate.Font = font12bold;
+            btnAllAmount.Font = font12bold;
+            btnAllRate.Font = font12bold;
 
-            fontMedium_10 = new Font(fontCollectionMedium.Families[0], 10f);
-            fontBold_12 = new Font(fontCollectionBold.Families[0], 12f);
-
-
-            lblTitle.Font = fontBold_12;
-            lblTitle1.Font = fontBold_12;
-            lblTitle2.Font = fontBold_12;
-
-            btnSelAmount.Font = fontMedium_10;
-            btnSelRate.Font = fontMedium_10;
-            btnAllAmount.Font = fontMedium_10;
-            btnAllRate.Font = fontMedium_10;
-
-            btnDCCancel.Font = fontMedium_10;
-            btnClose.Font = fontMedium_10;
+            btnDCCancel.Font = font12bold;
+            btnClose.Font = font12bold;
 
         }
 
@@ -138,15 +125,15 @@ namespace thepos
 
                 btnDCR[i].Text = btn_title;
                 btnDCR[i].Height = 50;
-                btnDCR[i].Width = 180;
-                //btnDCR[i].Font = fontBold_12;
+                btnDCR[i].Width = 190;
+                btnDCR[i].Font = font12bold;
 
                 btnDCR[i].FlatStyle = FlatStyle.Flat;
                 btnDCR[i].ForeColor = Color.White;
                 btnDCR[i].BackColor = Color.SteelBlue;
                 btnDCR[i].FlatAppearance.BorderSize = 2;
 
-                btnDCR[i].Margin = new Padding(3, 3, 3, 3);
+                btnDCR[i].Margin = new Padding(5, 5, 5, 5);
 
                 btnDCR[i].Click += (sender, args) => ClickedDCR(dcr_idx);
                 flowLayoutPanelDCR.Controls.Add(btnDCR[i]);
@@ -305,8 +292,10 @@ namespace thepos
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
                 }
 
-                frmSale.ReCalculateAmount();
+                ReCalculateAmount();
             }
+
+            mLblKeyDisplay.Text = "";
         }
 
         private void btnDCCancel_Click(object sender, EventArgs e)

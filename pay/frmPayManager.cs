@@ -29,7 +29,10 @@ namespace thepos
             this.Close();
         }
 
-
+        private void frmPayManager_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmSale.ConsoleEnable();
+        }
     }
 }
 
