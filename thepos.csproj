@@ -85,10 +85,10 @@
     <Compile Include="frmSale.Designer.cs">
       <DependentUpon>frmSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="pay\frmPayManager.cs">
+    <Compile Include="frmPayManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pay\frmPayManager.Designer.cs">
+    <Compile Include="frmPayManager.Designer.cs">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </Compile>
     <Compile Include="frmWaiting.cs">
@@ -97,16 +97,16 @@
     <Compile Include="frmWaiting.Designer.cs">
       <DependentUpon>frmWaiting.cs</DependentUpon>
     </Compile>
-    <Compile Include="pay\frmPayCard.cs">
+    <Compile Include="frmPayCard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pay\frmPayCard.Designer.cs">
+    <Compile Include="frmPayCard.Designer.cs">
       <DependentUpon>frmPayCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="pay\frmPayCash.cs">
+    <Compile Include="frmPayCash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pay\frmPayCash.Designer.cs">
+    <Compile Include="frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
     <Compile Include="thepos.cs" />
@@ -121,16 +121,16 @@
     <EmbeddedResource Include="frmSale.resx">
       <DependentUpon>frmSale.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pay\frmPayManager.resx">
+    <EmbeddedResource Include="frmPayManager.resx">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWaiting.resx">
       <DependentUpon>frmWaiting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pay\frmPayCard.resx">
+    <EmbeddedResource Include="frmPayCard.resx">
       <DependentUpon>frmPayCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pay\frmPayCash.resx">
+    <EmbeddedResource Include="frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -1,4 +1,4 @@
-﻿namespace thepos.pay
+﻿namespace thepos
 {
     partial class frmPayCard
     {

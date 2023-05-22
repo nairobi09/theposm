@@ -40,8 +40,8 @@ namespace thepos
         public static PrivateFontCollection fontCollection = new PrivateFontCollection();
 
 
-        String mCustomerCode = "";
-        String mPosNo = "";
+        public static String mCustomerCode = "";
+        public static String mPosNo = "";
 
        
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
@@ -63,7 +63,7 @@ namespace thepos
         public static Label mLblOrderAmount;
         public static Label mLblOrderAmountDC;
         public static Label mLblOrderAmountNet;
-        public static Int32 mNetAmount = 0;
+        public static int mNetAmount = 0;
         public static Timer mTimerAlarm;
 
 
@@ -167,7 +167,7 @@ namespace thepos
         {
             String[,] item = new String[,]
             {
-                { "101101","바닐라라떼","8000", "0","0", "2","2"},
+                { "101101","바닐라라떼","1", "0","0", "2","2"},
                 { "101102","카푸치노","6000", "2","0", "1","2"},
                 { "101103","에스프레소","7000", "3","0", "3","2"},
                 { "101104","아이스라떼","6500", "6","1", "2","1"},
@@ -192,12 +192,12 @@ namespace thepos
             {
                 mGoodsItem[i].code = item[i, 0];
                 mGoodsItem[i].name = item[i, 1];
-                mGoodsItem[i].amt = Int32.Parse(item[i, 2]);
+                mGoodsItem[i].amt = int.Parse(item[i, 2]);
 
-                mGoodsItem[i].column = Int32.Parse(item[i, 3]);
-                mGoodsItem[i].row = Int32.Parse(item[i, 4]);
-                mGoodsItem[i].columnspan = Int32.Parse(item[i, 5]);
-                mGoodsItem[i].rowspan = Int32.Parse(item[i, 6]);
+                mGoodsItem[i].column = int.Parse(item[i, 3]);
+                mGoodsItem[i].row = int.Parse(item[i, 4]);
+                mGoodsItem[i].columnspan = int.Parse(item[i, 5]);
+                mGoodsItem[i].rowspan = int.Parse(item[i, 6]);
             }
         }
 
@@ -219,13 +219,11 @@ namespace thepos
             for (int i = 0; i < len; i++)
             {
                 mPayItem[i].code = item[i, 0];
-                mPayItem[i].column = Int32.Parse(item[i, 1]);
-                mPayItem[i].row = Int32.Parse(item[i, 2]);
-                mPayItem[i].columnspan = Int32.Parse(item[i, 3]);
-                mPayItem[i].rowspan = Int32.Parse(item[i, 4]);
+                mPayItem[i].column = int.Parse(item[i, 1]);
+                mPayItem[i].row = int.Parse(item[i, 2]);
+                mPayItem[i].columnspan = int.Parse(item[i, 3]);
+                mPayItem[i].rowspan = int.Parse(item[i, 4]);
             }
-
-
         }
 
 
@@ -985,8 +983,8 @@ namespace thepos
 
         public static void ReCalculateAmount()
         {
-            Int32 Amount = 0;
-            Int32 dcAmount = 0;
+            int Amount = 0;
+            int dcAmount = 0;
             mNetAmount = 0;
 
             OrderItem orderItemInfo;
