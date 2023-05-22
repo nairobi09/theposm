@@ -37,12 +37,46 @@ namespace thepos
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
         extern static int UPayFinal();
 
+        //
+        string mErrorMsg = "";
+
+
+
+
         public frmPayCard()
         {
             InitializeComponent();
 
+            initialize_font();
             initial_the();
 
+
+        }
+
+        void initialize_font()
+        {
+            lblTitle.Font = font12bold;
+
+
+
+            lblT1.Font = font10;
+            lblT2.Font = font10;
+
+            lblNetAmount.Font = font12bold;
+            lblInstall.Font = font12bold;
+
+
+            btnKeyInput.Font = font10;
+
+            btnInstall00.Font = font10;
+            btnInstall03.Font = font10;
+            btnInstall06.Font = font10;
+            btnInstall12.Font = font10;
+
+            btnCardTemp.Font = font10bold;
+            btnCardRequest.Font = font10bold;
+
+            btnClose.Font = font12bold;
 
         }
 
@@ -56,13 +90,35 @@ namespace thepos
 
         private void btnCardRequest_Click(object sender, EventArgs e)
         {
+
+
+            //int d= mNetAmount;
+            int install = int.Parse(lblInstall.Text);
+
+            if (requestCardAuth(mNetAmount, install) != 0)
+            {
+                display_error_msg(mErrorMsg);
+            }
+            else
+            {
+                //정상승인
+                // 데이터 저장후 화면 닫기
+
+            }
+
+            
+
+        }
+
+
+        private int requestCardAuth(int amount, int install)
+        {
             int ret = UPay_Init();
             if (ret == -9)
             {
-                MessageBox.Show("Toss DLL 초기화 오류");
-                return;
+                mErrorMsg = "Toss DLL 초기화 오류";
+                return -1;
             }
-
 
 
             Random random = new Random();
@@ -73,8 +129,8 @@ namespace thepos
             ret = UPay_Set("LGD_REQTYPE", "APPR");
             //ret = UPay_Set("LGD_MID", "");
             ret = UPay_Set("LGD_OID", mCustomerCode + mPosNo + randomValue);
-            ret = UPay_Set("LGD_AMOUNT", mNetAmount.ToString());
-            ret = UPay_Set("LGD_INSTALL", lblInstall.Text);
+            ret = UPay_Set("LGD_AMOUNT", amount.ToString());
+            ret = UPay_Set("LGD_INSTALL", install.ToString("00"));
             ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
             ret = UPay_Set("LGD_VAT", "0");
             ret = UPay_Set("VAN_SFEEAMOUNT", "0");
@@ -145,7 +201,15 @@ namespace thepos
 
             MessageBox.Show(display_msg);
 
-
+            if (Respcode == "00")
+            {
+                return 0;
+            }
+            else
+            {
+                mErrorMsg = Msg;
+                return -1;
+            }
 
         }
 
@@ -155,6 +219,11 @@ namespace thepos
 
 
 
+
+        void display_error_msg(string msg)
+        {
+            MessageBox.Show(msg);
+        }
 
 
         private void btnInstall00_Click(object sender, EventArgs e) { lblInstall.Text = "00"; }

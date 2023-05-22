@@ -32,7 +32,7 @@ namespace thepos
         public static Font font14;
 
         public static Font font8bold;
-        public static Font font10bold;
+        public static Font font10bold;  // 일반버튼
         public static Font font12bold;
         public static Font font14bold;
         public static Font font20bold;
