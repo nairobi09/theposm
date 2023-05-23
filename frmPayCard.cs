@@ -12,7 +12,9 @@ namespace thepos
 
     public struct order
     {
-        public String the_no;       // CUSTNO(4) + POSNO(2) + DateTimeOffset_Milliseconds(13)
+        public String the_no;       // 영수중번호, Unique, reference_no, CUSTNO(4) + POSNO(2) + DateTimeOffset_Milliseconds(13)
+        public String custimer_id;  //
+        public String pos_no;       //
         public String business_date;// 영업일자
         public DateTime order_dt;   // 주문일시
         public int net_amount;      // 금액
@@ -36,6 +38,14 @@ namespace thepos
         public String the_no;       // 
         public String pay_type;     // 결제구분 : 신용카드(C0), 단순현금(R0), 현금영수중(R1)
         public int amount;          // 결제금액
+        public String install;      // 할부개월 00 03
+        public String auth_no;      //
+        public String tran_date;    //
+        public String card_no;      //
+        public String card_name;    // 카드종류
+        public String merchant_no;  // 가맹점번호
+        public String isu_code;     //
+        public String acq_code;     //
 
     }
     /*

@@ -6,7 +6,8 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
-using thepos.pay;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+
 
 
 
@@ -43,7 +44,7 @@ namespace thepos
         public static String mCustomerId = "";
         public static String mPosNo = "";
         public static String mBussinessDate = "";
-        public int mSrerialNo = 0;
+        public int mSerialNo = 0;
 
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
@@ -335,6 +336,15 @@ namespace thepos
             //Title에 일자 요일을 표시
             setDateTitle();
 
+
+            // 최초로드?
+            //
+            //?
+            mBussinessDate = DateTime.Now.ToString("yyyyMMdd");
+            mPosNo = "01";
+
+
+            lblBusinessDate.Text = mBussinessDate.Substring(0, 4) + "-" + mBussinessDate.Substring(4, 2) + "-" + mBussinessDate.Substring(6, 2);
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
@@ -1235,8 +1245,8 @@ namespace thepos
 
         public String create_the_no()
         {
-
-            return mBussinessDate(8) + mPosNo + (++mSerialNo).ToString("0000") + Random(3);
+            Random rand = new Random();
+            return mBussinessDate + mPosNo + (++mSerialNo).ToString("0000") + rand.Next(100, 999);
         }
 
 

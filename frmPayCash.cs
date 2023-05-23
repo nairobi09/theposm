@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.frmSale;
 
-namespace thepos.pay
+
+
+namespace thepos
 {
     public partial class frmPayCash : Form
     {
