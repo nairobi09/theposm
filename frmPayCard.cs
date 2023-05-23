@@ -1,39 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 using static thepos.frmSale;
 
 namespace thepos
 {
+
+    public struct order
+    {
+        public String the_no;       // CUSTNO(4) + POSNO(2) + DateTimeOffset_Milliseconds(13)
+        public String business_date;// 영업일자
+        public DateTime order_dt;   // 주문일시
+        public int net_amount;      // 금액
+    }
+
+    public struct orderItem
+    {
+        public String the_no;       // 
+        public String code;         // 상품code(6) or 전체할인코드고정("EDC")
+        public String name;         // 상품name or 전체할인명("할인")
+        public int cnt;
+        public int amt;
+        public int dc_amount;       // 실할인금액
+        public String dcr_type;     // type - "A" : 정액, "R" : 정율 
+        //public String dcr_des;      // 전체"E", 선택"S"
+        public int dcr_value;       // 할인금액 or 할인율
+    }
+
+    public struct payment
+    {
+        public String the_no;       // 
+        public String pay_type;     // 결제구분 : 신용카드(C0), 단순현금(R0), 현금영수중(R1)
+        public int amount;          // 결제금액
+
+    }
+    /*
+    string Respcode = "";
+    string Msg = "";
+    string Trancode = "";
+    string Mid = "";
+    string Oid = "";
+    string Tamt = "";
+    string Tran_serial = "";
+    string Trandate = "";
+    string Financecode = "";
+    string Financename = "";
+    string Cardno = "";
+    string Halbu = "";
+    string Authno = "";
+    string Stlinst = "";
+    string Reqinst = "";
+    string Merno = "";
+    string Signpath = "";
+    string Cardgubun = "";
+    string Giftchange = "";
+    */
+
+
+
     public partial class frmPayCard : Form
     {
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Init", CallingConvention = CallingConvention.StdCall)]
         extern static int UPay_Init();
-
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Set", CallingConvention = CallingConvention.StdCall)]
         extern static int UPay_Set(string name, string value);
-
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_TX", CallingConvention = CallingConvention.StdCall)]
         extern static int UPay_TX();
-
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayResNameCount", CallingConvention = CallingConvention.StdCall)]
         extern static int UPayResNameCount();
-
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayResName", CallingConvention = CallingConvention.StdCall)]
         extern static IntPtr UPayResName(int index);
-
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayResponse", CallingConvention = CallingConvention.StdCall)]
         extern static IntPtr UPayResponse(int index);
-
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
         extern static int UPayFinal();
 
@@ -50,21 +92,17 @@ namespace thepos
             initialize_font();
             initial_the();
 
-
         }
 
         void initialize_font()
         {
             lblTitle.Font = font12bold;
 
-
-
             lblT1.Font = font10;
             lblT2.Font = font10;
 
             lblNetAmount.Font = font12bold;
             lblInstall.Font = font12bold;
-
 
             btnKeyInput.Font = font10;
 
@@ -77,7 +115,6 @@ namespace thepos
             btnCardRequest.Font = font10bold;
 
             btnClose.Font = font12bold;
-
         }
 
         private void initial_the()
@@ -128,7 +165,7 @@ namespace thepos
             ret = UPay_Set("LGD_TXNAME", "CardAuthOfflinePos");
             ret = UPay_Set("LGD_REQTYPE", "APPR");
             //ret = UPay_Set("LGD_MID", "");
-            ret = UPay_Set("LGD_OID", mCustomerCode + mPosNo + randomValue);
+            ret = UPay_Set("LGD_OID", mCustomerId + mPosNo + randomValue);
             ret = UPay_Set("LGD_AMOUNT", amount.ToString());
             ret = UPay_Set("LGD_INSTALL", install.ToString("00"));
             ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");

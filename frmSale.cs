@@ -40,10 +40,12 @@ namespace thepos
         public static PrivateFontCollection fontCollection = new PrivateFontCollection();
 
 
-        public static String mCustomerCode = "";
+        public static String mCustomerId = "";
         public static String mPosNo = "";
+        public static String mBussinessDate = "";
+        public int mSrerialNo = 0;
 
-       
+
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
         public static String mRunningOrderNo = "";
@@ -238,11 +240,11 @@ namespace thepos
             initialize_the();
 
             // 사업장코드, POS_NO
-            mCustomerCode = "HUSN";
+            mCustomerId = "CUST";
             mPosNo = "01";
 
             get_payItem();
-            display_payitem();
+            display_payconsol();
 
             get_goodsgroup();
             get_goodsitem();
@@ -298,7 +300,6 @@ namespace thepos
             lblOrderAmountReceiveTitle.Font = font10;
             lblOrderAmountRestTitle.Font = font10;
 
-            //lblOrderAmount.Font = fontBold14;
             lblOrderAmount.Font = font14bold;
             lblOrderAmountDC.Font = font14bold;
             lblOrderAmountNet.Font = font14bold;
@@ -404,7 +405,7 @@ namespace thepos
 
         }
 
-        private void display_payitem()
+        private void display_payconsol()
         {
             System.Windows.Forms.Button btnPayItem = new System.Windows.Forms.Button();
 
@@ -521,7 +522,7 @@ namespace thepos
                 orderItem.cnt = 1;
                 orderItem.dc_amount = 0;
                 orderItem.dcr_type = "";
-                orderItem.dcr_des = "";
+                //orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
 
                 item.Tag = orderItem;
@@ -723,7 +724,7 @@ namespace thepos
 
                 if (mRunningOrderNo == "")
                 {
-                    mRunningOrderNo = create_order_no();
+                    mRunningOrderNo = create_the_no();
                 }
 
                 waiting.order_no = mRunningOrderNo;
@@ -898,7 +899,7 @@ namespace thepos
             }
             else if (orderItem.dcr_type == "A")
             {
-                memo += "정액";
+                memo += "₩";
             }
 
             return memo;
@@ -1232,10 +1233,10 @@ namespace thepos
             e.DrawDefault = true;
         }
 
-        public String create_order_no()
+        public String create_the_no()
         {
-            // 사업장코드(3) + POS코드(2) + TIMESTAMP(10) 
-            return mCustomerCode + mPosNo + ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds().ToString();
+
+            return mBussinessDate(8) + mPosNo + (++mSerialNo).ToString("0000") + Random(3);
         }
 
 
