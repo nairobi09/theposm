@@ -7,6 +7,7 @@ using System.Drawing.Text;
 using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using System.Runtime.Remoting.Messaging;
 
 
 
@@ -28,30 +29,28 @@ namespace thepos
     {
         //thepos the = new thepos();
 
+        public static Font font8;
         public static Font font9;
         public static Font font10;
-        public static Font font14;
-
-        public static Font font8;
         public static Font font12;
+        public static Font font14;
+        public static Font font16;
         public static Font font20;
 
         public static PrivateFontCollection fontCollection = new PrivateFontCollection();
 
+        //로그인후 다운로드된 
         public static String mCustomerId = "";
         public static String mPosNo = "";
         public static String mBussinessDate = "";
-        public int mSerialNo = 0;
-
-
-        String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
-
         public static String mRunningTheNo = "";
 
+
+        int mSerialNo = 0;
         int waiting_count = 0;
+        String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
 
-        Button[] btnGoodsGroup;
 
 
         public static Panel mPanelTitleConsole;
@@ -92,6 +91,17 @@ namespace thepos
         }
         OrderItem[] mOrderItem;
 
+
+        public struct Payment
+        {
+            public String the_no;
+
+
+
+        }
+
+
+
         public struct PaymentCard
         {
             public String the_no;       // 
@@ -118,11 +128,17 @@ namespace thepos
         }
         PaymentCard[] mPaymentCash;
 
+
+
+
         struct GoodsGroup
         {
             public string code;  // 3
             public string name;
-            public string type;  // 사용가능한 pos_type : 모든POS = "ALL", 그룹POS= "G00"
+            public int column;
+            public int row;
+            public int columnspan;
+            public int rowspan;
         }
         GoodsGroup[] mGoodsGroup;
 
@@ -137,6 +153,7 @@ namespace thepos
             public int rowspan;
         }
         GoodsItem[] mGoodsItem;
+
 
         struct PayConsol
         {
@@ -170,20 +187,16 @@ namespace thepos
 
             String[,] group = new String[,]
             {
-                {"101","커피","G01"},
-                {"100","티켓","ALL"},
-                {"102","식사","G02"},
-                {"103","후식","G01"},
-                {"104","직원방문","G01"},
-                {"105","야간","G01"},
-                {"106","VIP","G01"},
-                {"107","장애인","G01"},
-                {"108","","G01"},
-                {"109","기본","G01"},
+                {"101","커피", "0","0", "3","2"},
+                {"100","티켓", "3","0", "2","2"},
+                {"102","식사", "4","0", "2","1"},
+                {"103","후식", "4","1", "1","1"},
+                {"106","VIP", "7","0", "1","1"},
+                {"109","기본", "6","1", "2","1"},
             };
 
 
-            int len = group.Length / 3;
+            int len = group.Length / 6;
 
 
             mGoodsGroup = new GoodsGroup[len];
@@ -192,7 +205,11 @@ namespace thepos
             {
                 mGoodsGroup[i].code = group[i, 0];
                 mGoodsGroup[i].name = group[i, 1];
-                mGoodsGroup[i].type = group[i, 2];
+
+                mGoodsGroup[i].column = int.Parse(group[i, 2]);
+                mGoodsGroup[i].row = int.Parse(group[i, 3]);
+                mGoodsGroup[i].columnspan = int.Parse(group[i, 4]);
+                mGoodsGroup[i].rowspan = int.Parse(group[i, 5]);
             }
 
         }
@@ -288,13 +305,12 @@ namespace thepos
         {
             fontCollection.AddFontFile("Font\\TossProductSansTTF-Regular.ttf");
 
-
+            font8 = new Font(fontCollection.Families[0], 8f);
             font9 = new Font(fontCollection.Families[0], 9f);
             font10 = new Font(fontCollection.Families[0], 10f);
-            font14 = new Font(fontCollection.Families[0], 14f);
-
-            font8 = new Font(fontCollection.Families[0], 8f);
             font12 = new Font(fontCollection.Families[0], 12f);
+            font14 = new Font(fontCollection.Families[0], 14f);
+            font16 = new Font(fontCollection.Families[0], 16f);
             font20 = new Font(fontCollection.Families[0], 20f);
 
 
@@ -313,6 +329,7 @@ namespace thepos
             lblTime.Font = font12;
 
             lvwOrderItem.Font = font10;
+            lblDisplayAlarm.Font = font10;
 
             btnOrderCancelAll.Font = font10;
             btnOrderCancelSelect.Font = font10;
@@ -420,37 +437,54 @@ namespace thepos
 
         private void display_goodsgroup()
         {
-            btnGoodsGroup = new Button[mGoodsGroup.Length];
+            
 
+            tableLayoutPanelGoodsGroup.Controls.Clear();
+            tableLayoutPanelGoodsGroup.VerticalScroll.Value = 0;
+            tableLayoutPanelGoodsGroup.PerformLayout();
 
-            flowLayoutPanelGoodsGroup.Controls.Clear();
 
             for (int i = 0; i < mGoodsGroup.Length; i++)
             {
-                String groupcode = mGoodsGroup[i].code;
-                btnGoodsGroup[i] = new Button();
-                btnGoodsGroup[i].Text = mGoodsGroup[i].name;
-                btnGoodsGroup[i].Tag = mGoodsGroup[i].code;
-                btnGoodsGroup[i].Height = 60;
-                btnGoodsGroup[i].Width = 92;
-                btnGoodsGroup[i].Font = font12;
+                Button btnGoodsGroup = new Button();
+                String group_code = mGoodsGroup[i].code;
+                btnGoodsGroup.Tag = mGoodsGroup[i].code;
+                btnGoodsGroup.Text = mGoodsGroup[i].name;
+                btnGoodsGroup.FlatStyle = FlatStyle.Flat;
 
-                btnGoodsGroup[i].FlatStyle = FlatStyle.Flat;
-                btnGoodsGroup[i].ForeColor = SystemColors.Highlight;
-                btnGoodsGroup[i].BackColor = Color.White;
-                btnGoodsGroup[i].FlatAppearance.BorderSize = 2;
+                btnGoodsGroup.ForeColor = SystemColors.Highlight; 
+                btnGoodsGroup.BackColor = Color.White;
+                btnGoodsGroup.TabStop = false;
+                btnGoodsGroup.Margin = new Padding(2, 2, 2, 2);
+                btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
+                btnGoodsGroup.Dock = DockStyle.Fill;
 
-                btnGoodsGroup[i].Margin = new Padding(2, 2, 2, 2);
 
-                btnGoodsGroup[i].Click += (sender, args) => ClickedGoodsGroup(groupcode);
-                flowLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup[i]);
+                if (mGoodsGroup[i].columnspan > 1 & mGoodsGroup[i].rowspan > 1)
+                {
+                    btnGoodsGroup.Font = font16;
+                }
+                else
+                {
+                    btnGoodsGroup.Font = font12;
+                }
+
+
+
+                btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
+
+                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, mGoodsGroup[i].column, mGoodsGroup[i].row);
+                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, mGoodsGroup[i].columnspan);
+                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, mGoodsGroup[i].rowspan);
+
+                tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
             }
 
         }
 
         private void display_payconsol()
         {
-            System.Windows.Forms.Button btnPayItem = new System.Windows.Forms.Button();
+            System.Windows.Forms.Button btnPayItem;
 
             tableLayoutPanelPayControl.Controls.Clear();
 
@@ -459,7 +493,7 @@ namespace thepos
 
             for (int i = 0; i < mPayConsol.Length; i++)
             {
-                btnPayItem = new System.Windows.Forms.Button();
+                btnPayItem = new Button();
                 btnPayItem.Tag = mPayConsol[i].code;
                 btnPayItem.FlatStyle = FlatStyle.Flat;
                 btnPayItem.TabStop = false;
@@ -476,7 +510,11 @@ namespace thepos
                 else if (mPayConsol[i].code == "COMPLEX") btnPayItem.Text = "복합\r결제";
                 else if (mPayConsol[i].code == "CERT") btnPayItem.Text = "인증";
                 else if (mPayConsol[i].code == "EASY") btnPayItem.Text = "간편\r결제";
-                else if (mPayConsol[i].code == "MANAGER") btnPayItem.Text = "결제내역\r관리";
+                else if (mPayConsol[i].code == "MANAGER")
+                {
+                    btnPayItem.BackColor = Color.FromArgb(52, 86, 156);
+                    btnPayItem.Text = "결제내역\r관리";
+                }
                 else btnPayItem.Text = "";
 
                 string code = mPayConsol[i].code;
@@ -580,6 +618,10 @@ namespace thepos
                 lvwOrderItem.Items.Add(item);
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
+
+                // 전체할인이 있으면 주문항목 가장 아래로 이동
+                move_dcr_e_last();
+
             }
             else
             {
@@ -937,7 +979,7 @@ namespace thepos
             }
             else if (orderItem.dcr_type == "A")
             {
-                memo += "₩";
+                memo += "₩" + orderItem.dcr_value;
             }
 
             return memo;
@@ -992,6 +1034,14 @@ namespace thepos
         {
             OrderItem orderItem = (OrderItem)lvwOrderItem.Items[lv_idx].Tag;
 
+
+            if (orderItem.dcr_des == "E")
+            {
+                SetDisplayAlarm("W", "전체할인 수량변경 불가.");
+                return;
+            }
+
+
             if (jobtype == "add")
             {
                 orderItem.cnt += cnt;
@@ -1007,10 +1057,8 @@ namespace thepos
 
             lvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
 
-            if (orderItem.dcr_type == "R")
-            {
-                orderItem.dc_amount = ((orderItem.cnt * orderItem.amt) * orderItem.dcr_value) / 100;
-            }
+
+            orderItem.dc_amount = get_dc_amount(orderItem);
 
 
             int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
@@ -1019,6 +1067,56 @@ namespace thepos
 
             lvwOrderItem.Items[lv_idx].Tag = orderItem;
         }
+
+
+        public static int get_dc_amount(OrderItem orderItem)
+        {
+            int amount = orderItem.amt * orderItem.cnt;
+            int tdcamount = 0;
+
+            if (orderItem.dcr_type == "A")
+            {
+                tdcamount = orderItem.dcr_value;
+            }
+            else if (orderItem.dcr_type == "R")
+            {
+                tdcamount = (amount * orderItem.dcr_value) / 100;
+            }
+            else return 0;
+
+
+
+            if (tdcamount > amount)
+            {
+                return amount;
+            }
+            else
+            {
+                return tdcamount;
+            }
+
+        }
+
+        void move_dcr_e_last()
+        {
+
+
+
+        }
+
+        public static bool isExist_DCR(String des)  // des = E or S
+        {
+            for (int i = mLvwOrderItem.Items.Count - 1; i >= 0; i--)
+            {
+                if (((OrderItem)mLvwOrderItem.Items[i].Tag).dcr_des == des)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         public static void ReCalculateAmount()
         {
@@ -1152,18 +1250,22 @@ namespace thepos
             if (button_idx == -1) return;
 
 
+            Button btn = (Button)tableLayoutPanelGoodsGroup.Controls[button_idx];
+
+            
             if (!isPressed)
             {
-                btnGoodsGroup[button_idx].ForeColor = SystemColors.Highlight;
-                btnGoodsGroup[button_idx].BackColor = Color.White;
-                btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 2;
+                btn.ForeColor = SystemColors.Highlight;
+                btn.BackColor = Color.White;
+                btn.FlatAppearance.BorderSize = 2;
             }
             else
             {
-                btnGoodsGroup[button_idx].ForeColor = Color.White;
-                btnGoodsGroup[button_idx].BackColor = SystemColors.Highlight;
-                btnGoodsGroup[button_idx].FlatAppearance.BorderSize = 0;
+                btn.ForeColor = Color.White;
+                btn.BackColor = SystemColors.Highlight;
+                btn.FlatAppearance.BorderSize = 0;
             }
+            
         }
 
         private int get_lvitem_idx(string code)
@@ -1222,21 +1324,6 @@ namespace thepos
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnScrollGroupUp_Click(object sender, EventArgs e)
-        {
-            if (this.flowLayoutPanelGoodsGroup.VerticalScroll.Value > 0)
-            {
-                this.flowLayoutPanelGoodsGroup.VerticalScroll.Value -= 64;
-                flowLayoutPanelGoodsGroup.PerformLayout();
-            }
-        }
-
-        private void btnScrollGroupDn_Click(object sender, EventArgs e)
-        {
-            this.flowLayoutPanelGoodsGroup.VerticalScroll.Value += 64;
-            flowLayoutPanelGoodsGroup.PerformLayout();
         }
 
         private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)

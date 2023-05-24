@@ -106,8 +106,6 @@ namespace thepos
             this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelOrderLvw = new System.Windows.Forms.Panel();
-            this.btnScrollGroupDn = new System.Windows.Forms.Button();
-            this.btnScrollGroupUp = new System.Windows.Forms.Button();
             this.btnPay5 = new System.Windows.Forms.Button();
             this.panelGoodsItem = new System.Windows.Forms.Panel();
             this.panelGoodsItemWhite2 = new System.Windows.Forms.Panel();
@@ -117,15 +115,9 @@ namespace thepos
             this.panelGoodsItemWhite = new System.Windows.Forms.Panel();
             this.panelGoodsGroup = new System.Windows.Forms.Panel();
             this.panelGoodsGroupWhite2 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanelGoodsGroup = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanelGoodsGroup = new System.Windows.Forms.TableLayoutPanel();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.panelGoodsGroupWhite = new System.Windows.Forms.Panel();
             this.tableLayoutPanelPayControl = new System.Windows.Forms.TableLayoutPanel();
             this.btnPay6 = new System.Windows.Forms.Button();
@@ -150,7 +142,7 @@ namespace thepos
             this.panelGoodsItemWhite.SuspendLayout();
             this.panelGoodsGroup.SuspendLayout();
             this.panelGoodsGroupWhite2.SuspendLayout();
-            this.flowLayoutPanelGoodsGroup.SuspendLayout();
+            this.tableLayoutPanelGoodsGroup.SuspendLayout();
             this.panelGoodsGroupWhite.SuspendLayout();
             this.tableLayoutPanelPayControl.SuspendLayout();
             this.SuspendLayout();
@@ -617,7 +609,7 @@ namespace thepos
             this.btnPay1.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay1.Name = "btnPay1";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay1, 2);
-            this.btnPay1.Size = new System.Drawing.Size(102, 70);
+            this.btnPay1.Size = new System.Drawing.Size(102, 74);
             this.btnPay1.TabIndex = 0;
             this.btnPay1.TabStop = false;
             this.btnPay1.Text = "1";
@@ -635,7 +627,7 @@ namespace thepos
             this.btnPay2.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay2.Name = "btnPay2";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay2, 2);
-            this.btnPay2.Size = new System.Drawing.Size(102, 70);
+            this.btnPay2.Size = new System.Drawing.Size(102, 74);
             this.btnPay2.TabIndex = 0;
             this.btnPay2.TabStop = false;
             this.btnPay2.Text = "2";
@@ -653,7 +645,7 @@ namespace thepos
             this.btnPayManager.Margin = new System.Windows.Forms.Padding(2);
             this.btnPayManager.Name = "btnPayManager";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPayManager, 4);
-            this.btnPayManager.Size = new System.Drawing.Size(102, 146);
+            this.btnPayManager.Size = new System.Drawing.Size(102, 152);
             this.btnPayManager.TabIndex = 0;
             this.btnPayManager.TabStop = false;
             this.btnPayManager.Text = "결제내역\r\n관리";
@@ -668,11 +660,11 @@ namespace thepos
             this.btnPay8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay8.ForeColor = System.Drawing.Color.White;
-            this.btnPay8.Location = new System.Drawing.Point(320, 76);
+            this.btnPay8.Location = new System.Drawing.Point(320, 80);
             this.btnPay8.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay8.Name = "btnPay8";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay8, 2);
-            this.btnPay8.Size = new System.Drawing.Size(102, 72);
+            this.btnPay8.Size = new System.Drawing.Size(102, 74);
             this.btnPay8.TabIndex = 0;
             this.btnPay8.TabStop = false;
             this.btnPay8.Text = "8";
@@ -751,9 +743,9 @@ namespace thepos
             this.lblTitle02.Location = new System.Drawing.Point(136, 23);
             this.lblTitle02.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle02.Name = "lblTitle02";
-            this.lblTitle02.Size = new System.Drawing.Size(37, 15);
+            this.lblTitle02.Size = new System.Drawing.Size(53, 15);
             this.lblTitle02.TabIndex = 31;
-            this.lblTitle02.Text = "포스 :";
+            this.lblTitle02.Text = "포스No :";
             this.lblTitle02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnClose
@@ -1139,36 +1131,6 @@ namespace thepos
             this.panelOrderLvw.Size = new System.Drawing.Size(474, 295);
             this.panelOrderLvw.TabIndex = 39;
             // 
-            // btnScrollGroupDn
-            // 
-            this.btnScrollGroupDn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnScrollGroupDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScrollGroupDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnScrollGroupDn.ForeColor = System.Drawing.Color.White;
-            this.btnScrollGroupDn.Location = new System.Drawing.Point(982, 127);
-            this.btnScrollGroupDn.Name = "btnScrollGroupDn";
-            this.btnScrollGroupDn.Size = new System.Drawing.Size(35, 59);
-            this.btnScrollGroupDn.TabIndex = 40;
-            this.btnScrollGroupDn.TabStop = false;
-            this.btnScrollGroupDn.Text = "▼";
-            this.btnScrollGroupDn.UseVisualStyleBackColor = false;
-            this.btnScrollGroupDn.Click += new System.EventHandler(this.btnScrollGroupDn_Click);
-            // 
-            // btnScrollGroupUp
-            // 
-            this.btnScrollGroupUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnScrollGroupUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScrollGroupUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnScrollGroupUp.ForeColor = System.Drawing.Color.White;
-            this.btnScrollGroupUp.Location = new System.Drawing.Point(982, 62);
-            this.btnScrollGroupUp.Name = "btnScrollGroupUp";
-            this.btnScrollGroupUp.Size = new System.Drawing.Size(35, 59);
-            this.btnScrollGroupUp.TabIndex = 42;
-            this.btnScrollGroupUp.TabStop = false;
-            this.btnScrollGroupUp.Text = "▲";
-            this.btnScrollGroupUp.UseVisualStyleBackColor = false;
-            this.btnScrollGroupUp.Click += new System.EventHandler(this.btnScrollGroupUp_Click);
-            // 
             // btnPay5
             // 
             this.btnPay5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
@@ -1177,11 +1139,11 @@ namespace thepos
             this.btnPay5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay5.ForeColor = System.Drawing.Color.White;
-            this.btnPay5.Location = new System.Drawing.Point(2, 76);
+            this.btnPay5.Location = new System.Drawing.Point(2, 80);
             this.btnPay5.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay5.Name = "btnPay5";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay5, 2);
-            this.btnPay5.Size = new System.Drawing.Size(102, 72);
+            this.btnPay5.Size = new System.Drawing.Size(102, 74);
             this.btnPay5.TabIndex = 0;
             this.btnPay5.TabStop = false;
             this.btnPay5.Text = "5";
@@ -1211,14 +1173,14 @@ namespace thepos
             this.tableLayoutPanelGoodsItem.AutoScroll = true;
             this.tableLayoutPanelGoodsItem.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanelGoodsItem.ColumnCount = 8;
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGoodsItem.Controls.Add(this.button3, 2, 0);
             this.tableLayoutPanelGoodsItem.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanelGoodsItem.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
@@ -1244,11 +1206,11 @@ namespace thepos
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(130, 2);
+            this.button3.Location = new System.Drawing.Point(132, 2);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.tableLayoutPanelGoodsItem.SetRowSpan(this.button3, 2);
-            this.button3.Size = new System.Drawing.Size(124, 94);
+            this.button3.Size = new System.Drawing.Size(126, 94);
             this.button3.TabIndex = 1;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = false;
@@ -1264,7 +1226,7 @@ namespace thepos
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.tableLayoutPanelGoodsItem.SetRowSpan(this.button2, 2);
-            this.button2.Size = new System.Drawing.Size(124, 94);
+            this.button2.Size = new System.Drawing.Size(126, 94);
             this.button2.TabIndex = 0;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = false;
@@ -1285,42 +1247,47 @@ namespace thepos
             this.panelGoodsGroup.Location = new System.Drawing.Point(1, 1);
             this.panelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
             this.panelGoodsGroup.Name = "panelGoodsGroup";
-            this.panelGoodsGroup.Size = new System.Drawing.Size(488, 136);
+            this.panelGoodsGroup.Size = new System.Drawing.Size(527, 136);
             this.panelGoodsGroup.TabIndex = 32;
             // 
             // panelGoodsGroupWhite2
             // 
             this.panelGoodsGroupWhite2.BackColor = System.Drawing.Color.White;
-            this.panelGoodsGroupWhite2.Controls.Add(this.flowLayoutPanelGoodsGroup);
+            this.panelGoodsGroupWhite2.Controls.Add(this.tableLayoutPanelGoodsGroup);
             this.panelGoodsGroupWhite2.Location = new System.Drawing.Point(1, 1);
             this.panelGoodsGroupWhite2.Name = "panelGoodsGroupWhite2";
-            this.panelGoodsGroupWhite2.Size = new System.Drawing.Size(486, 134);
+            this.panelGoodsGroupWhite2.Size = new System.Drawing.Size(526, 134);
             this.panelGoodsGroupWhite2.TabIndex = 0;
             // 
-            // flowLayoutPanelGoodsGroup
+            // tableLayoutPanelGoodsGroup
             // 
-            this.flowLayoutPanelGoodsGroup.AutoScroll = true;
-            this.flowLayoutPanelGoodsGroup.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button19);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button20);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button1);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button6);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button7);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button9);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button10);
-            this.flowLayoutPanelGoodsGroup.Controls.Add(this.button8);
-            this.flowLayoutPanelGoodsGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.flowLayoutPanelGoodsGroup.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.flowLayoutPanelGoodsGroup.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanelGoodsGroup.Name = "flowLayoutPanelGoodsGroup";
-            this.flowLayoutPanelGoodsGroup.Size = new System.Drawing.Size(528, 128);
-            this.flowLayoutPanelGoodsGroup.TabIndex = 21;
+            this.tableLayoutPanelGoodsGroup.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanelGoodsGroup.ColumnCount = 8;
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGoodsGroup.Controls.Add(this.button19, 0, 0);
+            this.tableLayoutPanelGoodsGroup.Controls.Add(this.button20, 2, 0);
+            this.tableLayoutPanelGoodsGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelGoodsGroup.Name = "tableLayoutPanelGoodsGroup";
+            this.tableLayoutPanelGoodsGroup.RowCount = 2;
+            this.tableLayoutPanelGoodsGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelGoodsGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelGoodsGroup.Size = new System.Drawing.Size(520, 129);
+            this.tableLayoutPanelGoodsGroup.TabIndex = 0;
             // 
             // button19
             // 
             this.button19.BackColor = System.Drawing.SystemColors.Highlight;
             this.button19.CausesValidation = false;
+            this.tableLayoutPanelGoodsGroup.SetColumnSpan(this.button19, 2);
             this.button19.FlatAppearance.BorderSize = 0;
             this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1328,7 +1295,8 @@ namespace thepos
             this.button19.Location = new System.Drawing.Point(2, 2);
             this.button19.Margin = new System.Windows.Forms.Padding(2);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(92, 60);
+            this.tableLayoutPanelGoodsGroup.SetRowSpan(this.button19, 2);
+            this.button19.Size = new System.Drawing.Size(126, 125);
             this.button19.TabIndex = 0;
             this.button19.Text = "일반";
             this.button19.UseVisualStyleBackColor = false;
@@ -1337,113 +1305,19 @@ namespace thepos
             // 
             this.button20.BackColor = System.Drawing.Color.White;
             this.button20.CausesValidation = false;
+            this.tableLayoutPanelGoodsGroup.SetColumnSpan(this.button20, 2);
             this.button20.FlatAppearance.BorderSize = 2;
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button20.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button20.Location = new System.Drawing.Point(98, 2);
+            this.button20.Location = new System.Drawing.Point(132, 2);
             this.button20.Margin = new System.Windows.Forms.Padding(2);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(92, 60);
+            this.tableLayoutPanelGoodsGroup.SetRowSpan(this.button20, 2);
+            this.button20.Size = new System.Drawing.Size(126, 125);
             this.button20.TabIndex = 0;
             this.button20.Text = "일반";
             this.button20.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.CausesValidation = false;
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button1.Location = new System.Drawing.Point(194, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 60);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "일반";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.White;
-            this.button6.CausesValidation = false;
-            this.button6.FlatAppearance.BorderSize = 2;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button6.Location = new System.Drawing.Point(290, 2);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(92, 60);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "일반";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.White;
-            this.button7.CausesValidation = false;
-            this.button7.FlatAppearance.BorderSize = 2;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button7.Location = new System.Drawing.Point(386, 2);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(92, 60);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "일반";
-            this.button7.UseVisualStyleBackColor = false;
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.White;
-            this.button9.CausesValidation = false;
-            this.button9.FlatAppearance.BorderSize = 2;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button9.Location = new System.Drawing.Point(2, 66);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(92, 60);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "일반";
-            this.button9.UseVisualStyleBackColor = false;
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.White;
-            this.button10.CausesValidation = false;
-            this.button10.FlatAppearance.BorderSize = 2;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button10.Location = new System.Drawing.Point(98, 66);
-            this.button10.Margin = new System.Windows.Forms.Padding(2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(92, 60);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "일반";
-            this.button10.UseVisualStyleBackColor = false;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.White;
-            this.button8.CausesValidation = false;
-            this.button8.FlatAppearance.BorderSize = 2;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button8.Location = new System.Drawing.Point(194, 66);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 60);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "일반";
-            this.button8.UseVisualStyleBackColor = false;
             // 
             // panelGoodsGroupWhite
             // 
@@ -1451,7 +1325,7 @@ namespace thepos
             this.panelGoodsGroupWhite.Controls.Add(this.panelGoodsGroup);
             this.panelGoodsGroupWhite.Location = new System.Drawing.Point(488, 56);
             this.panelGoodsGroupWhite.Name = "panelGoodsGroupWhite";
-            this.panelGoodsGroupWhite.Size = new System.Drawing.Size(490, 138);
+            this.panelGoodsGroupWhite.Size = new System.Drawing.Size(529, 138);
             this.panelGoodsGroupWhite.TabIndex = 46;
             // 
             // tableLayoutPanelPayControl
@@ -1477,7 +1351,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPayManager, 8, 0);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPay5, 7, 1);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPay8, 6, 2);
-            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 611);
+            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 605);
             this.tableLayoutPanelPayControl.Name = "tableLayoutPanelPayControl";
             this.tableLayoutPanelPayControl.RowCount = 4;
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -1487,7 +1361,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelPayControl.Size = new System.Drawing.Size(530, 150);
+            this.tableLayoutPanelPayControl.Size = new System.Drawing.Size(530, 156);
             this.tableLayoutPanelPayControl.TabIndex = 47;
             // 
             // btnPay6
@@ -1498,11 +1372,11 @@ namespace thepos
             this.btnPay6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay6.ForeColor = System.Drawing.Color.White;
-            this.btnPay6.Location = new System.Drawing.Point(108, 76);
+            this.btnPay6.Location = new System.Drawing.Point(108, 80);
             this.btnPay6.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay6.Name = "btnPay6";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay6, 2);
-            this.btnPay6.Size = new System.Drawing.Size(102, 72);
+            this.btnPay6.Size = new System.Drawing.Size(102, 74);
             this.btnPay6.TabIndex = 3;
             this.btnPay6.TabStop = false;
             this.btnPay6.Text = "6";
@@ -1516,11 +1390,11 @@ namespace thepos
             this.btnPay7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay7.ForeColor = System.Drawing.Color.White;
-            this.btnPay7.Location = new System.Drawing.Point(214, 76);
+            this.btnPay7.Location = new System.Drawing.Point(214, 80);
             this.btnPay7.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay7.Name = "btnPay7";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay7, 2);
-            this.btnPay7.Size = new System.Drawing.Size(102, 72);
+            this.btnPay7.Size = new System.Drawing.Size(102, 74);
             this.btnPay7.TabIndex = 2;
             this.btnPay7.TabStop = false;
             this.btnPay7.Text = "7";
@@ -1538,7 +1412,7 @@ namespace thepos
             this.btnPay4.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay4.Name = "btnPay4";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay4, 2);
-            this.btnPay4.Size = new System.Drawing.Size(102, 70);
+            this.btnPay4.Size = new System.Drawing.Size(102, 74);
             this.btnPay4.TabIndex = 1;
             this.btnPay4.TabStop = false;
             this.btnPay4.Text = "4";
@@ -1556,7 +1430,7 @@ namespace thepos
             this.btnPay3.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay3.Name = "btnPay3";
             this.tableLayoutPanelPayControl.SetRowSpan(this.btnPay3, 2);
-            this.btnPay3.Size = new System.Drawing.Size(102, 70);
+            this.btnPay3.Size = new System.Drawing.Size(102, 74);
             this.btnPay3.TabIndex = 0;
             this.btnPay3.TabStop = false;
             this.btnPay3.Text = "3";
@@ -1576,8 +1450,6 @@ namespace thepos
             this.Controls.Add(this.tableLayoutPanelPayControl);
             this.Controls.Add(this.panelGoodsGroupWhite);
             this.Controls.Add(this.panelGoodsItemWhite);
-            this.Controls.Add(this.btnScrollGroupDn);
-            this.Controls.Add(this.btnScrollGroupUp);
             this.Controls.Add(this.panelOrderLvw);
             this.Controls.Add(this.panelDisplayAlarmWhite);
             this.Controls.Add(this.panelOrderSumWhile);
@@ -1611,7 +1483,7 @@ namespace thepos
             this.panelGoodsItemWhite.ResumeLayout(false);
             this.panelGoodsGroup.ResumeLayout(false);
             this.panelGoodsGroupWhite2.ResumeLayout(false);
-            this.flowLayoutPanelGoodsGroup.ResumeLayout(false);
+            this.tableLayoutPanelGoodsGroup.ResumeLayout(false);
             this.panelGoodsGroupWhite.ResumeLayout(false);
             this.tableLayoutPanelPayControl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1688,25 +1560,16 @@ namespace thepos
         private System.Windows.Forms.Label lblDisplayAlarm;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelOrderLvw;
-        private System.Windows.Forms.Button btnScrollGroupDn;
-        private System.Windows.Forms.Button btnScrollGroupUp;
         private System.Windows.Forms.Button btnPay5;
         private System.Windows.Forms.Panel panelGoodsItem;
         private System.Windows.Forms.Panel panelGoodsItemWhite;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panelGoodsGroup;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGoodsGroup;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Panel panelGoodsGroupWhite;
         private System.Windows.Forms.Panel panelGoodsGroupWhite2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panelGoodsItemWhite2;
         private System.Windows.Forms.Button btnOrderAmtChange;
         private System.Windows.Forms.Button button3;
@@ -1721,6 +1584,7 @@ namespace thepos
         private System.Windows.Forms.Label lblPosName;
         private System.Windows.Forms.Label lblWorker;
         private System.Windows.Forms.Label lblBusinessDate;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsGroup;
     }
 }
 

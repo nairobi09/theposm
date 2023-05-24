@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static thepos.frmSale;
 
 namespace thepos
 {
@@ -20,10 +21,42 @@ namespace thepos
         {
             InitializeComponent();
 
+            initialize_font();
+            initialize_the();
+        }
 
+        private void initialize_font()
+        {
+            lblTitle.Font = font12;
+            dtBusiness.Font = font10;
+            btnView.Font = font10;
+            lvwPayment.Font = font10;
+
+
+            btnClose.Font = font20;
+
+        }
+        private void initialize_the()
+        {
+            dtBusiness.Value = DateTime.Now;
 
         }
 
+        private void btnView_Click(object sender, EventArgs e)
+        {
+
+            String dt = dtBusiness.Value.ToString("yyyyMMdd");
+
+
+
+
+
+
+
+
+
+
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -33,6 +66,8 @@ namespace thepos
         {
             frmSale.ConsoleEnable();
         }
+
+
     }
 }
 
