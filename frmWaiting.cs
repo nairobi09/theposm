@@ -22,7 +22,7 @@ namespace thepos
         {
             InitializeComponent();
 
-            //initialize_font();
+            initialize_font();
 
             
             ImageList imgList = new ImageList();
@@ -37,7 +37,7 @@ namespace thepos
             {
                 ListViewItem item = new ListViewItem();
                 item.Text = listWaiting[i].waiting_no.ToString();
-                item.Tag = listWaiting[i].order_no.ToString();
+                item.Tag = listWaiting[i].the_no.ToString();
                 item.SubItems.Add(listWaiting[i].cnt.ToString("N0"));
                 item.SubItems.Add(listWaiting[i].dt.ToString("MM.dd HH:mm:ss"));
                 item.SubItems.Add(listWaiting[i].amount.ToString("N0"));
@@ -63,24 +63,11 @@ namespace thepos
 
         void initialize_font()
         {
-            Font fontMedium_10;
-            Font fontBold_12;
-
-            PrivateFontCollection fontCollectionMedium = new PrivateFontCollection();
-            PrivateFontCollection fontCollectionBold = new PrivateFontCollection();
-
-            fontCollectionMedium.AddFontFile("Font\\Pretendard-Medium.ttf");
-            fontCollectionBold.AddFontFile("Font\\Pretendard-Bold.ttf");
-
-            fontMedium_10 = new Font(fontCollectionMedium.Families[0], 10f);
-            fontBold_12 = new Font(fontCollectionBold.Families[0], 12f);
-
-
-            lblTitle.Font = fontBold_12;
-            lvwWaiting.Font = fontMedium_10;
-            btnDelete.Font = fontMedium_10;
-            btnOK.Font = fontMedium_10;
-            btnClose.Font = fontMedium_10;
+            lblTitle.Font = font12;
+            lvwWaiting.Font = font10;
+            btnDelete.Font = font10;
+            btnOK.Font = font10;
+            btnClose.Font = font12;
         }
 
 
@@ -89,7 +76,7 @@ namespace thepos
             if (lvwWaiting.SelectedItems.Count < 1) return;
 
             
-            mRunningOrderNo = lvwWaiting.SelectedItems[0].Tag.ToString();
+            mRunningTheNo = lvwWaiting.SelectedItems[0].Tag.ToString();
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -104,7 +91,7 @@ namespace thepos
 
                 for (int i = listWaiting.Count - 1; i >= 0; i--)
                 {
-                    if (listWaiting[i].order_no == order_no)
+                    if (listWaiting[i].the_no == order_no)
                     {
                         listWaiting.RemoveAt(i);
                     }
@@ -112,7 +99,7 @@ namespace thepos
 
                 for (int i = listWaitingItem.Count - 1; i >= 0; i--)
                 {
-                    if (listWaitingItem[i].order_no == order_no)
+                    if (listWaitingItem[i].the_no == order_no)
                     {
                         listWaitingItem.RemoveAt(i);
                     }
@@ -133,5 +120,6 @@ namespace thepos
             e.Cancel = true;
             e.NewWidth = lvwWaiting.Columns[e.ColumnIndex].Width;
         }
+
     }
 }

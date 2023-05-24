@@ -32,14 +32,11 @@ namespace thepos
         public static Font font10;
         public static Font font14;
 
-        public static Font font8bold;
-        public static Font font10bold;  // 일반버튼
-        public static Font font12bold;
-        public static Font font14bold;
-        public static Font font20bold;
+        public static Font font8;
+        public static Font font12;
+        public static Font font20;
 
         public static PrivateFontCollection fontCollection = new PrivateFontCollection();
-
 
         public static String mCustomerId = "";
         public static String mPosNo = "";
@@ -49,7 +46,7 @@ namespace thepos
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
-        public static String mRunningOrderNo = "";
+        public static String mRunningTheNo = "";
 
         int waiting_count = 0;
 
@@ -70,10 +67,22 @@ namespace thepos
         public static Timer mTimerAlarm;
 
 
+        public struct Order
+        {
+            public String the_no;       // 영수중번호, Unique, reference_no, 
+            public String custimer_id;  //
+            public String pos_no;       //
+            public String business_date;// 영업일자
+            public DateTime order_dt;   // 주문일시
+            public int net_amount;      // 금액
+        }
+        Order[] mOrder;
+
         public struct OrderItem
         {
-            public String code;     // 상품code(6) or 전체할인코드고정("DC")
-            public String name;     // 상품name or 전체할인명("할인")
+            public String the_no;       // 
+            public String code;         // 상품code(6) or 전체할인코드고정("EDC")
+            public String name;         // 상품name or 전체할인명("할인")
             public int cnt;
             public int amt;
             public int dc_amount;       // 실할인금액
@@ -81,6 +90,33 @@ namespace thepos
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
         }
+        OrderItem[] mOrderItem;
+
+        public struct PaymentCard
+        {
+            public String the_no;       // 
+            public String pay_type;     // 결제구분 : 신용카드(C0), 
+            public int amount;          // 결제금액
+            public String install;      // 할부개월 00 03
+            public String auth_no;      // 승인번호
+            public String tran_date;    // 결제일시(YYYYMMDDhhmmss)
+            public String card_no;      // 카드번호
+            public String card_name;    // 카드종류
+            public String isu_code;     // 발급사코드
+            public String acq_code;     // 매입사코드
+            public String merchant_no;  // 가맹점번호
+            public String tid;          // tran_serial -> 취소시 tid입력
+        }
+        PaymentCard[] mPaymentCard;
+
+        public struct PaymentCash
+        {
+            public String the_no;       // 
+            public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1)
+            public int amount;          // 결제금액
+
+        }
+        PaymentCard[] mPaymentCash;
 
         struct GoodsGroup
         {
@@ -102,7 +138,7 @@ namespace thepos
         }
         GoodsItem[] mGoodsItem;
 
-        struct PayItem
+        struct PayConsol
         {
             public string code; // CASH, CARD, COMPLEX, CERT, EASY
                                 // 현금  카드   복합결제  인증   간편결제
@@ -111,13 +147,13 @@ namespace thepos
             public int columnspan;
             public int rowspan;
         }
-        PayItem[] mPayItem;
+        PayConsol[] mPayConsol;
 
 
         public struct Waiting
         {
-            public int waiting_no;
-            public String order_no;  // 대기번호 = order_no(20) : 00000yymmddHHMMSS000 
+            public int waiting_no;  // 대기번호
+            public String the_no;  
             public int cnt;         // 항목수
             public DateTime dt;
             public int amount;      //합계
@@ -126,12 +162,7 @@ namespace thepos
         }
         public static List<Waiting> listWaiting = new List<Waiting>();
 
-        public struct WaitingItem
-        {
-            public String order_no;
-            public OrderItem order_item;
-        }
-        public static List<WaitingItem> listWaitingItem = new List<WaitingItem>();
+        public static List<OrderItem> listWaitingItem = new List<OrderItem>();
 
 
         void get_goodsgroup()
@@ -204,7 +235,7 @@ namespace thepos
             }
         }
 
-        void get_payItem()
+        void get_payConsol()
         {
             String[,] item = new String[,]
             {
@@ -217,15 +248,15 @@ namespace thepos
             };
 
             int len = item.Length / 5;
-            mPayItem = new PayItem[len];
+            mPayConsol = new PayConsol[len];
 
             for (int i = 0; i < len; i++)
             {
-                mPayItem[i].code = item[i, 0];
-                mPayItem[i].column = int.Parse(item[i, 1]);
-                mPayItem[i].row = int.Parse(item[i, 2]);
-                mPayItem[i].columnspan = int.Parse(item[i, 3]);
-                mPayItem[i].rowspan = int.Parse(item[i, 4]);
+                mPayConsol[i].code = item[i, 0];
+                mPayConsol[i].column = int.Parse(item[i, 1]);
+                mPayConsol[i].row = int.Parse(item[i, 2]);
+                mPayConsol[i].columnspan = int.Parse(item[i, 3]);
+                mPayConsol[i].rowspan = int.Parse(item[i, 4]);
             }
         }
 
@@ -238,13 +269,11 @@ namespace thepos
             //Cursor.Hide();
 
             initialize_font();
+
             initialize_the();
 
-            // 사업장코드, POS_NO
-            mCustomerId = "CUST";
-            mPosNo = "01";
 
-            get_payItem();
+            get_payConsol();
             display_payconsol();
 
             get_goodsgroup();
@@ -264,11 +293,9 @@ namespace thepos
             font10 = new Font(fontCollection.Families[0], 10f);
             font14 = new Font(fontCollection.Families[0], 14f);
 
-            font8bold = new Font(fontCollection.Families[0], 8f, FontStyle.Bold);
-            font10bold = new Font(fontCollection.Families[0], 10f, FontStyle.Bold);
-            font12bold = new Font(fontCollection.Families[0], 12f, FontStyle.Bold);
-            font14bold = new Font(fontCollection.Families[0], 14f, FontStyle.Bold);
-            font20bold = new Font(fontCollection.Families[0], 20f, FontStyle.Bold);
+            font8 = new Font(fontCollection.Families[0], 8f);
+            font12 = new Font(fontCollection.Families[0], 12f);
+            font20 = new Font(fontCollection.Families[0], 20f);
 
 
             lblTitle01.Font = font9;
@@ -283,9 +310,9 @@ namespace thepos
 
 
             lblDate.Font = font10;
-            lblTime.Font = font12bold;
+            lblTime.Font = font12;
 
-            lvwOrderItem.Font = font10bold;
+            lvwOrderItem.Font = font10;
 
             btnOrderCancelAll.Font = font10;
             btnOrderCancelSelect.Font = font10;
@@ -301,34 +328,34 @@ namespace thepos
             lblOrderAmountReceiveTitle.Font = font10;
             lblOrderAmountRestTitle.Font = font10;
 
-            lblOrderAmount.Font = font14bold;
-            lblOrderAmountDC.Font = font14bold;
-            lblOrderAmountNet.Font = font14bold;
-            lblOrderAmountReceive.Font = font14bold;
-            lblOrderAmountRest.Font = font14bold;
+            lblOrderAmount.Font = font14;
+            lblOrderAmountDC.Font = font14;
+            lblOrderAmountNet.Font = font14;
+            lblOrderAmountReceive.Font = font14;
+            lblOrderAmountRest.Font = font14;
 
-            lblKeyDisplay.Font = font14bold;
-            btnKey1.Font = font14bold;
-            btnKey2.Font = font14bold;
-            btnKey3.Font = font14bold;
-            btnKey4.Font = font14bold;
-            btnKey5.Font = font14bold;
-            btnKey6.Font = font14bold;
-            btnKey7.Font = font14bold;
-            btnKey8.Font = font14bold;
-            btnKey9.Font = font14bold;
-            btnKey0.Font = font14bold;
-            btnKey00.Font = font14bold;
-            btnKeyBS.Font = font14bold;
-            btnKeyClear.Font = font14bold;
+            lblKeyDisplay.Font = font14;
+            btnKey1.Font = font14;
+            btnKey2.Font = font14;
+            btnKey3.Font = font14;
+            btnKey4.Font = font14;
+            btnKey5.Font = font14;
+            btnKey6.Font = font14;
+            btnKey7.Font = font14;
+            btnKey8.Font = font14;
+            btnKey9.Font = font14;
+            btnKey0.Font = font14;
+            btnKey00.Font = font14;
+            btnKeyBS.Font = font14;
+            btnKeyClear.Font = font14;
 
-            btnOrderAmountDC.Font = font10bold;
-            btnOrderWaiting.Font = font10bold;
+            btnOrderAmountDC.Font = font10;
+            btnOrderWaiting.Font = font10;
 
-            btnTicketing.Font = font10bold;
-            btnCharging.Font = font10bold;
-            btnSettlement.Font = font10bold;
-            btnLocker.Font = font10bold;
+            btnTicketing.Font = font10;
+            btnCharging.Font = font10;
+            btnSettlement.Font = font10;
+            btnLocker.Font = font10;
 
         }
         private void initialize_the()
@@ -339,9 +366,15 @@ namespace thepos
 
             // 최초로드?
             //
-            //?
+            // 영업일자
+
+
             mBussinessDate = DateTime.Now.ToString("yyyyMMdd");
+            mCustomerId = "CUST";
             mPosNo = "01";
+
+
+
 
 
             lblBusinessDate.Text = mBussinessDate.Substring(0, 4) + "-" + mBussinessDate.Substring(4, 2) + "-" + mBussinessDate.Substring(6, 2);
@@ -400,7 +433,7 @@ namespace thepos
                 btnGoodsGroup[i].Tag = mGoodsGroup[i].code;
                 btnGoodsGroup[i].Height = 60;
                 btnGoodsGroup[i].Width = 92;
-                btnGoodsGroup[i].Font = font12bold;
+                btnGoodsGroup[i].Font = font12;
 
                 btnGoodsGroup[i].FlatStyle = FlatStyle.Flat;
                 btnGoodsGroup[i].ForeColor = SystemColors.Highlight;
@@ -424,10 +457,10 @@ namespace thepos
             this.tableLayoutPanelPayControl.VerticalScroll.Value = 0;
             tableLayoutPanelPayControl.PerformLayout();
 
-            for (int i = 0; i < mPayItem.Length; i++)
+            for (int i = 0; i < mPayConsol.Length; i++)
             {
                 btnPayItem = new System.Windows.Forms.Button();
-                btnPayItem.Tag = mPayItem[i].code;
+                btnPayItem.Tag = mPayConsol[i].code;
                 btnPayItem.FlatStyle = FlatStyle.Flat;
                 btnPayItem.TabStop = false;
                 btnPayItem.Margin = new Padding(2, 2, 2, 2);
@@ -436,23 +469,23 @@ namespace thepos
                 btnPayItem.ForeColor = Color.White;
                 btnPayItem.BackColor = Color.FromArgb(68, 87, 96);
 
-                btnPayItem.Font = font12bold;
+                btnPayItem.Font = font12;
 
-                if (mPayItem[i].code == "CASH") btnPayItem.Text = "현금";
-                else if (mPayItem[i].code == "CARD") btnPayItem.Text = "카드";
-                else if (mPayItem[i].code == "COMPLEX") btnPayItem.Text = "복합\r결제";
-                else if (mPayItem[i].code == "CERT") btnPayItem.Text = "인증";
-                else if (mPayItem[i].code == "EASY") btnPayItem.Text = "간편\r결제";
-                else if (mPayItem[i].code == "MANAGER") btnPayItem.Text = "결제내역\r관리";
+                if (mPayConsol[i].code == "CASH") btnPayItem.Text = "현금";
+                else if (mPayConsol[i].code == "CARD") btnPayItem.Text = "카드";
+                else if (mPayConsol[i].code == "COMPLEX") btnPayItem.Text = "복합\r결제";
+                else if (mPayConsol[i].code == "CERT") btnPayItem.Text = "인증";
+                else if (mPayConsol[i].code == "EASY") btnPayItem.Text = "간편\r결제";
+                else if (mPayConsol[i].code == "MANAGER") btnPayItem.Text = "결제내역\r관리";
                 else btnPayItem.Text = "";
 
-                string code = mPayItem[i].code;
-                btnPayItem.Click += (sender, args) => ClickedPayItem(code);
+                string code = mPayConsol[i].code;
+                btnPayItem.Click += (sender, args) => ClickedPayConsol(code);
 
 
-                tableLayoutPanelPayControl.Controls.Add(btnPayItem, mPayItem[i].column, mPayItem[i].row);
-                tableLayoutPanelPayControl.SetColumnSpan(btnPayItem, mPayItem[i].columnspan);
-                tableLayoutPanelPayControl.SetRowSpan(btnPayItem, mPayItem[i].rowspan);
+                tableLayoutPanelPayControl.Controls.Add(btnPayItem, mPayConsol[i].column, mPayConsol[i].row);
+                tableLayoutPanelPayControl.SetColumnSpan(btnPayItem, mPayConsol[i].columnspan);
+                tableLayoutPanelPayControl.SetRowSpan(btnPayItem, mPayConsol[i].rowspan);
             }
         }
 
@@ -493,15 +526,15 @@ namespace thepos
                     
                     if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
-                        btnGoodsItem.Font = font8bold;
+                        btnGoodsItem.Font = font8;
                     }
                     else if (mGoodsItem[i].columnspan == 2 | mGoodsItem[i].rowspan == 2)
                     {
-                        btnGoodsItem.Font = font14bold;
+                        btnGoodsItem.Font = font14;
                     }
                     else
                     {
-                        btnGoodsItem.Font = font20bold;
+                        btnGoodsItem.Font = font20;
                     }
                     
 
@@ -532,7 +565,7 @@ namespace thepos
                 orderItem.cnt = 1;
                 orderItem.dc_amount = 0;
                 orderItem.dcr_type = "";
-                //orderItem.dcr_des = "";
+                orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
 
                 item.Tag = orderItem;
@@ -557,7 +590,7 @@ namespace thepos
             ReCalculateAmount();
         }
 
-        private void ClickedPayItem(string code)
+        private void ClickedPayConsol(string code)
         {
             ConsoleDisable();
 
@@ -630,13 +663,13 @@ namespace thepos
                     }
                     else
                     {
-                        SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
+                        SetDisplayAlarm("W", "단가 입력값 확인요망.");
                         return;
                     }
                 }
                 else
                 {
-                    SetDisplayAlarm("E", "수량 입력값 오류.");
+                    SetDisplayAlarm("E", "단가 입력값 오류.");
                     return;
                 }
             }
@@ -732,12 +765,9 @@ namespace thepos
             {
                 Waiting waiting = new Waiting();
 
-                if (mRunningOrderNo == "")
-                {
-                    mRunningOrderNo = create_the_no();
-                }
+                String the_no = create_the_no();  // 생성시점 : 1.대기로 들오갈때  2.주문들어갈때(이전 No 무시되고 재생성)
 
-                waiting.order_no = mRunningOrderNo;
+                waiting.the_no = the_no;
                 waiting.waiting_no = ++waiting_count;
 
                 waiting.cnt = 0;
@@ -749,14 +779,12 @@ namespace thepos
                 for (int i = 0; i < lvwOrderItem.Items.Count; i++)
                 {
                     OrderItem orderItem = (OrderItem)lvwOrderItem.Items[i].Tag;
+                    orderItem.the_no = the_no;
 
                     waiting.cnt++;
                     waiting.amount += (orderItem.cnt * orderItem.amt);
 
-                    WaitingItem waitingItem = new WaitingItem();
-                    waitingItem.order_no = waiting.order_no;
-                    waitingItem.order_item = orderItem;
-                    listWaitingItem.Add(waitingItem);
+                    listWaitingItem.Add(orderItem);
                 }
 
                 listWaiting.Add(waiting);
@@ -764,7 +792,7 @@ namespace thepos
                 lvwOrderItem.Items.Clear();
                 btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
 
-                mRunningOrderNo = "";
+                mRunningTheNo = "";
 
 
                 lvwOrderItem.Items.Clear();
@@ -788,16 +816,16 @@ namespace thepos
                         int lv_no = 0;
                         for (int i = 0; i < listWaitingItem.Count; i++)
                         {
-                            if (listWaitingItem[i].order_no == mRunningOrderNo)
+                            if (listWaitingItem[i].the_no == mRunningTheNo)
                             {
                                 lv_no++;
 
                                 ListViewItem lvItem = new ListViewItem();
 
-                                lvItem.Tag = listWaitingItem[i].order_item;
+                                lvItem.Tag = listWaitingItem[i];
 
                                 OrderItem orderItem = new OrderItem();
-                                orderItem = listWaitingItem[i].order_item;
+                                orderItem = listWaitingItem[i];
 
                                 lvItem.Text = (lv_no).ToString();
                                 lvItem.SubItems.Add(orderItem.name);                            // 1: name 상품명
@@ -819,7 +847,7 @@ namespace thepos
 
                         for (int i = listWaitingItem.Count - 1; i >= 0; i--)
                         {
-                            if (listWaitingItem[i].order_no == mRunningOrderNo)
+                            if (listWaitingItem[i].the_no == mRunningTheNo)
                             {
                                 listWaitingItem.RemoveAt(i);
                             }
@@ -827,7 +855,7 @@ namespace thepos
 
                         for (int i = 0; i < listWaiting.Count; i++)
                         {
-                            if (listWaiting[i].order_no == mRunningOrderNo)
+                            if (listWaiting[i].the_no == mRunningTheNo)
                             {
                                 listWaiting.RemoveAt(i);
                             }
@@ -1246,7 +1274,7 @@ namespace thepos
         public String create_the_no()
         {
             Random rand = new Random();
-            return mBussinessDate + mPosNo + (++mSerialNo).ToString("0000") + rand.Next(100, 999);
+            return mCustomerId + mBussinessDate + mPosNo + (++mSerialNo).ToString("0000") + rand.Next(100, 999);
         }
 
 

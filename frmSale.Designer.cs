@@ -73,8 +73,12 @@ namespace thepos
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitle02 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lblPosNo = new System.Windows.Forms.Label();
+            this.lblPosName = new System.Windows.Forms.Label();
             this.lblTitle01 = new System.Windows.Forms.Label();
             this.lblTitle04 = new System.Windows.Forms.Label();
+            this.lblWorker = new System.Windows.Forms.Label();
+            this.lblBusinessDate = new System.Windows.Forms.Label();
             this.lblTitle03 = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.panelOrderSumWhile = new System.Windows.Forms.Panel();
@@ -129,10 +133,6 @@ namespace thepos
             this.btnPay4 = new System.Windows.Forms.Button();
             this.btnPay3 = new System.Windows.Forms.Button();
             this.timerAlarmDisplay = new System.Windows.Forms.Timer(this.components);
-            this.lblPosName = new System.Windows.Forms.Label();
-            this.lblBusinessDate = new System.Windows.Forms.Label();
-            this.lblWorker = new System.Windows.Forms.Label();
-            this.lblPosNo = new System.Windows.Forms.Label();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -751,9 +751,9 @@ namespace thepos
             this.lblTitle02.Location = new System.Drawing.Point(136, 23);
             this.lblTitle02.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle02.Name = "lblTitle02";
-            this.lblTitle02.Size = new System.Drawing.Size(61, 15);
+            this.lblTitle02.Size = new System.Drawing.Size(37, 15);
             this.lblTitle02.TabIndex = 31;
-            this.lblTitle02.Text = "포스번호 :";
+            this.lblTitle02.Text = "포스 :";
             this.lblTitle02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnClose
@@ -770,6 +770,34 @@ namespace thepos
             this.btnClose.Text = "×";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lblPosNo
+            // 
+            this.lblPosNo.AutoSize = true;
+            this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
+            this.lblPosNo.Location = new System.Drawing.Point(193, 23);
+            this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosNo.Name = "lblPosNo";
+            this.lblPosNo.Size = new System.Drawing.Size(21, 15);
+            this.lblPosNo.TabIndex = 31;
+            this.lblPosNo.Text = "01";
+            this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPosName
+            // 
+            this.lblPosName.AutoSize = true;
+            this.lblPosName.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosName.ForeColor = System.Drawing.Color.Gold;
+            this.lblPosName.Location = new System.Drawing.Point(193, 5);
+            this.lblPosName.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosName.Name = "lblPosName";
+            this.lblPosName.Size = new System.Drawing.Size(79, 15);
+            this.lblPosName.TabIndex = 31;
+            this.lblPosName.Text = "미리내곰상주";
+            this.lblPosName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitle01
             // 
@@ -798,6 +826,34 @@ namespace thepos
             this.lblTitle04.TabIndex = 31;
             this.lblTitle04.Text = "담당자 :";
             this.lblTitle04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblWorker
+            // 
+            this.lblWorker.AutoSize = true;
+            this.lblWorker.BackColor = System.Drawing.Color.Transparent;
+            this.lblWorker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblWorker.ForeColor = System.Drawing.Color.Gold;
+            this.lblWorker.Location = new System.Drawing.Point(473, 23);
+            this.lblWorker.Margin = new System.Windows.Forms.Padding(0);
+            this.lblWorker.Name = "lblWorker";
+            this.lblWorker.Size = new System.Drawing.Size(43, 15);
+            this.lblWorker.TabIndex = 31;
+            this.lblWorker.Text = "김토스";
+            this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblBusinessDate
+            // 
+            this.lblBusinessDate.AutoSize = true;
+            this.lblBusinessDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBusinessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblBusinessDate.ForeColor = System.Drawing.Color.Gold;
+            this.lblBusinessDate.Location = new System.Drawing.Point(473, 5);
+            this.lblBusinessDate.Margin = new System.Windows.Forms.Padding(0);
+            this.lblBusinessDate.Name = "lblBusinessDate";
+            this.lblBusinessDate.Size = new System.Drawing.Size(69, 15);
+            this.lblBusinessDate.TabIndex = 31;
+            this.lblBusinessDate.Text = "2023.05.22";
+            this.lblBusinessDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitle03
             // 
@@ -1510,62 +1566,6 @@ namespace thepos
             // 
             this.timerAlarmDisplay.Interval = 5000;
             this.timerAlarmDisplay.Tick += new System.EventHandler(this.timerAlarm_Tick);
-            // 
-            // lblPosName
-            // 
-            this.lblPosName.AutoSize = true;
-            this.lblPosName.BackColor = System.Drawing.Color.Transparent;
-            this.lblPosName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosName.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosName.Location = new System.Drawing.Point(193, 5);
-            this.lblPosName.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosName.Name = "lblPosName";
-            this.lblPosName.Size = new System.Drawing.Size(79, 15);
-            this.lblPosName.TabIndex = 31;
-            this.lblPosName.Text = "미리내곰상주";
-            this.lblPosName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBusinessDate
-            // 
-            this.lblBusinessDate.AutoSize = true;
-            this.lblBusinessDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblBusinessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblBusinessDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBusinessDate.Location = new System.Drawing.Point(473, 5);
-            this.lblBusinessDate.Margin = new System.Windows.Forms.Padding(0);
-            this.lblBusinessDate.Name = "lblBusinessDate";
-            this.lblBusinessDate.Size = new System.Drawing.Size(69, 15);
-            this.lblBusinessDate.TabIndex = 31;
-            this.lblBusinessDate.Text = "2023.05.22";
-            this.lblBusinessDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblWorker
-            // 
-            this.lblWorker.AutoSize = true;
-            this.lblWorker.BackColor = System.Drawing.Color.Transparent;
-            this.lblWorker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblWorker.ForeColor = System.Drawing.Color.Gold;
-            this.lblWorker.Location = new System.Drawing.Point(473, 23);
-            this.lblWorker.Margin = new System.Windows.Forms.Padding(0);
-            this.lblWorker.Name = "lblWorker";
-            this.lblWorker.Size = new System.Drawing.Size(43, 15);
-            this.lblWorker.TabIndex = 31;
-            this.lblWorker.Text = "김토스";
-            this.lblWorker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblPosNo
-            // 
-            this.lblPosNo.AutoSize = true;
-            this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
-            this.lblPosNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosNo.Location = new System.Drawing.Point(193, 23);
-            this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosNo.Name = "lblPosNo";
-            this.lblPosNo.Size = new System.Drawing.Size(21, 15);
-            this.lblPosNo.TabIndex = 31;
-            this.lblPosNo.Text = "01";
-            this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmSale
             // 

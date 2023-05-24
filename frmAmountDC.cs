@@ -87,17 +87,17 @@ namespace thepos
 
         void initialize_font()
         {
-            lblTitle.Font = font12bold;
-            lblTitle1.Font = font12bold;
-            lblTitle2.Font = font12bold;
+            lblTitle.Font = font12;
+            lblTitle1.Font = font12;
+            lblTitle2.Font = font12;
 
-            btnSelAmount.Font = font12bold;
-            btnSelRate.Font = font12bold;
-            btnAllAmount.Font = font12bold;
-            btnAllRate.Font = font12bold;
+            btnSelAmount.Font = font12;
+            btnSelRate.Font = font12;
+            btnAllAmount.Font = font12;
+            btnAllRate.Font = font12;
 
-            btnDCCancel.Font = font12bold;
-            btnClose.Font = font12bold;
+            btnDCCancel.Font = font12;
+            btnClose.Font = font12;
 
         }
 
@@ -126,7 +126,7 @@ namespace thepos
                 btnDCR[i].Text = btn_title;
                 btnDCR[i].Height = 50;
                 btnDCR[i].Width = 190;
-                btnDCR[i].Font = font12bold;
+                btnDCR[i].Font = font12;
 
                 btnDCR[i].FlatStyle = FlatStyle.Flat;
                 btnDCR[i].ForeColor = Color.White;
@@ -270,13 +270,11 @@ namespace thepos
                     mLvwOrderItem.Items[t_count].SubItems[5].Text = "";                                   // net_amount
                     mLvwOrderItem.Items[t_count].SubItems[6].Text = getDCRmemo(orderItem);
                     mLvwOrderItem.Items[t_count].Tag = orderItem;
-
                     mLvwOrderItem.Items[t_count].Selected = true;
                 }
                 else
                 {
                     ListViewItem lvItem = new ListViewItem();
-
                     lvItem.Text = (t_count + 1).ToString();
                     lvItem.SubItems.Add(orderItem.name);                            // 1: name 상품명
                     lvItem.SubItems.Add("");                                        // 2: amt 단가
@@ -288,7 +286,6 @@ namespace thepos
 
                     mLvwOrderItem.Items.Add(lvItem);
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
-
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
                 }
 

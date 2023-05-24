@@ -60,19 +60,24 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(392, 600);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Location = new System.Drawing.Point(457, 20);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(105, 48);
-            this.btnClose.TabIndex = 43;
-            this.btnClose.Text = "닫기";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Size = new System.Drawing.Size(40, 40);
+            this.btnClose.TabIndex = 44;
+            this.btnClose.TabStop = false;
+            this.btnClose.Text = "×";
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(22, 600);
+            this.btnDelete.Location = new System.Drawing.Point(398, 600);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(107, 48);
+            this.btnDelete.Size = new System.Drawing.Size(88, 48);
             this.btnDelete.TabIndex = 43;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -81,9 +86,9 @@
             // btnOK
             // 
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOK.Location = new System.Drawing.Point(135, 600);
+            this.btnOK.Location = new System.Drawing.Point(132, 600);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(251, 48);
+            this.btnOK.Size = new System.Drawing.Size(260, 48);
             this.btnOK.TabIndex = 42;
             this.btnOK.Text = "선택";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -145,11 +150,11 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblTitle.Location = new System.Drawing.Point(22, 24);
+            this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(475, 39);
+            this.lblTitle.Size = new System.Drawing.Size(423, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "대기";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -172,7 +177,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelback;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ListView lvwWaiting;
@@ -183,5 +187,6 @@
         private System.Windows.Forms.ColumnHeader rcv_amount;
         private System.Windows.Forms.ColumnHeader status;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnClose;
     }
 }
