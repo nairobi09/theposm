@@ -51,8 +51,6 @@ namespace thepos
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
 
-
-
         public static Panel mPanelTitleConsole;
         public static Panel mPanelOrderConsole;
         public static Panel mPanelProductConsole;
@@ -64,6 +62,37 @@ namespace thepos
         public static Label mLblOrderAmountNet;
         public static int mNetAmount = 0;
         public static Timer mTimerAlarm;
+
+
+
+
+
+        //
+        // 서버관리
+        struct GoodsGroup
+        {
+            public string code;  // 3
+            public string name;
+            public int column;
+            public int row;
+            public int columnspan;
+            public int rowspan;
+        }
+        GoodsGroup[] mGoodsGroup;
+
+        struct GoodsItem
+        {
+            public string code;  // 6
+            public string name;
+            public int amt;
+            public String ticket; // 일반상품 0 티켓상품 1
+            public int column;
+            public int row;
+            public int columnspan;
+            public int rowspan;
+        }
+        GoodsItem[] mGoodsItem;
+
 
 
         public struct Order
@@ -92,20 +121,44 @@ namespace thepos
         OrderItem[] mOrderItem;
 
 
+        public struct Cert
+        {
+            public String the_no;       // 
+        }
+
+
+        public struct Ticket
+        {
+            public String the_no;           // 
+            public DateTime init_dt;        //접수일시
+            public DateTime ticketing_dt;   // 발권일시
+            public String ticket_no;
+            public String ticket_type;      // goodsitem code
+        }
+
+
         public struct Payment
         {
             public String the_no;
-
-
-
+            public DateTime dt;
+            public string pos_no;
+            public String serial_no;    // 4자리 
+            public int net_amount;
+            public int amount_cash;
+            public int amount_card;
+            public int amount_etc;
+            public String is_dc;       // 할인여부
+            public String is_cancel;   // 취소여부
         }
-
+        Payment[] mPayment;
 
 
         public struct PaymentCard
         {
             public String the_no;       // 
-            public String pay_type;     // 결제구분 : 신용카드(C0), 
+            public DateTime dt;
+            public String pay_type;     // 결제구분 : 신용카드(C0), 임의등록(C9)
+            public String tran_type;    // 승인 0 취소 1
             public int amount;          // 결제금액
             public String install;      // 할부개월 00 03
             public String auth_no;      // 승인번호
@@ -116,45 +169,35 @@ namespace thepos
             public String acq_code;     // 매입사코드
             public String merchant_no;  // 가맹점번호
             public String tid;          // tran_serial -> 취소시 tid입력
+            public String is_cancel;    // 취소여부
         }
         PaymentCard[] mPaymentCard;
 
         public struct PaymentCash
         {
             public String the_no;       // 
-            public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1)
+            public DateTime dt;
+            public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
+            public String tran_type;    // 승인 0 취소 1
             public int amount;          // 결제금액
-
+            public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
+            public String cashcard_no;  // 현금영수증 고객 식별번호
+            public String auth_no;      // 승인번호
+            public String tid;          // tran_serial -> 취소시 tid입력
+            public String is_cancel;    // 취소여부
         }
         PaymentCard[] mPaymentCash;
 
 
 
 
-        struct GoodsGroup
-        {
-            public string code;  // 3
-            public string name;
-            public int column;
-            public int row;
-            public int columnspan;
-            public int rowspan;
-        }
-        GoodsGroup[] mGoodsGroup;
-
-        struct GoodsItem
-        {
-            public string code;  // 6
-            public string name;
-            public int amt;
-            public int column;
-            public int row;
-            public int columnspan;
-            public int rowspan;
-        }
-        GoodsItem[] mGoodsItem;
 
 
+
+
+        //
+        // 로컬포스내 관리
+        //
         struct PayConsol
         {
             public string code; // CASH, CARD, COMPLEX, CERT, EASY
@@ -165,7 +208,6 @@ namespace thepos
             public int rowspan;
         }
         PayConsol[] mPayConsol;
-
 
         public struct Waiting
         {
@@ -180,6 +222,9 @@ namespace thepos
         public static List<Waiting> listWaiting = new List<Waiting>();
 
         public static List<OrderItem> listWaitingItem = new List<OrderItem>();
+
+
+
 
 
         void get_goodsgroup()
@@ -218,24 +263,23 @@ namespace thepos
         {
             String[,] item = new String[,]
             {
-                { "101101","바닐라라떼","1", "0","0", "2","2"},
-                { "101102","카푸치노","6000", "2","0", "1","2"},
-                { "101103","에스프레소","7000", "3","0", "3","2"},
-                { "101104","아이스라떼","6500", "6","1", "2","1"},
-                { "101105","아메리카노","5000", "0","2", "4","3"},
-                { "101106","맥심커피","8000", "4","2", "4","4"},
-                { "101108","카페라떼","7000", "0","5", "3","3"},
-                { "101107","캬라멜","6000", "3","5", "1","3"},
-                { "101109","아리스카페모카","5000", "4","6", "2","1"},
-                { "101110","모카","5000", "4","7", "3","1"},
+                { "101101","바닐라라떼","1", "0", "0","0", "2","2"},
+                { "101102","카푸치노","6000", "0", "2","0", "1","2"},
+                { "101103","에스프레소","7000", "0", "3","0", "3","2"},
+                { "101104","아이스라떼","6500", "0", "6","1", "2","1"},
+                { "101105","아메리카노","5000", "0", "0","2", "4","3"},
+                { "101106","맥심커피","8000", "0", "4","2", "4","4"},
+                { "101108","카페라떼","7000", "0", "0","5", "3","3"},
+                { "101107","캬라멜","6000", "0", "3","5", "1","3"},
+                { "101109","아리스카페모카", "5000", "0", "4","6", "2","1"},
+                { "101110","모카","5000", "0", "4","7", "3","1"},
 
-                { "100001","종일성인","10000", "0","1", "4","5"},
-                { "100002","종일어린이","8000", "4","1", "4","5"},
-
+                { "100001","종일성인","10000", "1", "0","1", "4","5"},
+                { "100002","종일어린이","8000", "1", "4","1", "4","5"},
             };
 
 
-            int len = item.Length / 7;
+            int len = item.Length / 8;
 
             mGoodsItem = new GoodsItem[len];
 
@@ -244,11 +288,11 @@ namespace thepos
                 mGoodsItem[i].code = item[i, 0];
                 mGoodsItem[i].name = item[i, 1];
                 mGoodsItem[i].amt = int.Parse(item[i, 2]);
-
-                mGoodsItem[i].column = int.Parse(item[i, 3]);
-                mGoodsItem[i].row = int.Parse(item[i, 4]);
-                mGoodsItem[i].columnspan = int.Parse(item[i, 5]);
-                mGoodsItem[i].rowspan = int.Parse(item[i, 6]);
+                mGoodsItem[i].ticket = item[i, 3];
+                mGoodsItem[i].column = int.Parse(item[i, 4]);
+                mGoodsItem[i].row = int.Parse(item[i, 5]);
+                mGoodsItem[i].columnspan = int.Parse(item[i, 6]);
+                mGoodsItem[i].rowspan = int.Parse(item[i, 7]);
             }
         }
 

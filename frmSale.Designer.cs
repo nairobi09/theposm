@@ -743,9 +743,9 @@ namespace thepos
             this.lblTitle02.Location = new System.Drawing.Point(136, 23);
             this.lblTitle02.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle02.Name = "lblTitle02";
-            this.lblTitle02.Size = new System.Drawing.Size(53, 15);
+            this.lblTitle02.Size = new System.Drawing.Size(61, 15);
             this.lblTitle02.TabIndex = 31;
-            this.lblTitle02.Text = "포스No :";
+            this.lblTitle02.Text = "포스번호 :";
             this.lblTitle02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnClose
