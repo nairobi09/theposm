@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmAmountDC
+    partial class frmOrderDCR
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@
             this.panel1.Controls.Add(this.btnAllAmount);
             this.panel1.Controls.Add(this.btnSelRate);
             this.panel1.Controls.Add(this.btnSelAmount);
-            this.panel1.Location = new System.Drawing.Point(20, 114);
+            this.panel1.Location = new System.Drawing.Point(20, 120);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
@@ -144,7 +144,7 @@
             this.flowLayoutPanelDCR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanelDCR.Controls.Add(this.button1);
             this.flowLayoutPanelDCR.Controls.Add(this.button2);
-            this.flowLayoutPanelDCR.Location = new System.Drawing.Point(261, 114);
+            this.flowLayoutPanelDCR.Location = new System.Drawing.Point(261, 120);
             this.flowLayoutPanelDCR.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelDCR.Name = "flowLayoutPanelDCR";
             this.flowLayoutPanelDCR.Padding = new System.Windows.Forms.Padding(20);
@@ -184,20 +184,20 @@
             // lblTitle1
             // 
             this.lblTitle1.AutoSize = true;
-            this.lblTitle1.Location = new System.Drawing.Point(89, 91);
+            this.lblTitle1.Location = new System.Drawing.Point(77, 91);
             this.lblTitle1.Name = "lblTitle1";
-            this.lblTitle1.Size = new System.Drawing.Size(68, 14);
+            this.lblTitle1.Size = new System.Drawing.Size(87, 14);
             this.lblTitle1.TabIndex = 44;
-            this.lblTitle1.Text = "할인 적용";
+            this.lblTitle1.Text = "☑ 할인 적용";
             // 
             // lblTitle2
             // 
             this.lblTitle2.AutoSize = true;
-            this.lblTitle2.Location = new System.Drawing.Point(329, 91);
+            this.lblTitle2.Location = new System.Drawing.Point(315, 91);
             this.lblTitle2.Name = "lblTitle2";
-            this.lblTitle2.Size = new System.Drawing.Size(96, 14);
+            this.lblTitle2.Size = new System.Drawing.Size(115, 14);
             this.lblTitle2.TabIndex = 44;
-            this.lblTitle2.Text = "할인 즐겨찾기";
+            this.lblTitle2.Text = "★ 할인 즐겨찾기";
             // 
             // btnClose
             // 
@@ -210,7 +210,7 @@
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
             this.btnClose.TabStop = false;
-            this.btnClose.Text = "×";
+            this.btnClose.Text = "✕";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -220,7 +220,7 @@
             this.btnDCCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDCCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDCCancel.ForeColor = System.Drawing.Color.White;
-            this.btnDCCancel.Location = new System.Drawing.Point(45, 558);
+            this.btnDCCancel.Location = new System.Drawing.Point(45, 564);
             this.btnDCCancel.Name = "btnDCCancel";
             this.btnDCCancel.Size = new System.Drawing.Size(150, 60);
             this.btnDCCancel.TabIndex = 42;

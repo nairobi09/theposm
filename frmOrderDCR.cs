@@ -24,7 +24,7 @@ using static thepos.thepos;
 
 namespace thepos
 {
-    public partial class frmAmountDC : Form
+    public partial class frmOrderDCR : Form
     {
 
         struct DCR
@@ -39,7 +39,7 @@ namespace thepos
 
         System.Windows.Forms.Button[] btnDCR;
 
-        public frmAmountDC()
+        public frmOrderDCR()
         {
             InitializeComponent();
 

@@ -54,7 +54,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PrinterUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\PrinterUtility.1.1.1\lib\PrinterUtility.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,11 +71,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAmountDC.cs">
+    <Compile Include="frmLayoutBill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAmountDC.Designer.cs">
-      <DependentUpon>frmAmountDC.cs</DependentUpon>
+    <Compile Include="frmLayoutBill.Designer.cs">
+      <DependentUpon>frmLayoutBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrderDCR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrderDCR.Designer.cs">
+      <DependentUpon>frmOrderDCR.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -97,11 +107,11 @@
     <Compile Include="frmPayManager.Designer.cs">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmWaiting.cs">
+    <Compile Include="frmOrderWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmWaiting.Designer.cs">
-      <DependentUpon>frmWaiting.cs</DependentUpon>
+    <Compile Include="frmOrderWaiting.Designer.cs">
+      <DependentUpon>frmOrderWaiting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPayCard.cs">
       <SubType>Form</SubType>
@@ -118,8 +128,11 @@
     <Compile Include="thepos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAmountDC.resx">
-      <DependentUpon>frmAmountDC.cs</DependentUpon>
+    <EmbeddedResource Include="frmLayoutBill.resx">
+      <DependentUpon>frmLayoutBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrderDCR.resx">
+      <DependentUpon>frmOrderDCR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -133,8 +146,8 @@
     <EmbeddedResource Include="frmPayManager.resx">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmWaiting.resx">
-      <DependentUpon>frmWaiting.cs</DependentUpon>
+    <EmbeddedResource Include="frmOrderWaiting.resx">
+      <DependentUpon>frmOrderWaiting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPayCard.resx">
       <DependentUpon>frmPayCard.cs</DependentUpon>
@@ -150,6 +163,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Font\TossProductSansTTF-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -172,6 +186,7 @@
     <None Include="Font\TossProductSansTTF-Semibold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

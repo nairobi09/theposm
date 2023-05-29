@@ -21,21 +21,128 @@ namespace thepos
 
         bool isReset = true;
 
+
+
+
+
         public frmPayCash()
         {
             InitializeComponent();
 
-            initial_the();
-
+            initialize_font();
+            initialize_the();
 
             reset_amount();
 
         }
 
-        private void initial_the()
+        private void initialize_font()
+        {
+            lblTitle.Font = font12;
+
+            lbl1.Font = font10;
+            lbl2.Font = font10;
+            lbl3.Font = font10;
+
+            lblNetAmount.Font = font10;
+            lblRcvAmount.Font = font10;
+            lblRestAmount.Font = font10;
+
+            btnCashSimple.Font = font12;
+
+            btnKeyInput.Font = font10;
+
+            btn1t.Font = font10;
+            btn5t.Font = font10;
+            btn10t.Font = font10;
+            btn50t.Font = font10;
+            btn100t.Font = font10;
+            btnReset.Font = font10;
+
+            lbl4.Font = font10;
+            lbl5.Font = font10;
+            lbl6.Font = font8;
+
+            lblIssuedMethodNo.Font = font12;
+
+            lbl7.Font = font10;
+
+            cbtypeIndividual.Font = font12;
+            cbTypeBusiness.Font = font12;
+
+            lbl8.Font = font10;
+
+            lblAuthNo.Font = font12;
+
+            btmCashSelf.Font = font12;
+            btmCashTemp.Font = font12;
+            btnCashRecept.Font = font12;
+
+
+            btnClose.Font = font12;
+        }
+
+        private void initialize_the()
         {
 
         }
+
+
+
+        private void btnCashSimple_Click(object sender, EventArgs e)
+        {
+            //? 서버API로 교체
+
+            int order_cnt = SaveOrder();
+            
+            Payment mPayment = new Payment();
+            mPayment.the_no = mTheNo;
+            mPayment.dt = DateTime.Now;
+            mPayment.business_dt = mBussinessDate;
+            mPayment.tran_type = "A";
+            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
+            mPayment.pos_no = mPosNo;
+            mPayment.serial_no = mTheNo.Substring(14, 4);
+            mPayment.net_amount = mNetAmount;
+            mPayment.amount_cash = mNetAmount;
+            mPayment.amount_card = 0;
+            mPayment.amount_point = 0;
+            mPayment.is_dc = "";       // 할인여부
+            mPayment.is_cancel = "";   // 취소여부
+            mPayments.Add(mPayment);
+
+            PaymentCash mPaymentCash = new PaymentCash();
+            mPaymentCash.the_no = mTheNo;
+            mPaymentCash.business_dt = mBussinessDate;
+            mPaymentCash.dt = DateTime.Now;
+            mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
+            mPaymentCash.tran_type = "A";       // 승인 A 취소 C
+            mPaymentCash.amount = mNetAmount;   // 결제금액
+            mPaymentCash.receipt_type = "";     // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
+            mPaymentCash.cashcard_no = "";      // 현금영수증 고객 식별번호
+            mPaymentCash.auth_no = "";          // 승인번호
+            mPaymentCash.tid = "";              // tran_serial -> 취소시 tid입력
+            mPaymentCash.is_cancel = "";        // 취소여부
+            mPaymentCashs.Add(mPaymentCash);
+
+            mClearSaleForm();
+            SetDisplayAlarm("I", "주문" + order_cnt + "건 단순현금 결제완료.");
+
+            countup_the_no();
+
+            this.Close();
+        }
+
+
+
+        private void btnCashRecept_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
 
 
 
@@ -105,8 +212,6 @@ namespace thepos
         {
             frmSale.ConsoleEnable();
         }
-
-
 
     }
 }

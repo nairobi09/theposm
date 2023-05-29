@@ -4,10 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Drawing.Text;
-using System.Windows.Forms.VisualStyles;
 using System.Collections.Generic;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
-using System.Runtime.Remoting.Messaging;
 
 
 
@@ -21,14 +18,18 @@ panelProduct : 488, 56 529, 547
 
 */
 
-// ▲△◀◁▶▷▼▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＜＞ △	▲	▽	▼ ⪤ □×× ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
+// ▲ △ ◀ ◁ ▶ ▷ ▼ ▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＞ △	▲	▽	▼ ⪤ □ × × ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
+// (*‿*✿) \\\٩(✪ꀾ⍟༶)و/// ♡◟(●•ᴗ•●)◞♡ ◄:•D .ᐟ ヾ(・ᆺ・✿)ﾉﾞ φ(◎◎ヘ)  ☑☆★☘︎ ☁︎ ⚑ 🟨 
+// ð ✕ ◈ ◆ ⬅ 〈 ˂
+// Music Title In Here
+// 0:00 ━━●─── 4:00
+// ⇆      ◁ ❚❚ ▷     ↻
+
 
 namespace thepos
 {
     public partial class frmSale : Form
     {
-        //thepos the = new thepos();
-
         public static Font font8;
         public static Font font9;
         public static Font font10;
@@ -39,15 +40,43 @@ namespace thepos
 
         public static PrivateFontCollection fontCollection = new PrivateFontCollection();
 
-        //로그인후 다운로드된 
+
+
+        // //////////////////////////////////////////////////////////////////////////////////////////////////
+        //
+        // 로그인후 다운로드되어야할 환경값들
+        //
         public static String mCustomerId = "";
         public static String mPosNo = "";
         public static String mBussinessDate = "";
-        public static String mRunningTheNo = "";
+
+        // mTheNo : 선생성 - 후반영
+        public static String mTheNo = "";
 
 
-        int mSerialNo = 0;
-        int waiting_count = 0;
+        // (후불) 발권  사용  정산 [락커]
+        // (선불) 발권 [충전] 사용  정산
+
+        // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
+        public static String mTicketType;  // "AP" "DP"
+
+
+
+
+
+
+
+
+
+        // ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+        public static int mSerialTheNo = 0;
+        int mWaitingNoCounter = 0;
+        public static int mSelectedWaitingNo = 0;
+
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
 
@@ -86,6 +115,7 @@ namespace thepos
             public string name;
             public int amt;
             public String ticket; // 일반상품 0 티켓상품 1
+            public String taxfree; // 면세품:"1", 과세:"" 등
             public int column;
             public int row;
             public int columnspan;
@@ -97,28 +127,63 @@ namespace thepos
 
         public struct Order
         {
-            public String the_no;       // 영수중번호, Unique, reference_no, 
-            public String custimer_id;  //
-            public String pos_no;       //
-            public String business_date;// 영업일자
-            public DateTime order_dt;   // 주문일시
-            public int net_amount;      // 금액
+            public int order_no;        // 대기번호 [대기]을 위해
+            public DateTime dt;         // 대기일시
+            public int cnt;             // 항목수
+            public int amount;          // 합계
         }
-        Order[] mOrder;
-
+        public static List<Order> listWaiting = new List<Order>();
+        
         public struct OrderItem
+        {
+            public int order_no;       // 대기번호 [대기]을 위해
+            public String code;         // 상품code(6) or 전체할인코드고정("EDC")
+            public String name;         // 상품name or 전체할인명("할인")
+            public int cnt;
+            public int amt;
+            public String ticket;
+            public String taxfree;
+            public int dc_amount;       // 실할인금액
+            public String dcr_type;     // type - "A" : 정액, "R" : 정율 
+            public String dcr_des;      // 전체"E", 선택"S"
+            public int dcr_value;       // 할인금액 or 할인율
+        }
+        public static List<OrderItem> listWaitingItem = new List<OrderItem>();
+
+
+        //? 서버API로 대체한다.
+        public struct dbOrder
+        {
+            public String the_no;          // 
+            public DateTime dt;         // 대기일시
+            public String customer_id;
+            public String pos_no;
+            public int cnt;             // 항목수
+        }
+        public static List<dbOrder> listOrder = new List<dbOrder>();
+
+        public struct dbOrderItem
         {
             public String the_no;       // 
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
             public String name;         // 상품name or 전체할인명("할인")
             public int cnt;
             public int amt;
+            public String ticket;
+            public String taxfree;
             public int dc_amount;       // 실할인금액
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
         }
-        OrderItem[] mOrderItem;
+        public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
+
+
+
+
+
+
+
 
 
         public struct Cert
@@ -130,39 +195,52 @@ namespace thepos
         public struct Ticket
         {
             public String the_no;           // 
-            public DateTime init_dt;        //접수일시
-            public DateTime ticketing_dt;   // 발권일시
+
             public String ticket_no;
-            public String ticket_type;      // goodsitem code
+
+            public DateTime ticketing_dt;   // 발권일시
+            public DateTime charge_dt;      // 충전일시
+            public DateTime settlement_dt;  // 정산일시
+
+            public int charge_point;        // 충전금액
+            public int usage_point;         // 사용금액(누적)
+
+            public String ticket_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 정산완료일 경우 라커를 오픈한다.
+            public String open_locker;      // 락커 수기 개방 설정 0:폐쇄(기본값), 1:개방
         }
+
+
 
 
         public struct Payment
         {
             public String the_no;
+            public String business_dt;  // yyyyMMdd
             public DateTime dt;
+            public String tran_type;    // 승인 A, 취소 C
+            public String pay_class;    // Order 0, charge 1, settlement 2
             public string pos_no;
             public String serial_no;    // 4자리 
             public int net_amount;
             public int amount_cash;
             public int amount_card;
-            public int amount_etc;
+            public int amount_point;
             public String is_dc;       // 할인여부
             public String is_cancel;   // 취소여부
         }
-        Payment[] mPayment;
-
+        public static List<Payment> mPayments = new List<Payment>();
 
         public struct PaymentCard
         {
             public String the_no;       // 
+            public String business_dt;
             public DateTime dt;
             public String pay_type;     // 결제구분 : 신용카드(C0), 임의등록(C9)
-            public String tran_type;    // 승인 0 취소 1
+            public String tran_type;    // 승인 A 취소 C
             public int amount;          // 결제금액
             public String install;      // 할부개월 00 03
             public String auth_no;      // 승인번호
-            public String tran_date;    // 결제일시(YYYYMMDDhhmmss)
+
             public String card_no;      // 카드번호
             public String card_name;    // 카드종류
             public String isu_code;     // 발급사코드
@@ -171,14 +249,15 @@ namespace thepos
             public String tid;          // tran_serial -> 취소시 tid입력
             public String is_cancel;    // 취소여부
         }
-        PaymentCard[] mPaymentCard;
+        public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
 
         public struct PaymentCash
         {
             public String the_no;       // 
+            public String business_dt;
             public DateTime dt;
             public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
-            public String tran_type;    // 승인 0 취소 1
+            public String tran_type;    // 승인 A 취소 C
             public int amount;          // 결제금액
             public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
             public String cashcard_no;  // 현금영수증 고객 식별번호
@@ -186,13 +265,18 @@ namespace thepos
             public String tid;          // tran_serial -> 취소시 tid입력
             public String is_cancel;    // 취소여부
         }
-        PaymentCard[] mPaymentCash;
+        public static List<PaymentCash> mPaymentCashs = new List<PaymentCash>();
 
-
-
-
-
-
+        public struct PaymentPoint           // 선불 후불 사용
+        {
+            public String the_no;       // 
+            public DateTime dt;
+            public String pay_type;     // 결제구분 : 포인트(P0)
+            public String tran_type;    // 승인 A 취소 C
+            public int amount;          // 금액
+            public String ticket_no;
+            public String is_cancel;    // 취소여부
+        }
 
 
         //
@@ -209,19 +293,7 @@ namespace thepos
         }
         PayConsol[] mPayConsol;
 
-        public struct Waiting
-        {
-            public int waiting_no;  // 대기번호
-            public String the_no;  
-            public int cnt;         // 항목수
-            public DateTime dt;
-            public int amount;      //합계
-            public int rcv_amount;  //받은금액
-            public String type;     // 주문중(1)  결제중(2)
-        }
-        public static List<Waiting> listWaiting = new List<Waiting>();
 
-        public static List<OrderItem> listWaitingItem = new List<OrderItem>();
 
 
 
@@ -263,23 +335,23 @@ namespace thepos
         {
             String[,] item = new String[,]
             {
-                { "101101","바닐라라떼","1", "0", "0","0", "2","2"},
-                { "101102","카푸치노","6000", "0", "2","0", "1","2"},
-                { "101103","에스프레소","7000", "0", "3","0", "3","2"},
-                { "101104","아이스라떼","6500", "0", "6","1", "2","1"},
-                { "101105","아메리카노","5000", "0", "0","2", "4","3"},
-                { "101106","맥심커피","8000", "0", "4","2", "4","4"},
-                { "101108","카페라떼","7000", "0", "0","5", "3","3"},
-                { "101107","캬라멜","6000", "0", "3","5", "1","3"},
-                { "101109","아리스카페모카", "5000", "0", "4","6", "2","1"},
-                { "101110","모카","5000", "0", "4","7", "3","1"},
+                { "101101","바닐라라떼","1", "0", "", "0","0", "2","2"},
+                { "101102","카푸치노","6000", "0", "", "2","0", "1","2"},
+                { "101103","에스프레소","7000", "0", "", "3","0", "3","2"},
+                { "101104","아이스라떼","6500", "0", "", "6","1", "2","1"},
+                { "101105","아메리카노","5000", "0", "", "0","2", "4","3"},
+                { "101106","맥심커피","8000", "0", "", "4","2", "4","4"},
+                { "101108","농산물1","7000", "0", "1", "0","5", "3","3"},
+                { "101107","채소1","6000", "0", "1", "3","5", "1","3"},  // 면세
+                { "101109","야채2", "5000", "0", "1", "4","6", "2","1"}, // 면세
+                { "101110","모카","5000", "0", "", "4","7", "3","1"},
 
-                { "100001","종일성인","10000", "1", "0","1", "4","5"},
-                { "100002","종일어린이","8000", "1", "4","1", "4","5"},
+                { "100001","종일성인","10000", "1", "", "0","1", "4","5"},  // 발권대상
+                { "100002","종일어린이","8000", "1", "", "4","1", "4","5"}, // 발권대상
             };
 
 
-            int len = item.Length / 8;
+            int len = item.Length / 9;
 
             mGoodsItem = new GoodsItem[len];
 
@@ -289,10 +361,19 @@ namespace thepos
                 mGoodsItem[i].name = item[i, 1];
                 mGoodsItem[i].amt = int.Parse(item[i, 2]);
                 mGoodsItem[i].ticket = item[i, 3];
-                mGoodsItem[i].column = int.Parse(item[i, 4]);
-                mGoodsItem[i].row = int.Parse(item[i, 5]);
-                mGoodsItem[i].columnspan = int.Parse(item[i, 6]);
-                mGoodsItem[i].rowspan = int.Parse(item[i, 7]);
+                mGoodsItem[i].taxfree = item[i, 4];
+                mGoodsItem[i].column = int.Parse(item[i, 5]);
+                mGoodsItem[i].row = int.Parse(item[i, 6]);
+                mGoodsItem[i].columnspan = int.Parse(item[i, 7]);
+                mGoodsItem[i].rowspan = int.Parse(item[i, 8]);
+
+                // 면세상픔은 상품명앞에 *을 붙인다.
+                if (mGoodsItem[i].taxfree == "1")
+                {
+                    mGoodsItem[i].name = "*" + mGoodsItem[i].name;
+                }
+
+
             }
         }
 
@@ -302,8 +383,7 @@ namespace thepos
             {
                 { "CASH", "0", "0", "3","4"},
                 { "CARD", "3", "0", "3","4"},
-                { "COMPLEX", "6", "0", "1","2"},
-                { "CERT", "7", "0", "1","2"},
+                { "COMPLEX", "6", "0", "2","2"},
                 { "EASY", "6", "2", "2","2"},
                 { "MANAGER", "8", "0", "2","4"},
             };
@@ -372,6 +452,8 @@ namespace thepos
             lblDate.Font = font10;
             lblTime.Font = font12;
 
+            btnClose.Font = font12;
+
             lvwOrderItem.Font = font10;
             lblDisplayAlarm.Font = font10;
 
@@ -394,8 +476,8 @@ namespace thepos
             lblOrderAmountNet.Font = font14;
             lblOrderAmountReceive.Font = font14;
             lblOrderAmountRest.Font = font14;
-
-            lblKeyDisplay.Font = font14;
+            
+            lblKeyDisplay.Font = font16;
             btnKey1.Font = font14;
             btnKey2.Font = font14;
             btnKey3.Font = font14;
@@ -409,14 +491,15 @@ namespace thepos
             btnKey00.Font = font14;
             btnKeyBS.Font = font14;
             btnKeyClear.Font = font14;
+            btnKeyEnter.Font = font14;
 
             btnOrderAmountDC.Font = font10;
             btnOrderWaiting.Font = font10;
 
-            btnTicketing.Font = font10;
-            btnCharging.Font = font10;
-            btnSettlement.Font = font10;
-            btnLocker.Font = font10;
+            btnFlowTicketing.Font = font10;
+            btnFlowCharging.Font = font10;
+            btnFlowSettlement.Font = font10;
+            btnFlowLocker.Font = font10;
 
         }
         private void initialize_the()
@@ -428,13 +511,12 @@ namespace thepos
             // 최초로드?
             //
             // 영업일자
-
-
+            //
             mBussinessDate = DateTime.Now.ToString("yyyyMMdd");
             mCustomerId = "CUST";
             mPosNo = "01";
 
-
+            countup_the_no();
 
 
 
@@ -459,13 +541,12 @@ namespace thepos
             btnKey00.Click += (sender, args) => ClickedKey("00");
             btnKeyBS.Click += (sender, args) => ClickedKey("BS");
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
-            btnKeyEnter.Click += (sender, args) => ClickedKey("Enter");
 
 
             // 서브창이 열리면서 Sale창의 콘트롤 Enable/Disable 관리를 위해서...
             mPanelTitleConsole = panelTitleConsole;
             mPanelOrderConsole = panelOrderConsole;
-            mPanelProductConsole = panelProductConsole;
+            mPanelProductConsole = panelFlowConsole;
 
             mLblDisplayAlarm = lblDisplayAlarm;
             mTimerAlarm = timerAlarmDisplay;
@@ -476,53 +557,6 @@ namespace thepos
             mLblOrderAmount = lblOrderAmount;
             mLblOrderAmountDC = lblOrderAmountDC;
             mLblOrderAmountNet = lblOrderAmountNet;
-
-        }
-
-        private void display_goodsgroup()
-        {
-            
-
-            tableLayoutPanelGoodsGroup.Controls.Clear();
-            tableLayoutPanelGoodsGroup.VerticalScroll.Value = 0;
-            tableLayoutPanelGoodsGroup.PerformLayout();
-
-
-            for (int i = 0; i < mGoodsGroup.Length; i++)
-            {
-                Button btnGoodsGroup = new Button();
-                String group_code = mGoodsGroup[i].code;
-                btnGoodsGroup.Tag = mGoodsGroup[i].code;
-                btnGoodsGroup.Text = mGoodsGroup[i].name;
-                btnGoodsGroup.FlatStyle = FlatStyle.Flat;
-
-                btnGoodsGroup.ForeColor = SystemColors.Highlight; 
-                btnGoodsGroup.BackColor = Color.White;
-                btnGoodsGroup.TabStop = false;
-                btnGoodsGroup.Margin = new Padding(2, 2, 2, 2);
-                btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
-                btnGoodsGroup.Dock = DockStyle.Fill;
-
-
-                if (mGoodsGroup[i].columnspan > 1 & mGoodsGroup[i].rowspan > 1)
-                {
-                    btnGoodsGroup.Font = font16;
-                }
-                else
-                {
-                    btnGoodsGroup.Font = font12;
-                }
-
-
-
-                btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
-
-                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, mGoodsGroup[i].column, mGoodsGroup[i].row);
-                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, mGoodsGroup[i].columnspan);
-                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, mGoodsGroup[i].rowspan);
-
-                tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
-            }
 
         }
 
@@ -549,26 +583,78 @@ namespace thepos
 
                 btnPayItem.Font = font12;
 
-                if (mPayConsol[i].code == "CASH") btnPayItem.Text = "현금";
-                else if (mPayConsol[i].code == "CARD") btnPayItem.Text = "카드";
-                else if (mPayConsol[i].code == "COMPLEX") btnPayItem.Text = "복합\r결제";
-                else if (mPayConsol[i].code == "CERT") btnPayItem.Text = "인증";
-                else if (mPayConsol[i].code == "EASY") btnPayItem.Text = "간편\r결제";
+                if (mPayConsol[i].code == "CASH")
+                {
+                    btnPayItem.Text = "현금";
+                    btnPayItem.Click += (sender, args) => ClickedPayCash();
+                }
+                else if (mPayConsol[i].code == "CARD")
+                {
+                    btnPayItem.Text = "카드";
+                    btnPayItem.Click += (sender, args) => ClickedPayCard();
+                }
+                else if (mPayConsol[i].code == "COMPLEX")
+                {
+                    btnPayItem.Text = "복합\r결제";
+                    btnPayItem.Click += (sender, args) => ClickedPayComplex();
+                }
+                else if (mPayConsol[i].code == "EASY")
+                {
+                    btnPayItem.Text = "간편\r결제";
+                    btnPayItem.Click += (sender, args) => ClickedPayEasy();
+                }
                 else if (mPayConsol[i].code == "MANAGER")
                 {
                     btnPayItem.BackColor = Color.FromArgb(52, 86, 156);
                     btnPayItem.Text = "결제내역\r관리";
+                    btnPayItem.Click += (sender, args) => ClickedPayManager();
                 }
                 else btnPayItem.Text = "";
-
-                string code = mPayConsol[i].code;
-                btnPayItem.Click += (sender, args) => ClickedPayConsol(code);
-
 
                 tableLayoutPanelPayControl.Controls.Add(btnPayItem, mPayConsol[i].column, mPayConsol[i].row);
                 tableLayoutPanelPayControl.SetColumnSpan(btnPayItem, mPayConsol[i].columnspan);
                 tableLayoutPanelPayControl.SetRowSpan(btnPayItem, mPayConsol[i].rowspan);
             }
+        }
+
+        private void display_goodsgroup()
+        {
+            tableLayoutPanelGoodsGroup.Controls.Clear();
+            tableLayoutPanelGoodsGroup.PerformLayout();
+
+            for (int i = 0; i < mGoodsGroup.Length; i++)
+            {
+                Button btnGoodsGroup = new Button();
+                String group_code = mGoodsGroup[i].code;
+                btnGoodsGroup.Tag = mGoodsGroup[i].code;
+                btnGoodsGroup.Text = mGoodsGroup[i].name;
+                btnGoodsGroup.FlatStyle = FlatStyle.Flat;
+
+                btnGoodsGroup.ForeColor = SystemColors.Highlight; 
+                btnGoodsGroup.BackColor = Color.White;
+                btnGoodsGroup.TabStop = false;
+                btnGoodsGroup.Margin = new Padding(2, 2, 2, 2);
+                btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
+                btnGoodsGroup.Dock = DockStyle.Fill;
+
+                if (mGoodsGroup[i].columnspan > 1 & mGoodsGroup[i].rowspan > 1)
+                {
+                    btnGoodsGroup.Font = font16;
+                }
+                else
+                {
+                    btnGoodsGroup.Font = font12;
+                }
+
+                btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
+
+                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, mGoodsGroup[i].column, mGoodsGroup[i].row);
+                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, mGoodsGroup[i].columnspan);
+                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, mGoodsGroup[i].rowspan);
+
+                tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
+            }
+
         }
 
         private void ClickedGoodsGroup(String groupcode)
@@ -578,23 +664,20 @@ namespace thepos
                 return;
             }
 
-            System.Windows.Forms.Button btnGoodsItem = new System.Windows.Forms.Button();
+            Button btnGoodsItem = new Button();
             
             tableLayoutPanelGoodsItem.Controls.Clear();
-            setGroupButtonColor(last_groupcode, false);
-            setGroupButtonColor(groupcode, true);
-
-
-            this.tableLayoutPanelGoodsItem.VerticalScroll.Value = 0;
             tableLayoutPanelGoodsItem.PerformLayout();
 
+            setGroupButtonColor(last_groupcode, false);
+            setGroupButtonColor(groupcode, true);
 
             for (int i = 0; i < mGoodsItem.Length; i++)
             {
                 if (groupcode == mGoodsItem[i].code.Substring(0,3))
                 {
                     int idx = i;
-                    btnGoodsItem = new System.Windows.Forms.Button();
+                    btnGoodsItem = new Button();
 
                     btnGoodsItem.Tag = mGoodsItem[i].code;
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
@@ -604,8 +687,8 @@ namespace thepos
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
                     btnGoodsItem.Padding = new Padding(0, 0, 0, 0);
                     btnGoodsItem.Text = mGoodsItem[i].name + "\n" + mGoodsItem[i].amt.ToString("N0");
+                    btnGoodsItem.Dock = DockStyle.Fill;
 
-                    
                     if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
                         btnGoodsItem.Font = font8;
@@ -619,9 +702,8 @@ namespace thepos
                         btnGoodsItem.Font = font20;
                     }
                     
-
                     btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
-                    btnGoodsItem.Dock = DockStyle.Fill;
+
 
                     tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, mGoodsItem[i].column, mGoodsItem[i].row);
                     tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, mGoodsItem[i].columnspan);
@@ -639,10 +721,13 @@ namespace thepos
 
             if (lv_idx == -1)
             {
-                ListViewItem item = new ListViewItem();
+                ListViewItem lvItem = new ListViewItem();
 
+                orderItem.order_no = 0;
                 orderItem.code = mGoodsItem[i].code.ToString();
                 orderItem.name = mGoodsItem[i].name.ToString();
+                orderItem.ticket = mGoodsItem[i].ticket;
+                orderItem.taxfree = mGoodsItem[i].taxfree;
                 orderItem.amt = mGoodsItem[i].amt;
                 orderItem.cnt = 1;
                 orderItem.dc_amount = 0;
@@ -650,20 +735,20 @@ namespace thepos
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
 
-                item.Tag = orderItem;
-                item.Text = (lvwOrderItem.Items.Count + 1).ToString();
-                item.SubItems.Add(orderItem.name);                // 1: name 상품명
-                item.SubItems.Add(orderItem.amt.ToString("N0"));  // 2: amt 단가
-                item.SubItems.Add("1");                               // 3: cnt 수량
-                item.SubItems.Add("");                                // 4: dc_amount 할인
-                item.SubItems.Add(orderItem.amt.ToString("N0"));  // 5: net_amount 금액
-                item.SubItems.Add("");                                // 6: 비고
+                lvItem.Tag = orderItem;
+                lvItem.Text = (lvwOrderItem.Items.Count + 1).ToString();
+                lvItem.SubItems.Add(orderItem.name);                // 1: name 상품명
+                lvItem.SubItems.Add(orderItem.amt.ToString("N0"));  // 2: amt 단가
+                lvItem.SubItems.Add("1");                               // 3: cnt 수량
+                lvItem.SubItems.Add("");                                // 4: dc_amount 할인
+                lvItem.SubItems.Add(orderItem.amt.ToString("N0"));  // 5: net_amount 금액
+                lvItem.SubItems.Add("");                                // 6: 비고
 
-                lvwOrderItem.Items.Add(item);
+                lvwOrderItem.Items.Add(lvItem);
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
 
-                // 전체할인이 있으면 주문항목 가장 아래로 이동
+                // 전체할인이 있으면 주문항목 가장 아래로 이동???
                 move_dcr_e_last();
 
             }
@@ -676,25 +761,110 @@ namespace thepos
             ReCalculateAmount();
         }
 
-        private void ClickedPayConsol(string code)
+
+        private void ClickedPayCash()
         {
             ConsoleDisable();
 
             Form fPay;
-
-            if (code == "CASH") fPay = new frmPayCash();
-            else if (code == "CARD") fPay = new frmPayCard();
-//            else if (code == "COMPLEX") fPay = new frmPayComplex();
-//            else if (code == "CERT") fPay = new frmPayCert();
-//            else if (code == "EASY") fPay = new frmPayEasy();
-            else if (code == "MANAGER") fPay = new frmPayManager();
-            else return;
+            fPay = new frmPayCash();
 
             fPay.Left += this.Location.X;
             fPay.Top += this.Location.Y;
 
             fPay.Show();
         }
+
+        private void ClickedPayCard()
+        {
+            ConsoleDisable();
+
+            Form fPay;
+            fPay = new frmPayCard();
+
+            fPay.Left += this.Location.X;
+            fPay.Top += this.Location.Y;
+
+            fPay.Show();
+        }
+
+        private void ClickedPayComplex()
+        {
+            ConsoleDisable();
+
+            Form fPay;
+            fPay = new frmPayComplex();
+
+            fPay.Left += this.Location.X;
+            fPay.Top += this.Location.Y;
+
+            fPay.Show();
+        }
+
+        private void ClickedPayEasy()
+        {
+
+        }
+
+        private void ClickedPayManager()
+        {
+            ConsoleDisable();
+
+            Form fPay;
+            fPay = new frmPayManager();
+
+            fPay.Left += this.Location.X;
+            fPay.Top += this.Location.Y;
+
+            fPay.Show();
+        }
+
+
+        
+        public static int SaveOrder()
+        {
+            //? 서버API로 대체한다..
+
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            {
+                dbOrderItem dborderItem = new dbOrderItem();
+                OrderItem orderItem = (OrderItem)mLvwOrderItem.Items[i].Tag;
+                dborderItem.the_no = mTheNo;
+                dborderItem.code = orderItem.code;
+                dborderItem.name = orderItem.name;
+                dborderItem.cnt = orderItem.cnt;
+                dborderItem.amt = orderItem.amt;
+                dborderItem.ticket = orderItem.ticket;
+                dborderItem.taxfree = orderItem.taxfree;
+                dborderItem.dc_amount = orderItem.dc_amount;
+                dborderItem.dcr_type = orderItem.dcr_type;
+                dborderItem.dcr_des = orderItem.dcr_des;
+                dborderItem.dcr_value = orderItem.dcr_value;
+                listOrderItem.Add(dborderItem);
+            }
+
+            dbOrder dborder = new dbOrder();
+            dborder.the_no = mTheNo;
+            dborder.dt = DateTime.Now;
+            dborder.customer_id = mCustomerId;
+            dborder.pos_no = mPosNo;
+            dborder.cnt = mLvwOrderItem.Items.Count;
+            listOrder.Add(dborder);
+
+            return mLvwOrderItem.Items.Count;
+
+        }
+
+
+
+        public static void mClearSaleForm()
+        {
+            mLvwOrderItem.Items.Clear();
+            ReCalculateAmount();
+            ConsoleEnable();
+        }
+
+
 
         // OrderItem ListView 관련 버튼들
         private void btnOrderCancelAll_Click(object sender, EventArgs e)
@@ -763,7 +933,7 @@ namespace thepos
 
         }
 
-            private void btnOrderCntDn_Click(object sender, EventArgs e)
+        private void btnOrderCntDn_Click(object sender, EventArgs e)
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
@@ -831,7 +1001,7 @@ namespace thepos
             {
                 ConsoleDisable();
 
-                frmAmountDC fAmountDC = new frmAmountDC();
+                frmOrderDCR fAmountDC = new frmOrderDCR();
 
                 fAmountDC.Left += this.Location.X;
                 fAmountDC.Top += this.Location.Y;
@@ -849,23 +1019,18 @@ namespace thepos
             // 웨이팅 저장, 불러오기 겸용버튼
             if (lvwOrderItem.Items.Count > 0)
             {
-                Waiting waiting = new Waiting();
+                Order waiting = new Order();
 
-                String the_no = create_the_no();  // 생성시점 : 1.대기로 들오갈때  2.주문들어갈때(이전 No 무시되고 재생성)
-
-                waiting.the_no = the_no;
-                waiting.waiting_no = ++waiting_count;
+                waiting.order_no = ++mWaitingNoCounter;
 
                 waiting.cnt = 0;
                 waiting.dt = DateTime.Now;
                 waiting.amount = 0;
-                waiting.rcv_amount = 0;
-                waiting.type = "1";    // 주문중
 
                 for (int i = 0; i < lvwOrderItem.Items.Count; i++)
                 {
                     OrderItem orderItem = (OrderItem)lvwOrderItem.Items[i].Tag;
-                    orderItem.the_no = the_no;
+                    orderItem.order_no = mWaitingNoCounter;
 
                     waiting.cnt++;
                     waiting.amount += (orderItem.cnt * orderItem.amt);
@@ -878,9 +1043,6 @@ namespace thepos
                 lvwOrderItem.Items.Clear();
                 btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
 
-                mRunningTheNo = "";
-
-
                 lvwOrderItem.Items.Clear();
                 ReCalculateAmount();
 
@@ -892,7 +1054,7 @@ namespace thepos
                 {
                     ConsoleDisable();
 
-                    frmWaiting fWaiting = new frmWaiting();
+                    frmOrderWaiting fWaiting = new frmOrderWaiting();
                     fWaiting.Left += this.Location.X;
                     fWaiting.Top += this.Location.Y;
 
@@ -902,7 +1064,7 @@ namespace thepos
                         int lv_no = 0;
                         for (int i = 0; i < listWaitingItem.Count; i++)
                         {
-                            if (listWaitingItem[i].the_no == mRunningTheNo)
+                            if (listWaitingItem[i].order_no == mSelectedWaitingNo)
                             {
                                 lv_no++;
 
@@ -933,7 +1095,7 @@ namespace thepos
 
                         for (int i = listWaitingItem.Count - 1; i >= 0; i--)
                         {
-                            if (listWaitingItem[i].the_no == mRunningTheNo)
+                            if (listWaitingItem[i].order_no == mSelectedWaitingNo)
                             {
                                 listWaitingItem.RemoveAt(i);
                             }
@@ -941,7 +1103,7 @@ namespace thepos
 
                         for (int i = 0; i < listWaiting.Count; i++)
                         {
-                            if (listWaiting[i].the_no == mRunningTheNo)
+                            if (listWaiting[i].order_no == mSelectedWaitingNo)
                             {
                                 listWaiting.RemoveAt(i);
                             }
@@ -1010,7 +1172,7 @@ namespace thepos
         {
             panelTitleConsole.Enabled = false;
             panelOrderConsole.Enabled = false;
-            panelProductConsole.Enabled = false;
+            panelFlowConsole.Enabled = false;
         }
 
         public static String getDCRmemo(OrderItem orderItem)
@@ -1402,12 +1564,12 @@ namespace thepos
             e.DrawDefault = true;
         }
 
-        public String create_the_no()
+        public static void countup_the_no()
         {
+            //? 재기동시 초기화된 이후의 연속성을 고민한다.. 
             Random rand = new Random();
-            return mCustomerId + mBussinessDate + mPosNo + (++mSerialNo).ToString("0000") + rand.Next(100, 999);
+            mTheNo = mCustomerId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
         }
-
 
 
 

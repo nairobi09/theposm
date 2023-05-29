@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmWaiting
+    partial class frmOrderWaiting
     {
         /// <summary>
         /// Required designer variable.
@@ -34,10 +34,9 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lvwWaiting = new System.Windows.Forms.ListView();
             this.waiting_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.item_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.item_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rcv_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
@@ -69,7 +68,7 @@
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 44;
             this.btnClose.TabStop = false;
-            this.btnClose.Text = "×";
+            this.btnClose.Text = "✕";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -98,10 +97,9 @@
             // 
             this.lvwWaiting.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.waiting_no,
-            this.item_cnt,
             this.dt,
+            this.item_cnt,
             this.columnHeader1,
-            this.rcv_amount,
             this.status});
             this.lvwWaiting.FullRowSelect = true;
             this.lvwWaiting.HideSelection = false;
@@ -117,29 +115,23 @@
             // waiting_no
             // 
             this.waiting_no.Text = "#";
-            this.waiting_no.Width = 30;
+            this.waiting_no.Width = 50;
+            // 
+            // dt
+            // 
+            this.dt.Text = "대기일시";
+            this.dt.Width = 150;
             // 
             // item_cnt
             // 
             this.item_cnt.Text = "항목수";
             this.item_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dt
-            // 
-            this.dt.Text = "대기일시";
-            this.dt.Width = 110;
-            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "주문금액";
             this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader1.Width = 80;
-            // 
-            // rcv_amount
-            // 
-            this.rcv_amount.Text = "받은금액";
-            this.rcv_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.rcv_amount.Width = 80;
             // 
             // status
             // 
@@ -159,14 +151,14 @@
             this.lblTitle.Text = "대기";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // frmWaiting
+            // frmOrderWaiting
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(488, 56);
-            this.Name = "frmWaiting";
+            this.Name = "frmOrderWaiting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmWaiting";
             this.panelback.ResumeLayout(false);
@@ -184,7 +176,6 @@
         private System.Windows.Forms.ColumnHeader item_cnt;
         private System.Windows.Forms.ColumnHeader dt;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader rcv_amount;
         private System.Windows.Forms.ColumnHeader status;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;

@@ -14,40 +14,30 @@ using System.Drawing.Text;
 
 namespace thepos
 {
-    public partial class frmWaiting : Form
+    public partial class frmOrderWaiting : Form
     {
         //thepos the = new thepos();
 
-        public frmWaiting()
+        public frmOrderWaiting()
         {
             InitializeComponent();
-
             initialize_font();
-
             
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 40);
             lvwWaiting.SmallImageList = imgList;
             lvwWaiting.HideSelection = true;
 
-
             lvwWaiting.Items.Clear();
 
             for (int i = 0; i < listWaiting.Count; i++)
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = listWaiting[i].waiting_no.ToString();
-                item.Tag = listWaiting[i].the_no.ToString();
-                item.SubItems.Add(listWaiting[i].cnt.ToString("N0"));
+                item.Text = listWaiting[i].order_no.ToString();
+                item.Tag = listWaiting[i].order_no.ToString();
                 item.SubItems.Add(listWaiting[i].dt.ToString("MM.dd HH:mm:ss"));
+                item.SubItems.Add(listWaiting[i].cnt.ToString("N0"));
                 item.SubItems.Add(listWaiting[i].amount.ToString("N0"));
-                item.SubItems.Add(listWaiting[i].rcv_amount.ToString("N0"));
-
-                String strType = "";
-                if (listWaiting[i].type == "1") strType = "주문중";
-                else if (listWaiting[i].type == "2") strType = "결제중";
-
-                item.SubItems.Add(strType);
 
                 lvwWaiting.Items.Add(item);
             }
@@ -56,15 +46,13 @@ namespace thepos
             {
                 lvwWaiting.Items[0].Selected = true;
             }
-
-
         }
 
 
         void initialize_font()
         {
             lblTitle.Font = font12;
-            lvwWaiting.Font = font10;
+            lvwWaiting.Font = font12;
             btnDelete.Font = font10;
             btnOK.Font = font10;
             btnClose.Font = font12;
@@ -75,23 +63,22 @@ namespace thepos
         {
             if (lvwWaiting.SelectedItems.Count < 1) return;
 
-            
-            mRunningTheNo = lvwWaiting.SelectedItems[0].Tag.ToString();
+
+            mSelectedWaitingNo = int.Parse(lvwWaiting.SelectedItems[0].Tag.ToString());
 
             this.DialogResult = DialogResult.OK;
             this.Close();
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (lvwWaiting.SelectedItems.Count > 0)
             {
-                String order_no = lvwWaiting.SelectedItems[0].Tag.ToString();
+                int order_no = int.Parse(lvwWaiting.SelectedItems[0].Tag.ToString());
 
                 for (int i = listWaiting.Count - 1; i >= 0; i--)
                 {
-                    if (listWaiting[i].the_no == order_no)
+                    if (listWaiting[i].order_no == order_no)
                     {
                         listWaiting.RemoveAt(i);
                     }
@@ -99,7 +86,7 @@ namespace thepos
 
                 for (int i = listWaitingItem.Count - 1; i >= 0; i--)
                 {
-                    if (listWaitingItem[i].the_no == order_no)
+                    if (listWaitingItem[i].order_no == order_no)
                     {
                         listWaitingItem.RemoveAt(i);
                     }
