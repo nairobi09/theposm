@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayManager));
             this.panelback = new System.Windows.Forms.Panel();
             this.lblLayoutBill = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -101,7 +100,6 @@
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.lblLayoutBill.Size = new System.Drawing.Size(340, 255);
             this.lblLayoutBill.TabIndex = 55;
-            this.lblLayoutBill.Text = resources.GetString("lblLayoutBill.Text");
             // 
             // btnClose
             // 

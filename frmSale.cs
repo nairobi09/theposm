@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Collections.Generic;
 
-
+using static thepos.theSale;
 
 
 /* 과제
@@ -30,38 +30,7 @@ namespace thepos
 {
     public partial class frmSale : Form
     {
-        public static Font font8;
-        public static Font font9;
-        public static Font font10;
-        public static Font font12;
-        public static Font font14;
-        public static Font font16;
-        public static Font font20;
-
-        public static PrivateFontCollection fontCollection = new PrivateFontCollection();
-
-
-
-        // //////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // 로그인후 다운로드되어야할 환경값들
-        //
-        public static String mCustomerId = "";
-        public static String mPosNo = "";
-        public static String mBussinessDate = "";
-
-        // mTheNo : 선생성 - 후반영
-        public static String mTheNo = "";
-
-
-        // (후불) 발권  사용  정산 [락커]
-        // (선불) 발권 [충전] 사용  정산
-
-        // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
-        public static String mTicketType;  // "AP" "DP"
-
-
-
+        
 
 
 
@@ -93,192 +62,6 @@ namespace thepos
         public static Timer mTimerAlarm;
 
 
-
-
-
-        //
-        // 서버관리
-        struct GoodsGroup
-        {
-            public string code;  // 3
-            public string name;
-            public int column;
-            public int row;
-            public int columnspan;
-            public int rowspan;
-        }
-        GoodsGroup[] mGoodsGroup;
-
-        struct GoodsItem
-        {
-            public string code;  // 6
-            public string name;
-            public int amt;
-            public String ticket; // 일반상품 0 티켓상품 1
-            public String taxfree; // 면세품:"1", 과세:"" 등
-            public int column;
-            public int row;
-            public int columnspan;
-            public int rowspan;
-        }
-        GoodsItem[] mGoodsItem;
-
-
-
-        public struct Order
-        {
-            public int order_no;        // 대기번호 [대기]을 위해
-            public DateTime dt;         // 대기일시
-            public int cnt;             // 항목수
-            public int amount;          // 합계
-        }
-        public static List<Order> listWaiting = new List<Order>();
-        
-        public struct OrderItem
-        {
-            public int order_no;       // 대기번호 [대기]을 위해
-            public String code;         // 상품code(6) or 전체할인코드고정("EDC")
-            public String name;         // 상품name or 전체할인명("할인")
-            public int cnt;
-            public int amt;
-            public String ticket;
-            public String taxfree;
-            public int dc_amount;       // 실할인금액
-            public String dcr_type;     // type - "A" : 정액, "R" : 정율 
-            public String dcr_des;      // 전체"E", 선택"S"
-            public int dcr_value;       // 할인금액 or 할인율
-        }
-        public static List<OrderItem> listWaitingItem = new List<OrderItem>();
-
-
-        //? 서버API로 대체한다.
-        public struct dbOrder
-        {
-            public String the_no;          // 
-            public DateTime dt;         // 대기일시
-            public String customer_id;
-            public String pos_no;
-            public int cnt;             // 항목수
-        }
-        public static List<dbOrder> listOrder = new List<dbOrder>();
-
-        public struct dbOrderItem
-        {
-            public String the_no;       // 
-            public String code;         // 상품code(6) or 전체할인코드고정("EDC")
-            public String name;         // 상품name or 전체할인명("할인")
-            public int cnt;
-            public int amt;
-            public String ticket;
-            public String taxfree;
-            public int dc_amount;       // 실할인금액
-            public String dcr_type;     // type - "A" : 정액, "R" : 정율 
-            public String dcr_des;      // 전체"E", 선택"S"
-            public int dcr_value;       // 할인금액 or 할인율
-        }
-        public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
-
-
-
-
-
-
-
-
-
-        public struct Cert
-        {
-            public String the_no;       // 
-        }
-
-
-        public struct Ticket
-        {
-            public String the_no;           // 
-
-            public String ticket_no;
-
-            public DateTime ticketing_dt;   // 발권일시
-            public DateTime charge_dt;      // 충전일시
-            public DateTime settlement_dt;  // 정산일시
-
-            public int charge_point;        // 충전금액
-            public int usage_point;         // 사용금액(누적)
-
-            public String ticket_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 정산완료일 경우 라커를 오픈한다.
-            public String open_locker;      // 락커 수기 개방 설정 0:폐쇄(기본값), 1:개방
-        }
-
-
-
-
-        public struct Payment
-        {
-            public String the_no;
-            public String business_dt;  // yyyyMMdd
-            public DateTime dt;
-            public String tran_type;    // 승인 A, 취소 C
-            public String pay_class;    // Order 0, charge 1, settlement 2
-            public string pos_no;
-            public String serial_no;    // 4자리 
-            public int net_amount;
-            public int amount_cash;
-            public int amount_card;
-            public int amount_point;
-            public String is_dc;       // 할인여부
-            public String is_cancel;   // 취소여부
-        }
-        public static List<Payment> mPayments = new List<Payment>();
-
-        public struct PaymentCard
-        {
-            public String the_no;       // 
-            public String business_dt;
-            public DateTime dt;
-            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
-            public String tran_type;    // 승인 A 취소 C
-            public String tran_date;
-            public int amount;          // 결제금액
-            public String install;      // 할부개월 00 03
-            public String auth_no;      // 승인번호
-            public String card_no;      // 카드번호
-            public String card_name;    // 카드종류
-            public String isu_code;     // 발급사코드
-            public String acq_code;     // 매입사코드
-            public String merchant_no;  // 가맹점번호
-            public String tid;          // tran_serial -> 취소시 tid입력
-            public String is_cancel;    // 취소여부
-        }
-        public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
-
-        public struct PaymentCash
-        {
-            public String the_no;       // 
-            public String business_dt;
-            public DateTime dt;
-            public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
-            public String tran_type;    // 승인 A 취소 C
-            public String tran_date;
-            public int amount;          // 결제금액
-            public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
-            public String cashcard_no;  // 현금영수증 고객 식별번호
-            public String auth_no;      // 승인번호
-            public String tid;          // tran_serial -> 취소시 tid입력
-            public String is_cancel;    // 취소여부
-        }
-        public static List<PaymentCash> mPaymentCashs = new List<PaymentCash>();
-
-        public struct PaymentPoint           // 선불 후불 사용
-        {
-            public String the_no;       // 
-            public DateTime dt;
-            public String pay_type;     // 결제구분 : 포인트(P0)
-            public String tran_type;    // 승인 A 취소 C
-            public String tran_date;
-            public int amount;          // 금액
-            public String ticket_no;
-            public String is_cancel;    // 취소여부
-        }
 
 
         //
@@ -517,6 +300,13 @@ namespace thepos
             mBussinessDate = DateTime.Now.ToString("yyyyMMdd");
             mCustomerId = "CUST";
             mPosNo = "01";
+
+            mCustomerPosNOs = new string[4];
+            mCustomerPosNOs[0] = "01";
+            mCustomerPosNOs[1] = "02";
+            mCustomerPosNOs[2] = "03";
+            mCustomerPosNOs[3] = "04";
+
 
             countup_the_no();
 

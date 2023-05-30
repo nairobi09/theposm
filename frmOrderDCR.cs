@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static thepos.frmSale;
-using static thepos.thepos;
+using static thepos.theSale;
 
 
 

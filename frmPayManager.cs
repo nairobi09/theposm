@@ -12,8 +12,9 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using PrinterUtility;
 
+using static thepos.theSale;
 using static thepos.frmSale;
-using static thepos.frmPayCard;
+
 
 namespace thepos
 {
@@ -61,7 +62,12 @@ namespace thepos
 
             lvwPayManager.SmallImageList = imgList;
 
-
+            cbPosNo.Items.Clear();
+            for (int i = 0; i < mCustomerPosNOs.Length; i++)
+            {
+                cbPosNo.Items.Add(mCustomerPosNOs[i]);
+            }
+            
 
         }
 
@@ -300,8 +306,12 @@ namespace thepos
                     else if (mPaymentCashs[i].pay_type == "R9") tStr = "현금";      //? 임의등록
 
                     strPrintOrder += tStr + Space(22 - encodelen(tStr));
-                    tStr = (tnet).ToString("N0");
-                    strPrintOrder += mPaymentCashs[i].amount.ToString("N0") + " ";
+                    tStr = mPaymentCashs[i].amount.ToString("N0");
+                    strPrintOrder += Space(22 - encodelen(tStr)) + tStr;
+                    
+                    //? 현금 영수증 추가필요
+                    //
+
                     strPrintOrder += "\r\n";
                     strPrintOrder += "\r\n";
                 }
@@ -370,42 +380,23 @@ namespace thepos
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+
             if (lvwPayManager.SelectedItems.Count < 1) { return; }
-            
-
-            //? 카드 취소
-
-            DialogResult ret = MessageBox.Show("카드취소", "thepos", MessageBoxButtons.OKCancel);
-
-            if (ret == DialogResult.OK)
-            {
-                String the_no = lvwPayManager.SelectedItems[0].Tag.ToString();
-
-                int idx = get_origin_auth(the_no);
-
-                if (requestTossCardCancel(mPaymentCards[idx]) != 0)  // Toss process
-                {
-                    display_error_msg(mErrorMsg);
-                }
-                
 
 
+            frmPayCancel fPayCancel = new frmPayCancel("fjdsofidsf");
 
-            }
+            fPayCancel.Left += this.Location.X;
+            fPayCancel.Top += this.Location.Y;
+
+
+            fPayCancel.ShowDialog();
+
 
         }
 
-        private int get_origin_auth(String the_no)
-        {
-            for (int i = 0; i < mPaymentCards.Count; i++)
-            {
-                if (mPaymentCards[i].the_no == the_no)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+
+
 
 
 

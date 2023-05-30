@@ -89,6 +89,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPayCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPayCancel.Designer.cs">
+      <DependentUpon>frmPayCancel.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPayComplex.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,7 +131,7 @@
     <Compile Include="frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
-    <Compile Include="thepos.cs" />
+    <Compile Include="theSale.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLayoutBill.resx">
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPayCancel.resx">
+      <DependentUpon>frmPayCancel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPayComplex.resx">
       <DependentUpon>frmPayComplex.cs</DependentUpon>
