@@ -40,7 +40,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.lbl2 = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@
             this.panelback.Controls.Add(this.button4);
             this.panelback.Controls.Add(this.button1);
             this.panelback.Controls.Add(this.button3);
-            this.panelback.Controls.Add(this.button2);
+            this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.btnView);
             this.panelback.Controls.Add(this.lbl2);
@@ -99,7 +99,7 @@
             this.lblLayoutBill.Multiline = true;
             this.lblLayoutBill.Name = "lblLayoutBill";
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.lblLayoutBill.Size = new System.Drawing.Size(357, 255);
+            this.lblLayoutBill.Size = new System.Drawing.Size(340, 255);
             this.lblLayoutBill.TabIndex = 55;
             this.lblLayoutBill.Text = resources.GetString("lblLayoutBill.Text");
             // 
@@ -213,18 +213,18 @@
             this.button3.Text = "결제변경";
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnCancel
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(514, 478);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 48);
-            this.button2.TabIndex = 48;
-            this.button2.Text = "반품";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(514, 478);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(87, 48);
+            this.btnCancel.TabIndex = 48;
+            this.btnCancel.Text = "반품";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnPrint
             // 
@@ -416,7 +416,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ColumnHeader no;
         private System.Windows.Forms.ColumnHeader pos_no;

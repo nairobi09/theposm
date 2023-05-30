@@ -146,7 +146,7 @@ namespace thepos
 
             int install = int.Parse(lblInstall.Text);
 
-            if (requestCardAuth(mNetAmount, install) != 0)  // Toss process
+            if (requestTossCardAuth(mNetAmount, install) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -179,6 +179,7 @@ namespace thepos
                 mPaymentCard.dt = DateTime.Now;
                 mPaymentCard.pay_type = "C1";       // 결제구분 : , 현금영수중(C1), 임의등록(C9)
                 mPaymentCard.tran_type = "A";       // 승인 A 취소 C
+                mPaymentCard.tran_date = mTossResponse.Trandate;
                 mPaymentCard.amount = mNetAmount;
                 mPaymentCard.card_no = mTossResponse.Cardno;
                 mPaymentCard.auth_no = mTossResponse.Authno;
@@ -203,7 +204,7 @@ namespace thepos
         }
 
 
-        public int requestCardAuth(int amount, int install)
+        public int requestTossCardAuth(int amount, int install)
         {
             int ret = 0;
 
@@ -236,9 +237,20 @@ namespace thepos
             ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
             ret = UPay_Set("LGD_VAT", "0");
             ret = UPay_Set("VAN_SFEEAMOUNT", "0");
-            ret = UPay_Set("VAN_TRANTYPE", "S0");
+            ret = UPay_Set("VAN_TRANTYPE", "S0");  // S0 승인
 
             ret = UPay_TX();
+
+            if (ret != 0)
+            {
+                if (ret == -9) mErrorMsg = "Toss 내부 클래스 없음";
+                else if (ret == -2) mErrorMsg = "TossPaymentsPOS와 connect 실패";
+                else if (ret == -3) mErrorMsg = "TossPaymentsPOS에 전송 실패";
+                else if (ret == -4) mErrorMsg = "TossPaymentsPOS 결과 대기 타임아웃";
+                else if (ret == -5) mErrorMsg = "TossPaymentsPOS 결과 수신 실패";
+
+                return -1;
+            }
 
             int cnt = UPayResNameCount();
 
@@ -287,19 +299,114 @@ namespace thepos
                 mErrorMsg = mTossResponse.Msg;
                 return -1;
             }
-
         }
 
 
+        public int requestTossCardCancel(PaymentCard pCard)
+        {
+            int ret = 0;
+
+            try
+            {
+                ret = UPay_Init();
+            }
+            catch (Exception e)
+            {
+                mErrorMsg = e.Message;
+                return -1;
+            }
 
 
+            if (ret == -9)
+            {
+                mErrorMsg = "Toss DLL 초기화 오류";
+                return -1;
+            }
+
+            Random random = new Random();
+            int randomValue = random.Next(10000000, 99999999);
+
+            ret = UPay_Set("LGD_TXNAME", "CardAuthOfflinePos");
+            ret = UPay_Set("LGD_REQTYPE", "CANCEL");
+            //ret = UPay_Set("LGD_MID", "");
+
+            ret = UPay_Set("LGD_AMOUNT", pCard.amount.ToString());
+            ret = UPay_Set("LGD_INSTALL", pCard.install);
+            ret = UPay_Set("LGD_TID", pCard.tid);
+            ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
+            ret = UPay_Set("LGD_VAT", "0");
+            ret = UPay_Set("VAN_SFEEAMOUNT", "0");
+            ret = UPay_Set("VAN_TRANTYPE", "S1");  // S0 승인, S1 취소
+            ret = UPay_Set("VAN_CAPDATE", pCard.tran_date);
+            ret = UPay_Set("VAN_AUTHNO", pCard.auth_no);
 
 
+            ret = UPay_TX();
+
+            if (ret != 0)
+            {
+                if (ret == -9) mErrorMsg = "Toss 내부 클래스 없음";
+                else if (ret == -2) mErrorMsg = "TossPaymentsPOS와 connect 실패";
+                else if (ret == -3) mErrorMsg = "TossPaymentsPOS에 전송 실패";
+                else if (ret == -4) mErrorMsg = "TossPaymentsPOS 결과 대기 타임아웃";
+                else if (ret == -5) mErrorMsg = "TossPaymentsPOS 결과 수신 실패";
+
+                return -1;
+            }
+
+            int cnt = UPayResNameCount();
+
+            string display_msg = "";
+
+            String name;
+            String value;
+
+            for (int i = 0; i < cnt; i++)
+            {
+                name = Marshal.PtrToStringAnsi(UPayResName(i));
+                value = Marshal.PtrToStringAnsi(UPayResponse(i));
+
+                // 응답메시지 파싱
+                if (name == "Respcode") mTossResponse.Respcode = value;
+                else if (name == "Msg") mTossResponse.Msg = value;
+                else if (name == "Trancode") mTossResponse.Trancode = value;
+                else if (name == "Mid") mTossResponse.Mid = value;
+                else if (name == "Oid") mTossResponse.Oid = value;
+                else if (name == "Tamt") mTossResponse.Tamt = value;
+                else if (name == "Tran_serial") mTossResponse.Tran_serial = value; //최소필요 TID
+                else if (name == "Trandate") mTossResponse.Trandate = value;       //취소필요 원거래일
+                else if (name == "Financecode") mTossResponse.Financecode = value; // 카드사코드
+                else if (name == "Financename") mTossResponse.Financename = value; // 카드명
+                else if (name == "Cardno") mTossResponse.Cardno = value;
+                else if (name == "Halbu") mTossResponse.Halbu = value;
+                else if (name == "Authno") mTossResponse.Authno = value;
+                else if (name == "Stlinst") mTossResponse.Stlinst = value;
+                else if (name == "Reqinst") mTossResponse.Reqinst = value;
+                else if (name == "Merno") mTossResponse.Merno = value;
+                else if (name == "Signpath") mTossResponse.Signpath = value;
+                else if (name == "Cardgubun") mTossResponse.Cardgubun = value;
+                else if (name == "Giftchange") mTossResponse.Giftchange = value;
+
+                display_msg += name + ": " + value + "\n";
+            }
+            // TossPaymentsPOS_Client 자원반환
+            ret = UPayFinal();
+
+            if (mTossResponse.Respcode == "00")
+            {
+                return 0;
+            }
+            else
+            {
+                mErrorMsg = mTossResponse.Msg;
+                return -1;
+            }
+        }
 
 
         void display_error_msg(string msg)
         {
-            MessageBox.Show(msg);
+            MessageBox.Show(msg, "thepos");
         }
 
 

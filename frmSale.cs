@@ -235,12 +235,12 @@ namespace thepos
             public String the_no;       // 
             public String business_dt;
             public DateTime dt;
-            public String pay_type;     // 결제구분 : 신용카드(C0), 임의등록(C9)
+            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
             public String tran_type;    // 승인 A 취소 C
+            public String tran_date;
             public int amount;          // 결제금액
             public String install;      // 할부개월 00 03
             public String auth_no;      // 승인번호
-
             public String card_no;      // 카드번호
             public String card_name;    // 카드종류
             public String isu_code;     // 발급사코드
@@ -258,6 +258,7 @@ namespace thepos
             public DateTime dt;
             public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             public String tran_type;    // 승인 A 취소 C
+            public String tran_date;
             public int amount;          // 결제금액
             public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
             public String cashcard_no;  // 현금영수증 고객 식별번호
@@ -273,6 +274,7 @@ namespace thepos
             public DateTime dt;
             public String pay_type;     // 결제구분 : 포인트(P0)
             public String tran_type;    // 승인 A 취소 C
+            public String tran_date;
             public int amount;          // 금액
             public String ticket_no;
             public String is_cancel;    // 취소여부

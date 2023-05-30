@@ -13,6 +13,7 @@ using System.IO.Ports;
 using PrinterUtility;
 
 using static thepos.frmSale;
+using static thepos.frmPayCard;
 
 namespace thepos
 {
@@ -72,9 +73,7 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-
             lvwPayManager.Items.Clear();
-
 
             for (int i = 0; i < mPayments.Count; i++)
             {
@@ -101,11 +100,8 @@ namespace thepos
 
                 lvwPayManager.Items.Add(lvItem);
             }
-            
-
-
-
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -114,11 +110,6 @@ namespace thepos
         private void frmPayManager_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSale.ConsoleEnable();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void lvwPayManager_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -376,6 +367,47 @@ namespace thepos
 
             lblLayoutBill.Text = str;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (lvwPayManager.SelectedItems.Count < 1) { return; }
+            
+
+            //? 카드 취소
+
+            DialogResult ret = MessageBox.Show("카드취소", "thepos", MessageBoxButtons.OKCancel);
+
+            if (ret == DialogResult.OK)
+            {
+                String the_no = lvwPayManager.SelectedItems[0].Tag.ToString();
+
+                int idx = get_origin_auth(the_no);
+
+                if (requestTossCardCancel(mPaymentCards[idx]) != 0)  // Toss process
+                {
+                    display_error_msg(mErrorMsg);
+                }
+                
+
+
+
+            }
+
+        }
+
+        private int get_origin_auth(String the_no)
+        {
+            for (int i = 0; i < mPaymentCards.Count; i++)
+            {
+                if (mPaymentCards[i].the_no == the_no)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+
 
     }
 }
