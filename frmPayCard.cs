@@ -32,6 +32,7 @@ namespace thepos
         void initialize_font()
         {
             lblTitle.Font = font12;
+            btnClose.Font = font12;
 
             lblT1.Font = font10;
             lblT2.Font = font10;
@@ -56,7 +57,7 @@ namespace thepos
 
             btnCardTemp.Font = font10;
 
-            btnClose.Font = font12;
+
         }
 
         private void initial_the()
@@ -77,6 +78,7 @@ namespace thepos
         private void btnKeyInputInstall_Click(object sender, EventArgs e)
         {
             lblInstall.Text = mLblKeyDisplay.Text;
+
         }
 
         private void btnKeyInputCardNo_Click(object sender, EventArgs e)

@@ -52,9 +52,7 @@
             this.tran_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bill_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cash_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.card_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.etc_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,20 +83,20 @@
             this.panelback.Controls.Add(this.dtBusiness);
             this.panelback.Controls.Add(this.lvwPayManager);
             this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.panelback.Location = new System.Drawing.Point(4, 3);
+            this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
-            this.panelback.Size = new System.Drawing.Size(618, 698);
+            this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 3;
             // 
             // lblLayoutBill
             // 
             this.lblLayoutBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblLayoutBill.Font = new System.Drawing.Font("GulimChe", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLayoutBill.Location = new System.Drawing.Point(14, 424);
+            this.lblLayoutBill.Location = new System.Drawing.Point(20, 422);
             this.lblLayoutBill.Multiline = true;
             this.lblLayoutBill.Name = "lblLayoutBill";
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.lblLayoutBill.Size = new System.Drawing.Size(340, 255);
+            this.lblLayoutBill.Size = new System.Drawing.Size(334, 255);
             this.lblLayoutBill.TabIndex = 55;
             // 
             // btnClose
@@ -107,7 +105,7 @@
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(559, 20);
+            this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
@@ -119,11 +117,11 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblTitle.Location = new System.Drawing.Point(16, 20);
+            this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(582, 40);
+            this.lblTitle.Size = new System.Drawing.Size(483, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "결제내역관리";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -133,7 +131,7 @@
             this.btnKeyInput.BackColor = System.Drawing.Color.Gray;
             this.btnKeyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInput.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInput.Location = new System.Drawing.Point(430, 72);
+            this.btnKeyInput.Location = new System.Drawing.Point(305, 72);
             this.btnKeyInput.Name = "btnKeyInput";
             this.btnKeyInput.Size = new System.Drawing.Size(69, 39);
             this.btnKeyInput.TabIndex = 52;
@@ -145,7 +143,7 @@
             // 
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("Gulim", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(369, 81);
+            this.tbBillNo.Location = new System.Drawing.Point(244, 72);
             this.tbBillNo.MaxLength = 4;
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(46, 24);
@@ -157,7 +155,7 @@
             // 
             this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Location = new System.Drawing.Point(250, 81);
+            this.cbPosNo.Location = new System.Drawing.Point(74, 100);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(40, 21);
             this.cbPosNo.TabIndex = 50;
@@ -167,11 +165,11 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.checkBox1.Location = new System.Drawing.Point(437, 653);
+            this.checkBox1.Location = new System.Drawing.Point(249, 682);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(68, 26);
+            this.checkBox1.Size = new System.Drawing.Size(105, 15);
             this.checkBox1.TabIndex = 49;
-            this.checkBox1.Text = "상품내역\r\n미출력";
+            this.checkBox1.Text = "상품내역 미출력";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -180,7 +178,7 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(514, 586);
+            this.button4.Location = new System.Drawing.Point(416, 587);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 48);
             this.button4.TabIndex = 48;
@@ -192,7 +190,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(514, 640);
+            this.button1.Location = new System.Drawing.Point(416, 641);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 48);
             this.button1.TabIndex = 48;
@@ -204,7 +202,7 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(514, 532);
+            this.button3.Location = new System.Drawing.Point(416, 533);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 48);
             this.button3.TabIndex = 48;
@@ -216,7 +214,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(514, 478);
+            this.btnCancel.Location = new System.Drawing.Point(416, 479);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 48);
             this.btnCancel.TabIndex = 48;
@@ -229,7 +227,7 @@
             this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(514, 424);
+            this.btnPrint.Location = new System.Drawing.Point(416, 425);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(87, 48);
             this.btnPrint.TabIndex = 48;
@@ -242,7 +240,7 @@
             this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(512, 72);
+            this.btnView.Location = new System.Drawing.Point(416, 72);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(87, 39);
             this.btnView.TabIndex = 48;
@@ -254,7 +252,7 @@
             // 
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl2.Location = new System.Drawing.Point(196, 86);
+            this.lbl2.Location = new System.Drawing.Point(20, 105);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(53, 12);
             this.lbl2.TabIndex = 47;
@@ -264,7 +262,7 @@
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(306, 86);
+            this.lbl3.Location = new System.Drawing.Point(181, 77);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(65, 12);
             this.lbl3.TabIndex = 47;
@@ -274,7 +272,7 @@
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.Location = new System.Drawing.Point(36, 86);
+            this.lbl1.Location = new System.Drawing.Point(22, 77);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
             this.lbl1.TabIndex = 47;
@@ -283,7 +281,7 @@
             // dtBusiness
             // 
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(88, 81);
+            this.dtBusiness.Location = new System.Drawing.Point(74, 72);
             this.dtBusiness.Name = "dtBusiness";
             this.dtBusiness.Size = new System.Drawing.Size(94, 22);
             this.dtBusiness.TabIndex = 46;
@@ -297,19 +295,17 @@
             this.tran_type,
             this.pos_no,
             this.bill_no,
-            this.cash_amount,
-            this.card_amount,
-            this.etc_amount,
+            this.amount,
             this.dc,
             this.cancel});
             this.lvwPayManager.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayManager.HideSelection = false;
-            this.lvwPayManager.Location = new System.Drawing.Point(14, 122);
+            this.lvwPayManager.Location = new System.Drawing.Point(20, 127);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
-            this.lvwPayManager.Size = new System.Drawing.Size(586, 296);
+            this.lvwPayManager.Size = new System.Drawing.Size(483, 291);
             this.lvwPayManager.TabIndex = 44;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;
@@ -341,23 +337,11 @@
             this.bill_no.Text = "영수번호";
             this.bill_no.Width = 70;
             // 
-            // cash_amount
+            // amount
             // 
-            this.cash_amount.Text = "현금";
-            this.cash_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.cash_amount.Width = 70;
-            // 
-            // card_amount
-            // 
-            this.card_amount.Text = "카드";
-            this.card_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.card_amount.Width = 70;
-            // 
-            // etc_amount
-            // 
-            this.etc_amount.Text = "기타";
-            this.etc_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.etc_amount.Width = 70;
+            this.amount.Text = "금액";
+            this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amount.Width = 70;
             // 
             // dc
             // 
@@ -388,10 +372,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(624, 704);
+            this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(393, 56);
+            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmPayManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmSetup";
@@ -420,7 +404,7 @@
         private System.Windows.Forms.ColumnHeader pos_no;
         private System.Windows.Forms.ColumnHeader bill_no;
         private System.Windows.Forms.ColumnHeader amount_etc;
-        private System.Windows.Forms.ColumnHeader cash_amount;
+        private System.Windows.Forms.ColumnHeader amount;
         private System.Windows.Forms.ColumnHeader amount_card;
         private System.Windows.Forms.TextBox tbBillNo;
         private System.Windows.Forms.ComboBox cbPosNo;
@@ -432,8 +416,6 @@
         private System.Windows.Forms.ColumnHeader tran_type;
         private System.Windows.Forms.Button btnKeyInput;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ColumnHeader card_amount;
-        private System.Windows.Forms.ColumnHeader etc_amount;
         private System.Windows.Forms.TextBox lblLayoutBill;
     }
 }

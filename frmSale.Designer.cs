@@ -1358,7 +1358,7 @@ namespace thepos
             // 
             // btnPay3
             // 
-            this.btnPay3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnPay3.BackColor = System.Drawing.Color.DimGray;
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay3, 2);
             this.btnPay3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -32,11 +32,20 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblAuthNo = new System.Windows.Forms.Label();
             this.lblCardNo = new System.Windows.Forms.Label();
+            this.rbCard7 = new System.Windows.Forms.RadioButton();
             this.lblT4 = new System.Windows.Forms.Label();
             this.btnKeyInputAuthNo = new System.Windows.Forms.Button();
             this.btnKeyInputCardNo = new System.Windows.Forms.Button();
+            this.rbCard8 = new System.Windows.Forms.RadioButton();
             this.lblT3 = new System.Windows.Forms.Label();
             this.btnCardTemp = new System.Windows.Forms.Button();
+            this.rbCard5 = new System.Windows.Forms.RadioButton();
+            this.rbCard6 = new System.Windows.Forms.RadioButton();
+            this.rbCard3 = new System.Windows.Forms.RadioButton();
+            this.rbCard4 = new System.Windows.Forms.RadioButton();
+            this.rbCard2 = new System.Windows.Forms.RadioButton();
+            this.rbCard1 = new System.Windows.Forms.RadioButton();
+            this.rbCard0 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblInstall = new System.Windows.Forms.Label();
             this.btnInstall00 = new System.Windows.Forms.Button();
@@ -50,15 +59,6 @@
             this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.rbCard0 = new System.Windows.Forms.RadioButton();
-            this.rbCard1 = new System.Windows.Forms.RadioButton();
-            this.rbCard2 = new System.Windows.Forms.RadioButton();
-            this.rbCard4 = new System.Windows.Forms.RadioButton();
-            this.rbCard3 = new System.Windows.Forms.RadioButton();
-            this.rbCard6 = new System.Windows.Forms.RadioButton();
-            this.rbCard5 = new System.Windows.Forms.RadioButton();
-            this.rbCard8 = new System.Windows.Forms.RadioButton();
-            this.rbCard7 = new System.Windows.Forms.RadioButton();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -128,10 +128,23 @@
             this.lblCardNo.Tag = "0";
             this.lblCardNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // rbCard7
+            // 
+            this.rbCard7.AutoSize = true;
+            this.rbCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard7.Location = new System.Drawing.Point(127, 188);
+            this.rbCard7.Name = "rbCard7";
+            this.rbCard7.Size = new System.Drawing.Size(52, 18);
+            this.rbCard7.TabIndex = 0;
+            this.rbCard7.TabStop = true;
+            this.rbCard7.Tag = "91";
+            this.rbCard7.Text = "농협";
+            this.rbCard7.UseVisualStyleBackColor = true;
+            // 
             // lblT4
             // 
             this.lblT4.AutoSize = true;
-            this.lblT4.Location = new System.Drawing.Point(42, 78);
+            this.lblT4.Location = new System.Drawing.Point(42, 80);
             this.lblT4.Name = "lblT4";
             this.lblT4.Size = new System.Drawing.Size(63, 14);
             this.lblT4.TabIndex = 48;
@@ -163,6 +176,19 @@
             this.btnKeyInputCardNo.UseVisualStyleBackColor = false;
             this.btnKeyInputCardNo.Click += new System.EventHandler(this.btnKeyInputCardNo_Click);
             // 
+            // rbCard8
+            // 
+            this.rbCard8.AutoSize = true;
+            this.rbCard8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard8.Location = new System.Drawing.Point(207, 188);
+            this.rbCard8.Name = "rbCard8";
+            this.rbCard8.Size = new System.Drawing.Size(52, 18);
+            this.rbCard8.TabIndex = 0;
+            this.rbCard8.TabStop = true;
+            this.rbCard8.Tag = "00";
+            this.rbCard8.Text = "기타";
+            this.rbCard8.UseVisualStyleBackColor = true;
+            // 
             // lblT3
             // 
             this.lblT3.AutoSize = true;
@@ -181,6 +207,97 @@
             this.btnCardTemp.Text = "임의등록";
             this.btnCardTemp.UseVisualStyleBackColor = true;
             this.btnCardTemp.Click += new System.EventHandler(this.btnCardTemp_Click);
+            // 
+            // rbCard5
+            // 
+            this.rbCard5.AutoSize = true;
+            this.rbCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard5.Location = new System.Drawing.Point(207, 160);
+            this.rbCard5.Name = "rbCard5";
+            this.rbCard5.Size = new System.Drawing.Size(52, 18);
+            this.rbCard5.TabIndex = 0;
+            this.rbCard5.TabStop = true;
+            this.rbCard5.Tag = "31";
+            this.rbCard5.Text = "비씨";
+            this.rbCard5.UseVisualStyleBackColor = true;
+            // 
+            // rbCard6
+            // 
+            this.rbCard6.AutoSize = true;
+            this.rbCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard6.Location = new System.Drawing.Point(49, 188);
+            this.rbCard6.Name = "rbCard6";
+            this.rbCard6.Size = new System.Drawing.Size(52, 18);
+            this.rbCard6.TabIndex = 0;
+            this.rbCard6.TabStop = true;
+            this.rbCard6.Tag = "71";
+            this.rbCard6.Text = "롯데";
+            this.rbCard6.UseVisualStyleBackColor = true;
+            // 
+            // rbCard3
+            // 
+            this.rbCard3.AutoSize = true;
+            this.rbCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard3.Location = new System.Drawing.Point(49, 160);
+            this.rbCard3.Name = "rbCard3";
+            this.rbCard3.Size = new System.Drawing.Size(52, 18);
+            this.rbCard3.TabIndex = 0;
+            this.rbCard3.TabStop = true;
+            this.rbCard3.Tag = "51";
+            this.rbCard3.Text = "삼성";
+            this.rbCard3.UseVisualStyleBackColor = true;
+            // 
+            // rbCard4
+            // 
+            this.rbCard4.AutoSize = true;
+            this.rbCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard4.Location = new System.Drawing.Point(127, 160);
+            this.rbCard4.Name = "rbCard4";
+            this.rbCard4.Size = new System.Drawing.Size(52, 18);
+            this.rbCard4.TabIndex = 0;
+            this.rbCard4.TabStop = true;
+            this.rbCard4.Tag = "61";
+            this.rbCard4.Text = "현대";
+            this.rbCard4.UseVisualStyleBackColor = true;
+            // 
+            // rbCard2
+            // 
+            this.rbCard2.AutoSize = true;
+            this.rbCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard2.Location = new System.Drawing.Point(207, 132);
+            this.rbCard2.Name = "rbCard2";
+            this.rbCard2.Size = new System.Drawing.Size(52, 18);
+            this.rbCard2.TabIndex = 0;
+            this.rbCard2.TabStop = true;
+            this.rbCard2.Tag = "41";
+            this.rbCard2.Text = "신한";
+            this.rbCard2.UseVisualStyleBackColor = true;
+            // 
+            // rbCard1
+            // 
+            this.rbCard1.AutoSize = true;
+            this.rbCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard1.Location = new System.Drawing.Point(127, 132);
+            this.rbCard1.Name = "rbCard1";
+            this.rbCard1.Size = new System.Drawing.Size(52, 18);
+            this.rbCard1.TabIndex = 0;
+            this.rbCard1.TabStop = true;
+            this.rbCard1.Tag = "32";
+            this.rbCard1.Text = "하나";
+            this.rbCard1.UseVisualStyleBackColor = true;
+            // 
+            // rbCard0
+            // 
+            this.rbCard0.AutoSize = true;
+            this.rbCard0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard0.Location = new System.Drawing.Point(50, 132);
+            this.rbCard0.Name = "rbCard0";
+            this.rbCard0.Size = new System.Drawing.Size(52, 18);
+            this.rbCard0.TabIndex = 0;
+            this.rbCard0.TabStop = true;
+            this.rbCard0.Tag = "11";
+            this.rbCard0.Text = "국민";
+            this.rbCard0.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -336,123 +453,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "카드결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rbCard0
-            // 
-            this.rbCard0.AutoSize = true;
-            this.rbCard0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard0.Location = new System.Drawing.Point(50, 132);
-            this.rbCard0.Name = "rbCard0";
-            this.rbCard0.Size = new System.Drawing.Size(52, 18);
-            this.rbCard0.TabIndex = 0;
-            this.rbCard0.TabStop = true;
-            this.rbCard0.Tag = "11";
-            this.rbCard0.Text = "국민";
-            this.rbCard0.UseVisualStyleBackColor = true;
-            // 
-            // rbCard1
-            // 
-            this.rbCard1.AutoSize = true;
-            this.rbCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard1.Location = new System.Drawing.Point(127, 132);
-            this.rbCard1.Name = "rbCard1";
-            this.rbCard1.Size = new System.Drawing.Size(52, 18);
-            this.rbCard1.TabIndex = 0;
-            this.rbCard1.TabStop = true;
-            this.rbCard1.Tag = "32";
-            this.rbCard1.Text = "하나";
-            this.rbCard1.UseVisualStyleBackColor = true;
-            // 
-            // rbCard2
-            // 
-            this.rbCard2.AutoSize = true;
-            this.rbCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard2.Location = new System.Drawing.Point(207, 132);
-            this.rbCard2.Name = "rbCard2";
-            this.rbCard2.Size = new System.Drawing.Size(52, 18);
-            this.rbCard2.TabIndex = 0;
-            this.rbCard2.TabStop = true;
-            this.rbCard2.Tag = "41";
-            this.rbCard2.Text = "신한";
-            this.rbCard2.UseVisualStyleBackColor = true;
-            // 
-            // rbCard4
-            // 
-            this.rbCard4.AutoSize = true;
-            this.rbCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard4.Location = new System.Drawing.Point(127, 160);
-            this.rbCard4.Name = "rbCard4";
-            this.rbCard4.Size = new System.Drawing.Size(52, 18);
-            this.rbCard4.TabIndex = 0;
-            this.rbCard4.TabStop = true;
-            this.rbCard4.Tag = "61";
-            this.rbCard4.Text = "현대";
-            this.rbCard4.UseVisualStyleBackColor = true;
-            // 
-            // rbCard3
-            // 
-            this.rbCard3.AutoSize = true;
-            this.rbCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard3.Location = new System.Drawing.Point(49, 160);
-            this.rbCard3.Name = "rbCard3";
-            this.rbCard3.Size = new System.Drawing.Size(52, 18);
-            this.rbCard3.TabIndex = 0;
-            this.rbCard3.TabStop = true;
-            this.rbCard3.Tag = "51";
-            this.rbCard3.Text = "삼성";
-            this.rbCard3.UseVisualStyleBackColor = true;
-            // 
-            // rbCard6
-            // 
-            this.rbCard6.AutoSize = true;
-            this.rbCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard6.Location = new System.Drawing.Point(49, 188);
-            this.rbCard6.Name = "rbCard6";
-            this.rbCard6.Size = new System.Drawing.Size(52, 18);
-            this.rbCard6.TabIndex = 0;
-            this.rbCard6.TabStop = true;
-            this.rbCard6.Tag = "71";
-            this.rbCard6.Text = "롯데";
-            this.rbCard6.UseVisualStyleBackColor = true;
-            // 
-            // rbCard5
-            // 
-            this.rbCard5.AutoSize = true;
-            this.rbCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard5.Location = new System.Drawing.Point(207, 160);
-            this.rbCard5.Name = "rbCard5";
-            this.rbCard5.Size = new System.Drawing.Size(52, 18);
-            this.rbCard5.TabIndex = 0;
-            this.rbCard5.TabStop = true;
-            this.rbCard5.Tag = "31";
-            this.rbCard5.Text = "비씨";
-            this.rbCard5.UseVisualStyleBackColor = true;
-            // 
-            // rbCard8
-            // 
-            this.rbCard8.AutoSize = true;
-            this.rbCard8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard8.Location = new System.Drawing.Point(207, 188);
-            this.rbCard8.Name = "rbCard8";
-            this.rbCard8.Size = new System.Drawing.Size(52, 18);
-            this.rbCard8.TabIndex = 0;
-            this.rbCard8.TabStop = true;
-            this.rbCard8.Tag = "00";
-            this.rbCard8.Text = "기타";
-            this.rbCard8.UseVisualStyleBackColor = true;
-            // 
-            // rbCard7
-            // 
-            this.rbCard7.AutoSize = true;
-            this.rbCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard7.Location = new System.Drawing.Point(127, 188);
-            this.rbCard7.Name = "rbCard7";
-            this.rbCard7.Size = new System.Drawing.Size(52, 18);
-            this.rbCard7.TabIndex = 0;
-            this.rbCard7.TabStop = true;
-            this.rbCard7.Tag = "91";
-            this.rbCard7.Text = "농협";
-            this.rbCard7.UseVisualStyleBackColor = true;
             // 
             // frmPayCard
             // 

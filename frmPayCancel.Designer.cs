@@ -53,7 +53,7 @@
             this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
-            this.panelback.Size = new System.Drawing.Size(494, 698);
+            this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
             // 
             // btnClose
@@ -62,7 +62,7 @@
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(437, 20);
+            this.btnClose.Location = new System.Drawing.Point(460, 20);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
@@ -74,13 +74,13 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblTitle.Location = new System.Drawing.Point(13, 20);
+            this.lblTitle.Location = new System.Drawing.Point(17, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(467, 40);
+            this.lblTitle.Size = new System.Drawing.Size(485, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "취소";
+            this.lblTitle.Text = "반품";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancel
@@ -88,7 +88,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(364, 450);
+            this.btnCancel.Location = new System.Drawing.Point(415, 364);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 39);
             this.btnCancel.TabIndex = 48;
@@ -109,10 +109,10 @@
             this.lvwPay.FullRowSelect = true;
             this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPay.HideSelection = false;
-            this.lvwPay.Location = new System.Drawing.Point(15, 117);
+            this.lvwPay.Location = new System.Drawing.Point(17, 98);
             this.lvwPay.MultiSelect = false;
             this.lvwPay.Name = "lvwPay";
-            this.lvwPay.Size = new System.Drawing.Size(467, 236);
+            this.lvwPay.Size = new System.Drawing.Size(485, 236);
             this.lvwPay.TabIndex = 44;
             this.lvwPay.UseCompatibleStateImageBehavior = false;
             this.lvwPay.View = System.Windows.Forms.View.Details;
@@ -125,16 +125,17 @@
             // pay_dt
             // 
             this.pay_dt.Text = "결제시간";
-            this.pay_dt.Width = 100;
+            this.pay_dt.Width = 140;
             // 
             // pay_type
             // 
             this.pay_type.Text = "결제";
-            this.pay_type.Width = 70;
+            this.pay_type.Width = 80;
             // 
             // tran
             // 
             this.tran.Text = "구분";
+            this.tran.Width = 50;
             // 
             // amount
             // 
@@ -150,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 704);
+            this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPayCancel";

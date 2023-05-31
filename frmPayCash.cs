@@ -12,26 +12,35 @@ using static thepos.frmSale;
 
 
 
+
 namespace thepos
 {
     public partial class frmPayCash : Form
     {
         //mNetAmount
-        Int32 rcvAmount = 0;
-        Int32 restAmount = 0;
+        int netAmount = 0;
+        int rcvAmount = 0;
+        int restAmount = 0;
 
         bool isReset = true;
 
 
+        bool isComplex = false;
+        int paySeq = 1;
+        bool isLast = false;
 
 
 
-        public frmPayCash()
+        public frmPayCash(int amount, bool is_complex, int pay_seq, bool is_last)
         {
             InitializeComponent();
-
             initialize_font();
-            initialize_the();
+
+            netAmount = amount;
+
+            isComplex = is_complex;
+            paySeq = pay_seq;
+            isLast = is_last;
 
             reset_amount();
 
@@ -83,16 +92,13 @@ namespace thepos
             btnClose.Font = font12;
         }
 
-        private void initialize_the()
-        {
-
-        }
 
 
 
         private void btnCashSimple_Click(object sender, EventArgs e)
         {
             //? 서버API로 교체
+
 
             int order_cnt = SaveOrder();
             
@@ -104,21 +110,24 @@ namespace thepos
             mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
             mPayment.pos_no = mPosNo;
             mPayment.serial_no = mTheNo.Substring(14, 4);
-            mPayment.net_amount = mNetAmount;
-            mPayment.amount_cash = mNetAmount;
+            mPayment.net_amount = netAmount;
+            mPayment.amount_cash = netAmount;
             mPayment.amount_card = 0;
             mPayment.amount_point = 0;
             mPayment.is_dc = "";       // 할인여부
             mPayment.is_cancel = "";   // 취소여부
             mPayments.Add(mPayment);
 
+
+
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.the_no = mTheNo;
+            mPaymentCash.pay_seq = paySeq;
             mPaymentCash.business_dt = mBussinessDate;
             mPaymentCash.dt = DateTime.Now;
             mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             mPaymentCash.tran_type = "A";       // 승인 A 취소 C
-            mPaymentCash.amount = mNetAmount;   // 결제금액
+            mPaymentCash.amount = netAmount;   // 결제금액
             mPaymentCash.receipt_type = "";     // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
             mPaymentCash.cashcard_no = "";      // 현금영수증 고객 식별번호
             mPaymentCash.auth_no = "";          // 승인번호
@@ -128,6 +137,8 @@ namespace thepos
 
             mClearSaleForm();
             SetDisplayAlarm("I", "주문" + order_cnt + "건 단순현금 결제완료.");
+
+
 
             countup_the_no();
 
@@ -149,10 +160,11 @@ namespace thepos
 
         private void reset_amount()
         {
-            rcvAmount = mNetAmount;
+            //NetAmount = amount;
+            rcvAmount = netAmount;
             restAmount = 0;
 
-            lblNetAmount.Text = mNetAmount.ToString("N0");
+            lblNetAmount.Text = netAmount.ToString("N0");
             lblRcvAmount.Text = rcvAmount.ToString("N0");
             lblRestAmount.Text = "0";
 
@@ -181,7 +193,7 @@ namespace thepos
 
             rcvAmount += amount;
 
-            restAmount = rcvAmount - mNetAmount;
+            restAmount = rcvAmount - netAmount;
             lblRcvAmount.Text = rcvAmount.ToString("N0");
             lblRestAmount.Text = restAmount.ToString("N0");
         }

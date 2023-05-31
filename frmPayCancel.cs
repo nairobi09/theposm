@@ -33,7 +33,7 @@ namespace thepos
                     ListViewItem lvItem = new ListViewItem();
                     lvItem.Tag = mPaymentCards[i].the_no;
                     lvItem.Text = mPaymentCards[i].pay_seq.ToString();
-                    lvItem.SubItems.Add(mPaymentCards[i].dt.ToString("yyyy-MM-dd hh:mm:dd"));
+                    lvItem.SubItems.Add(mPaymentCards[i].dt.ToString("MM-dd hh:mm:dd"));
                     lvItem.SubItems.Add(get_pay_type_name(mPaymentCards[i].pay_type));
                     lvItem.SubItems.Add(get_tran_type_name(mPaymentCards[i].tran_type));
                     lvItem.SubItems.Add(mPaymentCards[i].amount.ToString("N0"));
@@ -49,7 +49,7 @@ namespace thepos
                     ListViewItem lvItem = new ListViewItem();
                     lvItem.Tag = mPaymentCashs[i].the_no;
                     lvItem.Text = mPaymentCashs[i].pay_seq.ToString();
-                    lvItem.SubItems.Add(mPaymentCashs[i].dt.ToString("yyyy-MM-dd hh:mm:dd"));
+                    lvItem.SubItems.Add(mPaymentCashs[i].dt.ToString("MM-dd hh:mm:dd"));
                     lvItem.SubItems.Add(get_pay_type_name(mPaymentCashs[i].pay_type));
                     lvItem.SubItems.Add(get_tran_type_name(mPaymentCashs[i].tran_type));
                     lvItem.SubItems.Add(mPaymentCashs[i].amount.ToString("N0"));
@@ -83,6 +83,8 @@ namespace thepos
 
         private void initial_the()
         { 
+
+
 
         }
 

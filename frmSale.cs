@@ -212,7 +212,9 @@ namespace thepos
 
         private void initialize_font()
         {
-            fontCollection.AddFontFile("Font\\TossProductSansTTF-Regular.ttf");
+            //fontCollection.AddFontFile("Font\\TossProductSansTTF-Regular.ttf");
+
+            fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
 
             font8 = new Font(fontCollection.Families[0], 8f);
             font9 = new Font(fontCollection.Families[0], 9f);
@@ -388,6 +390,8 @@ namespace thepos
                 else if (mPayConsol[i].code == "COMPLEX")
                 {
                     btnPayItem.Text = "복합\r결제";
+                    btnPayItem.BackColor = Color.DimGray;  // 복합결제 버튼만 다른색으로...
+
                     btnPayItem.Click += (sender, args) => ClickedPayComplex();
                 }
                 else if (mPayConsol[i].code == "EASY")
@@ -559,7 +563,7 @@ namespace thepos
             ConsoleDisable();
 
             Form fPay;
-            fPay = new frmPayCash();
+            fPay = new frmPayCash(mNetAmount, 1);
 
             fPay.Left += this.Location.X;
             fPay.Top += this.Location.Y;
@@ -1287,7 +1291,7 @@ namespace thepos
             }
             else
             {
-                lblTime.Text = nowDt.ToString("HH  mm");
+                lblTime.Text = nowDt.ToString("HH mm");
                 timerSecondEvent.Tag = "0";
             }
 
@@ -1362,7 +1366,7 @@ namespace thepos
             Random rand = new Random();
             mTheNo = mCustomerId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
 
-
+            // 복합결제시 넘버링...
             mPaySeq = 0;
         }
 

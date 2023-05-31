@@ -59,7 +59,6 @@ namespace thepos
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
-
             lvwPayManager.SmallImageList = imgList;
 
             cbPosNo.Items.Clear();
@@ -97,9 +96,7 @@ namespace thepos
                 lvItem.SubItems.Add(mPayments[i].pos_no);
                 lvItem.SubItems.Add(mPayments[i].serial_no);
 
-                lvItem.SubItems.Add(mPayments[i].amount_cash.ToString("N0"));
-                lvItem.SubItems.Add(mPayments[i].amount_card.ToString("N0"));
-                lvItem.SubItems.Add(mPayments[i].amount_point.ToString("N0"));
+                lvItem.SubItems.Add(mPayments[i].net_amount.ToString("N0"));
 
                 lvItem.SubItems.Add(mPayments[i].is_dc);
                 lvItem.SubItems.Add(mPayments[i].is_cancel);

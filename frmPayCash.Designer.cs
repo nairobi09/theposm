@@ -178,9 +178,9 @@
             this.lblAuthNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAuthNo.Location = new System.Drawing.Point(159, 115);
             this.lblAuthNo.Name = "lblAuthNo";
-            this.lblAuthNo.Size = new System.Drawing.Size(81, 16);
+            this.lblAuthNo.Size = new System.Drawing.Size(61, 16);
             this.lblAuthNo.TabIndex = 45;
-            this.lblAuthNo.Text = "90584483";
+            this.lblAuthNo.Text = "000000";
             // 
             // lbl8
             // 

@@ -29,7 +29,21 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tbReqAmount = new System.Windows.Forms.TextBox();
+            this.btnKeyInput = new System.Windows.Forms.Button();
+            this.btnRequestSimple = new System.Windows.Forms.Button();
+            this.btnRequestCard = new System.Windows.Forms.Button();
+            this.btnRequestCash = new System.Windows.Forms.Button();
+            this.lvwPay = new System.Windows.Forms.ListView();
+            this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pay_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cardno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblNetAmount = new System.Windows.Forms.Label();
+            this.lblT2 = new System.Windows.Forms.Label();
+            this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
@@ -37,9 +51,17 @@
             // 
             // panelback
             // 
-            this.panelback.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelback.Controls.Add(this.button1);
+            this.panelback.Controls.Add(this.tbReqAmount);
+            this.panelback.Controls.Add(this.btnKeyInput);
+            this.panelback.Controls.Add(this.btnRequestSimple);
+            this.panelback.Controls.Add(this.btnRequestCard);
+            this.panelback.Controls.Add(this.btnRequestCash);
+            this.panelback.Controls.Add(this.lvwPay);
+            this.panelback.Controls.Add(this.lblNetAmount);
+            this.panelback.Controls.Add(this.lblT2);
+            this.panelback.Controls.Add(this.lblT1);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -48,19 +70,156 @@
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 6;
             // 
-            // button1
+            // tbReqAmount
             // 
-            this.button1.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(417, 149);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 38);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "↻";
-            this.button1.UseVisualStyleBackColor = true;
+            this.tbReqAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbReqAmount.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbReqAmount.Location = new System.Drawing.Point(130, 171);
+            this.tbReqAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.tbReqAmount.Name = "tbReqAmount";
+            this.tbReqAmount.Size = new System.Drawing.Size(178, 26);
+            this.tbReqAmount.TabIndex = 56;
+            this.tbReqAmount.Text = "0";
+            this.tbReqAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnKeyInput
+            // 
+            this.btnKeyInput.BackColor = System.Drawing.Color.Gray;
+            this.btnKeyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKeyInput.ForeColor = System.Drawing.Color.White;
+            this.btnKeyInput.Location = new System.Drawing.Point(331, 162);
+            this.btnKeyInput.Name = "btnKeyInput";
+            this.btnKeyInput.Size = new System.Drawing.Size(78, 40);
+            this.btnKeyInput.TabIndex = 55;
+            this.btnKeyInput.Text = "키입력";
+            this.btnKeyInput.UseVisualStyleBackColor = false;
+            this.btnKeyInput.Click += new System.EventHandler(this.btnKeyInputInstall_Click);
+            // 
+            // btnRequestSimple
+            // 
+            this.btnRequestSimple.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnRequestSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequestSimple.ForeColor = System.Drawing.Color.White;
+            this.btnRequestSimple.Location = new System.Drawing.Point(358, 253);
+            this.btnRequestSimple.Name = "btnRequestSimple";
+            this.btnRequestSimple.Size = new System.Drawing.Size(108, 57);
+            this.btnRequestSimple.TabIndex = 54;
+            this.btnRequestSimple.Text = "간편결제";
+            this.btnRequestSimple.UseVisualStyleBackColor = false;
+            this.btnRequestSimple.Click += new System.EventHandler(this.btnRequestSimple_Click);
+            // 
+            // btnRequestCard
+            // 
+            this.btnRequestCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnRequestCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequestCard.ForeColor = System.Drawing.Color.White;
+            this.btnRequestCard.Location = new System.Drawing.Point(244, 253);
+            this.btnRequestCard.Name = "btnRequestCard";
+            this.btnRequestCard.Size = new System.Drawing.Size(108, 57);
+            this.btnRequestCard.TabIndex = 54;
+            this.btnRequestCard.Text = "카드";
+            this.btnRequestCard.UseVisualStyleBackColor = false;
+            this.btnRequestCard.Click += new System.EventHandler(this.btnRequestCard_Click);
+            // 
+            // btnRequestCash
+            // 
+            this.btnRequestCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnRequestCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequestCash.ForeColor = System.Drawing.Color.White;
+            this.btnRequestCash.Location = new System.Drawing.Point(130, 253);
+            this.btnRequestCash.Name = "btnRequestCash";
+            this.btnRequestCash.Size = new System.Drawing.Size(108, 57);
+            this.btnRequestCash.TabIndex = 54;
+            this.btnRequestCash.Text = "현금";
+            this.btnRequestCash.UseVisualStyleBackColor = false;
+            this.btnRequestCash.Click += new System.EventHandler(this.btnRequestCash_Click);
+            // 
+            // lvwPay
+            // 
+            this.lvwPay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.no,
+            this.pay_dt,
+            this.pay_type,
+            this.cardno,
+            this.amount,
+            this.columnHeader2});
+            this.lvwPay.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwPay.FullRowSelect = true;
+            this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwPay.HideSelection = false;
+            this.lvwPay.Location = new System.Drawing.Point(20, 360);
+            this.lvwPay.MultiSelect = false;
+            this.lvwPay.Name = "lvwPay";
+            this.lvwPay.Size = new System.Drawing.Size(483, 243);
+            this.lvwPay.TabIndex = 52;
+            this.lvwPay.UseCompatibleStateImageBehavior = false;
+            this.lvwPay.View = System.Windows.Forms.View.Details;
+            // 
+            // no
+            // 
+            this.no.Text = "#";
+            this.no.Width = 30;
+            // 
+            // pay_dt
+            // 
+            this.pay_dt.Text = "결제시간";
+            this.pay_dt.Width = 80;
+            // 
+            // pay_type
+            // 
+            this.pay_type.Text = "결제";
+            this.pay_type.Width = 80;
+            // 
+            // cardno
+            // 
+            this.cardno.Text = "카드인식번호";
+            this.cardno.Width = 100;
+            // 
+            // amount
+            // 
+            this.amount.Text = "금액";
+            this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amount.Width = 80;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "승인번호";
+            this.columnHeader2.Width = 90;
+            // 
+            // lblNetAmount
+            // 
+            this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNetAmount.Location = new System.Drawing.Point(130, 87);
+            this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
+            this.lblNetAmount.Name = "lblNetAmount";
+            this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
+            this.lblNetAmount.Size = new System.Drawing.Size(178, 33);
+            this.lblNetAmount.TabIndex = 51;
+            this.lblNetAmount.Tag = "0";
+            this.lblNetAmount.Text = "0";
+            this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblT2
+            // 
+            this.lblT2.AutoSize = true;
+            this.lblT2.Location = new System.Drawing.Point(36, 176);
+            this.lblT2.Name = "lblT2";
+            this.lblT2.Size = new System.Drawing.Size(91, 14);
+            this.lblT2.TabIndex = 50;
+            this.lblT2.Text = "결제요청금액";
+            // 
+            // lblT1
+            // 
+            this.lblT1.AutoSize = true;
+            this.lblT1.Location = new System.Drawing.Point(36, 97);
+            this.lblT1.Name = "lblT1";
+            this.lblT1.Size = new System.Drawing.Size(91, 14);
+            this.lblT1.TabIndex = 50;
+            this.lblT1.Text = "결제대상금액";
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnClose.BackColor = System.Drawing.Color.DimGray;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -72,10 +231,11 @@
             this.btnClose.TabStop = false;
             this.btnClose.Text = "✕";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.lblTitle.BackColor = System.Drawing.Color.DimGray;
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -94,8 +254,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmPayComplex";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmPayComplex";
+            this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayComplex_FormClosed);
             this.panelback.ResumeLayout(false);
+            this.panelback.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -105,6 +269,20 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblNetAmount;
+        private System.Windows.Forms.Label lblT1;
+        private System.Windows.Forms.ListView lvwPay;
+        private System.Windows.Forms.ColumnHeader no;
+        private System.Windows.Forms.ColumnHeader pay_dt;
+        private System.Windows.Forms.ColumnHeader pay_type;
+        private System.Windows.Forms.ColumnHeader cardno;
+        private System.Windows.Forms.ColumnHeader amount;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label lblT2;
+        private System.Windows.Forms.Button btnRequestCard;
+        private System.Windows.Forms.Button btnRequestCash;
+        private System.Windows.Forms.Button btnKeyInput;
+        private System.Windows.Forms.TextBox tbReqAmount;
+        private System.Windows.Forms.Button btnRequestSimple;
     }
 }

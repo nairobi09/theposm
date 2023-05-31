@@ -92,7 +92,9 @@ namespace thepos
 
         // mTheNo : 선생성 - 후반영
         public static String mTheNo = "";
-        public static int mPaySeq = 0;  // 동일 theno내의 결제순번
+
+        public static Boolean mReturn = false;
+
 
 
         // (후불) 발권  사용  정산 [락커]
