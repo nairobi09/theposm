@@ -1361,6 +1361,9 @@ namespace thepos
             //? 재기동시 초기화된 이후의 연속성을 고민한다.. 
             Random rand = new Random();
             mTheNo = mCustomerId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
+
+
+            mPaySeq = 0;
         }
 
 

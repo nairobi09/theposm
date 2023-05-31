@@ -14,18 +14,8 @@ namespace thepos
     public partial class frmPayCard : Form
     {
 
-        //
-
-
 
         RadioButton[] rbCard = new RadioButton[9];
-
-
-
-
-
-
-
 
 
 
@@ -119,25 +109,58 @@ namespace thepos
             {
                 //정상승인
                 //? 서버API로 교체
-
                 int order_cnt = SaveOrder();  // 주문저장
 
                 SaveTossCardAuth(mTossResponse); // 결제저장
-
 
 
                 mClearSaleForm();
                 SetDisplayAlarm("I", "주문" + order_cnt + "건 카드 임의등록 완료.");
 
                 countup_the_no();
-
                 this.Close();
-
-
             }
         }
 
 
+        private void btnCardTemp_Click(object sender, EventArgs e)
+        {
+            //? 서버API로 교체
+            if (lblInstall.Text.Length != 2)
+            {
+                SetDisplayAlarm("W", "할부개월 오류.");
+                return;
+            }
+
+            RadioButton rbSel = rbCard.FirstOrDefault(r => r.Checked);
+
+            if (rbSel == null)
+            {
+                SetDisplayAlarm("W", "카드선택 오류.");
+                return;
+            }
+
+            int order_cnt = SaveOrder();
+
+
+            CardTemp cardTemp = new CardTemp();
+            cardTemp.amount = mNetAmount;
+            cardTemp.card_no = lblCardNo.Text;
+            cardTemp.auth_no = lblAuthNo.Text;
+            cardTemp.install = lblInstall.Text;
+            cardTemp.card_name = rbSel.Text;
+            cardTemp.isu_code = rbSel.Tag.ToString();
+
+
+            SaveTossCardTemp(cardTemp); // 임의등록
+
+
+            mClearSaleForm();
+            SetDisplayAlarm("I", "주문" + order_cnt + "건 카드 임의등록 완료.");
+
+            countup_the_no();
+            this.Close();
+        }
 
 
         void display_error_msg(string msg)
@@ -163,75 +186,5 @@ namespace thepos
             frmSale.ConsoleEnable();
         }
 
-        private void btnCardTemp_Click(object sender, EventArgs e)
-        {
-            //? 서버API로 교체
-
-
-            if (lblInstall.Text.Length != 2)
-            {
-                SetDisplayAlarm("W", "할부개월 오류.");
-                return;
-            }
-
-
-
-            RadioButton rbSel = rbCard.FirstOrDefault(r => r.Checked);
-
-            if (rbSel == null)
-            {
-                SetDisplayAlarm("W", "카드선택 오류.");
-                return;
-            }
-
-
-
-            int order_cnt = SaveOrder();
-
-            Payment mPayment = new Payment();
-            mPayment.the_no = mTheNo;
-            mPayment.dt = DateTime.Now;
-            mPayment.business_dt = mBussinessDate;
-            mPayment.tran_type = "A";
-            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-            mPayment.pos_no = mPosNo;
-            mPayment.serial_no = mTheNo.Substring(14, 4);
-            mPayment.net_amount = mNetAmount;
-            mPayment.amount_cash = 0;
-            mPayment.amount_card = mNetAmount;
-            mPayment.amount_point = 0;
-            mPayment.is_dc = "";       // 할인여부
-            mPayment.is_cancel = "";   // 취소여부
-            mPayments.Add(mPayment);
-
-            PaymentCard mPaymentCard = new PaymentCard();
-            mPaymentCard.the_no = mTheNo;
-            mPaymentCard.business_dt = mBussinessDate;
-            mPaymentCard.dt = DateTime.Now;
-            mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
-            mPaymentCard.tran_type = "A";       // 승인 A 취소 C
-            mPaymentCard.amount = mNetAmount;
-            mPaymentCard.card_no = lblCardNo.Text;
-            mPaymentCard.auth_no = lblAuthNo.Text;
-            mPaymentCard.install = lblInstall.Text;
-            mPaymentCard.card_name = rbSel.Text;
-            mPaymentCard.isu_code = rbSel.Tag.ToString();
-            mPaymentCard.acq_code = "";
-            mPaymentCard.merchant_no = "";
-            mPaymentCard.tid = "";              // tran_serial -> 취소시 tid입력
-            mPaymentCard.is_cancel = "";        // 취소여부
-            mPaymentCards.Add(mPaymentCard);
-
-            mClearSaleForm();
-            SetDisplayAlarm("I", "주문" + order_cnt + "건 카드 임의등록 완료.");
-
-            countup_the_no();
-
-            this.Close();
-
-
-
-
-        }
     }
 }

@@ -381,21 +381,47 @@ namespace thepos
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
-            if (lvwPayManager.SelectedItems.Count < 1) { return; }
+            if (lvwPayManager.SelectedItems.Count < 1) 
+            {
+                SetDisplayAlarm("W", "대상거래 선택요망.");
+                return; 
+            }
+
+            String the_no = lvwPayManager.SelectedItems[0].Tag.ToString();
+            Payment payment = get_payment_by_theno(the_no);
+
+            if (payment.is_cancel == "Y")
+            {
+                SetDisplayAlarm("W", "기취소건.");
+                return;
+            }
 
 
-            frmPayCancel fPayCancel = new frmPayCancel("fjdsofidsf");
+            frmPayCancel fPayCancel = new frmPayCancel(the_no);
 
             fPayCancel.Left += this.Location.X;
             fPayCancel.Top += this.Location.Y;
-
 
             fPayCancel.ShowDialog();
 
 
         }
 
+        private Payment get_payment_by_theno(String the_no)
+        {
+            Payment p = new Payment();
 
+            for (int i = 0; i < mPayments.Count; i++)
+            {
+                if (mPayments[i].the_no == the_no)
+                {
+                    p = mPayments[i];
+                    return p;
+                }
+            }
+
+            return p;
+        }
 
 
 

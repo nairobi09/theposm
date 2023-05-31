@@ -36,7 +36,9 @@
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tran = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +68,7 @@
             this.btnClose.TabIndex = 43;
             this.btnClose.Text = "✕";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblTitle
             // 
@@ -99,7 +102,9 @@
             this.no,
             this.pay_dt,
             this.pay_type,
-            this.amount});
+            this.tran,
+            this.amount,
+            this.cc});
             this.lvwPay.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPay.FullRowSelect = true;
             this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -120,18 +125,26 @@
             // pay_dt
             // 
             this.pay_dt.Text = "결제시간";
-            this.pay_dt.Width = 70;
+            this.pay_dt.Width = 100;
             // 
             // pay_type
             // 
             this.pay_type.Text = "결제";
-            this.pay_type.Width = 40;
+            this.pay_type.Width = 70;
+            // 
+            // tran
+            // 
+            this.tran.Text = "구분";
             // 
             // amount
             // 
             this.amount.Text = "금액";
             this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amount.Width = 70;
+            this.amount.Width = 90;
+            // 
+            // cc
+            // 
+            this.cc.Text = "취소";
             // 
             // frmPayCancel
             // 
@@ -160,5 +173,7 @@
         private System.Windows.Forms.ColumnHeader pay_dt;
         private System.Windows.Forms.ColumnHeader pay_type;
         private System.Windows.Forms.ColumnHeader amount;
+        private System.Windows.Forms.ColumnHeader cc;
+        private System.Windows.Forms.ColumnHeader tran;
     }
 }

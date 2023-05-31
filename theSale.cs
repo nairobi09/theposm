@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using static thepos.theSale;
+
 
 
 namespace thepos
@@ -54,6 +54,20 @@ namespace thepos
         public static TossResponse mTossResponse = new TossResponse();
 
 
+        public struct CardTemp
+        {
+            public int amount;
+            public string card_no;
+            public string auth_no;
+            public string install;
+            public string card_name;
+            public string isu_code;
+        }
+
+
+
+
+
 
 
         public static Font font8;
@@ -78,6 +92,7 @@ namespace thepos
 
         // mTheNo : 선생성 - 후반영
         public static String mTheNo = "";
+        public static int mPaySeq = 0;  // 동일 theno내의 결제순번
 
 
         // (후불) 발권  사용  정산 [락커]
@@ -222,13 +237,14 @@ namespace thepos
             public int amount_card;
             public int amount_point;
             public String is_dc;       // 할인여부
-            public String is_cancel;   // 취소여부
+            public String is_cancel;   // 취소여부 : 미취소"", 취소중0, 취소1
         }
         public static List<Payment> mPayments = new List<Payment>();
 
         public struct PaymentCard
         {
-            public String the_no;       // 
+            public String the_no;
+            public int pay_seq;
             public String business_dt;
             public DateTime dt;
             public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
@@ -243,13 +259,14 @@ namespace thepos
             public String acq_code;     // 매입사코드
             public String merchant_no;  // 가맹점번호
             public String tid;          // tran_serial -> 취소시 tid입력
-            public String is_cancel;    // 취소여부
+            public String is_cancel;    // 취소여부 : "" or "1"
         }
         public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
 
         public struct PaymentCash
         {
-            public String the_no;       // 
+            public String the_no;
+            public int pay_seq;
             public String business_dt;
             public DateTime dt;
             public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
@@ -266,7 +283,8 @@ namespace thepos
 
         public struct PaymentPoint           // 선불 후불 사용
         {
-            public String the_no;       // 
+            public String the_no;
+            public int pay_seq; 
             public DateTime dt;
             public String pay_type;     // 결제구분 : 포인트(P0)
             public String tran_type;    // 승인 A 취소 C
@@ -291,7 +309,6 @@ namespace thepos
                 mErrorMsg = e.Message;
                 return -1;
             }
-
 
             if (ret == -9)
             {
@@ -497,9 +514,10 @@ namespace thepos
 
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.the_no = mTheNo;
+            mPaymentCard.pay_seq = ++mPaySeq;
             mPaymentCard.business_dt = mBussinessDate;
             mPaymentCard.dt = DateTime.Now;
-            mPaymentCard.pay_type = "C1";       // 결제구분 : , 현금영수중(C1), 임의등록(C9)
+            mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
             mPaymentCard.tran_type = "A";       // 승인 A 취소 C
             mPaymentCard.tran_date = mTossResponse.Trandate;
             mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
@@ -513,6 +531,48 @@ namespace thepos
             mPaymentCard.tid = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
             mPaymentCard.is_cancel = "";        // 취소여부
             mPaymentCards.Add(mPaymentCard);
+        }
+
+        public static void SaveTossCardTemp(CardTemp cardTemp)
+        {
+
+
+            Payment mPayment = new Payment();
+            mPayment.the_no = mTheNo;
+            mPayment.dt = DateTime.Now;
+            mPayment.business_dt = mBussinessDate;
+            mPayment.tran_type = "A";
+            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
+            mPayment.pos_no = mPosNo;
+            mPayment.serial_no = mTheNo.Substring(14, 4);
+            mPayment.net_amount += cardTemp.amount;
+            mPayment.amount_cash = 0;
+            mPayment.amount_card += cardTemp.amount;
+            mPayment.amount_point = 0;
+            mPayment.is_dc = "";       // 할인여부
+            mPayment.is_cancel = "";   // 취소여부
+            mPayments.Add(mPayment);
+
+            PaymentCard mPaymentCard = new PaymentCard();
+            mPaymentCard.the_no = mTheNo;
+            mPaymentCard.pay_seq = ++mPaySeq;
+            mPaymentCard.business_dt = mBussinessDate;
+            mPaymentCard.dt = DateTime.Now;
+            mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
+            mPaymentCard.tran_type = "A";       // 승인 A 취소 C
+            mPaymentCard.amount = cardTemp.amount;
+            mPaymentCard.card_no = cardTemp.card_no;
+            mPaymentCard.auth_no = cardTemp.auth_no;
+            mPaymentCard.install = cardTemp.install;
+            mPaymentCard.card_name = cardTemp.card_name;
+            mPaymentCard.isu_code = cardTemp.isu_code;
+            mPaymentCard.acq_code = "";
+            mPaymentCard.merchant_no = "";
+            mPaymentCard.tid = "";              // tran_serial -> 취소시 tid입력
+            mPaymentCard.is_cancel = "";        // 취소여부
+            mPaymentCards.Add(mPaymentCard);
+
+
         }
 
         public static void SaveTossCardCancel(PaymentCard mPaymentCardOriginAuth, TossResponse mTossResponse)
@@ -532,11 +592,12 @@ namespace thepos
             mPayment.amount_card += int.Parse(mTossResponse.Tamt);
             mPayment.amount_point = 0;
             mPayment.is_dc = "";       // 할인여부
-            mPayment.is_cancel = "";   // 취소여부
+            mPayment.is_cancel = "0";   //? 취소여부 취소중0 
             mPayments.Add(mPayment);
 
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.the_no = mTheNo;
+            mPaymentCard.pay_seq = 1;
             mPaymentCard.business_dt = mPaymentCardOriginAuth.business_dt;
             mPaymentCard.dt = DateTime.Now;
             mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
@@ -550,12 +611,12 @@ namespace thepos
             mPaymentCard.isu_code = mTossResponse.Stlinst;
             mPaymentCard.acq_code = mTossResponse.Reqinst;
             mPaymentCard.merchant_no = mTossResponse.Merno;
-            mPaymentCard.tid = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
-            mPaymentCard.is_cancel = "";        // 취소여부
+            mPaymentCard.tid = mTossResponse.Tran_serial;     // tran_serial -> 취소시 tid입력
+            mPaymentCard.is_cancel = "1";        // 취소여부
             mPaymentCards.Add(mPaymentCard);
         }
 
-        public static void SetCancelOrderAndPayment(String theno)
+        public static void SetCancelOrderAndPayment(String theno, int payseq)
         {
 
 
