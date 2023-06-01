@@ -563,7 +563,7 @@ namespace thepos
             ConsoleDisable();
 
             Form fPay;
-            fPay = new frmPayCash(mNetAmount, 1);
+            fPay = new frmPayCash(mNetAmount, false, 1, true); // int amount, bool is_complex, int pay_seq, bool is_last
 
             fPay.Left += this.Location.X;
             fPay.Top += this.Location.Y;
@@ -1366,8 +1366,7 @@ namespace thepos
             Random rand = new Random();
             mTheNo = mCustomerId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
 
-            // 복합결제시 넘버링...
-            mPaySeq = 0;
+
         }
 
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.theSale;
 using static thepos.frmSale;
-
+using static thepos.frmPayComplex;
 
 
 
@@ -26,7 +26,7 @@ namespace thepos
 
 
         bool isComplex = false;
-        int paySeq = 1;
+        int paySeq = 0;
         bool isLast = false;
 
 
@@ -94,29 +94,46 @@ namespace thepos
 
 
 
-
         private void btnCashSimple_Click(object sender, EventArgs e)
         {
             //? 서버API로 교체
 
+            bool isComplex = false;
+            int paySeq = 0;
+            bool isLast = false;
 
-            int order_cnt = SaveOrder();
+
+
+            int order_cnt = 0;
+
+            if (paySeq == 1)
+            {
+                order_cnt = SaveOrder();
             
-            Payment mPayment = new Payment();
-            mPayment.the_no = mTheNo;
-            mPayment.dt = DateTime.Now;
-            mPayment.business_dt = mBussinessDate;
-            mPayment.tran_type = "A";
-            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-            mPayment.pos_no = mPosNo;
-            mPayment.serial_no = mTheNo.Substring(14, 4);
-            mPayment.net_amount = netAmount;
-            mPayment.amount_cash = netAmount;
-            mPayment.amount_card = 0;
-            mPayment.amount_point = 0;
-            mPayment.is_dc = "";       // 할인여부
-            mPayment.is_cancel = "";   // 취소여부
-            mPayments.Add(mPayment);
+                Payment mPayment = new Payment();
+                mPayment.the_no = mTheNo;
+                mPayment.dt = DateTime.Now;
+                mPayment.business_dt = mBussinessDate;
+                mPayment.tran_type = "A";
+                mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
+                mPayment.pos_no = mPosNo;
+                mPayment.serial_no = mTheNo.Substring(14, 4);
+                mPayment.net_amount = netAmount;
+                mPayment.amount_cash = netAmount;
+                mPayment.amount_card = 0;
+                mPayment.amount_point = 0;
+                mPayment.is_dc = "";       // 할인여부
+                mPayment.is_cancel = "";   // 취소여부
+                mPayments.Add(mPayment);
+            }
+            else
+            {
+                // 찾아서 금액 += 업데이트
+
+
+            }
+
+
 
 
 
@@ -135,12 +152,56 @@ namespace thepos
             mPaymentCash.is_cancel = "";        // 취소여부
             mPaymentCashs.Add(mPaymentCash);
 
-            mClearSaleForm();
-            SetDisplayAlarm("I", "주문" + order_cnt + "건 단순현금 결제완료.");
+
+            if (isComplex)
+            {
+                // frmComplex화면의 금액들 업데이트
+                mComplexRcvAmount += netAmount;
+                mComplexNestAmount -= netAmount;
+
+                mComplexLblRcvAmount.Text = mComplexRcvAmount.ToString("N0");
+                mComplexLblNetAmount.Text = mComplexNestAmount.ToString("N0");
+
+                mComplexTbReqAmount.Tag = mComplexNestAmount.ToString();
+                mComplexTbReqAmount.Text = mComplexNestAmount.ToString("N0");
+
+                // 리스트뷰 추가
+                ListViewItem lvItem = new ListViewItem();
+
+                lvItem.Tag = "";
+                lvItem.Text = paySeq.ToString();
+                lvItem.SubItems.Add(mPaymentCash.dt.ToString("HH:mm:dd"));
+                lvItem.SubItems.Add(mPaymentCash.pay_type);  
+                lvItem.SubItems.Add(mPaymentCash.tran_type);  
+                lvItem.SubItems.Add(mPaymentCash.cashcard_no);   
+                lvItem.SubItems.Add(mPaymentCash.amount.ToString("N0")); 
+                lvItem.SubItems.Add(mPaymentCash.auth_no); 
+
+                mComplexLvwPay.Items.Add(lvItem);
+
+            }
+            else
+            {
+               mClearSaleForm();
+            }
 
 
+            if (paySeq == 1)
+            {
+                SetDisplayAlarm("I", "주문" + order_cnt + "건 단순현금 결제완료.");
+            }
+            else
+            {
+                SetDisplayAlarm("I", "단순현금 결제완료.");
+            }
 
-            countup_the_no();
+
+            if (isLast)     // 복합결제 마지막이거나 단독결제라면...
+            {
+                countup_the_no();
+            }
+
+            
 
             this.Close();
         }

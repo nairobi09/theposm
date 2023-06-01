@@ -260,7 +260,7 @@ namespace thepos
             public String isu_code;     // 발급사코드
             public String acq_code;     // 매입사코드
             public String merchant_no;  // 가맹점번호
-            public String tid;          // tran_serial -> 취소시 tid입력
+            public String tran_serial;          // tran_serial -> 취소시 tid입력
             public String is_cancel;    // 취소여부 : "" or "1"
         }
         public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
@@ -425,7 +425,7 @@ namespace thepos
 
             ret = UPay_Set("LGD_AMOUNT", pCard.amount.ToString());
             ret = UPay_Set("LGD_INSTALL", pCard.install);
-            ret = UPay_Set("LGD_TID", pCard.tid);
+            ret = UPay_Set("LGD_TID", pCard.tran_serial);
             ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
             ret = UPay_Set("LGD_VAT", "0");
             ret = UPay_Set("VAN_SFEEAMOUNT", "0");
@@ -530,7 +530,7 @@ namespace thepos
             mPaymentCard.isu_code = mTossResponse.Stlinst;
             mPaymentCard.acq_code = mTossResponse.Reqinst;
             mPaymentCard.merchant_no = mTossResponse.Merno;
-            mPaymentCard.tid = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
+            mPaymentCard.tran_serial = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
             mPaymentCard.is_cancel = "";        // 취소여부
             mPaymentCards.Add(mPaymentCard);
         }
@@ -570,7 +570,7 @@ namespace thepos
             mPaymentCard.isu_code = cardTemp.isu_code;
             mPaymentCard.acq_code = "";
             mPaymentCard.merchant_no = "";
-            mPaymentCard.tid = "";              // tran_serial -> 취소시 tid입력
+            mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
             mPaymentCard.is_cancel = "";        // 취소여부
             mPaymentCards.Add(mPaymentCard);
 
@@ -613,7 +613,7 @@ namespace thepos
             mPaymentCard.isu_code = mTossResponse.Stlinst;
             mPaymentCard.acq_code = mTossResponse.Reqinst;
             mPaymentCard.merchant_no = mTossResponse.Merno;
-            mPaymentCard.tid = mTossResponse.Tran_serial;     // tran_serial -> 취소시 tid입력
+            mPaymentCard.tran_serial = mTossResponse.Tran_serial;     // tran_serial -> 취소시 tid입력
             mPaymentCard.is_cancel = "1";        // 취소여부
             mPaymentCards.Add(mPaymentCard);
         }
