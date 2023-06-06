@@ -13,45 +13,6 @@ namespace thepos
 {
     public class theSale
     {
-        // 토스결제Agent연동
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Init", CallingConvention = CallingConvention.StdCall)]
-        extern static int UPay_Init();
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Set", CallingConvention = CallingConvention.StdCall)]
-        extern static int UPay_Set(string name, string value);
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_TX", CallingConvention = CallingConvention.StdCall)]
-        extern static int UPay_TX();
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayResNameCount", CallingConvention = CallingConvention.StdCall)]
-        extern static int UPayResNameCount();
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayResName", CallingConvention = CallingConvention.StdCall)]
-        extern static IntPtr UPayResName(int index);
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayResponse", CallingConvention = CallingConvention.StdCall)]
-        extern static IntPtr UPayResponse(int index);
-        [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
-        extern static int UPayFinal();
-
-        public struct TossResponse
-        {
-            public String Respcode;
-            public string Msg;
-            public string Trancode;
-            public string Mid;
-            public string Oid;
-            public string Tamt;
-            public string Tran_serial;
-            public string Trandate;
-            public string Financecode;
-            public string Financename;
-            public string Cardno;
-            public string Halbu;
-            public string Authno;
-            public string Stlinst;
-            public string Reqinst;
-            public string Merno;
-            public string Signpath;
-            public string Cardgubun;
-            public string Giftchange;
-        }
-        public static TossResponse mTossResponse = new TossResponse();
 
 
         public struct CardTemp
@@ -66,14 +27,11 @@ namespace thepos
 
 
 
-
-
-
-
         public static Font font8;
         public static Font font9;
         public static Font font10;
         public static Font font12;
+        public static Font font13;
         public static Font font14;
         public static Font font16;
         public static Font font20;
@@ -86,9 +44,21 @@ namespace thepos
         //
         // 로그인후 다운로드되어야할 환경값들
         //
+
+
+
         public static String mCustomerId = "";
         public static String mPosNo = "";
         public static String mBussinessDate = "";
+
+        public static String[] mPosNoList; // 이사업자의 포스번호 목록
+
+        // 대표자명
+        // 사업자번호
+        // 주소
+        // 
+
+
 
         // mTheNo : 선생성 - 후반영
         public static String mTheNo = "";
@@ -103,14 +73,17 @@ namespace thepos
         // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
         public static String mTicketType;  // "AP" "DP"
 
-        // 가맹점의 POS_ID 목록
-        public static String[] mCustomerPosNOs;
 
+
+
+
+
+        public static string mErrorMsg = "";
 
 
 
         //
-        // 서버관리
+        // 로컬 + 서버
         public struct GoodsGroup
         {
             public string code;  // 3
@@ -127,8 +100,8 @@ namespace thepos
             public string code;  // 6
             public string name;
             public int amt;
-            public String ticket; // 일반상품 0 티켓상품 1
-            public String taxfree; // 면세품:"1", 과세:"" 등
+            public String ticket; // 일반상품 0. 티켓상품 1
+            public String taxfree; // 과세품 0, 면세품 1
             public int column;
             public int row;
             public int columnspan;
@@ -137,7 +110,7 @@ namespace thepos
         public static  GoodsItem[] mGoodsItem;
 
 
-
+        // 로컬
         public struct Order
         {
             public int order_no;        // 대기번호 [대기]을 위해
@@ -164,14 +137,16 @@ namespace thepos
         public static List<OrderItem> listWaitingItem = new List<OrderItem>();
 
 
-        //? 서버API로 대체한다.
+        //? 서버
         public struct dbOrder
         {
-            public String the_no;          // 
-            public DateTime dt;         // 대기일시
+            public String the_no;       // 
+            public String order_date;
+            public String order_time;
             public String customer_id;
             public String pos_no;
             public int cnt;             // 항목수
+            public String is_cancel;    // Y
         }
         public static List<dbOrder> listOrder = new List<dbOrder>();
 
@@ -188,48 +163,19 @@ namespace thepos
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
+            public String is_cancel;    // Y
         }
         public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
 
 
-        public static string mErrorMsg = "";
 
-
-
-
-
-
-        public struct Cert
-        {
-            public String the_no;       // 
-        }
-
-
-        public struct FlowTicket
-        {
-            public String the_no;           // 
-
-            public String ticket_no;
-
-            public DateTime ticketing_dt;   // 발권일시
-            public DateTime charge_dt;      // 충전일시
-            public DateTime settlement_dt;  // 정산일시
-
-            public int charge_point;        // 충전금액
-            public int usage_point;         // 사용금액(누적)
-
-            public String ticket_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 정산완료일 경우 라커를 오픈한다.
-            public String open_locker;      // 락커 수기 개방 설정 0:폐쇄(기본값), 1:개방
-        }
-
-
-
-
+        // 서버
         public struct Payment
         {
             public String the_no;
             public String business_dt;  // yyyyMMdd
-            public DateTime dt;
+            public String pay_date;
+            public String pay_time;
             public String tran_type;    // 승인 A, 취소 C
             public String pay_class;    // Order 0, charge 1, settlement 2
             public string pos_no;
@@ -237,7 +183,7 @@ namespace thepos
             public int net_amount;
             public int amount_cash;
             public int amount_card;
-            public int amount_point;
+            public int amount_easy;
             public String is_dc;       // 할인여부
             public String is_cancel;   // 취소여부 : 미취소"", 취소중0, 취소1
         }
@@ -248,7 +194,8 @@ namespace thepos
             public String the_no;
             public int pay_seq;
             public String business_dt;
-            public DateTime dt;
+            public String pay_date;
+            public String pay_time;
             public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
             public String tran_type;    // 승인 A 취소 C
             public String tran_date;
@@ -261,6 +208,7 @@ namespace thepos
             public String acq_code;     // 매입사코드
             public String merchant_no;  // 가맹점번호
             public String tran_serial;          // tran_serial -> 취소시 tid입력
+            public String sign_path;
             public String is_cancel;    // 취소여부 : "" or "1"
         }
         public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
@@ -270,361 +218,128 @@ namespace thepos
             public String the_no;
             public int pay_seq;
             public String business_dt;
-            public DateTime dt;
+            public String pay_date;
+            public String pay_time;
             public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             public String tran_type;    // 승인 A 취소 C
             public String tran_date;
             public int amount;          // 결제금액
             public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
-            public String cashcard_no;  // 현금영수증 고객 식별번호
+            public String issued_method_no;  // 현금영수증 고객 식별번호
             public String auth_no;      // 승인번호
-            public String tid;          // tran_serial -> 취소시 tid입력
+            public String tran_serial;          // tran_serial -> 취소시 tid입력
             public String is_cancel;    // 취소여부
         }
         public static List<PaymentCash> mPaymentCashs = new List<PaymentCash>();
 
-        public struct PaymentPoint           // 선불 후불 사용
+
+
+
+        public struct PaymentPoint           // 선불 포인트 사용
         {
-            public String the_no;
-            public int pay_seq; 
-            public DateTime dt;
-            public String pay_type;     // 결제구분 : 포인트(P0)
-            public String tran_type;    // 승인 A 취소 C
-            public String tran_date;
-            public int amount;          // 금액
             public String ticket_no;
+            public String the_no;
+            public String pay_date;
+            public String pay_time;
+            public String pay_type;     // 결제구분 : 포인트(P1)
+            public String tran_type;    // 승인 A 취소 C
+            public int amount;          // 금액
             public String is_cancel;    // 취소여부
+
+
         }
 
 
 
-        public static int requestTossCardAuth(int amount, int install)
+
+
+        public struct Cert
         {
-            int ret = 0;
-
-            try
-            {
-                ret = UPay_Init();
-            }
-            catch (Exception e)
-            {
-                mErrorMsg = e.Message;
-                return -1;
-            }
-
-            if (ret == -9)
-            {
-                mErrorMsg = "Toss DLL 초기화 오류";
-                return -1;
-            }
-
-            Random random = new Random();
-            int randomValue = random.Next(10000000, 99999999);
-
-            ret = UPay_Set("LGD_TXNAME", "CardAuthOfflinePos");
-            ret = UPay_Set("LGD_REQTYPE", "APPR");
-            //ret = UPay_Set("LGD_MID", "");
-            ret = UPay_Set("LGD_OID", mCustomerId + mPosNo + randomValue);
-            ret = UPay_Set("LGD_AMOUNT", amount.ToString());
-            ret = UPay_Set("LGD_INSTALL", install.ToString("00"));
-            ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
-            ret = UPay_Set("LGD_VAT", "0");
-            ret = UPay_Set("VAN_SFEEAMOUNT", "0");
-            ret = UPay_Set("VAN_TRANTYPE", "S0");  // S0 승인
-
-            ret = UPay_TX();
-
-            if (ret != 0)
-            {
-                if (ret == -9) mErrorMsg = "Toss 내부 클래스 없음";
-                else if (ret == -2) mErrorMsg = "TossPaymentsPOS와 connect 실패";
-                else if (ret == -3) mErrorMsg = "TossPaymentsPOS에 전송 실패";
-                else if (ret == -4) mErrorMsg = "TossPaymentsPOS 결과 대기 타임아웃";
-                else if (ret == -5) mErrorMsg = "TossPaymentsPOS 결과 수신 실패";
-
-                return -1;
-            }
-
-            int cnt = UPayResNameCount();
-
-            string display_msg = "";
-
-            String name;
-            String value;
-
-            for (int i = 0; i < cnt; i++)
-            {
-                name = Marshal.PtrToStringAnsi(UPayResName(i));
-                value = Marshal.PtrToStringAnsi(UPayResponse(i));
-
-                // 응답메시지 파싱
-                if (name == "Respcode") mTossResponse.Respcode = value;
-                else if (name == "Msg") mTossResponse.Msg = value;
-                else if (name == "Trancode") mTossResponse.Trancode = value;
-                else if (name == "Mid") mTossResponse.Mid = value;
-                else if (name == "Oid") mTossResponse.Oid = value;
-                else if (name == "Tamt") mTossResponse.Tamt = value;
-                else if (name == "Tran_serial") mTossResponse.Tran_serial = value; //최소필요 TID
-                else if (name == "Trandate") mTossResponse.Trandate = value;       //취소필요 원거래일
-                else if (name == "Financecode") mTossResponse.Financecode = value; // 카드사코드
-                else if (name == "Financename") mTossResponse.Financename = value; // 카드명
-                else if (name == "Cardno") mTossResponse.Cardno = value;
-                else if (name == "Halbu") mTossResponse.Halbu = value;
-                else if (name == "Authno") mTossResponse.Authno = value;
-                else if (name == "Stlinst") mTossResponse.Stlinst = value;
-                else if (name == "Reqinst") mTossResponse.Reqinst = value;
-                else if (name == "Merno") mTossResponse.Merno = value;
-                else if (name == "Signpath") mTossResponse.Signpath = value;
-                else if (name == "Cardgubun") mTossResponse.Cardgubun = value;
-                else if (name == "Giftchange") mTossResponse.Giftchange = value;
-
-                display_msg += name + ": " + value + "\n";
-            }
-            // TossPaymentsPOS_Client 자원반환
-            ret = UPayFinal();
-
-            if (mTossResponse.Respcode == "00")
-            {
-                return 0;
-            }
-            else
-            {
-                mErrorMsg = mTossResponse.Msg;
-                return -1;
-            }
+            public String the_no;       // 
         }
 
 
-        public static int requestTossCardCancel(PaymentCard pCard)
+
+
+        // 발권상품(Order), 인증(Cert)시점 -> TicketFlow 레코드 생성(초기값)
+        public struct TicketFlow
         {
-            int ret = 0;
+            public String the_no;           // 
+            public String ticket_no;
 
-            try
-            {
-                ret = UPay_Init();
-            }
-            catch (Exception e)
-            {
-                mErrorMsg = e.Message;
-                return -1;
-            }
+            public String business_dt;
+            public DateTime ticketing_dt;   // 발권일시
+            public DateTime charge_dt;      // 충전일시
+            public DateTime settlement_dt;  // 정산일시
 
+            public int point_charge;        // 충전금액
+            public int point_usage;         // 사용금액(누적)
 
-            if (ret == -9)
-            {
-                mErrorMsg = "Toss DLL 초기화 오류";
-                return -1;
-            }
-
-            Random random = new Random();
-            int randomValue = random.Next(10000000, 99999999);
-
-            ret = UPay_Set("LGD_TXNAME", "CardAuthOfflinePos");
-            ret = UPay_Set("LGD_REQTYPE", "CANCEL");
-            //ret = UPay_Set("LGD_MID", "");
-
-            ret = UPay_Set("LGD_AMOUNT", pCard.amount.ToString());
-            ret = UPay_Set("LGD_INSTALL", pCard.install);
-            ret = UPay_Set("LGD_TID", pCard.tran_serial);
-            ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
-            ret = UPay_Set("LGD_VAT", "0");
-            ret = UPay_Set("VAN_SFEEAMOUNT", "0");
-            ret = UPay_Set("VAN_TRANTYPE", "S1");  // S0 승인, S1 취소
-            ret = UPay_Set("VAN_CAPDATE", pCard.tran_date);
-            ret = UPay_Set("VAN_AUTHNO", pCard.auth_no);
-
-
-            ret = UPay_TX();
-
-            if (ret != 0)
-            {
-                if (ret == -9) mErrorMsg = "Toss 내부 클래스 없음";
-                else if (ret == -2) mErrorMsg = "TossPaymentsPOS와 connect 실패";
-                else if (ret == -3) mErrorMsg = "TossPaymentsPOS에 전송 실패";
-                else if (ret == -4) mErrorMsg = "TossPaymentsPOS 결과 대기 타임아웃";
-                else if (ret == -5) mErrorMsg = "TossPaymentsPOS 결과 수신 실패";
-
-                return -1;
-            }
-
-            int cnt = UPayResNameCount();
-
-            string display_msg = "";
-
-            String name;
-            String value;
-
-            for (int i = 0; i < cnt; i++)
-            {
-                name = Marshal.PtrToStringAnsi(UPayResName(i));
-                value = Marshal.PtrToStringAnsi(UPayResponse(i));
-
-                // 응답메시지 파싱
-                if (name == "Respcode") mTossResponse.Respcode = value;
-                else if (name == "Msg") mTossResponse.Msg = value;
-                else if (name == "Trancode") mTossResponse.Trancode = value;
-                else if (name == "Mid") mTossResponse.Mid = value;
-                else if (name == "Oid") mTossResponse.Oid = value;
-                else if (name == "Tamt") mTossResponse.Tamt = value;
-                else if (name == "Tran_serial") mTossResponse.Tran_serial = value; //최소필요 TID
-                else if (name == "Trandate") mTossResponse.Trandate = value;       //취소필요 원거래일
-                else if (name == "Financecode") mTossResponse.Financecode = value; // 카드사코드
-                else if (name == "Financename") mTossResponse.Financename = value; // 카드명
-                else if (name == "Cardno") mTossResponse.Cardno = value;
-                else if (name == "Halbu") mTossResponse.Halbu = value;
-                else if (name == "Authno") mTossResponse.Authno = value;
-                else if (name == "Stlinst") mTossResponse.Stlinst = value;
-                else if (name == "Reqinst") mTossResponse.Reqinst = value;
-                else if (name == "Merno") mTossResponse.Merno = value;
-                else if (name == "Signpath") mTossResponse.Signpath = value;
-                else if (name == "Cardgubun") mTossResponse.Cardgubun = value;
-                else if (name == "Giftchange") mTossResponse.Giftchange = value;
-
-                display_msg += name + ": " + value + "\n";
-            }
-            // TossPaymentsPOS_Client 자원반환
-            ret = UPayFinal();
-
-            if (mTossResponse.Respcode == "00")
-            {
-                return 0;
-            }
-            else
-            {
-                mErrorMsg = mTossResponse.Msg;
-                return -1;
-            }
+            public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 정산완료일 경우 라커를 오픈한다.
+            public String open_locker;      // 락커 수동 설정 : 0 폐쇄(기본값), 1 개방
+                                            // 정산완료  or 수동 개방상태 -> 락커오픈
         }
+        public static List<TicketFlow> mTicketFlow = new List<TicketFlow>();
 
-        public static void SaveTossCardAuth(TossResponse mTossResponse)
+
+
+
+
+
+
+
+
+
+
+        // get_MMddHHmm(mPayments[i].pay_date, mPayments[i].pay_time)
+
+
+        public static String get_MMddHHmm(String d, String t)
         {
-            Payment mPayment = new Payment();
-            mPayment.the_no = mTheNo;
-            mPayment.dt = DateTime.Now;
-            mPayment.business_dt = mBussinessDate;
-            mPayment.tran_type = "A";
-            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-            mPayment.pos_no = mPosNo;
-            mPayment.serial_no = mTheNo.Substring(14, 4);
-            mPayment.net_amount += int.Parse(mTossResponse.Tamt);
-            mPayment.amount_cash = 0;
-            mPayment.amount_card += int.Parse(mTossResponse.Tamt);
-            mPayment.amount_point = 0;
-            mPayment.is_dc = "";       // 할인여부
-            mPayment.is_cancel = "";   // 취소여부
-            mPayments.Add(mPayment);
-
-            PaymentCard mPaymentCard = new PaymentCard();
-            mPaymentCard.the_no = mTheNo;
-            mPaymentCard.pay_seq = ++mPaySeq;
-            mPaymentCard.business_dt = mBussinessDate;
-            mPaymentCard.dt = DateTime.Now;
-            mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
-            mPaymentCard.tran_type = "A";       // 승인 A 취소 C
-            mPaymentCard.tran_date = mTossResponse.Trandate;
-            mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
-            mPaymentCard.card_no = mTossResponse.Cardno;
-            mPaymentCard.auth_no = mTossResponse.Authno;
-            mPaymentCard.install = mTossResponse.Halbu;
-            mPaymentCard.card_name = mTossResponse.Financename;
-            mPaymentCard.isu_code = mTossResponse.Stlinst;
-            mPaymentCard.acq_code = mTossResponse.Reqinst;
-            mPaymentCard.merchant_no = mTossResponse.Merno;
-            mPaymentCard.tran_serial = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
-            mPaymentCard.is_cancel = "";        // 취소여부
-            mPaymentCards.Add(mPaymentCard);
+            return d.Substring(4,2) + "-" + d.Substring(6, 2) + " " + t.Substring(0, 2) + ":" + t.Substring(2, 2);
         }
 
-        public static void SaveTossCardTemp(CardTemp cardTemp)
+        public static String get_today_date()
         {
-
-
-            Payment mPayment = new Payment();
-            mPayment.the_no = mTheNo;
-            mPayment.dt = DateTime.Now;
-            mPayment.business_dt = mBussinessDate;
-            mPayment.tran_type = "A";
-            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-            mPayment.pos_no = mPosNo;
-            mPayment.serial_no = mTheNo.Substring(14, 4);
-            mPayment.net_amount += cardTemp.amount;
-            mPayment.amount_cash = 0;
-            mPayment.amount_card += cardTemp.amount;
-            mPayment.amount_point = 0;
-            mPayment.is_dc = "";       // 할인여부
-            mPayment.is_cancel = "";   // 취소여부
-            mPayments.Add(mPayment);
-
-            PaymentCard mPaymentCard = new PaymentCard();
-            mPaymentCard.the_no = mTheNo;
-            mPaymentCard.pay_seq = ++mPaySeq;
-            mPaymentCard.business_dt = mBussinessDate;
-            mPaymentCard.dt = DateTime.Now;
-            mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
-            mPaymentCard.tran_type = "A";       // 승인 A 취소 C
-            mPaymentCard.amount = cardTemp.amount;
-            mPaymentCard.card_no = cardTemp.card_no;
-            mPaymentCard.auth_no = cardTemp.auth_no;
-            mPaymentCard.install = cardTemp.install;
-            mPaymentCard.card_name = cardTemp.card_name;
-            mPaymentCard.isu_code = cardTemp.isu_code;
-            mPaymentCard.acq_code = "";
-            mPaymentCard.merchant_no = "";
-            mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
-            mPaymentCard.is_cancel = "";        // 취소여부
-            mPaymentCards.Add(mPaymentCard);
-
-
+            return DateTime.Now.ToString("yyyyMMdd");
         }
 
-        public static void SaveTossCardCancel(PaymentCard mPaymentCardOriginAuth, TossResponse mTossResponse)
+        public static String get_today_time()
         {
-            // mPaymentCardOriginAuth  <- 원승인거래
-
-            Payment mPayment = new Payment();
-            mPayment.the_no = mTheNo;
-            mPayment.dt = DateTime.Now;
-            mPayment.business_dt = mPaymentCardOriginAuth.business_dt;
-            mPayment.tran_type = "C";
-            mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-            mPayment.pos_no = mPosNo;
-            mPayment.serial_no = mTheNo.Substring(14, 4);
-            mPayment.net_amount += int.Parse(mTossResponse.Tamt);
-            mPayment.amount_cash = 0;
-            mPayment.amount_card += int.Parse(mTossResponse.Tamt);
-            mPayment.amount_point = 0;
-            mPayment.is_dc = "";       // 할인여부
-            mPayment.is_cancel = "0";   //? 취소여부 취소중0 
-            mPayments.Add(mPayment);
-
-            PaymentCard mPaymentCard = new PaymentCard();
-            mPaymentCard.the_no = mTheNo;
-            mPaymentCard.pay_seq = 1;
-            mPaymentCard.business_dt = mPaymentCardOriginAuth.business_dt;
-            mPaymentCard.dt = DateTime.Now;
-            mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
-            mPaymentCard.tran_type = "C";       // 승인 A 취소 C
-            mPaymentCard.tran_date = mTossResponse.Trandate;
-            mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
-            mPaymentCard.card_no = mTossResponse.Cardno;
-            mPaymentCard.auth_no = mTossResponse.Authno;
-            mPaymentCard.install = mTossResponse.Halbu;
-            mPaymentCard.card_name = mTossResponse.Financename;
-            mPaymentCard.isu_code = mTossResponse.Stlinst;
-            mPaymentCard.acq_code = mTossResponse.Reqinst;
-            mPaymentCard.merchant_no = mTossResponse.Merno;
-            mPaymentCard.tran_serial = mTossResponse.Tran_serial;     // tran_serial -> 취소시 tid입력
-            mPaymentCard.is_cancel = "1";        // 취소여부
-            mPaymentCards.Add(mPaymentCard);
+            return DateTime.Now.ToString("HHmmss");
         }
 
-        public static void SetCancelOrderAndPayment(String theno, int payseq)
+
+
+        public static String get_pay_type_name(String code)
         {
-
-
-
-
+            String name = "";
+            if (code == "C1") name = "카드승인결제";
+            else if (code == "C9") name = "카드임의등록";
+            else if (code == "R0") name = "단순현금";
+            else if (code == "R1") name = "현금영수증";
+            else if (code == "R9") name = "임의등록";
+            return name;
         }
+
+        public static String get_tran_type_name(String code)
+        {
+            String name = "";
+            if (code == "A") name = "승인";
+            else if (code == "C") name = "취소";
+            return name;
+        }
+
+        public static String get_is_cancel_name(String code)
+        {
+            String name = "";
+            if (code == "0") name = "취소중";
+            //else if (code == "Y") name = "Y";
+            else name = code;
+
+            return name;
+        }
+
 
     }
 }

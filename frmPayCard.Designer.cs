@@ -30,8 +30,8 @@
         {
             this.panelback = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblAuthNo = new System.Windows.Forms.Label();
-            this.lblCardNo = new System.Windows.Forms.Label();
+            this.tbAuthNo = new System.Windows.Forms.TextBox();
+            this.tbCardNo = new System.Windows.Forms.TextBox();
             this.rbCard7 = new System.Windows.Forms.RadioButton();
             this.lblT4 = new System.Windows.Forms.Label();
             this.btnKeyInputAuthNo = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.rbCard1 = new System.Windows.Forms.RadioButton();
             this.rbCard0 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblInstall = new System.Windows.Forms.Label();
+            this.tbInstall = new System.Windows.Forms.TextBox();
             this.btnInstall00 = new System.Windows.Forms.Button();
             this.btnCardRequest = new System.Windows.Forms.Button();
             this.lblT2 = new System.Windows.Forms.Label();
@@ -82,8 +82,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lblAuthNo);
-            this.groupBox2.Controls.Add(this.lblCardNo);
+            this.groupBox2.Controls.Add(this.tbAuthNo);
+            this.groupBox2.Controls.Add(this.tbCardNo);
             this.groupBox2.Controls.Add(this.rbCard7);
             this.groupBox2.Controls.Add(this.lblT4);
             this.groupBox2.Controls.Add(this.btnKeyInputAuthNo);
@@ -104,35 +104,32 @@
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             // 
-            // lblAuthNo
+            // tbAuthNo
             // 
-            this.lblAuthNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblAuthNo.Location = new System.Drawing.Point(120, 74);
-            this.lblAuthNo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblAuthNo.Name = "lblAuthNo";
-            this.lblAuthNo.Padding = new System.Windows.Forms.Padding(5);
-            this.lblAuthNo.Size = new System.Drawing.Size(179, 28);
-            this.lblAuthNo.TabIndex = 49;
-            this.lblAuthNo.Tag = "0";
-            this.lblAuthNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbAuthNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbAuthNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAuthNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbAuthNo.Location = new System.Drawing.Point(119, 76);
+            this.tbAuthNo.Name = "tbAuthNo";
+            this.tbAuthNo.Size = new System.Drawing.Size(178, 26);
+            this.tbAuthNo.TabIndex = 53;
             // 
-            // lblCardNo
+            // tbCardNo
             // 
-            this.lblCardNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCardNo.Location = new System.Drawing.Point(121, 30);
-            this.lblCardNo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCardNo.Name = "lblCardNo";
-            this.lblCardNo.Padding = new System.Windows.Forms.Padding(5);
-            this.lblCardNo.Size = new System.Drawing.Size(178, 28);
-            this.lblCardNo.TabIndex = 49;
-            this.lblCardNo.Tag = "0";
-            this.lblCardNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbCardNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbCardNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbCardNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCardNo.Location = new System.Drawing.Point(120, 33);
+            this.tbCardNo.MaxLength = 20;
+            this.tbCardNo.Name = "tbCardNo";
+            this.tbCardNo.Size = new System.Drawing.Size(177, 26);
+            this.tbCardNo.TabIndex = 52;
             // 
             // rbCard7
             // 
             this.rbCard7.AutoSize = true;
             this.rbCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard7.Location = new System.Drawing.Point(127, 188);
+            this.rbCard7.Location = new System.Drawing.Point(131, 195);
             this.rbCard7.Name = "rbCard7";
             this.rbCard7.Size = new System.Drawing.Size(52, 18);
             this.rbCard7.TabIndex = 0;
@@ -144,7 +141,7 @@
             // lblT4
             // 
             this.lblT4.AutoSize = true;
-            this.lblT4.Location = new System.Drawing.Point(42, 80);
+            this.lblT4.Location = new System.Drawing.Point(42, 82);
             this.lblT4.Name = "lblT4";
             this.lblT4.Size = new System.Drawing.Size(63, 14);
             this.lblT4.TabIndex = 48;
@@ -155,11 +152,11 @@
             this.btnKeyInputAuthNo.BackColor = System.Drawing.Color.Gray;
             this.btnKeyInputAuthNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputAuthNo.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(330, 72);
+            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(320, 70);
             this.btnKeyInputAuthNo.Name = "btnKeyInputAuthNo";
-            this.btnKeyInputAuthNo.Size = new System.Drawing.Size(61, 37);
+            this.btnKeyInputAuthNo.Size = new System.Drawing.Size(40, 37);
             this.btnKeyInputAuthNo.TabIndex = 51;
-            this.btnKeyInputAuthNo.Text = "키입력";
+            this.btnKeyInputAuthNo.Text = "◇";
             this.btnKeyInputAuthNo.UseVisualStyleBackColor = false;
             this.btnKeyInputAuthNo.Click += new System.EventHandler(this.btnKeyInputAuthNo_Click);
             // 
@@ -168,11 +165,11 @@
             this.btnKeyInputCardNo.BackColor = System.Drawing.Color.Gray;
             this.btnKeyInputCardNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputCardNo.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInputCardNo.Location = new System.Drawing.Point(330, 26);
+            this.btnKeyInputCardNo.Location = new System.Drawing.Point(320, 26);
             this.btnKeyInputCardNo.Name = "btnKeyInputCardNo";
-            this.btnKeyInputCardNo.Size = new System.Drawing.Size(61, 37);
+            this.btnKeyInputCardNo.Size = new System.Drawing.Size(40, 37);
             this.btnKeyInputCardNo.TabIndex = 51;
-            this.btnKeyInputCardNo.Text = "키입력";
+            this.btnKeyInputCardNo.Text = "◇";
             this.btnKeyInputCardNo.UseVisualStyleBackColor = false;
             this.btnKeyInputCardNo.Click += new System.EventHandler(this.btnKeyInputCardNo_Click);
             // 
@@ -180,7 +177,7 @@
             // 
             this.rbCard8.AutoSize = true;
             this.rbCard8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard8.Location = new System.Drawing.Point(207, 188);
+            this.rbCard8.Location = new System.Drawing.Point(215, 195);
             this.rbCard8.Name = "rbCard8";
             this.rbCard8.Size = new System.Drawing.Size(52, 18);
             this.rbCard8.TabIndex = 0;
@@ -192,7 +189,7 @@
             // lblT3
             // 
             this.lblT3.AutoSize = true;
-            this.lblT3.Location = new System.Drawing.Point(42, 38);
+            this.lblT3.Location = new System.Drawing.Point(42, 42);
             this.lblT3.Name = "lblT3";
             this.lblT3.Size = new System.Drawing.Size(63, 14);
             this.lblT3.TabIndex = 48;
@@ -200,19 +197,20 @@
             // 
             // btnCardTemp
             // 
-            this.btnCardTemp.Location = new System.Drawing.Point(330, 144);
+            this.btnCardTemp.BackColor = System.Drawing.Color.White;
+            this.btnCardTemp.Location = new System.Drawing.Point(330, 146);
             this.btnCardTemp.Name = "btnCardTemp";
             this.btnCardTemp.Size = new System.Drawing.Size(130, 54);
             this.btnCardTemp.TabIndex = 50;
             this.btnCardTemp.Text = "임의등록";
-            this.btnCardTemp.UseVisualStyleBackColor = true;
+            this.btnCardTemp.UseVisualStyleBackColor = false;
             this.btnCardTemp.Click += new System.EventHandler(this.btnCardTemp_Click);
             // 
             // rbCard5
             // 
             this.rbCard5.AutoSize = true;
             this.rbCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard5.Location = new System.Drawing.Point(207, 160);
+            this.rbCard5.Location = new System.Drawing.Point(215, 167);
             this.rbCard5.Name = "rbCard5";
             this.rbCard5.Size = new System.Drawing.Size(52, 18);
             this.rbCard5.TabIndex = 0;
@@ -225,7 +223,7 @@
             // 
             this.rbCard6.AutoSize = true;
             this.rbCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard6.Location = new System.Drawing.Point(49, 188);
+            this.rbCard6.Location = new System.Drawing.Point(49, 195);
             this.rbCard6.Name = "rbCard6";
             this.rbCard6.Size = new System.Drawing.Size(52, 18);
             this.rbCard6.TabIndex = 0;
@@ -238,7 +236,7 @@
             // 
             this.rbCard3.AutoSize = true;
             this.rbCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard3.Location = new System.Drawing.Point(49, 160);
+            this.rbCard3.Location = new System.Drawing.Point(49, 167);
             this.rbCard3.Name = "rbCard3";
             this.rbCard3.Size = new System.Drawing.Size(52, 18);
             this.rbCard3.TabIndex = 0;
@@ -251,7 +249,7 @@
             // 
             this.rbCard4.AutoSize = true;
             this.rbCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard4.Location = new System.Drawing.Point(127, 160);
+            this.rbCard4.Location = new System.Drawing.Point(131, 167);
             this.rbCard4.Name = "rbCard4";
             this.rbCard4.Size = new System.Drawing.Size(52, 18);
             this.rbCard4.TabIndex = 0;
@@ -264,7 +262,7 @@
             // 
             this.rbCard2.AutoSize = true;
             this.rbCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard2.Location = new System.Drawing.Point(207, 132);
+            this.rbCard2.Location = new System.Drawing.Point(215, 139);
             this.rbCard2.Name = "rbCard2";
             this.rbCard2.Size = new System.Drawing.Size(52, 18);
             this.rbCard2.TabIndex = 0;
@@ -277,7 +275,7 @@
             // 
             this.rbCard1.AutoSize = true;
             this.rbCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard1.Location = new System.Drawing.Point(127, 132);
+            this.rbCard1.Location = new System.Drawing.Point(131, 139);
             this.rbCard1.Name = "rbCard1";
             this.rbCard1.Size = new System.Drawing.Size(52, 18);
             this.rbCard1.TabIndex = 0;
@@ -290,7 +288,7 @@
             // 
             this.rbCard0.AutoSize = true;
             this.rbCard0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCard0.Location = new System.Drawing.Point(50, 132);
+            this.rbCard0.Location = new System.Drawing.Point(50, 139);
             this.rbCard0.Name = "rbCard0";
             this.rbCard0.Size = new System.Drawing.Size(52, 18);
             this.rbCard0.TabIndex = 0;
@@ -301,7 +299,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblInstall);
+            this.groupBox1.Controls.Add(this.tbInstall);
             this.groupBox1.Controls.Add(this.btnInstall00);
             this.groupBox1.Controls.Add(this.btnCardRequest);
             this.groupBox1.Controls.Add(this.lblT2);
@@ -315,18 +313,18 @@
             this.groupBox1.TabIndex = 56;
             this.groupBox1.TabStop = false;
             // 
-            // lblInstall
+            // tbInstall
             // 
-            this.lblInstall.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblInstall.Location = new System.Drawing.Point(121, 39);
-            this.lblInstall.Margin = new System.Windows.Forms.Padding(0);
-            this.lblInstall.Name = "lblInstall";
-            this.lblInstall.Padding = new System.Windows.Forms.Padding(5);
-            this.lblInstall.Size = new System.Drawing.Size(101, 33);
-            this.lblInstall.TabIndex = 49;
-            this.lblInstall.Tag = "0";
-            this.lblInstall.Text = "00";
-            this.lblInstall.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tbInstall.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbInstall.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbInstall.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbInstall.Location = new System.Drawing.Point(121, 43);
+            this.tbInstall.MaxLength = 2;
+            this.tbInstall.Name = "tbInstall";
+            this.tbInstall.Size = new System.Drawing.Size(95, 26);
+            this.tbInstall.TabIndex = 56;
+            this.tbInstall.Text = "00";
+            this.tbInstall.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnInstall00
             // 
@@ -343,7 +341,7 @@
             this.btnCardRequest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardRequest.ForeColor = System.Drawing.Color.White;
-            this.btnCardRequest.Location = new System.Drawing.Point(330, 30);
+            this.btnCardRequest.Location = new System.Drawing.Point(330, 33);
             this.btnCardRequest.Name = "btnCardRequest";
             this.btnCardRequest.Size = new System.Drawing.Size(130, 57);
             this.btnCardRequest.TabIndex = 47;
@@ -377,9 +375,9 @@
             this.btnKeyInputInstall.ForeColor = System.Drawing.Color.White;
             this.btnKeyInputInstall.Location = new System.Drawing.Point(238, 35);
             this.btnKeyInputInstall.Name = "btnKeyInputInstall";
-            this.btnKeyInputInstall.Size = new System.Drawing.Size(61, 40);
+            this.btnKeyInputInstall.Size = new System.Drawing.Size(40, 40);
             this.btnKeyInputInstall.TabIndex = 51;
-            this.btnKeyInputInstall.Text = "키입력";
+            this.btnKeyInputInstall.Text = "◇";
             this.btnKeyInputInstall.UseVisualStyleBackColor = false;
             this.btnKeyInputInstall.Click += new System.EventHandler(this.btnKeyInputInstall_Click);
             // 
@@ -406,11 +404,11 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(144, 116);
+            this.lblNetAmount.Location = new System.Drawing.Point(144, 118);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
-            this.lblNetAmount.Size = new System.Drawing.Size(178, 33);
+            this.lblNetAmount.Size = new System.Drawing.Size(131, 33);
             this.lblNetAmount.TabIndex = 49;
             this.lblNetAmount.Tag = "0";
             this.lblNetAmount.Text = "0";
@@ -419,7 +417,7 @@
             // lblT1
             // 
             this.lblT1.AutoSize = true;
-            this.lblT1.Location = new System.Drawing.Point(50, 126);
+            this.lblT1.Location = new System.Drawing.Point(50, 128);
             this.lblT1.Name = "lblT1";
             this.lblT1.Size = new System.Drawing.Size(91, 14);
             this.lblT1.TabIndex = 48;
@@ -483,7 +481,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnCardRequest;
-        private System.Windows.Forms.Label lblInstall;
         private System.Windows.Forms.Label lblNetAmount;
         private System.Windows.Forms.Label lblT2;
         private System.Windows.Forms.Label lblT1;
@@ -495,8 +492,6 @@
         private System.Windows.Forms.Button btnInstall06;
         private System.Windows.Forms.Button btnInstall12;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lblAuthNo;
-        private System.Windows.Forms.Label lblCardNo;
         private System.Windows.Forms.Label lblT4;
         private System.Windows.Forms.Button btnKeyInputAuthNo;
         private System.Windows.Forms.Button btnKeyInputCardNo;
@@ -510,5 +505,8 @@
         private System.Windows.Forms.RadioButton rbCard2;
         private System.Windows.Forms.RadioButton rbCard1;
         private System.Windows.Forms.RadioButton rbCard0;
+        private System.Windows.Forms.TextBox tbInstall;
+        private System.Windows.Forms.TextBox tbAuthNo;
+        private System.Windows.Forms.TextBox tbCardNo;
     }
 }

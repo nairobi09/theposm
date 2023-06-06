@@ -203,6 +203,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(463, 20);
@@ -237,12 +238,12 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(429, 40);
+            this.lblTitle.Size = new System.Drawing.Size(482, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "할인";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // frmAmountDC
+            // frmOrderDCR
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
@@ -250,7 +251,7 @@
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(488, 56);
-            this.Name = "frmAmountDC";
+            this.Name = "frmOrderDCR";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmDC";
             this.TopMost = true;

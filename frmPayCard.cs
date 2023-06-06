@@ -7,26 +7,41 @@ using System.Text;
 using System.Windows.Forms;
 using static thepos.theSale;
 using static thepos.frmSale;
+using static thepos.frmPayComplex;
+using static thepos.paymentToss;
 
 namespace thepos
 {
 
     public partial class frmPayCard : Form
     {
-
-
         RadioButton[] rbCard = new RadioButton[9];
 
+        int netAmount = 0;
+
+        bool isComplex = false;
+        int paySeq = 0;
+        bool isLast = false;
+
+        TextBox saveKeyDisplay;
 
 
-
-        public frmPayCard()
+        public frmPayCard(int net_amount, bool is_complex, int p_seq, bool is_last)
         {
             InitializeComponent();
 
             initialize_font();
             initial_the();
 
+            isComplex = is_complex;
+            paySeq = p_seq;
+            isLast = is_last;
+
+            netAmount = net_amount;
+            lblNetAmount.Text = netAmount.ToString("N0");
+
+            saveKeyDisplay = mTbKeyDisplayController;
+            mTbKeyDisplayController = mTbKeyDisplaySales;
         }
 
         void initialize_font()
@@ -38,7 +53,7 @@ namespace thepos
             lblT2.Font = font10;
 
             lblNetAmount.Font = font12;
-            lblInstall.Font = font12;
+            tbInstall.Font = font12;
 
             btnKeyInputInstall.Font = font10;
 
@@ -52,6 +67,9 @@ namespace thepos
             lblT3.Font = font10;
             lblT4.Font = font10;
 
+            tbCardNo.Font = font12;
+            tbAuthNo.Font = font12;
+
             btnKeyInputCardNo.Font = font10;
             btnKeyInputAuthNo.Font = font10;
 
@@ -62,8 +80,6 @@ namespace thepos
 
         private void initial_the()
         {
-            lblNetAmount.Text = mNetAmount.ToString("N0");
-
             rbCard[0] = rbCard0;
             rbCard[1] = rbCard1;
             rbCard[2] = rbCard2;
@@ -77,58 +93,28 @@ namespace thepos
 
         private void btnKeyInputInstall_Click(object sender, EventArgs e)
         {
-            lblInstall.Text = mLblKeyDisplay.Text;
+            tbInstall.Text = mTbKeyDisplaySales.Text;
 
         }
 
         private void btnKeyInputCardNo_Click(object sender, EventArgs e)
         {
-            lblCardNo.Text = mLblKeyDisplay.Text;
+            tbCardNo.Text = mTbKeyDisplaySales.Text;
+            mTbKeyDisplaySales.Text = "";
         }
 
         private void btnKeyInputAuthNo_Click(object sender, EventArgs e)
         {
-            lblAuthNo.Text = mLblKeyDisplay.Text;
+            tbAuthNo.Text = mTbKeyDisplaySales.Text;
+            mTbKeyDisplaySales.Text = "";
         }
 
-        private void btnCardRequest_Click(object sender, EventArgs e)
-        {
-            //int d= mNetAmount;
-
-            if (lblInstall.Text.Length != 2)
-            {
-                SetDisplayAlarm("W", "할부개월 오류.");
-                return;
-            }
-
-            int install = int.Parse(lblInstall.Text);
-
-            if (requestTossCardAuth(mNetAmount, install) != 0)  // Toss process
-            {
-                display_error_msg(mErrorMsg);
-            }
-            else
-            {
-                //정상승인
-                //? 서버API로 교체
-                int order_cnt = SaveOrder();  // 주문저장
-
-                SaveTossCardAuth(mTossResponse); // 결제저장
-
-
-                mClearSaleForm();
-                SetDisplayAlarm("I", "주문" + order_cnt + "건 카드 임의등록 완료.");
-
-                countup_the_no();
-                this.Close();
-            }
-        }
 
 
         private void btnCardTemp_Click(object sender, EventArgs e)
         {
-            //? 서버API로 교체
-            if (lblInstall.Text.Length != 2)
+
+            if (tbInstall.Text.Length != 2)
             {
                 SetDisplayAlarm("W", "할부개월 오류.");
                 return;
@@ -142,28 +128,264 @@ namespace thepos
                 return;
             }
 
-            int order_cnt = SaveOrder();
 
 
-            CardTemp cardTemp = new CardTemp();
-            cardTemp.amount = mNetAmount;
-            cardTemp.card_no = lblCardNo.Text;
-            cardTemp.auth_no = lblAuthNo.Text;
-            cardTemp.install = lblInstall.Text;
-            cardTemp.card_name = rbSel.Text;
-            cardTemp.isu_code = rbSel.Tag.ToString();
+            //? 서버API로 교체
+            int order_cnt = 0;
+
+            if (paySeq == 1)
+            {
+                // 주문 저장 1
+                order_cnt = SaveOrder();
+
+                Payment mPayment = new Payment();
+                mPayment.the_no = mTheNo;
+                mPayment.pay_date = get_today_date();
+                mPayment.pay_time = get_today_time();
+                mPayment.business_dt = mBussinessDate;
+                mPayment.tran_type = "A";
+                mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
+                mPayment.pos_no = mPosNo;
+                mPayment.serial_no = mTheNo.Substring(14, 4);
+                mPayment.net_amount = netAmount;
+                mPayment.amount_cash = 0;
+                mPayment.amount_card = netAmount;
+                mPayment.amount_easy = 0;
+                mPayment.is_dc = "";       // 할인여부
+                mPayment.is_cancel = "";   // 취소여부
+                mPayments.Add(mPayment);
+            }
+            else
+            {
+                for (int i = 0; i < mPayments.Count; i++)
+                {
+                    if (mPayments[i].the_no == mTheNo)
+                    {
+                        Payment p = new Payment();
+                        p = mPayments[i];
+                        p.net_amount += netAmount;
+                        p.amount_card += netAmount;
+                        mPayments[i] = p;
+                    }
+                }
+            }
 
 
-            SaveTossCardTemp(cardTemp); // 임의등록
+            PaymentCard mPaymentCard = new PaymentCard();
+            mPaymentCard.the_no = mTheNo;
+            mPaymentCard.pay_seq = frmPayComplex.mPaySeq;
+            mPaymentCard.business_dt = mBussinessDate;
+            mPaymentCard.pay_date = get_today_date();
+            mPaymentCard.pay_time = get_today_time();
+            mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
+            mPaymentCard.tran_type = "A";       // 승인 A 취소 C
+            mPaymentCard.amount = netAmount;
+            mPaymentCard.card_no = tbCardNo.Text;
+            mPaymentCard.auth_no = tbAuthNo.Text;
+            mPaymentCard.install = tbInstall.Text;
+            mPaymentCard.card_name = rbSel.Text;
+            mPaymentCard.isu_code = rbSel.Tag.ToString();
+            mPaymentCard.acq_code = "";
+            mPaymentCard.merchant_no = "";
+            mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
+            mPaymentCard.is_cancel = "";        // 취소여부
+            mPaymentCards.Add(mPaymentCard);
 
 
-            mClearSaleForm();
-            SetDisplayAlarm("I", "주문" + order_cnt + "건 카드 임의등록 완료.");
 
-            countup_the_no();
+            if (isComplex)
+            {
+                // frmComplex화면의 금액들 업데이트
+                mComplexRcvAmount += netAmount;
+                mComplexNestAmount -= netAmount;
+
+                mComplexLblRcvAmount.Text = mComplexRcvAmount.ToString("N0");
+                mComplexLblNestAmount.Text = mComplexNestAmount.ToString("N0");
+
+                mComplexTbReqAmount.Text = mComplexNestAmount.ToString("N0");
+
+                // 리스트뷰 추가
+                ListViewItem lvItem = new ListViewItem();
+                lvItem.Tag = "";
+                lvItem.Text = paySeq.ToString();
+                lvItem.SubItems.Add(get_MMddHHmm(mPaymentCard.pay_date, mPaymentCard.pay_time));
+                lvItem.SubItems.Add(theSale.get_pay_type_name(mPaymentCard.pay_type));
+                lvItem.SubItems.Add(theSale.get_tran_type_name(mPaymentCard.tran_type));
+                lvItem.SubItems.Add(mPaymentCard.card_no);
+                lvItem.SubItems.Add(mPaymentCard.amount.ToString("N0"));
+                lvItem.SubItems.Add(mPaymentCard.auth_no);
+                mComplexLvwPay.Items.Add(lvItem);
+
+                // 복합결제인 경우 seq 관리
+                mPaySeq++;
+            }
+            else
+            {
+                // 단독결제인 Sales화면 클리어. 
+                // 복합결제는 Complex화면에서 Sales화면을 클리어
+                mClearSaleForm();
+            }
+
+            if (paySeq == 1)
+            {
+                SetDisplayAlarm("I", "주문" + order_cnt + "건 카드임의등록 완료.");
+                MessageBox.Show("카드 임의등록 완료", "thepos");
+            }
+            else
+            {
+                SetDisplayAlarm("I", "카드임의등록 완료.");
+                MessageBox.Show("카드 임의등록 완료", "thepos");
+            }
+
+            if (isLast)     // 복합결제 마지막이거나 단독결제라면...
+            {
+                countup_the_no();
+                mPaySeq = 0;
+            }
+
             this.Close();
         }
 
+
+        private void btnCardRequest_Click(object sender, EventArgs e)
+        {
+            //int d= mNetAmount;
+
+            if (tbInstall.Text.Length != 2)
+            {
+                SetDisplayAlarm("W", "할부개월 오류.");
+                return;
+            }
+
+            int install = int.Parse(tbInstall.Text);
+
+
+
+            if (paymentToss.requestTossCardAuth(netAmount, install) != 0)  // Toss process
+            {
+                display_error_msg(mErrorMsg);
+            }
+            else
+            {
+                //정상승인
+                //? 서버API로 교체
+                int order_cnt = 0;
+
+                if (paySeq == 1)
+                {
+                    // 주문 저장 1
+                    order_cnt = SaveOrder();
+
+                    Payment mPayment = new Payment();
+                    mPayment.the_no = mTheNo;
+                    mPayment.pay_date = get_today_date();
+                    mPayment.pay_time = get_today_time();
+                    mPayment.business_dt = mBussinessDate;
+                    mPayment.tran_type = "A";
+                    mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
+                    mPayment.pos_no = mPosNo;
+                    mPayment.serial_no = mTheNo.Substring(14, 4);
+                    mPayment.net_amount += int.Parse(mTossResponse.Tamt);
+                    mPayment.amount_cash = 0;
+                    mPayment.amount_card += int.Parse(mTossResponse.Tamt);
+                    mPayment.amount_easy = 0;
+                    mPayment.is_dc = "";       // 할인여부
+                    mPayment.is_cancel = "";   // 취소여부
+                    mPayments.Add(mPayment);
+                }
+                else
+                {
+                    for (int i = 0; i < mPayments.Count; i++)
+                    {
+                        if (mPayments[i].the_no == mTheNo)
+                        {
+                            Payment p = new Payment();
+                            p = mPayments[i];
+                            p.net_amount += netAmount;
+                            p.amount_card += netAmount;
+                            mPayments[i] = p;
+                        }
+                    }
+                }
+
+
+                PaymentCard mPaymentCard = new PaymentCard();
+                mPaymentCard.the_no = mTheNo;
+                mPaymentCard.pay_seq = paySeq;
+                mPaymentCard.business_dt = mBussinessDate;
+                mPaymentCard.pay_date = get_today_date();
+                mPaymentCard.pay_time = get_today_time();
+                mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
+                mPaymentCard.tran_type = "A";       // 승인 A 취소 C
+                mPaymentCard.tran_date = mTossResponse.Trandate;
+                mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
+                mPaymentCard.card_no = mTossResponse.Cardno;
+                mPaymentCard.auth_no = mTossResponse.Authno;
+                mPaymentCard.install = mTossResponse.Halbu;
+                mPaymentCard.card_name = mTossResponse.Financename;
+                mPaymentCard.isu_code = mTossResponse.Stlinst;
+                mPaymentCard.acq_code = mTossResponse.Reqinst;
+                mPaymentCard.merchant_no = mTossResponse.Merno;
+                mPaymentCard.tran_serial = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
+                mPaymentCard.sign_path = mTossResponse.Signpath;
+                mPaymentCard.is_cancel = "";        // 취소여부
+                mPaymentCards.Add(mPaymentCard);
+
+
+
+                if (isComplex)
+                {
+                    // frmComplex화면의 금액들 업데이트
+                    mComplexRcvAmount += netAmount;
+                    mComplexNestAmount -= netAmount;
+
+                    mComplexLblRcvAmount.Text = mComplexRcvAmount.ToString("N0");
+                    mComplexLblNestAmount.Text = mComplexNestAmount.ToString("N0");
+
+                    mComplexTbReqAmount.Text = mComplexNestAmount.ToString("N0");
+
+                    // 리스트뷰 추가
+                    ListViewItem lvItem = new ListViewItem();
+                    lvItem.Tag = "";
+                    lvItem.Text = paySeq.ToString();
+                    lvItem.SubItems.Add(get_MMddHHmm(mPaymentCard.pay_date, mPaymentCard.pay_time));
+                    lvItem.SubItems.Add(theSale.get_pay_type_name(mPaymentCard.pay_type));
+                    lvItem.SubItems.Add(theSale.get_tran_type_name(mPaymentCard.tran_type));
+                    lvItem.SubItems.Add(mPaymentCard.card_no);
+                    lvItem.SubItems.Add(mPaymentCard.amount.ToString("N0"));
+                    lvItem.SubItems.Add(mPaymentCard.auth_no);
+                    mComplexLvwPay.Items.Add(lvItem);
+
+                    // 복합결제인 경우 seq 관리
+                    mPaySeq++;
+                }
+                else
+                {
+                    // 단독결제인 Sales화면 클리어. 
+                    // 복합결제는 Complex화면에서 Sales화면을 클리어
+                    mClearSaleForm();
+                }
+
+                if (paySeq == 1)
+                {
+                    SetDisplayAlarm("I", "주문" + order_cnt + "건 카드결제승인 완료.");
+                    MessageBox.Show("카드결제 승인 완료", "thepos");
+                }
+                else
+                {
+                    SetDisplayAlarm("I", "카드결제승인 완료.");
+                    MessageBox.Show("카드결제 승인 완료", "thepos");
+                }
+
+                if (isLast)     // 복합결제 마지막이거나 단독결제라면...
+                {
+                    countup_the_no();
+                    mPaySeq = 0;
+                }
+
+                this.Close();
+            }
+        }
 
         void display_error_msg(string msg)
         {
@@ -171,10 +393,10 @@ namespace thepos
         }
 
 
-        private void btnInstall00_Click(object sender, EventArgs e) { lblInstall.Text = "00"; }
-        private void btnInstall03_Click(object sender, EventArgs e) { lblInstall.Text = "03"; }
-        private void btnInstall06_Click(object sender, EventArgs e) { lblInstall.Text = "06"; }
-        private void btnInstall12_Click(object sender, EventArgs e) { lblInstall.Text = "12"; }
+        private void btnInstall00_Click(object sender, EventArgs e) { tbInstall.Text = "00"; }
+        private void btnInstall03_Click(object sender, EventArgs e) { tbInstall.Text = "03"; }
+        private void btnInstall06_Click(object sender, EventArgs e) { tbInstall.Text = "06"; }
+        private void btnInstall12_Click(object sender, EventArgs e) { tbInstall.Text = "12"; }
 
 
 
@@ -186,6 +408,8 @@ namespace thepos
         private void frmPayCard_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSale.ConsoleEnable();
+
+            mTbKeyDisplayController = saveKeyDisplay;
         }
 
     }

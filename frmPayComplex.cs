@@ -15,7 +15,7 @@ namespace thepos
     public partial class frmPayComplex : Form
     {
 
-        int mPaySeq = 1; // 선결제 후Upcount  - 복합결제망 사용하고, 단독결제는 항상 1
+
 
         public static int mComplexNetAmount = 0;
         public static int mComplexRcvAmount = 0;
@@ -28,6 +28,10 @@ namespace thepos
         public static TextBox mComplexTbReqAmount;
 
         public static ListView mComplexLvwPay;
+
+        public static int mPaySeq = 1; // 선결제 후Upcount  - 복합결제망 사용하고, 단독결제는 항상 1
+
+        TextBox saveKeyDisplay;
 
 
         public frmPayComplex()
@@ -53,16 +57,21 @@ namespace thepos
             lblTitle.Font = font12;
             btnClose.Font = font12;
 
-            lblNetAmount.Font = font12;
+
+            lblNetAmount.Font = font10;
+            lblRcvAmount.Font = font10;
+            lblNestAmount.Font = font10;
 
             lblT1.Font = font10;
+            lblT2.Font = font10;
+            lblT3.Font = font10;
             lblT4.Font = font10;
 
             tbReqAmount.Font = font12;
-            btnKeyInput.Font = font10;
 
-            btnRequestCash.Font = font12;
-            btnRequestCard.Font = font12;
+            btnRequestCash.Font = font10;
+            btnRequestCard.Font = font10;
+            btnRequestEasy.Font = font10;
 
         }
 
@@ -79,30 +88,64 @@ namespace thepos
             mComplexTbReqAmount = tbReqAmount;
 
             mComplexLvwPay = lvwPay;
+
+            //
+            saveKeyDisplay = mTbKeyDisplayController;
+            mTbKeyDisplayController = tbReqAmount;
+
         }
 
-        private void btnKeyInputInstall_Click(object sender, EventArgs e)
-        {
-            tbReqAmount.Text = int.Parse(mLblKeyDisplay.Text).ToString("N0");
-            tbReqAmount.Tag = mLblKeyDisplay.Text;
-        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            if (mComplexNestAmount == 0) // 복합결제 완료
+            {
+                mClearSaleForm();
+                this.Close();
+            }
+            else if (mComplexNetAmount == mComplexNestAmount) // 시작전
+            {
+                this.Close();
+            }
+            else  // 부분결제 진행중
+            {
+                SetDisplayAlarm("W", "복합결제 진행중에는 화면을 닫을 수 없습니다."); 
+            }
+
+
+            
         }
 
         private void frmPayComplex_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSale.ConsoleEnable();
+            mTbKeyDisplayController = saveKeyDisplay;
+
         }
 
         private void btnRequestCash_Click(object sender, EventArgs e)
         {
 
+            RequestPay("CASH");
+        }
+
+        private void btnRequestCard_Click(object sender, EventArgs e)
+        {
+            RequestPay("CARD");
+        }
+
+        private void btnRequestEasy_Click(object sender, EventArgs e)
+        {
+            RequestPay("EASY");
+        }
+
+
+        private void RequestPay(String pay_type)
+        {
             int reqAmount;
 
-            if (!int.TryParse(tbReqAmount.Tag.ToString(), out reqAmount))
+            if (!int.TryParse(tbReqAmount.Text.Replace(",",""), out reqAmount))
             {
                 SetDisplayAlarm("W", "결제요청금액 오류.");
                 return;
@@ -123,39 +166,26 @@ namespace thepos
 
 
             Form fPay;
-            fPay = new frmPayCash(reqAmount, true, mPaySeq, is_last); // int amount, bool is_complex, int pay_seq, bool is_last
+
+            if (pay_type == "CARD")
+                fPay = new frmPayCard(reqAmount, true, mPaySeq, is_last); // int amount, bool is_complex, int pay_seq, bool is_last
+            else if (pay_type == "CASH")
+                fPay = new frmPayCash(reqAmount, true, mPaySeq, is_last);
+            else if (pay_type == "EASY")
+                //fPay = new frmPayEasy(reqAmount, true, mPaySeq, is_last);
+                return;
+            else return;
 
             fPay.Left = this.Location.X;
             fPay.Top = this.Location.Y;
 
             fPay.Show();
-
         }
 
-        private void btnRequestCard_Click(object sender, EventArgs e)
+        private void lvwPay_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
-            int amount;
-            if (int.TryParse(tbReqAmount.Text.Replace(",", ""), out amount))
-            {
-                Form fPay;
-                fPay = new frmPayCard();
-
-                fPay.Left = this.Location.X;
-                fPay.Top = this.Location.Y;
-
-                fPay.ShowDialog();
-            }
-            else
-            {
-
-            }
-
-
-        }
-
-        private void btnRequestEasy_Click(object sender, EventArgs e)
-        {
-
+            e.Cancel = true;
+            e.NewWidth = lvwPay.Columns[e.ColumnIndex].Width;
         }
     }
 }

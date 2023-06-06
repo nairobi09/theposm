@@ -171,7 +171,7 @@ namespace thepos
         {
             if (value == -1 )  // Keypad의 입력값을 Value로..
             {
-                if (int.TryParse(mLblKeyDisplay.Text, out int n))
+                if (int.TryParse(mTbKeyDisplaySales.Text, out int n))
                 {
                     value = n;
                 }
@@ -301,7 +301,7 @@ namespace thepos
                 ReCalculateAmount();
             }
 
-            mLblKeyDisplay.Text = "";
+            mTbKeyDisplaySales.Text = "";
         }
 
         private void btnDCCancel_Click(object sender, EventArgs e)

@@ -29,16 +29,14 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.tbBillNo = new System.Windows.Forms.TextBox();
             this.lblLayoutBill = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnKeyInput = new System.Windows.Forms.Button();
-            this.tbBillNo = new System.Windows.Forms.TextBox();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbwithoutGoods = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
@@ -55,6 +53,7 @@
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
@@ -64,16 +63,14 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.tbBillNo);
             this.panelback.Controls.Add(this.lblLayoutBill);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Controls.Add(this.btnKeyInput);
-            this.panelback.Controls.Add(this.tbBillNo);
             this.panelback.Controls.Add(this.cbPosNo);
-            this.panelback.Controls.Add(this.checkBox1);
+            this.panelback.Controls.Add(this.cbwithoutGoods);
             this.panelback.Controls.Add(this.button4);
             this.panelback.Controls.Add(this.button1);
-            this.panelback.Controls.Add(this.button3);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.btnView);
@@ -88,6 +85,18 @@
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 3;
             // 
+            // tbBillNo
+            // 
+            this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBillNo.Location = new System.Drawing.Point(357, 71);
+            this.tbBillNo.MaxLength = 4;
+            this.tbBillNo.Name = "tbBillNo";
+            this.tbBillNo.Size = new System.Drawing.Size(43, 26);
+            this.tbBillNo.TabIndex = 57;
+            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // lblLayoutBill
             // 
             this.lblLayoutBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -96,7 +105,7 @@
             this.lblLayoutBill.Multiline = true;
             this.lblLayoutBill.Name = "lblLayoutBill";
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.lblLayoutBill.Size = new System.Drawing.Size(334, 255);
+            this.lblLayoutBill.Size = new System.Drawing.Size(363, 255);
             this.lblLayoutBill.TabIndex = 55;
             // 
             // btnClose
@@ -109,6 +118,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
+            this.btnClose.TabStop = false;
             this.btnClose.Text = "✕";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -126,61 +136,37 @@
             this.lblTitle.Text = "결제내역관리";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnKeyInput
-            // 
-            this.btnKeyInput.BackColor = System.Drawing.Color.Gray;
-            this.btnKeyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyInput.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInput.Location = new System.Drawing.Point(305, 72);
-            this.btnKeyInput.Name = "btnKeyInput";
-            this.btnKeyInput.Size = new System.Drawing.Size(69, 39);
-            this.btnKeyInput.TabIndex = 52;
-            this.btnKeyInput.Text = "키입력";
-            this.btnKeyInput.UseVisualStyleBackColor = false;
-            this.btnKeyInput.Click += new System.EventHandler(this.btnKeyInput_Click);
-            // 
-            // tbBillNo
-            // 
-            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("Gulim", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(244, 72);
-            this.tbBillNo.MaxLength = 4;
-            this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(46, 24);
-            this.tbBillNo.TabIndex = 51;
-            this.tbBillNo.Text = "0009";
-            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // cbPosNo
             // 
             this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Location = new System.Drawing.Point(74, 100);
+            this.cbPosNo.Location = new System.Drawing.Point(227, 72);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(40, 21);
             this.cbPosNo.TabIndex = 50;
             this.cbPosNo.Text = "01";
             // 
-            // checkBox1
+            // cbwithoutGoods
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.checkBox1.Location = new System.Drawing.Point(249, 682);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(105, 15);
-            this.checkBox1.TabIndex = 49;
-            this.checkBox1.Text = "상품내역 미출력";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbwithoutGoods.AutoSize = true;
+            this.cbwithoutGoods.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbwithoutGoods.Location = new System.Drawing.Point(398, 432);
+            this.cbwithoutGoods.Name = "cbwithoutGoods";
+            this.cbwithoutGoods.Size = new System.Drawing.Size(105, 15);
+            this.cbwithoutGoods.TabIndex = 49;
+            this.cbwithoutGoods.Text = "상품내역 미출력";
+            this.cbwithoutGoods.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbwithoutGoods.UseVisualStyleBackColor = true;
+            this.cbwithoutGoods.CheckedChanged += new System.EventHandler(this.cbwithoutGoods_CheckedChanged);
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(416, 587);
+            this.button4.Location = new System.Drawing.Point(398, 626);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 48);
+            this.button4.Size = new System.Drawing.Size(105, 48);
             this.button4.TabIndex = 48;
             this.button4.Text = "현금영수증";
             this.button4.UseVisualStyleBackColor = false;
@@ -190,33 +176,21 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(416, 641);
+            this.button1.Location = new System.Drawing.Point(398, 572);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 48);
+            this.button1.Size = new System.Drawing.Size(105, 48);
             this.button1.TabIndex = 48;
             this.button1.Text = "반품재매출";
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(416, 533);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 48);
-            this.button3.TabIndex = 48;
-            this.button3.Text = "결제변경";
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(416, 479);
+            this.btnCancel.Location = new System.Drawing.Point(398, 518);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(87, 48);
+            this.btnCancel.Size = new System.Drawing.Size(105, 48);
             this.btnCancel.TabIndex = 48;
             this.btnCancel.Text = "반품";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -227,9 +201,9 @@
             this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(416, 425);
+            this.btnPrint.Location = new System.Drawing.Point(398, 464);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(87, 48);
+            this.btnPrint.Size = new System.Drawing.Size(105, 48);
             this.btnPrint.TabIndex = 48;
             this.btnPrint.Text = "재출력";
             this.btnPrint.UseVisualStyleBackColor = false;
@@ -240,7 +214,7 @@
             this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(416, 72);
+            this.btnView.Location = new System.Drawing.Point(416, 70);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(87, 39);
             this.btnView.TabIndex = 48;
@@ -252,17 +226,17 @@
             // 
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl2.Location = new System.Drawing.Point(20, 105);
+            this.lbl2.Location = new System.Drawing.Point(192, 77);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(53, 12);
+            this.lbl2.Size = new System.Drawing.Size(29, 12);
             this.lbl2.TabIndex = 47;
-            this.lbl2.Text = "포스번호";
+            this.lbl2.Text = "포스";
             // 
             // lbl3
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(181, 77);
+            this.lbl3.Location = new System.Drawing.Point(289, 78);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(65, 12);
             this.lbl3.TabIndex = 47;
@@ -272,7 +246,7 @@
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.Location = new System.Drawing.Point(22, 77);
+            this.lbl1.Location = new System.Drawing.Point(22, 78);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
             this.lbl1.TabIndex = 47;
@@ -281,9 +255,9 @@
             // dtBusiness
             // 
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(74, 72);
+            this.dtBusiness.Location = new System.Drawing.Point(78, 72);
             this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(94, 22);
+            this.dtBusiness.Size = new System.Drawing.Size(97, 22);
             this.dtBusiness.TabIndex = 46;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
@@ -297,15 +271,16 @@
             this.bill_no,
             this.amount,
             this.dc,
-            this.cancel});
+            this.cancel,
+            this.trantype});
             this.lvwPayManager.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayManager.HideSelection = false;
-            this.lvwPayManager.Location = new System.Drawing.Point(20, 127);
+            this.lvwPayManager.Location = new System.Drawing.Point(20, 115);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
-            this.lvwPayManager.Size = new System.Drawing.Size(483, 291);
+            this.lvwPayManager.Size = new System.Drawing.Size(483, 303);
             this.lvwPayManager.TabIndex = 44;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;
@@ -319,8 +294,8 @@
             // 
             // order_dt
             // 
-            this.order_dt.Text = "주문시간";
-            this.order_dt.Width = 70;
+            this.order_dt.Text = "거래시간";
+            this.order_dt.Width = 90;
             // 
             // tran_type
             // 
@@ -353,7 +328,11 @@
             // 
             this.cancel.Text = "취소";
             this.cancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cancel.Width = 40;
+            // 
+            // trantype
+            // 
+            this.trantype.Text = "trantype";
+            this.trantype.Width = 0;
             // 
             // amount_etc
             // 
@@ -395,9 +374,8 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.DateTimePicker dtBusiness;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbwithoutGoods;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ColumnHeader no;
@@ -406,7 +384,6 @@
         private System.Windows.Forms.ColumnHeader amount_etc;
         private System.Windows.Forms.ColumnHeader amount;
         private System.Windows.Forms.ColumnHeader amount_card;
-        private System.Windows.Forms.TextBox tbBillNo;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl3;
@@ -414,8 +391,9 @@
         private System.Windows.Forms.ColumnHeader cancel;
         private System.Windows.Forms.ColumnHeader order_dt;
         private System.Windows.Forms.ColumnHeader tran_type;
-        private System.Windows.Forms.Button btnKeyInput;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox lblLayoutBill;
+        private System.Windows.Forms.ColumnHeader trantype;
+        private System.Windows.Forms.TextBox tbBillNo;
     }
 }

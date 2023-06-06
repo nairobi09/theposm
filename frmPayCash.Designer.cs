@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayCash));
             this.panelback = new System.Windows.Forms.Panel();
             this.btnReset = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbIssuedMethodNo = new System.Windows.Forms.TextBox();
             this.lbl6 = new System.Windows.Forms.Label();
             this.lbl5 = new System.Windows.Forms.Label();
-            this.lblIssuedMethodNo = new System.Windows.Forms.Label();
             this.lbl7 = new System.Windows.Forms.Label();
             this.cbTypeBusiness = new System.Windows.Forms.CheckBox();
             this.lblAuthNo = new System.Windows.Forms.Label();
             this.lbl8 = new System.Windows.Forms.Label();
             this.cbtypeIndividual = new System.Windows.Forms.CheckBox();
-            this.btnKeyInput = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCashSimple = new System.Windows.Forms.Button();
             this.lblRestAmount = new System.Windows.Forms.Label();
@@ -60,7 +58,6 @@
             this.btmCashTemp = new System.Windows.Forms.Button();
             this.btmCashSelf = new System.Windows.Forms.Button();
             this.btn50t = new System.Windows.Forms.Button();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,20 +102,29 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbIssuedMethodNo);
             this.groupBox2.Controls.Add(this.lbl6);
             this.groupBox2.Controls.Add(this.lbl5);
-            this.groupBox2.Controls.Add(this.lblIssuedMethodNo);
             this.groupBox2.Controls.Add(this.lbl7);
             this.groupBox2.Controls.Add(this.cbTypeBusiness);
             this.groupBox2.Controls.Add(this.lblAuthNo);
             this.groupBox2.Controls.Add(this.lbl8);
             this.groupBox2.Controls.Add(this.cbtypeIndividual);
-            this.groupBox2.Controls.Add(this.btnKeyInput);
             this.groupBox2.Location = new System.Drawing.Point(23, 363);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(480, 152);
+            this.groupBox2.Size = new System.Drawing.Size(480, 153);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
+            // 
+            // tbIssuedMethodNo
+            // 
+            this.tbIssuedMethodNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbIssuedMethodNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbIssuedMethodNo.Location = new System.Drawing.Point(159, 32);
+            this.tbIssuedMethodNo.MaxLength = 20;
+            this.tbIssuedMethodNo.Name = "tbIssuedMethodNo";
+            this.tbIssuedMethodNo.Size = new System.Drawing.Size(161, 23);
+            this.tbIssuedMethodNo.TabIndex = 49;
             // 
             // lbl6
             // 
@@ -140,22 +146,10 @@
             this.lbl5.TabIndex = 45;
             this.lbl5.Text = "발급수단번호";
             // 
-            // lblIssuedMethodNo
-            // 
-            this.lblIssuedMethodNo.BackColor = System.Drawing.Color.White;
-            this.lblIssuedMethodNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblIssuedMethodNo.Location = new System.Drawing.Point(159, 32);
-            this.lblIssuedMethodNo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblIssuedMethodNo.Name = "lblIssuedMethodNo";
-            this.lblIssuedMethodNo.Padding = new System.Windows.Forms.Padding(5);
-            this.lblIssuedMethodNo.Size = new System.Drawing.Size(162, 26);
-            this.lblIssuedMethodNo.TabIndex = 46;
-            this.lblIssuedMethodNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lbl7
             // 
             this.lbl7.AutoSize = true;
-            this.lbl7.Location = new System.Drawing.Point(27, 85);
+            this.lbl7.Location = new System.Drawing.Point(27, 83);
             this.lbl7.Name = "lbl7";
             this.lbl7.Size = new System.Drawing.Size(63, 14);
             this.lbl7.TabIndex = 45;
@@ -164,7 +158,7 @@
             // cbTypeBusiness
             // 
             this.cbTypeBusiness.AutoSize = true;
-            this.cbTypeBusiness.Location = new System.Drawing.Point(231, 83);
+            this.cbTypeBusiness.Location = new System.Drawing.Point(231, 81);
             this.cbTypeBusiness.Name = "cbTypeBusiness";
             this.cbTypeBusiness.Size = new System.Drawing.Size(68, 18);
             this.cbTypeBusiness.TabIndex = 48;
@@ -176,16 +170,15 @@
             // 
             this.lblAuthNo.AutoSize = true;
             this.lblAuthNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblAuthNo.Location = new System.Drawing.Point(159, 115);
+            this.lblAuthNo.Location = new System.Drawing.Point(159, 113);
             this.lblAuthNo.Name = "lblAuthNo";
-            this.lblAuthNo.Size = new System.Drawing.Size(61, 16);
+            this.lblAuthNo.Size = new System.Drawing.Size(0, 16);
             this.lblAuthNo.TabIndex = 45;
-            this.lblAuthNo.Text = "000000";
             // 
             // lbl8
             // 
             this.lbl8.AutoSize = true;
-            this.lbl8.Location = new System.Drawing.Point(27, 115);
+            this.lbl8.Location = new System.Drawing.Point(27, 113);
             this.lbl8.Name = "lbl8";
             this.lbl8.Size = new System.Drawing.Size(63, 14);
             this.lbl8.TabIndex = 45;
@@ -196,26 +189,13 @@
             this.cbtypeIndividual.AutoSize = true;
             this.cbtypeIndividual.Checked = true;
             this.cbtypeIndividual.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbtypeIndividual.Location = new System.Drawing.Point(162, 83);
+            this.cbtypeIndividual.Location = new System.Drawing.Point(162, 81);
             this.cbtypeIndividual.Name = "cbtypeIndividual";
             this.cbtypeIndividual.Size = new System.Drawing.Size(54, 18);
             this.cbtypeIndividual.TabIndex = 48;
             this.cbtypeIndividual.Text = "개인";
             this.cbtypeIndividual.UseVisualStyleBackColor = true;
             this.cbtypeIndividual.CheckedChanged += new System.EventHandler(this.cbtypeIndividual_CheckedChanged);
-            // 
-            // btnKeyInput
-            // 
-            this.btnKeyInput.BackColor = System.Drawing.Color.Gray;
-            this.btnKeyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyInput.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInput.Location = new System.Drawing.Point(337, 24);
-            this.btnKeyInput.Name = "btnKeyInput";
-            this.btnKeyInput.Size = new System.Drawing.Size(112, 39);
-            this.btnKeyInput.TabIndex = 44;
-            this.btnKeyInput.Text = "키입력";
-            this.btnKeyInput.UseVisualStyleBackColor = false;
-            this.btnKeyInput.Click += new System.EventHandler(this.btnKeyInput_Click);
             // 
             // groupBox1
             // 
@@ -259,7 +239,7 @@
             // 
             // lblRcvAmount
             // 
-            this.lblRcvAmount.BackColor = System.Drawing.Color.White;
+            this.lblRcvAmount.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblRcvAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblRcvAmount.Location = new System.Drawing.Point(116, 50);
             this.lblRcvAmount.Margin = new System.Windows.Forms.Padding(0);
@@ -392,7 +372,7 @@
             this.btnCashRecept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashRecept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
-            this.btnCashRecept.Location = new System.Drawing.Point(337, 521);
+            this.btnCashRecept.Location = new System.Drawing.Point(337, 533);
             this.btnCashRecept.Name = "btnCashRecept";
             this.btnCashRecept.Size = new System.Drawing.Size(133, 57);
             this.btnCashRecept.TabIndex = 44;
@@ -402,21 +382,24 @@
             // 
             // btmCashTemp
             // 
-            this.btmCashTemp.Location = new System.Drawing.Point(52, 521);
+            this.btmCashTemp.BackColor = System.Drawing.Color.White;
+            this.btmCashTemp.Location = new System.Drawing.Point(52, 533);
             this.btmCashTemp.Name = "btmCashTemp";
             this.btmCashTemp.Size = new System.Drawing.Size(137, 57);
             this.btmCashTemp.TabIndex = 44;
             this.btmCashTemp.Text = "임의등록";
-            this.btmCashTemp.UseVisualStyleBackColor = true;
+            this.btmCashTemp.UseVisualStyleBackColor = false;
+            this.btmCashTemp.Click += new System.EventHandler(this.btmCashTemp_Click);
             // 
             // btmCashSelf
             // 
-            this.btmCashSelf.Location = new System.Drawing.Point(194, 521);
+            this.btmCashSelf.BackColor = System.Drawing.Color.White;
+            this.btmCashSelf.Location = new System.Drawing.Point(194, 533);
             this.btmCashSelf.Name = "btmCashSelf";
             this.btmCashSelf.Size = new System.Drawing.Size(137, 57);
             this.btmCashSelf.TabIndex = 44;
             this.btmCashSelf.Text = "자진발급";
-            this.btmCashSelf.UseVisualStyleBackColor = true;
+            this.btmCashSelf.UseVisualStyleBackColor = false;
             // 
             // btn50t
             // 
@@ -427,16 +410,6 @@
             this.btn50t.Text = "오만원";
             this.btn50t.UseVisualStyleBackColor = true;
             this.btn50t.Click += new System.EventHandler(this.btn50t_Click);
-            // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
             // 
             // frmPayCash
             // 
@@ -488,12 +461,10 @@
         private System.Windows.Forms.Button btnCashRecept;
         private System.Windows.Forms.Button btmCashTemp;
         private System.Windows.Forms.Button btmCashSelf;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lblIssuedMethodNo;
-        private System.Windows.Forms.Button btnKeyInput;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lblAuthNo;
+        private System.Windows.Forms.TextBox tbIssuedMethodNo;
     }
 }

@@ -30,7 +30,6 @@
         {
             this.panelback = new System.Windows.Forms.Panel();
             this.tbReqAmount = new System.Windows.Forms.TextBox();
-            this.btnKeyInput = new System.Windows.Forms.Button();
             this.btnRequestEasy = new System.Windows.Forms.Button();
             this.btnRequestCard = new System.Windows.Forms.Button();
             this.btnRequestCash = new System.Windows.Forms.Button();
@@ -38,9 +37,10 @@
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tran = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cardno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.authno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblNestAmount = new System.Windows.Forms.Label();
             this.lblRcvAmount = new System.Windows.Forms.Label();
             this.lblNetAmount = new System.Windows.Forms.Label();
@@ -50,8 +50,6 @@
             this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tran = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,8 +58,6 @@
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelback.Controls.Add(this.tbReqAmount);
-            this.panelback.Controls.Add(this.button1);
-            this.panelback.Controls.Add(this.btnKeyInput);
             this.panelback.Controls.Add(this.btnRequestEasy);
             this.panelback.Controls.Add(this.btnRequestCard);
             this.panelback.Controls.Add(this.btnRequestCash);
@@ -83,6 +79,7 @@
             // 
             // tbReqAmount
             // 
+            this.tbReqAmount.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbReqAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbReqAmount.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbReqAmount.Location = new System.Drawing.Point(130, 221);
@@ -91,19 +88,6 @@
             this.tbReqAmount.Size = new System.Drawing.Size(141, 26);
             this.tbReqAmount.TabIndex = 56;
             this.tbReqAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btnKeyInput
-            // 
-            this.btnKeyInput.BackColor = System.Drawing.Color.Gray;
-            this.btnKeyInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyInput.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInput.Location = new System.Drawing.Point(296, 214);
-            this.btnKeyInput.Name = "btnKeyInput";
-            this.btnKeyInput.Size = new System.Drawing.Size(78, 40);
-            this.btnKeyInput.TabIndex = 55;
-            this.btnKeyInput.Text = "키입력";
-            this.btnKeyInput.UseVisualStyleBackColor = false;
-            this.btnKeyInput.Click += new System.EventHandler(this.btnKeyInputInstall_Click);
             // 
             // btnRequestEasy
             // 
@@ -153,7 +137,7 @@
             this.tran,
             this.cardno,
             this.amount,
-            this.columnHeader2});
+            this.authno});
             this.lvwPay.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPay.FullRowSelect = true;
             this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -165,6 +149,7 @@
             this.lvwPay.TabIndex = 52;
             this.lvwPay.UseCompatibleStateImageBehavior = false;
             this.lvwPay.View = System.Windows.Forms.View.Details;
+            this.lvwPay.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwPay_ColumnWidthChanging);
             // 
             // no
             // 
@@ -174,28 +159,33 @@
             // pay_dt
             // 
             this.pay_dt.Text = "결제시간";
-            this.pay_dt.Width = 80;
+            this.pay_dt.Width = 90;
             // 
             // pay_type
             // 
             this.pay_type.Text = "결제";
             this.pay_type.Width = 80;
             // 
+            // tran
+            // 
+            this.tran.Text = "구분";
+            this.tran.Width = 40;
+            // 
             // cardno
             // 
-            this.cardno.Text = "카드인식번호";
+            this.cardno.Text = "카드/수단번호";
             this.cardno.Width = 100;
             // 
             // amount
             // 
             this.amount.Text = "금액";
             this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amount.Width = 80;
+            this.amount.Width = 70;
             // 
-            // columnHeader2
+            // authno
             // 
-            this.columnHeader2.Text = "승인번호";
-            this.columnHeader2.Width = 90;
+            this.authno.Text = "승인번호";
+            this.authno.Width = 90;
             // 
             // lblNestAmount
             // 
@@ -203,7 +193,7 @@
             this.lblNestAmount.Location = new System.Drawing.Point(130, 149);
             this.lblNestAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNestAmount.Name = "lblNestAmount";
-            this.lblNestAmount.Padding = new System.Windows.Forms.Padding(5);
+            this.lblNestAmount.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblNestAmount.Size = new System.Drawing.Size(141, 24);
             this.lblNestAmount.TabIndex = 51;
             this.lblNestAmount.Tag = "0";
@@ -216,7 +206,7 @@
             this.lblRcvAmount.Location = new System.Drawing.Point(130, 119);
             this.lblRcvAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblRcvAmount.Name = "lblRcvAmount";
-            this.lblRcvAmount.Padding = new System.Windows.Forms.Padding(5);
+            this.lblRcvAmount.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblRcvAmount.Size = new System.Drawing.Size(141, 24);
             this.lblRcvAmount.TabIndex = 51;
             this.lblRcvAmount.Tag = "0";
@@ -229,7 +219,7 @@
             this.lblNetAmount.Location = new System.Drawing.Point(130, 89);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
-            this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
+            this.lblNetAmount.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblNetAmount.Size = new System.Drawing.Size(141, 24);
             this.lblNetAmount.TabIndex = 51;
             this.lblNetAmount.Tag = "0";
@@ -274,7 +264,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -290,7 +280,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.DimGray;
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -300,24 +290,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "복합결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Gray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(413, 609);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 40);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "취소";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.btnKeyInputInstall_Click);
-            // 
-            // tran
-            // 
-            this.tran.Text = "구분";
-            this.tran.Width = 40;
             // 
             // frmPayComplex
             // 
@@ -350,18 +322,16 @@
         private System.Windows.Forms.ColumnHeader pay_type;
         private System.Windows.Forms.ColumnHeader cardno;
         private System.Windows.Forms.ColumnHeader amount;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader authno;
         private System.Windows.Forms.Label lblT4;
         private System.Windows.Forms.Button btnRequestCard;
         private System.Windows.Forms.Button btnRequestCash;
-        private System.Windows.Forms.Button btnKeyInput;
         private System.Windows.Forms.TextBox tbReqAmount;
         private System.Windows.Forms.Button btnRequestEasy;
         private System.Windows.Forms.Label lblNestAmount;
         private System.Windows.Forms.Label lblRcvAmount;
         private System.Windows.Forms.Label lblT3;
         private System.Windows.Forms.Label lblT2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ColumnHeader tran;
     }
 }

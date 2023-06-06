@@ -23,24 +23,13 @@ panelProduct : 488, 56 529, 547
 // ð ✕ ◈ ◆ ⬅ 〈 ˂
 // Music Title In Here
 // 0:00 ━━●─── 4:00
-// ⇆      ◁ ❚❚ ▷     ↻
+// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮
 
 
 namespace thepos
 {
     public partial class frmSale : Form
     {
-        
-
-
-
-
-
-
-        // ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
         public static int mSerialTheNo = 0;
         int mWaitingNoCounter = 0;
@@ -49,11 +38,17 @@ namespace thepos
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
 
+        public static TextBox mTbKeyDisplaySales;            // Sales화면의 key display
+        public static TextBox mTbKeyDisplayController;  // 공용컨트롤러
+
+
+
+
         public static Panel mPanelTitleConsole;
         public static Panel mPanelOrderConsole;
         public static Panel mPanelProductConsole;
         public static Label mLblDisplayAlarm;
-        public static Label mLblKeyDisplay;
+        //public static Label mLblKeyDisplay;
         public static ListView mLvwOrderItem;
         public static Label mLblOrderAmount;
         public static Label mLblOrderAmountDC;
@@ -120,18 +115,18 @@ namespace thepos
         {
             String[,] item = new String[,]
             {
-                { "101101","바닐라라떼","1", "0", "", "0","0", "2","2"},
-                { "101102","카푸치노","6000", "0", "", "2","0", "1","2"},
+                { "101101","바닐라라떼", "1",   "0", "", "0","0", "2","2"},
+                { "101102","카푸치노",  "6000", "0", "", "2","0", "1","2"},
                 { "101103","에스프레소","7000", "0", "", "3","0", "3","2"},
                 { "101104","아이스라떼","6500", "0", "", "6","1", "2","1"},
                 { "101105","아메리카노","5000", "0", "", "0","2", "4","3"},
-                { "101106","맥심커피","8000", "0", "", "4","2", "4","4"},
-                { "101108","농산물1","7000", "0", "1", "0","5", "3","3"},
-                { "101107","채소1","6000", "0", "1", "3","5", "1","3"},  // 면세
-                { "101109","야채2", "5000", "0", "1", "4","6", "2","1"}, // 면세
-                { "101110","모카","5000", "0", "", "4","7", "3","1"},
+                { "101106","맥심커피",  "8000", "0", "", "4","2", "4","4"},
+                { "101108","농산물1",  "7000",  "0", "1", "0","5", "3","3"}, // 멘세
+                { "101107","채소1",   "6000",   "0", "1", "3","5", "1","3"},  // 면세
+                { "101109","야채2",   "5000",   "0", "1", "4","6", "2","1"}, // 면세
+                { "101110","모카",    "5000",   "0", "", "4","7", "3","1"},
 
-                { "100001","종일성인","10000", "1", "", "0","1", "4","5"},  // 발권대상
+                { "100001","종일성인","10000",  "1", "", "0","1", "4","5"},  // 발권대상
                 { "100002","종일어린이","8000", "1", "", "4","1", "4","5"}, // 발권대상
             };
 
@@ -166,8 +161,9 @@ namespace thepos
         {
             String[,] item = new String[,]
             {
-                { "CASH", "0", "0", "3","4"},
-                { "CARD", "3", "0", "3","4"},
+                { "CASH", "0", "0", "2","4"},
+                { "CARD", "2", "0", "2","4"},
+                { "POINT", "4", "0", "2","4"},
                 { "COMPLEX", "6", "0", "2","2"},
                 { "EASY", "6", "2", "2","2"},
                 { "MANAGER", "8", "0", "2","4"},
@@ -212,14 +208,14 @@ namespace thepos
 
         private void initialize_font()
         {
-            //fontCollection.AddFontFile("Font\\TossProductSansTTF-Regular.ttf");
-
+            //fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
             fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
 
             font8 = new Font(fontCollection.Families[0], 8f);
             font9 = new Font(fontCollection.Families[0], 9f);
             font10 = new Font(fontCollection.Families[0], 10f);
             font12 = new Font(fontCollection.Families[0], 12f);
+            font13 = new Font(fontCollection.Families[0], 12f);
             font14 = new Font(fontCollection.Families[0], 14f);
             font16 = new Font(fontCollection.Families[0], 16f);
             font20 = new Font(fontCollection.Families[0], 20f);
@@ -246,11 +242,11 @@ namespace thepos
 
             btnOrderCancelAll.Font = font10;
             btnOrderCancelSelect.Font = font10;
-            btnOrderCntDn.Font = font10;
-            btnOrderCntUp.Font = font10;
+            btnOrderCntDn.Font = font14;
+            btnOrderCntUp.Font = font16;
             btnOrderCntChange.Font = font10;
-            btnOrderItemScrollUp.Font = font10;
-            btnOrderItemScrollDn.Font = font10;
+            btnOrderItemScrollUp.Font = font8;
+            btnOrderItemScrollDn.Font = font8;
 
             lblOrderAmountSumTitle.Font = font10;
             lblOrderAmountDCTitle.Font = font10;
@@ -264,7 +260,9 @@ namespace thepos
             lblOrderAmountReceive.Font = font14;
             lblOrderAmountRest.Font = font14;
             
-            lblKeyDisplay.Font = font16;
+            //lblKeyDisplay.Font = font13;
+            tbKeyDisplay.Font = font14;
+
             btnKey1.Font = font14;
             btnKey2.Font = font14;
             btnKey3.Font = font14;
@@ -303,11 +301,11 @@ namespace thepos
             mCustomerId = "CUST";
             mPosNo = "01";
 
-            mCustomerPosNOs = new string[4];
-            mCustomerPosNOs[0] = "01";
-            mCustomerPosNOs[1] = "02";
-            mCustomerPosNOs[2] = "03";
-            mCustomerPosNOs[3] = "04";
+            mPosNoList = new string[4];
+            mPosNoList[0] = "01";
+            mPosNoList[1] = "02";
+            mPosNoList[2] = "03";
+            mPosNoList[3] = "04";
 
 
             countup_the_no();
@@ -321,6 +319,11 @@ namespace thepos
 
             lvwOrderItem.SmallImageList = imgList;
             lvwOrderItem.HideSelection = true;
+
+            // 최초세팅 - 이후 개별창이 뜰때마다 각각창의 KeyDisplay로 세팅을 변경할 수 있다. 
+
+
+
 
             btnKey1.Click += (sender, args) => ClickedKey("1");
             btnKey2.Click += (sender, args) => ClickedKey("2");
@@ -338,6 +341,12 @@ namespace thepos
 
 
             // 서브창이 열리면서 Sale창의 콘트롤 Enable/Disable 관리를 위해서...
+
+
+            mTbKeyDisplaySales = tbKeyDisplay;
+
+            mTbKeyDisplayController = mTbKeyDisplaySales;
+
             mPanelTitleConsole = panelTitleConsole;
             mPanelOrderConsole = panelOrderConsole;
             mPanelProductConsole = panelFlowConsole;
@@ -345,7 +354,7 @@ namespace thepos
             mLblDisplayAlarm = lblDisplayAlarm;
             mTimerAlarm = timerAlarmDisplay;
 
-            mLblKeyDisplay = lblKeyDisplay;
+            //mLblKeyDisplay = lblKeyDisplay;
             mLvwOrderItem = lvwOrderItem;
 
             mLblOrderAmount = lblOrderAmount;
@@ -387,11 +396,14 @@ namespace thepos
                     btnPayItem.Text = "카드";
                     btnPayItem.Click += (sender, args) => ClickedPayCard();
                 }
+                else if (mPayConsol[i].code == "POINT")
+                {
+                    btnPayItem.Text = "선불\r포인트";
+                    btnPayItem.Click += (sender, args) => ClickedPayPoint();
+                }
                 else if (mPayConsol[i].code == "COMPLEX")
                 {
                     btnPayItem.Text = "복합\r결제";
-                    btnPayItem.BackColor = Color.DimGray;  // 복합결제 버튼만 다른색으로...
-
                     btnPayItem.Click += (sender, args) => ClickedPayComplex();
                 }
                 else if (mPayConsol[i].code == "EASY")
@@ -401,7 +413,7 @@ namespace thepos
                 }
                 else if (mPayConsol[i].code == "MANAGER")
                 {
-                    btnPayItem.BackColor = Color.FromArgb(52, 86, 156);
+                    btnPayItem.BackColor = Color.FromArgb(52, 86, 156);  // 결제내약관리만 다른 Backcolor로 구분한다.
                     btnPayItem.Text = "결제내역\r관리";
                     btnPayItem.Click += (sender, args) => ClickedPayManager();
                 }
@@ -560,6 +572,9 @@ namespace thepos
 
         private void ClickedPayCash()
         {
+            if (mNetAmount == 0) return;
+
+
             ConsoleDisable();
 
             Form fPay;
@@ -573,10 +588,27 @@ namespace thepos
 
         private void ClickedPayCard()
         {
+            if (mNetAmount == 0) return;
+
             ConsoleDisable();
 
             Form fPay;
-            fPay = new frmPayCard();
+            fPay = new frmPayCard(mNetAmount, false, 1, true);
+
+            fPay.Left += this.Location.X;
+            fPay.Top += this.Location.Y;
+
+            fPay.Show();
+        }
+
+        private void ClickedPayPoint()
+        {
+            if (mNetAmount == 0) return;
+
+            ConsoleDisable();
+
+            Form fPay;
+            fPay = new frmPayPoint();
 
             fPay.Left += this.Location.X;
             fPay.Top += this.Location.Y;
@@ -586,6 +618,8 @@ namespace thepos
 
         private void ClickedPayComplex()
         {
+            if (mNetAmount == 0) return;
+
             ConsoleDisable();
 
             Form fPay;
@@ -599,7 +633,17 @@ namespace thepos
 
         private void ClickedPayEasy()
         {
+            if (mNetAmount == 0) return;
 
+            ConsoleDisable();
+
+            Form fPay;
+            fPay = new frmPayEasy();
+
+            fPay.Left += this.Location.X;
+            fPay.Top += this.Location.Y;
+
+            fPay.Show();
         }
 
         private void ClickedPayManager()
@@ -641,7 +685,8 @@ namespace thepos
 
             dbOrder dborder = new dbOrder();
             dborder.the_no = mTheNo;
-            dborder.dt = DateTime.Now;
+            dborder.order_date = get_today_date();
+            dborder.order_time = get_today_time();
             dborder.customer_id = mCustomerId;
             dborder.pos_no = mPosNo;
             dborder.cnt = mLvwOrderItem.Items.Count;
@@ -651,6 +696,20 @@ namespace thepos
 
         }
 
+
+        public static int SaveTicket()
+        {
+            //? 서버API로 대체한다..
+
+
+
+
+
+
+
+            return 0;
+
+        }
 
 
         public static void mClearSaleForm()
@@ -705,12 +764,12 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (int.TryParse(lblKeyDisplay.Text, out int amt))
+                if (int.TryParse(tbKeyDisplay.Text, out int amt))
                 {
                     if (amt > 0 & amt < 100000000)
                     {
                         set_item_change_orderamt(lvwOrderItem.SelectedItems[0].Index, "set", amt);
-                        lblKeyDisplay.Text = "";
+                        tbKeyDisplay.Text = "";
                         ReCalculateAmount();
                     }
                     else
@@ -765,12 +824,12 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (int.TryParse(lblKeyDisplay.Text, out int cnt))
+                if (int.TryParse(tbKeyDisplay.Text, out int cnt))
                 {
                     if (cnt > 0 & cnt < 1000)
                     {
                         set_item_change_ordercnt(lvwOrderItem.SelectedItems[0].Index, "set", cnt);
-                        lblKeyDisplay.Text = "";
+                        tbKeyDisplay.Text = "";
                         ReCalculateAmount();
                     }
                     else
@@ -926,13 +985,6 @@ namespace thepos
 
 
 
-
-
-
-
-
-
-
         private void btnPayManager_Click(object sender, EventArgs e)
         {
             ConsoleDisable();
@@ -944,14 +996,6 @@ namespace thepos
 
             fLogo.ShowDialog();
         }
-
-
-
-
-
-
-
-
 
 
 
@@ -1101,6 +1145,7 @@ namespace thepos
 
         void move_dcr_e_last()
         {
+            //? 전체할인인 경우 리스트뷰 가장 아래줄로 내린다..
 
 
 
@@ -1206,33 +1251,25 @@ namespace thepos
 
         private void ClickedKey(string sKey)
         {
+
             if (sKey == "BS")
             {
-                if (lblKeyDisplay.Text.Length > 0 )
+                if (mTbKeyDisplayController.Text.Length > 0 )
                 {
-                    lblKeyDisplay.Text = lblKeyDisplay.Text.Substring(0, lblKeyDisplay.Text.Length - 1);
+                    mTbKeyDisplayController.Text = mTbKeyDisplayController.Text.Substring(0, mTbKeyDisplayController.Text.Length - 1);
                 }
             }
             else if (sKey == "Clear")
             {
-                lblKeyDisplay.Text = "";
+                mTbKeyDisplayController.Text = "";
             }
             else if (sKey == "Enter")
             {
                 //
             }
-            /*
-            else if (sKey == "0" | sKey == "00")
-            {
-                if (lblKeyDisplay.Text.Length > 0)
-                {
-                    lblKeyDisplay.Text += sKey;
-                }
-            }
-            */
             else
             {
-                lblKeyDisplay.Text += sKey;
+                mTbKeyDisplayController.Text += sKey;
             }
         }
 
@@ -1369,8 +1406,15 @@ namespace thepos
 
         }
 
+        private void btnFlowTicketing_Click(object sender, EventArgs e)
+        {
+            Form fFlow;
+            fFlow = new frmFlowTicketing();
 
+            fFlow.Left += this.Location.X;
+            fFlow.Top += this.Location.Y;
 
-
+            fFlow.Show();
+        }
     }
 }
