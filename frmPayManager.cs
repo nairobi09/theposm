@@ -68,6 +68,8 @@ namespace thepos
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
+
+                if (mPosNoList[i] == mPosNo) cbPosNo.SelectedIndex = i;
             }
 
 

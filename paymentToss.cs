@@ -81,7 +81,7 @@ namespace thepos
             ret = UPay_Set("LGD_TXNAME", "CardAuthOfflinePos");
             ret = UPay_Set("LGD_REQTYPE", "APPR");
             //ret = UPay_Set("LGD_MID", "");
-            ret = UPay_Set("LGD_OID", mCustomerId + mPosNo + randomValue);
+            ret = UPay_Set("LGD_OID", mSiteId + mPosNo + randomValue);
             ret = UPay_Set("LGD_AMOUNT", amount.ToString());
             ret = UPay_Set("LGD_INSTALL", install.ToString("00"));
             ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
@@ -281,7 +281,7 @@ namespace thepos
             ret = UPay_Set("LGD_REQTYPE", "CASHAPPR");
             ret = UPay_Set("LGD_PAYTYPE", "SC0100");
             //ret = UPay_Set("LGD_MID", "");
-            ret = UPay_Set("LGD_OID", mCustomerId + mPosNo + randomValue);
+            ret = UPay_Set("LGD_OID", mSiteId + mPosNo + randomValue);
             ret = UPay_Set("LGD_AMOUNT", amount.ToString());
 
 

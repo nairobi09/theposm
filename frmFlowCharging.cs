@@ -12,15 +12,13 @@ using static thepos.frmSale;
 
 namespace thepos
 {
-    public partial class frmFlowTicketing : Form
+    public partial class frmFlowCharging : Form
     {
         TextBox saveKeyDisplay;
 
-
-        public frmFlowTicketing()
+        public frmFlowCharging()
         {
             InitializeComponent();
-
             initialize_font();
             initialize_the();
         }
@@ -72,24 +70,10 @@ namespace thepos
             this.Close();
         }
 
-        private void frmFlowTicketing_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmFlowCharging_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSale.ConsoleEnable();
             mTbKeyDisplayController = saveKeyDisplay;
-        }
-
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < mTicketFlow.Count; i++)
-            {
-
-
-
-            }
-
-
-
-
         }
     }
 }

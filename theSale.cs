@@ -47,7 +47,7 @@ namespace thepos
 
 
 
-        public static String mCustomerId = "";
+        public static String mSiteId = "";
         public static String mPosNo = "";
         public static String mBussinessDate = "";
 
@@ -264,10 +264,10 @@ namespace thepos
         // 발권상품(Order), 인증(Cert)시점 -> TicketFlow 레코드 생성(초기값)
         public struct TicketFlow
         {
-            public String the_no;           // 
+            public String the_no;           
             public String ticket_no;
-
             public String business_dt;
+
             public DateTime ticketing_dt;   // 발권일시
             public DateTime charge_dt;      // 충전일시
             public DateTime settlement_dt;  // 정산일시
@@ -276,6 +276,8 @@ namespace thepos
             public int point_usage;         // 사용금액(누적)
 
             public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 정산완료일 경우 라커를 오픈한다.
+            
+            public String locker_no;        // 추가
             public String open_locker;      // 락커 수동 설정 : 0 폐쇄(기본값), 1 개방
                                             // 정산완료  or 수동 개방상태 -> 락커오픈
         }

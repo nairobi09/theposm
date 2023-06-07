@@ -298,7 +298,7 @@ namespace thepos
             // 영업일자
             //
             mBussinessDate = DateTime.Now.ToString("yyyyMMdd");
-            mCustomerId = "CUST";
+            mSiteId = "CUST";
             mPosNo = "01";
 
             mPosNoList = new string[4];
@@ -687,7 +687,7 @@ namespace thepos
             dborder.the_no = mTheNo;
             dborder.order_date = get_today_date();
             dborder.order_time = get_today_time();
-            dborder.customer_id = mCustomerId;
+            dborder.customer_id = mSiteId;
             dborder.pos_no = mPosNo;
             dborder.cnt = mLvwOrderItem.Items.Count;
             listOrder.Add(dborder);
@@ -700,9 +700,7 @@ namespace thepos
         public static int SaveTicket()
         {
             //? 서버API로 대체한다..
-
-
-
+            
 
 
 
@@ -1401,15 +1399,30 @@ namespace thepos
         {
             //? 재기동시 초기화된 이후의 연속성을 고민한다.. 
             Random rand = new Random();
-            mTheNo = mCustomerId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
+            mTheNo = mSiteId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
 
 
         }
 
         private void btnFlowTicketing_Click(object sender, EventArgs e)
         {
+            ConsoleDisable();
+
             Form fFlow;
             fFlow = new frmFlowTicketing();
+
+            fFlow.Left += this.Location.X;
+            fFlow.Top += this.Location.Y;
+
+            fFlow.Show();
+        }
+
+        private void btnFlowCharging_Click(object sender, EventArgs e)
+        {
+            ConsoleDisable();
+
+            Form fFlow;
+            fFlow = new frmFlowCharging();
 
             fFlow.Left += this.Location.X;
             fFlow.Top += this.Location.Y;

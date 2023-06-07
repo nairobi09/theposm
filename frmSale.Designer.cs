@@ -173,6 +173,7 @@ namespace thepos
             this.btnFlowCharging.TabStop = false;
             this.btnFlowCharging.Text = "충전";
             this.btnFlowCharging.UseVisualStyleBackColor = false;
+            this.btnFlowCharging.Click += new System.EventHandler(this.btnFlowCharging_Click);
             // 
             // btnFlowTicketing
             // 
