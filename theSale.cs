@@ -46,39 +46,47 @@ namespace thepos
         //
 
 
-
+        //인증후 로컬저장
         public static String mSiteId = "";
         public static String mPosNo = "";
-        public static String mBussinessDate = "";
 
+
+
+        // 실행시 로컬 생성데이터
+        public static String mBussinessDate = "";
+        public static String mMacAddr = "";
+        public static String mTheNo = "";  // mTheNo : 선생성 - 후반영
+
+
+
+        //------------------------------------------------------------------------------
+        // 서버다운로드
         public static String[] mPosNoList; // 이사업자의 포스번호 목록
 
-        // 대표자명
-        // 사업자번호
-        // 주소
-        // 
+        public static String mSiteName;         // 매장명
 
-
-
-        // mTheNo : 선생성 - 후반영
-        public static String mTheNo = "";
-
-        public static Boolean mReturn = false;
-
-
+        public static String mRepresentativeName;   // 대표자명
+        public static String mRegistrationNo;       // 사업자번호
+        public static String mAddress;              // 주소
 
         // (후불) 발권  사용  정산 [락커]
         // (선불) 발권 [충전] 사용  정산
-
         // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
-        public static String mTicketType;  // "AP" "DP"
+        public static String mTicketType;  // ""미사용, "AP"선불, "DP"후불
+
+        // 주문서 - 상품정보 필드관리
+        public static String mCornerType;  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
+        public static String[] mCornerCode; // 코너 코드
+        public static String[] mCornerName; // 코너 명
 
 
 
 
 
 
-        public static string mErrorMsg = "";
+        //-------------------------------------------------------------------------------------
+
+
 
 
 
@@ -289,11 +297,9 @@ namespace thepos
 
 
 
-
-
-
-
-        // get_MMddHHmm(mPayments[i].pay_date, mPayments[i].pay_time)
+        //
+        public static Boolean mReturn = false;
+        public static string mErrorMsg = "";
 
 
         public static String get_MMddHHmm(String d, String t)
