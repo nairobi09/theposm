@@ -193,7 +193,7 @@ namespace thepos
 
                 if (mLvwOrderItem.SelectedItems.Count > 0)
                 {
-                    OrderItem orderItem = (OrderItem)mLvwOrderItem.SelectedItems[0].Tag;
+                    MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.SelectedItems[0].Tag;
 
                     orderItem.dcr_des = des;
                     orderItem.dcr_type = type;
@@ -250,14 +250,14 @@ namespace thepos
                     int t_amount = 0;
                     for (int i = 0; i < t_count; i++)
                     {
-                        t_amount += (((OrderItem)mLvwOrderItem.Items[i].Tag).cnt * ((OrderItem)mLvwOrderItem.Items[i].Tag).amt);
+                        t_amount += (((MemOrderItem)mLvwOrderItem.Items[i].Tag).cnt * ((MemOrderItem)mLvwOrderItem.Items[i].Tag).amt);
                     }
                     t_dc_amount = (t_amount * value) / 100;
                 }
                 else return;
 
 
-                OrderItem orderItem = new OrderItem();
+                MemOrderItem orderItem = new MemOrderItem();
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;
                 orderItem.dcr_value = value;
@@ -309,7 +309,7 @@ namespace thepos
 
             if (mLvwOrderItem.SelectedItems.Count > 0)
             {
-                OrderItem orderItem = (OrderItem)mLvwOrderItem.SelectedItems[0].Tag;
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.SelectedItems[0].Tag;
 
                 if (orderItem.dcr_des == "S")
                 {

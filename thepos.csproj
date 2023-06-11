@@ -101,6 +101,12 @@
     <Compile Include="frmFlowCharging.Designer.cs">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFlowSettlement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFlowSettlement.Designer.cs">
+      <DependentUpon>frmFlowSettlement.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFlowTicketing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFlowCharging.resx">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFlowSettlement.resx">
+      <DependentUpon>frmFlowSettlement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFlowTicketing.resx">
       <DependentUpon>frmFlowTicketing.cs</DependentUpon>

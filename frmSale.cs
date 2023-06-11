@@ -5,8 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Collections.Generic;
-
 using static thepos.theSale;
+using static thepos.frmPayComplex;
+
 
 
 /* 과제
@@ -36,6 +37,12 @@ namespace thepos
         public static int mSelectedWaitingNo = 0;
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
+
+
+
+        public static String mRightFace = "";
+
+
 
 
         public static TextBox mTbKeyDisplaySales;            // Sales화면의 key display
@@ -233,7 +240,7 @@ namespace thepos
 
 
             lblDate.Font = font10;
-            lblTime.Font = font12;
+            lblTime.Font = font14;
 
             btnClose.Font = font12;
 
@@ -320,7 +327,16 @@ namespace thepos
             lvwOrderItem.SmallImageList = imgList;
             lvwOrderItem.HideSelection = true;
 
-            // 최초세팅 - 이후 개별창이 뜰때마다 각각창의 KeyDisplay로 세팅을 변경할 수 있다. 
+            
+
+
+            //? 리스트뷰 항목이 추가 변경될때 합계를 다시 계산하기위해 
+            //  리스트뷰 변경 이벤트 추가
+
+
+
+
+
 
 
 
@@ -340,12 +356,12 @@ namespace thepos
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
 
 
+            //? 최초세팅 - 이후 개별창이 뜰때마다 각각창의 KeyDisplay로 세팅을 변경할 수 있다. 
             // 서브창이 열리면서 Sale창의 콘트롤 Enable/Disable 관리를 위해서...
-
-
             mTbKeyDisplaySales = tbKeyDisplay;
-
             mTbKeyDisplayController = mTbKeyDisplaySales;
+
+
 
             mPanelTitleConsole = panelTitleConsole;
             mPanelOrderConsole = panelOrderConsole;
@@ -361,7 +377,12 @@ namespace thepos
             mLblOrderAmountDC = lblOrderAmountDC;
             mLblOrderAmountNet = lblOrderAmountNet;
 
+
+
         }
+
+
+
 
         private void display_payconsol()
         {
@@ -398,7 +419,7 @@ namespace thepos
                 }
                 else if (mPayConsol[i].code == "POINT")
                 {
-                    btnPayItem.Text = "선불\r포인트";
+                    btnPayItem.Text = "포인트\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayPoint();
                 }
                 else if (mPayConsol[i].code == "COMPLEX")
@@ -524,7 +545,7 @@ namespace thepos
 
         private void ClickedGoodsItem(int i)
         {
-            OrderItem orderItem = new OrderItem();
+            MemOrderItem orderItem = new MemOrderItem();
             int lv_idx = (get_lvitem_idx(mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
@@ -668,7 +689,7 @@ namespace thepos
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
                 dbOrderItem dborderItem = new dbOrderItem();
-                OrderItem orderItem = (OrderItem)mLvwOrderItem.Items[i].Tag;
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
                 dborderItem.the_no = mTheNo;
                 dborderItem.code = orderItem.code;
                 dborderItem.name = orderItem.name;
@@ -700,12 +721,38 @@ namespace thepos
         public static int SaveTicket()
         {
             //? 서버API로 대체한다..
-            
 
+            int ticket_seq = 0;
 
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            {
+                TicketFlow ticketFlow = new TicketFlow();
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
 
+                if (orderItem.ticket == "1")
+                {
+                    for (int k = 0; k < orderItem.cnt; k++)
+                    {
+                        ticket_seq++;
 
-            return 0;
+                        ticketFlow.the_no = mTheNo;
+                        ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
+                        ticketFlow.business_dt = mBussinessDate;
+                        ticketFlow.ticketing_dt = get_today_date() + get_today_time();
+                        ticketFlow.charge_dt = "";
+                        ticketFlow.settlement_dt = "";
+                        ticketFlow.point_charge = 0;
+                        ticketFlow.point_usage = 0;
+                        ticketFlow.goods_code = orderItem.code;
+                        ticketFlow.flow_step = "1";                // 접수
+                        ticketFlow.locker_no = "";
+                        ticketFlow.open_locker = "1";              // 최초 open -> 충전 close, 사용 close -> 정산 open
+                        mTicketFlowList.Add(ticketFlow);
+                    } 
+                }
+            }
+
+            return ticket_seq;
 
         }
 
@@ -713,6 +760,7 @@ namespace thepos
         public static void mClearSaleForm()
         {
             mLvwOrderItem.Items.Clear();
+
             ReCalculateAmount();
             ConsoleEnable();
         }
@@ -790,7 +838,7 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (((OrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt == 1)
+                if (((MemOrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt == 1)
                 {
                     SetDisplayAlarm("W", "수량은 0이하로 입력할 수 없습니다.");
                     return;
@@ -806,7 +854,7 @@ namespace thepos
         {
             if (lvwOrderItem.SelectedItems.Count > 0)
             {
-                if (((OrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt >= 999)
+                if (((MemOrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt >= 999)
                 {
                     SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
                     return;
@@ -872,7 +920,7 @@ namespace thepos
             // 웨이팅 저장, 불러오기 겸용버튼
             if (lvwOrderItem.Items.Count > 0)
             {
-                Order waiting = new Order();
+                MemOrder waiting = new MemOrder();
 
                 waiting.order_no = ++mWaitingNoCounter;
 
@@ -882,7 +930,7 @@ namespace thepos
 
                 for (int i = 0; i < lvwOrderItem.Items.Count; i++)
                 {
-                    OrderItem orderItem = (OrderItem)lvwOrderItem.Items[i].Tag;
+                    MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[i].Tag;
                     orderItem.order_no = mWaitingNoCounter;
 
                     waiting.cnt++;
@@ -925,7 +973,7 @@ namespace thepos
 
                                 lvItem.Tag = listWaitingItem[i];
 
-                                OrderItem orderItem = new OrderItem();
+                                MemOrderItem orderItem = new MemOrderItem();
                                 orderItem = listWaitingItem[i];
 
                                 lvItem.Text = (lv_no).ToString();
@@ -1013,7 +1061,7 @@ namespace thepos
             panelFlowConsole.Enabled = false;
         }
 
-        public static String getDCRmemo(OrderItem orderItem)
+        public static String getDCRmemo(MemOrderItem orderItem)
         {
             string memo = "";
             
@@ -1049,7 +1097,7 @@ namespace thepos
 
         private void set_item_change_orderamt(int lv_idx, String jobtype, int amt)
         {
-            OrderItem orderItem = (OrderItem)lvwOrderItem.Items[lv_idx].Tag;
+            MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[lv_idx].Tag;
 
             if (jobtype == "set")
             {
@@ -1076,7 +1124,7 @@ namespace thepos
 
         private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
         {
-            OrderItem orderItem = (OrderItem)lvwOrderItem.Items[lv_idx].Tag;
+            MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[lv_idx].Tag;
 
 
             if (orderItem.dcr_des == "E")
@@ -1113,7 +1161,7 @@ namespace thepos
         }
 
 
-        public static int get_dc_amount(OrderItem orderItem)
+        public static int get_dc_amount(MemOrderItem orderItem)
         {
             int amount = orderItem.amt * orderItem.cnt;
             int tdcamount = 0;
@@ -1153,7 +1201,7 @@ namespace thepos
         {
             for (int i = mLvwOrderItem.Items.Count - 1; i >= 0; i--)
             {
-                if (((OrderItem)mLvwOrderItem.Items[i].Tag).dcr_des == des)
+                if (((MemOrderItem)mLvwOrderItem.Items[i].Tag).dcr_des == des)
                 {
                     return true;
                 }
@@ -1169,11 +1217,11 @@ namespace thepos
             int dcAmount = 0;
             mNetAmount = 0;
 
-            OrderItem orderItemInfo;
+            MemOrderItem orderItemInfo;
 
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
-                orderItemInfo = (OrderItem)mLvwOrderItem.Items[i].Tag;
+                orderItemInfo = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
                 Amount += (orderItemInfo.cnt * orderItemInfo.amt);
                 dcAmount += orderItemInfo.dc_amount;
                 mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
@@ -1305,11 +1353,11 @@ namespace thepos
             
         }
 
-        private int get_lvitem_idx(string code)
+        public static int get_lvitem_idx(string code)
         {
-            for (int i = 0; i < lvwOrderItem.Items.Count; i++)
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
-                if (code == ((OrderItem)(lvwOrderItem.Items[i].Tag)).code)
+                if (code == ((MemOrderItem)(mLvwOrderItem.Items[i].Tag)).code)
                 { return i; }
             }
             return -1;
@@ -1365,6 +1413,21 @@ namespace thepos
 
         private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (mRightFace == "PayComplex")
+            {
+
+                if (lvwOrderItem.SelectedItems.Count > 0)
+                {
+                    MemOrderItem orderItem = (MemOrderItem)(lvwOrderItem.SelectedItems[0].Tag);
+
+                    int amt = orderItem.cnt * orderItem.amt - orderItem.dc_amount;
+
+                    frmPayComplex.mTbReqAmount.Text = amt.ToString("N0");
+                }
+            }
+
+
+
             this.lvwOrderItem.Items.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
                 {
@@ -1377,6 +1440,7 @@ namespace thepos
                     item.BackColor = SystemColors.Highlight;
                     item.ForeColor = SystemColors.HighlightText;
                 });
+
         }
 
         private void lvwOrderItem_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
@@ -1397,9 +1461,9 @@ namespace thepos
 
         public static void countup_the_no()
         {
-            //? 재기동시 초기화된 이후의 연속성을 고민한다.. 
-            Random rand = new Random();
-            mTheNo = mSiteId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000") + rand.Next(100, 999);
+            //? 재기동시 초기화된 이후의 연속성을 고민한다.. -> 서버에 물어본다.
+
+            mTheNo = mSiteId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000");
 
 
         }
@@ -1419,6 +1483,13 @@ namespace thepos
 
         private void btnFlowCharging_Click(object sender, EventArgs e)
         {
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
+                return;
+            }
+
+
             ConsoleDisable();
 
             Form fFlow;
@@ -1429,5 +1500,32 @@ namespace thepos
 
             fFlow.Show();
         }
+
+        private void btnFlowSettlement_Click(object sender, EventArgs e)
+        {
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
+                return;
+            }
+
+
+            ConsoleDisable();
+
+            Form fFlow;
+            fFlow = new frmFlowSettlement();
+
+            fFlow.Left += this.Location.X;
+            fFlow.Top += this.Location.Y;
+
+            fFlow.Show();
+        }
+
+        private void btnKeyEnter_Click(object sender, EventArgs e)
+        {
+            //? 열린창에 따라서 순번대로 입력하는 UI로 기능 개발
+            // 카드결제 창 - 3개 입력항목 감안
+        }
+
     }
 }

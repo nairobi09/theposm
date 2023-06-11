@@ -30,47 +30,34 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowTicketing));
             this.panelback = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.btnReader = new System.Windows.Forms.Button();
+            this.dtBusiness = new System.Windows.Forms.DateTimePicker();
+            this.tbBillNo = new System.Windows.Forms.TextBox();
+            this.lbl3 = new System.Windows.Forms.Label();
+            this.cbPosNo = new System.Windows.Forms.ComboBox();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lvwFlow = new System.Windows.Forms.ListView();
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnReader = new System.Windows.Forms.Button();
-            this.tbTicketNo = new System.Windows.Forms.TextBox();
-            this.cbPosNo = new System.Windows.Forms.ComboBox();
-            this.btnView = new System.Windows.Forms.Button();
-            this.lbl2 = new System.Windows.Forms.Label();
-            this.lbl3 = new System.Windows.Forms.Label();
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.dtBusiness = new System.Windows.Forms.DateTimePicker();
             this.panelback.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelback
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelback.Controls.Add(this.btnReader);
-            this.panelback.Controls.Add(this.tbTicketNo);
-            this.panelback.Controls.Add(this.cbPosNo);
-            this.panelback.Controls.Add(this.btnView);
-            this.panelback.Controls.Add(this.lbl2);
-            this.panelback.Controls.Add(this.lbl3);
-            this.panelback.Controls.Add(this.lbl1);
-            this.panelback.Controls.Add(this.dtBusiness);
+            this.panelback.Controls.Add(this.panel1);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Controls.Add(this.button1);
-            this.panelback.Controls.Add(this.button3);
-            this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.lvwFlow);
             this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -78,6 +65,111 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lbl1);
+            this.panel1.Controls.Add(this.btnReader);
+            this.panel1.Controls.Add(this.dtBusiness);
+            this.panel1.Controls.Add(this.tbBillNo);
+            this.panel1.Controls.Add(this.lbl3);
+            this.panel1.Controls.Add(this.cbPosNo);
+            this.panel1.Controls.Add(this.lbl2);
+            this.panel1.Controls.Add(this.btnView);
+            this.panel1.Location = new System.Drawing.Point(20, 66);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(482, 67);
+            this.panel1.TabIndex = 77;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.Location = new System.Drawing.Point(12, 14);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(53, 12);
+            this.lbl1.TabIndex = 71;
+            this.lbl1.Text = "영업일자";
+            // 
+            // btnReader
+            // 
+            this.btnReader.BackColor = System.Drawing.Color.White;
+            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
+            this.btnReader.Location = new System.Drawing.Point(382, 8);
+            this.btnReader.Name = "btnReader";
+            this.btnReader.Size = new System.Drawing.Size(85, 50);
+            this.btnReader.TabIndex = 75;
+            this.btnReader.UseVisualStyleBackColor = false;
+            // 
+            // dtBusiness
+            // 
+            this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtBusiness.Location = new System.Drawing.Point(68, 8);
+            this.dtBusiness.Name = "dtBusiness";
+            this.dtBusiness.Size = new System.Drawing.Size(97, 22);
+            this.dtBusiness.TabIndex = 68;
+            this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
+            // 
+            // tbBillNo
+            // 
+            this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBillNo.Location = new System.Drawing.Point(221, 10);
+            this.tbBillNo.MaxLength = 4;
+            this.tbBillNo.Name = "tbBillNo";
+            this.tbBillNo.Size = new System.Drawing.Size(54, 30);
+            this.tbBillNo.TabIndex = 74;
+            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbl3
+            // 
+            this.lbl3.AutoSize = true;
+            this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl3.Location = new System.Drawing.Point(174, 14);
+            this.lbl3.Name = "lbl3";
+            this.lbl3.Size = new System.Drawing.Size(41, 24);
+            this.lbl3.TabIndex = 70;
+            this.lbl3.Text = "영수증\r\n번호";
+            this.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cbPosNo
+            // 
+            this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.FormattingEnabled = true;
+            this.cbPosNo.Items.AddRange(new object[] {
+            "",
+            "01",
+            "02",
+            "03"});
+            this.cbPosNo.Location = new System.Drawing.Point(68, 37);
+            this.cbPosNo.Name = "cbPosNo";
+            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
+            this.cbPosNo.TabIndex = 73;
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.Location = new System.Drawing.Point(12, 42);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(53, 12);
+            this.lbl2.TabIndex = 69;
+            this.lbl2.Text = "포스번호";
+            // 
+            // btnView
+            // 
+            this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.Location = new System.Drawing.Point(287, 8);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(85, 50);
+            this.btnView.TabIndex = 72;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnClose
             // 
@@ -107,71 +199,34 @@
             this.lblTitle.Text = "발권";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(403, 473);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 48);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "출력";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(403, 527);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 48);
-            this.button3.TabIndex = 48;
-            this.button3.Text = "취소";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(290, 527);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 48);
-            this.btnCancel.TabIndex = 48;
-            this.btnCancel.Text = "재발급";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
             // btnPrint
             // 
             this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(290, 473);
+            this.btnPrint.Location = new System.Drawing.Point(403, 473);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(100, 48);
             this.btnPrint.TabIndex = 48;
-            this.btnPrint.Text = "발권";
+            this.btnPrint.Text = "재출력";
             this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // lvwFlow
             // 
             this.lvwFlow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.stat,
             this.goods,
-            this.cnt,
             this.ticket_no,
-            this.ticket_dt,
-            this.cancel});
+            this.ticket_dt});
             this.lvwFlow.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwFlow.FullRowSelect = true;
             this.lvwFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwFlow.HideSelection = false;
-            this.lvwFlow.Location = new System.Drawing.Point(20, 146);
+            this.lvwFlow.Location = new System.Drawing.Point(20, 139);
             this.lvwFlow.MultiSelect = false;
             this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 313);
+            this.lvwFlow.Size = new System.Drawing.Size(483, 320);
             this.lvwFlow.TabIndex = 44;
             this.lvwFlow.UseCompatibleStateImageBehavior = false;
             this.lvwFlow.View = System.Windows.Forms.View.Details;
@@ -185,12 +240,6 @@
             this.goods.Text = "상품";
             this.goods.Width = 90;
             // 
-            // cnt
-            // 
-            this.cnt.Text = "수량";
-            this.cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.cnt.Width = 50;
-            // 
             // ticket_no
             // 
             this.ticket_no.Text = "발권번호";
@@ -200,98 +249,6 @@
             // 
             this.ticket_dt.Text = "발권시간";
             this.ticket_dt.Width = 70;
-            // 
-            // cancel
-            // 
-            this.cancel.Text = "취소";
-            this.cancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnReader
-            // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(277, 104);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(79, 30);
-            this.btnReader.TabIndex = 66;
-            this.btnReader.UseVisualStyleBackColor = false;
-            // 
-            // tbTicketNo
-            // 
-            this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicketNo.Font = new System.Drawing.Font("GulimChe", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbTicketNo.Location = new System.Drawing.Point(77, 106);
-            this.tbTicketNo.MaxLength = 4;
-            this.tbTicketNo.Name = "tbTicketNo";
-            this.tbTicketNo.Size = new System.Drawing.Size(194, 26);
-            this.tbTicketNo.TabIndex = 65;
-            this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cbPosNo
-            // 
-            this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Items.AddRange(new object[] {
-            "",
-            "01",
-            "02",
-            "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(231, 72);
-            this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
-            this.cbPosNo.TabIndex = 64;
-            // 
-            // btnView
-            // 
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(402, 71);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 61);
-            this.btnView.TabIndex = 63;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = false;
-            // 
-            // lbl2
-            // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl2.Location = new System.Drawing.Point(196, 77);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(29, 12);
-            this.lbl2.TabIndex = 60;
-            this.lbl2.Text = "포스";
-            // 
-            // lbl3
-            // 
-            this.lbl3.AutoSize = true;
-            this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(21, 114);
-            this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(53, 12);
-            this.lbl3.TabIndex = 61;
-            this.lbl3.Text = "발권번호";
-            // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.Location = new System.Drawing.Point(21, 77);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(53, 12);
-            this.lbl1.TabIndex = 62;
-            this.lbl1.Text = "영업일자";
-            // 
-            // dtBusiness
-            // 
-            this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(77, 71);
-            this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(97, 22);
-            this.dtBusiness.TabIndex = 59;
-            this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
             // frmFlowTicketing
             // 
@@ -307,7 +264,8 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowTicketing_FormClosed);
             this.panelback.ResumeLayout(false);
-            this.panelback.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -317,24 +275,20 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ListView lvwFlow;
         private System.Windows.Forms.ColumnHeader stat;
         private System.Windows.Forms.ColumnHeader goods;
         private System.Windows.Forms.ColumnHeader ticket_dt;
         private System.Windows.Forms.ColumnHeader ticket_no;
-        private System.Windows.Forms.ColumnHeader cancel;
-        private System.Windows.Forms.ColumnHeader cnt;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnReader;
-        private System.Windows.Forms.TextBox tbTicketNo;
-        private System.Windows.Forms.ComboBox cbPosNo;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Label lbl2;
-        private System.Windows.Forms.Label lbl3;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Button btnReader;
         private System.Windows.Forms.DateTimePicker dtBusiness;
+        private System.Windows.Forms.TextBox tbBillNo;
+        private System.Windows.Forms.Label lbl3;
+        private System.Windows.Forms.ComboBox cbPosNo;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.Button btnView;
     }
 }

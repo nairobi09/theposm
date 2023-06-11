@@ -12,15 +12,13 @@ using static thepos.frmSale;
 
 namespace thepos
 {
-    public partial class frmFlowTicketing : Form
+    public partial class frmFlowSettlement : Form
     {
         TextBox saveKeyDisplay;
 
-
-        public frmFlowTicketing()
+        public frmFlowSettlement()
         {
             InitializeComponent();
-
             initialize_font();
             initialize_the();
         }
@@ -35,6 +33,7 @@ namespace thepos
             lbl1.Font = font9;
             lbl2.Font = font9;
             lbl3.Font = font9;
+            lbl4.Font = font9;
 
             dtBusiness.Font = font10;
             cbPosNo.Font = font10;
@@ -43,8 +42,11 @@ namespace thepos
             btnView.Font = font10;
             lvwFlow.Font = font10;
 
+            btnSettlement.Font = font10;
+
 
         }
+
         private void initialize_the()
         {
             dtBusiness.Value = DateTime.Now;
@@ -72,11 +74,6 @@ namespace thepos
             this.Close();
         }
 
-        private void frmFlowTicketing_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            frmSale.ConsoleEnable();
-            mTbKeyDisplayController = saveKeyDisplay;
-        }
 
         private void btnView_Click(object sender, EventArgs e)
         {
@@ -95,19 +92,23 @@ namespace thepos
 
                 item.Text = tStat;
                 item.SubItems.Add(get_goods_name(mTicketFlowList[i].goods_code));
-                item.SubItems.Add(mTicketFlowList[i].ticket_no.Substring(14,4) + "-" + mTicketFlowList[i].ticket_no.Substring(18,3));
-                item.SubItems.Add(mTicketFlowList[i].ticketing_dt.Substring(8, 2) + ":" +
-                                  mTicketFlowList[i].ticketing_dt.Substring(10, 2) + ":" +
-                                  mTicketFlowList[i].ticketing_dt.Substring(12, 2));
+                item.SubItems.Add(mTicketFlowList[i].ticket_no.Substring(14, 4) + "-" + mTicketFlowList[i].ticket_no.Substring(18, 3));
+
+
+                item.SubItems.Add(mTicketFlowList[i].point_charge.ToString("N0"));
+                item.SubItems.Add(mTicketFlowList[i].point_usage.ToString("N0"));
+
+
+                item.SubItems.Add(get_goods_name(mTicketFlowList[i].point_charge.ToString("N0")));
 
                 lvwFlow.Items.Add(item);
             }
-
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void frmFlowSettlement_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            frmSale.ConsoleEnable();
+            mTbKeyDisplayController = saveKeyDisplay;
         }
     }
 }

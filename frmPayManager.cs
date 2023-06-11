@@ -48,7 +48,7 @@ namespace thepos
 
             dtBusiness.Font = font10;
             cbPosNo.Font = font10;
-            tbBillNo.Font = font10;
+            tbBillNo.Font = font14;
 
             btnView.Font = font10;
             lvwPayManager.Font = font10;
@@ -101,7 +101,7 @@ namespace thepos
                 lvItem.SubItems.Add(get_tran_type_name(mPayments[i].tran_type));
 
                 lvItem.SubItems.Add(mPayments[i].pos_no);
-                lvItem.SubItems.Add(mPayments[i].serial_no);
+                lvItem.SubItems.Add(mPayments[i].bill_no);
 
                 if (mPayments[i].tran_type == "C")
                     lvItem.SubItems.Add((-mPayments[i].net_amount).ToString("N0"));
@@ -577,5 +577,7 @@ namespace thepos
         {
 
         }
+
+
     }
 }

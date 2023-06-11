@@ -130,7 +130,7 @@
             // 
             this.lbl6.AutoSize = true;
             this.lbl6.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl6.Location = new System.Drawing.Point(27, 56);
+            this.lbl6.Location = new System.Drawing.Point(28, 56);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(123, 11);
             this.lbl6.TabIndex = 45;
@@ -265,29 +265,29 @@
             // lbl3
             // 
             this.lbl3.AutoSize = true;
-            this.lbl3.Location = new System.Drawing.Point(17, 87);
+            this.lbl3.Location = new System.Drawing.Point(27, 87);
             this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(73, 14);
+            this.lbl3.Size = new System.Drawing.Size(63, 14);
             this.lbl3.TabIndex = 45;
-            this.lbl3.Text = "⁜거스름돈";
+            this.lbl3.Text = "거스름돈";
             // 
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(17, 58);
+            this.lbl2.Location = new System.Drawing.Point(27, 58);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(73, 14);
+            this.lbl2.Size = new System.Drawing.Size(63, 14);
             this.lbl2.TabIndex = 45;
-            this.lbl2.Text = "⁜받은금액";
+            this.lbl2.Text = "받은금액";
             // 
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(17, 26);
+            this.lbl1.Location = new System.Drawing.Point(27, 26);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(73, 14);
+            this.lbl1.Size = new System.Drawing.Size(63, 14);
             this.lbl1.TabIndex = 45;
-            this.lbl1.Text = "⁜받을금액";
+            this.lbl1.Text = "받을금액";
             // 
             // btnClose
             // 
@@ -318,11 +318,11 @@
             // lbl4
             // 
             this.lbl4.AutoSize = true;
-            this.lbl4.Location = new System.Drawing.Point(52, 346);
+            this.lbl4.Location = new System.Drawing.Point(50, 346);
             this.lbl4.Name = "lbl4";
-            this.lbl4.Size = new System.Drawing.Size(87, 14);
+            this.lbl4.Size = new System.Drawing.Size(77, 14);
             this.lbl4.TabIndex = 45;
-            this.lbl4.Text = "⁜현금영수증";
+            this.lbl4.Text = "현금영수증";
             // 
             // lblTitle
             // 

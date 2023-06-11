@@ -146,7 +146,7 @@ namespace thepos
                 mPayment.tran_type = "A";
                 mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
                 mPayment.pos_no = mPosNo;
-                mPayment.serial_no = mTheNo.Substring(14, 4);
+                mPayment.bill_no = mTheNo.Substring(14, 4);
                 mPayment.net_amount = netAmount;
                 mPayment.amount_cash = 0;
                 mPayment.amount_card = netAmount;
@@ -229,12 +229,12 @@ namespace thepos
             if (paySeq == 1)
             {
                 SetDisplayAlarm("I", "주문" + order_cnt + "건 카드임의등록 완료.");
-                MessageBox.Show("카드 임의등록 완료", "thepos");
+                //MessageBox.Show("카드 임의등록 완료", "thepos");
             }
             else
             {
                 SetDisplayAlarm("I", "카드임의등록 완료.");
-                MessageBox.Show("카드 임의등록 완료", "thepos");
+                //MessageBox.Show("카드 임의등록 완료", "thepos");
             }
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
@@ -284,7 +284,7 @@ namespace thepos
                     mPayment.tran_type = "A";
                     mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
                     mPayment.pos_no = mPosNo;
-                    mPayment.serial_no = mTheNo.Substring(14, 4);
+                    mPayment.bill_no = mTheNo.Substring(14, 4);
                     mPayment.net_amount += int.Parse(mTossResponse.Tamt);
                     mPayment.amount_cash = 0;
                     mPayment.amount_card += int.Parse(mTossResponse.Tamt);

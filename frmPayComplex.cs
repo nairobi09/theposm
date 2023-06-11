@@ -32,6 +32,9 @@ namespace thepos
         public static int mPaySeq = 1; // 선결제 후Upcount  - 복합결제망 사용하고, 단독결제는 항상 1
 
         TextBox saveKeyDisplay;
+        String saveRightFace;
+
+        public static TextBox mTbReqAmount;
 
 
         public frmPayComplex()
@@ -49,6 +52,17 @@ namespace thepos
             mComplexLblNetAmount.Text = mComplexNetAmount.ToString("N0");
             mComplexLblRcvAmount.Text = mComplexRcvAmount.ToString("N0");
             mComplexLblNestAmount.Text = mComplexNestAmount.ToString("N0");
+
+
+
+            if (mLvwOrderItem.SelectedItems.Count > 0)
+            {
+                MemOrderItem orderItem = (MemOrderItem)(mLvwOrderItem.SelectedItems[0].Tag);
+
+                int amt = orderItem.cnt * orderItem.amt - orderItem.dc_amount;
+
+                mTbReqAmount.Text = amt.ToString("N0");
+            }
 
         }
 
@@ -73,6 +87,8 @@ namespace thepos
             btnRequestCard.Font = font10;
             btnRequestEasy.Font = font10;
 
+
+            mTbReqAmount = tbReqAmount;
         }
 
         private void initial_the()
@@ -93,6 +109,10 @@ namespace thepos
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbReqAmount;
 
+
+            //복합결제인 경우 리스트뷰 상품을 클릭하면 클릭된 금액을 복합결제 결제할 금액에 표시한다.
+            saveRightFace = mRightFace;
+            mRightFace = "PayComplex";
         }
 
 
@@ -121,6 +141,7 @@ namespace thepos
         {
             frmSale.ConsoleEnable();
             mTbKeyDisplayController = saveKeyDisplay;
+            mRightFace = saveRightFace;
 
         }
 

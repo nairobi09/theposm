@@ -119,16 +119,16 @@ namespace thepos
 
 
         // 로컬
-        public struct Order
+        public struct MemOrder
         {
             public int order_no;        // 대기번호 [대기]을 위해
             public DateTime dt;         // 대기일시
             public int cnt;             // 항목수
             public int amount;          // 합계
         }
-        public static List<Order> listWaiting = new List<Order>();
+        public static List<MemOrder> listWaiting = new List<MemOrder>();
 
-        public struct OrderItem
+        public struct MemOrderItem
         {
             public int order_no;       // 대기번호 [대기]을 위해
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
@@ -142,13 +142,14 @@ namespace thepos
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
         }
-        public static List<OrderItem> listWaitingItem = new List<OrderItem>();
+        public static List<MemOrderItem> listWaitingItem = new List<MemOrderItem>();
 
 
         //? 서버
         public struct dbOrder
         {
             public String the_no;       // 
+            public String business_dt;  // yyyyMMdd
             public String order_date;
             public String order_time;
             public String customer_id;
@@ -161,6 +162,7 @@ namespace thepos
         public struct dbOrderItem
         {
             public String the_no;       // 
+            public String business_dt;  // yyyyMMdd
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
             public String name;         // 상품name or 전체할인명("할인")
             public int cnt;
@@ -187,7 +189,7 @@ namespace thepos
             public String tran_type;    // 승인 A, 취소 C
             public String pay_class;    // Order 0, charge 1, settlement 2
             public string pos_no;
-            public String serial_no;    // 4자리 
+            public String bill_no;    // 4자리 
             public int net_amount;
             public int amount_cash;
             public int amount_card;
@@ -240,7 +242,24 @@ namespace thepos
         }
         public static List<PaymentCash> mPaymentCashs = new List<PaymentCash>();
 
-
+        public struct PaymentEasy
+        {
+            public String the_no;
+            public int pay_seq;
+            public String business_dt;
+            public String pay_date;
+            public String pay_time;
+            public String pay_type;     // 결제구분 : 네이버 카카오 페이코 알리페이 위쳇 프롬페이
+            public String tran_type;    // 승인 A 취소 C
+            public String tran_date;    
+            public int amount;          // 결제금액
+            public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
+            public String issued_method_no;  // 현금영수증 고객 식별번호
+            public String auth_no;      // 승인번호
+            public String tran_serial;  // 취소용
+            public String is_cancel;    // 취소여부
+        }
+        public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
 
 
         public struct PaymentPoint           // 선불 포인트 사용
@@ -276,20 +295,21 @@ namespace thepos
             public String ticket_no;
             public String business_dt;
 
-            public DateTime ticketing_dt;   // 발권일시
-            public DateTime charge_dt;      // 충전일시
-            public DateTime settlement_dt;  // 정산일시
+            public String ticketing_dt;   // 발권일시
+            public String charge_dt;      // 충전일시
+            public String settlement_dt;  // 정산일시
 
             public int point_charge;        // 충전금액
             public int point_usage;         // 사용금액(누적)
 
-            public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 정산완료일 경우 라커를 오픈한다.
+            public String goods_code;
+            public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 사용중인 경우 locker close, 정산완료 locker open.
             
             public String locker_no;        // 추가
             public String open_locker;      // 락커 수동 설정 : 0 폐쇄(기본값), 1 개방
                                             // 정산완료  or 수동 개방상태 -> 락커오픈
         }
-        public static List<TicketFlow> mTicketFlow = new List<TicketFlow>();
+        public static List<TicketFlow> mTicketFlowList = new List<TicketFlow>();
 
 
 
@@ -346,6 +366,31 @@ namespace thepos
             else name = code;
 
             return name;
+        }
+
+        public static String get_goods_name(String code)
+        {
+            for (int i = 0; i < mGoodsItem.Length; i++)
+            {
+                if (mGoodsItem[i].code == code)
+                {
+                    return mGoodsItem[i].name;
+                }
+            }
+
+            return "";
+        }
+
+
+        public static int convert_number(String str)
+        {
+            int out_number;
+            if (int.TryParse(str.Replace(",", ""), out out_number))
+            {
+                return out_number;
+            }
+
+            return -1;
         }
 
 

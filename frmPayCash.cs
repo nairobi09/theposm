@@ -104,11 +104,13 @@ namespace thepos
             //? 서버API로 교체
             int order_cnt = 0;
 
+
             if (paySeq == 1)
             { 
-                // 주문 저장 1
+                // 주문 저장 
                 order_cnt = SaveOrder();
-            
+
+
                 // 결제 저장
                 Payment mPayment = new Payment();
                 mPayment.the_no = mTheNo;
@@ -118,7 +120,7 @@ namespace thepos
                 mPayment.tran_type = "A";
                 mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
                 mPayment.pos_no = mPosNo;
-                mPayment.serial_no = mTheNo.Substring(14, 4);  // 영수증번호
+                mPayment.bill_no = mTheNo.Substring(14, 4);  // 영수증번호
                 mPayment.net_amount = netAmount;
                 mPayment.amount_cash = netAmount;
                 mPayment.amount_card = 0;
@@ -192,22 +194,43 @@ namespace thepos
             {
                // 단독결제인 Sales화면 클리어. 
                // 복합결제는 Complex화면에서 Sales화면을 클리어
-               mClearSaleForm();
+               //mClearSaleForm();
             }
 
+
+
+            String strAlarm = "";
 
             if (paySeq == 1)
             {
-                SetDisplayAlarm("I", "주문" + order_cnt + "건 단순현금 결제완료.");
+                strAlarm = "주문" + order_cnt + "건 단순현금 결제완료.";
             }
             else
             {
-                SetDisplayAlarm("I", "단순현금 결제완료.");
+                strAlarm = "단순현금 결제완료.";
             }
+
+            SetDisplayAlarm("I", strAlarm);
+
 
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
+                // 티켓 저장
+                int ticket_cnt = SaveTicket();
+
+                if (ticket_cnt > 0)
+                {
+                    strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                    SetDisplayAlarm("I", strAlarm);
+
+                    //? 
+                    // 티켓 출력 개발요망
+
+                }
+
+                mClearSaleForm();
+
                 countup_the_no();
 
                 mPaySeq = 0;
@@ -255,7 +278,7 @@ namespace thepos
                     mPayment.tran_type = "A";
                     mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
                     mPayment.pos_no = mPosNo;
-                    mPayment.serial_no = mTheNo.Substring(14, 4);
+                    mPayment.bill_no = mTheNo.Substring(14, 4);
                     mPayment.net_amount += netAmount;
                     mPayment.amount_cash = netAmount;
                     mPayment.amount_card = 0;
@@ -350,9 +373,6 @@ namespace thepos
 
                 this.Close();
             }
-
-
-
 
         }
 

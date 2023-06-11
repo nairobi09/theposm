@@ -159,6 +159,7 @@ namespace thepos
             this.btnFlowSettlement.TabStop = false;
             this.btnFlowSettlement.Text = "정산";
             this.btnFlowSettlement.UseVisualStyleBackColor = false;
+            this.btnFlowSettlement.Click += new System.EventHandler(this.btnFlowSettlement_Click);
             // 
             // btnFlowCharging
             // 
@@ -219,9 +220,9 @@ namespace thepos
             this.panelKeyDisplayWhite.BackColor = System.Drawing.Color.White;
             this.panelKeyDisplayWhite.Controls.Add(this.tbKeyDisplay);
             this.panelKeyDisplayWhite.Controls.Add(this.lblKeyDisplayXX);
-            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(1, 0);
+            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(0, 0);
             this.panelKeyDisplayWhite.Name = "panelKeyDisplayWhite";
-            this.panelKeyDisplayWhite.Size = new System.Drawing.Size(188, 48);
+            this.panelKeyDisplayWhite.Size = new System.Drawing.Size(189, 48);
             this.panelKeyDisplayWhite.TabIndex = 37;
             // 
             // tbKeyDisplay
@@ -231,7 +232,7 @@ namespace thepos
             this.tbKeyDisplay.ForeColor = System.Drawing.Color.White;
             this.tbKeyDisplay.Location = new System.Drawing.Point(2, 14);
             this.tbKeyDisplay.Name = "tbKeyDisplay";
-            this.tbKeyDisplay.Size = new System.Drawing.Size(181, 23);
+            this.tbKeyDisplay.Size = new System.Drawing.Size(180, 23);
             this.tbKeyDisplay.TabIndex = 0;
             this.tbKeyDisplay.TabStop = false;
             this.tbKeyDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -245,7 +246,7 @@ namespace thepos
             this.lblKeyDisplayXX.Location = new System.Drawing.Point(1, 1);
             this.lblKeyDisplayXX.Name = "lblKeyDisplayXX";
             this.lblKeyDisplayXX.Padding = new System.Windows.Forms.Padding(0, 5, 5, 5);
-            this.lblKeyDisplayXX.Size = new System.Drawing.Size(186, 46);
+            this.lblKeyDisplayXX.Size = new System.Drawing.Size(187, 46);
             this.lblKeyDisplayXX.TabIndex = 3;
             this.lblKeyDisplayXX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -347,6 +348,7 @@ namespace thepos
             this.btnKeyEnter.TabStop = false;
             this.btnKeyEnter.Text = "Enter";
             this.btnKeyEnter.UseVisualStyleBackColor = false;
+            this.btnKeyEnter.Click += new System.EventHandler(this.btnKeyEnter_Click);
             // 
             // btnKeyBS
             // 
@@ -679,7 +681,7 @@ namespace thepos
             this.lblTime.Location = new System.Drawing.Point(887, 9);
             this.lblTime.Margin = new System.Windows.Forms.Padding(0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(78, 28);
+            this.lblTime.Size = new System.Drawing.Size(80, 26);
             this.lblTime.TabIndex = 31;
             this.lblTime.Text = "00:00";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -721,26 +723,26 @@ namespace thepos
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 11);
+            this.pictureBox1.Location = new System.Drawing.Point(7, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 22);
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(8);
+            this.pictureBox1.Size = new System.Drawing.Size(80, 35);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
             // lblTitle02
             // 
-            this.lblTitle02.AutoSize = true;
             this.lblTitle02.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle02.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTitle02.ForeColor = System.Drawing.Color.White;
             this.lblTitle02.Location = new System.Drawing.Point(136, 23);
             this.lblTitle02.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle02.Name = "lblTitle02";
-            this.lblTitle02.Size = new System.Drawing.Size(61, 15);
+            this.lblTitle02.Size = new System.Drawing.Size(69, 15);
             this.lblTitle02.TabIndex = 31;
             this.lblTitle02.Text = "포스번호 :";
-            this.lblTitle02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle02.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnClose
             // 
@@ -764,7 +766,7 @@ namespace thepos
             this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
             this.lblPosNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosNo.Location = new System.Drawing.Point(193, 23);
+            this.lblPosNo.Location = new System.Drawing.Point(202, 23);
             this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
             this.lblPosNo.Name = "lblPosNo";
             this.lblPosNo.Size = new System.Drawing.Size(21, 15);
@@ -778,7 +780,7 @@ namespace thepos
             this.lblPosName.BackColor = System.Drawing.Color.Transparent;
             this.lblPosName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosName.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosName.Location = new System.Drawing.Point(193, 5);
+            this.lblPosName.Location = new System.Drawing.Point(202, 5);
             this.lblPosName.Margin = new System.Windows.Forms.Padding(0);
             this.lblPosName.Name = "lblPosName";
             this.lblPosName.Size = new System.Drawing.Size(79, 15);
@@ -788,31 +790,29 @@ namespace thepos
             // 
             // lblTitle01
             // 
-            this.lblTitle01.AutoSize = true;
             this.lblTitle01.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle01.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle01.ForeColor = System.Drawing.Color.White;
             this.lblTitle01.Location = new System.Drawing.Point(136, 5);
             this.lblTitle01.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle01.Name = "lblTitle01";
-            this.lblTitle01.Size = new System.Drawing.Size(52, 15);
+            this.lblTitle01.Size = new System.Drawing.Size(69, 15);
             this.lblTitle01.TabIndex = 31;
-            this.lblTitle01.Text = "매장명 : ";
-            this.lblTitle01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle01.Text = "매장명 :";
+            this.lblTitle01.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTitle04
             // 
-            this.lblTitle04.AutoSize = true;
             this.lblTitle04.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle04.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTitle04.ForeColor = System.Drawing.Color.White;
-            this.lblTitle04.Location = new System.Drawing.Point(416, 23);
+            this.lblTitle04.Location = new System.Drawing.Point(397, 23);
             this.lblTitle04.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle04.Name = "lblTitle04";
-            this.lblTitle04.Size = new System.Drawing.Size(49, 15);
+            this.lblTitle04.Size = new System.Drawing.Size(69, 15);
             this.lblTitle04.TabIndex = 31;
             this.lblTitle04.Text = "담당자 :";
-            this.lblTitle04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle04.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblWorker
             // 
@@ -820,7 +820,7 @@ namespace thepos
             this.lblWorker.BackColor = System.Drawing.Color.Transparent;
             this.lblWorker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblWorker.ForeColor = System.Drawing.Color.Gold;
-            this.lblWorker.Location = new System.Drawing.Point(473, 23);
+            this.lblWorker.Location = new System.Drawing.Point(466, 23);
             this.lblWorker.Margin = new System.Windows.Forms.Padding(0);
             this.lblWorker.Name = "lblWorker";
             this.lblWorker.Size = new System.Drawing.Size(43, 15);
@@ -834,7 +834,7 @@ namespace thepos
             this.lblBusinessDate.BackColor = System.Drawing.Color.Transparent;
             this.lblBusinessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblBusinessDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBusinessDate.Location = new System.Drawing.Point(473, 5);
+            this.lblBusinessDate.Location = new System.Drawing.Point(466, 5);
             this.lblBusinessDate.Margin = new System.Windows.Forms.Padding(0);
             this.lblBusinessDate.Name = "lblBusinessDate";
             this.lblBusinessDate.Size = new System.Drawing.Size(69, 15);
@@ -844,24 +844,23 @@ namespace thepos
             // 
             // lblTitle03
             // 
-            this.lblTitle03.AutoSize = true;
             this.lblTitle03.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle03.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTitle03.ForeColor = System.Drawing.Color.White;
-            this.lblTitle03.Location = new System.Drawing.Point(415, 5);
+            this.lblTitle03.Location = new System.Drawing.Point(397, 5);
             this.lblTitle03.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle03.Name = "lblTitle03";
-            this.lblTitle03.Size = new System.Drawing.Size(64, 15);
+            this.lblTitle03.Size = new System.Drawing.Size(69, 15);
             this.lblTitle03.TabIndex = 31;
-            this.lblTitle03.Text = "영업일자 : ";
-            this.lblTitle03.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle03.Text = "영업일자 :";
+            this.lblTitle03.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblDate
             // 
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblDate.ForeColor = System.Drawing.Color.White;
-            this.lblDate.Location = new System.Drawing.Point(750, 9);
+            this.lblDate.Location = new System.Drawing.Point(750, 8);
             this.lblDate.Margin = new System.Windows.Forms.Padding(0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(134, 29);
@@ -1092,6 +1091,7 @@ namespace thepos
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
             this.lvwOrderItem.View = System.Windows.Forms.View.Details;
             this.lvwOrderItem.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwOrderItem_ColumnWidthChanging);
+            this.lvwOrderItem.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvwOrderItem_DrawItem);
             this.lvwOrderItem.SelectedIndexChanged += new System.EventHandler(this.lvwOrderItem_SelectedIndexChanged);
             // 
             // no
