@@ -89,8 +89,7 @@ namespace thepos
 
             lblAuthNo.Font = font12;
 
-            btmCashSelf.Font = font12;
-            btmCashTemp.Font = font12;
+            btnCashSelf.Font = font12;
             btnCashRecept.Font = font12;
 
 
@@ -137,10 +136,6 @@ namespace thepos
             mPaymentCash.tran_serial = "";      // tran_serial -> 취소시 tid입력
             mPaymentCash.is_cancel = "";        // 취소여부
             mPaymentCashs.Add(mPaymentCash);
-
-
-
-            Debug.WriteLine("mPaymentCash=" + mPaymentCash);
 
 
             if (isComplex)
@@ -311,32 +306,21 @@ namespace thepos
                     mClearSaleForm();
                 }
 
-                if (paySeq == 1)
-                {
-                    SetDisplayAlarm("I", "주문" + order_cnt + "건 현금영수증 승인 완료.");
-                    MessageBox.Show("현금영수증 승인 완료", "thepos");
-                }
-                else
-                {
-                    SetDisplayAlarm("I", "현금영수증 승인 완료.");
-                    MessageBox.Show("현금영수증 승인 완료", "thepos");
-                }
-
-
 
 
                 String strAlarm = "";
 
                 if (paySeq == 1)
                 {
-                    strAlarm = "주문" + order_cnt + "건 단순현금 결제완료.";
+                    strAlarm = "주문" + order_cnt + "건 현금영수증 승인 완료.";
                 }
                 else
                 {
-                    strAlarm = "단순현금 결제완료.";
+                    strAlarm = "현금영수증 승인 완료.";
                 }
 
                 SetDisplayAlarm("I", strAlarm);
+
 
 
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
@@ -357,7 +341,6 @@ namespace thepos
                     mClearSaleForm();
 
                     countup_the_no();
-
                     mPaySeq = 1;
                 }
 
@@ -365,6 +348,15 @@ namespace thepos
             }
 
         }
+
+
+        private void btnCashSelf_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         void display_error_msg(string msg)
         {
@@ -436,9 +428,7 @@ namespace thepos
             mTbKeyDisplayController = saveKeyDisplay;
         }
 
-        private void btmCashTemp_Click(object sender, EventArgs e)
-        {
+ 
 
-        }
     }
 }

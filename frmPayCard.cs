@@ -138,37 +138,15 @@ namespace thepos
                 // 주문 저장 1
                 order_cnt = SaveOrder();
 
-                Payment mPayment = new Payment();
-                mPayment.the_no = mTheNo;
-                mPayment.pay_date = get_today_date();
-                mPayment.pay_time = get_today_time();
-                mPayment.business_dt = mBussinessDate;
-                mPayment.tran_type = "A";
-                mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-                mPayment.pos_no = mPosNo;
-                mPayment.bill_no = mTheNo.Substring(14, 4);
-                mPayment.net_amount = netAmount;
-                mPayment.amount_cash = 0;
-                mPayment.amount_card = netAmount;
-                mPayment.amount_easy = 0;
-                mPayment.is_dc = "";       // 할인여부
-                mPayment.is_cancel = "";   // 취소여부
-                mPayments.Add(mPayment);
             }
-            else
-            {
-                for (int i = 0; i < mPayments.Count; i++)
-                {
-                    if (mPayments[i].the_no == mTheNo)
-                    {
-                        Payment p = new Payment();
-                        p = mPayments[i];
-                        p.net_amount += netAmount;
-                        p.amount_card += netAmount;
-                        mPayments[i] = p;
-                    }
-                }
-            }
+
+            // pay_class
+            String payClass = "0";  // 주문
+            //payClass = "1";       // 충전
+            //payClass = "2";       // 정산
+
+            SavePayment(paySeq, payClass, "Card", netAmount);  // payment
+
 
 
             PaymentCard mPaymentCard = new PaymentCard();
@@ -226,19 +204,39 @@ namespace thepos
                 mClearSaleForm();
             }
 
+
+            String strAlarm = "";
+
             if (paySeq == 1)
             {
-                SetDisplayAlarm("I", "주문" + order_cnt + "건 카드임의등록 완료.");
-                //MessageBox.Show("카드 임의등록 완료", "thepos");
+                strAlarm = "주문" + order_cnt + "건 카드임의등록 완료.";
             }
             else
             {
-                SetDisplayAlarm("I", "카드임의등록 완료.");
-                //MessageBox.Show("카드 임의등록 완료", "thepos");
+                strAlarm = "카드임의등록 완료.";
             }
+
+            SetDisplayAlarm("I", strAlarm);
+
+
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
+                // 티켓 저장
+                int ticket_cnt = SaveTicket();
+
+                if (ticket_cnt > 0)
+                {
+                    strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                    SetDisplayAlarm("I", strAlarm);
+
+                    //? 
+                    // 티켓 출력 개발요망
+
+                }
+
+                mClearSaleForm();
+
                 countup_the_no();
                 mPaySeq = 1;
             }
@@ -276,37 +274,15 @@ namespace thepos
                     // 주문 저장 1
                     order_cnt = SaveOrder();
 
-                    Payment mPayment = new Payment();
-                    mPayment.the_no = mTheNo;
-                    mPayment.pay_date = get_today_date();
-                    mPayment.pay_time = get_today_time();
-                    mPayment.business_dt = mBussinessDate;
-                    mPayment.tran_type = "A";
-                    mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-                    mPayment.pos_no = mPosNo;
-                    mPayment.bill_no = mTheNo.Substring(14, 4);
-                    mPayment.net_amount += int.Parse(mTossResponse.Tamt);
-                    mPayment.amount_cash = 0;
-                    mPayment.amount_card += int.Parse(mTossResponse.Tamt);
-                    mPayment.amount_easy = 0;
-                    mPayment.is_dc = "";       // 할인여부
-                    mPayment.is_cancel = "";   // 취소여부
-                    mPayments.Add(mPayment);
                 }
-                else
-                {
-                    for (int i = 0; i < mPayments.Count; i++)
-                    {
-                        if (mPayments[i].the_no == mTheNo)
-                        {
-                            Payment p = new Payment();
-                            p = mPayments[i];
-                            p.net_amount += netAmount;
-                            p.amount_card += netAmount;
-                            mPayments[i] = p;
-                        }
-                    }
-                }
+
+
+                // pay_class
+                String payClass = "0";  // 주문
+                //payClass = "1";       // 충전
+                //payClass = "2";       // 정산
+
+                SavePayment(paySeq, payClass, "Card", netAmount);  // payment
 
 
                 PaymentCard mPaymentCard = new PaymentCard();
@@ -366,19 +342,39 @@ namespace thepos
                     mClearSaleForm();
                 }
 
+
+                String strAlarm = "";
+
                 if (paySeq == 1)
                 {
-                    SetDisplayAlarm("I", "주문" + order_cnt + "건 카드결제승인 완료.");
-                    MessageBox.Show("카드결제 승인 완료", "thepos");
+                    strAlarm = "주문" + order_cnt + "건 카드결제승인 완료.";
                 }
                 else
                 {
-                    SetDisplayAlarm("I", "카드결제승인 완료.");
-                    MessageBox.Show("카드결제 승인 완료", "thepos");
+                    strAlarm = "카드결제승인 완료.";
                 }
+
+                SetDisplayAlarm("I", strAlarm);
+
+
 
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
+                    // 티켓 저장
+                    int ticket_cnt = SaveTicket();
+
+                    if (ticket_cnt > 0)
+                    {
+                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                        SetDisplayAlarm("I", strAlarm);
+
+                        //? 
+                        // 티켓 출력 개발요망
+
+                    }
+
+                    mClearSaleForm();
+
                     countup_the_no();
                     mPaySeq = 1;
                 }

@@ -55,8 +55,7 @@
             this.btn100t = new System.Windows.Forms.Button();
             this.btn10t = new System.Windows.Forms.Button();
             this.btnCashRecept = new System.Windows.Forms.Button();
-            this.btmCashTemp = new System.Windows.Forms.Button();
-            this.btmCashSelf = new System.Windows.Forms.Button();
+            this.btnCashSelf = new System.Windows.Forms.Button();
             this.btn50t = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,8 +77,7 @@
             this.panelback.Controls.Add(this.btn100t);
             this.panelback.Controls.Add(this.btn10t);
             this.panelback.Controls.Add(this.btnCashRecept);
-            this.panelback.Controls.Add(this.btmCashTemp);
-            this.panelback.Controls.Add(this.btmCashSelf);
+            this.panelback.Controls.Add(this.btnCashSelf);
             this.panelback.Controls.Add(this.btn50t);
             this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
@@ -380,26 +378,16 @@
             this.btnCashRecept.UseVisualStyleBackColor = false;
             this.btnCashRecept.Click += new System.EventHandler(this.btnCashRecept_Click);
             // 
-            // btmCashTemp
+            // btnCashSelf
             // 
-            this.btmCashTemp.BackColor = System.Drawing.Color.White;
-            this.btmCashTemp.Location = new System.Drawing.Point(52, 533);
-            this.btmCashTemp.Name = "btmCashTemp";
-            this.btmCashTemp.Size = new System.Drawing.Size(137, 57);
-            this.btmCashTemp.TabIndex = 44;
-            this.btmCashTemp.Text = "임의등록";
-            this.btmCashTemp.UseVisualStyleBackColor = false;
-            this.btmCashTemp.Click += new System.EventHandler(this.btmCashTemp_Click);
-            // 
-            // btmCashSelf
-            // 
-            this.btmCashSelf.BackColor = System.Drawing.Color.White;
-            this.btmCashSelf.Location = new System.Drawing.Point(194, 533);
-            this.btmCashSelf.Name = "btmCashSelf";
-            this.btmCashSelf.Size = new System.Drawing.Size(137, 57);
-            this.btmCashSelf.TabIndex = 44;
-            this.btmCashSelf.Text = "자진발급";
-            this.btmCashSelf.UseVisualStyleBackColor = false;
+            this.btnCashSelf.BackColor = System.Drawing.Color.White;
+            this.btnCashSelf.Location = new System.Drawing.Point(194, 533);
+            this.btnCashSelf.Name = "btnCashSelf";
+            this.btnCashSelf.Size = new System.Drawing.Size(137, 57);
+            this.btnCashSelf.TabIndex = 44;
+            this.btnCashSelf.Text = "자진발급";
+            this.btnCashSelf.UseVisualStyleBackColor = false;
+            this.btnCashSelf.Click += new System.EventHandler(this.btnCashSelf_Click);
             // 
             // btn50t
             // 
@@ -459,8 +447,7 @@
         private System.Windows.Forms.Button btn50t;
         private System.Windows.Forms.Label lbl8;
         private System.Windows.Forms.Button btnCashRecept;
-        private System.Windows.Forms.Button btmCashTemp;
-        private System.Windows.Forms.Button btmCashSelf;
+        private System.Windows.Forms.Button btnCashSelf;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button btnReset;

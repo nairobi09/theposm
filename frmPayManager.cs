@@ -14,6 +14,7 @@ using PrinterUtility;
 
 using static thepos.theSale;
 using static thepos.frmSale;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace thepos
@@ -21,7 +22,7 @@ namespace thepos
     public partial class frmPayManager : Form
     {
 
-        TextBox saveKeyDisplay;
+        System.Windows.Forms.TextBox saveKeyDisplay;
 
 
 
@@ -108,14 +109,13 @@ namespace thepos
                 else
                     lvItem.SubItems.Add(mPayments[i].net_amount.ToString("N0"));
 
-                //?
+                //? 할인내용 적용 필요
                 lvItem.SubItems.Add(mPayments[i].is_dc);
-
-
                 lvItem.SubItems.Add(get_is_cancel_name(mPayments[i].is_cancel));
-
-
                 lvItem.SubItems.Add(mPayments[i].tran_type);
+
+                //? mPayments[i].is_cancel == "Y" 명 Strikeout으로 바꾼다.
+                //lvItem.Font = new Font(lvItem.Font, FontStyle.Strikeout);
 
                 lvwPayManager.Items.Add(lvItem);
             }

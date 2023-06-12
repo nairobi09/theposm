@@ -295,7 +295,7 @@ namespace thepos
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
 
-
+                    //? 전체할인항목을 맨아래 추가후 -> 이후에도 맨아래줄을 유지할 수 있는 방안 필요.
                 }
 
                 ReCalculateAmount();
