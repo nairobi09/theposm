@@ -7,6 +7,7 @@ using System.Drawing.Text;
 using System.Collections.Generic;
 using static thepos.theSale;
 using static thepos.frmPayComplex;
+using System.Diagnostics;
 
 
 
@@ -702,6 +703,8 @@ namespace thepos
                 dborderItem.dcr_des = orderItem.dcr_des;
                 dborderItem.dcr_value = orderItem.dcr_value;
                 listOrderItem.Add(dborderItem);
+
+                Debug.WriteLine("dborderItem=" + dborderItem);
             }
 
             dbOrder dborder = new dbOrder();
@@ -713,9 +716,74 @@ namespace thepos
             dborder.cnt = mLvwOrderItem.Items.Count;
             listOrder.Add(dborder);
 
+            
+            Debug.WriteLine("dborder=" + dborder);
+
             return mLvwOrderItem.Items.Count;
 
+
+
+
         }
+
+        public static void SavePayment(int paySeq, String payClass, String payType, int amount)
+        {
+            if (paySeq == 1)
+            {
+                Payment mPayment = new Payment();
+                mPayment.the_no = mTheNo;
+                mPayment.pay_date = get_today_date();
+                mPayment.pay_time = get_today_time();
+                mPayment.business_dt = mBussinessDate;
+                mPayment.tran_type = "A";
+                mPayment.pay_class = payClass;    // Order 0, charge 1, settlement 2
+                mPayment.pos_no = mPosNo;
+                mPayment.bill_no = mTheNo.Substring(14, 4);
+                mPayment.net_amount = amount;
+
+                mPayment.amount_cash = 0;
+                mPayment.amount_card = 0;
+                mPayment.amount_easy = 0;
+
+                if (payType == "Cash") mPayment.amount_cash = amount;
+                else if (payType == "Card") mPayment.amount_card = amount;
+                else if (payType == "Easy") mPayment.amount_easy = amount;
+
+                mPayment.is_dc = "";       // 할인여부
+                mPayment.is_cancel = "";   // 취소여부
+                mPayments.Add(mPayment);
+
+                Debug.WriteLine("mPayment=" + mPayment);
+            }
+            else
+            {
+                for (int i = 0; i < mPayments.Count; i++)
+                {
+                    if (mPayments[i].the_no == mTheNo)
+                    {
+                        Payment p = new Payment();
+                        p = mPayments[i];
+                        p.net_amount += amount;
+
+                        if (payType == "Cash") p.amount_cash += amount;
+                        else if (payType == "Card") p.amount_card += amount;
+                        else if (payType == "Easy") p.amount_easy += amount;
+
+                        mPayments[i] = p;
+
+                        Debug.WriteLine("mPayment=" + p);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+        }
+
 
 
         public static int SaveTicket()
@@ -1464,6 +1532,8 @@ namespace thepos
             //? 재기동시 초기화된 이후의 연속성을 고민한다.. -> 서버에 물어본다.
 
             mTheNo = mSiteId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000");
+
+            Debug.WriteLine("mTheNo=" + mTheNo);
 
 
         }

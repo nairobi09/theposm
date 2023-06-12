@@ -12,7 +12,7 @@ using static thepos.frmSale;
 using static thepos.frmPayComplex;
 using static thepos.paymentToss;
 using System.IO;
-
+using System.Diagnostics;
 
 namespace thepos
 {
@@ -32,13 +32,13 @@ namespace thepos
 
         TextBox saveKeyDisplay;
 
-        public frmPayCash(int net_amount, bool is_complex, int p_seq, bool is_last)
+        public frmPayCash(int net_amount, bool is_complex, int seq, bool is_last)
         {
             InitializeComponent();
             initialize_font();
 
             isComplex = is_complex;
-            paySeq = p_seq;
+            paySeq = seq;
             isLast = is_last;
 
             netAmount = net_amount;
@@ -106,61 +106,41 @@ namespace thepos
 
 
             if (paySeq == 1)
-            { 
-                // 주문 저장 
-                order_cnt = SaveOrder();
-
-
-                // 결제 저장
-                Payment mPayment = new Payment();
-                mPayment.the_no = mTheNo;
-                mPayment.pay_date = get_today_date();
-                mPayment.pay_time = get_today_time();
-                mPayment.business_dt = mBussinessDate;
-                mPayment.tran_type = "A";
-                mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-                mPayment.pos_no = mPosNo;
-                mPayment.bill_no = mTheNo.Substring(14, 4);  // 영수증번호
-                mPayment.net_amount = netAmount;
-                mPayment.amount_cash = netAmount;
-                mPayment.amount_card = 0;
-                mPayment.amount_easy = 0;
-                mPayment.is_dc = "";       // 할인여부
-                mPayment.is_cancel = "";   // 취소여부
-                mPayments.Add(mPayment);
-            }
-            else
             {
-                // 결제 저장 2 : 찾아서 금액 += 업데이트
-                for (int i = 0; i < mPayments.Count; i++)
-                {
-                    if (mPayments[i].the_no == mTheNo)
-                    {
-                        Payment p = new Payment();
-                        p = mPayments[i];
-                        p.net_amount += netAmount;
-                        p.amount_cash += netAmount;
-                        mPayments[i] = p;
-                    }
-                }
+                // 주문 저장 1
+                order_cnt = SaveOrder();  // order. orderitem
             }
+
+
+            // pay_class
+            String payClass = "0";  // 주문
+                                    //payClass = "1";       // 충전
+                                    //payClass = "2";       // 정산
+
+            SavePayment(paySeq, payClass, "Cash", netAmount);  // payment - 신규, 수정 포함
+
+
 
             // 결제 항목 저장
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.the_no = mTheNo;
-            mPaymentCash.pay_seq = frmPayComplex.mPaySeq; // 
+            mPaymentCash.pay_seq = paySeq; // 
             mPaymentCash.business_dt = mBussinessDate;
             mPaymentCash.pay_date = get_today_date();
             mPaymentCash.pay_time = get_today_time();
             mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             mPaymentCash.tran_type = "A";       // 승인 A 취소 C
-            mPaymentCash.amount = netAmount;   // 결제금액
+            mPaymentCash.amount = netAmount;    // 결제금액
             mPaymentCash.receipt_type = "";     // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
-            mPaymentCash.issued_method_no = "";      // 현금영수증 고객 식별번호
+            mPaymentCash.issued_method_no = ""; // 현금영수증 고객 식별번호
             mPaymentCash.auth_no = "";          // 승인번호
-            mPaymentCash.tran_serial = "";              // tran_serial -> 취소시 tid입력
+            mPaymentCash.tran_serial = "";      // tran_serial -> 취소시 tid입력
             mPaymentCash.is_cancel = "";        // 취소여부
             mPaymentCashs.Add(mPaymentCash);
+
+
+
+            Debug.WriteLine("mPaymentCash=" + mPaymentCash);
 
 
             if (isComplex)
@@ -194,7 +174,7 @@ namespace thepos
             {
                // 단독결제인 Sales화면 클리어. 
                // 복합결제는 Complex화면에서 Sales화면을 클리어
-               //mClearSaleForm();
+               mClearSaleForm();
             }
 
 
@@ -233,7 +213,7 @@ namespace thepos
 
                 countup_the_no();
 
-                mPaySeq = 0;
+                mPaySeq = 1;
             }
 
             this.Close();
@@ -262,45 +242,22 @@ namespace thepos
                 //정상승인
                 //? 서버API로 교체
                 int order_cnt = 0;
-                int ticket_cnt = 0;
+
 
                 if (paySeq == 1)
                 {
                     // 주문 저장 1
-                    order_cnt = SaveOrder();
-                    ticket_cnt = SaveTicket();
+                    order_cnt = SaveOrder();  // order. orderitem
+                }
 
-                    Payment mPayment = new Payment();
-                    mPayment.the_no = mTheNo;
-                    mPayment.pay_date = get_today_date();
-                    mPayment.pay_time = get_today_time();
-                    mPayment.business_dt = mBussinessDate;
-                    mPayment.tran_type = "A";
-                    mPayment.pay_class = "0";    // Order 0, charge 1, settlement 2
-                    mPayment.pos_no = mPosNo;
-                    mPayment.bill_no = mTheNo.Substring(14, 4);
-                    mPayment.net_amount += netAmount;
-                    mPayment.amount_cash = netAmount;
-                    mPayment.amount_card = 0;
-                    mPayment.amount_easy = 0;
-                    mPayment.is_dc = "";       // 할인여부
-                    mPayment.is_cancel = "";   // 취소여부
-                    mPayments.Add(mPayment);
-                }
-                else
-                {
-                    for (int i = 0; i < mPayments.Count; i++)
-                    {
-                        if (mPayments[i].the_no == mTheNo)
-                        {
-                            Payment p = new Payment();
-                            p = mPayments[i];
-                            p.net_amount += netAmount;
-                            p.amount_cash += netAmount;
-                            mPayments[i] = p;
-                        }
-                    }
-                }
+
+                // pay_class
+                String payClass = "0";  // 주문
+                //payClass = "1";       // 충전
+                //payClass = "2";       // 정산
+
+                SavePayment(paySeq, payClass, "Cash", netAmount);  // payment
+
 
 
                 PaymentCash mPaymentCash = new PaymentCash();
@@ -365,10 +322,43 @@ namespace thepos
                     MessageBox.Show("현금영수증 승인 완료", "thepos");
                 }
 
+
+
+
+                String strAlarm = "";
+
+                if (paySeq == 1)
+                {
+                    strAlarm = "주문" + order_cnt + "건 단순현금 결제완료.";
+                }
+                else
+                {
+                    strAlarm = "단순현금 결제완료.";
+                }
+
+                SetDisplayAlarm("I", strAlarm);
+
+
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
+                    // 티켓 저장
+                    int ticket_cnt = SaveTicket();
+
+                    if (ticket_cnt > 0)
+                    {
+                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                        SetDisplayAlarm("I", strAlarm);
+
+                        //? 
+                        // 티켓 출력 개발요망
+
+                    }
+
+                    mClearSaleForm();
+
                     countup_the_no();
-                    mPaySeq = 0;
+
+                    mPaySeq = 1;
                 }
 
                 this.Close();

@@ -20,13 +20,13 @@ namespace thepos
         int netAmount = 0;
 
         bool isComplex = false;
-        int paySeq = 0;
+        int paySeq = 1;
         bool isLast = false;
 
         TextBox saveKeyDisplay;
 
 
-        public frmPayCard(int net_amount, bool is_complex, int p_seq, bool is_last)
+        public frmPayCard(int net_amount, bool is_complex, int seq, bool is_last)
         {
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace thepos
             initial_the();
 
             isComplex = is_complex;
-            paySeq = p_seq;
+            paySeq = seq;
             isLast = is_last;
 
             netAmount = net_amount;
@@ -173,7 +173,7 @@ namespace thepos
 
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.the_no = mTheNo;
-            mPaymentCard.pay_seq = frmPayComplex.mPaySeq;
+            mPaymentCard.pay_seq = paySeq;
             mPaymentCard.business_dt = mBussinessDate;
             mPaymentCard.pay_date = get_today_date();
             mPaymentCard.pay_time = get_today_time();
@@ -240,7 +240,7 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 countup_the_no();
-                mPaySeq = 0;
+                mPaySeq = 1;
             }
 
             this.Close();
@@ -380,7 +380,7 @@ namespace thepos
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
                     countup_the_no();
-                    mPaySeq = 0;
+                    mPaySeq = 1;
                 }
 
                 this.Close();
