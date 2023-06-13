@@ -721,9 +721,6 @@ namespace thepos
 
             return mLvwOrderItem.Items.Count;
 
-
-
-
         }
 
         public static void SavePayment(int paySeq, String payClass, String payType, int amount)
@@ -775,7 +772,6 @@ namespace thepos
                     }
                 }
             }
-
 
         }
 

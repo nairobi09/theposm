@@ -279,6 +279,7 @@
             this.lvwFlow.TabIndex = 67;
             this.lvwFlow.UseCompatibleStateImageBehavior = false;
             this.lvwFlow.View = System.Windows.Forms.View.Details;
+            this.lvwFlow.SelectedIndexChanged += new System.EventHandler(this.lvwFlow_SelectedIndexChanged);
             // 
             // stat
             // 

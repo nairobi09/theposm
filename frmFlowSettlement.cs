@@ -110,5 +110,12 @@ namespace thepos
             frmSale.ConsoleEnable();
             mTbKeyDisplayController = saveKeyDisplay;
         }
+
+        private void lvwFlow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+
+        }
     }
 }
