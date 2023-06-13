@@ -76,6 +76,9 @@ namespace thepos
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbBillNo;
 
+
+            mPayClass = "1"; // 충전 charge
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -85,12 +88,16 @@ namespace thepos
 
         private void frmFlowCharging_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSale.ConsoleEnable();
+            mClearSaleForm();
+
             mTbKeyDisplayController = saveKeyDisplay;
+            mPayClass = "0"; // 원복: order
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            lvwFlow.Items.Clear();
+
             for (int i = 0; i < mTicketFlowList.Count; i++)
             {
                 ListViewItem item = new ListViewItem();
@@ -145,8 +152,6 @@ namespace thepos
 
 
 
-
-
             MemOrderItem orderItem = new MemOrderItem();
 
             int lv_idx = (frmSale.get_lvitem_idx("CHARGE"));  // 이미  동일 상품이 주문리스트뷰에 있는지
@@ -178,7 +183,7 @@ namespace thepos
                 int net_amount = (orderItem.amt * orderItem.cnt) - orderItem.dc_amount;
                 item.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
                 item.SubItems.Add(getDCRmemo(orderItem));                     // 6: 메모
-
+                item.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
                 mLvwOrderItem.Items.Add(item);
 
                 mLvwOrderItem.Items[0].Selected = true;
@@ -193,6 +198,7 @@ namespace thepos
 
                 int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
                 mLvwOrderItem.Items[lv_idx].SubItems[5].Text = net_amount.ToString("N0");        // net_amount
+                mLvwOrderItem.Items[lv_idx].SubItems[6].Text = lvwFlow.SelectedItems[0].Tag.ToString();
                 mLvwOrderItem.Items[lv_idx].Tag = orderItem;
 
                 mLvwOrderItem.Items[lv_idx].Selected = true;

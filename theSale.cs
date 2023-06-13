@@ -338,6 +338,17 @@ namespace thepos
         }
 
 
+        
+        public static String get_pay_class_name(String code)
+        {
+            String name = "";
+            if (code == "0") name = "주문";
+            else if (code == "1") name = "충전";
+            else if (code == "2") name = "정산";
+            return name;
+        }
+
+
 
         public static String get_pay_type_name(String code)
         {

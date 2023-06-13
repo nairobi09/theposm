@@ -67,12 +67,10 @@ namespace thepos
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbBillNo;
 
+            mPayClass = "2"; // 정산 settement
+
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
 
         private void btnView_Click(object sender, EventArgs e)
@@ -94,10 +92,8 @@ namespace thepos
                 item.SubItems.Add(get_goods_name(mTicketFlowList[i].goods_code));
                 item.SubItems.Add(mTicketFlowList[i].ticket_no.Substring(14, 4) + "-" + mTicketFlowList[i].ticket_no.Substring(18, 3));
 
-
                 item.SubItems.Add(mTicketFlowList[i].point_charge.ToString("N0"));
                 item.SubItems.Add(mTicketFlowList[i].point_usage.ToString("N0"));
-
 
                 item.SubItems.Add(get_goods_name(mTicketFlowList[i].point_charge.ToString("N0")));
 
@@ -105,10 +101,17 @@ namespace thepos
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void frmFlowSettlement_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSale.ConsoleEnable();
+            mClearSaleForm();
+
             mTbKeyDisplayController = saveKeyDisplay;
+            mPayClass = "0"; // 원복: order
         }
 
         private void lvwFlow_SelectedIndexChanged(object sender, EventArgs e)

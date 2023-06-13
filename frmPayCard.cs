@@ -140,12 +140,8 @@ namespace thepos
 
             }
 
-            // pay_class
-            String payClass = "0";  // 주문
-            //payClass = "1";       // 충전
-            //payClass = "2";       // 정산
 
-            SavePayment(paySeq, payClass, "Card", netAmount);  // payment
+            SavePayment(paySeq, "Card", netAmount);  // payment
 
 
 
@@ -197,12 +193,6 @@ namespace thepos
                 // 복합결제인 경우 seq 관리
                 mPaySeq++;
             }
-            else
-            {
-                // 단독결제인 Sales화면 클리어. 
-                // 복합결제는 Complex화면에서 Sales화면을 클리어
-                mClearSaleForm();
-            }
 
 
             String strAlarm = "";
@@ -237,7 +227,6 @@ namespace thepos
 
                 mClearSaleForm();
 
-                countup_the_no();
                 mPaySeq = 1;
             }
 
@@ -277,12 +266,7 @@ namespace thepos
                 }
 
 
-                // pay_class
-                String payClass = "0";  // 주문
-                //payClass = "1";       // 충전
-                //payClass = "2";       // 정산
-
-                SavePayment(paySeq, payClass, "Card", netAmount);  // payment
+                SavePayment(paySeq, "Card", netAmount);  // payment
 
 
                 PaymentCard mPaymentCard = new PaymentCard();
@@ -335,12 +319,6 @@ namespace thepos
                     // 복합결제인 경우 seq 관리
                     mPaySeq++;
                 }
-                else
-                {
-                    // 단독결제인 Sales화면 클리어. 
-                    // 복합결제는 Complex화면에서 Sales화면을 클리어
-                    mClearSaleForm();
-                }
 
 
                 String strAlarm = "";
@@ -375,7 +353,6 @@ namespace thepos
 
                     mClearSaleForm();
 
-                    countup_the_no();
                     mPaySeq = 1;
                 }
 

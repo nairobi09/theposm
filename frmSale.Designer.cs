@@ -124,6 +124,7 @@ namespace thepos
             this.btnPay4 = new System.Windows.Forms.Button();
             this.btnPay3 = new System.Windows.Forms.Button();
             this.timerAlarmDisplay = new System.Windows.Forms.Timer(this.components);
+            this.tip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -1076,7 +1077,8 @@ namespace thepos
             this.cnt,
             this.dc_amount,
             this.net_amount,
-            this.memo});
+            this.memo,
+            this.tip});
             this.lvwOrderItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwOrderItem.FullRowSelect = true;
             this.lvwOrderItem.GridLines = true;
@@ -1415,6 +1417,11 @@ namespace thepos
             this.timerAlarmDisplay.Interval = 5000;
             this.timerAlarmDisplay.Tick += new System.EventHandler(this.timerAlarm_Tick);
             // 
+            // tip
+            // 
+            this.tip.Text = "tip";
+            this.tip.Width = 0;
+            // 
             // frmSale
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1562,6 +1569,7 @@ namespace thepos
         private System.Windows.Forms.Button btnFlowCert;
         private System.Windows.Forms.TextBox tbKeyDisplay;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader tip;
     }
 }
 

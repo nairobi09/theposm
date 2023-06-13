@@ -43,6 +43,7 @@ namespace thepos
 
         public static String mRightFace = "";
 
+        public static String mPayClass = "0"; // order
 
 
 
@@ -314,9 +315,6 @@ namespace thepos
             mPosNoList[1] = "02";
             mPosNoList[2] = "03";
             mPosNoList[3] = "04";
-
-
-            countup_the_no();
 
 
 
@@ -596,6 +594,13 @@ namespace thepos
         {
             if (mNetAmount == 0) return;
 
+            //?
+            // 주문일때만 the_no countup하고, 충전,정산일때는 안한다...
+            if (mPayClass == "0")
+            {
+                countup_the_no();
+            }
+
 
             ConsoleDisable();
 
@@ -612,6 +617,11 @@ namespace thepos
         {
             if (mNetAmount == 0) return;
 
+            
+            //
+            countup_the_no();
+
+
             ConsoleDisable();
 
             Form fPay;
@@ -626,6 +636,8 @@ namespace thepos
         private void ClickedPayPoint()
         {
             if (mNetAmount == 0) return;
+
+
 
             ConsoleDisable();
 
@@ -642,6 +654,11 @@ namespace thepos
         {
             if (mNetAmount == 0) return;
 
+
+            //
+            countup_the_no();
+
+
             ConsoleDisable();
 
             Form fPay;
@@ -656,6 +673,12 @@ namespace thepos
         private void ClickedPayEasy()
         {
             if (mNetAmount == 0) return;
+
+
+
+            //
+            countup_the_no();
+
 
             ConsoleDisable();
 
@@ -723,7 +746,7 @@ namespace thepos
 
         }
 
-        public static void SavePayment(int paySeq, String payClass, String payType, int amount)
+        public static void SavePayment(int paySeq, String payType, int amount)
         {
             if (paySeq == 1)
             {
@@ -733,7 +756,7 @@ namespace thepos
                 mPayment.pay_time = get_today_time();
                 mPayment.business_dt = mBussinessDate;
                 mPayment.tran_type = "A";
-                mPayment.pay_class = payClass;    // Order 0, charge 1, settlement 2
+                mPayment.pay_class = mPayClass;    // Order 0, charge 1, settlement 2
                 mPayment.pos_no = mPosNo;
                 mPayment.bill_no = mTheNo.Substring(14, 4);
                 mPayment.net_amount = amount;

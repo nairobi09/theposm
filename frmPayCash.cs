@@ -100,9 +100,23 @@ namespace thepos
 
         private void btnCashSimple_Click(object sender, EventArgs e)
         {
+            if (mPayClass == "1") // 충전
+            {
+
+
+            }
+            else if (mPayClass == "2") // 정산
+            {
+
+
+            }
+
+
+
+
+
             //? 서버API로 교체
             int order_cnt = 0;
-
 
             if (paySeq == 1)
             {
@@ -111,12 +125,7 @@ namespace thepos
             }
 
 
-            // pay_class
-            String payClass = "0";  // 주문
-                                    //payClass = "1";       // 충전
-                                    //payClass = "2";       // 정산
-
-            SavePayment(paySeq, payClass, "Cash", netAmount);  // payment - 신규, 수정 포함
+            SavePayment(paySeq, "Cash", netAmount);  // payment - 신규, 수정 포함
 
 
 
@@ -163,13 +172,6 @@ namespace thepos
 
                 // 복합결제인 경우 seq 관리
                 mPaySeq++;
-
-            }
-            else
-            {
-               // 단독결제인 Sales화면 클리어. 
-               // 복합결제는 Complex화면에서 Sales화면을 클리어
-               mClearSaleForm();
             }
 
 
@@ -201,12 +203,10 @@ namespace thepos
 
                     //? 
                     // 티켓 출력 개발요망
-
                 }
 
-                mClearSaleForm();
 
-                countup_the_no();
+                mClearSaleForm();
 
                 mPaySeq = 1;
             }
@@ -246,12 +246,7 @@ namespace thepos
                 }
 
 
-                // pay_class
-                String payClass = "0";  // 주문
-                //payClass = "1";       // 충전
-                //payClass = "2";       // 정산
-
-                SavePayment(paySeq, payClass, "Cash", netAmount);  // payment
+                SavePayment(paySeq, "Cash", netAmount);  // payment
 
 
 
@@ -299,12 +294,6 @@ namespace thepos
                     // 복합결제인 경우 seq 관리
                     mPaySeq++;
                 }
-                else
-                {
-                    // 단독결제인 Sales화면 클리어. 
-                    // 복합결제는 Complex화면에서 Sales화면을 클리어
-                    mClearSaleForm();
-                }
 
 
 
@@ -340,7 +329,6 @@ namespace thepos
 
                     mClearSaleForm();
 
-                    countup_the_no();
                     mPaySeq = 1;
                 }
 

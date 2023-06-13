@@ -96,13 +96,16 @@ namespace thepos
                 ListViewItem lvItem = new ListViewItem();
 
                 lvItem.Tag = mPayments[i].the_no;
-                lvItem.Text = (i + 1).ToString();
-                lvItem.SubItems.Add(get_MMddHHmm(mPayments[i].pay_date, mPayments[i].pay_time));
 
+                lvItem.Text = mPayments[i].bill_no;
+
+                lvItem.SubItems.Add(get_pay_class_name(mPayments[i].pay_class));
+
+                lvItem.SubItems.Add(get_MMddHHmm(mPayments[i].pay_date, mPayments[i].pay_time));
                 lvItem.SubItems.Add(get_tran_type_name(mPayments[i].tran_type));
 
                 lvItem.SubItems.Add(mPayments[i].pos_no);
-                lvItem.SubItems.Add(mPayments[i].bill_no);
+                
 
                 if (mPayments[i].tran_type == "C")
                     lvItem.SubItems.Add((-mPayments[i].net_amount).ToString("N0"));

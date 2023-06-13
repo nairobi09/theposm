@@ -48,7 +48,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lvwPayManager = new System.Windows.Forms.ListView();
-            this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pay_class = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.order_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tran_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -293,11 +293,11 @@
             // lvwPayManager
             // 
             this.lvwPayManager.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.no,
+            this.bill_no,
+            this.pay_class,
             this.order_dt,
             this.tran_type,
             this.pos_no,
-            this.bill_no,
             this.amount,
             this.dc,
             this.cancel,
@@ -316,10 +316,10 @@
             this.lvwPayManager.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwPayManager_ColumnWidthChanging);
             this.lvwPayManager.SelectedIndexChanged += new System.EventHandler(this.lvwPayManager_SelectedIndexChanged);
             // 
-            // no
+            // pay_class
             // 
-            this.no.Text = "#";
-            this.no.Width = 30;
+            this.pay_class.Text = "유형";
+            this.pay_class.Width = 40;
             // 
             // order_dt
             // 
@@ -406,7 +406,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.ColumnHeader no;
+        private System.Windows.Forms.ColumnHeader pay_class;
         private System.Windows.Forms.ColumnHeader pos_no;
         private System.Windows.Forms.ColumnHeader bill_no;
         private System.Windows.Forms.ColumnHeader amount_etc;
