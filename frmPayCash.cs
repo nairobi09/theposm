@@ -133,7 +133,7 @@ namespace thepos
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.the_no = mTheNo;
             mPaymentCash.pay_seq = paySeq; // 
-            mPaymentCash.business_dt = mBussinessDate;
+            mPaymentCash.biz_dt = mBizDate;
             mPaymentCash.pay_date = get_today_date();
             mPaymentCash.pay_time = get_today_time();
             mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
@@ -253,7 +253,7 @@ namespace thepos
                 PaymentCash mPaymentCash = new PaymentCash();
                 mPaymentCash.the_no = mTheNo;
                 mPaymentCash.pay_seq = paySeq;
-                mPaymentCash.business_dt = mBussinessDate;
+                mPaymentCash.biz_dt = mBizDate;
                 mPaymentCash.pay_date = get_today_date();
                 mPaymentCash.pay_time = get_today_time();
                 mPaymentCash.pay_type = "R1";

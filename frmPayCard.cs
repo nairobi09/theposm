@@ -148,7 +148,7 @@ namespace thepos
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.the_no = mTheNo;
             mPaymentCard.pay_seq = paySeq;
-            mPaymentCard.business_dt = mBussinessDate;
+            mPaymentCard.biz_dt = mBizDate;
             mPaymentCard.pay_date = get_today_date();
             mPaymentCard.pay_time = get_today_time();
             mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
@@ -272,7 +272,7 @@ namespace thepos
                 PaymentCard mPaymentCard = new PaymentCard();
                 mPaymentCard.the_no = mTheNo;
                 mPaymentCard.pay_seq = paySeq;
-                mPaymentCard.business_dt = mBussinessDate;
+                mPaymentCard.biz_dt = mBizDate;
                 mPaymentCard.pay_date = get_today_date();
                 mPaymentCard.pay_time = get_today_time();
                 mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)

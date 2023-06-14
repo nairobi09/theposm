@@ -187,7 +187,7 @@ namespace thepos
 
                         //?
                         paymentCard.pay_seq = mPaymentCards[idx].pay_seq;
-                        paymentCard.business_dt = mBussinessDate;
+                        paymentCard.biz_dt = mBizDate;
                         paymentCard.pay_date = get_today_date();
                         paymentCard.pay_time = get_today_time();
                         paymentCard.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
@@ -228,7 +228,7 @@ namespace thepos
 
                     paymentCard.pay_seq = mPaymentCards[idx].pay_seq;
 
-                    paymentCard.business_dt = mBussinessDate;
+                    paymentCard.biz_dt = mBizDate;
                     paymentCard.pay_date = get_today_date();
                     paymentCard.pay_time = get_today_time();
                     paymentCard.pay_type = "C9";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
@@ -285,7 +285,7 @@ namespace thepos
                         PaymentCash paymentCash = new PaymentCash();
                         paymentCash.the_no = mPaymentCashs[idx].the_no;
                         paymentCash.pay_seq = mPaymentCashs[idx].pay_seq;
-                        paymentCash.business_dt = mBussinessDate;
+                        paymentCash.biz_dt = mBizDate;
                         paymentCash.pay_date = get_today_date();
                         paymentCash.pay_time = get_today_time();
                         paymentCash.pay_type = "R1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
@@ -321,7 +321,7 @@ namespace thepos
 
                     paymentCash.pay_seq = mPaymentCashs[idx].pay_seq;
 
-                    paymentCash.business_dt = mBussinessDate;
+                    paymentCash.biz_dt = mBizDate;
                     paymentCash.pay_date = get_today_date();
                     paymentCash.pay_time = get_today_time();
                     paymentCash.pay_type = "R0";       // 결제구분

@@ -53,7 +53,7 @@ namespace thepos
 
 
         // 실행시 로컬 생성데이터
-        public static String mBussinessDate = "";
+        public static String mBizDate = "";
         public static String mMacAddr = "";
         public static String mTheNo = "";  // mTheNo : 선생성 - 후반영
 
@@ -149,7 +149,7 @@ namespace thepos
         public struct dbOrder
         {
             public String the_no;       // 
-            public String business_dt;  // yyyyMMdd
+            public String biz_dt;       // yyyyMMdd
             public String order_date;
             public String order_time;
             public String customer_id;
@@ -162,7 +162,7 @@ namespace thepos
         public struct dbOrderItem
         {
             public String the_no;       // 
-            public String business_dt;  // yyyyMMdd
+            public String biz_dt;       // yyyyMMdd
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
             public String name;         // 상품name or 전체할인명("할인")
             public int cnt;
@@ -183,7 +183,7 @@ namespace thepos
         public struct Payment
         {
             public String the_no;
-            public String business_dt;  // yyyyMMdd
+            public String biz_dt;  // yyyyMMdd
             public String pay_date;
             public String pay_time;
             public String tran_type;    // 승인 A, 취소 C
@@ -203,7 +203,7 @@ namespace thepos
         {
             public String the_no;
             public int pay_seq;
-            public String business_dt;
+            public String biz_dt;
             public String pay_date;
             public String pay_time;
             public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
@@ -227,7 +227,7 @@ namespace thepos
         {
             public String the_no;
             public int pay_seq;
-            public String business_dt;
+            public String biz_dt;
             public String pay_date;
             public String pay_time;
             public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
@@ -246,7 +246,7 @@ namespace thepos
         {
             public String the_no;
             public int pay_seq;
-            public String business_dt;
+            public String biz_dt;
             public String pay_date;
             public String pay_time;
             public String pay_type;     // 결제구분 : 네이버 카카오 페이코 알리페이 위쳇 프롬페이

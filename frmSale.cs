@@ -33,7 +33,7 @@ namespace thepos
     public partial class frmSale : Form
     {
 
-        public static int mSerialTheNo = 0;
+        public static int mBillTheNo = 0;
         int mWaitingNoCounter = 0;
         public static int mSelectedWaitingNo = 0;
 
@@ -306,7 +306,7 @@ namespace thepos
             //
             // 영업일자
             //
-            mBussinessDate = DateTime.Now.ToString("yyyyMMdd");
+            mBizDate = DateTime.Now.ToString("yyyyMMdd");
             mSiteId = "CUST";
             mPosNo = "01";
 
@@ -318,7 +318,7 @@ namespace thepos
 
 
 
-            lblBusinessDate.Text = mBussinessDate.Substring(0, 4) + "-" + mBussinessDate.Substring(4, 2) + "-" + mBussinessDate.Substring(6, 2);
+            lblBusinessDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
@@ -754,7 +754,7 @@ namespace thepos
                 mPayment.the_no = mTheNo;
                 mPayment.pay_date = get_today_date();
                 mPayment.pay_time = get_today_time();
-                mPayment.business_dt = mBussinessDate;
+                mPayment.biz_dt = mBizDate;
                 mPayment.tran_type = "A";
                 mPayment.pay_class = mPayClass;    // Order 0, charge 1, settlement 2
                 mPayment.pos_no = mPosNo;
@@ -819,7 +819,7 @@ namespace thepos
 
                         ticketFlow.the_no = mTheNo;
                         ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
-                        ticketFlow.business_dt = mBussinessDate;
+                        ticketFlow.business_dt = mBizDate;
                         ticketFlow.ticketing_dt = get_today_date() + get_today_time();
                         ticketFlow.charge_dt = "";
                         ticketFlow.settlement_dt = "";
@@ -1545,7 +1545,7 @@ namespace thepos
         {
             //? 재기동시 초기화된 이후의 연속성을 고민한다.. -> 서버에 물어본다.
 
-            mTheNo = mSiteId + mBussinessDate + mPosNo + (++mSerialTheNo).ToString("0000");
+            mTheNo = mSiteId + mBizDate + mPosNo + (++mBillTheNo).ToString("0000");
 
             Debug.WriteLine("mTheNo=" + mTheNo);
 
