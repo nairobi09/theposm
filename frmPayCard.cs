@@ -147,21 +147,26 @@ namespace thepos
 
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.the_no = mTheNo;
-            mPaymentCard.pay_seq = paySeq;
+            mPaymentCard.site_id = mSiteId;
             mPaymentCard.biz_dt = mBizDate;
+            mPaymentCard.pos_no = mPosNo;
             mPaymentCard.pay_date = get_today_date();
             mPaymentCard.pay_time = get_today_time();
             mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
             mPaymentCard.tran_type = "A";       // 승인 A 취소 C
+            mPaymentCard.pay_class = mPayClass;
+            mPaymentCard.pay_seq = paySeq;
+            mPaymentCard.tran_date = ""; 
             mPaymentCard.amount = netAmount;
-            mPaymentCard.card_no = tbCardNo.Text;
-            mPaymentCard.auth_no = tbAuthNo.Text;
             mPaymentCard.install = tbInstall.Text;
+            mPaymentCard.auth_no = tbAuthNo.Text;
+            mPaymentCard.card_no = tbCardNo.Text;
             mPaymentCard.card_name = rbSel.Text;
             mPaymentCard.isu_code = rbSel.Tag.ToString();
             mPaymentCard.acq_code = "";
             mPaymentCard.merchant_no = "";
             mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
+            mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
             mPaymentCards.Add(mPaymentCard);
 
@@ -271,17 +276,20 @@ namespace thepos
 
                 PaymentCard mPaymentCard = new PaymentCard();
                 mPaymentCard.the_no = mTheNo;
-                mPaymentCard.pay_seq = paySeq;
+                mPaymentCard.site_id = mSiteId;
                 mPaymentCard.biz_dt = mBizDate;
+                mPaymentCard.pos_no = mPosNo;
                 mPaymentCard.pay_date = get_today_date();
                 mPaymentCard.pay_time = get_today_time();
                 mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
                 mPaymentCard.tran_type = "A";       // 승인 A 취소 C
+                mPaymentCard.pay_class = mPayClass;
+                mPaymentCard.pay_seq = paySeq;
                 mPaymentCard.tran_date = mTossResponse.Trandate;
                 mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
-                mPaymentCard.card_no = mTossResponse.Cardno;
-                mPaymentCard.auth_no = mTossResponse.Authno;
                 mPaymentCard.install = mTossResponse.Halbu;
+                mPaymentCard.auth_no = mTossResponse.Authno;
+                mPaymentCard.card_no = mTossResponse.Cardno;
                 mPaymentCard.card_name = mTossResponse.Financename;
                 mPaymentCard.isu_code = mTossResponse.Stlinst;
                 mPaymentCard.acq_code = mTossResponse.Reqinst;

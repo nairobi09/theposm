@@ -149,11 +149,11 @@ namespace thepos
         public struct dbOrder
         {
             public String the_no;       // 
+            public String site_id;
             public String biz_dt;       // yyyyMMdd
+            public String pos_no;
             public String order_date;
             public String order_time;
-            public String customer_id;
-            public String pos_no;
             public int cnt;             // 항목수
             public String is_cancel;    // Y
         }
@@ -162,7 +162,11 @@ namespace thepos
         public struct dbOrderItem
         {
             public String the_no;       // 
+            public String site_id;
             public String biz_dt;       // yyyyMMdd
+            public String pos_no;
+            public String order_date;
+            public String order_time;
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
             public String name;         // 상품name or 전체할인명("할인")
             public int cnt;
@@ -183,12 +187,13 @@ namespace thepos
         public struct Payment
         {
             public String the_no;
+            public String site_id;
             public String biz_dt;  // yyyyMMdd
+            public string pos_no;
             public String pay_date;
             public String pay_time;
             public String tran_type;    // 승인 A, 취소 C
             public String pay_class;    // Order 0, charge 1, settlement 2
-            public string pos_no;
             public String bill_no;    // 4자리 
             public int net_amount;
             public int amount_cash;
@@ -202,12 +207,15 @@ namespace thepos
         public struct PaymentCard
         {
             public String the_no;
-            public int pay_seq;
+            public String site_id;
             public String biz_dt;
+            public string pos_no;
             public String pay_date;
             public String pay_time;
             public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
             public String tran_type;    // 승인 A 취소 C
+            public String pay_class;
+            public int pay_seq;
             public String tran_date;
             public int amount;          // 결제금액
             public String install;      // 할부개월 00 03
@@ -226,12 +234,15 @@ namespace thepos
         public struct PaymentCash
         {
             public String the_no;
-            public int pay_seq;
+            public String site_id;
             public String biz_dt;
+            public string pos_no;
             public String pay_date;
             public String pay_time;
-            public String pay_type;     // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
+            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
             public String tran_type;    // 승인 A 취소 C
+            public String pay_class;
+            public int pay_seq;
             public String tran_date;
             public int amount;          // 결제금액
             public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
@@ -244,34 +255,14 @@ namespace thepos
 
         public struct PaymentEasy
         {
-            public String the_no;
-            public int pay_seq;
-            public String biz_dt;
-            public String pay_date;
-            public String pay_time;
-            public String pay_type;     // 결제구분 : 네이버 카카오 페이코 알리페이 위쳇 프롬페이
-            public String tran_type;    // 승인 A 취소 C
-            public String tran_date;    
-            public int amount;          // 결제금액
-            public String receipt_type; // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
-            public String issued_method_no;  // 현금영수증 고객 식별번호
-            public String auth_no;      // 승인번호
-            public String tran_serial;  // 취소용
-            public String is_cancel;    // 취소여부
+
         }
         public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
 
 
         public struct PaymentPoint           // 선불 포인트 사용
         {
-            public String ticket_no;
-            public String the_no;
-            public String pay_date;
-            public String pay_time;
-            public String pay_type;     // 결제구분 : 포인트(P1)
-            public String tran_type;    // 승인 A 취소 C
-            public int amount;          // 금액
-            public String is_cancel;    // 취소여부
+
 
 
         }

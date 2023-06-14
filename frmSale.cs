@@ -715,6 +715,11 @@ namespace thepos
                 dbOrderItem dborderItem = new dbOrderItem();
                 MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
                 dborderItem.the_no = mTheNo;
+                dborderItem.site_id = mSiteId;
+                dborderItem.biz_dt = mBizDate;
+                dborderItem.pos_no = mPosNo;
+                dborderItem.order_date = get_today_date();
+                dborderItem.order_time = get_today_time();
                 dborderItem.code = orderItem.code;
                 dborderItem.name = orderItem.name;
                 dborderItem.cnt = orderItem.cnt;
@@ -725,6 +730,7 @@ namespace thepos
                 dborderItem.dcr_type = orderItem.dcr_type;
                 dborderItem.dcr_des = orderItem.dcr_des;
                 dborderItem.dcr_value = orderItem.dcr_value;
+                dborderItem.is_cancel = "";
                 listOrderItem.Add(dborderItem);
 
                 Debug.WriteLine("dborderItem=" + dborderItem);
@@ -732,11 +738,13 @@ namespace thepos
 
             dbOrder dborder = new dbOrder();
             dborder.the_no = mTheNo;
+            dborder.site_id = mSiteId;
+            dborder.biz_dt = mBizDate;
+            dborder.pos_no = mPosNo;
             dborder.order_date = get_today_date();
             dborder.order_time = get_today_time();
-            dborder.customer_id = mSiteId;
-            dborder.pos_no = mPosNo;
             dborder.cnt = mLvwOrderItem.Items.Count;
+            dborder.is_cancel = "";
             listOrder.Add(dborder);
 
             
@@ -752,6 +760,7 @@ namespace thepos
             {
                 Payment mPayment = new Payment();
                 mPayment.the_no = mTheNo;
+                mPayment.site_id = mSiteId;
                 mPayment.pay_date = get_today_date();
                 mPayment.pay_time = get_today_time();
                 mPayment.biz_dt = mBizDate;
@@ -1611,5 +1620,11 @@ namespace thepos
             // 카드결제 창 - 3개 입력항목 감안
         }
 
+        private void picLogo_Click(object sender, EventArgs e)
+        {
+            Form fFlow;
+            fFlow = new frmSysAdmin();
+            fFlow.Show();
+        }
     }
 }

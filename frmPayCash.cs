@@ -132,12 +132,16 @@ namespace thepos
             // 결제 항목 저장
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.the_no = mTheNo;
-            mPaymentCash.pay_seq = paySeq; // 
+            mPaymentCash.site_id = mSiteId;
             mPaymentCash.biz_dt = mBizDate;
+            mPaymentCash.pos_no = mPosNo;
             mPaymentCash.pay_date = get_today_date();
             mPaymentCash.pay_time = get_today_time();
             mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             mPaymentCash.tran_type = "A";       // 승인 A 취소 C
+            mPaymentCash.pay_class = mPayClass;
+            mPaymentCash.pay_seq = paySeq; // 
+            mPaymentCash.tran_date = "";
             mPaymentCash.amount = netAmount;    // 결제금액
             mPaymentCash.receipt_type = "";     // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
             mPaymentCash.issued_method_no = ""; // 현금영수증 고객 식별번호
@@ -252,12 +256,15 @@ namespace thepos
 
                 PaymentCash mPaymentCash = new PaymentCash();
                 mPaymentCash.the_no = mTheNo;
-                mPaymentCash.pay_seq = paySeq;
+                mPaymentCash.site_id = mSiteId;
                 mPaymentCash.biz_dt = mBizDate;
+                mPaymentCash.pos_no = mPosNo;
                 mPaymentCash.pay_date = get_today_date();
                 mPaymentCash.pay_time = get_today_time();
                 mPaymentCash.pay_type = "R1";
                 mPaymentCash.tran_type = "A";       // 승인 A 취소 C
+                mPaymentCash.pay_class = mPayClass;
+                mPaymentCash.pay_seq = paySeq; // 
                 mPaymentCash.tran_date = mTossResponse.Trandate;
                 mPaymentCash.amount = netAmount;
                 mPaymentCash.receipt_type = receipt_type;

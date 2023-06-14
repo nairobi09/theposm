@@ -185,6 +185,12 @@
     <Compile Include="frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSysAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSysAdmin.Designer.cs">
+      <DependentUpon>frmSysAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="paymentToss.cs" />
     <Compile Include="theSale.cs" />
     <Compile Include="Program.cs" />
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSysAdmin.resx">
+      <DependentUpon>frmSysAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

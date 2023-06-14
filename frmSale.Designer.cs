@@ -70,7 +70,7 @@ namespace thepos
             this.lblTime = new System.Windows.Forms.Label();
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblTitle02 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
@@ -106,6 +106,7 @@ namespace thepos
             this.dc_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelOrderLvw = new System.Windows.Forms.Panel();
             this.panelGoodsItem = new System.Windows.Forms.Panel();
             this.panelGoodsItemWhite2 = new System.Windows.Forms.Panel();
@@ -124,13 +125,12 @@ namespace thepos
             this.btnPay4 = new System.Windows.Forms.Button();
             this.btnPay3 = new System.Windows.Forms.Button();
             this.timerAlarmDisplay = new System.Windows.Forms.Timer(this.components);
-            this.tip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.panelOrderSumWhile.SuspendLayout();
             this.panelOrderSumBlack.SuspendLayout();
             this.panelFlowConsole.SuspendLayout();
@@ -703,7 +703,7 @@ namespace thepos
             // panelTitleConsole
             // 
             this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelTitleConsole.Controls.Add(this.pictureBox1);
+            this.panelTitleConsole.Controls.Add(this.picLogo);
             this.panelTitleConsole.Controls.Add(this.lblTitle02);
             this.panelTitleConsole.Controls.Add(this.btnClose);
             this.panelTitleConsole.Controls.Add(this.lblPosNo);
@@ -720,17 +720,18 @@ namespace thepos
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
             // 
-            // pictureBox1
+            // picLogo
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(7, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(8);
-            this.pictureBox1.Size = new System.Drawing.Size(80, 35);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 39;
-            this.pictureBox1.TabStop = false;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
+            this.picLogo.Location = new System.Drawing.Point(7, 4);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
+            this.picLogo.Size = new System.Drawing.Size(80, 35);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 39;
+            this.picLogo.TabStop = false;
+            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
             // 
             // lblTitle02
             // 
@@ -1135,6 +1136,11 @@ namespace thepos
             this.memo.Text = "비고";
             this.memo.Width = 62;
             // 
+            // tip
+            // 
+            this.tip.Text = "tip";
+            this.tip.Width = 0;
+            // 
             // panelOrderLvw
             // 
             this.panelOrderLvw.Controls.Add(this.lvwOrderItem);
@@ -1417,11 +1423,6 @@ namespace thepos
             this.timerAlarmDisplay.Interval = 5000;
             this.timerAlarmDisplay.Tick += new System.EventHandler(this.timerAlarm_Tick);
             // 
-            // tip
-            // 
-            this.tip.Text = "tip";
-            this.tip.Width = 0;
-            // 
             // frmSale
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1455,7 +1456,7 @@ namespace thepos
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
             this.panelTitleConsole.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
@@ -1555,7 +1556,7 @@ namespace thepos
         private System.Windows.Forms.Button btnOrderAmtChange;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPayControl;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Button btnPay3;
         private System.Windows.Forms.Button btnPay4;
         private System.Windows.Forms.Timer timerAlarmDisplay;
