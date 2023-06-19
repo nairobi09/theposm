@@ -9,6 +9,27 @@ using System.Threading.Tasks;
 
 
 
+
+//? 개발수정항목
+/*
+
+
+- 복합결제, 정산 화면 : frmSale.ConsoleEnable(); frmSale.ConsoleDisable(); 관리 안됨. 창위헤 창뜰경우 콘트롤 꼬임.
+- 
+
+
+
+
+
+- 
+
+
+
+*/
+
+
+
+
 namespace thepos
 {
     public class theSale
@@ -55,7 +76,8 @@ namespace thepos
         // 실행시 로컬 생성데이터
         public static String mBizDate = "";
         public static String mMacAddr = "";
-        public static String mTheNo = "";  // mTheNo : 선생성 - 후반영
+        public static String mTheNo = "";  // 결제단위
+        public static String mRefNo = "";  // 주문단위 입장단위
 
 
 
@@ -72,7 +94,7 @@ namespace thepos
         // (후불) 발권  사용  정산 [락커]
         // (선불) 발권 [충전] 사용  정산
         // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
-        public static String mTicketType;  // ""미사용, "AP"선불, "DP"후불
+        public static String mTicketType;  // ""미사용, "PA"선불, "PD"후불
 
         // 주문서 - 상품정보 필드관리
         public static String mCornerType;  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
@@ -141,6 +163,8 @@ namespace thepos
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
+            public String pay_class;
+            public String ticket_no;     // 충전, 사용인경우
         }
         public static List<MemOrderItem> listWaitingItem = new List<MemOrderItem>();
 
@@ -148,10 +172,11 @@ namespace thepos
         //? 서버
         public struct dbOrder
         {
-            public String the_no;       // 
             public String site_id;
             public String biz_dt;       // yyyyMMdd
             public String pos_no;
+            public String the_no;       // 
+            public String ref_no;       // 
             public String order_date;
             public String order_time;
             public int cnt;             // 항목수
@@ -161,10 +186,11 @@ namespace thepos
 
         public struct dbOrderItem
         {
-            public String the_no;       // 
             public String site_id;
             public String biz_dt;       // yyyyMMdd
             public String pos_no;
+            public String the_no;       // 
+            public String ref_no;       // 
             public String order_date;
             public String order_time;
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
@@ -177,6 +203,8 @@ namespace thepos
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
+            public String pay_class;
+            public String ticket_no;
             public String is_cancel;    // Y
         }
         public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
@@ -186,10 +214,11 @@ namespace thepos
         // 서버
         public struct Payment
         {
-            public String the_no;
             public String site_id;
             public String biz_dt;  // yyyyMMdd
             public string pos_no;
+            public String the_no;   // 결제단위
+            public String ref_no;   // 입장단위
             public String pay_date;
             public String pay_time;
             public String tran_type;    // 승인 A, 취소 C
@@ -199,6 +228,7 @@ namespace thepos
             public int amount_cash;
             public int amount_card;
             public int amount_easy;
+            public int amount_point;
             public String is_dc;       // 할인여부
             public String is_cancel;   // 취소여부 : 미취소"", 취소중0, 취소1
         }
@@ -206,15 +236,17 @@ namespace thepos
 
         public struct PaymentCard
         {
-            public String the_no;
             public String site_id;
-            public String biz_dt;
+            public String biz_dt;  // yyyyMMdd
             public string pos_no;
+            public String the_no;   // 결제단위
+            public String ref_no;   // 입장단위
             public String pay_date;
             public String pay_time;
             public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
             public String tran_type;    // 승인 A 취소 C
             public String pay_class;
+            public String ticket_no;
             public int pay_seq;
             public String tran_date;
             public int amount;          // 결제금액
@@ -233,15 +265,17 @@ namespace thepos
 
         public struct PaymentCash
         {
-            public String the_no;
             public String site_id;
-            public String biz_dt;
+            public String biz_dt;  // yyyyMMdd
             public string pos_no;
+            public String the_no;   // 결제단위
+            public String ref_no;   // 입장단위
             public String pay_date;
             public String pay_time;
             public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
             public String tran_type;    // 승인 A 취소 C
             public String pay_class;
+            public String ticket_no;
             public int pay_seq;
             public String tran_date;
             public int amount;          // 결제금액
@@ -262,10 +296,25 @@ namespace thepos
 
         public struct PaymentPoint           // 선불 포인트 사용
         {
+            public String site_id;
+            public String biz_dt;  // yyyyMMdd
+            public string pos_no;
+            public String the_no;   // 결제단위
+            public String ref_no;   // 입장단위
+            public String pay_date;
+            public String pay_time;
+            public String pay_type;     // 결제구분 : 포인트 선불(PA), 후불(PD)
+            public String tran_type;    // 승인 A 취소 C
+            public String pay_class;
+            public String ticket_no;
+            public String usage_no;
+            public int amount;
+            public String is_cancel;
 
 
 
         }
+        public static List<PaymentPoint> mPaymentPoints = new List<PaymentPoint>();
 
 
 
@@ -282,16 +331,22 @@ namespace thepos
         // 발권상품(Order), 인증(Cert)시점 -> TicketFlow 레코드 생성(초기값)
         public struct TicketFlow
         {
-            public String the_no;           
+            public String site_id;
+            public String biz_dt;  // yyyyMMdd
+            public string pos_no;
+            public String the_no;   // 결제단위
+            public String ref_no;   // 입장단위
+            
             public String ticket_no;
-            public String business_dt;
-
             public String ticketing_dt;   // 발권일시
             public String charge_dt;      // 충전일시
             public String settlement_dt;  // 정산일시
 
             public int point_charge;        // 충전금액
             public int point_usage;         // 사용금액(누적)
+
+            public int settle_point_charge;        // 충전금액
+            public int settle_point_usage;         // 사용금액(누적)
 
             public String goods_code;
             public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 사용중인 경우 locker close, 정산완료 locker open.
@@ -333,9 +388,10 @@ namespace thepos
         public static String get_pay_class_name(String code)
         {
             String name = "";
-            if (code == "0") name = "주문";
-            else if (code == "1") name = "충전";
-            else if (code == "2") name = "정산";
+            if (code == "OR") name = "일반";
+            else if (code == "CH") name = "충전";
+            else if (code == "US") name = "포인트";
+            else if (code == "ST") name = "정산";
             return name;
         }
 
@@ -349,6 +405,9 @@ namespace thepos
             else if (code == "R0") name = "단순현금";
             else if (code == "R1") name = "현금영수증";
             else if (code == "R9") name = "임의등록";
+            else if (code == "PA") name = "포인트선불";
+            else if (code == "PD") name = "포인트후불";
+
             return name;
         }
 
@@ -359,6 +418,16 @@ namespace thepos
             else if (code == "C") name = "취소";
             return name;
         }
+
+
+        public static String get_ticket_type_name(String code)
+        {
+            String name = "";
+            if (code == "PA") name = "선불";
+            else if (code == "PD") name = "후불";
+            return name;
+        }
+
 
         public static String get_is_cancel_name(String code)
         {

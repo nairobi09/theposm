@@ -477,6 +477,43 @@ namespace thepos
             }
 
 
+            // 포인트
+            for (int i = 0; i < mPaymentPoints.Count; i++)
+            {
+                if (mPaymentPoints[i].the_no == tTheNo & mPaymentPoints[i].tran_type == tranType)
+                {
+                    if (mPaymentPoints[i].pay_type == "PA")           // 선불 포인트
+                    {
+                        tStr = "포인트(선불)";
+                        strPrintPayment += tStr + Space(22 - encodelen(tStr));
+
+                        if (tranType == "C")
+                            tStr = (-mPaymentCashs[i].amount).ToString("N0");
+                        else
+                            tStr = mPaymentCashs[i].amount.ToString("N0");
+
+                        strPrintPayment += Space(22 - encodelen(tStr)) + tStr;
+
+                    }
+                    else if (mPaymentCashs[i].pay_type == "PD")     // 후불 포인트
+                    {
+                        tStr = "포인트(후불)";
+                        strPrintPayment += tStr + Space(22 - encodelen(tStr));
+
+                        if (tranType == "C")
+                            tStr = (-mPaymentCashs[i].amount).ToString("N0");
+                        else
+                            tStr = mPaymentCashs[i].amount.ToString("N0");
+
+                        strPrintPayment += Space(22 - encodelen(tStr)) + tStr;
+                    }
+
+                    strPrintPayment += "\r\n";
+                    strPrintPayment += "\r\n";
+                }
+            }
+
+
             strPrintPayment += "--------------------------------------------\r\n";  // 44
 
             if (except_order == "Y")
@@ -545,13 +582,13 @@ namespace thepos
 
             int sel_idx = lvwPayManager.SelectedItems[0].Index;
 
-            frmPayCancel fPayCancel = new frmPayCancel(the_no);
+            frmPayCancel fPayCancel = new frmPayCancel(the_no, "");
             fPayCancel.Left += this.Location.X;
             fPayCancel.Top += this.Location.Y;
             fPayCancel.ShowDialog();
 
 
-            payment = get_payment_by_theno(the_no);
+            //payment = get_payment_by_theno(the_no);
 
             //? 취소여부 화면갱신
             //lvwPayManager.Items[sel_idx].SubItems[7].Text = payment.is_cancel.ToString();

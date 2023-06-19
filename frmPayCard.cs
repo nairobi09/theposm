@@ -25,6 +25,8 @@ namespace thepos
 
         TextBox saveKeyDisplay;
 
+        String ticketNo = "";
+
 
         public frmPayCard(int net_amount, bool is_complex, int seq, bool is_last)
         {
@@ -42,6 +44,26 @@ namespace thepos
 
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = mTbKeyDisplaySales;
+
+            if (mPayClass == "OR")
+            {
+
+            }
+            else if (mPayClass == "CH")
+            {
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                mRefNo = orderItem.ticket_no.Substring(0, 18);
+                ticketNo = orderItem.ticket_no;
+            }
+            else if (mPayClass == "US")
+            {
+                // 해당없음.
+            }
+            else if (mPayClass == "ST")
+            {
+
+            }
+
         }
 
         void initialize_font()
@@ -136,7 +158,7 @@ namespace thepos
             if (paySeq == 1)
             {
                 // 주문 저장 1
-                order_cnt = SaveOrder();
+                order_cnt = SaveOrder(ticketNo);
 
             }
 
@@ -146,15 +168,18 @@ namespace thepos
 
 
             PaymentCard mPaymentCard = new PaymentCard();
-            mPaymentCard.the_no = mTheNo;
             mPaymentCard.site_id = mSiteId;
             mPaymentCard.biz_dt = mBizDate;
             mPaymentCard.pos_no = mPosNo;
+            mPaymentCard.the_no = mTheNo;
+            mPaymentCard.ref_no = mRefNo;
+
             mPaymentCard.pay_date = get_today_date();
             mPaymentCard.pay_time = get_today_time();
             mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
             mPaymentCard.tran_type = "A";       // 승인 A 취소 C
             mPaymentCard.pay_class = mPayClass;
+            mPaymentCard.ticket_no = ticketNo;
             mPaymentCard.pay_seq = paySeq;
             mPaymentCard.tran_date = ""; 
             mPaymentCard.amount = netAmount;
@@ -218,7 +243,7 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 // 티켓 저장
-                int ticket_cnt = SaveTicket();
+                int ticket_cnt = SaveTicket("","");
 
                 if (ticket_cnt > 0)
                 {
@@ -266,7 +291,7 @@ namespace thepos
                 if (paySeq == 1)
                 {
                     // 주문 저장 1
-                    order_cnt = SaveOrder();
+                    order_cnt = SaveOrder(ticketNo);
 
                 }
 
@@ -275,15 +300,18 @@ namespace thepos
 
 
                 PaymentCard mPaymentCard = new PaymentCard();
-                mPaymentCard.the_no = mTheNo;
                 mPaymentCard.site_id = mSiteId;
                 mPaymentCard.biz_dt = mBizDate;
                 mPaymentCard.pos_no = mPosNo;
+                mPaymentCard.the_no = mTheNo;
+                mPaymentCard.ref_no = mRefNo;
+
                 mPaymentCard.pay_date = get_today_date();
                 mPaymentCard.pay_time = get_today_time();
                 mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
                 mPaymentCard.tran_type = "A";       // 승인 A 취소 C
                 mPaymentCard.pay_class = mPayClass;
+                mPaymentCard.ticket_no = ticketNo;
                 mPaymentCard.pay_seq = paySeq;
                 mPaymentCard.tran_date = mTossResponse.Trandate;
                 mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
@@ -347,7 +375,7 @@ namespace thepos
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
                     // 티켓 저장
-                    int ticket_cnt = SaveTicket();
+                    int ticket_cnt = SaveTicket("", "");
 
                     if (ticket_cnt > 0)
                     {

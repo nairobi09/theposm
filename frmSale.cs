@@ -43,7 +43,7 @@ namespace thepos
 
         public static String mRightFace = "";
 
-        public static String mPayClass = "0"; // order
+        public static String mPayClass = "OR"; // order
 
 
 
@@ -62,6 +62,10 @@ namespace thepos
         public static Label mLblOrderAmount;
         public static Label mLblOrderAmountDC;
         public static Label mLblOrderAmountNet;
+        public static Label mLblOrderAmountReceive;
+        public static Label mLblOrderAmountRest;
+
+
         public static int mNetAmount = 0;
         public static Timer mTimerAlarm;
 
@@ -170,12 +174,12 @@ namespace thepos
         {
             String[,] item = new String[,]
             {
-                { "CASH", "0", "0", "2","4"},
-                { "CARD", "2", "0", "2","4"},
-                { "POINT", "4", "0", "2","4"},
-                { "COMPLEX", "6", "0", "2","2"},
-                { "EASY", "6", "2", "2","2"},
-                { "MANAGER", "8", "0", "2","4"},
+                { "CASH", "0", "0", "3","4"},
+                { "CARD", "3", "0", "3","4"},
+                { "POINT", "6", "0", "2","4"},
+                { "COMPLEX", "8", "0", "2","2"},
+                { "EASY", "8", "2", "2","2"},
+//                { "MANAGER", "8", "0", "2","4"},
             };
 
             int len = item.Length / 5;
@@ -257,11 +261,11 @@ namespace thepos
             btnOrderItemScrollUp.Font = font8;
             btnOrderItemScrollDn.Font = font8;
 
-            lblOrderAmountSumTitle.Font = font10;
-            lblOrderAmountDCTitle.Font = font10;
-            lblOrderAmountChargeTitle.Font = font10;
-            lblOrderAmountReceiveTitle.Font = font10;
-            lblOrderAmountRestTitle.Font = font10;
+            lblOrderAmountSumTitle.Font = font9;
+            lblOrderAmountDCTitle.Font = font9;
+            lblOrderAmountChargeTitle.Font = font9;
+            lblOrderAmountReceiveTitle.Font = font9;
+            lblOrderAmountRestTitle.Font = font9;
 
             lblOrderAmount.Font = font14;
             lblOrderAmountDC.Font = font14;
@@ -296,6 +300,7 @@ namespace thepos
             btnFlowLocker.Font = font10;
 
         }
+
         private void initialize_the()
         {
             //Title에 일자 요일을 표시
@@ -309,6 +314,8 @@ namespace thepos
             mBizDate = DateTime.Now.ToString("yyyyMMdd");
             mSiteId = "CUST";
             mPosNo = "01";
+
+            mTicketType = "PA"; // PA선불, PD후불
 
             mPosNoList = new string[4];
             mPosNoList[0] = "01";
@@ -326,16 +333,9 @@ namespace thepos
             lvwOrderItem.SmallImageList = imgList;
             lvwOrderItem.HideSelection = true;
 
-            
-
 
             //? 리스트뷰 항목이 추가 변경될때 합계를 다시 계산하기위해 
             //  리스트뷰 변경 이벤트 추가
-
-
-
-
-
 
 
 
@@ -361,7 +361,6 @@ namespace thepos
             mTbKeyDisplayController = mTbKeyDisplaySales;
 
 
-
             mPanelTitleConsole = panelTitleConsole;
             mPanelOrderConsole = panelOrderConsole;
             mPanelProductConsole = panelFlowConsole;
@@ -375,11 +374,11 @@ namespace thepos
             mLblOrderAmount = lblOrderAmount;
             mLblOrderAmountDC = lblOrderAmountDC;
             mLblOrderAmountNet = lblOrderAmountNet;
-
+            mLblOrderAmountReceive = lblOrderAmountReceive;
+            mLblOrderAmountRest = lblOrderAmountRest;
 
 
         }
-
 
 
 
@@ -595,11 +594,7 @@ namespace thepos
             if (mNetAmount == 0) return;
 
             //?
-            // 주문일때만 the_no countup하고, 충전,정산일때는 안한다...
-            if (mPayClass == "0")
-            {
-                countup_the_no();
-            }
+            countup_the_no();
 
 
             ConsoleDisable();
@@ -637,6 +632,8 @@ namespace thepos
         {
             if (mNetAmount == 0) return;
 
+            //
+            countup_the_no();
 
 
             ConsoleDisable();
@@ -706,49 +703,49 @@ namespace thepos
 
 
         
-        public static int SaveOrder()
+        public static int SaveOrder(String ticket_no)
         {
             //? 서버API로 대체한다..
 
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
-                dbOrderItem dborderItem = new dbOrderItem();
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                dborderItem.the_no = mTheNo;
-                dborderItem.site_id = mSiteId;
-                dborderItem.biz_dt = mBizDate;
-                dborderItem.pos_no = mPosNo;
-                dborderItem.order_date = get_today_date();
-                dborderItem.order_time = get_today_time();
-                dborderItem.code = orderItem.code;
-                dborderItem.name = orderItem.name;
-                dborderItem.cnt = orderItem.cnt;
-                dborderItem.amt = orderItem.amt;
-                dborderItem.ticket = orderItem.ticket;
-                dborderItem.taxfree = orderItem.taxfree;
-                dborderItem.dc_amount = orderItem.dc_amount;
-                dborderItem.dcr_type = orderItem.dcr_type;
-                dborderItem.dcr_des = orderItem.dcr_des;
-                dborderItem.dcr_value = orderItem.dcr_value;
-                dborderItem.is_cancel = "";
-                listOrderItem.Add(dborderItem);
+                dbOrderItem dbOrderItem = new dbOrderItem();
+                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                dbOrderItem.site_id = mSiteId;
+                dbOrderItem.biz_dt = mBizDate;
+                dbOrderItem.pos_no = mPosNo;
+                dbOrderItem.the_no = mTheNo;
+                dbOrderItem.ref_no = mRefNo;
+                dbOrderItem.order_date = get_today_date();
+                dbOrderItem.order_time = get_today_time();
+                dbOrderItem.code = memOrderItem.code;
+                dbOrderItem.name = memOrderItem.name;
+                dbOrderItem.cnt = memOrderItem.cnt;
+                dbOrderItem.amt = memOrderItem.amt;
+                dbOrderItem.ticket = memOrderItem.ticket;
+                dbOrderItem.taxfree = memOrderItem.taxfree;
+                dbOrderItem.dc_amount = memOrderItem.dc_amount;
+                dbOrderItem.dcr_type = memOrderItem.dcr_type;
+                dbOrderItem.dcr_des = memOrderItem.dcr_des;
+                dbOrderItem.dcr_value = memOrderItem.dcr_value;
+                dbOrderItem.pay_class = mPayClass;  //
+                dbOrderItem.ticket_no = ticket_no;  //
+                dbOrderItem.is_cancel = "";
+                listOrderItem.Add(dbOrderItem);
 
-                Debug.WriteLine("dborderItem=" + dborderItem);
             }
 
             dbOrder dborder = new dbOrder();
-            dborder.the_no = mTheNo;
             dborder.site_id = mSiteId;
             dborder.biz_dt = mBizDate;
             dborder.pos_no = mPosNo;
+            dborder.the_no = mTheNo;
+            dborder.ref_no = mRefNo;
             dborder.order_date = get_today_date();
             dborder.order_time = get_today_time();
             dborder.cnt = mLvwOrderItem.Items.Count;
             dborder.is_cancel = "";
             listOrder.Add(dborder);
-
-            
-            Debug.WriteLine("dborder=" + dborder);
 
             return mLvwOrderItem.Items.Count;
 
@@ -756,33 +753,38 @@ namespace thepos
 
         public static void SavePayment(int paySeq, String payType, int amount)
         {
+            //? 서버API로 대체한다..
+
             if (paySeq == 1)
             {
                 Payment mPayment = new Payment();
-                mPayment.the_no = mTheNo;
                 mPayment.site_id = mSiteId;
+                mPayment.biz_dt = mBizDate;
+                mPayment.pos_no = mPosNo;
+                mPayment.the_no = mTheNo;
+                mPayment.ref_no = mRefNo;
+
                 mPayment.pay_date = get_today_date();
                 mPayment.pay_time = get_today_time();
-                mPayment.biz_dt = mBizDate;
                 mPayment.tran_type = "A";
-                mPayment.pay_class = mPayClass;    // Order 0, charge 1, settlement 2
-                mPayment.pos_no = mPosNo;
+                mPayment.pay_class = mPayClass;    // OR주문 CH충전 US사용 ST정산
                 mPayment.bill_no = mTheNo.Substring(14, 4);
                 mPayment.net_amount = amount;
 
                 mPayment.amount_cash = 0;
                 mPayment.amount_card = 0;
                 mPayment.amount_easy = 0;
+                mPayment.amount_point = 0;
 
                 if (payType == "Cash") mPayment.amount_cash = amount;
                 else if (payType == "Card") mPayment.amount_card = amount;
                 else if (payType == "Easy") mPayment.amount_easy = amount;
+                else if (payType == "Point") mPayment.amount_point = amount;
 
                 mPayment.is_dc = "";       // 할인여부
                 mPayment.is_cancel = "";   // 취소여부
                 mPayments.Add(mPayment);
 
-                Debug.WriteLine("mPayment=" + mPayment);
             }
             else
             {
@@ -797,10 +799,10 @@ namespace thepos
                         if (payType == "Cash") p.amount_cash += amount;
                         else if (payType == "Card") p.amount_card += amount;
                         else if (payType == "Easy") p.amount_easy += amount;
+                        else if (payType == "Point") p.amount_point += amount;
 
                         mPayments[i] = p;
 
-                        Debug.WriteLine("mPayment=" + p);
                     }
                 }
             }
@@ -809,43 +811,152 @@ namespace thepos
 
 
 
-        public static int SaveTicket()
+        public static int SaveTicket(String ticket_no, String subClass)  // subClass : 사용 US,  충전 CH
         {
             //? 서버API로 대체한다..
 
-            int ticket_seq = 0;
+            // Order 0, charge 1, settlement 2
 
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+
+
+            if (mPayClass == "OR") // 주문(접수-발권)
             {
-                TicketFlow ticketFlow = new TicketFlow();
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                int ticket_seq = 0;
 
-                if (orderItem.ticket == "1")
+                for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
                 {
-                    for (int k = 0; k < orderItem.cnt; k++)
-                    {
-                        ticket_seq++;
+                    TicketFlow ticketFlow = new TicketFlow();
+                    MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
 
-                        ticketFlow.the_no = mTheNo;
-                        ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
-                        ticketFlow.business_dt = mBizDate;
-                        ticketFlow.ticketing_dt = get_today_date() + get_today_time();
-                        ticketFlow.charge_dt = "";
-                        ticketFlow.settlement_dt = "";
-                        ticketFlow.point_charge = 0;
-                        ticketFlow.point_usage = 0;
-                        ticketFlow.goods_code = orderItem.code;
-                        ticketFlow.flow_step = "1";                // 접수
-                        ticketFlow.locker_no = "";
-                        ticketFlow.open_locker = "1";              // 최초 open -> 충전 close, 사용 close -> 정산 open
-                        mTicketFlowList.Add(ticketFlow);
-                    } 
+                    if (orderItem.ticket == "1")
+                    {
+                        for (int k = 0; k < orderItem.cnt; k++)
+                        {
+                            ticket_seq++;
+
+                            ticketFlow.site_id = mSiteId;
+                            ticketFlow.biz_dt = mBizDate;
+                            ticketFlow.the_no = mTheNo;
+                            ticketFlow.ref_no = mTheNo;
+                            ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
+                            ticketFlow.ticketing_dt = get_today_date() + get_today_time();
+                            ticketFlow.charge_dt = "";
+                            ticketFlow.settlement_dt = "";
+                            ticketFlow.point_charge = 0;
+                            ticketFlow.point_usage = 0;
+                            ticketFlow.goods_code = orderItem.code;
+                            ticketFlow.flow_step = "1";                // 발권1 - *충전2 - 사용중3 - 정산(완료)4
+                            ticketFlow.locker_no = "";
+                            ticketFlow.open_locker = "1";              // 최초 open -> 충전 close, 사용 close -> 정산 open
+                            mTicketFlowList.Add(ticketFlow);
+                        } 
+                    }
+                }
+
+                return ticket_seq;
+
+            }
+            else if (mPayClass == "CH") // 충전
+            {
+
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                int charge_amt = orderItem.amt;
+
+                for (int i = 0; i < mTicketFlowList.Count; i++)
+                {
+                    if (mTicketFlowList[i].ticket_no == orderItem.ticket_no)
+                    {
+                        TicketFlow ticketFlow = new TicketFlow();
+                        ticketFlow = mTicketFlowList[i];
+                        ticketFlow.charge_dt = get_today_date() + get_today_time();
+                        ticketFlow.point_charge += charge_amt;
+                        ticketFlow.flow_step = "2";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
+                        mTicketFlowList[i] = ticketFlow;
+
+                        return 1;
+                    }
+                }
+
+            }
+            else if (mPayClass == "US") // 포인트 사용
+            {
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                int usage_amout = orderItem.amt;
+
+
+                for (int i = 0; i < mTicketFlowList.Count; i++)
+                {
+                    if (mTicketFlowList[i].ticket_no == ticket_no)
+                    {
+                        TicketFlow ticketFlow = new TicketFlow();
+                        ticketFlow = mTicketFlowList[i];
+                        ticketFlow.charge_dt = get_today_date() + get_today_time();
+                        ticketFlow.point_usage += usage_amout;
+                        ticketFlow.flow_step = "3";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
+
+
+                        if (mTicketType == "PD") // 후불
+                        {
+                            ticketFlow.open_locker = "0"; // 폐쇄0 개방1
+                        }
+
+                        mTicketFlowList[i] = ticketFlow;
+
+                        return 1;
+                    }
+                }
+
+
+            }
+            else if (mPayClass == "ST") // 정산
+            {
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                int settle_amt = orderItem.amt;
+
+                for (int i = 0; i < mTicketFlowList.Count; i++)
+                {
+                    if (mTicketFlowList[i].ticket_no == ticket_no)
+                    {
+                        TicketFlow ticketFlow = new TicketFlow();
+                        ticketFlow = mTicketFlowList[i];
+                        ticketFlow.settlement_dt = get_today_date() + get_today_time();
+
+
+                        //? ???
+                        if (subClass == "US")
+                        {
+                            ticketFlow.settle_point_usage += settle_amt;
+                        }
+                        else if (subClass == "CH")
+                        {
+                            ticketFlow.settle_point_charge += settle_amt;
+                        }
+                        
+
+
+
+                        if (ticketFlow.point_usage == ticketFlow.settle_point_usage & ticketFlow.point_charge == ticketFlow.settle_point_charge)
+                        {
+                            ticketFlow.flow_step = "4";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
+
+
+                            if (mTicketType == "PD") // 후불
+                            {
+                                ticketFlow.open_locker = "0"; // 폐쇄0 개방1
+                            }
+
+                        }
+
+                        mTicketFlowList[i] = ticketFlow;
+
+                        return 1;
+                    }
                 }
             }
 
-            return ticket_seq;
-
+            return 0;
         }
+
 
 
         public static void mClearSaleForm()
@@ -1321,6 +1432,8 @@ namespace thepos
             mLblOrderAmount.Text =Amount.ToString("N0");
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
             mLblOrderAmountNet.Text = mNetAmount.ToString("N0");
+            mLblOrderAmountReceive.Text = "";
+            mLblOrderAmountRest.Text = "";
         }
 
 
@@ -1555,9 +1668,8 @@ namespace thepos
             //? 재기동시 초기화된 이후의 연속성을 고민한다.. -> 서버에 물어본다.
 
             mTheNo = mSiteId + mBizDate + mPosNo + (++mBillTheNo).ToString("0000");
-
-            Debug.WriteLine("mTheNo=" + mTheNo);
-
+            mRefNo = mTheNo;
+            
 
         }
 
@@ -1613,6 +1725,14 @@ namespace thepos
 
             fFlow.Show();
         }
+
+
+
+
+
+
+
+
 
         private void btnKeyEnter_Click(object sender, EventArgs e)
         {

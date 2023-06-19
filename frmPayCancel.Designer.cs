@@ -161,7 +161,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(485, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "반품";
+            this.lblTitle.Text = "반품/취소";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancel

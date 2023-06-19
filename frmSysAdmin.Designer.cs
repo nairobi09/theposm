@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysAdmin));
             this.lvwInfo = new System.Windows.Forms.ListView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnOK = new System.Windows.Forms.Button();
             this.text = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.s1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.s2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,6 +51,8 @@
             this.s18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.s19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.s20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,32 +81,16 @@
             this.s19,
             this.s20});
             this.lvwInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvwInfo.FullRowSelect = true;
+            this.lvwInfo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwInfo.HideSelection = false;
             this.lvwInfo.Location = new System.Drawing.Point(0, 0);
+            this.lvwInfo.MultiSelect = false;
             this.lvwInfo.Name = "lvwInfo";
-            this.lvwInfo.Size = new System.Drawing.Size(1181, 836);
+            this.lvwInfo.Size = new System.Drawing.Size(1464, 836);
             this.lvwInfo.TabIndex = 0;
             this.lvwInfo.UseCompatibleStateImageBehavior = false;
             this.lvwInfo.View = System.Windows.Forms.View.Details;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnOK);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1108, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(73, 836);
-            this.panel1.TabIndex = 1;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(7, 14);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(56, 53);
-            this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "ok";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // text
             // 
@@ -193,13 +178,33 @@
             // 
             this.s20.Text = "20";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnOK);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1391, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(73, 836);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(7, 14);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(56, 53);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "ok";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // frmSysAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1181, 836);
+            this.ClientSize = new System.Drawing.Size(1464, 836);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lvwInfo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSysAdmin";
             this.Text = " ";
             this.panel1.ResumeLayout(false);

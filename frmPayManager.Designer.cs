@@ -48,11 +48,11 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lvwPayManager = new System.Windows.Forms.ListView();
+            this.bill_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_class = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.order_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tran_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.bill_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -133,7 +133,7 @@
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(221, 10);
+            this.tbBillNo.Location = new System.Drawing.Point(188, 28);
             this.tbBillNo.MaxLength = 4;
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(54, 30);
@@ -144,11 +144,11 @@
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(174, 14);
+            this.lbl3.Location = new System.Drawing.Point(186, 12);
             this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(41, 24);
+            this.lbl3.Size = new System.Drawing.Size(29, 12);
             this.lbl3.TabIndex = 70;
-            this.lbl3.Text = "영수증\r\n번호";
+            this.lbl3.Text = "####";
             this.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbPosNo
@@ -261,7 +261,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 48);
             this.button1.TabIndex = 48;
-            this.button1.Text = "반품재매출";
+            this.button1.Text = "취소재매출";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // btnCancel
@@ -273,7 +273,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 48);
             this.btnCancel.TabIndex = 48;
-            this.btnCancel.Text = "반품";
+            this.btnCancel.Text = "취소";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -316,10 +316,15 @@
             this.lvwPayManager.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwPayManager_ColumnWidthChanging);
             this.lvwPayManager.SelectedIndexChanged += new System.EventHandler(this.lvwPayManager_SelectedIndexChanged);
             // 
+            // bill_no
+            // 
+            this.bill_no.Text = "####";
+            this.bill_no.Width = 50;
+            // 
             // pay_class
             // 
             this.pay_class.Text = "유형";
-            this.pay_class.Width = 40;
+            this.pay_class.Width = 70;
             // 
             // order_dt
             // 
@@ -336,11 +341,6 @@
             this.pos_no.Text = "포스";
             this.pos_no.Width = 40;
             // 
-            // bill_no
-            // 
-            this.bill_no.Text = "영수번호";
-            this.bill_no.Width = 70;
-            // 
             // amount
             // 
             this.amount.Text = "금액";
@@ -351,7 +351,7 @@
             // 
             this.dc.Text = "할인";
             this.dc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.dc.Width = 40;
+            this.dc.Width = 0;
             // 
             // cancel
             // 

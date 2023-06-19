@@ -32,6 +32,8 @@ namespace thepos
 
         TextBox saveKeyDisplay;
 
+        String ticketNo = "";
+
         public frmPayCash(int net_amount, bool is_complex, int seq, bool is_last)
         {
             InitializeComponent();
@@ -49,6 +51,30 @@ namespace thepos
 
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbIssuedMethodNo;
+
+
+
+            if (mPayClass == "OR")
+            {
+
+            }
+            else if (mPayClass == "CH")
+            {
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                mRefNo = orderItem.ticket_no.Substring(0,18);
+                ticketNo = orderItem.ticket_no;
+
+            }
+            else if (mPayClass == "US")
+            {
+                // 해당없음.
+            }
+            else if (mPayClass == "ST")
+            {
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                mRefNo = orderItem.ticket_no.Substring(0, 18);
+                ticketNo = orderItem.ticket_no;
+            }
 
 
         }
@@ -100,18 +126,6 @@ namespace thepos
 
         private void btnCashSimple_Click(object sender, EventArgs e)
         {
-            if (mPayClass == "1") // 충전
-            {
-
-
-            }
-            else if (mPayClass == "2") // 정산
-            {
-
-
-            }
-
-
 
 
 
@@ -121,7 +135,7 @@ namespace thepos
             if (paySeq == 1)
             {
                 // 주문 저장 1
-                order_cnt = SaveOrder();  // order. orderitem
+                order_cnt = SaveOrder(ticketNo);  // order. orderitem
             }
 
 
@@ -131,15 +145,18 @@ namespace thepos
 
             // 결제 항목 저장
             PaymentCash mPaymentCash = new PaymentCash();
-            mPaymentCash.the_no = mTheNo;
             mPaymentCash.site_id = mSiteId;
             mPaymentCash.biz_dt = mBizDate;
             mPaymentCash.pos_no = mPosNo;
+            mPaymentCash.the_no = mTheNo;
+            mPaymentCash.ref_no = mRefNo; // 
+
             mPaymentCash.pay_date = get_today_date();
             mPaymentCash.pay_time = get_today_time();
             mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             mPaymentCash.tran_type = "A";       // 승인 A 취소 C
             mPaymentCash.pay_class = mPayClass;
+            mPaymentCash.ticket_no = ticketNo;
             mPaymentCash.pay_seq = paySeq; // 
             mPaymentCash.tran_date = "";
             mPaymentCash.amount = netAmount;    // 결제금액
@@ -198,15 +215,39 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 // 티켓 저장
-                int ticket_cnt = SaveTicket();
+                int ticket_cnt = SaveTicket(ticketNo,"US");
 
                 if (ticket_cnt > 0)
                 {
-                    strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                    if (mPayClass == "OR") // 주문(접수-발권)
+                    {
+                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                        //? 티켓 출력 필요
+
+                    }
+                    else if (mPayClass == "CH") // 충전
+                    {
+                        strAlarm += " 티켓충전 완료.";
+
+                        //? 충전화면 리스트뷰 갱신 필요
+
+
+                    }
+                    else if (mPayClass == "ST") // 정산
+                    {
+
+                        strAlarm += " 티켓정산 등록.";
+
+                        //? 정산화면 리스트뷰 갱신 필요
+
+
+                    }
+   
                     SetDisplayAlarm("I", strAlarm);
 
-                    //? 
-                    // 티켓 출력 개발요망
+
                 }
 
 
@@ -246,7 +287,7 @@ namespace thepos
                 if (paySeq == 1)
                 {
                     // 주문 저장 1
-                    order_cnt = SaveOrder();  // order. orderitem
+                    order_cnt = SaveOrder(ticketNo);  // order. orderitem
                 }
 
 
@@ -255,15 +296,18 @@ namespace thepos
 
 
                 PaymentCash mPaymentCash = new PaymentCash();
-                mPaymentCash.the_no = mTheNo;
                 mPaymentCash.site_id = mSiteId;
                 mPaymentCash.biz_dt = mBizDate;
                 mPaymentCash.pos_no = mPosNo;
+                mPaymentCash.the_no = mTheNo;
+                mPaymentCash.ref_no = mRefNo;
+
                 mPaymentCash.pay_date = get_today_date();
                 mPaymentCash.pay_time = get_today_time();
                 mPaymentCash.pay_type = "R1";
                 mPaymentCash.tran_type = "A";       // 승인 A 취소 C
                 mPaymentCash.pay_class = mPayClass;
+                mPaymentCash.ticket_no = ticketNo;
                 mPaymentCash.pay_seq = paySeq; // 
                 mPaymentCash.tran_date = mTossResponse.Trandate;
                 mPaymentCash.amount = netAmount;
@@ -322,7 +366,7 @@ namespace thepos
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
                     // 티켓 저장
-                    int ticket_cnt = SaveTicket();
+                    int ticket_cnt = SaveTicket("", "");
 
                     if (ticket_cnt > 0)
                     {

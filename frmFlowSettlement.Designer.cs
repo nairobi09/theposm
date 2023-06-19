@@ -31,8 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowSettlement));
             this.panelback = new System.Windows.Forms.Panel();
             this.lbl4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnOrderAmountDC = new System.Windows.Forms.Button();
+            this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnReader = new System.Windows.Forms.Button();
@@ -42,20 +41,19 @@
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvwFlowPay = new System.Windows.Forms.ListView();
+            this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.payclass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.result = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwFlow = new System.Windows.Forms.ListView();
-            this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.goods = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.charge_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnSettlement = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,57 +63,42 @@
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelback.Controls.Add(this.lbl4);
-            this.panelback.Controls.Add(this.button1);
-            this.panelback.Controls.Add(this.btnOrderAmountDC);
+            this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
-            this.panelback.Controls.Add(this.listView1);
+            this.panelback.Controls.Add(this.lvwFlowPay);
             this.panelback.Controls.Add(this.lvwFlow);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Controls.Add(this.btnSettlement);
             this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
-            this.panelback.Size = new System.Drawing.Size(523, 698);
+            this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 6;
             // 
             // lbl4
             // 
             this.lbl4.AutoSize = true;
             this.lbl4.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl4.Location = new System.Drawing.Point(21, 360);
+            this.lbl4.Location = new System.Drawing.Point(21, 278);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(53, 12);
             this.lbl4.TabIndex = 71;
             this.lbl4.Text = "정산경과";
             // 
-            // button1
+            // btnCancelReq
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(395, 570);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 48);
-            this.button1.TabIndex = 77;
-            this.button1.TabStop = false;
-            this.button1.Text = "개별재요청";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // btnOrderAmountDC
-            // 
-            this.btnOrderAmountDC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAmountDC.Location = new System.Drawing.Point(395, 624);
-            this.btnOrderAmountDC.Name = "btnOrderAmountDC";
-            this.btnOrderAmountDC.Size = new System.Drawing.Size(108, 48);
-            this.btnOrderAmountDC.TabIndex = 77;
-            this.btnOrderAmountDC.TabStop = false;
-            this.btnOrderAmountDC.Text = "결제변경";
-            this.btnOrderAmountDC.UseVisualStyleBackColor = false;
+            this.btnCancelReq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnCancelReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancelReq.ForeColor = System.Drawing.Color.White;
+            this.btnCancelReq.Location = new System.Drawing.Point(380, 466);
+            this.btnCancelReq.Name = "btnCancelReq";
+            this.btnCancelReq.Size = new System.Drawing.Size(122, 48);
+            this.btnCancelReq.TabIndex = 77;
+            this.btnCancelReq.TabStop = false;
+            this.btnCancelReq.Text = "취소요청";
+            this.btnCancelReq.UseVisualStyleBackColor = false;
+            this.btnCancelReq.Click += new System.EventHandler(this.btnCancelReq_Click);
             // 
             // panel1
             // 
@@ -167,7 +150,7 @@
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(194, 30);
+            this.tbBillNo.Location = new System.Drawing.Point(184, 30);
             this.tbBillNo.MaxLength = 7;
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(85, 30);
@@ -178,7 +161,7 @@
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(138, 43);
+            this.lbl3.Location = new System.Drawing.Point(187, 15);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(53, 12);
             this.lbl3.TabIndex = 70;
@@ -196,7 +179,7 @@
             "03"});
             this.cbPosNo.Location = new System.Drawing.Point(68, 39);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
+            this.cbPosNo.Size = new System.Drawing.Size(63, 21);
             this.cbPosNo.TabIndex = 73;
             // 
             // lbl2
@@ -222,52 +205,60 @@
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // listView1
+            // lvwFlowPay
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.listView1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.listView1.FullRowSelect = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(20, 375);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(357, 297);
-            this.listView1.TabIndex = 67;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvwFlowPay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.no,
+            this.payclass,
+            this.paytype,
+            this.amt,
+            this.result});
+            this.lvwFlowPay.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwFlowPay.FullRowSelect = true;
+            this.lvwFlowPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwFlowPay.HideSelection = false;
+            this.lvwFlowPay.Location = new System.Drawing.Point(20, 293);
+            this.lvwFlowPay.MultiSelect = false;
+            this.lvwFlowPay.Name = "lvwFlowPay";
+            this.lvwFlowPay.Size = new System.Drawing.Size(482, 158);
+            this.lvwFlowPay.TabIndex = 67;
+            this.lvwFlowPay.UseCompatibleStateImageBehavior = false;
+            this.lvwFlowPay.View = System.Windows.Forms.View.Details;
+            this.lvwFlowPay.SelectedIndexChanged += new System.EventHandler(this.lvwFlowPay_SelectedIndexChanged);
             // 
-            // columnHeader1
+            // no
             // 
-            this.columnHeader1.Text = "구분";
+            this.no.Text = "####";
+            this.no.Width = 50;
             // 
-            // columnHeader2
+            // payclass
             // 
-            this.columnHeader2.Text = "결제";
+            this.payclass.Text = "유형";
+            this.payclass.Width = 80;
             // 
-            // columnHeader3
+            // paytype
             // 
-            this.columnHeader3.Text = "금액";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader3.Width = 100;
+            this.paytype.Text = "결제";
+            this.paytype.Width = 80;
             // 
-            // columnHeader4
+            // amt
             // 
-            this.columnHeader4.Text = "결과";
-            this.columnHeader4.Width = 80;
+            this.amt.Text = "금액";
+            this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amt.Width = 80;
+            // 
+            // result
+            // 
+            this.result.Text = "경과";
+            this.result.Width = 160;
             // 
             // lvwFlow
             // 
             this.lvwFlow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.stat,
-            this.goods,
             this.ticket_no,
             this.charge_amt,
-            this.usage_amt});
+            this.usage_amt,
+            this.stat});
             this.lvwFlow.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwFlow.FullRowSelect = true;
             this.lvwFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -275,20 +266,11 @@
             this.lvwFlow.Location = new System.Drawing.Point(20, 145);
             this.lvwFlow.MultiSelect = false;
             this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 195);
+            this.lvwFlow.Size = new System.Drawing.Size(483, 125);
             this.lvwFlow.TabIndex = 67;
             this.lvwFlow.UseCompatibleStateImageBehavior = false;
             this.lvwFlow.View = System.Windows.Forms.View.Details;
             this.lvwFlow.SelectedIndexChanged += new System.EventHandler(this.lvwFlow_SelectedIndexChanged);
-            // 
-            // stat
-            // 
-            this.stat.Text = "상태";
-            // 
-            // goods
-            // 
-            this.goods.Text = "상품";
-            this.goods.Width = 90;
             // 
             // ticket_no
             // 
@@ -306,6 +288,11 @@
             this.usage_amt.Text = "사용금액";
             this.usage_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.usage_amt.Width = 80;
+            // 
+            // stat
+            // 
+            this.stat.Text = "상태";
+            this.stat.Width = 80;
             // 
             // btnClose
             // 
@@ -335,24 +322,11 @@
             this.lblTitle.Text = "정산";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnSettlement
-            // 
-            this.btnSettlement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnSettlement.Location = new System.Drawing.Point(394, 375);
-            this.btnSettlement.Name = "btnSettlement";
-            this.btnSettlement.Size = new System.Drawing.Size(108, 69);
-            this.btnSettlement.TabIndex = 72;
-            this.btnSettlement.Text = "일괄정산";
-            this.btnSettlement.UseVisualStyleBackColor = false;
-            this.btnSettlement.Click += new System.EventHandler(this.btnView_Click);
-            // 
             // frmFlowSettlement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 704);
+            this.ClientSize = new System.Drawing.Size(529, 545);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(488, 56);
@@ -383,20 +357,18 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ListView lvwFlow;
         private System.Windows.Forms.ColumnHeader stat;
-        private System.Windows.Forms.ColumnHeader goods;
         private System.Windows.Forms.ColumnHeader ticket_no;
         private System.Windows.Forms.ColumnHeader charge_amt;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ColumnHeader usage_amt;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView lvwFlowPay;
+        private System.Windows.Forms.ColumnHeader paytype;
+        private System.Windows.Forms.ColumnHeader amt;
+        private System.Windows.Forms.ColumnHeader result;
         private System.Windows.Forms.Label lbl4;
-        private System.Windows.Forms.Button btnOrderAmountDC;
-        private System.Windows.Forms.Button btnSettlement;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancelReq;
+        private System.Windows.Forms.ColumnHeader payclass;
+        private System.Windows.Forms.ColumnHeader no;
     }
 }
