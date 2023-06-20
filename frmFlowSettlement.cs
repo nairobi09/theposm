@@ -472,7 +472,7 @@ namespace thepos
                 // 대신한다.
 
                 int Amount = 0;
-                int dcAmount = 0;
+
                 mNetAmount = 0;
 
                 MemOrderItem orderItemInfo;
@@ -489,13 +489,7 @@ namespace thepos
 
 
 
-
-
-
             }
-
-
-
 
         }
 
@@ -518,8 +512,12 @@ namespace thepos
             fPayCancel.Top += this.Location.Y;
             fPayCancel.ShowDialog();
 
-
             //? 화면갱신
+
+
+
+
+
 
         }
     }

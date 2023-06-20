@@ -70,6 +70,8 @@ namespace thepos
         //인증후 로컬저장
         public static String mSiteId = "";
         public static String mPosNo = "";
+        public static String mPayChannel = "";
+
 
 
 
