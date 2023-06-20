@@ -34,7 +34,7 @@
             this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.btnReader = new System.Windows.Forms.Button();
+            this.btnScanner = new System.Windows.Forms.Button();
             this.dtBusiness = new System.Windows.Forms.DateTimePicker();
             this.tbBillNo = new System.Windows.Forms.TextBox();
             this.lbl3 = new System.Windows.Forms.Label();
@@ -104,7 +104,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lbl1);
-            this.panel1.Controls.Add(this.btnReader);
+            this.panel1.Controls.Add(this.btnScanner);
             this.panel1.Controls.Add(this.dtBusiness);
             this.panel1.Controls.Add(this.tbBillNo);
             this.panel1.Controls.Add(this.lbl3);
@@ -126,15 +126,16 @@
             this.lbl1.TabIndex = 71;
             this.lbl1.Text = "영업일자";
             // 
-            // btnReader
+            // btnScanner
             // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(382, 10);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(85, 50);
-            this.btnReader.TabIndex = 75;
-            this.btnReader.UseVisualStyleBackColor = false;
+            this.btnScanner.BackColor = System.Drawing.Color.White;
+            this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
+            this.btnScanner.Location = new System.Drawing.Point(382, 10);
+            this.btnScanner.Name = "btnScanner";
+            this.btnScanner.Size = new System.Drawing.Size(85, 50);
+            this.btnScanner.TabIndex = 75;
+            this.btnScanner.UseVisualStyleBackColor = false;
+            this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
             // dtBusiness
             // 
@@ -172,11 +173,6 @@
             // 
             this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Items.AddRange(new object[] {
-            "",
-            "01",
-            "02",
-            "03"});
             this.cbPosNo.Location = new System.Drawing.Point(68, 39);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(63, 21);
@@ -348,7 +344,7 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Button btnReader;
+        private System.Windows.Forms.Button btnScanner;
         private System.Windows.Forms.DateTimePicker dtBusiness;
         private System.Windows.Forms.TextBox tbBillNo;
         private System.Windows.Forms.Label lbl3;

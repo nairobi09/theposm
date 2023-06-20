@@ -185,6 +185,12 @@
     <Compile Include="frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScanner.Designer.cs">
+      <DependentUpon>frmScanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSysAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScanner.resx">
+      <DependentUpon>frmScanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSysAdmin.resx">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>

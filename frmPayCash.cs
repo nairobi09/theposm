@@ -241,7 +241,7 @@ namespace thepos
                         strAlarm += " 티켓정산 등록.";
 
                         //? 정산화면 리스트뷰 갱신 필요
-
+                        
 
                     }
    

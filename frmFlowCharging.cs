@@ -250,5 +250,10 @@ namespace thepos
             mChargeAmt = 0;
             tbChargeAmt.Text = mChargeAmt.ToString("N0");
         }
+
+        private void btnReader_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

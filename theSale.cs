@@ -83,6 +83,13 @@ namespace thepos
 
 
 
+        // 실행중 로컬 운영
+        public static String mScanString;
+        public static bool mIsScan;
+
+
+
+
         //------------------------------------------------------------------------------
         // 서버다운로드
         public static String[] mPosNoList; // 이사업자의 포스번호 목록

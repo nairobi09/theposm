@@ -211,6 +211,7 @@
             this.btnReader.Size = new System.Drawing.Size(85, 50);
             this.btnReader.TabIndex = 75;
             this.btnReader.UseVisualStyleBackColor = false;
+            this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
             // 
             // dtBusiness
             // 

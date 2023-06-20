@@ -80,9 +80,25 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+
+
+
+            view_flow();
+        }
+
+        public void view_flow()
+        { 
+
+            
             lvwFlow.Items.Clear();
             lvwFlowPay.Items.Clear();
             mLvwOrderItem.Items.Clear();
+
+
+            String ticket_no = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + tbBillNo.Text;
+
+
+            //? 서버 API로 교체필요
 
             for (int i = 0; i < mTicketFlowList.Count; i++)
             {
@@ -103,7 +119,16 @@ namespace thepos
                 item.SubItems.Add(tStat);
 
                 lvwFlow.Items.Add(item);
+
+
+                if (mTicketFlowList[i].ticket_no == ticket_no)
+                {
+                    lvwFlow.Items[i].Selected = true;
+                }
             }
+
+
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -317,7 +342,7 @@ namespace thepos
                     }
                     else
                     {
-                        item.SubItems.Add("취소필요");
+                        item.SubItems.Add("취소요망");
                         bpoint.result_code = "0";
                     }
 
@@ -513,10 +538,68 @@ namespace thepos
             fPayCancel.ShowDialog();
 
             //? 화면갱신
+            view_flow();
 
 
 
 
+
+        }
+
+        private void btnScanner_Click(object sender, EventArgs e)
+        {
+            Form fFlow;
+            fFlow = new frmScanner(21);  // ticket_no
+            fFlow.ShowDialog();
+
+
+            if (mIsScan)
+            {
+                if (mScanString.Length == 21)
+                {
+                    if (mScanString.Substring(0, 4) != mSiteId)
+                    {
+                        SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                        return;
+                    }
+
+
+                    try
+                    {
+                        String dt = mScanString.Substring(4, 8);
+                        String posno = mScanString.Substring(12, 2);
+                        String ticketno = mScanString.Substring(14, 7);
+
+                        int yyyy = int.Parse(dt.Substring(0, 4));
+                        int mm = int.Parse(dt.Substring(4, 2));
+                        int dd = int.Parse(dt.Substring(6, 2));
+
+                        dtBusiness.Value = new DateTime(yyyy, mm, dd);
+
+                        for (int i = 0; i < cbPosNo.Items.Count; i++)
+                        {
+                            if (cbPosNo.Items[i].ToString() == posno)
+                            {
+                                cbPosNo.SelectedIndex = i;
+                            }
+                        }
+
+                        tbBillNo.Text = ticketno;
+
+                        view_flow();
+
+                    }
+                    catch
+                    {
+                        SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                        return;
+                    }
+                }
+                else
+                {
+                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                }
+            }
 
 
         }
