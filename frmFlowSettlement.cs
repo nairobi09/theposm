@@ -40,7 +40,7 @@ namespace thepos
 
             dtBusiness.Font = font10;
             cbPosNo.Font = font10;
-            tbBillNo.Font = font14;
+            tbBillNo.Font = font12;
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
@@ -555,65 +555,6 @@ namespace thepos
 
             if (mIsScanOK)
             {
-                if (mScanString.Length == 21)
-                {
-                    if (mScanString.Substring(0, 4) != mSiteId)
-                    {
-                        SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                        return;
-                    }
-
-
-                    try
-                    {
-                        String dt = mScanString.Substring(4, 8);
-                        String posno = mScanString.Substring(12, 2);
-                        String ticketno = mScanString.Substring(14, 7);
-
-                        int yyyy = int.Parse(dt.Substring(0, 4));
-                        int mm = int.Parse(dt.Substring(4, 2));
-                        int dd = int.Parse(dt.Substring(6, 2));
-
-                        dtBusiness.Value = new DateTime(yyyy, mm, dd);
-
-                        for (int i = 0; i < cbPosNo.Items.Count; i++)
-                        {
-                            if (cbPosNo.Items[i].ToString() == posno)
-                            {
-                                cbPosNo.SelectedIndex = i;
-                            }
-                        }
-
-                        tbBillNo.Text = ticketno;
-
-                        view_flow();
-
-                    }
-                    catch
-                    {
-                        SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                        return;
-                    }
-                }
-                else
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                }
-            }
-
-
-        }
-
-        private void tbScanning_TextChanged(object sender, EventArgs e)
-        {
-            if (mScanString.Length == 21)
-            {
-                if (mScanString.Substring(0, 4) != mSiteId)
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    return;
-                }
-
                 try
                 {
                     String dt = mScanString.Substring(4, 8);
@@ -644,6 +585,53 @@ namespace thepos
                     SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
                     return;
                 }
+            }
+
+        }
+
+        private void tbScanning_TextChanged(object sender, EventArgs e)
+        {
+            if (tbScanning.Text.Length == 21)
+            {
+                if (tbScanning.Text.Substring(0, 4) != mSiteId)
+                {
+                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                    return;
+                }
+
+                try
+                {
+                    String dt = tbScanning.Text.Substring(4, 8);
+                    String posno = tbScanning.Text.Substring(12, 2);
+                    String ticketno = tbScanning.Text.Substring(14, 7);
+
+                    int yyyy = int.Parse(dt.Substring(0, 4));
+                    int mm = int.Parse(dt.Substring(4, 2));
+                    int dd = int.Parse(dt.Substring(6, 2));
+
+                    dtBusiness.Value = new DateTime(yyyy, mm, dd);
+
+                    for (int i = 0; i < cbPosNo.Items.Count; i++)
+                    {
+                        if (cbPosNo.Items[i].ToString() == posno)
+                        {
+                            cbPosNo.SelectedIndex = i;
+                        }
+                    }
+
+                    tbBillNo.Text = ticketno;
+
+                    view_flow();
+
+                }
+                catch
+                {
+                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                    
+                }
+
+                tbScanning.Text = "";
+
             }
 
         }

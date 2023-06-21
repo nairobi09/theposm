@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowSettlement));
             this.panelback = new System.Windows.Forms.Panel();
+            this.tbScanning = new System.Windows.Forms.TextBox();
             this.lbl4 = new System.Windows.Forms.Label();
             this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -54,7 +55,6 @@
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.tbScanning = new System.Windows.Forms.TextBox();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +76,15 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 6;
+            // 
+            // tbScanning
+            // 
+            this.tbScanning.Font = new System.Drawing.Font("GulimChe", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbScanning.Location = new System.Drawing.Point(20, 496);
+            this.tbScanning.Name = "tbScanning";
+            this.tbScanning.Size = new System.Drawing.Size(204, 18);
+            this.tbScanning.TabIndex = 0;
+            this.tbScanning.TextChanged += new System.EventHandler(this.tbScanning_TextChanged);
             // 
             // lbl4
             // 
@@ -155,7 +164,7 @@
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(184, 30);
+            this.tbBillNo.Location = new System.Drawing.Point(185, 30);
             this.tbBillNo.MaxLength = 7;
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(85, 30);
@@ -180,7 +189,7 @@
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Location = new System.Drawing.Point(68, 39);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(63, 21);
+            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
             this.cbPosNo.TabIndex = 73;
             this.cbPosNo.TabStop = false;
             // 
@@ -324,14 +333,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "정산";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbScanning
-            // 
-            this.tbScanning.Location = new System.Drawing.Point(20, 507);
-            this.tbScanning.Name = "tbScanning";
-            this.tbScanning.Size = new System.Drawing.Size(208, 22);
-            this.tbScanning.TabIndex = 0;
-            this.tbScanning.TextChanged += new System.EventHandler(this.tbScanning_TextChanged);
             // 
             // frmFlowSettlement
             // 

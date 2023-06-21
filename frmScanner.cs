@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.theSale;
+using static thepos.frmSale;
+
 
 
 namespace thepos
@@ -50,14 +52,19 @@ namespace thepos
             {
                 if (tbScanning.Text.Substring(0,4) == mSiteId)
                 {
+
                     mScanString = tbScanning.Text;
-
-
-
-
 
                     mIsScanOK = true;
                     Close();
+                }
+                else
+                {
+                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                    mScanString = tbScanning.Text;
+                    mIsScanOK = false;
+                    Close();
+
                 }
             }
         }

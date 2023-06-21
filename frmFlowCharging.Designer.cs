@@ -227,7 +227,7 @@
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(194, 30);
+            this.tbBillNo.Location = new System.Drawing.Point(185, 30);
             this.tbBillNo.MaxLength = 7;
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(85, 30);
@@ -238,7 +238,7 @@
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(138, 43);
+            this.lbl3.Location = new System.Drawing.Point(187, 15);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(53, 12);
             this.lbl3.TabIndex = 70;
