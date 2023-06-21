@@ -12,16 +12,53 @@ using System.Threading.Tasks;
 
 //? 개발수정항목
 /*
+ * 
 
+
+
+
+
+
+[일반POS] 
+
+영업관리
+- 영업일자 : 영업개시 영업마감 관리
+- 
+
+
+판매관리메뉴
 
 - 복합결제, 정산 화면 : frmSale.ConsoleEnable(); frmSale.ConsoleDisable(); 관리 안됨. 창위헤 창뜰경우 콘트롤 꼬임.
-- 
+
+- 고객용 모니터 화면 - 주문내역 
+
+- 상품주문 전체할인 아이템 맨아래줄로 배치할 수 있도록 변경
+
+- 환경정보 서버다운로드 및 자체관리 분리 세팅
+
+- 외부 연동 : 결제채널 3사 - KCP/나이스/코밴, 플레이스엠
+
+- 영수증프린터, 바코드티지프린터, 스캐너 
+
+- 할인정책 적용 고려 - 석대표 안건
+
+- 원격지원 솔루션
+
+
+
+[키오스크]
 
 
 
 
+[웹어드민]
 
-- 
+
+
+
+[시스어드민]
+
+ 
 
 
 
@@ -85,7 +122,7 @@ namespace thepos
 
         // 실행중 로컬 운영
         public static String mScanString;
-        public static bool mIsScan;
+        public static bool mIsScanOK;
 
 
 

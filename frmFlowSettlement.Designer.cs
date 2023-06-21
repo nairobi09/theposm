@@ -54,6 +54,7 @@
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.tbScanning = new System.Windows.Forms.TextBox();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.tbScanning);
             this.panelback.Controls.Add(this.lbl4);
             this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
@@ -134,6 +136,7 @@
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(85, 50);
             this.btnScanner.TabIndex = 75;
+            this.btnScanner.TabStop = false;
             this.btnScanner.UseVisualStyleBackColor = false;
             this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
@@ -144,6 +147,7 @@
             this.dtBusiness.Name = "dtBusiness";
             this.dtBusiness.Size = new System.Drawing.Size(97, 22);
             this.dtBusiness.TabIndex = 68;
+            this.dtBusiness.TabStop = false;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
             // tbBillNo
@@ -156,6 +160,7 @@
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(85, 30);
             this.tbBillNo.TabIndex = 74;
+            this.tbBillNo.TabStop = false;
             this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl3
@@ -177,6 +182,7 @@
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(63, 21);
             this.cbPosNo.TabIndex = 73;
+            this.cbPosNo.TabStop = false;
             // 
             // lbl2
             // 
@@ -197,6 +203,7 @@
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(85, 50);
             this.btnView.TabIndex = 72;
+            this.btnView.TabStop = false;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -318,6 +325,14 @@
             this.lblTitle.Text = "정산";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tbScanning
+            // 
+            this.tbScanning.Location = new System.Drawing.Point(20, 507);
+            this.tbScanning.Name = "tbScanning";
+            this.tbScanning.Size = new System.Drawing.Size(208, 22);
+            this.tbScanning.TabIndex = 0;
+            this.tbScanning.TextChanged += new System.EventHandler(this.tbScanning_TextChanged);
+            // 
             // frmFlowSettlement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -366,5 +381,6 @@
         private System.Windows.Forms.Button btnCancelReq;
         private System.Windows.Forms.ColumnHeader payclass;
         private System.Windows.Forms.ColumnHeader no;
+        private System.Windows.Forms.TextBox tbScanning;
     }
 }

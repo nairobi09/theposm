@@ -21,7 +21,7 @@ namespace thepos
         {
             InitializeComponent();
 
-            mIsScan = false;
+            mIsScanOK = false;
             mScanString = "";
             
             scanLength = scan_length;
@@ -33,14 +33,14 @@ namespace thepos
         private void btnOK_Click(object sender, EventArgs e)
         {
             mScanString = tbScanning.Text;
-            mIsScan = true;
+            mIsScanOK = true;
             Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             mScanString = "";
-            mIsScan = false;
+            mIsScanOK = false;
             Close();
         }
 
@@ -51,7 +51,12 @@ namespace thepos
                 if (tbScanning.Text.Substring(0,4) == mSiteId)
                 {
                     mScanString = tbScanning.Text;
-                    mIsScan = true;
+
+
+
+
+
+                    mIsScanOK = true;
                     Close();
                 }
             }

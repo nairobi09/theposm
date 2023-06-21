@@ -58,7 +58,7 @@
             // 
             // lvwInfo
             // 
-            this.lvwInfo.BackColor = System.Drawing.Color.Black;
+            this.lvwInfo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lvwInfo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.text,
             this.s1,
@@ -82,7 +82,7 @@
             this.s19,
             this.s20});
             this.lvwInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvwInfo.ForeColor = System.Drawing.Color.White;
+            this.lvwInfo.ForeColor = System.Drawing.Color.Black;
             this.lvwInfo.FullRowSelect = true;
             this.lvwInfo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwInfo.HideSelection = false;
