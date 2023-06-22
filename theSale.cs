@@ -151,6 +151,12 @@ namespace thepos
         // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
         public static String mTicketType;  // ""미사용, "PA"선불, "PD"후불
 
+        public static String mTicketMedia;  // 띠지BC   팔찌RF
+
+
+
+
+
         // 주문서 - 상품정보 필드관리
         public static String mCornerType;  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
         public static String[] mCornerCode; // 코너 코드
