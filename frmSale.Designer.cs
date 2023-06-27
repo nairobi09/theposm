@@ -516,7 +516,7 @@ namespace thepos
             this.btnOrderAmtChange.ForeColor = System.Drawing.Color.White;
             this.btnOrderAmtChange.Location = new System.Drawing.Point(350, 0);
             this.btnOrderAmtChange.Name = "btnOrderAmtChange";
-            this.btnOrderAmtChange.Size = new System.Drawing.Size(48, 48);
+            this.btnOrderAmtChange.Size = new System.Drawing.Size(47, 48);
             this.btnOrderAmtChange.TabIndex = 0;
             this.btnOrderAmtChange.TabStop = false;
             this.btnOrderAmtChange.Text = "단가\r\n변경";
@@ -544,9 +544,9 @@ namespace thepos
             this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
-            this.btnOrderWaiting.Location = new System.Drawing.Point(402, 0);
+            this.btnOrderWaiting.Location = new System.Drawing.Point(401, 0);
             this.btnOrderWaiting.Name = "btnOrderWaiting";
-            this.btnOrderWaiting.Size = new System.Drawing.Size(72, 48);
+            this.btnOrderWaiting.Size = new System.Drawing.Size(73, 48);
             this.btnOrderWaiting.TabIndex = 0;
             this.btnOrderWaiting.TabStop = false;
             this.btnOrderWaiting.Text = "대기\r\n";
@@ -713,7 +713,7 @@ namespace thepos
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLogo.TabIndex = 39;
             this.picLogo.TabStop = false;
-            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
+            this.picLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picLogo_MouseUp);
             // 
             // lblTitle02
             // 

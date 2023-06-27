@@ -39,7 +39,7 @@ namespace thepos
 
             dtBusiness.Font = font10;
             cbPosNo.Font = font10;
-            tbBillNo.Font = font14;
+            tbTicketNo.Font = font14;
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
@@ -74,7 +74,7 @@ namespace thepos
 
 
             saveKeyDisplay = mTbKeyDisplayController;
-            mTbKeyDisplayController = tbBillNo;
+            mTbKeyDisplayController = tbTicketNo;
 
 
             mPayClass = "CH"; // 충전 charge
@@ -94,8 +94,25 @@ namespace thepos
             mPayClass = "OR"; // 원복: order
         }
 
+
         private void btnView_Click(object sender, EventArgs e)
         {
+            String ticketNo = "";
+            String t7No = tbTicketNo.Text;
+
+            if (t7No.Length == 7)
+            {
+                ticketNo = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
+            }
+
+            view_flow(ticketNo);
+
+        }
+
+
+        public void view_flow(String ticket_no)
+        {
+
             lvwFlow.Items.Clear();
 
             for (int i = 0; i < mTicketFlowList.Count; i++)
@@ -126,12 +143,64 @@ namespace thepos
                 }
 
                 item.SubItems.Add(tStr);
-
                 item.SubItems.Add(mTicketFlowList[i].point_charge.ToString("N0"));
-
                 lvwFlow.Items.Add(item);
+
+                if (mTicketFlowList[i].ticket_no == ticket_no)
+                {
+                    lvwFlow.Items[i].Selected = true;
+                }
             }
         }
+
+        private void btnScanner_Click(object sender, EventArgs e)
+        {
+            btnScanner.Enabled = false;
+
+            Form fFlow;
+            fFlow = new frmScanner(21);  // ticket_no
+            fFlow.ShowDialog();
+
+
+            if (mIsScanOK)
+            {
+                try
+                {
+                    String dt = mScanString.Substring(4, 8);
+                    String posno = mScanString.Substring(12, 2);
+                    String t7no = mScanString.Substring(14, 7);
+
+                    int yyyy = int.Parse(dt.Substring(0, 4));
+                    int mm = int.Parse(dt.Substring(4, 2));
+                    int dd = int.Parse(dt.Substring(6, 2));
+
+                    dtBusiness.Value = new DateTime(yyyy, mm, dd);
+
+                    for (int i = 0; i < cbPosNo.Items.Count; i++)
+                    {
+                        if (cbPosNo.Items[i].ToString() == posno)
+                        {
+                            cbPosNo.SelectedIndex = i;
+                        }
+                    }
+
+                    tbTicketNo.Text = t7no;
+
+                    view_flow(mScanString);
+
+                }
+                catch
+                {
+                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
+                    return;
+                }
+            }
+
+            btnScanner.Enabled = true;
+        }
+
+
+
 
         private void btnCharge_Click(object sender, EventArgs e)
         {
@@ -251,9 +320,6 @@ namespace thepos
             tbChargeAmt.Text = mChargeAmt.ToString("N0");
         }
 
-        private void btnReader_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

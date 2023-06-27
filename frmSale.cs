@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using static thepos.theSale;
 using static thepos.frmPayComplex;
 using System.Diagnostics;
+using PrinterUtility;
+using System.IO.Ports;
+using System.Text;
 
 
 
@@ -312,16 +315,27 @@ namespace thepos
             // 영업일자
             //
             mBizDate = DateTime.Now.ToString("yyyyMMdd");
-            mSiteId = "CUST";
+            mSiteId = "9011";
             mPosNo = "01";
 
+            mSiteName = "주식회사 동서월드개발";
+            mSiteAlias = "동서월드";
+            mCapName = "김동슈";
+            mRegistNo = "3770110382";
+            mBizAddr = "경기도 광명시 일직로 101-22";
+            mBizTelNo = "031-954-4938";
+
+
             mTicketType = "PA"; // PA선불, PD후불
+            mTicketMedia = "BC";
+
 
             mPosNoList = new string[4];
             mPosNoList[0] = "01";
             mPosNoList[1] = "02";
             mPosNoList[2] = "03";
             mPosNoList[3] = "04";
+
 
 
 
@@ -407,12 +421,12 @@ namespace thepos
 
                 if (mPayConsol[i].code == "CASH")
                 {
-                    btnPayItem.Text = "현금";
+                    btnPayItem.Text = "현금\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayCash();
                 }
                 else if (mPayConsol[i].code == "CARD")
                 {
-                    btnPayItem.Text = "카드";
+                    btnPayItem.Text = "카드\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayCard();
                 }
                 else if (mPayConsol[i].code == "POINT")
@@ -429,12 +443,6 @@ namespace thepos
                 {
                     btnPayItem.Text = "간편\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayEasy();
-                }
-                else if (mPayConsol[i].code == "MANAGER")
-                {
-                    btnPayItem.BackColor = Color.FromArgb(52, 86, 156);  // 결제내약관리만 다른 Backcolor로 구분한다.
-                    btnPayItem.Text = "결제내역\r관리";
-                    btnPayItem.Click += (sender, args) => ClickedPayManager();
                 }
                 else btnPayItem.Text = "";
 
@@ -830,26 +838,42 @@ namespace thepos
 
                     if (orderItem.ticket == "1")
                     {
-                        for (int k = 0; k < orderItem.cnt; k++)
-                        {
-                            ticket_seq++;
 
-                            ticketFlow.site_id = mSiteId;
-                            ticketFlow.biz_dt = mBizDate;
-                            ticketFlow.the_no = mTheNo;
-                            ticketFlow.ref_no = mTheNo;
-                            ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
-                            ticketFlow.ticketing_dt = get_today_date() + get_today_time();
-                            ticketFlow.charge_dt = "";
-                            ticketFlow.settlement_dt = "";
-                            ticketFlow.point_charge = 0;
-                            ticketFlow.point_usage = 0;
-                            ticketFlow.goods_code = orderItem.code;
-                            ticketFlow.flow_step = "1";                // 발권1 - *충전2 - 사용중3 - 정산(완료)4
-                            ticketFlow.locker_no = "";
-                            ticketFlow.open_locker = "1";              // 최초 open -> 충전 close, 사용 close -> 정산 open
-                            mTicketFlowList.Add(ticketFlow);
-                        } 
+                        //? 띠지 or 팔찌 -> 구분하여 
+                        if (mTicketMedia == "BC")
+                        {
+                            for (int k = 0; k < orderItem.cnt; k++)
+                            {
+                                ticket_seq++;
+
+                                ticketFlow.site_id = mSiteId;
+                                ticketFlow.biz_dt = mBizDate;
+                                ticketFlow.the_no = mTheNo;
+                                ticketFlow.ref_no = mTheNo;
+                                ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
+                                ticketFlow.ticketing_dt = get_today_date() + get_today_time();
+                                ticketFlow.charge_dt = "";
+                                ticketFlow.settlement_dt = "";
+                                ticketFlow.point_charge = 0;
+                                ticketFlow.point_usage = 0;
+                                ticketFlow.goods_code = orderItem.code;
+                                ticketFlow.flow_step = "1";                // 발권1 - *충전2 - 사용중3 - 정산(완료)4
+                                ticketFlow.locker_no = "";
+                                ticketFlow.open_locker = "1";              // 최초 open -> 충전 close, 사용 close -> 정산 open
+                                mTicketFlowList.Add(ticketFlow);
+
+                                //? 띠지 출력 필요
+
+
+
+                            } 
+                        }
+                        else
+                        {
+                            //? 팔찌이면 스케너 입력로직 필요
+
+                        }
+
                     }
                 }
 
@@ -1242,7 +1266,7 @@ namespace thepos
             fLogo.Left += this.Location.X;
             fLogo.Top += this.Location.Y;
 
-            fLogo.ShowDialog();
+            fLogo.Show();
         }
 
 
@@ -1740,11 +1764,28 @@ namespace thepos
             // 카드결제 창 - 3개 입력항목 감안
         }
 
-        private void picLogo_Click(object sender, EventArgs e)
+
+        private void picLogo_MouseUp(object sender, MouseEventArgs e)
         {
-            Form fFlow;
-            fFlow = new frmSysAdmin();
-            fFlow.Show();
+            if (e.Button == MouseButtons.Right)
+            {
+
+
+                MenuItemMemoryStatus_Click();
+
+                //MenuItemNicepayTest_Click();
+            }
         }
+
+
+        private void MenuItemMemoryStatus_Click()
+        {
+                Form fFlow;
+                fFlow = new frmSysAdmin();
+                fFlow.Show();
+        }
+
+
+
     }
 }

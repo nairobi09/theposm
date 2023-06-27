@@ -30,14 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowSettlement));
             this.panelback = new System.Windows.Forms.Panel();
-            this.tbScanning = new System.Windows.Forms.TextBox();
             this.lbl4 = new System.Windows.Forms.Label();
             this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnScanner = new System.Windows.Forms.Button();
             this.dtBusiness = new System.Windows.Forms.DateTimePicker();
-            this.tbBillNo = new System.Windows.Forms.TextBox();
+            this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.lbl3 = new System.Windows.Forms.Label();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lbl2 = new System.Windows.Forms.Label();
@@ -63,7 +62,6 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelback.Controls.Add(this.tbScanning);
             this.panelback.Controls.Add(this.lbl4);
             this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
@@ -76,15 +74,6 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 6;
-            // 
-            // tbScanning
-            // 
-            this.tbScanning.Font = new System.Drawing.Font("GulimChe", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbScanning.Location = new System.Drawing.Point(20, 496);
-            this.tbScanning.Name = "tbScanning";
-            this.tbScanning.Size = new System.Drawing.Size(204, 18);
-            this.tbScanning.TabIndex = 0;
-            this.tbScanning.TextChanged += new System.EventHandler(this.tbScanning_TextChanged);
             // 
             // lbl4
             // 
@@ -117,7 +106,7 @@
             this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.btnScanner);
             this.panel1.Controls.Add(this.dtBusiness);
-            this.panel1.Controls.Add(this.tbBillNo);
+            this.panel1.Controls.Add(this.tbTicketNo);
             this.panel1.Controls.Add(this.lbl3);
             this.panel1.Controls.Add(this.cbPosNo);
             this.panel1.Controls.Add(this.lbl2);
@@ -159,18 +148,18 @@
             this.dtBusiness.TabStop = false;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
-            // tbBillNo
+            // tbTicketNo
             // 
-            this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(185, 30);
-            this.tbBillNo.MaxLength = 7;
-            this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(85, 30);
-            this.tbBillNo.TabIndex = 74;
-            this.tbBillNo.TabStop = false;
-            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTicketNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTicketNo.Location = new System.Drawing.Point(185, 30);
+            this.tbTicketNo.MaxLength = 7;
+            this.tbTicketNo.Name = "tbTicketNo";
+            this.tbTicketNo.Size = new System.Drawing.Size(85, 30);
+            this.tbTicketNo.TabIndex = 74;
+            this.tbTicketNo.TabStop = false;
+            this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl3
             // 
@@ -362,7 +351,7 @@
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Button btnScanner;
         private System.Windows.Forms.DateTimePicker dtBusiness;
-        private System.Windows.Forms.TextBox tbBillNo;
+        private System.Windows.Forms.TextBox tbTicketNo;
         private System.Windows.Forms.Label lbl3;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Label lbl2;
@@ -382,6 +371,5 @@
         private System.Windows.Forms.Button btnCancelReq;
         private System.Windows.Forms.ColumnHeader payclass;
         private System.Windows.Forms.ColumnHeader no;
-        private System.Windows.Forms.TextBox tbScanning;
     }
 }

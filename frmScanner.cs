@@ -16,7 +16,7 @@ namespace thepos
 {
     public partial class frmScanner : Form
     {
-        String ScanString = "";
+
         int scanLength;
 
         public frmScanner(int scan_length)
@@ -52,7 +52,6 @@ namespace thepos
             {
                 if (tbScanning.Text.Substring(0,4) == mSiteId)
                 {
-
                     mScanString = tbScanning.Text;
 
                     mIsScanOK = true;
@@ -64,12 +63,9 @@ namespace thepos
                     mScanString = tbScanning.Text;
                     mIsScanOK = false;
                     Close();
-
                 }
             }
         }
-
-
 
     }
 }

@@ -41,9 +41,9 @@
             this.btn100t = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.btnReader = new System.Windows.Forms.Button();
+            this.btnScanner = new System.Windows.Forms.Button();
             this.dtBusiness = new System.Windows.Forms.DateTimePicker();
-            this.tbBillNo = new System.Windows.Forms.TextBox();
+            this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.lbl3 = new System.Windows.Forms.Label();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lbl2 = new System.Windows.Forms.Label();
@@ -180,9 +180,9 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lbl1);
-            this.panel1.Controls.Add(this.btnReader);
+            this.panel1.Controls.Add(this.btnScanner);
             this.panel1.Controls.Add(this.dtBusiness);
-            this.panel1.Controls.Add(this.tbBillNo);
+            this.panel1.Controls.Add(this.tbTicketNo);
             this.panel1.Controls.Add(this.lbl3);
             this.panel1.Controls.Add(this.cbPosNo);
             this.panel1.Controls.Add(this.lbl2);
@@ -202,16 +202,16 @@
             this.lbl1.TabIndex = 71;
             this.lbl1.Text = "영업일자";
             // 
-            // btnReader
+            // btnScanner
             // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(382, 10);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(85, 50);
-            this.btnReader.TabIndex = 75;
-            this.btnReader.UseVisualStyleBackColor = false;
-            this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
+            this.btnScanner.BackColor = System.Drawing.Color.White;
+            this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
+            this.btnScanner.Location = new System.Drawing.Point(382, 10);
+            this.btnScanner.Name = "btnScanner";
+            this.btnScanner.Size = new System.Drawing.Size(85, 50);
+            this.btnScanner.TabIndex = 75;
+            this.btnScanner.UseVisualStyleBackColor = false;
+            this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
             // dtBusiness
             // 
@@ -222,17 +222,17 @@
             this.dtBusiness.TabIndex = 68;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
-            // tbBillNo
+            // tbTicketNo
             // 
-            this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(185, 30);
-            this.tbBillNo.MaxLength = 7;
-            this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(85, 30);
-            this.tbBillNo.TabIndex = 74;
-            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTicketNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTicketNo.Location = new System.Drawing.Point(185, 30);
+            this.tbTicketNo.MaxLength = 7;
+            this.tbTicketNo.Name = "tbTicketNo";
+            this.tbTicketNo.Size = new System.Drawing.Size(85, 30);
+            this.tbTicketNo.TabIndex = 74;
+            this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl3
             // 
@@ -381,8 +381,8 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnReader;
-        private System.Windows.Forms.TextBox tbBillNo;
+        private System.Windows.Forms.Button btnScanner;
+        private System.Windows.Forms.TextBox tbTicketNo;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lbl2;

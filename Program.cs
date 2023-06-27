@@ -18,6 +18,7 @@ namespace thepos
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmMain());
             Application.Run(new frmSale());
+            //Application.Run(new frmSetup());
         }
     }
 }

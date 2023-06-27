@@ -215,7 +215,7 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 // 티켓 저장
-                int ticket_cnt = SaveTicket(ticketNo,"US");
+                int ticket_cnt = SaveTicket(ticketNo, "US"); // 정산애먼  subClass 사용
 
                 if (ticket_cnt > 0)
                 {
@@ -225,6 +225,7 @@ namespace thepos
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
 
                         //? 티켓 출력 필요
+
 
                     }
                     else if (mPayClass == "CH") // 충전
@@ -237,7 +238,6 @@ namespace thepos
                     }
                     else if (mPayClass == "ST") // 정산
                     {
-
                         strAlarm += " 티켓정산 등록.";
 
                         //? 정산화면 리스트뷰 갱신 필요
@@ -246,6 +246,18 @@ namespace thepos
                     }
    
                     SetDisplayAlarm("I", strAlarm);
+
+
+
+
+                    // 영수증 출력
+                    String headerBill = make_bill_header();
+                    String bodyBill = make_bill_body(mTheNo, "A", "");
+                    String trailerBill = make_bill_trailer();
+
+
+                    PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
+
 
 
                 }

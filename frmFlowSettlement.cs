@@ -40,7 +40,7 @@ namespace thepos
 
             dtBusiness.Font = font10;
             cbPosNo.Font = font10;
-            tbBillNo.Font = font12;
+            tbTicketNo.Font = font12;
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
@@ -70,7 +70,7 @@ namespace thepos
 
 
             saveKeyDisplay = mTbKeyDisplayController;
-            mTbKeyDisplayController = tbBillNo;
+            mTbKeyDisplayController = tbTicketNo;
 
             mPayClass = "ST"; // 정산 settement
 
@@ -80,13 +80,19 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            String ticketNo = "";
+            String t7No = tbTicketNo.Text;
+
+            if (t7No.Length == 7)
+            {
+                ticketNo = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
+            }
 
 
-
-            view_flow();
+            view_flow(ticketNo);
         }
 
-        public void view_flow()
+        public void view_flow(String ticket_no)
         { 
 
             
@@ -95,13 +101,13 @@ namespace thepos
             mLvwOrderItem.Items.Clear();
 
 
-            String ticket_no = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + tbBillNo.Text;
-
-
             //? 서버 API로 교체필요
 
             for (int i = 0; i < mTicketFlowList.Count; i++)
             {
+
+
+
                 ListViewItem item = new ListViewItem();
 
                 item.Tag = mTicketFlowList[i].ticket_no;
@@ -272,17 +278,13 @@ namespace thepos
 
         void view_flowpay(String ticket_no)
         {
-
             // 정산 후처리
             // 결제할 금액(포인트사용) -> 승인요청
             // 취소할 금액(충전금액) 
 
 
 
-
             lvwFlowPay.Items.Clear();
-
-
 
             if (mThisTicketFlow.point_usage > 0)
             {
@@ -312,7 +314,6 @@ namespace thepos
                 bpoint.amount = mThisTicketFlow.point_usage;
                 bpoint.result_code = "";
                 bpoint.tran_type = "";
-
 
 
                 item.Tag = bpoint;
@@ -538,7 +539,7 @@ namespace thepos
             fPayCancel.ShowDialog();
 
             //? 화면갱신
-            view_flow();
+            view_flow(mThisTicketFlow.ticket_no);
 
 
 
@@ -548,6 +549,9 @@ namespace thepos
 
         private void btnScanner_Click(object sender, EventArgs e)
         {
+
+            btnScanner.Enabled = false;
+
             Form fFlow;
             fFlow = new frmScanner(21);  // ticket_no
             fFlow.ShowDialog();
@@ -559,7 +563,7 @@ namespace thepos
                 {
                     String dt = mScanString.Substring(4, 8);
                     String posno = mScanString.Substring(12, 2);
-                    String ticketno = mScanString.Substring(14, 7);
+                    String t7no = mScanString.Substring(14, 7);
 
                     int yyyy = int.Parse(dt.Substring(0, 4));
                     int mm = int.Parse(dt.Substring(4, 2));
@@ -575,9 +579,9 @@ namespace thepos
                         }
                     }
 
-                    tbBillNo.Text = ticketno;
+                    tbTicketNo.Text = t7no;
 
-                    view_flow();
+                    view_flow(mScanString);
 
                 }
                 catch
@@ -587,53 +591,9 @@ namespace thepos
                 }
             }
 
-        }
-
-        private void tbScanning_TextChanged(object sender, EventArgs e)
-        {
-            if (tbScanning.Text.Length == 21)
-            {
-                if (tbScanning.Text.Substring(0, 4) != mSiteId)
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    return;
-                }
-
-                try
-                {
-                    String dt = tbScanning.Text.Substring(4, 8);
-                    String posno = tbScanning.Text.Substring(12, 2);
-                    String ticketno = tbScanning.Text.Substring(14, 7);
-
-                    int yyyy = int.Parse(dt.Substring(0, 4));
-                    int mm = int.Parse(dt.Substring(4, 2));
-                    int dd = int.Parse(dt.Substring(6, 2));
-
-                    dtBusiness.Value = new DateTime(yyyy, mm, dd);
-
-                    for (int i = 0; i < cbPosNo.Items.Count; i++)
-                    {
-                        if (cbPosNo.Items[i].ToString() == posno)
-                        {
-                            cbPosNo.SelectedIndex = i;
-                        }
-                    }
-
-                    tbBillNo.Text = ticketno;
-
-                    view_flow();
-
-                }
-                catch
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    
-                }
-
-                tbScanning.Text = "";
-
-            }
+            btnScanner.Enabled = true;
 
         }
+
     }
 }

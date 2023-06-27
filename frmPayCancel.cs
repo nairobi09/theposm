@@ -225,7 +225,7 @@ namespace thepos
                         paymentCard.pay_time = get_today_time();
                         paymentCard.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
                         paymentCard.tran_type = "C";       // 승인 A 취소 C
-                        paymentCard.pay_class = mPaymentCards[idx].pay_class;
+                        paymentCard.pay_class = mPayClass;
                         paymentCard.ticket_no = mPaymentCards[idx].ticket_no;
                         paymentCard.pay_seq = mPaymentCards[idx].pay_seq;
                         paymentCard.tran_date = mTossResponse.Trandate;
@@ -270,7 +270,7 @@ namespace thepos
                     paymentCard.pay_time = get_today_time();
                     paymentCard.pay_type = "C9";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
                     paymentCard.tran_type = "C";       // 승인 A 취소 C
-                    paymentCard.pay_class = mPaymentCards[idx].pay_class;
+                    paymentCard.pay_class = mPayClass;
                     paymentCard.ticket_no = mPaymentCards[idx].ticket_no;
                     paymentCard.pay_seq = mPaymentCards[idx].pay_seq;
                     paymentCard.tran_date = "";
@@ -333,7 +333,7 @@ namespace thepos
                         paymentCash.pay_time = get_today_time();
                         paymentCash.pay_type = "R1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
                         paymentCash.tran_type = "C";       // 승인 A 취소 C
-                        paymentCash.pay_class = mPaymentCashs[idx].pay_class;
+                        paymentCash.pay_class = mPayClass;
                         paymentCash.ticket_no = mPaymentCashs[idx].ticket_no;
                         paymentCash.pay_seq = mPaymentCashs[idx].pay_seq;
                         paymentCash.tran_date = mTossResponse.Trandate;
@@ -373,7 +373,7 @@ namespace thepos
                     paymentCash.pay_time = get_today_time();
                     paymentCash.pay_type = "R0";       // 결제구분
                     paymentCash.tran_type = "C";       // 승인 A 취소 C
-                    paymentCash.pay_class = mPaymentCashs[idx].pay_class;
+                    paymentCash.pay_class = mPayClass;
                     paymentCash.ticket_no = mPaymentCashs[idx].ticket_no;
                     paymentCash.pay_seq = mPaymentCashs[idx].pay_seq;
                     paymentCash.tran_date = "";
@@ -424,7 +424,7 @@ namespace thepos
                 paymentPoint.pay_time = get_today_time();
                 paymentPoint.pay_type = mPaymentPoints[idx].pay_type;       // 결제구분
                 paymentPoint.tran_type = "C";       // 승인 A 취소 C
-                paymentPoint.pay_class = mPaymentPoints[idx].pay_class;
+                paymentPoint.pay_class = mPayClass;
                 paymentPoint.ticket_no = mPaymentPoints[idx].ticket_no;
                 paymentPoint.usage_no = mPaymentPoints[idx].usage_no;
                 paymentPoint.amount = mPaymentPoints[idx].amount;

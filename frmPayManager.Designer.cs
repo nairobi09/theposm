@@ -32,7 +32,7 @@
             this.panelback = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.btnReader = new System.Windows.Forms.Button();
+            this.btnScanner = new System.Windows.Forms.Button();
             this.dtBusiness = new System.Windows.Forms.DateTimePicker();
             this.tbBillNo = new System.Windows.Forms.TextBox();
             this.lbl3 = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             this.lblLayoutBill = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.cbwithoutGoods = new System.Windows.Forms.CheckBox();
+            this.cbGood = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@
             this.panelback.Controls.Add(this.lblLayoutBill);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Controls.Add(this.cbwithoutGoods);
+            this.panelback.Controls.Add(this.cbGood);
             this.panelback.Controls.Add(this.button4);
             this.panelback.Controls.Add(this.button1);
             this.panelback.Controls.Add(this.btnCancel);
@@ -87,7 +87,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lbl1);
-            this.panel1.Controls.Add(this.btnReader);
+            this.panel1.Controls.Add(this.btnScanner);
             this.panel1.Controls.Add(this.dtBusiness);
             this.panel1.Controls.Add(this.tbBillNo);
             this.panel1.Controls.Add(this.lbl3);
@@ -109,15 +109,16 @@
             this.lbl1.TabIndex = 71;
             this.lbl1.Text = "영업일자";
             // 
-            // btnReader
+            // btnScanner
             // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(382, 8);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(85, 50);
-            this.btnReader.TabIndex = 75;
-            this.btnReader.UseVisualStyleBackColor = false;
+            this.btnScanner.BackColor = System.Drawing.Color.White;
+            this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
+            this.btnScanner.Location = new System.Drawing.Point(382, 8);
+            this.btnScanner.Name = "btnScanner";
+            this.btnScanner.Size = new System.Drawing.Size(85, 50);
+            this.btnScanner.TabIndex = 75;
+            this.btnScanner.UseVisualStyleBackColor = false;
+            this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
             // dtBusiness
             // 
@@ -227,18 +228,18 @@
             this.lblTitle.Text = "결제내역관리";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cbwithoutGoods
+            // cbGood
             // 
-            this.cbwithoutGoods.AutoSize = true;
-            this.cbwithoutGoods.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbwithoutGoods.Location = new System.Drawing.Point(398, 432);
-            this.cbwithoutGoods.Name = "cbwithoutGoods";
-            this.cbwithoutGoods.Size = new System.Drawing.Size(105, 15);
-            this.cbwithoutGoods.TabIndex = 49;
-            this.cbwithoutGoods.Text = "상품내역 미출력";
-            this.cbwithoutGoods.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbwithoutGoods.UseVisualStyleBackColor = true;
-            this.cbwithoutGoods.CheckedChanged += new System.EventHandler(this.cbwithoutGoods_CheckedChanged);
+            this.cbGood.AutoSize = true;
+            this.cbGood.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGood.Location = new System.Drawing.Point(398, 432);
+            this.cbGood.Name = "cbGood";
+            this.cbGood.Size = new System.Drawing.Size(105, 15);
+            this.cbGood.TabIndex = 49;
+            this.cbGood.Text = "상품내역 미출력";
+            this.cbGood.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbGood.UseVisualStyleBackColor = true;
+            this.cbGood.CheckedChanged += new System.EventHandler(this.cbwithoutGoods_CheckedChanged);
             // 
             // button4
             // 
@@ -402,7 +403,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lvwPayManager;
-        private System.Windows.Forms.CheckBox cbwithoutGoods;
+        private System.Windows.Forms.CheckBox cbGood;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPrint;
@@ -421,7 +422,7 @@
         private System.Windows.Forms.ColumnHeader trantype;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Button btnReader;
+        private System.Windows.Forms.Button btnScanner;
         private System.Windows.Forms.DateTimePicker dtBusiness;
         private System.Windows.Forms.TextBox tbBillNo;
         private System.Windows.Forms.Label lbl3;

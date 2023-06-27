@@ -153,7 +153,7 @@ namespace thepos
                 SetDisplayAlarm("I", " 포인트 사용등록 완료.");
 
                 //? 
-                // 티켓 출력 개발요망
+                // 영수증 출력 개발요망
             }
 
 
