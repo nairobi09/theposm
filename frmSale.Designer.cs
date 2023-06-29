@@ -713,7 +713,7 @@ namespace thepos
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLogo.TabIndex = 39;
             this.picLogo.TabStop = false;
-            this.picLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picLogo_MouseUp);
+            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
             // 
             // lblTitle02
             // 

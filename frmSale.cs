@@ -1752,12 +1752,6 @@ namespace thepos
 
 
 
-
-
-
-
-
-
         private void btnKeyEnter_Click(object sender, EventArgs e)
         {
             //? 열린창에 따라서 순번대로 입력하는 UI로 기능 개발
@@ -1765,24 +1759,37 @@ namespace thepos
         }
 
 
-        private void picLogo_MouseUp(object sender, MouseEventArgs e)
+
+        private void picLogo_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
+            ContextMenu m = new ContextMenu();
+            m.MenuItems.Add(new MenuItem("메모리상태", MenuItemMemoryStatus_Click));
+            m.MenuItems.Add(new MenuItem("상품그룹등록", MenuItemGoodsGroup_Click));
+            m.MenuItems.Add(new MenuItem("상품등록", MenuItemGoods_Click));
 
 
-                MenuItemMemoryStatus_Click();
-
-                //MenuItemNicepayTest_Click();
-            }
+            picLogo.ContextMenu = m;
         }
 
-
-        private void MenuItemMemoryStatus_Click()
+        private void MenuItemMemoryStatus_Click(Object sender, System.EventArgs e)
         {
-                Form fFlow;
-                fFlow = new frmSysAdmin();
-                fFlow.Show();
+            Form fFlow;
+            fFlow = new frmSysMemoryStatus();
+            fFlow.Show();
+        }
+
+        private void MenuItemGoodsGroup_Click(Object sender, System.EventArgs e)
+        {
+            Form fFlow;
+            fFlow = new frmSysGoodsGroup();
+            fFlow.Show();
+        }
+
+        private void MenuItemGoods_Click(Object sender, System.EventArgs e)
+        {
+            Form fFlow;
+            fFlow = new frmSysGoods();
+            fFlow.Show();
         }
 
 

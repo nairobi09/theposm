@@ -12,9 +12,9 @@ using static thepos.frmSale;
 
 namespace thepos
 {
-    public partial class frmSysAdmin : Form
+    public partial class frmSysMemoryStatus : Form
     {
-        public frmSysAdmin()
+        public frmSysMemoryStatus()
         {
             InitializeComponent();
         }
