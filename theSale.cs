@@ -203,6 +203,7 @@ namespace thepos
         }
         public static GoodsGroup[] mGoodsGroup;
 
+
         public struct GoodsItem
         {
             public string code;  // 6
