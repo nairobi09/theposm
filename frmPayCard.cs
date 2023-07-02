@@ -278,7 +278,11 @@ namespace thepos
 
 
 
-            if (paymentToss.requestTossCardAuth(netAmount, install) != 0)  // Toss process
+            PaymentCard mPaymentCard = new PaymentCard();
+
+
+
+            if (requestCardAuth(netAmount, install, ref mPaymentCard) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -299,7 +303,7 @@ namespace thepos
                 SavePayment(paySeq, "Card", netAmount);  // payment
 
 
-                PaymentCard mPaymentCard = new PaymentCard();
+
                 mPaymentCard.site_id = mSiteId;
                 mPaymentCard.biz_dt = mBizDate;
                 mPaymentCard.pos_no = mPosNo;
@@ -313,17 +317,9 @@ namespace thepos
                 mPaymentCard.pay_class = mPayClass;
                 mPaymentCard.ticket_no = ticketNo;
                 mPaymentCard.pay_seq = paySeq;
-                mPaymentCard.tran_date = mTossResponse.Trandate;
-                mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
-                mPaymentCard.install = mTossResponse.Halbu;
-                mPaymentCard.auth_no = mTossResponse.Authno;
-                mPaymentCard.card_no = mTossResponse.Cardno;
-                mPaymentCard.card_name = mTossResponse.Financename;
-                mPaymentCard.isu_code = mTossResponse.Stlinst;
-                mPaymentCard.acq_code = mTossResponse.Reqinst;
-                mPaymentCard.merchant_no = mTossResponse.Merno;
-                mPaymentCard.tran_serial = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
-                mPaymentCard.sign_path = mTossResponse.Signpath;
+
+                // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
+
                 mPaymentCard.is_cancel = "";        // 취소여부
                 mPaymentCards.Add(mPaymentCard);
 
@@ -395,6 +391,30 @@ namespace thepos
                 this.Close();
             }
         }
+
+        private int requestCardAuth(int netAmount, int install, ref PaymentCard mPaymentCard)
+        {
+            int ret = 0;
+
+
+            if (mPayChannel == "KCP")
+            {
+                //ret = paymentKCP.requestKCPCardAuth(netAmount, install);
+            }
+            else if (mPayChannel == "TOSS")
+            {
+                ret = paymentToss.requestTossCardAuth(netAmount, install, ref mPaymentCard);
+            }
+            else
+            {
+
+            }
+
+
+            return 0;
+
+        }
+
 
         void display_error_msg(string msg)
         {

@@ -108,14 +108,14 @@ namespace thepos
 
             lbl7.Font = font10;
 
-            cbtypeIndividual.Font = font12;
-            cbTypeBusiness.Font = font12;
+            rbTypeIndividual.Font = font12;
+            rbTypeBusiness.Font = font12;
+            rbTypeSelf.Font = font12;
 
             lbl8.Font = font10;
 
             lblAuthNo.Font = font12;
 
-            btnCashSelf.Font = font12;
             btnCashRecept.Font = font12;
 
 
@@ -278,14 +278,16 @@ namespace thepos
 
             String receipt_type = "";
 
-            if (cbtypeIndividual.Checked == true) receipt_type = "1";
-            else if (cbTypeBusiness.Checked == true) receipt_type = "2";
-
+            if (rbTypeIndividual.Checked == true) receipt_type = "1";
+            else if (rbTypeBusiness.Checked == true) receipt_type = "2";
+            else receipt_type = "S";
 
             String issues_method_no = tbIssuedMethodNo.Text.Trim();
 
 
-            if (paymentToss.requestTossCashAuth(netAmount, receipt_type, issues_method_no) != 0)  // Toss process
+            PaymentCash paymentCash = new PaymentCash();
+
+            if (requestCashAuth(netAmount, receipt_type, issues_method_no, ref paymentCash) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -295,40 +297,35 @@ namespace thepos
                 //? 서버API로 교체
                 int order_cnt = 0;
 
-
                 if (paySeq == 1)
                 {
                     // 주문 저장 1
                     order_cnt = SaveOrder(ticketNo);  // order. orderitem
                 }
 
-
                 SavePayment(paySeq, "Cash", netAmount);  // payment
 
 
+                paymentCash.site_id = mSiteId;
+                paymentCash.biz_dt = mBizDate;
+                paymentCash.pos_no = mPosNo;
+                paymentCash.the_no = mTheNo;
+                paymentCash.ref_no = mRefNo;
 
-                PaymentCash mPaymentCash = new PaymentCash();
-                mPaymentCash.site_id = mSiteId;
-                mPaymentCash.biz_dt = mBizDate;
-                mPaymentCash.pos_no = mPosNo;
-                mPaymentCash.the_no = mTheNo;
-                mPaymentCash.ref_no = mRefNo;
+                paymentCash.pay_date = get_today_date();
+                paymentCash.pay_time = get_today_time();
+                paymentCash.pay_type = "R1";
+                paymentCash.tran_type = "A";       // 승인 A 취소 C
+                paymentCash.pay_class = mPayClass;
+                paymentCash.ticket_no = ticketNo;
+                paymentCash.pay_seq = paySeq; // 
+                paymentCash.amount = netAmount;
+                paymentCash.receipt_type = receipt_type;
 
-                mPaymentCash.pay_date = get_today_date();
-                mPaymentCash.pay_time = get_today_time();
-                mPaymentCash.pay_type = "R1";
-                mPaymentCash.tran_type = "A";       // 승인 A 취소 C
-                mPaymentCash.pay_class = mPayClass;
-                mPaymentCash.ticket_no = ticketNo;
-                mPaymentCash.pay_seq = paySeq; // 
-                mPaymentCash.tran_date = mTossResponse.Trandate;
-                mPaymentCash.amount = netAmount;
-                mPaymentCash.receipt_type = receipt_type;
-                mPaymentCash.issued_method_no = mTossResponse.Cardno;
-                mPaymentCash.auth_no = mTossResponse.Authno;
-                mPaymentCash.tran_serial = mTossResponse.Tran_serial;
-                mPaymentCash.is_cancel = "";        // 취소여부
-                mPaymentCashs.Add(mPaymentCash);
+                //
+
+                paymentCash.is_cancel = "";        // 취소여부
+                mPaymentCashs.Add(paymentCash);
 
 
                 if (isComplex)
@@ -346,12 +343,12 @@ namespace thepos
                     ListViewItem lvItem = new ListViewItem();
                     lvItem.Tag = "";
                     lvItem.Text = paySeq.ToString();
-                    lvItem.SubItems.Add(get_MMddHHmm(mPaymentCash.pay_date, mPaymentCash.pay_time));
-                    lvItem.SubItems.Add(theSale.get_pay_type_name(mPaymentCash.pay_type));
-                    lvItem.SubItems.Add(theSale.get_tran_type_name(mPaymentCash.tran_type));
-                    lvItem.SubItems.Add(mPaymentCash.issued_method_no);
-                    lvItem.SubItems.Add(mPaymentCash.amount.ToString("N0"));
-                    lvItem.SubItems.Add(mPaymentCash.auth_no);
+                    lvItem.SubItems.Add(get_MMddHHmm(paymentCash.pay_date, paymentCash.pay_time));
+                    lvItem.SubItems.Add(theSale.get_pay_type_name(paymentCash.pay_type));
+                    lvItem.SubItems.Add(theSale.get_tran_type_name(paymentCash.tran_type));
+                    lvItem.SubItems.Add(paymentCash.issued_method_no);
+                    lvItem.SubItems.Add(paymentCash.amount.ToString("N0"));
+                    lvItem.SubItems.Add(paymentCash.auth_no);
                     mComplexLvwPay.Items.Add(lvItem);
 
                     // 복합결제인 경우 seq 관리
@@ -409,6 +406,31 @@ namespace thepos
 
 
 
+        int requestCashAuth(int netAmount, String receipt_type, String issues_method_no, ref PaymentCash paymentCash)
+        {
+            int ret = 0;
+
+
+            if (mPayChannel == "KCP")
+            {
+                //ret = paymentKCP.requestTossCardAuth(netAmount, install);
+            }
+            else if (mPayChannel == "TOSS")
+            {
+                ret = paymentToss.requestTossCashAuth(netAmount, receipt_type, issues_method_no, ref paymentCash);
+            }
+            else
+            {
+
+            }
+
+
+            return 0;
+        }
+
+
+
+
         void display_error_msg(string msg)
         {
             MessageBox.Show(msg, "thepos");
@@ -455,15 +477,7 @@ namespace thepos
         }
 
 
-        private void cbtypeIndividual_CheckedChanged(object sender, EventArgs e)
-        {
-            cbTypeBusiness.Checked = !cbtypeIndividual.Checked;
-        }
 
-        private void cbTypeBusiness_CheckedChanged(object sender, EventArgs e)
-        {
-            cbtypeIndividual.Checked = !cbTypeBusiness.Checked;
-        }
 
 
 
@@ -478,8 +492,6 @@ namespace thepos
 
             mTbKeyDisplayController = saveKeyDisplay;
         }
-
- 
 
     }
 }

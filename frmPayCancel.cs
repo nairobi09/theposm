@@ -203,7 +203,10 @@ namespace thepos
                 //
                 if (mPaymentCards[idx].pay_type == "C1")  // 카드결제취소
                 {
-                    if (requestTossCardCancel(mPaymentCards[idx]) != 0)  // Toss process
+
+                    PaymentCard pCardCancel = new PaymentCard();
+
+                    if (requestCardCancel(mPaymentCards[idx], ref pCardCancel) != 0)  // Toss process
                     {
                         display_error_msg(mErrorMsg);
                     }
@@ -214,32 +217,28 @@ namespace thepos
 
 
                         //
-                        PaymentCard paymentCard = new PaymentCard();
-                        paymentCard.site_id = mSiteId;
-                        paymentCard.biz_dt = mBizDate;
-                        paymentCard.pos_no = mPosNo;
-                        paymentCard.the_no = mPaymentCards[idx].the_no;
-                        paymentCard.ref_no = mPaymentCards[idx].ref_no;
 
-                        paymentCard.pay_date = get_today_date();
-                        paymentCard.pay_time = get_today_time();
-                        paymentCard.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
-                        paymentCard.tran_type = "C";       // 승인 A 취소 C
-                        paymentCard.pay_class = mPayClass;
-                        paymentCard.ticket_no = mPaymentCards[idx].ticket_no;
-                        paymentCard.pay_seq = mPaymentCards[idx].pay_seq;
-                        paymentCard.tran_date = mTossResponse.Trandate;
-                        paymentCard.amount = int.Parse(mTossResponse.Tamt);
-                        paymentCard.install = mPaymentCards[idx].install;  //
-                        paymentCard.auth_no = mPaymentCards[idx].auth_no; //
-                        paymentCard.card_no = mTossResponse.Cardno;
-                        paymentCard.card_name = mPaymentCards[idx].card_name;  //
-                        paymentCard.isu_code = mTossResponse.Stlinst;
-                        paymentCard.acq_code = mTossResponse.Reqinst;
-                        paymentCard.merchant_no = mTossResponse.Merno;
-                        paymentCard.tran_serial = mTossResponse.Tran_serial;     // tran_serial -> 취소시 tid입력
-                        paymentCard.is_cancel = "Y";        // 취소여부
-                        mPaymentCards.Add(paymentCard);
+                        pCardCancel.site_id = mSiteId;
+                        pCardCancel.biz_dt = mBizDate;
+                        pCardCancel.pos_no = mPosNo;
+                        pCardCancel.the_no = mPaymentCards[idx].the_no;
+                        pCardCancel.ref_no = mPaymentCards[idx].ref_no;
+
+                        pCardCancel.pay_date = get_today_date();
+                        pCardCancel.pay_time = get_today_time();
+                        pCardCancel.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
+                        pCardCancel.tran_type = "C";       // 승인 A 취소 C
+                        pCardCancel.pay_class = mPayClass;
+                        pCardCancel.ticket_no = mPaymentCards[idx].ticket_no;
+                        pCardCancel.pay_seq = mPaymentCards[idx].pay_seq;
+                        pCardCancel.install = mPaymentCards[idx].install;  //
+                        pCardCancel.auth_no = mPaymentCards[idx].auth_no; //
+                        pCardCancel.card_name = mPaymentCards[idx].card_name;  //
+
+                        // 
+
+                        pCardCancel.is_cancel = "Y";        // 취소여부
+                        mPaymentCards.Add(pCardCancel);
 
 
                         // 승인건에 취소마킹
@@ -313,7 +312,9 @@ namespace thepos
                 //
                 if (mPaymentCashs[idx].pay_type == "R1")  // 현금영수증 취소
                 {
-                    if (requestTossCashCancel(mPaymentCashs[idx]) != 0)  // Toss process
+                    PaymentCash pCashCancel = new PaymentCash();
+
+                    if (requestCashCancel(mPaymentCashs[idx], ref pCashCancel) != 0)  // Toss process
                     {
                         display_error_msg(mErrorMsg);
                     }
@@ -322,27 +323,27 @@ namespace thepos
                         //
                         cancel_order_and_payments(mPaymentCashs[idx].amount);
 
-                        PaymentCash paymentCash = new PaymentCash();
-                        paymentCash.site_id = mSiteId;
-                        paymentCash.biz_dt = mBizDate;
-                        paymentCash.pos_no = mPosNo;
-                        paymentCash.the_no = mPaymentCashs[idx].the_no;
-                        paymentCash.ref_no = mPaymentCashs[idx].ref_no;
 
-                        paymentCash.pay_date = get_today_date();
-                        paymentCash.pay_time = get_today_time();
-                        paymentCash.pay_type = "R1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
-                        paymentCash.tran_type = "C";       // 승인 A 취소 C
-                        paymentCash.pay_class = mPayClass;
-                        paymentCash.ticket_no = mPaymentCashs[idx].ticket_no;
-                        paymentCash.pay_seq = mPaymentCashs[idx].pay_seq;
-                        paymentCash.tran_date = mTossResponse.Trandate;
-                        paymentCash.amount = mPaymentCashs[idx].amount;
-                        paymentCash.receipt_type = mPaymentCashs[idx].receipt_type;
-                        paymentCash.issued_method_no = mTossResponse.Cardno;
-                        paymentCash.auth_no = mTossResponse.Authno;
-                        paymentCash.is_cancel = "Y";        // 취소여부
-                        mPaymentCashs.Add(paymentCash);
+                        pCashCancel.site_id = mSiteId;
+                        pCashCancel.biz_dt = mBizDate;
+                        pCashCancel.pos_no = mPosNo;
+                        pCashCancel.the_no = mPaymentCashs[idx].the_no;
+                        pCashCancel.ref_no = mPaymentCashs[idx].ref_no;
+
+                        pCashCancel.pay_date = get_today_date();
+                        pCashCancel.pay_time = get_today_time();
+                        pCashCancel.pay_type = "R1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
+                        pCashCancel.tran_type = "C";       // 승인 A 취소 C
+                        pCashCancel.pay_class = mPayClass;
+                        pCashCancel.ticket_no = mPaymentCashs[idx].ticket_no;
+                        pCashCancel.pay_seq = mPaymentCashs[idx].pay_seq;
+                        pCashCancel.amount = mPaymentCashs[idx].amount;
+                        pCashCancel.receipt_type = mPaymentCashs[idx].receipt_type;
+
+                        //
+
+                        pCashCancel.is_cancel = "Y";        // 취소여부
+                        mPaymentCashs.Add(pCashCancel);
 
 
                         // 승인건에 취소마킹
@@ -563,6 +564,50 @@ namespace thepos
 
         }
 
+
+
+
+        int requestCardCancel(PaymentCard mPaymentCards, ref PaymentCard pCardCancel)
+        {
+            int ret = 0;
+
+            if (mPayChannel == "KCP")
+            {
+                
+            }
+            else if (mPayChannel == "TOSS")
+            {
+                ret = requestTossCardCancel(mPaymentCards, ref pCardCancel);
+            }
+            else
+            {
+
+            }
+
+            return 0;
+
+        }
+
+        int requestCashCancel(PaymentCash paymentCash, ref PaymentCash pCashCancel)
+        {
+            int ret = 0;
+
+            if (mPayChannel == "KCP")
+            {
+
+            }
+            else if (mPayChannel == "TOSS")
+            {
+                ret = requestTossCashCancel(paymentCash, ref pCashCancel);
+            }
+            else
+            {
+
+            }
+
+            return 0;
+
+        }
 
 
         void display_error_msg(string msg)

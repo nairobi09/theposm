@@ -209,7 +209,7 @@
     <Compile Include="frmSysGoodsGroup.Designer.cs">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="paymentToss.cs" />
+    <Compile Include="payChannel\paymentToss.cs" />
     <Compile Include="frmSetup.cs">
       <SubType>Form</SubType>
     </Compile>

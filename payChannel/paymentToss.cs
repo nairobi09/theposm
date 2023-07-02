@@ -55,7 +55,7 @@ namespace thepos
 
 
 
-        public static int requestTossCardAuth(int amount, int install)
+        public static int requestTossCardAuth(int amount, int install, ref PaymentCard mPaymentCard)
         {
             int ret = 0;
 
@@ -142,6 +142,19 @@ namespace thepos
 
             if (mTossResponse.Respcode == "0000")
             {
+                mPaymentCard.tran_date = mTossResponse.Trandate;
+                mPaymentCard.amount = int.Parse(mTossResponse.Tamt);
+                mPaymentCard.install = mTossResponse.Halbu;
+                mPaymentCard.auth_no = mTossResponse.Authno;
+                mPaymentCard.card_no = mTossResponse.Cardno;
+                mPaymentCard.card_name = mTossResponse.Financename;
+                mPaymentCard.isu_code = mTossResponse.Stlinst;
+                mPaymentCard.acq_code = mTossResponse.Reqinst;
+                mPaymentCard.merchant_no = mTossResponse.Merno;
+                mPaymentCard.tran_serial = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
+                mPaymentCard.sign_path = mTossResponse.Signpath;
+
+
                 return 0;
             }
             else
@@ -153,7 +166,7 @@ namespace thepos
 
 
 
-        public static int requestTossCardCancel(PaymentCard pCard)
+        public static int requestTossCardCancel(PaymentCard pCard, ref PaymentCard pCardCancel)
         {
             int ret = 0;
 
@@ -244,6 +257,15 @@ namespace thepos
 
             if (mTossResponse.Respcode == "0000")
             {
+                pCardCancel.tran_date = mTossResponse.Trandate;
+                pCardCancel.amount = int.Parse(mTossResponse.Tamt);
+                pCardCancel.card_no = mTossResponse.Cardno;
+                pCardCancel.isu_code = mTossResponse.Stlinst;
+                pCardCancel.acq_code = mTossResponse.Reqinst;
+                pCardCancel.merchant_no = mTossResponse.Merno;
+                pCardCancel.tran_serial = mTossResponse.Tran_serial;     // tran_serial -> 취소시 tid입력
+
+
                 return 0;
             }
             else
@@ -254,7 +276,7 @@ namespace thepos
         }
 
 
-        public static int requestTossCashAuth(int amount, String receipt_type, String issued_method_no)
+        public static int requestTossCashAuth(int amount, String receipt_type, String issued_method_no, ref PaymentCash paymentCash)
         {
             int ret = 0;
 
@@ -345,6 +367,11 @@ namespace thepos
 
             if (mTossResponse.Respcode == "0000")
             {
+                paymentCash.tran_date = mTossResponse.Trandate;
+                paymentCash.issued_method_no = mTossResponse.Cardno;
+                paymentCash.auth_no = mTossResponse.Authno;
+                paymentCash.tran_serial = mTossResponse.Tran_serial;
+
                 return 0;
             }
             else
@@ -355,7 +382,7 @@ namespace thepos
         }
 
 
-        public static int requestTossCashCancel(PaymentCash pCash)
+        public static int requestTossCashCancel(PaymentCash pCash, ref PaymentCash pCashCancel)
         {
             int ret = 0;
 
@@ -435,6 +462,10 @@ namespace thepos
 
             if (mTossResponse.Respcode == "0000")
             {
+                pCashCancel.tran_date = mTossResponse.Trandate;
+                pCashCancel.issued_method_no = mTossResponse.Cardno;
+                pCashCancel.auth_no = mTossResponse.Authno;
+
                 return 0;
             }
             else

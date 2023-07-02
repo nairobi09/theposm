@@ -38,7 +38,7 @@
             this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -172,14 +172,15 @@
             this.SizeY.Text = "SzY";
             this.SizeY.Width = 50;
             // 
-            // button1
+            // btnView
             // 
-            this.button1.Location = new System.Drawing.Point(537, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 39);
-            this.button1.TabIndex = 39;
-            this.button1.Text = "조회";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnView.Location = new System.Drawing.Point(537, 33);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(167, 39);
+            this.btnView.TabIndex = 39;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // textBox1
             // 
@@ -324,7 +325,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.lvwOrderItem);
             this.Controls.Add(this.tableLayoutPanelGoodsGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -350,7 +351,7 @@
         private System.Windows.Forms.ColumnHeader locateY;
         private System.Windows.Forms.ColumnHeader SizeX;
         private System.Windows.Forms.ColumnHeader SizeY;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

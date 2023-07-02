@@ -328,6 +328,7 @@ namespace thepos
 
             mTicketType = "PA"; // PA선불, PD후불
             mTicketMedia = "BC";
+            mPayChannel = "KCP";
 
 
             mPosNoList = new string[4];

@@ -35,10 +35,8 @@
             this.lbl6 = new System.Windows.Forms.Label();
             this.lbl5 = new System.Windows.Forms.Label();
             this.lbl7 = new System.Windows.Forms.Label();
-            this.cbTypeBusiness = new System.Windows.Forms.CheckBox();
             this.lblAuthNo = new System.Windows.Forms.Label();
             this.lbl8 = new System.Windows.Forms.Label();
-            this.cbtypeIndividual = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCashSimple = new System.Windows.Forms.Button();
             this.lblRestAmount = new System.Windows.Forms.Label();
@@ -55,8 +53,10 @@
             this.btn100t = new System.Windows.Forms.Button();
             this.btn10t = new System.Windows.Forms.Button();
             this.btnCashRecept = new System.Windows.Forms.Button();
-            this.btnCashSelf = new System.Windows.Forms.Button();
             this.btn50t = new System.Windows.Forms.Button();
+            this.rbTypeIndividual = new System.Windows.Forms.RadioButton();
+            this.rbTypeBusiness = new System.Windows.Forms.RadioButton();
+            this.rbTypeSelf = new System.Windows.Forms.RadioButton();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,7 +77,6 @@
             this.panelback.Controls.Add(this.btn100t);
             this.panelback.Controls.Add(this.btn10t);
             this.panelback.Controls.Add(this.btnCashRecept);
-            this.panelback.Controls.Add(this.btnCashSelf);
             this.panelback.Controls.Add(this.btn50t);
             this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
@@ -100,14 +99,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rbTypeSelf);
             this.groupBox2.Controls.Add(this.tbIssuedMethodNo);
+            this.groupBox2.Controls.Add(this.rbTypeBusiness);
+            this.groupBox2.Controls.Add(this.rbTypeIndividual);
             this.groupBox2.Controls.Add(this.lbl6);
             this.groupBox2.Controls.Add(this.lbl5);
             this.groupBox2.Controls.Add(this.lbl7);
-            this.groupBox2.Controls.Add(this.cbTypeBusiness);
             this.groupBox2.Controls.Add(this.lblAuthNo);
             this.groupBox2.Controls.Add(this.lbl8);
-            this.groupBox2.Controls.Add(this.cbtypeIndividual);
             this.groupBox2.Location = new System.Drawing.Point(23, 363);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(480, 153);
@@ -153,17 +153,6 @@
             this.lbl7.TabIndex = 45;
             this.lbl7.Text = "사용구분";
             // 
-            // cbTypeBusiness
-            // 
-            this.cbTypeBusiness.AutoSize = true;
-            this.cbTypeBusiness.Location = new System.Drawing.Point(231, 81);
-            this.cbTypeBusiness.Name = "cbTypeBusiness";
-            this.cbTypeBusiness.Size = new System.Drawing.Size(68, 18);
-            this.cbTypeBusiness.TabIndex = 48;
-            this.cbTypeBusiness.Text = "사업자";
-            this.cbTypeBusiness.UseVisualStyleBackColor = true;
-            this.cbTypeBusiness.CheckedChanged += new System.EventHandler(this.cbTypeBusiness_CheckedChanged);
-            // 
             // lblAuthNo
             // 
             this.lblAuthNo.AutoSize = true;
@@ -181,19 +170,6 @@
             this.lbl8.Size = new System.Drawing.Size(63, 14);
             this.lbl8.TabIndex = 45;
             this.lbl8.Text = "승인번호";
-            // 
-            // cbtypeIndividual
-            // 
-            this.cbtypeIndividual.AutoSize = true;
-            this.cbtypeIndividual.Checked = true;
-            this.cbtypeIndividual.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbtypeIndividual.Location = new System.Drawing.Point(162, 81);
-            this.cbtypeIndividual.Name = "cbtypeIndividual";
-            this.cbtypeIndividual.Size = new System.Drawing.Size(54, 18);
-            this.cbtypeIndividual.TabIndex = 48;
-            this.cbtypeIndividual.Text = "개인";
-            this.cbtypeIndividual.UseVisualStyleBackColor = true;
-            this.cbtypeIndividual.CheckedChanged += new System.EventHandler(this.cbtypeIndividual_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -378,17 +354,6 @@
             this.btnCashRecept.UseVisualStyleBackColor = false;
             this.btnCashRecept.Click += new System.EventHandler(this.btnCashRecept_Click);
             // 
-            // btnCashSelf
-            // 
-            this.btnCashSelf.BackColor = System.Drawing.Color.White;
-            this.btnCashSelf.Location = new System.Drawing.Point(194, 533);
-            this.btnCashSelf.Name = "btnCashSelf";
-            this.btnCashSelf.Size = new System.Drawing.Size(137, 57);
-            this.btnCashSelf.TabIndex = 44;
-            this.btnCashSelf.Text = "자진발급";
-            this.btnCashSelf.UseVisualStyleBackColor = false;
-            this.btnCashSelf.Click += new System.EventHandler(this.btnCashSelf_Click);
-            // 
             // btn50t
             // 
             this.btn50t.Location = new System.Drawing.Point(265, 242);
@@ -398,6 +363,38 @@
             this.btn50t.Text = "오만원";
             this.btn50t.UseVisualStyleBackColor = true;
             this.btn50t.Click += new System.EventHandler(this.btn50t_Click);
+            // 
+            // rbTypeIndividual
+            // 
+            this.rbTypeIndividual.AutoSize = true;
+            this.rbTypeIndividual.Checked = true;
+            this.rbTypeIndividual.Location = new System.Drawing.Point(161, 79);
+            this.rbTypeIndividual.Name = "rbTypeIndividual";
+            this.rbTypeIndividual.Size = new System.Drawing.Size(53, 18);
+            this.rbTypeIndividual.TabIndex = 52;
+            this.rbTypeIndividual.TabStop = true;
+            this.rbTypeIndividual.Text = "개인";
+            this.rbTypeIndividual.UseVisualStyleBackColor = true;
+            // 
+            // rbTypeBusiness
+            // 
+            this.rbTypeBusiness.AutoSize = true;
+            this.rbTypeBusiness.Location = new System.Drawing.Point(231, 79);
+            this.rbTypeBusiness.Name = "rbTypeBusiness";
+            this.rbTypeBusiness.Size = new System.Drawing.Size(67, 18);
+            this.rbTypeBusiness.TabIndex = 52;
+            this.rbTypeBusiness.Text = "사업자";
+            this.rbTypeBusiness.UseVisualStyleBackColor = true;
+            // 
+            // rbTypeSelf
+            // 
+            this.rbTypeSelf.AutoSize = true;
+            this.rbTypeSelf.Location = new System.Drawing.Point(309, 79);
+            this.rbTypeSelf.Name = "rbTypeSelf";
+            this.rbTypeSelf.Size = new System.Drawing.Size(81, 18);
+            this.rbTypeSelf.TabIndex = 52;
+            this.rbTypeSelf.Text = "자진발급";
+            this.rbTypeSelf.UseVisualStyleBackColor = true;
             // 
             // frmPayCash
             // 
@@ -427,8 +424,6 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.CheckBox cbTypeBusiness;
-        private System.Windows.Forms.CheckBox cbtypeIndividual;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCashSimple;
         private System.Windows.Forms.Label lblRestAmount;
@@ -447,11 +442,13 @@
         private System.Windows.Forms.Button btn50t;
         private System.Windows.Forms.Label lbl8;
         private System.Windows.Forms.Button btnCashRecept;
-        private System.Windows.Forms.Button btnCashSelf;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lblAuthNo;
         private System.Windows.Forms.TextBox tbIssuedMethodNo;
+        private System.Windows.Forms.RadioButton rbTypeSelf;
+        private System.Windows.Forms.RadioButton rbTypeBusiness;
+        private System.Windows.Forms.RadioButton rbTypeIndividual;
     }
 }
