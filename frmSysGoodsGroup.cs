@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Security.Policy;
+using System.Linq;
 
 namespace thepos
 {
@@ -24,43 +25,49 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            String responseString = "";
 
-            GetAsync();
+            int err = GetAsync(ref responseString);
 
+            if (err == 0)
+            {
+                int g = responseString.Length;
+            }
 
         }
 
-        static async Task GetAsync()
+        public int GetAsync(ref String responseString)
         {
 
             String URL = "http://211.42.156.219:8080/goods?siteId=sh01&posNo=01";
 
             try
             {
-                using (var response = await httpClient.GetAsync(URL))
-                {
-                    Console.WriteLine(response.StatusCode);
+                HttpResponseMessage response = httpClient.GetAsync(URL).Result;
 
-                    if (HttpStatusCode.OK == response.StatusCode)
-                    {
-                        string body = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine(body);
-                    }
-                    else
-                    {
-                        Console.WriteLine($" -- response.ReasonPhrase ==> {response.ReasonPhrase}");
-                    }
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = response.Content;
+                    responseString = responseContent.ReadAsStringAsync().Result;
+
+                    return 0;
+                }
+                else
+                {
+                    responseString = response.ReasonPhrase;
+                    return -1;
                 }
 
             }
             catch (HttpRequestException ex)
             {
-
-                Console.WriteLine($"----------- 서버에 연결할수없습니다 ---------------------");
+                responseString = "서버에 연결할수없습니다";
+                return -1;
             }
             catch (Exception ex2)
             {
-                Console.WriteLine($"Exception={ex2.Message}");
+                responseString = ex2.Message;
+                return -1;
             }
 
         }
