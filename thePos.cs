@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO.Ports;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ using System.Windows.Forms;
 
 namespace thepos
 {
-    public class theSale
+    public class thePos
     {
 
 
@@ -183,6 +184,8 @@ namespace thepos
 
 
 
+
+        public static readonly HttpClient mHttpClient = new HttpClient();
 
         //-------------------------------------------------------------------------------------
 
@@ -1085,8 +1088,40 @@ namespace thepos
 
         }
 
+        // 
+        public static int mGetAsync(String URL, ref String responseString)
+        {
 
+            try
+            {
+                HttpResponseMessage response = mHttpClient.GetAsync(URL).Result;
 
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = response.Content;
+                    responseString = responseContent.ReadAsStringAsync().Result;
+
+                    return 0;
+                }
+                else
+                {
+                    responseString = response.ReasonPhrase;
+                    return -1;
+                }
+
+            }
+            catch (HttpRequestException ex)
+            {
+                responseString = "서버에 연결할수없습니다";
+                return -1;
+            }
+            catch (Exception ex2)
+            {
+                responseString = ex2.Message;
+                return -1;
+            }
+
+        }
 
     }
 }

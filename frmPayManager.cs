@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using PrinterUtility;
 
-using static thepos.theSale;
+using static thepos.thePos;
 using static thepos.frmSale;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ComponentModel.Composition.Primitives;

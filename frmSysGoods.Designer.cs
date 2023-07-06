@@ -43,8 +43,9 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.lvwOrderItem = new System.Windows.Forms.ListView();
+            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,6 +53,7 @@
             this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.sizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanelGoodsItem = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -61,8 +63,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanelGoodsItem.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,14 +189,15 @@
             this.button2.Text = "입력";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnView
             // 
-            this.button1.Location = new System.Drawing.Point(551, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 39);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "조회";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnView.Location = new System.Drawing.Point(551, 33);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(167, 39);
+            this.btnView.TabIndex = 44;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lvwOrderItem
             // 
@@ -224,6 +225,11 @@
             this.lvwOrderItem.TabStop = false;
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
             this.lvwOrderItem.View = System.Windows.Forms.View.Details;
+            // 
+            // code
+            // 
+            this.code.Text = "코드";
+            this.code.Width = 50;
             // 
             // name
             // 
@@ -264,6 +270,12 @@
             this.sizeX.Text = "SzX";
             this.sizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.sizeX.Width = 50;
+            // 
+            // sizeY
+            // 
+            this.sizeY.Text = "SzY";
+            this.sizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sizeY.Width = 50;
             // 
             // tableLayoutPanelGoodsItem
             // 
@@ -378,17 +390,6 @@
             this.label9.TabIndex = 55;
             this.label9.Text = "면세";
             // 
-            // code
-            // 
-            this.code.Text = "코드";
-            this.code.Width = 50;
-            // 
-            // sizeY
-            // 
-            this.sizeY.Text = "SzY";
-            this.sizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeY.Width = 50;
-            // 
             // frmSysGoods
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -416,7 +417,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.lvwOrderItem);
             this.Name = "frmSysGoods";
             this.Text = "상품등록";
@@ -443,7 +444,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ListView lvwOrderItem;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader amt;

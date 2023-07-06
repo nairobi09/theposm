@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Collections.Generic;
-using static thepos.theSale;
+using static thepos.thePos;
 using static thepos.frmPayComplex;
 using System.Diagnostics;
 using PrinterUtility;

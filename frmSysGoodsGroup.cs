@@ -6,15 +6,17 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Security.Policy;
 using System.Linq;
+using static thepos.thePos;
+using Newtonsoft.Json.Linq;
+
 
 namespace thepos
 {
     public partial class frmSysGoodsGroup : Form
     {
-        static readonly HttpClient httpClient = new HttpClient();
+        GoodsGroup goodsGroup;
 
 
         public frmSysGoodsGroup()
@@ -25,49 +27,21 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            String responseString = "";
+            String jsonData = "";
+            String URL = "http://211.42.156.219:8080/goodsGroup?siteId=sh01&posNo=01";
 
-            int err = GetAsync(ref responseString);
+            int err = mGetAsync(URL, ref jsonData);
 
             if (err == 0)
             {
-                int g = responseString.Length;
-            }
+                JObject jObject = JObject.Parse(jsonData);
+                String rCode = jObject["resultCode"].ToString();
 
-        }
 
-        public int GetAsync(ref String responseString)
-        {
 
-            String URL = "http://211.42.156.219:8080/goods?siteId=sh01&posNo=01";
 
-            try
-            {
-                HttpResponseMessage response = httpClient.GetAsync(URL).Result;
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = response.Content;
-                    responseString = responseContent.ReadAsStringAsync().Result;
 
-                    return 0;
-                }
-                else
-                {
-                    responseString = response.ReasonPhrase;
-                    return -1;
-                }
-
-            }
-            catch (HttpRequestException ex)
-            {
-                responseString = "서버에 연결할수없습니다";
-                return -1;
-            }
-            catch (Exception ex2)
-            {
-                responseString = ex2.Message;
-                return -1;
             }
 
         }

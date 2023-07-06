@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static thepos.theSale;
+using static thepos.thePos;
 using static thepos.frmSale;
 using static thepos.paymentToss;
 
