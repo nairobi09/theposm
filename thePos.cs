@@ -25,7 +25,7 @@ using System.Windows.Forms;
 
 - 다국어 지원 : 영어 중국어 일본어
 
-- 원격지원 솔루션 - 피씨애니?
+- 원격지원 솔루션 - 헬프?
 
 - 환경정보 관리
 
@@ -38,7 +38,9 @@ using System.Windows.Forms;
 
 - 일집계
 
-- 
+- 영업개시(수동), 영업마감(수동,자동), 중간마감(수동)
+
+
 
 
 
@@ -51,10 +53,12 @@ using System.Windows.Forms;
 - 영수증프린터, 바코드티지프린터, 스캐너 
 - 락커 연동 : 후불인 경우
 
+- 영수증인쇄 : 바코드 문자출력문제, port설정-처음실행시 먹통문제
+
+
 - 코너관리
 - 할인정책
 
-- 영수증인쇄 : 바코드 문자출력문제, port설정-처음실행시 먹통문제
 
 
 
@@ -101,6 +105,7 @@ namespace thepos
         public static Font font9;
         public static Font font10;
         public static Font font12;
+        public static Font font12bold;
         public static Font font13;
         public static Font font14;
         public static Font font16;
@@ -121,7 +126,18 @@ namespace thepos
 
 
 
-        // /// ///사이트 설정값
+        // //////////////////////////////////////////////////////////////////////////////////////////
+        // thepos 전체 설정
+
+        // 콜센터 연락처
+        public static String mCallCenterNo = "";
+
+
+
+
+
+        // //////////////////////////////////////////////////////////////////////////////////////////
+        // 사이트 설정값
         public static String mSiteId = "";
         public static String mSiteName;         // 매장명
         public static String mSiteAlias;        // 매장명
@@ -129,9 +145,6 @@ namespace thepos
         public static String mRegistNo;         // 사업자번호
         public static String mBizAddr;          // 주소
         public static String mBizTelNo;         // 대표전화
-
-
-
 
 
         // (후불) 발권  사용  정산 [락커]
@@ -158,42 +171,43 @@ namespace thepos
 
 
 
-
-        /// /// 포스 설정값
+        // //////////////////////////////////////////////////////////////////////////////////////////
+        /// 포스 설정값
         public static String mPosNo = "";
 
         public static string mBillPrinterPort = "COM7";  // 영수증프린터
         public static string mTicketMediaPort = "COM7";  // 띠지 or 팔찌
 
-        public static string mCasherName = "김포스";
+        public static string mUserID = "";
+        public static string mUserName = "";
 
 
 
 
 
 
+        // //////////////////////////////////////////////////////////////////////////////////////////
         // 실행시 로컬 생성데이터
         public static String mBizDate = "";
         public static String mMacAddr = "";
         public static String mTheNo = "";  // 결제단위
         public static String mRefNo = "";  // 주문단위 입장단위
 
+        
         // 실행중 로컬 운영
         public static String mScanString;
         public static bool mIsScanOK;
 
 
-
-
         public static readonly HttpClient mHttpClient = new HttpClient();
 
-        //-------------------------------------------------------------------------------------
 
 
 
 
 
-        //
+
+        // //////////////////////////////////////////////////////////////////////////////////////////
         // 로컬 + 서버
         public struct GoodsGroup
         {

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using static thepos.thePos;
-using static thepos.frmSale;
+using static thepos.frmSales;
 using static thepos.frmPayComplex;
 using static thepos.paymentToss;
 
@@ -436,7 +436,7 @@ namespace thepos
 
         private void frmPayCard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSale.ConsoleEnable();
+            frmSales.ConsoleEnable();
 
             mTbKeyDisplayController = saveKeyDisplay;
         }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
-using static thepos.frmSale;
+using static thepos.frmSales;
 
 namespace thepos
 {
@@ -139,7 +139,7 @@ namespace thepos
 
         private void frmPayComplex_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSale.ConsoleEnable();
+            frmSales.ConsoleEnable();
             mTbKeyDisplayController = saveKeyDisplay;
             mRightFace = saveRightFace;
 

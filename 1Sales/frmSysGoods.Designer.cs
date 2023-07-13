@@ -44,7 +44,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
-            this.lvwOrderItem = new System.Windows.Forms.ListView();
+            this.lvwGoodsItem = new System.Windows.Forms.ListView();
             this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -63,6 +63,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.cbGoodsGroup = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelGoodsItem.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,7 +192,7 @@
             // 
             // btnView
             // 
-            this.btnView.Location = new System.Drawing.Point(551, 33);
+            this.btnView.Location = new System.Drawing.Point(551, 49);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(167, 39);
             this.btnView.TabIndex = 44;
@@ -199,10 +200,10 @@
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // lvwOrderItem
+            // lvwGoodsItem
             // 
-            this.lvwOrderItem.BackColor = System.Drawing.SystemColors.Window;
-            this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwGoodsItem.BackColor = System.Drawing.SystemColors.Window;
+            this.lvwGoodsItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.code,
             this.name,
             this.amt,
@@ -212,19 +213,19 @@
             this.locateY,
             this.sizeX,
             this.sizeY});
-            this.lvwOrderItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lvwOrderItem.FullRowSelect = true;
-            this.lvwOrderItem.GridLines = true;
-            this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwOrderItem.HideSelection = false;
-            this.lvwOrderItem.Location = new System.Drawing.Point(0, 0);
-            this.lvwOrderItem.MultiSelect = false;
-            this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.Size = new System.Drawing.Size(521, 254);
-            this.lvwOrderItem.TabIndex = 43;
-            this.lvwOrderItem.TabStop = false;
-            this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
-            this.lvwOrderItem.View = System.Windows.Forms.View.Details;
+            this.lvwGoodsItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwGoodsItem.FullRowSelect = true;
+            this.lvwGoodsItem.GridLines = true;
+            this.lvwGoodsItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwGoodsItem.HideSelection = false;
+            this.lvwGoodsItem.Location = new System.Drawing.Point(0, 0);
+            this.lvwGoodsItem.MultiSelect = false;
+            this.lvwGoodsItem.Name = "lvwGoodsItem";
+            this.lvwGoodsItem.Size = new System.Drawing.Size(521, 254);
+            this.lvwGoodsItem.TabIndex = 43;
+            this.lvwGoodsItem.TabStop = false;
+            this.lvwGoodsItem.UseCompatibleStateImageBehavior = false;
+            this.lvwGoodsItem.View = System.Windows.Forms.View.Details;
             // 
             // code
             // 
@@ -390,11 +391,20 @@
             this.label9.TabIndex = 55;
             this.label9.Text = "면세";
             // 
+            // cbGoodsGroup
+            // 
+            this.cbGoodsGroup.FormattingEnabled = true;
+            this.cbGoodsGroup.Location = new System.Drawing.Point(551, 23);
+            this.cbGoodsGroup.Name = "cbGoodsGroup";
+            this.cbGoodsGroup.Size = new System.Drawing.Size(167, 20);
+            this.cbGoodsGroup.TabIndex = 61;
+            // 
             // frmSysGoods
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 661);
+            this.Controls.Add(this.cbGoodsGroup);
             this.Controls.Add(this.tableLayoutPanelGoodsItem);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -418,7 +428,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnView);
-            this.Controls.Add(this.lvwOrderItem);
+            this.Controls.Add(this.lvwGoodsItem);
             this.Name = "frmSysGoods";
             this.Text = "상품등록";
             this.tableLayoutPanelGoodsItem.ResumeLayout(false);
@@ -445,7 +455,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ListView lvwOrderItem;
+        private System.Windows.Forms.ListView lvwGoodsItem;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader amt;
         private System.Windows.Forms.ColumnHeader ticket;
@@ -464,5 +474,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ColumnHeader sizeY;
+        private System.Windows.Forms.ComboBox cbGoodsGroup;
     }
 }

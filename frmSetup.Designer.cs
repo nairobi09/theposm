@@ -45,10 +45,10 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 341);
+            this.panel1.Location = new System.Drawing.Point(0, 370);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(549, 109);
+            this.panel1.Size = new System.Drawing.Size(551, 109);
             this.panel1.TabIndex = 27;
             // 
             // btnPrint
@@ -130,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 450);
+            this.ClientSize = new System.Drawing.Size(551, 479);
             this.Controls.Add(this.panel1);
             this.Name = "frmSetup";
             this.Text = "frmSetup";

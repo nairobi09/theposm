@@ -13,7 +13,7 @@ using System.IO.Ports;
 using PrinterUtility;
 
 using static thepos.thePos;
-using static thepos.frmSale;
+using static thepos.frmSales;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ComponentModel.Composition.Primitives;
 
@@ -150,7 +150,7 @@ namespace thepos
 
         private void frmPayManager_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSale.ConsoleEnable();
+            frmSales.ConsoleEnable();
             mTbKeyDisplayController = saveKeyDisplay;
             
         }

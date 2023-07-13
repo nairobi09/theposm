@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static thepos.frmSale;
+using static thepos.frmSales;
 using static thepos.thePos;
 
 
@@ -200,7 +200,7 @@ namespace thepos
                     orderItem.dcr_value = value;
 
 
-                    orderItem.dc_amount = frmSale.get_dc_amount(orderItem);
+                    orderItem.dc_amount = frmSales.get_dc_amount(orderItem);
 
 
                     int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
@@ -352,7 +352,7 @@ namespace thepos
 
         private void frmAmountDC_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSale.ConsoleEnable();
+            frmSales.ConsoleEnable();
         }
 
 

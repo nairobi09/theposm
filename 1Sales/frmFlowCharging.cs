@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
-using static thepos.frmSale;
+using static thepos.frmSales;
 
 namespace thepos
 {
@@ -223,7 +223,7 @@ namespace thepos
 
             MemOrderItem memOrderItem = new MemOrderItem();
 
-            int lv_idx = (frmSale.get_lvitem_idx("CHARGE"));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = (frmSales.get_lvitem_idx("CHARGE"));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {

@@ -33,7 +33,7 @@ panelProduct : 488, 56 529, 547
 
 namespace thepos
 {
-    public partial class frmSale : Form
+    public partial class frmSales : Form
     {
 
         public static int mBillTheNo = 0;
@@ -199,7 +199,7 @@ namespace thepos
         }
 
 
-        public frmSale()
+        public frmSales()
         {
             InitializeComponent();
 
@@ -224,28 +224,16 @@ namespace thepos
 
         private void initialize_font()
         {
-            //fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
-            fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
-
-            font8 = new Font(fontCollection.Families[0], 8f);
-            font9 = new Font(fontCollection.Families[0], 9f);
-            font10 = new Font(fontCollection.Families[0], 10f);
-            font12 = new Font(fontCollection.Families[0], 12f);
-            font13 = new Font(fontCollection.Families[0], 12f);
-            font14 = new Font(fontCollection.Families[0], 14f);
-            font16 = new Font(fontCollection.Families[0], 16f);
-            font20 = new Font(fontCollection.Families[0], 20f);
-
 
             lblTitle01.Font = font9;
             lblTitle02.Font = font9;
             lblTitle03.Font = font9;
             lblTitle04.Font = font9;
             
-            lblPosName.Font = font9;
+            lblSiteName.Font = font9;
             lblPosNo.Font = font9;
             lblBusinessDate.Font = font9;
-            lblWorker.Font = font9;
+            lblUserName.Font = font9;
 
 
             lblDate.Font = font10;
@@ -307,41 +295,16 @@ namespace thepos
         private void initialize_the()
         {
             //Title에 일자 요일을 표시
-            setDateTitle();
+            setCurrentDateTitle();
 
-
-            // 최초로드?
-            //
-            // 영업일자
-            //
-            mBizDate = DateTime.Now.ToString("yyyyMMdd");
-            mSiteId = "9011";
-            mPosNo = "01";
-
-            mSiteName = "주식회사 동서월드개발";
-            mSiteAlias = "동서월드";
-            mCapName = "김동슈";
-            mRegistNo = "3770110382";
-            mBizAddr = "경기도 광명시 일직로 101-22";
-            mBizTelNo = "031-954-4938";
-
-
-            mTicketType = "PA"; // PA선불, PD후불
-            mTicketMedia = "BC";
-            mPayChannel = "KCP";
-
-
-            mPosNoList = new string[4];
-            mPosNoList[0] = "01";
-            mPosNoList[1] = "02";
-            mPosNoList[2] = "03";
-            mPosNoList[3] = "04";
-
-
-
+            lblSiteName.Text = mSiteName;
+            lblPosNo.Text = mPosNo;
 
             lblBusinessDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
+            lblUserName.Text = mUserName;
 
+
+            
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
 
@@ -1610,11 +1573,11 @@ namespace thepos
 
             if (nowDt.ToString("HHmms0") == "000000")
             {
-                setDateTitle();
+                setCurrentDateTitle();
             }
         }
 
-        void setDateTitle()
+        void setCurrentDateTitle()
         {
             DateTime nowDt = DateTime.Now;
             String strWeek = "";
@@ -1792,8 +1755,5 @@ namespace thepos
             fFlow = new frmSysGoods();
             fFlow.Show();
         }
-
-
-
     }
 }

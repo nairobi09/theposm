@@ -120,41 +120,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2Business\frmBizClose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2Business\frmBizClose.Designer.cs">
+      <DependentUpon>frmBizClose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2Business\frmBizCloseCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2Business\frmBizCloseCancel.Designer.cs">
+      <DependentUpon>frmBizCloseCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2Business\frmBizOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2Business\frmBizOpen.Designer.cs">
+      <DependentUpon>frmBizOpen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFlowCharging.cs">
+    <Compile Include="1Sales\frmFlowCharging.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFlowCharging.Designer.cs">
+    <Compile Include="1Sales\frmFlowCharging.Designer.cs">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFlowSettlement.cs">
+    <Compile Include="1Sales\frmFlowSettlement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFlowSettlement.Designer.cs">
+    <Compile Include="1Sales\frmFlowSettlement.Designer.cs">
       <DependentUpon>frmFlowSettlement.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFlowTicketing.cs">
+    <Compile Include="1Sales\frmFlowTicketing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFlowTicketing.Designer.cs">
+    <Compile Include="1Sales\frmFlowTicketing.Designer.cs">
       <DependentUpon>frmFlowTicketing.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLayoutBill.cs">
+    <Compile Include="1Sales\frmLayoutBill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLayoutBill.Designer.cs">
+    <Compile Include="1Sales\frmLayoutBill.Designer.cs">
       <DependentUpon>frmLayoutBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOrderDCR.cs">
+    <Compile Include="1Sales\frmOrderDCR.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOrderDCR.Designer.cs">
+    <Compile Include="1Sales\frmOrderDCR.Designer.cs">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBusiness.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBusiness.Designer.cs">
+      <DependentUpon>frmBusiness.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -162,82 +186,88 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayCancel.cs">
+    <Compile Include="1Sales\frmPayCancel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayCancel.Designer.cs">
+    <Compile Include="1Sales\frmPayCancel.Designer.cs">
       <DependentUpon>frmPayCancel.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayComplex.cs">
+    <Compile Include="1Sales\frmPayComplex.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayComplex.Designer.cs">
+    <Compile Include="1Sales\frmPayComplex.Designer.cs">
       <DependentUpon>frmPayComplex.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayEasy.cs">
+    <Compile Include="1Sales\frmPayEasy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayEasy.Designer.cs">
+    <Compile Include="1Sales\frmPayEasy.Designer.cs">
       <DependentUpon>frmPayEasy.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayPoint.cs">
+    <Compile Include="1Sales\frmPayPoint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayPoint.Designer.cs">
+    <Compile Include="1Sales\frmPayPoint.Designer.cs">
       <DependentUpon>frmPayPoint.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSale.cs">
+    <Compile Include="frmReports.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSale.Designer.cs">
-      <DependentUpon>frmSale.cs</DependentUpon>
+    <Compile Include="frmReports.Designer.cs">
+      <DependentUpon>frmReports.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayManager.cs">
+    <Compile Include="frmSales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayManager.Designer.cs">
+    <Compile Include="frmSales.Designer.cs">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="1Sales\frmPayManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmPayManager.Designer.cs">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOrderWaiting.cs">
+    <Compile Include="1Sales\frmOrderWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOrderWaiting.Designer.cs">
+    <Compile Include="1Sales\frmOrderWaiting.Designer.cs">
       <DependentUpon>frmOrderWaiting.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayCard.cs">
+    <Compile Include="1Sales\frmPayCard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayCard.Designer.cs">
+    <Compile Include="1Sales\frmPayCard.Designer.cs">
       <DependentUpon>frmPayCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPayCash.cs">
+    <Compile Include="1Sales\frmPayCash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPayCash.Designer.cs">
+    <Compile Include="1Sales\frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmScanner.cs">
+    <Compile Include="1Sales\frmScanner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmScanner.Designer.cs">
+    <Compile Include="1Sales\frmScanner.Designer.cs">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSysGoods.cs">
+    <Compile Include="1Sales\frmSysGoods.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSysGoods.Designer.cs">
+    <Compile Include="1Sales\frmSysGoods.Designer.cs">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSysMemoryStatus.cs">
+    <Compile Include="1Sales\frmSysMemoryStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSysMemoryStatus.Designer.cs">
+    <Compile Include="1Sales\frmSysMemoryStatus.Designer.cs">
       <DependentUpon>frmSysMemoryStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSysGoodsGroup.cs">
+    <Compile Include="1Sales\frmSysGoodsGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSysGoodsGroup.Designer.cs">
+    <Compile Include="1Sales\frmSysGoodsGroup.Designer.cs">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="payChannel\paymentToss.cs" />
@@ -250,64 +280,79 @@
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="2Business\frmBizClose.resx">
+      <DependentUpon>frmBizClose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2Business\frmBizCloseCancel.resx">
+      <DependentUpon>frmBizCloseCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2Business\frmBizOpen.resx">
+      <DependentUpon>frmBizOpen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFlowCharging.resx">
+    <EmbeddedResource Include="1Sales\frmFlowCharging.resx">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFlowSettlement.resx">
+    <EmbeddedResource Include="1Sales\frmFlowSettlement.resx">
       <DependentUpon>frmFlowSettlement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFlowTicketing.resx">
+    <EmbeddedResource Include="1Sales\frmFlowTicketing.resx">
       <DependentUpon>frmFlowTicketing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLayoutBill.resx">
+    <EmbeddedResource Include="1Sales\frmLayoutBill.resx">
       <DependentUpon>frmLayoutBill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOrderDCR.resx">
+    <EmbeddedResource Include="1Sales\frmOrderDCR.resx">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBusiness.resx">
+      <DependentUpon>frmBusiness.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayCancel.resx">
+    <EmbeddedResource Include="1Sales\frmPayCancel.resx">
       <DependentUpon>frmPayCancel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayComplex.resx">
+    <EmbeddedResource Include="1Sales\frmPayComplex.resx">
       <DependentUpon>frmPayComplex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayEasy.resx">
+    <EmbeddedResource Include="1Sales\frmPayEasy.resx">
       <DependentUpon>frmPayEasy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayPoint.resx">
+    <EmbeddedResource Include="1Sales\frmPayPoint.resx">
       <DependentUpon>frmPayPoint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSale.resx">
-      <DependentUpon>frmSale.cs</DependentUpon>
+    <EmbeddedResource Include="frmReports.resx">
+      <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayManager.resx">
+    <EmbeddedResource Include="frmSales.resx">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmPayManager.resx">
       <DependentUpon>frmPayManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOrderWaiting.resx">
+    <EmbeddedResource Include="1Sales\frmOrderWaiting.resx">
       <DependentUpon>frmOrderWaiting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayCard.resx">
+    <EmbeddedResource Include="1Sales\frmPayCard.resx">
       <DependentUpon>frmPayCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPayCash.resx">
+    <EmbeddedResource Include="1Sales\frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmScanner.resx">
+    <EmbeddedResource Include="1Sales\frmScanner.resx">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSysGoods.resx">
+    <EmbeddedResource Include="1Sales\frmSysGoods.resx">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSysGoodsGroup.resx">
+    <EmbeddedResource Include="1Sales\frmSysGoodsGroup.resx">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSysMemoryStatus.resx">
+    <EmbeddedResource Include="1Sales\frmSysMemoryStatus.resx">
       <DependentUpon>frmSysMemoryStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -349,6 +394,7 @@
     <Content Include="res\icon-n-act_com_setting-2.png" />
     <Content Include="res\icon_65.ico" />
     <Content Include="res\logo1.png" />
+    <Content Include="res\thepos.png" />
     <Content Include="thepos.ico" />
   </ItemGroup>
   <ItemGroup>

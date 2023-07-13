@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
-using static thepos.frmSale;
+using static thepos.frmSales;
 using System.Drawing.Text;
 
 namespace thepos

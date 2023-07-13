@@ -31,7 +31,7 @@
             this.tableLayoutPanelGoodsGroup = new System.Windows.Forms.TableLayoutPanel();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
-            this.lvwOrderItem = new System.Windows.Forms.ListView();
+            this.lvwGoodsGroup = new System.Windows.Forms.ListView();
             this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,21 +39,21 @@
             this.SizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnView = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbGroupCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.tbGroupName = new System.Windows.Forms.TextBox();
+            this.tbLocateX = new System.Windows.Forms.TextBox();
+            this.tbLocateY = new System.Windows.Forms.TextBox();
+            this.tbSizeX = new System.Windows.Forms.TextBox();
+            this.tbSizeY = new System.Windows.Forms.TextBox();
+            this.btnInput = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnSend = new System.Windows.Forms.Button();
             this.tableLayoutPanelGoodsGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +73,7 @@
             this.tableLayoutPanelGoodsGroup.Controls.Add(this.button19, 0, 0);
             this.tableLayoutPanelGoodsGroup.Controls.Add(this.button20, 3, 0);
             this.tableLayoutPanelGoodsGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(0, 305);
+            this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(4, 305);
             this.tableLayoutPanelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelGoodsGroup.Name = "tableLayoutPanelGoodsGroup";
             this.tableLayoutPanelGoodsGroup.RowCount = 2;
@@ -116,29 +116,30 @@
             this.button20.Text = "티켓";
             this.button20.UseVisualStyleBackColor = false;
             // 
-            // lvwOrderItem
+            // lvwGoodsGroup
             // 
-            this.lvwOrderItem.BackColor = System.Drawing.SystemColors.Window;
-            this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwGoodsGroup.BackColor = System.Drawing.SystemColors.Window;
+            this.lvwGoodsGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.code,
             this.name,
             this.locateX,
             this.locateY,
             this.SizeX,
             this.SizeY});
-            this.lvwOrderItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lvwOrderItem.FullRowSelect = true;
-            this.lvwOrderItem.GridLines = true;
-            this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwOrderItem.HideSelection = false;
-            this.lvwOrderItem.Location = new System.Drawing.Point(0, 0);
-            this.lvwOrderItem.MultiSelect = false;
-            this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.Size = new System.Drawing.Size(521, 296);
-            this.lvwOrderItem.TabIndex = 38;
-            this.lvwOrderItem.TabStop = false;
-            this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
-            this.lvwOrderItem.View = System.Windows.Forms.View.Details;
+            this.lvwGoodsGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwGoodsGroup.FullRowSelect = true;
+            this.lvwGoodsGroup.GridLines = true;
+            this.lvwGoodsGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwGoodsGroup.HideSelection = false;
+            this.lvwGoodsGroup.Location = new System.Drawing.Point(4, 0);
+            this.lvwGoodsGroup.MultiSelect = false;
+            this.lvwGoodsGroup.Name = "lvwGoodsGroup";
+            this.lvwGoodsGroup.Size = new System.Drawing.Size(521, 296);
+            this.lvwGoodsGroup.TabIndex = 38;
+            this.lvwGoodsGroup.TabStop = false;
+            this.lvwGoodsGroup.UseCompatibleStateImageBehavior = false;
+            this.lvwGoodsGroup.View = System.Windows.Forms.View.Details;
+            this.lvwGoodsGroup.SelectedIndexChanged += new System.EventHandler(this.lvwGoodsGroup_SelectedIndexChanged);
             // 
             // code
             // 
@@ -182,12 +183,12 @@
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // textBox1
+            // tbGroupCode
             // 
-            this.textBox1.Location = new System.Drawing.Point(591, 129);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 21);
-            this.textBox1.TabIndex = 40;
+            this.tbGroupCode.Location = new System.Drawing.Point(591, 129);
+            this.tbGroupCode.Name = "tbGroupCode";
+            this.tbGroupCode.Size = new System.Drawing.Size(113, 21);
+            this.tbGroupCode.TabIndex = 40;
             // 
             // label1
             // 
@@ -243,67 +244,67 @@
             this.label6.TabIndex = 41;
             this.label6.Text = "SizeY";
             // 
-            // textBox2
+            // tbGroupName
             // 
-            this.textBox2.Location = new System.Drawing.Point(591, 158);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(113, 21);
-            this.textBox2.TabIndex = 40;
+            this.tbGroupName.Location = new System.Drawing.Point(591, 158);
+            this.tbGroupName.Name = "tbGroupName";
+            this.tbGroupName.Size = new System.Drawing.Size(113, 21);
+            this.tbGroupName.TabIndex = 40;
             // 
-            // textBox3
+            // tbLocateX
             // 
-            this.textBox3.Location = new System.Drawing.Point(591, 196);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(113, 21);
-            this.textBox3.TabIndex = 40;
+            this.tbLocateX.Location = new System.Drawing.Point(591, 196);
+            this.tbLocateX.Name = "tbLocateX";
+            this.tbLocateX.Size = new System.Drawing.Size(113, 21);
+            this.tbLocateX.TabIndex = 40;
             // 
-            // textBox4
+            // tbLocateY
             // 
-            this.textBox4.Location = new System.Drawing.Point(591, 225);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(113, 21);
-            this.textBox4.TabIndex = 40;
+            this.tbLocateY.Location = new System.Drawing.Point(591, 225);
+            this.tbLocateY.Name = "tbLocateY";
+            this.tbLocateY.Size = new System.Drawing.Size(113, 21);
+            this.tbLocateY.TabIndex = 40;
             // 
-            // textBox5
+            // tbSizeX
             // 
-            this.textBox5.Location = new System.Drawing.Point(591, 254);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(113, 21);
-            this.textBox5.TabIndex = 40;
+            this.tbSizeX.Location = new System.Drawing.Point(591, 254);
+            this.tbSizeX.Name = "tbSizeX";
+            this.tbSizeX.Size = new System.Drawing.Size(113, 21);
+            this.tbSizeX.TabIndex = 40;
             // 
-            // textBox6
+            // tbSizeY
             // 
-            this.textBox6.Location = new System.Drawing.Point(591, 283);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(113, 21);
-            this.textBox6.TabIndex = 40;
+            this.tbSizeY.Location = new System.Drawing.Point(591, 283);
+            this.tbSizeY.Name = "tbSizeY";
+            this.tbSizeY.Size = new System.Drawing.Size(113, 21);
+            this.tbSizeY.TabIndex = 40;
             // 
-            // button2
+            // btnInput
             // 
-            this.button2.Location = new System.Drawing.Point(537, 324);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 39);
-            this.button2.TabIndex = 39;
-            this.button2.Text = "입력";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnInput.Location = new System.Drawing.Point(537, 324);
+            this.btnInput.Name = "btnInput";
+            this.btnInput.Size = new System.Drawing.Size(91, 39);
+            this.btnInput.TabIndex = 39;
+            this.btnInput.Text = "입력";
+            this.btnInput.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnUpdate
             // 
-            this.button3.Location = new System.Drawing.Point(537, 369);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 39);
-            this.button3.TabIndex = 39;
-            this.button3.Text = "수정";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(537, 369);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(91, 39);
+            this.btnUpdate.TabIndex = 39;
+            this.btnUpdate.Text = "수정";
+            this.btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnSend
             // 
-            this.button4.Location = new System.Drawing.Point(635, 326);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(69, 82);
-            this.button4.TabIndex = 39;
-            this.button4.Text = "전송";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSend.Location = new System.Drawing.Point(635, 326);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(69, 82);
+            this.btnSend.TabIndex = 39;
+            this.btnSend.Text = "전송";
+            this.btnSend.UseVisualStyleBackColor = true;
             // 
             // frmSysGoodsGroup
             // 
@@ -316,17 +317,17 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.tbSizeY);
+            this.Controls.Add(this.tbSizeX);
+            this.Controls.Add(this.tbLocateY);
+            this.Controls.Add(this.tbLocateX);
+            this.Controls.Add(this.tbGroupName);
+            this.Controls.Add(this.tbGroupCode);
+            this.Controls.Add(this.btnSend);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnInput);
             this.Controls.Add(this.btnView);
-            this.Controls.Add(this.lvwOrderItem);
+            this.Controls.Add(this.lvwGoodsGroup);
             this.Controls.Add(this.tableLayoutPanelGoodsGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -344,7 +345,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsGroup;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.ListView lvwOrderItem;
+        private System.Windows.Forms.ListView lvwGoodsGroup;
         private System.Windows.Forms.ColumnHeader code;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader locateX;
@@ -352,20 +353,20 @@
         private System.Windows.Forms.ColumnHeader SizeX;
         private System.Windows.Forms.ColumnHeader SizeY;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbGroupCode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox tbGroupName;
+        private System.Windows.Forms.TextBox tbLocateX;
+        private System.Windows.Forms.TextBox tbLocateY;
+        private System.Windows.Forms.TextBox tbSizeX;
+        private System.Windows.Forms.TextBox tbSizeY;
+        private System.Windows.Forms.Button btnInput;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnSend;
     }
 }

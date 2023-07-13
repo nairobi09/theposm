@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static thepos.thePos;
-using static thepos.frmSale;
+using static thepos.frmSales;
 using static thepos.paymentToss;
 
 namespace thepos

@@ -17,6 +17,12 @@ namespace thepos
         public frmSysGoods()
         {
             InitializeComponent();
+            initialize_font();
+        }
+
+        private void initialize_font()
+        {
+            lvwGoodsItem.Font = font10;
         }
 
         private void btnView_Click(object sender, EventArgs e)
