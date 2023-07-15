@@ -180,6 +180,12 @@
     <Compile Include="frmBusiness.Designer.cs">
       <DependentUpon>frmBusiness.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmExit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExit.Designer.cs">
+      <DependentUpon>frmExit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,7 +276,14 @@
     <Compile Include="1Sales\frmSysGoodsGroup.Designer.cs">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="payChannel\paymentToss.cs" />
+    <Compile Include="van\KCP\ClaConfig.cs" />
+    <Compile Include="van\KCP\ClsDate.cs" />
+    <Compile Include="van\KCP\ClsLog.cs" />
+    <Compile Include="van\KCP\ClsSecureDLL.cs" />
+    <Compile Include="van\KCP\ClsString.cs" />
+    <Compile Include="van\KCP\ClsWin32Api.cs" />
+    <Compile Include="van\KCP\paymentKCP.cs" />
+    <Compile Include="van\Toss\paymentToss.cs" />
     <Compile Include="frmSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBusiness.resx">
       <DependentUpon>frmBusiness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExit.resx">
+      <DependentUpon>frmExit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

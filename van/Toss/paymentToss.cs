@@ -55,9 +55,14 @@ namespace thepos
 
 
 
-        public static int requestTossCardAuth(int amount, int install, ref PaymentCard mPaymentCard)
+        public static int requestTossCardAuth(int amount, int install, out PaymentCard mPaymentCard)
         {
             int ret = 0;
+
+            PaymentCard paymentCard = new PaymentCard();
+            mPaymentCard = paymentCard;
+
+
 
             try
             {
@@ -166,9 +171,14 @@ namespace thepos
 
 
 
-        public static int requestTossCardCancel(PaymentCard pCard, ref PaymentCard pCardCancel)
+        public static int requestTossCardCancel(PaymentCard pCard, out PaymentCard pCardCancel)
         {
             int ret = 0;
+            PaymentCard cardCancel = new PaymentCard();
+            pCardCancel = cardCancel;
+
+
+
 
             try
             {
@@ -276,9 +286,13 @@ namespace thepos
         }
 
 
-        public static int requestTossCashAuth(int amount, String receipt_type, String issued_method_no, ref PaymentCash paymentCash)
+        public static int requestTossCashAuth(int amount, String receipt_type, String issued_method_no, out PaymentCash mPaymentCash)
         {
             int ret = 0;
+
+            PaymentCash paymentCash = new PaymentCash();
+            mPaymentCash = paymentCash;
+
 
             try
             {
@@ -382,9 +396,12 @@ namespace thepos
         }
 
 
-        public static int requestTossCashCancel(PaymentCash pCash, ref PaymentCash pCashCancel)
+        public static int requestTossCashCancel(PaymentCash pCash, out PaymentCash pCashCancel)
         {
             int ret = 0;
+            PaymentCash cashCancel = new PaymentCash();
+            pCashCancel = cashCancel;
+
 
             try
             {

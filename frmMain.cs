@@ -43,7 +43,8 @@ namespace thepos
             btnClose.Font = font12;
 
 
-            lblSiteName.Font = font14;
+            lblSiteAlias.Font = font16;
+            lblSiteName.Font = font10;
 
             lblPosNoTitle.Font = font10;
             lblPosNo.Font = font10;
@@ -93,6 +94,7 @@ namespace thepos
 
         private void initialize_the()
         {
+            lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
@@ -120,7 +122,7 @@ namespace thepos
 
             get_site_pos_user_info();
 
-
+            lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
@@ -147,8 +149,8 @@ namespace thepos
             mSiteId = "9011";
             mPosNo = "01";
 
+            mSiteAlias = "한국스파월드";
             mSiteName = "주식회사 한국스파월드";
-            mSiteAlias = "동서월드";
             mCapName = "김동슈";
             mRegistNo = "3770110382";
             mBizAddr = "경기도 광명시 일직로 101-22";
@@ -161,8 +163,8 @@ namespace thepos
             mTicketMedia = "BC";  // BC:BarCode 띠지
             //mTicketMedia = "RF";  // RF 팔찌
 
-            //mPayChannel = "KCP";
-            mPayChannel = "TOSS";
+            mPayChannel = "KCP";
+            //mPayChannel = "TOSS";
 
 
             mPosNoList = new string[4];
@@ -226,9 +228,13 @@ namespace thepos
         {
 
 
+            frmExit fExit = new frmExit();
+            fExit.ShowDialog();
 
 
-            //? 종료 or 재기동
+            //? 종료 재기동 로그아웃
+
+
             this.Close();
         }
 

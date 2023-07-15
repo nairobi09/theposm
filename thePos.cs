@@ -345,7 +345,13 @@ namespace thepos
             public String ticket_no;
             public int pay_seq;
             public String tran_date;
-            public int amount;          // 결제금액
+            public int amount;          // 결제금액 과세금액 면세금액 봉사료 세금
+            public int tax_amount;
+            public int tfree_amount;
+            public int service_amount;
+            public int tax;
+
+
             public String install;      // 할부개월 00 03
             public String auth_no;      // 승인번호
             public String card_no;      // 카드번호
@@ -887,10 +893,10 @@ namespace thepos
                     strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                     strPrintPayment += "\r\n";
 
-                    tStr = mPaymentCards[i].card_name;
+                    tStr = mPaymentCards[i].card_name + "";
                     strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
-                    String no = mPaymentCards[i].card_no;
+                    String no = mPaymentCards[i].card_no + "";
 
                     if (no.Length == 16)
                     {

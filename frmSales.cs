@@ -1406,6 +1406,8 @@ namespace thepos
             int Amount = 0;
             int dcAmount = 0;
             mNetAmount = 0;
+            
+            
 
             MemOrderItem orderItemInfo;
 

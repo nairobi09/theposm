@@ -287,7 +287,7 @@ namespace thepos
 
             PaymentCash paymentCash = new PaymentCash();
 
-            if (requestCashAuth(netAmount, receipt_type, issues_method_no, ref paymentCash) != 0)  // Toss process
+            if (requestCashAuth(netAmount, receipt_type, issues_method_no, out paymentCash) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -406,9 +406,11 @@ namespace thepos
 
 
 
-        int requestCashAuth(int netAmount, String receipt_type, String issues_method_no, ref PaymentCash paymentCash)
+        int requestCashAuth(int netAmount, String receipt_type, String issues_method_no, out PaymentCash mPaymentCash)
         {
             int ret = 0;
+            PaymentCash paymentCash = new PaymentCash();
+            mPaymentCash = paymentCash;
 
 
             if (mPayChannel == "KCP")
@@ -417,7 +419,7 @@ namespace thepos
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCashAuth(netAmount, receipt_type, issues_method_no, ref paymentCash);
+                ret = paymentToss.requestTossCashAuth(netAmount, receipt_type, issues_method_no, out mPaymentCash);
             }
             else
             {

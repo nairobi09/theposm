@@ -274,15 +274,18 @@ namespace thepos
                 return;
             }
 
+
+            int tAmount = netAmount;
+            int tFreeAmount = 0;
+            int tTaxAmount = 0;
+            int tTax = 0;
+            int tServiceAmt = 0;
             int install = int.Parse(tbInstall.Text);
-
-
-
             PaymentCard mPaymentCard = new PaymentCard();
 
 
 
-            if (requestCardAuth(netAmount, install, ref mPaymentCard) != 0)  // Toss process
+            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -392,26 +395,26 @@ namespace thepos
             }
         }
 
-        private int requestCardAuth(int netAmount, int install, ref PaymentCard mPaymentCard)
+        private int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
         {
             int ret = 0;
+            PaymentCard paymentCard = new PaymentCard();
+            mPaymentCard = paymentCard;
+
 
 
             if (mPayChannel == "KCP")
             {
-                //ret = paymentKCP.requestKCPCardAuth(netAmount, install);
+                ret = paymentKCP.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard);
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCardAuth(netAmount, install, ref mPaymentCard);
-            }
-            else
-            {
-
+                ret = paymentToss.requestTossCardAuth(tAmount, install, out mPaymentCard);
             }
 
 
-            return 0;
+
+            return ret;
 
         }
 

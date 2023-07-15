@@ -37,6 +37,7 @@
             this.btnReports = new System.Windows.Forms.Button();
             this.btnSales = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPW = new System.Windows.Forms.Label();
@@ -72,9 +73,10 @@
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenter = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblSiteAlias = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLogin.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
@@ -83,7 +85,6 @@
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -184,6 +185,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(620, 620);
             this.panel2.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::thepos.Properties.Resources.thepos;
+            this.pictureBox1.Location = new System.Drawing.Point(108, 255);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(386, 109);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panelLogin
             // 
@@ -537,9 +548,9 @@
             // 
             this.lblSiteName.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.ForeColor = System.Drawing.Color.Gold;
-            this.lblSiteName.Location = new System.Drawing.Point(7, 11);
+            this.lblSiteName.Location = new System.Drawing.Point(7, 49);
             this.lblSiteName.Name = "lblSiteName";
-            this.lblSiteName.Size = new System.Drawing.Size(260, 27);
+            this.lblSiteName.Size = new System.Drawing.Size(260, 17);
             this.lblSiteName.TabIndex = 3;
             this.lblSiteName.Text = "___";
             this.lblSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -571,7 +582,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblUserNameTitle);
             this.panel3.Controls.Add(this.lblUserName);
-            this.panel3.Location = new System.Drawing.Point(705, 174);
+            this.panel3.Location = new System.Drawing.Point(705, 203);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(275, 31);
             this.panel3.TabIndex = 4;
@@ -579,10 +590,11 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.lblSiteAlias);
             this.panel5.Controls.Add(this.lblSiteName);
             this.panel5.Location = new System.Drawing.Point(705, 71);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(275, 51);
+            this.panel5.Size = new System.Drawing.Size(275, 77);
             this.panel5.TabIndex = 5;
             // 
             // panel6
@@ -590,7 +602,7 @@
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.lblPosNoTitle);
             this.panel6.Controls.Add(this.lblPosNo);
-            this.panel6.Location = new System.Drawing.Point(705, 138);
+            this.panel6.Location = new System.Drawing.Point(705, 167);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(275, 31);
             this.panel6.TabIndex = 4;
@@ -619,34 +631,35 @@
             // 
             // lblCallCenter
             // 
-            this.lblCallCenter.AutoSize = true;
             this.lblCallCenter.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenter.ForeColor = System.Drawing.Color.LightGray;
-            this.lblCallCenter.Location = new System.Drawing.Point(803, 708);
+            this.lblCallCenter.Location = new System.Drawing.Point(811, 705);
             this.lblCallCenter.Name = "lblCallCenter";
-            this.lblCallCenter.Size = new System.Drawing.Size(66, 14);
+            this.lblCallCenter.Size = new System.Drawing.Size(166, 14);
             this.lblCallCenter.TabIndex = 8;
             this.lblCallCenter.Text = "콜센터: _";
+            this.lblCallCenter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(727, 705);
+            this.pictureBox2.Location = new System.Drawing.Point(711, 703);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(70, 22);
+            this.pictureBox2.Size = new System.Drawing.Size(65, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox1
+            // lblSiteAlias
             // 
-            this.pictureBox1.Image = global::thepos.Properties.Resources.thepos;
-            this.pictureBox1.Location = new System.Drawing.Point(108, 255);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(386, 109);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.lblSiteAlias.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.ForeColor = System.Drawing.Color.Gold;
+            this.lblSiteAlias.Location = new System.Drawing.Point(6, 11);
+            this.lblSiteAlias.Name = "lblSiteAlias";
+            this.lblSiteAlias.Size = new System.Drawing.Size(260, 33);
+            this.lblSiteAlias.TabIndex = 3;
+            this.lblSiteAlias.Text = "___";
+            this.lblSiteAlias.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMain
             // 
@@ -670,6 +683,7 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -681,9 +695,7 @@
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -733,5 +745,6 @@
         private System.Windows.Forms.Label lblPosNo;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblCallCenter;
+        private System.Windows.Forms.Label lblSiteAlias;
     }
 }

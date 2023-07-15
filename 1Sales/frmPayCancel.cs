@@ -206,7 +206,7 @@ namespace thepos
 
                     PaymentCard pCardCancel = new PaymentCard();
 
-                    if (requestCardCancel(mPaymentCards[idx], ref pCardCancel) != 0)  // Toss process
+                    if (requestCardCancel(mPaymentCards[idx], out pCardCancel) != 0)  // Toss process
                     {
                         display_error_msg(mErrorMsg);
                     }
@@ -314,7 +314,7 @@ namespace thepos
                 {
                     PaymentCash pCashCancel = new PaymentCash();
 
-                    if (requestCashCancel(mPaymentCashs[idx], ref pCashCancel) != 0)  // Toss process
+                    if (requestCashCancel(mPaymentCashs[idx], out pCashCancel) != 0)  // Toss process
                     {
                         display_error_msg(mErrorMsg);
                     }
@@ -567,17 +567,19 @@ namespace thepos
 
 
 
-        int requestCardCancel(PaymentCard mPaymentCards, ref PaymentCard pCardCancel)
+        int requestCardCancel(PaymentCard mPaymentCards, out PaymentCard pCardCancel)
         {
             int ret = 0;
+            PaymentCard cardCancel = new PaymentCard();
+            pCardCancel = cardCancel;
 
             if (mPayChannel == "KCP")
             {
-                
+                ret = paymentKCP.requestKcpCardCancel(mPaymentCards, out pCardCancel);
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = requestTossCardCancel(mPaymentCards, ref pCardCancel);
+                ret = paymentToss.requestTossCardCancel(mPaymentCards, out pCardCancel);
             }
             else
             {
@@ -588,9 +590,11 @@ namespace thepos
 
         }
 
-        int requestCashCancel(PaymentCash paymentCash, ref PaymentCash pCashCancel)
+        int requestCashCancel(PaymentCash paymentCash, out PaymentCash pCashCancel)
         {
             int ret = 0;
+            PaymentCash cashCancel = new PaymentCash();
+            pCashCancel = cashCancel;
 
             if (mPayChannel == "KCP")
             {
@@ -598,12 +602,9 @@ namespace thepos
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = requestTossCashCancel(paymentCash, ref pCashCancel);
+                ret = paymentToss.requestTossCashCancel(paymentCash, out pCashCancel);
             }
-            else
-            {
 
-            }
 
             return 0;
 
