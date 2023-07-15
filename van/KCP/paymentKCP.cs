@@ -4,16 +4,13 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using thepos.van.KCP;
-using static thepos.paymentToss;
 using static thepos.thePos;
-
 
 namespace thepos
 {
     internal class paymentKCP
     {
-         static ClsSecureDLL clsSecureDLL = new ClsSecureDLL();
+        ClsSecureDLL clsSecureDLL = new ClsSecureDLL();
 
 
         public paymentKCP()
@@ -25,7 +22,7 @@ namespace thepos
 
 
 
-        public static int requestKcpCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard paymentCard)
+        public int requestKcpCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard paymentCard)
         {
 
             PaymentCard mPaymentCard = new PaymentCard();
@@ -175,7 +172,7 @@ namespace thepos
         }
 
 
-        public static int requestKcpCardCancel(PaymentCard pCard, out PaymentCard pCardCancel)
+        public int requestKcpCardCancel(PaymentCard pCard, out PaymentCard pCardCancel)
         {
             pCardCancel = pCard;
 

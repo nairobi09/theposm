@@ -575,7 +575,8 @@ namespace thepos
 
             if (mPayChannel == "KCP")
             {
-                ret = paymentKCP.requestKcpCardCancel(mPaymentCards, out pCardCancel);
+                paymentKCP p = new paymentKCP();
+                ret = p.requestKcpCardCancel(mPaymentCards, out pCardCancel);
             }
             else if (mPayChannel == "TOSS")
             {

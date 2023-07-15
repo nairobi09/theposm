@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace thepos.van.KCP
+namespace thepos
 {
     public class PublicEventArgs : EventArgs
     {
@@ -21,15 +21,10 @@ namespace thepos.van.KCP
     public class ClsSecureDLL
     {
         // DLL 파일 전체경로
-#if X64
-        public string m_strSecureDLL = string.Format("{0}{1}",
-            AppDomain.CurrentDomain.BaseDirectory,
-            "libKCPSecure64.dll");
-#else
-        public string m_strSecureDLL = string.Format("{0}{1}",
-            AppDomain.CurrentDomain.BaseDirectory,
-            "libKCPSecure.dll");
-#endif
+
+        public string m_strSecureDLL = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "libKCPSecure.dll");
+        //public string m_strSecureDLL = string.Format("{0}{1}", "C:\\NHNKCPSecureVCAT\\", "libKCPSecure.dll");
+
         // DLL 파일 연결 포인터
         private IntPtr m_pSecureDLL;
 

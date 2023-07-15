@@ -14,6 +14,11 @@ namespace thepos
 {
     public partial class frmMain : Form
     {
+
+        TextBox mTbKeyDisplayController;  // 공용컨트롤러
+
+
+
         public frmMain()
         {
             InitializeComponent();
@@ -100,7 +105,49 @@ namespace thepos
             lblUserName.Text = mUserName;
 
 
+
+
+
+            btnKey1.Click += (sender, args) => ClickedKey("1");
+            btnKey2.Click += (sender, args) => ClickedKey("2");
+            btnKey3.Click += (sender, args) => ClickedKey("3");
+            btnKey4.Click += (sender, args) => ClickedKey("4");
+            btnKey5.Click += (sender, args) => ClickedKey("5");
+            btnKey6.Click += (sender, args) => ClickedKey("6");
+            btnKey7.Click += (sender, args) => ClickedKey("7");
+            btnKey8.Click += (sender, args) => ClickedKey("8");
+            btnKey9.Click += (sender, args) => ClickedKey("9");
+            btnKey0.Click += (sender, args) => ClickedKey("0");
+            btnKeyBS.Click += (sender, args) => ClickedKey("BS");
+            btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
+
+
+            mTbKeyDisplayController = tbID;
+
+
         }
+
+
+        private void ClickedKey(string sKey)
+        {
+
+            if (sKey == "BS")
+            {
+                if (mTbKeyDisplayController.Text.Length > 0)
+                {
+                    mTbKeyDisplayController.Text = mTbKeyDisplayController.Text.Substring(0, mTbKeyDisplayController.Text.Length - 1);
+                }
+            }
+            else if (sKey == "Clear")
+            {
+                mTbKeyDisplayController.Text = "";
+            }
+            else
+            {
+                mTbKeyDisplayController.Text += sKey;
+            }
+        }
+
 
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
@@ -129,7 +176,6 @@ namespace thepos
 
 
             lblCallCenter.Text = "콜센터: " + mCallCenterNo;
-
 
         }
 
@@ -229,14 +275,36 @@ namespace thepos
 
 
             frmExit fExit = new frmExit();
-            fExit.ShowDialog();
+            DialogResult ret =  fExit.ShowDialog();
+
+            if (ret == DialogResult.Yes)  // 로그아웃
+            {
+                //? 로그아웃 프로세스 필요
+
+                panelLogin.Visible = true;
 
 
-            //? 종료 재기동 로그아웃
+            }
+            else if (ret == DialogResult.Retry)
+            {
 
+            }
+            else if (ret == DialogResult.OK)  // 종료
+            {
+                this.Close();
+            }
 
-            this.Close();
+                
         }
 
+        private void tbID_Click(object sender, EventArgs e)
+        {
+            mTbKeyDisplayController = tbID;
+        }
+
+        private void tbPW_Click(object sender, EventArgs e)
+        {
+            mTbKeyDisplayController = tbPW;
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace thepos.van.KCP
+namespace thepos
 {
     public static class ClsDate
     {

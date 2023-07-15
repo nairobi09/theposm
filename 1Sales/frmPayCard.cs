@@ -395,7 +395,7 @@ namespace thepos
             }
         }
 
-        private int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
+        private static int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
         {
             int ret = 0;
             PaymentCard paymentCard = new PaymentCard();
@@ -405,7 +405,8 @@ namespace thepos
 
             if (mPayChannel == "KCP")
             {
-                ret = paymentKCP.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard);
+                paymentKCP p = new paymentKCP();
+                ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard);
             }
             else if (mPayChannel == "TOSS")
             {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace thepos
 {
@@ -15,6 +16,29 @@ namespace thepos
         public frmExit()
         {
             InitializeComponent();
+        }
+
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Yes;   // 로그아웃
+            Close();
+        }
+
+        private void brnRestart_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Retry; // 재기동
+            Close();
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;    // 종료
+            Close();
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;    // 취소
+            Close();
         }
     }
 }

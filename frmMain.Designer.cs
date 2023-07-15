@@ -68,12 +68,12 @@
             this.lblUserName = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblSiteAlias = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenter = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblSiteAlias = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -286,6 +286,7 @@
             this.tbID.TabIndex = 38;
             this.tbID.TabStop = false;
             this.tbID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbID.Click += new System.EventHandler(this.tbID_Click);
             // 
             // label1
             // 
@@ -324,6 +325,7 @@
             this.tbPW.TabIndex = 38;
             this.tbPW.TabStop = false;
             this.tbPW.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPW.Click += new System.EventHandler(this.tbPW_Click);
             // 
             // lblKeyDisplayXX
             // 
@@ -597,6 +599,17 @@
             this.panel5.Size = new System.Drawing.Size(275, 77);
             this.panel5.TabIndex = 5;
             // 
+            // lblSiteAlias
+            // 
+            this.lblSiteAlias.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.ForeColor = System.Drawing.Color.Gold;
+            this.lblSiteAlias.Location = new System.Drawing.Point(6, 11);
+            this.lblSiteAlias.Name = "lblSiteAlias";
+            this.lblSiteAlias.Size = new System.Drawing.Size(260, 33);
+            this.lblSiteAlias.TabIndex = 3;
+            this.lblSiteAlias.Text = "___";
+            this.lblSiteAlias.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -649,17 +662,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
-            // 
-            // lblSiteAlias
-            // 
-            this.lblSiteAlias.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSiteAlias.ForeColor = System.Drawing.Color.Gold;
-            this.lblSiteAlias.Location = new System.Drawing.Point(6, 11);
-            this.lblSiteAlias.Name = "lblSiteAlias";
-            this.lblSiteAlias.Size = new System.Drawing.Size(260, 33);
-            this.lblSiteAlias.TabIndex = 3;
-            this.lblSiteAlias.Text = "___";
-            this.lblSiteAlias.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMain
             // 
