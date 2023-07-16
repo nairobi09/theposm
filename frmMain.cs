@@ -122,11 +122,27 @@ namespace thepos
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
 
 
-            mTbKeyDisplayController = tbID;
 
+            tbID.Text = get_saved_userid();
+
+            if (tbID.Text.Length == 4 )
+            {
+                mTbKeyDisplayController = tbPW;
+            }
+            else
+            {
+                mTbKeyDisplayController = tbID;
+            }
 
         }
 
+
+        private String get_saved_userid()
+        {
+            //? 레지스트리 저장방식?
+
+            return "1234";
+        }
 
         private void ClickedKey(string sKey)
         {
