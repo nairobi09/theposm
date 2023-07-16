@@ -278,6 +278,7 @@
     </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
     <Compile Include="van\KCP\ClsDate.cs" />
+    <Compile Include="van\KCP\clsEnum.cs" />
     <Compile Include="van\KCP\ClsLog.cs" />
     <Compile Include="van\KCP\ClsSecureDLL.cs" />
     <Compile Include="van\KCP\ClsString.cs" />
