@@ -99,6 +99,12 @@ namespace thepos
 
         private void initialize_the()
         {
+
+            clear_login_init();
+
+
+
+
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
@@ -125,7 +131,7 @@ namespace thepos
 
             tbID.Text = get_saved_userid();
 
-            if (tbID.Text.Length == 4 )
+            if (tbID.Text.Length == 4)
             {
                 mTbKeyDisplayController = tbPW;
             }
@@ -135,6 +141,56 @@ namespace thepos
             }
 
         }
+
+        private void clear_login_init()
+        {
+            mSiteAlias = "";
+            mSiteName = "";
+            mPosNo = "";
+            mUserName = "";
+
+            lblSiteAlias.Text = "";
+            lblSiteName.Text = "";
+            lblPosNo.Text = "";
+            lblUserName.Text = "";
+
+
+            mSiteId = "";
+            mSiteName = "";         // 매장명
+            mSiteAlias = "";        // 매장명
+            mCapName = "";          // 대표자명
+            mRegistNo = "";         // 사업자번호
+            mBizAddr = "";          // 주소
+            mBizTelNo = "";         // 대표전화
+
+
+            mTicketType = "";  // ""미사용, "PA"선불, "PD"후불
+            mTicketMedia = "";  // 띠지BC   팔찌RF
+            mPayChannel = "";
+
+
+            // 이사업자의 포스번호 목록
+            //mPosNoList.Initialize();
+
+            mCornerType = "";  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
+            //mCornerCode.Initialize(); // 코너 코드
+            //mCornerName.Initialize(); // 코너 명
+
+            mPosNo = "";
+
+            mBillPrinterPort = "";  // 영수증프린터
+            mTicketMediaPort = "";  // 띠지 or 팔찌
+
+            mUserID = "";
+            mUserName = "";
+
+            mBizDate = "";
+            mMacAddr = "";
+
+
+
+        }
+
 
 
         private String get_saved_userid()
@@ -296,6 +352,9 @@ namespace thepos
             if (ret == DialogResult.Yes)  // 로그아웃
             {
                 //? 로그아웃 프로세스 필요
+
+                 
+                clear_login_init();  // 초기화
 
                 panelLogin.Visible = true;
 
