@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static thepos.frmPayComplex;
-using static thepos.paymentToss;
+
 
 namespace thepos
 {

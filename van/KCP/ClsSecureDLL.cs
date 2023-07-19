@@ -22,8 +22,18 @@ namespace thepos
     {
         // DLL 파일 전체경로
 
-        public string m_strSecureDLL = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "libKCPSecure.dll");
-        //public string m_strSecureDLL = string.Format("{0}{1}", "C:\\NHNKCPSecureVCAT\\", "libKCPSecure.dll");
+
+
+#if X64
+        public string m_strSecureDLL = string.Format("{0}{1}",
+            AppDomain.CurrentDomain.BaseDirectory,
+            "libKCPSecure64.dll");
+#else
+        public string m_strSecureDLL = string.Format("{0}{1}",
+            AppDomain.CurrentDomain.BaseDirectory,
+            "libKCPSecure.dll");
+#endif
+
 
         // DLL 파일 연결 포인터
         private IntPtr m_pSecureDLL;

@@ -15,7 +15,7 @@ namespace thepos
 
         public paymentKCP()
         {
-            clsSecureDLL.LoadLibrary();
+            
 
         }
 
@@ -28,6 +28,12 @@ namespace thepos
             PaymentCard mPaymentCard = new PaymentCard();
             paymentCard = mPaymentCard;
 
+
+            if (!clsSecureDLL.LoadLibrary())
+            {
+                mErrorMsg = "KCP DLL LoadLibrary 오류.";
+                return -1;
+            }
 
 
             // 요청 데이터 초기화
