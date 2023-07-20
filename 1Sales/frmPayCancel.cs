@@ -215,33 +215,30 @@ namespace thepos
                         //
                         cancel_order_and_payments(mPaymentCards[idx].amount);
 
-
-                        //
-
-                        pCardCancel.site_id = mSiteId;
-                        pCardCancel.biz_dt = mBizDate;
-                        pCardCancel.pos_no = mPosNo;
-                        pCardCancel.the_no = mPaymentCards[idx].the_no;
-                        pCardCancel.ref_no = mPaymentCards[idx].ref_no;
+                        //pCardCancel.site_id = mSiteId;
+                        //pCardCancel.biz_dt = mBizDate;
+                        //pCardCancel.pos_no = mPosNo;
+                        //pCardCancel.the_no = mPaymentCards[idx].the_no;
+                        //pCardCancel.ref_no = mPaymentCards[idx].ref_no;
 
                         pCardCancel.pay_date = get_today_date();
                         pCardCancel.pay_time = get_today_time();
                         pCardCancel.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
                         pCardCancel.tran_type = "C";       // 승인 A 취소 C
-                        pCardCancel.pay_class = mPayClass;
-                        pCardCancel.ticket_no = mPaymentCards[idx].ticket_no;
-                        pCardCancel.pay_seq = mPaymentCards[idx].pay_seq;
-                        pCardCancel.install = mPaymentCards[idx].install;  //
-                        pCardCancel.auth_no = mPaymentCards[idx].auth_no; //
-                        pCardCancel.card_name = mPaymentCards[idx].card_name;  //
 
-                        // 
+                        //pCardCancel.pay_class = mPayClass;
+                        //pCardCancel.ticket_no = mPaymentCards[idx].ticket_no;
+                        //pCardCancel.pay_seq = mPaymentCards[idx].pay_seq;
+                        //pCardCancel.install = mPaymentCards[idx].install;  //
+                        //pCardCancel.auth_no = mPaymentCards[idx].auth_no; //
+                        //pCardCancel.card_name = mPaymentCards[idx].card_name;  //
 
                         pCardCancel.is_cancel = "Y";        // 취소여부
+
                         mPaymentCards.Add(pCardCancel);
 
 
-                        // 승인건에 취소마킹
+                        //? 승인건에 취소마킹
                         PaymentCard pc = new PaymentCard();
                         pc = mPaymentCards[idx];
                         pc.is_cancel = "Y";
@@ -582,12 +579,9 @@ namespace thepos
             {
                 ret = paymentToss.requestTossCardCancel(mPaymentCards, out pCardCancel);
             }
-            else
-            {
 
-            }
 
-            return 0;
+            return ret;
 
         }
 

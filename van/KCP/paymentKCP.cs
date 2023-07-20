@@ -22,15 +22,16 @@ namespace thepos
 
 
 
-        public int requestKcpCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard paymentCard)
+        public int requestKcpCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard pCard)
         {
-
             PaymentCard mPaymentCard = new PaymentCard();
-            paymentCard = mPaymentCard;
+
+            pCard = mPaymentCard;
 
 
             if (!clsSecureDLL.LoadLibrary())
             {
+
                 mErrorMsg = "KCP DLL LoadLibrary 오류.";
                 return -1;
             }
@@ -168,6 +169,8 @@ namespace thepos
                 clsSecureDLL.GetData("PRTMSG_3");
                 clsSecureDLL.GetData("PRTMSG_4");
 
+                pCard = mPaymentCard;
+
                 return 0;
             }
             else
@@ -216,7 +219,6 @@ namespace thepos
 
 
             // 응답
-
             String ResCd = clsSecureDLL.GetData("RES_CD");
             String ResMag = clsSecureDLL.GetData("RES_MSG");
 

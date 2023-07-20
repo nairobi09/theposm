@@ -398,22 +398,21 @@ namespace thepos
         private static int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
         {
             int ret = 0;
-            PaymentCard paymentCard = new PaymentCard();
-            mPaymentCard = paymentCard;
 
 
+            PaymentCard mPaymentCard2 = new PaymentCard();
 
             if (mPayChannel == "KCP")
             {
                 paymentKCP p = new paymentKCP();
-                ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard);
+                ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCardAuth(tAmount, install, out mPaymentCard);
+                ret = paymentToss.requestTossCardAuth(tAmount, install, out mPaymentCard2);
             }
 
-
+            mPaymentCard = mPaymentCard2;
 
             return ret;
 

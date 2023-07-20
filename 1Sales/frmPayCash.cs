@@ -415,7 +415,7 @@ namespace thepos
 
             if (mPayChannel == "KCP")
             {
-                //ret = paymentKCP.requestTossCardAuth(netAmount, install);
+                ret = paymentKCP.requestTossCashAuth(netAmount, install);
             }
             else if (mPayChannel == "TOSS")
             {
