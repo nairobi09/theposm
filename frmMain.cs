@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -140,6 +141,11 @@ namespace thepos
                 mTbKeyDisplayController = tbID;
             }
 
+            // 기동시 MAC값 구하기 및 보관
+            mMacAddr = NetworkInterface.GetAllNetworkInterfaces()
+                      .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                      .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+
         }
 
         private void clear_login_init()
@@ -185,7 +191,6 @@ namespace thepos
             mUserName = "";
 
             mBizDate = "";
-            mMacAddr = "";
 
 
 

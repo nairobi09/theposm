@@ -29,9 +29,9 @@ namespace thepos
             AppDomain.CurrentDomain.BaseDirectory,
             "libKCPSecure64.dll");
 #else
-        public string m_strSecureDLL = string.Format("{0}{1}",
-            AppDomain.CurrentDomain.BaseDirectory,
-            "libKCPSecure.dll");
+        public string m_strSecureDLL = string.Format("{0}{1}", "C:\\NHNKCPSecureVCAT\\", "libKCPSecure.dll");
+        //public string m_strSecureDLL = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "libKCPSecure.dll");
+
 #endif
 
 
