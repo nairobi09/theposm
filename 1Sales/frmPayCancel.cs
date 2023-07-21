@@ -577,7 +577,8 @@ namespace thepos
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCardCancel(mPaymentCards, out pCardCancel);
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCardCancel(mPaymentCards, out pCardCancel);
             }
 
 
@@ -593,11 +594,13 @@ namespace thepos
 
             if (mPayChannel == "KCP")
             {
-
+                paymentKCP p = new paymentKCP();
+                ret = p.requestKcpCashCancel(paymentCash, out pCashCancel);
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCashCancel(paymentCash, out pCashCancel);
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCashCancel(paymentCash, out pCashCancel);
             }
 
 

@@ -101,6 +101,12 @@ namespace thepos
         private void initialize_the()
         {
 
+
+            //Cursor.Hide();
+
+
+
+
             clear_login_init();
 
 
@@ -145,6 +151,10 @@ namespace thepos
             mMacAddr = NetworkInterface.GetAllNetworkInterfaces()
                       .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
                       .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+
+
+
+
 
         }
 

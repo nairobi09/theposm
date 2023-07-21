@@ -170,7 +170,6 @@ namespace thepos
 
 
 
-
         // //////////////////////////////////////////////////////////////////////////////////////////
         /// 포스 설정값
         public static String mPosNo = "";
@@ -178,8 +177,8 @@ namespace thepos
         public static string mBillPrinterPort = "COM7";  // 영수증프린터
         public static string mTicketMediaPort = "COM7";  // 띠지 or 팔찌
 
-        public static string mUserID = "";
-        public static string mUserName = "";
+        public static string mClientType = "";  // P:일반포스, K:키오스크
+
 
 
 
@@ -192,16 +191,15 @@ namespace thepos
         public static String mMacAddr = "";
         public static String mTheNo = "";  // 결제단위
         public static String mRefNo = "";  // 주문단위 입장단위
-
         
         // 실행중 로컬 운영
         public static String mScanString;
         public static bool mIsScanOK;
 
-
         public static readonly HttpClient mHttpClient = new HttpClient();
 
-
+        public static string mUserID = "";
+        public static string mUserName = "";
 
 
 
@@ -825,7 +823,7 @@ namespace thepos
                         strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
 
-                        String no = mPaymentCashs[i].issued_method_no;
+                        String no = mPaymentCashs[i].issued_method_no + "";
                         if (no.Length == 16)
                         {
                             tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";

@@ -128,7 +128,6 @@ namespace thepos
         {
 
 
-
             //? 서버API로 교체
             int order_cnt = 0;
 
@@ -278,6 +277,13 @@ namespace thepos
 
             String receipt_type = "";
 
+            int tAmount = netAmount;
+            int tFreeAmount = 0;
+            int tTaxAmount = 0;
+            int tTax = 0;
+            int tServiceAmt = 0;
+
+
             if (rbTypeIndividual.Checked == true) receipt_type = "1";
             else if (rbTypeBusiness.Checked == true) receipt_type = "2";
             else receipt_type = "S";
@@ -286,8 +292,11 @@ namespace thepos
 
 
             PaymentCash paymentCash = new PaymentCash();
+            
+            
 
-            if (requestCashAuth(netAmount, receipt_type, issues_method_no, out paymentCash) != 0)  // Toss process
+
+            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out paymentCash) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -405,29 +414,29 @@ namespace thepos
 
 
 
-
-        int requestCashAuth(int netAmount, String receipt_type, String issues_method_no, out PaymentCash mPaymentCash)
+        int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, String issues_method_no, out PaymentCash mPaymentCash)
         {
             int ret = 0;
-            PaymentCash paymentCash = new PaymentCash();
-            mPaymentCash = paymentCash;
+
+            PaymentCash mPaymentCash2 = new PaymentCash();
 
 
             if (mPayChannel == "KCP")
             {
-                ret = paymentKCP.requestTossCashAuth(netAmount, install);
+                paymentKCP p = new paymentKCP();
+                ret = p.requestTossCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCashAuth(netAmount, receipt_type, issues_method_no, out mPaymentCash);
-            }
-            else
-            {
-
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCashAuth(netAmount, receipt_type, issues_method_no, out mPaymentCash2);
             }
 
 
-            return 0;
+            mPaymentCash = mPaymentCash2;
+
+
+            return ret;
         }
 
 

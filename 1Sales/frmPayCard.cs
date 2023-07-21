@@ -409,7 +409,8 @@ namespace thepos
             }
             else if (mPayChannel == "TOSS")
             {
-                ret = paymentToss.requestTossCardAuth(tAmount, install, out mPaymentCard2);
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCardAuth(tAmount, install, out mPaymentCard2);
             }
 
             mPaymentCard = mPaymentCard2;
