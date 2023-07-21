@@ -11,6 +11,10 @@ namespace thepos
     internal class paymentToss
     {
         // 토스결제Agent연동
+
+
+
+#if X64
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Init", CallingConvention = CallingConvention.StdCall)]
         extern static int UPay_Init();
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Set", CallingConvention = CallingConvention.StdCall)]
@@ -25,6 +29,22 @@ namespace thepos
         extern static IntPtr UPayResponse(int index);
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
         extern static int UPayFinal();
+#else
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPay_Init", CallingConvention = CallingConvention.StdCall)]
+        extern static int UPay_Init();
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPay_Set", CallingConvention = CallingConvention.StdCall)]
+        extern static int UPay_Set(string name, string value);
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPay_TX", CallingConvention = CallingConvention.StdCall)]
+        extern static int UPay_TX();
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPayResNameCount", CallingConvention = CallingConvention.StdCall)]
+        extern static int UPayResNameCount();
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPayResName", CallingConvention = CallingConvention.StdCall)]
+        extern static IntPtr UPayResName(int index);
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPayResponse", CallingConvention = CallingConvention.StdCall)]
+        extern static IntPtr UPayResponse(int index);
+        [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
+        extern static int UPayFinal();
+#endif
 
 
 
