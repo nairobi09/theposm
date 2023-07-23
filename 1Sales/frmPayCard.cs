@@ -275,6 +275,8 @@ namespace thepos
             }
 
 
+
+
             int tAmount = netAmount;
             int tFreeAmount = 0;
             int tTaxAmount = 0;
@@ -410,7 +412,7 @@ namespace thepos
             else if (mPayChannel == "TOSS")
             {
                 paymentToss p = new paymentToss();
-                ret = p.requestTossCardAuth(tAmount, install, out mPaymentCard2);
+                ret = p.requestTossCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
             }
 
             mPaymentCard = mPaymentCard2;

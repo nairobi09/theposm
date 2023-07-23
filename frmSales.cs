@@ -11,6 +11,7 @@ using System.Diagnostics;
 using PrinterUtility;
 using System.IO.Ports;
 using System.Text;
+using thepos._1Sales;
 
 
 
@@ -1732,7 +1733,7 @@ namespace thepos
             m.MenuItems.Add(new MenuItem("메모리상태", MenuItemMemoryStatus_Click));
             m.MenuItems.Add(new MenuItem("상품그룹등록", MenuItemGoodsGroup_Click));
             m.MenuItems.Add(new MenuItem("상품등록", MenuItemGoods_Click));
-
+            m.MenuItems.Add(new MenuItem("결제콘솔", MenuItemPayConsol_Click));
 
             picLogo.ContextMenu = m;
         }
@@ -1755,6 +1756,13 @@ namespace thepos
         {
             Form fFlow;
             fFlow = new frmSysGoods();
+            fFlow.Show();
+        }
+
+        private void MenuItemPayConsol_Click(Object sender, System.EventArgs e)
+        {
+            Form fFlow;
+            fFlow = new frmSysPayConsole();
             fFlow.Show();
         }
     }

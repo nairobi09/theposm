@@ -430,6 +430,7 @@
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lvwGoodsItem);
             this.Name = "frmSysGoods";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "상품등록";
             this.tableLayoutPanelGoodsItem.ResumeLayout(false);
             this.ResumeLayout(false);

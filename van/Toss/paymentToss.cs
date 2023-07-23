@@ -12,9 +12,8 @@ namespace thepos
     {
         // 토스결제Agent연동
 
-
-
-#if X64
+        
+/*        
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Init", CallingConvention = CallingConvention.StdCall)]
         extern static int UPay_Init();
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPay_Set", CallingConvention = CallingConvention.StdCall)]
@@ -29,7 +28,8 @@ namespace thepos
         extern static IntPtr UPayResponse(int index);
         [DllImport("C:\\TossPGPos\\TossPGPOSClient64.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
         extern static int UPayFinal();
-#else
+*/
+
         [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPay_Init", CallingConvention = CallingConvention.StdCall)]
         extern static int UPay_Init();
         [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPay_Set", CallingConvention = CallingConvention.StdCall)]
@@ -44,8 +44,8 @@ namespace thepos
         extern static IntPtr UPayResponse(int index);
         [DllImport("C:\\TossPGPos\\TossPGPOSClient.dll", EntryPoint = "UPayFinal", CallingConvention = CallingConvention.StdCall)]
         extern static int UPayFinal();
-#endif
 
+        
 
 
         public struct TossResponse
@@ -74,8 +74,7 @@ namespace thepos
 
 
 
-
-        public int requestTossCardAuth(int amount, int install, out PaymentCard mPaymentCard)
+        public int requestTossCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
         {
             int ret = 0;
 
@@ -107,11 +106,13 @@ namespace thepos
             ret = UPay_Set("LGD_REQTYPE", "APPR");
             //ret = UPay_Set("LGD_MID", "");
             ret = UPay_Set("LGD_OID", mSiteId + mPosNo + randomValue);
-            ret = UPay_Set("LGD_AMOUNT", amount.ToString());
+            ret = UPay_Set("LGD_AMOUNT", tAmount.ToString());
             ret = UPay_Set("LGD_INSTALL", install.ToString("00"));
-            ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
-            ret = UPay_Set("LGD_VAT", "0");
-            ret = UPay_Set("VAN_SFEEAMOUNT", "0");
+
+
+            ret = UPay_Set("LGD_TAXFREEAMOUNT", tFreeAmount.ToString());
+            ret = UPay_Set("LGD_VAT", tTax.ToString());
+            ret = UPay_Set("VAN_SFEEAMOUNT", tServiceAmt.ToString());
             ret = UPay_Set("VAN_TRANTYPE", "S0");  // S0 승인
 
             ret = UPay_TX();
@@ -173,8 +174,11 @@ namespace thepos
                 mPaymentCard.auth_no = mTossResponse.Authno;
                 mPaymentCard.card_no = mTossResponse.Cardno;
                 mPaymentCard.card_name = mTossResponse.Financename;
+
+                //? 발급사,매입사 코드 -> 공통관리코드로 변환 필요
                 mPaymentCard.isu_code = mTossResponse.Stlinst;
                 mPaymentCard.acq_code = mTossResponse.Reqinst;
+
                 mPaymentCard.merchant_no = mTossResponse.Merno;
                 mPaymentCard.tran_serial = mTossResponse.Tran_serial;              // tran_serial -> 취소시 tid입력
                 mPaymentCard.sign_path = mTossResponse.Signpath;
@@ -194,10 +198,7 @@ namespace thepos
         public int requestTossCardCancel(PaymentCard pCard, out PaymentCard pCardCancel)
         {
             int ret = 0;
-            PaymentCard cardCancel = new PaymentCard();
-            pCardCancel = cardCancel;
-
-
+            pCardCancel = pCard;
 
 
             try

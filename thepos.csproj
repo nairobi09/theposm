@@ -30,12 +30,12 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -123,6 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1Sales\frmSysPayConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmSysPayConsole.Designer.cs">
+      <DependentUpon>frmSysPayConsole.cs</DependentUpon>
+    </Compile>
     <Compile Include="2Business\frmBizClose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,12 @@
     </Compile>
     <Compile Include="2Business\frmBizOpen.Designer.cs">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminSite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminSite.Designer.cs">
+      <DependentUpon>frmSysAdminSite.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -225,6 +237,12 @@
     <Compile Include="frmReports.Designer.cs">
       <DependentUpon>frmReports.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReqUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReqUser.Designer.cs">
+      <DependentUpon>frmReqUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +297,18 @@
     <Compile Include="1Sales\frmSysGoodsGroup.Designer.cs">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdmin.Designer.cs">
+      <DependentUpon>frmSysAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminGate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminGate.Designer.cs">
+      <DependentUpon>frmSysAdminGate.cs</DependentUpon>
+    </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
     <Compile Include="van\KCP\ClsDate.cs" />
     <Compile Include="van\KCP\clsEnum.cs" />
@@ -297,6 +327,9 @@
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="1Sales\frmSysPayConsole.resx">
+      <DependentUpon>frmSysPayConsole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizClose.resx">
       <DependentUpon>frmBizClose.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizOpen.resx">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminSite.resx">
+      <DependentUpon>frmSysAdminSite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -348,6 +384,9 @@
     <EmbeddedResource Include="frmReports.resx">
       <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReqUser.resx">
+      <DependentUpon>frmReqUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSales.resx">
       <DependentUpon>frmSales.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmSysMemoryStatus.resx">
       <DependentUpon>frmSysMemoryStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdmin.resx">
+      <DependentUpon>frmSysAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminGate.resx">
+      <DependentUpon>frmSysAdminGate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

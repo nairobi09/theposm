@@ -73,7 +73,8 @@
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenter = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.lblReqUser = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,7 +85,7 @@
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -95,7 +96,7 @@
             this.panel1.Controls.Add(this.btnBusiness);
             this.panel1.Controls.Add(this.btnReports);
             this.panel1.Controls.Add(this.btnSales);
-            this.panel1.Location = new System.Drawing.Point(702, 356);
+            this.panel1.Location = new System.Drawing.Point(702, 318);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 341);
             this.panel1.TabIndex = 0;
@@ -198,6 +199,7 @@
             // 
             // panelLogin
             // 
+            this.panelLogin.Controls.Add(this.lblReqUser);
             this.panelLogin.Controls.Add(this.btnClose);
             this.panelLogin.Controls.Add(this.lblPW);
             this.panelLogin.Controls.Add(this.lblID);
@@ -217,7 +219,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.LightGray;
-            this.btnClose.Location = new System.Drawing.Point(265, 36);
+            this.btnClose.Location = new System.Drawing.Point(231, 71);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(39, 38);
             this.btnClose.TabIndex = 40;
@@ -231,11 +233,11 @@
             this.lblPW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPW.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPW.Location = new System.Drawing.Point(37, 306);
+            this.lblPW.Location = new System.Drawing.Point(18, 231);
             this.lblPW.Name = "lblPW";
-            this.lblPW.Size = new System.Drawing.Size(55, 48);
+            this.lblPW.Size = new System.Drawing.Size(74, 48);
             this.lblPW.TabIndex = 39;
-            this.lblPW.Text = "PW";
+            this.lblPW.Text = "패스워드";
             this.lblPW.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblID
@@ -243,11 +245,11 @@
             this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblID.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblID.Location = new System.Drawing.Point(37, 251);
+            this.lblID.Location = new System.Drawing.Point(18, 176);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(55, 48);
+            this.lblID.Size = new System.Drawing.Size(74, 48);
             this.lblID.TabIndex = 39;
-            this.lblID.Text = "ID";
+            this.lblID.Text = "아이디";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbSaveID
@@ -256,7 +258,7 @@
             this.cbSaveID.Checked = true;
             this.cbSaveID.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSaveID.ForeColor = System.Drawing.Color.White;
-            this.cbSaveID.Location = new System.Drawing.Point(98, 367);
+            this.cbSaveID.Location = new System.Drawing.Point(98, 292);
             this.cbSaveID.Name = "cbSaveID";
             this.cbSaveID.Size = new System.Drawing.Size(87, 16);
             this.cbSaveID.TabIndex = 38;
@@ -268,7 +270,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.tbID);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(97, 251);
+            this.panel4.Location = new System.Drawing.Point(97, 176);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(174, 48);
             this.panel4.TabIndex = 37;
@@ -306,7 +308,7 @@
             this.panelKeyDisplayWhite.BackColor = System.Drawing.Color.White;
             this.panelKeyDisplayWhite.Controls.Add(this.tbPW);
             this.panelKeyDisplayWhite.Controls.Add(this.lblKeyDisplayXX);
-            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(97, 305);
+            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(97, 230);
             this.panelKeyDisplayWhite.Name = "panelKeyDisplayWhite";
             this.panelKeyDisplayWhite.Size = new System.Drawing.Size(174, 48);
             this.panelKeyDisplayWhite.TabIndex = 37;
@@ -355,7 +357,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(82, 429);
+            this.panelNumpad.Location = new System.Drawing.Point(82, 338);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
@@ -646,31 +648,42 @@
             // 
             this.lblCallCenter.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenter.ForeColor = System.Drawing.Color.LightGray;
-            this.lblCallCenter.Location = new System.Drawing.Point(811, 705);
+            this.lblCallCenter.Location = new System.Drawing.Point(813, 711);
             this.lblCallCenter.Name = "lblCallCenter";
             this.lblCallCenter.Size = new System.Drawing.Size(166, 14);
             this.lblCallCenter.TabIndex = 8;
-            this.lblCallCenter.Text = "콜센터: _";
+            this.lblCallCenter.Text = "_";
             this.lblCallCenter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox2
+            // picLogo
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(711, 703);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(65, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(47, 707);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(65, 18);
+            this.picLogo.TabIndex = 10;
+            this.picLogo.TabStop = false;
+            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
+            // 
+            // lblReqUser
+            // 
+            this.lblReqUser.AutoSize = true;
+            this.lblReqUser.ForeColor = System.Drawing.Color.White;
+            this.lblReqUser.Location = new System.Drawing.Point(210, 669);
+            this.lblReqUser.Name = "lblReqUser";
+            this.lblReqUser.Size = new System.Drawing.Size(53, 12);
+            this.lblReqUser.TabIndex = 41;
+            this.lblReqUser.Text = "가입신청";
+            this.lblReqUser.Click += new System.EventHandler(this.lblReqUser_Click);
             // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.picLogo);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.lblCallCenter);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel3);
@@ -696,7 +709,7 @@
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -745,8 +758,9 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Label lblPosNo;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblCallCenter;
         private System.Windows.Forms.Label lblSiteAlias;
+        private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.Label lblReqUser;
     }
 }

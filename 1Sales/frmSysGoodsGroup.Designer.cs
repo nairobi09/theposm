@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysGoodsGroup));
             this.tableLayoutPanelGoodsGroup = new System.Windows.Forms.TableLayoutPanel();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
@@ -330,9 +331,11 @@
             this.Controls.Add(this.lvwGoodsGroup);
             this.Controls.Add(this.tableLayoutPanelGoodsGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSysGoodsGroup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "상품그룹등록";
             this.tableLayoutPanelGoodsGroup.ResumeLayout(false);
             this.ResumeLayout(false);

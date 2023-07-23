@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,8 @@ namespace thepos
     {
 
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
+
+        int AdminClickCount = 0;
 
 
 
@@ -69,16 +72,19 @@ namespace thepos
 
 
 
+            lblReqUser.Font = font10;
+
+
 
             // 로그인
 
-            lblID.Font = font12;
-            lblPW.Font = font12;
+            lblID.Font = font10;
+            lblPW.Font = font10;
 
             tbID.Font = font14;
             tbPW.Font = font14;
 
-            cbSaveID.Font = font10;
+            cbSaveID.Font = font12;
 
             btnKey1.Font = font14;
             btnKey2.Font = font14;
@@ -136,7 +142,23 @@ namespace thepos
 
 
 
-            tbID.Text = get_saved_userid();
+            tbID.Text = get_registry_id();
+            tbID.Tag = tbID.Text;
+
+            if (get_registry_save())
+            {
+                cbSaveID.Checked = true;
+                cbSaveID.Tag = "True";
+            }
+            else
+            {
+                cbSaveID.Checked = false;
+                cbSaveID.Tag = "False";
+            }
+
+
+
+
 
             if (tbID.Text.Length == 4)
             {
@@ -208,12 +230,6 @@ namespace thepos
 
 
 
-        private String get_saved_userid()
-        {
-            //? 레지스트리 저장방식?
-
-            return "1234";
-        }
 
         private void ClickedKey(string sKey)
         {
@@ -264,6 +280,10 @@ namespace thepos
 
             lblCallCenter.Text = "콜센터: " + mCallCenterNo;
 
+
+
+            save_registry_info();
+
         }
 
 
@@ -296,8 +316,8 @@ namespace thepos
             mTicketMedia = "BC";  // BC:BarCode 띠지
             //mTicketMedia = "RF";  // RF 팔찌
 
-            mPayChannel = "KCP";
-            //mPayChannel = "TOSS";
+            //mPayChannel = "KCP";
+            mPayChannel = "TOSS";
 
 
             mPosNoList = new string[4];
@@ -307,7 +327,7 @@ namespace thepos
             mPosNoList[3] = "04";
 
 
-            mUserID = "0012";
+            mUserID = "";
             mUserName = "김토스";
 
         }
@@ -395,6 +415,73 @@ namespace thepos
         private void tbPW_Click(object sender, EventArgs e)
         {
             mTbKeyDisplayController = tbPW;
+        }
+
+
+        private String get_registry_id()
+        {
+
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
+
+            return reg.GetValue("ID", "").ToString();
+        }
+
+        private bool get_registry_save()
+        {
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
+
+            if (reg.GetValue("Save", "").ToString() == "True")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+
+        private void save_registry_info()
+        {
+
+
+            String dSave = cbSaveID.Checked.ToString();
+            String tSave = (cbSaveID.Tag + "").ToString();
+
+            String dID = tbID.Text;
+            String tID = (tbID.Tag + "").ToString();
+
+            if (dSave == tSave & dID == tID)
+            {
+                return;
+            }
+
+
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
+
+            reg.SetValue("Save", dSave);
+
+            if (dSave == "True") reg.SetValue("ID", dID);
+            else reg.SetValue("ID", "");
+
+        }
+
+        private void picLogo_Click(object sender, EventArgs e)
+        {
+            frmSysAdminGate fSysAdminGate = new frmSysAdminGate();
+            fSysAdminGate.ShowDialog();
+
+        }
+
+        private void lblReqUser_Click(object sender, EventArgs e)
+        {
+            frmReqUser fReqUser = new frmReqUser();
+            fReqUser.ShowDialog();
         }
     }
 }

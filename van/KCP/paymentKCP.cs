@@ -95,12 +95,14 @@ namespace thepos
                 // 승인번호
                 mPaymentCard.auth_no = clsSecureDLL.GetData("AUTH_NO");
 
+
+                //? 발급사,매입사 코드 -> 공통관리코드로 변환 필요
                 // 매입사 코드
                 mPaymentCard.acq_code = clsSecureDLL.GetData("AC_CODE");
-                // 매입사 명
-                String AcName = clsSecureDLL.GetData("AC_NAME");
                 // 발급사 코드
                 mPaymentCard.isu_code = clsSecureDLL.GetData("CC_CODE");
+
+
                 // 발급사 명
                 mPaymentCard.card_name = clsSecureDLL.GetData("CC_NAME");
                 // 가맹점 번호
