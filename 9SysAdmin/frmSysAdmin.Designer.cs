@@ -40,21 +40,29 @@
             // 
             // btnPosMac
             // 
-            this.btnPosMac.Location = new System.Drawing.Point(3, 59);
+            this.btnPosMac.BackColor = System.Drawing.Color.LightGray;
+            this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPosMac.Location = new System.Drawing.Point(5, 112);
             this.btnPosMac.Name = "btnPosMac";
-            this.btnPosMac.Size = new System.Drawing.Size(100, 50);
+            this.btnPosMac.Size = new System.Drawing.Size(97, 61);
             this.btnPosMac.TabIndex = 0;
+            this.btnPosMac.TabStop = false;
             this.btnPosMac.Text = "포스기기등록";
-            this.btnPosMac.UseVisualStyleBackColor = true;
+            this.btnPosMac.UseVisualStyleBackColor = false;
+            this.btnPosMac.Click += new System.EventHandler(this.btnPosMac_Click);
             // 
             // btnUser
             // 
-            this.btnUser.Location = new System.Drawing.Point(3, 115);
+            this.btnUser.BackColor = System.Drawing.Color.LightGray;
+            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser.Location = new System.Drawing.Point(5, 177);
             this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(100, 50);
+            this.btnUser.Size = new System.Drawing.Size(97, 61);
             this.btnUser.TabIndex = 0;
+            this.btnUser.TabStop = false;
             this.btnUser.Text = "사용자인증";
-            this.btnUser.UseVisualStyleBackColor = true;
+            this.btnUser.UseVisualStyleBackColor = false;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
             // panelView
             // 
@@ -78,22 +86,29 @@
             // 
             // btnSite
             // 
-            this.btnSite.Location = new System.Drawing.Point(3, 348);
+            this.btnSite.BackColor = System.Drawing.Color.LightGray;
+            this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSite.Location = new System.Drawing.Point(5, 6);
             this.btnSite.Name = "btnSite";
-            this.btnSite.Size = new System.Drawing.Size(100, 50);
+            this.btnSite.Size = new System.Drawing.Size(98, 37);
             this.btnSite.TabIndex = 0;
+            this.btnSite.TabStop = false;
             this.btnSite.Text = "SITE등록";
-            this.btnSite.UseVisualStyleBackColor = true;
+            this.btnSite.UseVisualStyleBackColor = false;
             this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
             // 
             // btnPos
             // 
-            this.btnPos.Location = new System.Drawing.Point(3, 3);
+            this.btnPos.BackColor = System.Drawing.Color.LightGray;
+            this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPos.Location = new System.Drawing.Point(5, 47);
             this.btnPos.Name = "btnPos";
-            this.btnPos.Size = new System.Drawing.Size(100, 50);
+            this.btnPos.Size = new System.Drawing.Size(98, 61);
             this.btnPos.TabIndex = 0;
+            this.btnPos.TabStop = false;
             this.btnPos.Text = "POS등록";
-            this.btnPos.UseVisualStyleBackColor = true;
+            this.btnPos.UseVisualStyleBackColor = false;
+            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
             // 
             // frmSysAdmin
             // 

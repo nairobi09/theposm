@@ -147,11 +147,29 @@
     <Compile Include="2Business\frmBizOpen.Designer.cs">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminMac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminMac.Designer.cs">
+      <DependentUpon>frmSysAdminMac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminPos.Designer.cs">
+      <DependentUpon>frmSysAdminPos.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysAdminSite.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="9SysAdmin\frmSysAdminSite.Designer.cs">
       <DependentUpon>frmSysAdminSite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminUser.Designer.cs">
+      <DependentUpon>frmSysAdminUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -339,8 +357,17 @@
     <EmbeddedResource Include="2Business\frmBizOpen.resx">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminMac.resx">
+      <DependentUpon>frmSysAdminMac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminPos.resx">
+      <DependentUpon>frmSysAdminPos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminSite.resx">
       <DependentUpon>frmSysAdminSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminUser.resx">
+      <DependentUpon>frmSysAdminUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

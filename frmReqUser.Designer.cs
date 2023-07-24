@@ -59,7 +59,7 @@
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.White;
-            this.lblID.Location = new System.Drawing.Point(201, 77);
+            this.lblID.Location = new System.Drawing.Point(201, 79);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(20, 14);
             this.lblID.TabIndex = 1;
@@ -68,7 +68,7 @@
             // tbID
             // 
             this.tbID.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbID.Location = new System.Drawing.Point(282, 69);
+            this.tbID.Location = new System.Drawing.Point(282, 73);
             this.tbID.MaxLength = 4;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(127, 29);
@@ -79,7 +79,7 @@
             this.lblPW.AutoSize = true;
             this.lblPW.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.White;
-            this.lblPW.Location = new System.Drawing.Point(201, 117);
+            this.lblPW.Location = new System.Drawing.Point(201, 119);
             this.lblPW.Name = "lblPW";
             this.lblPW.Size = new System.Drawing.Size(63, 14);
             this.lblPW.TabIndex = 1;
@@ -88,7 +88,7 @@
             // tbPW1
             // 
             this.tbPW1.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPW1.Location = new System.Drawing.Point(282, 109);
+            this.tbPW1.Location = new System.Drawing.Point(282, 111);
             this.tbPW1.MaxLength = 4;
             this.tbPW1.Name = "tbPW1";
             this.tbPW1.Size = new System.Drawing.Size(127, 29);
@@ -97,7 +97,7 @@
             // tbPW2
             // 
             this.tbPW2.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPW2.Location = new System.Drawing.Point(282, 145);
+            this.tbPW2.Location = new System.Drawing.Point(282, 149);
             this.tbPW2.MaxLength = 4;
             this.tbPW2.Name = "tbPW2";
             this.tbPW2.Size = new System.Drawing.Size(127, 29);

@@ -70,9 +70,9 @@ namespace thepos
             btnSupport.Font = font12;
             btnExit.Font = font12;
 
+            lblCallCenter.Font = font10;
 
 
-            lblReqUser.Font = font10;
 
 
 
@@ -84,7 +84,7 @@ namespace thepos
             tbID.Font = font14;
             tbPW.Font = font14;
 
-            cbSaveID.Font = font12;
+            cbSaveID.Font = font10;
 
             btnKey1.Font = font14;
             btnKey2.Font = font14;
@@ -98,9 +98,13 @@ namespace thepos
             btnKey0.Font = font14;
             btnKeyBS.Font = font14;
             btnKeyClear.Font = font14;
-            btnKeyLogin.Font = font14;
+            btnKeyLogin.Font = font12;
 
-            lblCallCenter.Font = font10;
+            lblReqUser.Font = font10;
+
+
+
+
 
         }
 

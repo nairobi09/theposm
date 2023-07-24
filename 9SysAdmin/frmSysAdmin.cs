@@ -32,5 +32,41 @@ namespace thepos
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
+
+        private void btnPos_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Pos") return;
+
+            mThisButtonClick = "Pos";
+            panelView.Controls.Clear();
+
+            frmSysAdminPos fSysAdmin = new frmSysAdminPos() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+        private void btnPosMac_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Mac") return;
+
+            mThisButtonClick = "Mac";
+            panelView.Controls.Clear();
+
+            frmSysAdminMac fSysAdmin = new frmSysAdminMac() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "User") return;
+
+            mThisButtonClick = "User";
+            panelView.Controls.Clear();
+
+            frmSysAdminUser fSysAdmin = new frmSysAdminUser() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
     }
 }
