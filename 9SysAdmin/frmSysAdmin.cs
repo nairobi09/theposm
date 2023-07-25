@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using thepos._1Sales;
 using thepos._9SysAdmin;
 
 namespace thepos
@@ -65,6 +66,56 @@ namespace thepos
             panelView.Controls.Clear();
 
             frmSysAdminUser fSysAdmin = new frmSysAdminUser() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+
+
+        private void btnSysGoodsGroup_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsGroup") return;
+
+            mThisButtonClick = "GoodsGroup";
+            panelView.Controls.Clear();
+
+            frmSysGoodsGroup fSysAdmin = new frmSysGoodsGroup() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+        private void btnSysGoods_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Goods") return;
+
+            mThisButtonClick = "Goods";
+            panelView.Controls.Clear();
+
+            frmSysGoods fSysAdmin = new frmSysGoods() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+        private void btnSysGoodsLayout_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsLayout") return;
+
+            mThisButtonClick = "GoodsLayout";
+            panelView.Controls.Clear();
+
+            frmSysGoods fSysAdmin = new frmSysGoods() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+        private void btnSysPayConsole_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "PayConsole") return;
+
+            mThisButtonClick = "PayConsole";
+            panelView.Controls.Clear();
+
+            frmSysPayConsole fSysAdmin = new frmSysPayConsole() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }

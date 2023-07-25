@@ -218,10 +218,10 @@
             this.lvwGoodsItem.GridLines = true;
             this.lvwGoodsItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoodsItem.HideSelection = false;
-            this.lvwGoodsItem.Location = new System.Drawing.Point(0, 0);
+            this.lvwGoodsItem.Location = new System.Drawing.Point(5, 4);
             this.lvwGoodsItem.MultiSelect = false;
             this.lvwGoodsItem.Name = "lvwGoodsItem";
-            this.lvwGoodsItem.Size = new System.Drawing.Size(521, 254);
+            this.lvwGoodsItem.Size = new System.Drawing.Size(521, 191);
             this.lvwGoodsItem.TabIndex = 43;
             this.lvwGoodsItem.TabStop = false;
             this.lvwGoodsItem.UseCompatibleStateImageBehavior = false;
@@ -294,7 +294,7 @@
             this.tableLayoutPanelGoodsItem.Controls.Add(this.button5, 2, 0);
             this.tableLayoutPanelGoodsItem.Controls.Add(this.button6, 0, 0);
             this.tableLayoutPanelGoodsItem.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanelGoodsItem.Location = new System.Drawing.Point(0, 261);
+            this.tableLayoutPanelGoodsItem.Location = new System.Drawing.Point(5, 201);
             this.tableLayoutPanelGoodsItem.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelGoodsItem.Name = "tableLayoutPanelGoodsItem";
             this.tableLayoutPanelGoodsItem.RowCount = 8;
@@ -403,7 +403,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 661);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.cbGoodsGroup);
             this.Controls.Add(this.tableLayoutPanelGoodsItem);
             this.Controls.Add(this.label6);
@@ -429,6 +429,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lvwGoodsItem);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSysGoods";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "상품등록";

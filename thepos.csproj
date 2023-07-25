@@ -123,10 +123,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1Sales\frmSysPayConsole.cs">
+    <Compile Include="9SysAdmin\frmSysPayConsole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmSysPayConsole.Designer.cs">
+    <Compile Include="9SysAdmin\frmSysPayConsole.Designer.cs">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
     </Compile>
     <Compile Include="2Business\frmBizClose.cs">
@@ -297,10 +297,10 @@
     <Compile Include="1Sales\frmScanner.Designer.cs">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmSysGoods.cs">
+    <Compile Include="9SysAdmin\frmSysGoods.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmSysGoods.Designer.cs">
+    <Compile Include="9SysAdmin\frmSysGoods.Designer.cs">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmSysMemoryStatus.cs">
@@ -309,10 +309,10 @@
     <Compile Include="1Sales\frmSysMemoryStatus.Designer.cs">
       <DependentUpon>frmSysMemoryStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmSysGoodsGroup.cs">
+    <Compile Include="9SysAdmin\frmSysGoodsGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmSysGoodsGroup.Designer.cs">
+    <Compile Include="9SysAdmin\frmSysGoodsGroup.Designer.cs">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysAdmin.cs">
@@ -345,7 +345,7 @@
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="1Sales\frmSysPayConsole.resx">
+    <EmbeddedResource Include="9SysAdmin\frmSysPayConsole.resx">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizClose.resx">
@@ -432,10 +432,10 @@
     <EmbeddedResource Include="1Sales\frmScanner.resx">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmSysGoods.resx">
+    <EmbeddedResource Include="9SysAdmin\frmSysGoods.resx">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmSysGoodsGroup.resx">
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroup.resx">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmSysMemoryStatus.resx">

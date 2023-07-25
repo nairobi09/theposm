@@ -74,7 +74,7 @@
             this.tableLayoutPanelGoodsGroup.Controls.Add(this.button19, 0, 0);
             this.tableLayoutPanelGoodsGroup.Controls.Add(this.button20, 3, 0);
             this.tableLayoutPanelGoodsGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(4, 305);
+            this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(4, 309);
             this.tableLayoutPanelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelGoodsGroup.Name = "tableLayoutPanelGoodsGroup";
             this.tableLayoutPanelGoodsGroup.RowCount = 2;
@@ -132,7 +132,7 @@
             this.lvwGoodsGroup.GridLines = true;
             this.lvwGoodsGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoodsGroup.HideSelection = false;
-            this.lvwGoodsGroup.Location = new System.Drawing.Point(4, 0);
+            this.lvwGoodsGroup.Location = new System.Drawing.Point(4, 4);
             this.lvwGoodsGroup.MultiSelect = false;
             this.lvwGoodsGroup.Name = "lvwGoodsGroup";
             this.lvwGoodsGroup.Size = new System.Drawing.Size(521, 296);
@@ -176,7 +176,7 @@
             // 
             // btnView
             // 
-            this.btnView.Location = new System.Drawing.Point(537, 33);
+            this.btnView.Location = new System.Drawing.Point(537, 37);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(167, 39);
             this.btnView.TabIndex = 39;
@@ -186,7 +186,7 @@
             // 
             // tbGroupCode
             // 
-            this.tbGroupCode.Location = new System.Drawing.Point(591, 129);
+            this.tbGroupCode.Location = new System.Drawing.Point(591, 133);
             this.tbGroupCode.Name = "tbGroupCode";
             this.tbGroupCode.Size = new System.Drawing.Size(113, 21);
             this.tbGroupCode.TabIndex = 40;
@@ -194,7 +194,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(535, 136);
+            this.label1.Location = new System.Drawing.Point(535, 140);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 41;
@@ -203,7 +203,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(535, 165);
+            this.label2.Location = new System.Drawing.Point(535, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 41;
@@ -212,7 +212,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(535, 203);
+            this.label3.Location = new System.Drawing.Point(535, 207);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 12);
             this.label3.TabIndex = 41;
@@ -221,7 +221,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(535, 232);
+            this.label4.Location = new System.Drawing.Point(535, 236);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 12);
             this.label4.TabIndex = 41;
@@ -230,7 +230,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(535, 261);
+            this.label5.Location = new System.Drawing.Point(535, 265);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 12);
             this.label5.TabIndex = 41;
@@ -239,7 +239,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(535, 290);
+            this.label6.Location = new System.Drawing.Point(535, 294);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 12);
             this.label6.TabIndex = 41;
@@ -247,42 +247,42 @@
             // 
             // tbGroupName
             // 
-            this.tbGroupName.Location = new System.Drawing.Point(591, 158);
+            this.tbGroupName.Location = new System.Drawing.Point(591, 162);
             this.tbGroupName.Name = "tbGroupName";
             this.tbGroupName.Size = new System.Drawing.Size(113, 21);
             this.tbGroupName.TabIndex = 40;
             // 
             // tbLocateX
             // 
-            this.tbLocateX.Location = new System.Drawing.Point(591, 196);
+            this.tbLocateX.Location = new System.Drawing.Point(591, 200);
             this.tbLocateX.Name = "tbLocateX";
             this.tbLocateX.Size = new System.Drawing.Size(113, 21);
             this.tbLocateX.TabIndex = 40;
             // 
             // tbLocateY
             // 
-            this.tbLocateY.Location = new System.Drawing.Point(591, 225);
+            this.tbLocateY.Location = new System.Drawing.Point(591, 229);
             this.tbLocateY.Name = "tbLocateY";
             this.tbLocateY.Size = new System.Drawing.Size(113, 21);
             this.tbLocateY.TabIndex = 40;
             // 
             // tbSizeX
             // 
-            this.tbSizeX.Location = new System.Drawing.Point(591, 254);
+            this.tbSizeX.Location = new System.Drawing.Point(591, 258);
             this.tbSizeX.Name = "tbSizeX";
             this.tbSizeX.Size = new System.Drawing.Size(113, 21);
             this.tbSizeX.TabIndex = 40;
             // 
             // tbSizeY
             // 
-            this.tbSizeY.Location = new System.Drawing.Point(591, 283);
+            this.tbSizeY.Location = new System.Drawing.Point(591, 287);
             this.tbSizeY.Name = "tbSizeY";
             this.tbSizeY.Size = new System.Drawing.Size(113, 21);
             this.tbSizeY.TabIndex = 40;
             // 
             // btnInput
             // 
-            this.btnInput.Location = new System.Drawing.Point(537, 324);
+            this.btnInput.Location = new System.Drawing.Point(537, 328);
             this.btnInput.Name = "btnInput";
             this.btnInput.Size = new System.Drawing.Size(91, 39);
             this.btnInput.TabIndex = 39;
@@ -291,7 +291,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(537, 369);
+            this.btnUpdate.Location = new System.Drawing.Point(537, 373);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(91, 39);
             this.btnUpdate.TabIndex = 39;
@@ -300,7 +300,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(635, 326);
+            this.btnSend.Location = new System.Drawing.Point(635, 330);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(69, 82);
             this.btnSend.TabIndex = 39;
@@ -311,7 +311,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 447);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -330,7 +330,7 @@
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lvwGoodsGroup);
             this.Controls.Add(this.tableLayoutPanelGoodsGroup);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

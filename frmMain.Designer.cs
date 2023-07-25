@@ -39,6 +39,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.lblReqUser = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPW = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
@@ -74,7 +75,6 @@
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenter = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.lblReqUser = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -212,6 +212,17 @@
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
+            // 
+            // lblReqUser
+            // 
+            this.lblReqUser.AutoSize = true;
+            this.lblReqUser.ForeColor = System.Drawing.Color.White;
+            this.lblReqUser.Location = new System.Drawing.Point(182, 679);
+            this.lblReqUser.Name = "lblReqUser";
+            this.lblReqUser.Size = new System.Drawing.Size(89, 12);
+            this.lblReqUser.TabIndex = 41;
+            this.lblReqUser.Text = "사용자계정신청";
+            this.lblReqUser.Click += new System.EventHandler(this.lblReqUser_Click);
             // 
             // btnClose
             // 
@@ -664,17 +675,6 @@
             this.picLogo.TabIndex = 10;
             this.picLogo.TabStop = false;
             this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
-            // 
-            // lblReqUser
-            // 
-            this.lblReqUser.AutoSize = true;
-            this.lblReqUser.ForeColor = System.Drawing.Color.White;
-            this.lblReqUser.Location = new System.Drawing.Point(210, 669);
-            this.lblReqUser.Name = "lblReqUser";
-            this.lblReqUser.Size = new System.Drawing.Size(53, 12);
-            this.lblReqUser.TabIndex = 41;
-            this.lblReqUser.Text = "가입신청";
-            this.lblReqUser.Click += new System.EventHandler(this.lblReqUser_Click);
             // 
             // frmMain
             // 

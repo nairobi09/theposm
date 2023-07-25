@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static thepos.thePos;
 
 namespace thepos
 {
@@ -16,6 +17,15 @@ namespace thepos
         public frmExit()
         {
             InitializeComponent();
+            initialize_font();
+        }
+
+        private void initialize_font()
+        {
+            btnLogout.Font = font14;
+            brnRestart.Font = font14;
+            btnExit.Font = font14;
+
         }
 
 

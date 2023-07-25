@@ -32,10 +32,10 @@
             this.btnEnter = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lvwList = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
             this.PosNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.lblMacValue = new System.Windows.Forms.Label();
             this.lblMacTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -91,16 +91,6 @@
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(17, 123);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 14);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "포스목록";
-            // 
             // PosNo
             // 
             this.PosNo.Text = "포스번호";
@@ -115,6 +105,16 @@
             // 
             this.date.Text = "등록일";
             this.date.Width = 100;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(17, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 14);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "포스목록";
             // 
             // lblMacValue
             // 
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 400);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.lvwList);
             this.Controls.Add(this.lblMacValue);
             this.Controls.Add(this.btnCancel);

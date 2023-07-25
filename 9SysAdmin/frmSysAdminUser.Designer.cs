@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lvwList = new System.Windows.Forms.ListView();
+            this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.auth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,7 +38,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnEnter = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -58,6 +58,11 @@
             this.lvwList.TabIndex = 33;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
+            // 
+            // status
+            // 
+            this.status.Text = "상태";
+            this.status.Width = 50;
             // 
             // ID
             // 
@@ -124,16 +129,11 @@
             this.lblTitle.TabIndex = 29;
             this.lblTitle.Text = "사용자 인증등록";
             // 
-            // status
-            // 
-            this.status.Text = "상태";
-            this.status.Width = 50;
-            // 
             // frmSysAdminUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 400);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.lvwList);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.button1);

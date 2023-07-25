@@ -477,8 +477,18 @@ namespace thepos
 
         private void picLogo_Click(object sender, EventArgs e)
         {
+
             frmSysAdminGate fSysAdminGate = new frmSysAdminGate();
-            fSysAdminGate.ShowDialog();
+            DialogResult ret = fSysAdminGate.ShowDialog();
+
+            if (ret == DialogResult.OK)
+            {
+                frmSysAdmin frmSysAdmin = new frmSysAdmin();
+                frmSysAdmin.ShowDialog();
+
+            }
+
+
 
         }
 

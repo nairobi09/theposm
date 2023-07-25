@@ -387,7 +387,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 447);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.cbUsage);
             this.Controls.Add(this.tableLayoutPanelPayControl);
             this.Controls.Add(this.label6);
@@ -407,6 +407,7 @@
             this.Controls.Add(this.btnOrigin);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lvwButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSysPayConsole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "결제콘솔";

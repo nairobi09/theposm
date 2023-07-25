@@ -73,7 +73,7 @@
             // 
             this.tbPosNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbPosNo.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPosNo.Location = new System.Drawing.Point(106, 75);
+            this.tbPosNo.Location = new System.Drawing.Point(106, 76);
             this.tbPosNo.MaxLength = 2;
             this.tbPosNo.Name = "tbPosNo";
             this.tbPosNo.Size = new System.Drawing.Size(61, 29);
@@ -93,7 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 400);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.lblTitle);
