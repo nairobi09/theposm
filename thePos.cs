@@ -1,4 +1,6 @@
-﻿using PrinterUtility;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using PrinterUtility;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,9 +9,14 @@ using System.IO.Ports;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Security.Policy;
+using System.Collections;
+using System.IO;
 
 
 
@@ -196,12 +203,20 @@ namespace thepos
         public static String mScanString;
         public static bool mIsScanOK;
 
-        public static readonly HttpClient mHttpClient = new HttpClient();
 
         public static string mUserID = "";
         public static string mUserName = "";
 
 
+        public static CookieContainer cookies = new CookieContainer();
+        public static HttpClientHandler handler = new HttpClientHandler();
+
+        public static HttpClient mHttpClient;
+
+
+        //public static HttpClient mHttpClient = new HttpClient();
+
+        public static String mBaseUri = "http://211.42.156.219:8080/";
 
 
 
@@ -1138,8 +1153,42 @@ namespace thepos
                 responseString = ex2.Message;
                 return -1;
             }
-
         }
+
+        public static bool mRequestGet(String sUrl, ref JObject obj)
+        {
+
+            var response = mHttpClient.GetAsync(mBaseUri + sUrl).Result;
+
+            var responseContent = response.Content;
+            string responseString = responseContent.ReadAsStringAsync().Result;
+
+
+            obj = JObject.Parse(responseString);
+
+            return response.IsSuccessStatusCode;
+        }
+
+        public static bool mRequestPost(String sUrl, Dictionary<string, string> parameters, ref JObject obj)
+        {
+
+
+
+
+
+
+            var json = JsonConvert.SerializeObject(parameters);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = mHttpClient.PostAsync(mBaseUri + sUrl, data).Result;
+
+            var responseContent = response.Content;
+            string responseString = responseContent.ReadAsStringAsync().Result;
+
+            obj = JObject.Parse(responseString);
+
+            return response.IsSuccessStatusCode;
+        }
+
 
     }
 }

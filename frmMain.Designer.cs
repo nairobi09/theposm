@@ -43,7 +43,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPW = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.cbSaveID = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tbID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -203,7 +202,6 @@
             this.panelLogin.Controls.Add(this.btnClose);
             this.panelLogin.Controls.Add(this.lblPW);
             this.panelLogin.Controls.Add(this.lblID);
-            this.panelLogin.Controls.Add(this.cbSaveID);
             this.panelLogin.Controls.Add(this.panel4);
             this.panelLogin.Controls.Add(this.panelKeyDisplayWhite);
             this.panelLogin.Controls.Add(this.panelNumpad);
@@ -262,19 +260,6 @@
             this.lblID.TabIndex = 39;
             this.lblID.Text = "아이디";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cbSaveID
-            // 
-            this.cbSaveID.AutoSize = true;
-            this.cbSaveID.Checked = true;
-            this.cbSaveID.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSaveID.ForeColor = System.Drawing.Color.White;
-            this.cbSaveID.Location = new System.Drawing.Point(98, 292);
-            this.cbSaveID.Name = "cbSaveID";
-            this.cbSaveID.Size = new System.Drawing.Size(87, 16);
-            this.cbSaveID.TabIndex = 38;
-            this.cbSaveID.Text = "ID 저장하기";
-            this.cbSaveID.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -410,7 +395,7 @@
             this.btnKey0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey0.ForeColor = System.Drawing.Color.White;
-            this.btnKey0.Location = new System.Drawing.Point(127, 159);
+            this.btnKey0.Location = new System.Drawing.Point(128, 159);
             this.btnKey0.Name = "btnKey0";
             this.btnKey0.Size = new System.Drawing.Size(60, 48);
             this.btnKey0.TabIndex = 1;
@@ -467,7 +452,7 @@
             this.btnKeyBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyBS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyBS.ForeColor = System.Drawing.Color.White;
-            this.btnKeyBS.Location = new System.Drawing.Point(63, 159);
+            this.btnKeyBS.Location = new System.Drawing.Point(64, 159);
             this.btnKeyBS.Name = "btnKeyBS";
             this.btnKeyBS.Size = new System.Drawing.Size(60, 48);
             this.btnKeyBS.TabIndex = 1;
@@ -746,7 +731,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox cbSaveID;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblPW;
         private System.Windows.Forms.Button btnClose;

@@ -5,12 +5,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
+using System.Text.Json;
+using static System.Net.Mime.MediaTypeNames;
+using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace thepos
 {
@@ -84,8 +92,6 @@ namespace thepos
             tbID.Font = font14;
             tbPW.Font = font14;
 
-            cbSaveID.Font = font10;
-
             btnKey1.Font = font14;
             btnKey2.Font = font14;
             btnKey3.Font = font14;
@@ -149,19 +155,6 @@ namespace thepos
             tbID.Text = get_registry_id();
             tbID.Tag = tbID.Text;
 
-            if (get_registry_save())
-            {
-                cbSaveID.Checked = true;
-                cbSaveID.Tag = "True";
-            }
-            else
-            {
-                cbSaveID.Checked = false;
-                cbSaveID.Tag = "False";
-            }
-
-
-
 
 
             if (tbID.Text.Length == 4)
@@ -177,12 +170,17 @@ namespace thepos
             mMacAddr = NetworkInterface.GetAllNetworkInterfaces()
                       .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
                       .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+            //?
+            mMacAddr = "111111111111";
 
 
 
 
+            handler.CookieContainer = cookies;
+            mHttpClient = new HttpClient(handler);
 
-        }
+
+    }
 
         private void clear_login_init()
         {
@@ -229,6 +227,14 @@ namespace thepos
             mBizDate = "";
 
 
+            tbPW.Text = "";
+
+            lblSiteAlias.Text = "";
+            lblSiteName.Text = "";
+            lblPosNo.Text = "";
+            lblUserName.Text = "";
+
+
 
         }
 
@@ -256,25 +262,99 @@ namespace thepos
         }
 
 
+
+
+
+
+
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
-            String id = tbID.Text;
-            String pw = tbPW.Text;
-
-
-            //? 서버 로그인
 
 
 
 
+            //? 서버 
+            JObject obj = new JObject();
+
+
+            // 로그인
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["loginId"] = tbID.Text;
+            parameters["userPw"] = tbPW.Text;
+            parameters["macAddr"] = mMacAddr;
+
+            if (mRequestPost("login", parameters, ref obj))
+            {
+                mSiteId = obj["siteId"].ToString();
+                mUserID = tbID.Text;
+                mUserName = obj["userName"].ToString();
+                mPosNo = obj["posNo"].ToString();
+            }
+            else
+            {
+                MessageBox.Show(obj["resultMsg"].ToString(), "thepos");
+                return;
+            }
+
+
+            // 사이트
+            String sUrl = "site?siteId=" + mSiteId;
+
+            if (mRequestGet(sUrl, ref obj))
+            {
+                String sites = obj["sites"].ToString();
+                JArray arr = JArray.Parse(sites);
+
+                mSiteName = arr[0]["siteName"].ToString();
+                mSiteAlias = arr[0]["siteAlias"].ToString();
+                mCapName = arr[0]["capName"].ToString();
+                //?
+                //mCallCenterNo = arr[0]["callCenterNo"].ToString();
+            }
+            else
+            {
+                MessageBox.Show(obj["resultMsg"].ToString(), "thepos");
+                return;
+            }
+
+
+
+            // 포스
+            sUrl = "pos?siteId=" + mSiteId;
+
+            if (mRequestGet(sUrl, ref obj))
+            {
+                String pos = obj["pos"].ToString();
+                JArray arr = JArray.Parse(pos);
+
+                mPosNoList = new String[arr.Count];
+
+                for (int i = 0; i < arr.Count; i++)
+                {
+                    mPosNoList[i] = arr[i]["posNo"].ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show(obj["resultMsg"].ToString(), "thepos");
+                return;
+            }
+
+
+            //? 개시마감 
+            //mBizDate = "";
+            mBizDate = DateTime.Now.ToString("yyyyMMdd");
 
 
 
 
+
+
+            //////////////////////////////
             //? 로그인 성공
             panelLogin.Visible = false;
 
-            get_site_pos_user_info();
+            //get_site_pos_user_info();
 
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
@@ -285,10 +365,16 @@ namespace thepos
             lblCallCenter.Text = "콜센터: " + mCallCenterNo;
 
 
-
+            //
             save_registry_info();
 
         }
+
+
+
+
+
+
 
 
 
@@ -392,6 +478,11 @@ namespace thepos
             {
                 //? 로그아웃 프로세스 필요
 
+
+
+
+
+
                  
                 clear_login_init();  // 초기화
 
@@ -431,35 +522,15 @@ namespace thepos
             return reg.GetValue("ID", "").ToString();
         }
 
-        private bool get_registry_save()
-        {
-            RegistryKey reg;
-            reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
-
-            if (reg.GetValue("Save", "").ToString() == "True")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
 
 
         private void save_registry_info()
         {
 
-
-            String dSave = cbSaveID.Checked.ToString();
-            String tSave = (cbSaveID.Tag + "").ToString();
-
             String dID = tbID.Text;
             String tID = (tbID.Tag + "").ToString();
 
-            if (dSave == tSave & dID == tID)
+            if ( dID == tID)
             {
                 return;
             }
@@ -468,10 +539,9 @@ namespace thepos
             RegistryKey reg;
             reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
 
-            reg.SetValue("Save", dSave);
 
-            if (dSave == "True") reg.SetValue("ID", dID);
-            else reg.SetValue("ID", "");
+            reg.SetValue("ID", dID);
+
 
         }
 
