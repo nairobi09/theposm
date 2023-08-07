@@ -275,24 +275,37 @@ namespace thepos
 
             //? 서버 
             JObject obj = new JObject();
-
+            String err_msg = "";
 
             // 로그인
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["loginId"] = tbID.Text;
-            parameters["userPw"] = tbPW.Text;
+            //? SHA1 변경
+            //parameters["userPw"] = tbPW.Text;
+            parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
+
+
+
             parameters["macAddr"] = mMacAddr;
 
-            if (mRequestPost("login", parameters, ref obj))
+            if (mRequestPost("login", parameters, ref obj, ref err_msg))
             {
-                mSiteId = obj["siteId"].ToString();
-                mUserID = tbID.Text;
-                mUserName = obj["userName"].ToString();
-                mPosNo = obj["posNo"].ToString();
+                if (obj["resultCode"].ToString() == "200")
+                {
+                    mSiteId = obj["siteId"].ToString();
+                    mUserID = tbID.Text;
+                    mUserName = obj["userName"].ToString();
+                    mPosNo = obj["posNo"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("로그인오류\n\n" + obj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show(obj["resultMsg"].ToString(), "thepos");
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
                 return;
             }
 
@@ -300,20 +313,28 @@ namespace thepos
             // 사이트
             String sUrl = "site?siteId=" + mSiteId;
 
-            if (mRequestGet(sUrl, ref obj))
+            if (mRequestGet(sUrl, ref obj, ref err_msg))
             {
-                String sites = obj["sites"].ToString();
-                JArray arr = JArray.Parse(sites);
+                if (obj["resultCode"].ToString() == "200")
+                {
+                    String sites = obj["sites"].ToString();
+                    JArray arr = JArray.Parse(sites);
 
-                mSiteName = arr[0]["siteName"].ToString();
-                mSiteAlias = arr[0]["siteAlias"].ToString();
-                mCapName = arr[0]["capName"].ToString();
-                //?
-                //mCallCenterNo = arr[0]["callCenterNo"].ToString();
+                    mSiteName = arr[0]["siteName"].ToString();
+                    mSiteAlias = arr[0]["siteAlias"].ToString();
+                    mCapName = arr[0]["capName"].ToString();
+                    //?
+                    //mCallCenterNo = arr[0]["callCenterNo"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("사이트정보 오류\n\n" + obj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show(obj["resultMsg"].ToString(), "thepos");
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
                 return;
             }
 
@@ -322,23 +343,32 @@ namespace thepos
             // 포스
             sUrl = "pos?siteId=" + mSiteId;
 
-            if (mRequestGet(sUrl, ref obj))
+            if (mRequestGet(sUrl, ref obj, ref err_msg))
             {
-                String pos = obj["pos"].ToString();
-                JArray arr = JArray.Parse(pos);
-
-                mPosNoList = new String[arr.Count];
-
-                for (int i = 0; i < arr.Count; i++)
+                if (obj["resultCode"].ToString() == "200")
                 {
-                    mPosNoList[i] = arr[i]["posNo"].ToString();
+                    String pos = obj["pos"].ToString();
+                    JArray arr = JArray.Parse(pos);
+
+                    mPosNoList = new String[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mPosNoList[i] = arr[i]["posNo"].ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("포스정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return;
                 }
             }
             else
             {
-                MessageBox.Show(obj["resultMsg"].ToString(), "thepos");
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
                 return;
             }
+
 
 
             //? 개시마감 
@@ -383,7 +413,7 @@ namespace thepos
 
             //? 서버에서 GET 구현 필요
 
-
+            /*
             mCallCenterNo = "02-1234-5678";
 
 
@@ -419,7 +449,7 @@ namespace thepos
 
             mUserID = "";
             mUserName = "김토스";
-
+            */
         }
 
 

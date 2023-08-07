@@ -1143,11 +1143,6 @@ namespace thepos
                 }
 
             }
-            catch (HttpRequestException ex)
-            {
-                responseString = "서버에 연결할수없습니다";
-                return -1;
-            }
             catch (Exception ex2)
             {
                 responseString = ex2.Message;
@@ -1155,40 +1150,55 @@ namespace thepos
             }
         }
 
-        public static bool mRequestGet(String sUrl, ref JObject obj)
+        public static bool mRequestGet(String sUrl, ref JObject obj, ref String err_msg)
         {
+            try
+            {
+                var response = mHttpClient.GetAsync(mBaseUri + sUrl).Result;
 
-            var response = mHttpClient.GetAsync(mBaseUri + sUrl).Result;
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
 
-            var responseContent = response.Content;
-            string responseString = responseContent.ReadAsStringAsync().Result;
+                obj = JObject.Parse(responseString);
 
-
-            obj = JObject.Parse(responseString);
-
-            return response.IsSuccessStatusCode;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                err_msg = ex.Message;
+                return false;
+            }
         }
 
-        public static bool mRequestPost(String sUrl, Dictionary<string, string> parameters, ref JObject obj)
+        public static bool mRequestPost(String sUrl, Dictionary<string, string> parameters, ref JObject obj, ref String err_msg)
         {
+            try
+            {
+                var json = JsonConvert.SerializeObject(parameters);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = mHttpClient.PostAsync(mBaseUri + sUrl, data).Result;
 
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
 
+                obj = JObject.Parse(responseString);
 
-
-
-
-            var json = JsonConvert.SerializeObject(parameters);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = mHttpClient.PostAsync(mBaseUri + sUrl, data).Result;
-
-            var responseContent = response.Content;
-            string responseString = responseContent.ReadAsStringAsync().Result;
-
-            obj = JObject.Parse(responseString);
-
-            return response.IsSuccessStatusCode;
+                return true;
+            }
+            catch(Exception ex) 
+            {
+                err_msg = ex.Message;
+                return false;
+            }
         }
 
-
+        public static string SHA1HashCrypt(string val)
+        {
+            //고정로직
+            byte[] data = Encoding.ASCII.GetBytes(val);
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            byte[] result = sha.ComputeHash(data);
+            return Convert.ToBase64String(result);
+        }
     }
 }

@@ -12,6 +12,7 @@ using PrinterUtility;
 using System.IO.Ports;
 using System.Text;
 using thepos._1Sales;
+using Newtonsoft.Json.Linq;
 
 
 
@@ -98,80 +99,94 @@ namespace thepos
 
         void get_goodsgroup()
         {
+            JObject obj = new JObject();
+            String err_msg = "";
 
-            String[,] group = new String[,]
+            // 사이트
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl, ref obj, ref err_msg))
             {
-                {"101","커피", "0","0", "3","2"},
-                {"100","티켓", "3","0", "2","2"},
-                {"102","식사", "4","0", "2","1"},
-                {"103","후식", "4","1", "1","1"},
-                {"106","VIP", "7","0", "1","1"},
-                {"109","기본", "6","1", "2","1"},
-            };
+                if (obj["resultCode"].ToString() == "200")
+                {
+                    String goods_group = obj["goodsGroups"].ToString();
+                    JArray arr = JArray.Parse(goods_group);
 
+                    mGoodsGroup = new GoodsGroup[arr.Count];
 
-            int len = group.Length / 6;
-
-
-            mGoodsGroup = new GoodsGroup[len];
-
-            for (int i = 0; i < len; i++)
-            {
-                mGoodsGroup[i].code = group[i, 0];
-                mGoodsGroup[i].name = group[i, 1];
-
-                mGoodsGroup[i].column = int.Parse(group[i, 2]);
-                mGoodsGroup[i].row = int.Parse(group[i, 3]);
-                mGoodsGroup[i].columnspan = int.Parse(group[i, 4]);
-                mGoodsGroup[i].rowspan = int.Parse(group[i, 5]);
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mGoodsGroup[i].code = arr[i]["groupCode"].ToString();
+                        mGoodsGroup[i].name = arr[i]["goodsGroupName"].ToString();
+                        mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품그룹정보 오류\n\n" + obj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return;
+            }
+
 
         }
 
         void get_goodsitem()
         {
-            String[,] item = new String[,]
+            JObject obj = new JObject();
+            String err_msg = "";
+
+            // 사이트
+            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl, ref obj, ref err_msg))
             {
-                { "101101","바닐라라떼", "1",   "0", "", "0","0", "2","2"},
-                { "101102","카푸치노",  "6000", "0", "", "2","0", "1","2"},
-                { "101103","에스프레소","7000", "0", "", "3","0", "3","2"},
-                { "101104","아이스라떼","6500", "0", "", "6","1", "2","1"},
-                { "101105","아메리카노","5000", "0", "", "0","2", "4","3"},
-                { "101106","맥심커피",  "8000", "0", "", "4","2", "4","4"},
-                { "101108","농산물1",  "7000",  "0", "1", "0","5", "3","3"}, // 멘세
-                { "101107","채소1",   "6000",   "0", "1", "3","5", "1","3"},  // 면세
-                { "101109","야채2",   "5000",   "0", "1", "4","6", "2","1"}, // 면세
-                { "101110","모카",    "5000",   "0", "", "4","7", "3","1"},
-
-                { "100001","종일성인","10000",  "1", "", "0","1", "4","5"},  // 발권대상
-                { "100002","종일어린이","8000", "1", "", "4","1", "4","5"}, // 발권대상
-            };
-
-
-            int len = item.Length / 9;
-
-            mGoodsItem = new GoodsItem[len];
-
-            for (int i = 0; i < len; i++)
-            {
-                mGoodsItem[i].code = item[i, 0];
-                mGoodsItem[i].name = item[i, 1];
-                mGoodsItem[i].amt = int.Parse(item[i, 2]);
-                mGoodsItem[i].ticket = item[i, 3];
-                mGoodsItem[i].taxfree = item[i, 4];
-                mGoodsItem[i].column = int.Parse(item[i, 5]);
-                mGoodsItem[i].row = int.Parse(item[i, 6]);
-                mGoodsItem[i].columnspan = int.Parse(item[i, 7]);
-                mGoodsItem[i].rowspan = int.Parse(item[i, 8]);
-
-                // 면세상픔은 상품명앞에 *을 붙인다.
-                if (mGoodsItem[i].taxfree == "1")
+                if (obj["resultCode"].ToString() == "200")
                 {
-                    mGoodsItem[i].name = "*" + mGoodsItem[i].name;
+                    String goods_item = obj["goodsItems"].ToString();
+                    JArray arr = JArray.Parse(goods_item);
+
+                    mGoodsItem = new GoodsItem[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mGoodsItem[i].code = arr[i]["itemCode"].ToString();
+                        mGoodsItem[i].name = arr[i]["itemName"].ToString();
+                        mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
+                        mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
+                        mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                        mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                        // 면세상픔은 상품명앞에 *을 붙인다.
+                        if (mGoodsItem[i].taxfree == "1")
+                        {
+                            mGoodsItem[i].name = "*" + mGoodsItem[i].name;
+                        }
+                    }
                 }
-
-
+                else
+                {
+                    MessageBox.Show("상품그룹정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return;
+            }
+
         }
 
         void get_payConsol()
