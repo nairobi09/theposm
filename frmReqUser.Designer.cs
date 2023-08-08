@@ -131,6 +131,7 @@
             this.btnEnter.TabIndex = 5;
             this.btnEnter.Text = "요청";
             this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
             // btnCancel
             // 

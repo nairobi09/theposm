@@ -270,9 +270,6 @@ namespace thepos
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
 
-
-
-
             //? 서버 
             JObject obj = new JObject();
             String err_msg = "";
@@ -281,8 +278,8 @@ namespace thepos
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["loginId"] = tbID.Text;
             //? SHA1 변경
-            //parameters["userPw"] = tbPW.Text;
-            parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
+            parameters["userPw"] = tbPW.Text;
+            //parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
 
 
 
