@@ -118,23 +118,16 @@ namespace thepos
         {
 
 
-            //Cursor.Hide();
-
-
+            //? Cursor.Hide();
 
 
             clear_login_init();
-
-
 
 
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
-
-
-
 
 
             btnKey1.Click += (sender, args) => ClickedKey("1");
@@ -149,7 +142,6 @@ namespace thepos
             btnKey0.Click += (sender, args) => ClickedKey("0");
             btnKeyBS.Click += (sender, args) => ClickedKey("BS");
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
-
 
 
             tbID.Text = get_registry_id();
@@ -170,17 +162,16 @@ namespace thepos
             mMacAddr = NetworkInterface.GetAllNetworkInterfaces()
                       .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
                       .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
-            //?
-            mMacAddr = "111111111111";
 
 
 
-
+            // Session key 로그인관련 
             handler.CookieContainer = cookies;
+
             mHttpClient = new HttpClient(handler);
 
 
-    }
+        }
 
         private void clear_login_init()
         {
@@ -593,6 +584,12 @@ namespace thepos
         {
             frmReqUser fReqUser = new frmReqUser();
             fReqUser.ShowDialog();
+        }
+
+        private void lblReqPos_Click(object sender, EventArgs e)
+        {
+            frmReqPos fReqPos = new frmReqPos();
+            fReqPos.ShowDialog();
         }
     }
 }

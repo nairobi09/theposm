@@ -74,6 +74,7 @@
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenter = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.lblReqPos = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -198,6 +199,7 @@
             // 
             // panelLogin
             // 
+            this.panelLogin.Controls.Add(this.lblReqPos);
             this.panelLogin.Controls.Add(this.lblReqUser);
             this.panelLogin.Controls.Add(this.btnClose);
             this.panelLogin.Controls.Add(this.lblPW);
@@ -661,6 +663,17 @@
             this.picLogo.TabStop = false;
             this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
             // 
+            // lblReqPos
+            // 
+            this.lblReqPos.AutoSize = true;
+            this.lblReqPos.ForeColor = System.Drawing.Color.White;
+            this.lblReqPos.Location = new System.Drawing.Point(169, 707);
+            this.lblReqPos.Name = "lblReqPos";
+            this.lblReqPos.Size = new System.Drawing.Size(101, 12);
+            this.lblReqPos.TabIndex = 42;
+            this.lblReqPos.Text = "포스기기등록신청";
+            this.lblReqPos.Click += new System.EventHandler(this.lblReqPos_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -746,5 +759,6 @@
         private System.Windows.Forms.Label lblSiteAlias;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblReqUser;
+        private System.Windows.Forms.Label lblReqPos;
     }
 }
