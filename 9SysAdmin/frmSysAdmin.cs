@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using thepos._1Sales;
 using thepos._9SysAdmin;
+using static thepos.thePos;
 
 namespace thepos
 {
@@ -20,19 +21,16 @@ namespace thepos
         public frmSysAdmin()
         {
             InitializeComponent();
+
+
+            if (mSiteId != "")
+            {
+                panelCertConsole.Visible = true;
+            }
+
         }
 
-        private void btnSite_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "Site") return;
 
-            mThisButtonClick = "Site";
-            panelView.Controls.Clear();
-
-            frmSysAdminSite fSysAdmin = new frmSysAdminSite() { TopLevel = false, TopMost = true };
-            panelView.Controls.Add(fSysAdmin);
-            fSysAdmin.Show();
-        }
 
         private void btnPos_Click(object sender, EventArgs e)
         {
@@ -53,7 +51,7 @@ namespace thepos
             mThisButtonClick = "Mac";
             panelView.Controls.Clear();
 
-            frmSysAdminMac fSysAdmin = new frmSysAdminMac() { TopLevel = false, TopMost = true };
+            frmSysAdminPosCert fSysAdmin = new frmSysAdminPosCert() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
@@ -65,11 +63,24 @@ namespace thepos
             mThisButtonClick = "User";
             panelView.Controls.Clear();
 
-            frmSysAdminUser fSysAdmin = new frmSysAdminUser() { TopLevel = false, TopMost = true };
+            frmSysAdminUserCert fSysAdmin = new frmSysAdminUserCert() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
 
+
+
+        private void btnSysGoods_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Goods") return;
+
+            mThisButtonClick = "Goods";
+            panelView.Controls.Clear();
+
+            frmSysGoods fSysAdmin = new frmSysGoods() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
 
 
         private void btnSysGoodsGroup_Click(object sender, EventArgs e)
@@ -84,26 +95,16 @@ namespace thepos
             fSysAdmin.Show();
         }
 
-        private void btnSysGoods_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "Goods") return;
 
-            mThisButtonClick = "Goods";
+
+        private void btnSysGoodsItem_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsItem") return;
+
+            mThisButtonClick = "GoodsItem";
             panelView.Controls.Clear();
 
-            frmSysGoods fSysAdmin = new frmSysGoods() { TopLevel = false, TopMost = true };
-            panelView.Controls.Add(fSysAdmin);
-            fSysAdmin.Show();
-        }
-
-        private void btnSysGoodsLayout_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "GoodsLayout") return;
-
-            mThisButtonClick = "GoodsLayout";
-            panelView.Controls.Clear();
-
-            frmSysGoods fSysAdmin = new frmSysGoods() { TopLevel = false, TopMost = true };
+            frmSysGoodsItem fSysAdmin = new frmSysGoodsItem() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }

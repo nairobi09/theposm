@@ -1,6 +1,6 @@
 ﻿namespace thepos._9SysAdmin
 {
-    partial class frmSysAdminUser
+    partial class frmSysAdminUserCert
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.lvwList = new System.Windows.Forms.ListView();
-            this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.seq = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.auth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.req_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnEnter = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -43,104 +41,79 @@
             // lvwList
             // 
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.status,
+            this.seq,
+            this.stat,
             this.ID,
             this.name,
-            this.auth,
-            this.date});
+            this.req_date});
             this.lvwList.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(22, 77);
+            this.lvwList.Location = new System.Drawing.Point(157, 77);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(347, 290);
+            this.lvwList.Size = new System.Drawing.Size(451, 290);
             this.lvwList.TabIndex = 33;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
             // 
-            // status
+            // seq
             // 
-            this.status.Text = "상태";
-            this.status.Width = 50;
+            this.seq.Text = "#";
+            this.seq.Width = 100;
+            // 
+            // stat
+            // 
+            this.stat.Text = "상태";
             // 
             // ID
             // 
             this.ID.Text = "ID";
-            this.ID.Width = 40;
+            this.ID.Width = 70;
             // 
             // name
             // 
             this.name.Text = "성명";
-            this.name.Width = 70;
+            this.name.Width = 80;
             // 
-            // auth
+            // req_date
             // 
-            this.auth.Text = "권한";
-            // 
-            // date
-            // 
-            this.date.Text = "인증일";
-            this.date.Width = 100;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.Location = new System.Drawing.Point(380, 322);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(102, 44);
-            this.btnCancel.TabIndex = 32;
-            this.btnCancel.TabStop = false;
-            this.btnCancel.Text = "취소";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(380, 266);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 50);
-            this.button1.TabIndex = 30;
-            this.button1.TabStop = false;
-            this.button1.Text = "비밀번호\r\n초기화";
-            this.button1.UseVisualStyleBackColor = true;
+            this.req_date.Text = "요청일";
+            this.req_date.Width = 140;
             // 
             // btnEnter
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnter.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnEnter.Location = new System.Drawing.Point(380, 210);
+            this.btnEnter.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnEnter.Location = new System.Drawing.Point(328, 487);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(102, 50);
+            this.btnEnter.Size = new System.Drawing.Size(130, 50);
             this.btnEnter.TabIndex = 31;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "인증등록";
             this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.Location = new System.Drawing.Point(18, 33);
+            this.lblTitle.Location = new System.Drawing.Point(153, 33);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(156, 19);
             this.lblTitle.TabIndex = 29;
-            this.lblTitle.Text = "사용자 인증등록";
+            this.lblTitle.Text = "사용자계정 인증";
             // 
-            // frmSysAdminUser
+            // frmSysAdminUserCert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(890, 720);
             this.Controls.Add(this.lvwList);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmSysAdminUser";
+            this.Name = "frmSysAdminUserCert";
             this.Text = "frmSysAdminUser";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,12 +125,10 @@
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader auth;
-        private System.Windows.Forms.ColumnHeader date;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader req_date;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.ColumnHeader status;
+        private System.Windows.Forms.ColumnHeader seq;
+        private System.Windows.Forms.ColumnHeader stat;
     }
 }

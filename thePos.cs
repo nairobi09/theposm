@@ -19,6 +19,27 @@ using System.Collections;
 using System.IO;
 
 
+/*
+ 
+
+
+
+
+로그인 정보
+
+"userId": "1111",
+"userPw": "ARyUXzDOLLr8RS85hA8CVpMznEI=",
+"macAddr": "023006617873"
+
+ 
+ 
+  
+
+
+
+
+ */
+
 
 //? 개발수정항목
 /*
@@ -566,6 +587,32 @@ namespace thepos
 
             return "";
         }
+
+
+
+        public static bool is_number(String str)
+        {
+            int tNum;
+            if (int.TryParse(str, out tNum))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool get_number(String str, ref int num)
+        {
+            int tNum;
+            if (int.TryParse(str, out num))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
 
 
         public static int convert_number(String str)
@@ -1191,6 +1238,38 @@ namespace thepos
                 return false;
             }
         }
+
+
+        public static bool mRequestPatch(String sUrl, Dictionary<string, string> parameters, ref JObject obj, ref String err_msg)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(parameters);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var method = new HttpMethod("PATCH");
+                var request = new HttpRequestMessage(method, mBaseUri + sUrl);
+                request.Content = data;
+
+
+                var response = mHttpClient.SendAsync(request).Result;
+
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
+
+                obj = JObject.Parse(responseString);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                err_msg = ex.Message;
+                return false;
+            }
+        }
+
+
+
 
         public static string SHA1HashCrypt(string val)
         {

@@ -91,6 +91,7 @@
             this.tbPW1.Location = new System.Drawing.Point(282, 111);
             this.tbPW1.MaxLength = 4;
             this.tbPW1.Name = "tbPW1";
+            this.tbPW1.PasswordChar = '*';
             this.tbPW1.Size = new System.Drawing.Size(127, 29);
             this.tbPW1.TabIndex = 2;
             // 
@@ -100,6 +101,7 @@
             this.tbPW2.Location = new System.Drawing.Point(282, 149);
             this.tbPW2.MaxLength = 4;
             this.tbPW2.Name = "tbPW2";
+            this.tbPW2.PasswordChar = '*';
             this.tbPW2.Size = new System.Drawing.Size(127, 29);
             this.tbPW2.TabIndex = 3;
             // 

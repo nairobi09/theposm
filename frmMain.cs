@@ -267,14 +267,9 @@ namespace thepos
 
             // 로그인
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["loginId"] = tbID.Text;
-            //? SHA1 변경
-            parameters["userPw"] = tbPW.Text;
-            //parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
-
-
-
-            parameters["macAddr"] = mMacAddr;
+            parameters["userId"] = tbID.Text;
+            parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
+            parameters["macAddr"] = mMacAddr;  // 023006617873
 
             if (mRequestPost("login", parameters, ref obj, ref err_msg))
             {
@@ -499,8 +494,6 @@ namespace thepos
 
 
 
-
-
                  
                 clear_login_init();  // 초기화
 
@@ -510,6 +503,11 @@ namespace thepos
             }
             else if (ret == DialogResult.Retry)
             {
+                //?
+
+
+
+
 
             }
             else if (ret == DialogResult.OK)  // 종료
@@ -565,6 +563,8 @@ namespace thepos
 
         private void picLogo_Click(object sender, EventArgs e)
         {
+            //? SysAdmin 진입경로를 고민필요
+
 
             frmSysAdminGate fSysAdminGate = new frmSysAdminGate();
             DialogResult ret = fSysAdminGate.ShowDialog();
@@ -586,10 +586,5 @@ namespace thepos
             fReqUser.ShowDialog();
         }
 
-        private void lblReqPos_Click(object sender, EventArgs e)
-        {
-            frmReqPos fReqPos = new frmReqPos();
-            fReqPos.ShowDialog();
-        }
     }
 }

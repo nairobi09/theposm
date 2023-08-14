@@ -85,19 +85,18 @@ namespace thepos
 
             // 사용자 등록 신청
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["loginId"] = tbID.Text;
+            parameters["serialKey"] = get_today_date().Substring(3,5) + get_today_time().Substring(0,5);
+            parameters["userId"] = tbID.Text;
             parameters["userPw"] = SHA1HashCrypt(tbPW1.Text);//? SHA1 변경
-            parameters["siteId"] = "";
+            parameters["siteId"] = "0000"; // -> 신청시는 "" : 이후 인증시 ID를 선택함.
             parameters["userName"] = tbName.Text;
             parameters["userStatus"] = "0";
-            parameters["userAuth"] = "";
             parameters["initDt"] = get_today_date() + get_today_time();
-            parameters["registDt"] = "";
-            parameters["lastDt"] = "";
-            parameters["conCnt"] = "0";
+            //parameters["registDt"] = "";
 
 
-            if (mRequestPost("user", parameters, ref obj, ref err_msg))
+
+            if (mRequestPost("userTemp", parameters, ref obj, ref err_msg))
             {
                 if (obj["resultCode"].ToString() == "200")
                 {

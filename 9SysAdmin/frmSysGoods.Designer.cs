@@ -1,4 +1,4 @@
-﻿namespace thepos
+﻿namespace thepos._9SysAdmin
 {
     partial class frmSysGoods
     {
@@ -28,412 +28,286 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
-            this.lvwGoodsItem = new System.Windows.Forms.ListView();
-            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvwList = new System.Windows.Forms.ListView();
+            this.item_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.taxfree = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tableLayoutPanelGoodsItem = new System.Windows.Forms.TableLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbGoodsGroup = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanelGoodsItem.SuspendLayout();
+            this.usage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.tbGoodsName = new System.Windows.Forms.TextBox();
+            this.tbGoodsAmt = new System.Windows.Forms.TextBox();
+            this.lblGoodsNameTitle = new System.Windows.Forms.Label();
+            this.lblGoodsAmtTitle = new System.Windows.Forms.Label();
+            this.lblTaxFreeTitle = new System.Windows.Forms.Label();
+            this.lblTicketTitle = new System.Windows.Forms.Label();
+            this.cbTicket = new System.Windows.Forms.CheckBox();
+            this.cbTaxFree = new System.Windows.Forms.CheckBox();
+            this.lblActiveTitle = new System.Windows.Forms.Label();
+            this.cbActive = new System.Windows.Forms.CheckBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblMemoTitle = new System.Windows.Forms.Label();
+            this.tbMemo = new System.Windows.Forms.TextBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label6
+            // lvwList
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(549, 378);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 12);
-            this.label6.TabIndex = 59;
-            this.label6.Text = "SizeY";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(549, 349);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 12);
-            this.label5.TabIndex = 58;
-            this.label5.Text = "SizeX";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(549, 320);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 12);
-            this.label4.TabIndex = 57;
-            this.label4.Text = "LocateY";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(549, 291);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 12);
-            this.label3.TabIndex = 56;
-            this.label3.Text = "LocateX";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(549, 174);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 55;
-            this.label2.Text = "상품명";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(549, 145);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "상품코드";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(605, 371);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(113, 21);
-            this.textBox6.TabIndex = 52;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(605, 342);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(113, 21);
-            this.textBox5.TabIndex = 53;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(605, 313);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(113, 21);
-            this.textBox4.TabIndex = 51;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(605, 284);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(113, 21);
-            this.textBox3.TabIndex = 50;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(605, 167);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(113, 21);
-            this.textBox2.TabIndex = 49;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(605, 138);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 21);
-            this.textBox1.TabIndex = 48;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(649, 415);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(69, 82);
-            this.button4.TabIndex = 47;
-            this.button4.Text = "전송";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(551, 458);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 39);
-            this.button3.TabIndex = 46;
-            this.button3.Text = "수정";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(551, 413);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 39);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "입력";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // btnView
-            // 
-            this.btnView.Location = new System.Drawing.Point(551, 49);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(167, 39);
-            this.btnView.TabIndex = 44;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // lvwGoodsItem
-            // 
-            this.lvwGoodsItem.BackColor = System.Drawing.SystemColors.Window;
-            this.lvwGoodsItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.code,
-            this.name,
+            this.lvwList.BackColor = System.Drawing.SystemColors.Window;
+            this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.item_name,
             this.amt,
             this.ticket,
             this.taxfree,
-            this.locateX,
-            this.locateY,
-            this.sizeX,
-            this.sizeY});
-            this.lvwGoodsItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lvwGoodsItem.FullRowSelect = true;
-            this.lvwGoodsItem.GridLines = true;
-            this.lvwGoodsItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwGoodsItem.HideSelection = false;
-            this.lvwGoodsItem.Location = new System.Drawing.Point(5, 4);
-            this.lvwGoodsItem.MultiSelect = false;
-            this.lvwGoodsItem.Name = "lvwGoodsItem";
-            this.lvwGoodsItem.Size = new System.Drawing.Size(521, 191);
-            this.lvwGoodsItem.TabIndex = 43;
-            this.lvwGoodsItem.TabStop = false;
-            this.lvwGoodsItem.UseCompatibleStateImageBehavior = false;
-            this.lvwGoodsItem.View = System.Windows.Forms.View.Details;
+            this.usage,
+            this.memo});
+            this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.FullRowSelect = true;
+            this.lvwList.GridLines = true;
+            this.lvwList.Location = new System.Drawing.Point(30, 58);
+            this.lvwList.MultiSelect = false;
+            this.lvwList.Name = "lvwList";
+            this.lvwList.Size = new System.Drawing.Size(505, 613);
+            this.lvwList.TabIndex = 39;
+            this.lvwList.TabStop = false;
+            this.lvwList.UseCompatibleStateImageBehavior = false;
+            this.lvwList.View = System.Windows.Forms.View.Details;
+            this.lvwList.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwList_ColumnClick);
+            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
             // 
-            // code
+            // item_name
             // 
-            this.code.Text = "코드";
-            this.code.Width = 50;
-            // 
-            // name
-            // 
-            this.name.Text = "상품명";
-            this.name.Width = 100;
+            this.item_name.Text = "상품명";
+            this.item_name.Width = 110;
             // 
             // amt
             // 
             this.amt.Text = "단가";
             this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amt.Width = 70;
             // 
             // ticket
             // 
             this.ticket.Text = "티켓";
-            this.ticket.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ticket.Width = 40;
+            this.ticket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ticket.Width = 50;
             // 
             // taxfree
             // 
             this.taxfree.Text = "면세";
-            this.taxfree.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.taxfree.Width = 40;
+            this.taxfree.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxfree.Width = 50;
             // 
-            // locateX
+            // usage
             // 
-            this.locateX.Text = "LocX";
-            this.locateX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateX.Width = 50;
+            this.usage.Text = "사용";
+            this.usage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.usage.Width = 50;
             // 
-            // locateY
+            // lblTitle
             // 
-            this.locateY.Text = "LocY";
-            this.locateY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateY.Width = 50;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Location = new System.Drawing.Point(32, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(136, 19);
+            this.lblTitle.TabIndex = 40;
+            this.lblTitle.Text = "기초상품 관리";
             // 
-            // sizeX
+            // tbGoodsName
             // 
-            this.sizeX.Text = "SzX";
-            this.sizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeX.Width = 50;
+            this.tbGoodsName.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGoodsName.ForeColor = System.Drawing.Color.Black;
+            this.tbGoodsName.Location = new System.Drawing.Point(103, 28);
+            this.tbGoodsName.MaxLength = 30;
+            this.tbGoodsName.Name = "tbGoodsName";
+            this.tbGoodsName.Size = new System.Drawing.Size(105, 26);
+            this.tbGoodsName.TabIndex = 41;
             // 
-            // sizeY
+            // tbGoodsAmt
             // 
-            this.sizeY.Text = "SzY";
-            this.sizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeY.Width = 50;
+            this.tbGoodsAmt.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGoodsAmt.ForeColor = System.Drawing.Color.Black;
+            this.tbGoodsAmt.Location = new System.Drawing.Point(103, 66);
+            this.tbGoodsAmt.MaxLength = 16;
+            this.tbGoodsAmt.Name = "tbGoodsAmt";
+            this.tbGoodsAmt.Size = new System.Drawing.Size(105, 26);
+            this.tbGoodsAmt.TabIndex = 42;
             // 
-            // tableLayoutPanelGoodsItem
+            // lblGoodsNameTitle
             // 
-            this.tableLayoutPanelGoodsItem.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanelGoodsItem.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanelGoodsItem.ColumnCount = 8;
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.Controls.Add(this.button5, 2, 0);
-            this.tableLayoutPanelGoodsItem.Controls.Add(this.button6, 0, 0);
-            this.tableLayoutPanelGoodsItem.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanelGoodsItem.Location = new System.Drawing.Point(5, 201);
-            this.tableLayoutPanelGoodsItem.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanelGoodsItem.Name = "tableLayoutPanelGoodsItem";
-            this.tableLayoutPanelGoodsItem.RowCount = 8;
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanelGoodsItem.Size = new System.Drawing.Size(521, 393);
-            this.tableLayoutPanelGoodsItem.TabIndex = 60;
+            this.lblGoodsNameTitle.AutoSize = true;
+            this.lblGoodsNameTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblGoodsNameTitle.Location = new System.Drawing.Point(22, 35);
+            this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
+            this.lblGoodsNameTitle.Size = new System.Drawing.Size(49, 14);
+            this.lblGoodsNameTitle.TabIndex = 43;
+            this.lblGoodsNameTitle.Text = "상품명";
             // 
-            // button5
+            // lblGoodsAmtTitle
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(92)))), ((int)(((byte)(159)))));
-            this.tableLayoutPanelGoodsItem.SetColumnSpan(this.button5, 2);
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(133, 3);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.tableLayoutPanelGoodsItem.SetRowSpan(this.button5, 2);
-            this.button5.Size = new System.Drawing.Size(125, 95);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "카푸치노\r\n6,000";
-            this.button5.UseVisualStyleBackColor = false;
+            this.lblGoodsAmtTitle.AutoSize = true;
+            this.lblGoodsAmtTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGoodsAmtTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(22, 75);
+            this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
+            this.lblGoodsAmtTitle.Size = new System.Drawing.Size(39, 16);
+            this.lblGoodsAmtTitle.TabIndex = 44;
+            this.lblGoodsAmtTitle.Text = "단가";
             // 
-            // button6
+            // lblTaxFreeTitle
             // 
-            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.tableLayoutPanelGoodsItem.SetColumnSpan(this.button6, 2);
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(3, 3);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.tableLayoutPanelGoodsItem.SetRowSpan(this.button6, 2);
-            this.button6.Size = new System.Drawing.Size(125, 95);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "바닐라라떼\r\n1";
-            this.button6.UseVisualStyleBackColor = false;
+            this.lblTaxFreeTitle.AutoSize = true;
+            this.lblTaxFreeTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTaxFreeTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTaxFreeTitle.Location = new System.Drawing.Point(22, 161);
+            this.lblTaxFreeTitle.Name = "lblTaxFreeTitle";
+            this.lblTaxFreeTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblTaxFreeTitle.TabIndex = 44;
+            this.lblTaxFreeTitle.Text = "면세상품";
             // 
-            // textBox7
+            // lblTicketTitle
             // 
-            this.textBox7.Location = new System.Drawing.Point(605, 191);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(113, 21);
-            this.textBox7.TabIndex = 48;
+            this.lblTicketTitle.AutoSize = true;
+            this.lblTicketTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTicketTitle.Location = new System.Drawing.Point(22, 123);
+            this.lblTicketTitle.Name = "lblTicketTitle";
+            this.lblTicketTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblTicketTitle.TabIndex = 43;
+            this.lblTicketTitle.Text = "티켓상품";
             // 
-            // textBox8
+            // cbTicket
             // 
-            this.textBox8.Location = new System.Drawing.Point(605, 220);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(113, 21);
-            this.textBox8.TabIndex = 49;
+            this.cbTicket.AutoSize = true;
+            this.cbTicket.Location = new System.Drawing.Point(106, 125);
+            this.cbTicket.Name = "cbTicket";
+            this.cbTicket.Size = new System.Drawing.Size(15, 14);
+            this.cbTicket.TabIndex = 45;
+            this.cbTicket.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // cbTaxFree
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(549, 198);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 12);
-            this.label7.TabIndex = 54;
-            this.label7.Text = "단가";
+            this.cbTaxFree.AutoSize = true;
+            this.cbTaxFree.Location = new System.Drawing.Point(106, 161);
+            this.cbTaxFree.Name = "cbTaxFree";
+            this.cbTaxFree.Size = new System.Drawing.Size(15, 14);
+            this.cbTaxFree.TabIndex = 45;
+            this.cbTaxFree.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // lblActiveTitle
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(549, 227);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 12);
-            this.label8.TabIndex = 55;
-            this.label8.Text = "티켓";
+            this.lblActiveTitle.AutoSize = true;
+            this.lblActiveTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblActiveTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblActiveTitle.Location = new System.Drawing.Point(22, 200);
+            this.lblActiveTitle.Name = "lblActiveTitle";
+            this.lblActiveTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblActiveTitle.TabIndex = 44;
+            this.lblActiveTitle.Text = "사용중";
             // 
-            // textBox9
+            // cbActive
             // 
-            this.textBox9.Location = new System.Drawing.Point(605, 247);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(113, 21);
-            this.textBox9.TabIndex = 49;
+            this.cbActive.AutoSize = true;
+            this.cbActive.Location = new System.Drawing.Point(106, 200);
+            this.cbActive.Name = "cbActive";
+            this.cbActive.Size = new System.Drawing.Size(15, 14);
+            this.cbActive.TabIndex = 45;
+            this.cbActive.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // btnAdd
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(549, 254);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 12);
-            this.label9.TabIndex = 55;
-            this.label9.Text = "면세";
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.Location = new System.Drawing.Point(584, 524);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(120, 50);
+            this.btnAdd.TabIndex = 46;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Text = "추가";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // cbGoodsGroup
+            // btnUpdate
             // 
-            this.cbGoodsGroup.FormattingEnabled = true;
-            this.cbGoodsGroup.Location = new System.Drawing.Point(551, 23);
-            this.cbGoodsGroup.Name = "cbGoodsGroup";
-            this.cbGoodsGroup.Size = new System.Drawing.Size(167, 20);
-            this.cbGoodsGroup.TabIndex = 61;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Location = new System.Drawing.Point(710, 524);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(120, 50);
+            this.btnUpdate.TabIndex = 46;
+            this.btnUpdate.TabStop = false;
+            this.btnUpdate.Text = "수정";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbMemo);
+            this.groupBox1.Controls.Add(this.lblMemoTitle);
+            this.groupBox1.Controls.Add(this.tbGoodsAmt);
+            this.groupBox1.Controls.Add(this.lblGoodsAmtTitle);
+            this.groupBox1.Controls.Add(this.lblTaxFreeTitle);
+            this.groupBox1.Controls.Add(this.cbActive);
+            this.groupBox1.Controls.Add(this.lblGoodsNameTitle);
+            this.groupBox1.Controls.Add(this.cbTaxFree);
+            this.groupBox1.Controls.Add(this.lblActiveTitle);
+            this.groupBox1.Controls.Add(this.cbTicket);
+            this.groupBox1.Controls.Add(this.lblTicketTitle);
+            this.groupBox1.Controls.Add(this.tbGoodsName);
+            this.groupBox1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Location = new System.Drawing.Point(559, 111);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(299, 323);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            // 
+            // memo
+            // 
+            this.memo.Text = "비고";
+            this.memo.Width = 150;
+            // 
+            // lblMemoTitle
+            // 
+            this.lblMemoTitle.AutoSize = true;
+            this.lblMemoTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblMemoTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblMemoTitle.Location = new System.Drawing.Point(22, 241);
+            this.lblMemoTitle.Name = "lblMemoTitle";
+            this.lblMemoTitle.Size = new System.Drawing.Size(39, 16);
+            this.lblMemoTitle.TabIndex = 44;
+            this.lblMemoTitle.Text = "비고";
+            // 
+            // tbMemo
+            // 
+            this.tbMemo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbMemo.ForeColor = System.Drawing.Color.Black;
+            this.tbMemo.Location = new System.Drawing.Point(26, 261);
+            this.tbMemo.MaxLength = 16;
+            this.tbMemo.Name = "tbMemo";
+            this.tbMemo.Size = new System.Drawing.Size(252, 26);
+            this.tbMemo.TabIndex = 42;
             // 
             // frmSysGoods
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.cbGoodsGroup);
-            this.Controls.Add(this.tableLayoutPanelGoodsItem);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnView);
-            this.Controls.Add(this.lvwGoodsItem);
+            this.ClientSize = new System.Drawing.Size(890, 720);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lvwList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSysGoods";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "상품등록";
-            this.tableLayoutPanelGoodsItem.ResumeLayout(false);
+            this.Text = "frmSysGoods";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,41 +315,28 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ListView lvwGoodsItem;
-        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ListView lvwList;
+        private System.Windows.Forms.ColumnHeader item_name;
         private System.Windows.Forms.ColumnHeader amt;
         private System.Windows.Forms.ColumnHeader ticket;
         private System.Windows.Forms.ColumnHeader taxfree;
-        private System.Windows.Forms.ColumnHeader locateX;
-        private System.Windows.Forms.ColumnHeader locateY;
-        private System.Windows.Forms.ColumnHeader sizeX;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsItem;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ColumnHeader code;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ColumnHeader sizeY;
-        private System.Windows.Forms.ComboBox cbGoodsGroup;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TextBox tbGoodsName;
+        private System.Windows.Forms.TextBox tbGoodsAmt;
+        private System.Windows.Forms.Label lblGoodsNameTitle;
+        private System.Windows.Forms.Label lblGoodsAmtTitle;
+        private System.Windows.Forms.Label lblTaxFreeTitle;
+        private System.Windows.Forms.Label lblTicketTitle;
+        private System.Windows.Forms.CheckBox cbTicket;
+        private System.Windows.Forms.CheckBox cbTaxFree;
+        private System.Windows.Forms.Label lblActiveTitle;
+        private System.Windows.Forms.CheckBox cbActive;
+        private System.Windows.Forms.ColumnHeader usage;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ColumnHeader memo;
+        private System.Windows.Forms.TextBox tbMemo;
+        private System.Windows.Forms.Label lblMemoTitle;
     }
 }

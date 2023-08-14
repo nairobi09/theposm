@@ -1,0 +1,306 @@
+﻿namespace thepos
+{
+    partial class frmSetupPos
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetupPos));
+            this.lvwOrderItem = new System.Windows.Forms.ListView();
+            this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.panelTitleWhite = new System.Windows.Forms.Panel();
+            this.panelTitleConsole = new System.Windows.Forms.Panel();
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbAddr = new System.Windows.Forms.TextBox();
+            this.panelTitleWhite.SuspendLayout();
+            this.panelTitleConsole.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lvwOrderItem
+            // 
+            this.lvwOrderItem.BackColor = System.Drawing.SystemColors.Window;
+            this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.no,
+            this.name,
+            this.amt,
+            this.cnt});
+            this.lvwOrderItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwOrderItem.FullRowSelect = true;
+            this.lvwOrderItem.GridLines = true;
+            this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwOrderItem.HideSelection = false;
+            this.lvwOrderItem.Location = new System.Drawing.Point(24, 75);
+            this.lvwOrderItem.MultiSelect = false;
+            this.lvwOrderItem.Name = "lvwOrderItem";
+            this.lvwOrderItem.Size = new System.Drawing.Size(466, 662);
+            this.lvwOrderItem.TabIndex = 38;
+            this.lvwOrderItem.TabStop = false;
+            this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
+            this.lvwOrderItem.View = System.Windows.Forms.View.Details;
+            this.lvwOrderItem.SelectedIndexChanged += new System.EventHandler(this.lvwOrderItem_SelectedIndexChanged);
+            // 
+            // no
+            // 
+            this.no.Text = "설정항목";
+            this.no.Width = 120;
+            // 
+            // name
+            // 
+            this.name.Text = "설정값";
+            this.name.Width = 70;
+            // 
+            // amt
+            // 
+            this.amt.Text = "변경값";
+            this.amt.Width = 70;
+            // 
+            // cnt
+            // 
+            this.cnt.Text = "비고";
+            this.cnt.Width = 180;
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLoad.ForeColor = System.Drawing.Color.White;
+            this.btnLoad.Location = new System.Drawing.Point(861, 118);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(124, 48);
+            this.btnLoad.TabIndex = 39;
+            this.btnLoad.TabStop = false;
+            this.btnLoad.Text = "설정보기";
+            this.btnLoad.UseVisualStyleBackColor = false;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(861, 190);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(124, 48);
+            this.btnSave.TabIndex = 39;
+            this.btnSave.TabStop = false;
+            this.btnSave.Text = "설정보관";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // panelTitleWhite
+            // 
+            this.panelTitleWhite.BackColor = System.Drawing.Color.Gray;
+            this.panelTitleWhite.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTitleWhite.Controls.Add(this.panelTitleConsole);
+            this.panelTitleWhite.ForeColor = System.Drawing.Color.White;
+            this.panelTitleWhite.Location = new System.Drawing.Point(1, 1);
+            this.panelTitleWhite.Margin = new System.Windows.Forms.Padding(1);
+            this.panelTitleWhite.Name = "panelTitleWhite";
+            this.panelTitleWhite.Padding = new System.Windows.Forms.Padding(1);
+            this.panelTitleWhite.Size = new System.Drawing.Size(1013, 46);
+            this.panelTitleWhite.TabIndex = 40;
+            // 
+            // panelTitleConsole
+            // 
+            this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.panelTitleConsole.Controls.Add(this.picLogo);
+            this.panelTitleConsole.Controls.Add(this.btnClose);
+            this.panelTitleConsole.Controls.Add(this.lblTitle);
+            this.panelTitleConsole.Location = new System.Drawing.Point(1, 1);
+            this.panelTitleConsole.Name = "panelTitleConsole";
+            this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
+            this.panelTitleConsole.TabIndex = 32;
+            // 
+            // picLogo
+            // 
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
+            this.picLogo.Location = new System.Drawing.Point(7, 4);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
+            this.picLogo.Size = new System.Drawing.Size(80, 35);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 39;
+            this.picLogo.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.ForeColor = System.Drawing.Color.LightGray;
+            this.btnClose.Location = new System.Drawing.Point(968, 2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(39, 38);
+            this.btnClose.TabIndex = 38;
+            this.btnClose.TabStop = false;
+            this.btnClose.Text = "✕";
+            this.btnClose.UseVisualStyleBackColor = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.lblTitle.ForeColor = System.Drawing.Color.Gold;
+            this.lblTitle.Location = new System.Drawing.Point(473, 9);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(80, 26);
+            this.lblTitle.TabIndex = 31;
+            this.lblTitle.Text = "포스설정";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(581, 408);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "설정항목";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(693, 408);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 16);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "항목이름";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(581, 446);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 16);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "설정값";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(693, 446);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 16);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "항목이름";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.ForeColor = System.Drawing.Color.Gold;
+            this.label5.Location = new System.Drawing.Point(581, 480);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 16);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "변경값";
+            // 
+            // tbAddr
+            // 
+            this.tbAddr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAddr.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbAddr.Location = new System.Drawing.Point(696, 480);
+            this.tbAddr.Name = "tbAddr";
+            this.tbAddr.Size = new System.Drawing.Size(129, 29);
+            this.tbAddr.TabIndex = 42;
+            this.tbAddr.Text = "변경값";
+            // 
+            // frmSetupPos
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.tbAddr);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panelTitleWhite);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.lvwOrderItem);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "frmSetupPos";
+            this.Text = "frmSetupPos";
+            this.panelTitleWhite.ResumeLayout(false);
+            this.panelTitleConsole.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ListView lvwOrderItem;
+        private System.Windows.Forms.ColumnHeader no;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader amt;
+        private System.Windows.Forms.ColumnHeader cnt;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Panel panelTitleWhite;
+        private System.Windows.Forms.Panel panelTitleConsole;
+        private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbAddr;
+    }
+}

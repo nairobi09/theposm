@@ -123,6 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="9SysAdmin\frmSysGoods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoods.Designer.cs">
+      <DependentUpon>frmSysGoods.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysPayConsole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,11 +153,11 @@
     <Compile Include="2Business\frmBizOpen.Designer.cs">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminMac.cs">
+    <Compile Include="9SysAdmin\frmSysAdminPosCert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminMac.Designer.cs">
-      <DependentUpon>frmSysAdminMac.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysAdminPosCert.Designer.cs">
+      <DependentUpon>frmSysAdminPosCert.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysAdminPos.cs">
       <SubType>Form</SubType>
@@ -159,17 +165,11 @@
     <Compile Include="9SysAdmin\frmSysAdminPos.Designer.cs">
       <DependentUpon>frmSysAdminPos.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminSite.cs">
+    <Compile Include="9SysAdmin\frmSysAdminUserCert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminSite.Designer.cs">
-      <DependentUpon>frmSysAdminSite.cs</DependentUpon>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminUser.Designer.cs">
-      <DependentUpon>frmSysAdminUser.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysAdminUserCert.Designer.cs">
+      <DependentUpon>frmSysAdminUserCert.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -206,12 +206,6 @@
     </Compile>
     <Compile Include="1Sales\frmOrderDCR.Designer.cs">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmReqPos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReqPos.Designer.cs">
-      <DependentUpon>frmReqPos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBusiness.cs">
       <SubType>Form</SubType>
@@ -303,11 +297,11 @@
     <Compile Include="1Sales\frmScanner.Designer.cs">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoods.cs">
+    <Compile Include="9SysAdmin\frmSysGoodsItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoods.Designer.cs">
-      <DependentUpon>frmSysGoods.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysGoodsItem.Designer.cs">
+      <DependentUpon>frmSysGoodsItem.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmSysMemoryStatus.cs">
       <SubType>Form</SubType>
@@ -333,6 +327,12 @@
     <Compile Include="9SysAdmin\frmSysAdminGate.Designer.cs">
       <DependentUpon>frmSysAdminGate.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSetupPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetupPos.Designer.cs">
+      <DependentUpon>frmSetupPos.cs</DependentUpon>
+    </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
     <Compile Include="van\KCP\ClsDate.cs" />
     <Compile Include="van\KCP\clsEnum.cs" />
@@ -351,6 +351,9 @@
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="9SysAdmin\frmSysGoods.resx">
+      <DependentUpon>frmSysGoods.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysPayConsole.resx">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,17 +366,14 @@
     <EmbeddedResource Include="2Business\frmBizOpen.resx">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysAdminMac.resx">
-      <DependentUpon>frmSysAdminMac.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminPosCert.resx">
+      <DependentUpon>frmSysAdminPosCert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminPos.resx">
       <DependentUpon>frmSysAdminPos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysAdminSite.resx">
-      <DependentUpon>frmSysAdminSite.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysAdminUser.resx">
-      <DependentUpon>frmSysAdminUser.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminUserCert.resx">
+      <DependentUpon>frmSysAdminUserCert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -417,9 +417,6 @@
     <EmbeddedResource Include="frmReports.resx">
       <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReqPos.resx">
-      <DependentUpon>frmReqPos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmReqUser.resx">
       <DependentUpon>frmReqUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,8 +438,8 @@
     <EmbeddedResource Include="1Sales\frmScanner.resx">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoods.resx">
-      <DependentUpon>frmSysGoods.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItem.resx">
+      <DependentUpon>frmSysGoodsItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroup.resx">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
@@ -455,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminGate.resx">
       <DependentUpon>frmSysAdminGate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetupPos.resx">
+      <DependentUpon>frmSetupPos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

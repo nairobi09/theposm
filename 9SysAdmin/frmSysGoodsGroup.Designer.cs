@@ -29,24 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysGoodsGroup));
-            this.tableLayoutPanelGoodsGroup = new System.Windows.Forms.TableLayoutPanel();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.lvwGoodsGroup = new System.Windows.Forms.ListView();
-            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tableLayoutPanelGroup = new System.Windows.Forms.TableLayoutPanel();
+            this.lvwList = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnView = new System.Windows.Forms.Button();
-            this.tbGroupCode = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblGroupNameTitle = new System.Windows.Forms.Label();
+            this.lblLocXTitle = new System.Windows.Forms.Label();
+            this.lblLocYTitle = new System.Windows.Forms.Label();
+            this.lblSzXTitle = new System.Windows.Forms.Label();
+            this.lblSzYTitle = new System.Windows.Forms.Label();
             this.tbGroupName = new System.Windows.Forms.TextBox();
             this.tbLocateX = new System.Windows.Forms.TextBox();
             this.tbLocateY = new System.Windows.Forms.TextBox();
@@ -54,98 +48,65 @@
             this.tbSizeY = new System.Windows.Forms.TextBox();
             this.btnInput = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.tableLayoutPanelGoodsGroup.SuspendLayout();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.tableLayoutPanelGroupSelected = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboPosNo = new System.Windows.Forms.ComboBox();
+            this.lblPosNo = new System.Windows.Forms.Label();
+            this.btnViewPosNo = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanelGoodsGroup
+            // tableLayoutPanelGroup
             // 
-            this.tableLayoutPanelGoodsGroup.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanelGoodsGroup.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanelGoodsGroup.ColumnCount = 8;
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.Controls.Add(this.button19, 0, 0);
-            this.tableLayoutPanelGoodsGroup.Controls.Add(this.button20, 3, 0);
-            this.tableLayoutPanelGoodsGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(4, 309);
-            this.tableLayoutPanelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanelGoodsGroup.Name = "tableLayoutPanelGoodsGroup";
-            this.tableLayoutPanelGoodsGroup.RowCount = 2;
-            this.tableLayoutPanelGoodsGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelGoodsGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelGoodsGroup.Size = new System.Drawing.Size(521, 130);
-            this.tableLayoutPanelGoodsGroup.TabIndex = 1;
+            this.tableLayoutPanelGroup.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanelGroup.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanelGroup.ColumnCount = 8;
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.tableLayoutPanelGroup.Location = new System.Drawing.Point(83, 542);
+            this.tableLayoutPanelGroup.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelGroup.Name = "tableLayoutPanelGroup";
+            this.tableLayoutPanelGroup.RowCount = 2;
+            this.tableLayoutPanelGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelGroup.Size = new System.Drawing.Size(521, 130);
+            this.tableLayoutPanelGroup.TabIndex = 1;
             // 
-            // button19
+            // lvwList
             // 
-            this.button19.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button19.CausesValidation = false;
-            this.tableLayoutPanelGoodsGroup.SetColumnSpan(this.button19, 3);
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.Color.White;
-            this.button19.Location = new System.Drawing.Point(3, 3);
-            this.button19.Margin = new System.Windows.Forms.Padding(2);
-            this.button19.Name = "button19";
-            this.tableLayoutPanelGoodsGroup.SetRowSpan(this.button19, 2);
-            this.button19.Size = new System.Drawing.Size(190, 124);
-            this.button19.TabIndex = 0;
-            this.button19.Text = "커피";
-            this.button19.UseVisualStyleBackColor = false;
-            // 
-            // button20
-            // 
-            this.button20.BackColor = System.Drawing.Color.White;
-            this.button20.CausesValidation = false;
-            this.tableLayoutPanelGoodsGroup.SetColumnSpan(this.button20, 2);
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button20.Location = new System.Drawing.Point(198, 3);
-            this.button20.Margin = new System.Windows.Forms.Padding(2);
-            this.button20.Name = "button20";
-            this.tableLayoutPanelGoodsGroup.SetRowSpan(this.button20, 2);
-            this.button20.Size = new System.Drawing.Size(125, 124);
-            this.button20.TabIndex = 0;
-            this.button20.Text = "티켓";
-            this.button20.UseVisualStyleBackColor = false;
-            // 
-            // lvwGoodsGroup
-            // 
-            this.lvwGoodsGroup.BackColor = System.Drawing.SystemColors.Window;
-            this.lvwGoodsGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.code,
+            this.lvwList.BackColor = System.Drawing.SystemColors.Window;
+            this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.locateX,
             this.locateY,
             this.SizeX,
             this.SizeY});
-            this.lvwGoodsGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lvwGoodsGroup.FullRowSelect = true;
-            this.lvwGoodsGroup.GridLines = true;
-            this.lvwGoodsGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwGoodsGroup.HideSelection = false;
-            this.lvwGoodsGroup.Location = new System.Drawing.Point(4, 4);
-            this.lvwGoodsGroup.MultiSelect = false;
-            this.lvwGoodsGroup.Name = "lvwGoodsGroup";
-            this.lvwGoodsGroup.Size = new System.Drawing.Size(521, 296);
-            this.lvwGoodsGroup.TabIndex = 38;
-            this.lvwGoodsGroup.TabStop = false;
-            this.lvwGoodsGroup.UseCompatibleStateImageBehavior = false;
-            this.lvwGoodsGroup.View = System.Windows.Forms.View.Details;
-            this.lvwGoodsGroup.SelectedIndexChanged += new System.EventHandler(this.lvwGoodsGroup_SelectedIndexChanged);
-            // 
-            // code
-            // 
-            this.code.Text = "코드";
-            this.code.Width = 50;
+            this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.FullRowSelect = true;
+            this.lvwList.GridLines = true;
+            this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwList.HideSelection = false;
+            this.lvwList.Location = new System.Drawing.Point(83, 58);
+            this.lvwList.MultiSelect = false;
+            this.lvwList.Name = "lvwList";
+            this.lvwList.Size = new System.Drawing.Size(342, 303);
+            this.lvwList.TabIndex = 38;
+            this.lvwList.TabStop = false;
+            this.lvwList.UseCompatibleStateImageBehavior = false;
+            this.lvwList.View = System.Windows.Forms.View.Details;
+            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwGoodsGroup_SelectedIndexChanged);
             // 
             // name
             // 
@@ -167,169 +128,265 @@
             // SizeX
             // 
             this.SizeX.Text = "SzX";
+            this.SizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.SizeX.Width = 50;
             // 
             // SizeY
             // 
             this.SizeY.Text = "SzY";
+            this.SizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.SizeY.Width = 50;
             // 
-            // btnView
+            // lblGroupNameTitle
             // 
-            this.btnView.Location = new System.Drawing.Point(537, 37);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(167, 39);
-            this.btnView.TabIndex = 39;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.lblGroupNameTitle.AutoSize = true;
+            this.lblGroupNameTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGroupNameTitle.Location = new System.Drawing.Point(16, 28);
+            this.lblGroupNameTitle.Name = "lblGroupNameTitle";
+            this.lblGroupNameTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblGroupNameTitle.TabIndex = 41;
+            this.lblGroupNameTitle.Text = "그룹명";
             // 
-            // tbGroupCode
+            // lblLocXTitle
             // 
-            this.tbGroupCode.Location = new System.Drawing.Point(591, 133);
-            this.tbGroupCode.Name = "tbGroupCode";
-            this.tbGroupCode.Size = new System.Drawing.Size(113, 21);
-            this.tbGroupCode.TabIndex = 40;
+            this.lblLocXTitle.AutoSize = true;
+            this.lblLocXTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocXTitle.Location = new System.Drawing.Point(16, 66);
+            this.lblLocXTitle.Name = "lblLocXTitle";
+            this.lblLocXTitle.Size = new System.Drawing.Size(46, 16);
+            this.lblLocXTitle.TabIndex = 41;
+            this.lblLocXTitle.Text = "LocX";
             // 
-            // label1
+            // lblLocYTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(535, 140);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 41;
-            this.label1.Text = "그룹코드";
+            this.lblLocYTitle.AutoSize = true;
+            this.lblLocYTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocYTitle.Location = new System.Drawing.Point(16, 95);
+            this.lblLocYTitle.Name = "lblLocYTitle";
+            this.lblLocYTitle.Size = new System.Drawing.Size(45, 16);
+            this.lblLocYTitle.TabIndex = 41;
+            this.lblLocYTitle.Text = "LocY";
             // 
-            // label2
+            // lblSzXTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(535, 169);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "그룹명";
+            this.lblSzXTitle.AutoSize = true;
+            this.lblSzXTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSzXTitle.Location = new System.Drawing.Point(16, 124);
+            this.lblSzXTitle.Name = "lblSzXTitle";
+            this.lblSzXTitle.Size = new System.Drawing.Size(49, 16);
+            this.lblSzXTitle.TabIndex = 41;
+            this.lblSzXTitle.Text = "SizeX";
             // 
-            // label3
+            // lblSzYTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(535, 207);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 12);
-            this.label3.TabIndex = 41;
-            this.label3.Text = "LocateX";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(535, 236);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 12);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "LocateY";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(535, 265);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 12);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "SizeX";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(535, 294);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 12);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "SizeY";
+            this.lblSzYTitle.AutoSize = true;
+            this.lblSzYTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSzYTitle.Location = new System.Drawing.Point(16, 153);
+            this.lblSzYTitle.Name = "lblSzYTitle";
+            this.lblSzYTitle.Size = new System.Drawing.Size(48, 16);
+            this.lblSzYTitle.TabIndex = 41;
+            this.lblSzYTitle.Text = "SizeY";
             // 
             // tbGroupName
             // 
-            this.tbGroupName.Location = new System.Drawing.Point(591, 162);
+            this.tbGroupName.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGroupName.Location = new System.Drawing.Point(78, 21);
             this.tbGroupName.Name = "tbGroupName";
-            this.tbGroupName.Size = new System.Drawing.Size(113, 21);
+            this.tbGroupName.Size = new System.Drawing.Size(113, 26);
             this.tbGroupName.TabIndex = 40;
             // 
             // tbLocateX
             // 
-            this.tbLocateX.Location = new System.Drawing.Point(591, 200);
+            this.tbLocateX.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateX.Location = new System.Drawing.Point(78, 59);
+            this.tbLocateX.MaxLength = 1;
             this.tbLocateX.Name = "tbLocateX";
-            this.tbLocateX.Size = new System.Drawing.Size(113, 21);
+            this.tbLocateX.Size = new System.Drawing.Size(113, 26);
             this.tbLocateX.TabIndex = 40;
             // 
             // tbLocateY
             // 
-            this.tbLocateY.Location = new System.Drawing.Point(591, 229);
+            this.tbLocateY.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateY.Location = new System.Drawing.Point(78, 88);
+            this.tbLocateY.MaxLength = 1;
             this.tbLocateY.Name = "tbLocateY";
-            this.tbLocateY.Size = new System.Drawing.Size(113, 21);
+            this.tbLocateY.Size = new System.Drawing.Size(113, 26);
             this.tbLocateY.TabIndex = 40;
             // 
             // tbSizeX
             // 
-            this.tbSizeX.Location = new System.Drawing.Point(591, 258);
+            this.tbSizeX.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeX.Location = new System.Drawing.Point(78, 117);
+            this.tbSizeX.MaxLength = 1;
             this.tbSizeX.Name = "tbSizeX";
-            this.tbSizeX.Size = new System.Drawing.Size(113, 21);
+            this.tbSizeX.Size = new System.Drawing.Size(113, 26);
             this.tbSizeX.TabIndex = 40;
             // 
             // tbSizeY
             // 
-            this.tbSizeY.Location = new System.Drawing.Point(591, 287);
+            this.tbSizeY.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeY.Location = new System.Drawing.Point(78, 146);
+            this.tbSizeY.MaxLength = 1;
             this.tbSizeY.Name = "tbSizeY";
-            this.tbSizeY.Size = new System.Drawing.Size(113, 21);
+            this.tbSizeY.Size = new System.Drawing.Size(113, 26);
             this.tbSizeY.TabIndex = 40;
             // 
             // btnInput
             // 
-            this.btnInput.Location = new System.Drawing.Point(537, 328);
+            this.btnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInput.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnInput.Location = new System.Drawing.Point(218, 27);
             this.btnInput.Name = "btnInput";
-            this.btnInput.Size = new System.Drawing.Size(91, 39);
+            this.btnInput.Size = new System.Drawing.Size(120, 50);
             this.btnInput.TabIndex = 39;
             this.btnInput.Text = "입력";
             this.btnInput.UseVisualStyleBackColor = true;
+            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(537, 373);
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Location = new System.Drawing.Point(218, 83);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(91, 39);
+            this.btnUpdate.Size = new System.Drawing.Size(120, 50);
             this.btnUpdate.TabIndex = 39;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // btnSend
+            // lblTitle
             // 
-            this.btnSend.Location = new System.Drawing.Point(635, 330);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(69, 82);
-            this.btnSend.TabIndex = 39;
-            this.btnSend.Text = "전송";
-            this.btnSend.UseVisualStyleBackColor = true;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Location = new System.Drawing.Point(85, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(136, 19);
+            this.lblTitle.TabIndex = 42;
+            this.lblTitle.Text = "상품그룹 관리";
+            // 
+            // tableLayoutPanelGroupSelected
+            // 
+            this.tableLayoutPanelGroupSelected.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanelGroupSelected.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanelGroupSelected.ColumnCount = 8;
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelGroupSelected.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.tableLayoutPanelGroupSelected.Location = new System.Drawing.Point(83, 399);
+            this.tableLayoutPanelGroupSelected.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelGroupSelected.Name = "tableLayoutPanelGroupSelected";
+            this.tableLayoutPanelGroupSelected.RowCount = 2;
+            this.tableLayoutPanelGroupSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelGroupSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelGroupSelected.Size = new System.Drawing.Size(521, 130);
+            this.tableLayoutPanelGroupSelected.TabIndex = 1;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.Location = new System.Drawing.Point(218, 140);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(120, 32);
+            this.btnDelete.TabIndex = 39;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnApply
+            // 
+            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApply.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnApply.Location = new System.Drawing.Point(662, 399);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(120, 50);
+            this.btnApply.TabIndex = 43;
+            this.btnApply.Text = "적용보기";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbGroupName);
+            this.groupBox1.Controls.Add(this.tbLocateX);
+            this.groupBox1.Controls.Add(this.lblSzYTitle);
+            this.groupBox1.Controls.Add(this.tbLocateY);
+            this.groupBox1.Controls.Add(this.lblSzXTitle);
+            this.groupBox1.Controls.Add(this.btnDelete);
+            this.groupBox1.Controls.Add(this.tbSizeX);
+            this.groupBox1.Controls.Add(this.btnUpdate);
+            this.groupBox1.Controls.Add(this.btnInput);
+            this.groupBox1.Controls.Add(this.lblLocYTitle);
+            this.groupBox1.Controls.Add(this.tbSizeY);
+            this.groupBox1.Controls.Add(this.lblLocXTitle);
+            this.groupBox1.Controls.Add(this.lblGroupNameTitle);
+            this.groupBox1.Location = new System.Drawing.Point(444, 160);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(363, 196);
+            this.groupBox1.TabIndex = 44;
+            this.groupBox1.TabStop = false;
+            // 
+            // comboPosNo
+            // 
+            this.comboPosNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.comboPosNo.FormattingEnabled = true;
+            this.comboPosNo.Location = new System.Drawing.Point(87, 31);
+            this.comboPosNo.Name = "comboPosNo";
+            this.comboPosNo.Size = new System.Drawing.Size(104, 24);
+            this.comboPosNo.TabIndex = 45;
+            // 
+            // lblPosNo
+            // 
+            this.lblPosNo.AutoSize = true;
+            this.lblPosNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.Location = new System.Drawing.Point(10, 35);
+            this.lblPosNo.Name = "lblPosNo";
+            this.lblPosNo.Size = new System.Drawing.Size(71, 16);
+            this.lblPosNo.TabIndex = 41;
+            this.lblPosNo.Text = "포스번호";
+            // 
+            // btnViewPosNo
+            // 
+            this.btnViewPosNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewPosNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnViewPosNo.Location = new System.Drawing.Point(218, 27);
+            this.btnViewPosNo.Name = "btnViewPosNo";
+            this.btnViewPosNo.Size = new System.Drawing.Size(120, 32);
+            this.btnViewPosNo.TabIndex = 46;
+            this.btnViewPosNo.Text = "조회";
+            this.btnViewPosNo.UseVisualStyleBackColor = true;
+            this.btnViewPosNo.Click += new System.EventHandler(this.btnViewPosNo_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnViewPosNo);
+            this.groupBox2.Controls.Add(this.lblPosNo);
+            this.groupBox2.Controls.Add(this.comboPosNo);
+            this.groupBox2.Location = new System.Drawing.Point(444, 52);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(362, 79);
+            this.groupBox2.TabIndex = 47;
+            this.groupBox2.TabStop = false;
             // 
             // frmSysGoodsGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbSizeY);
-            this.Controls.Add(this.tbSizeX);
-            this.Controls.Add(this.tbLocateY);
-            this.Controls.Add(this.tbLocateX);
-            this.Controls.Add(this.tbGroupName);
-            this.Controls.Add(this.tbGroupCode);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnInput);
-            this.Controls.Add(this.btnView);
-            this.Controls.Add(this.lvwGoodsGroup);
-            this.Controls.Add(this.tableLayoutPanelGoodsGroup);
+            this.ClientSize = new System.Drawing.Size(890, 720);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnApply);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lvwList);
+            this.Controls.Add(this.tableLayoutPanelGroupSelected);
+            this.Controls.Add(this.tableLayoutPanelGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -337,7 +394,10 @@
             this.Name = "frmSysGoodsGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "상품그룹등록";
-            this.tableLayoutPanelGoodsGroup.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,24 +405,18 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsGroup;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.ListView lvwGoodsGroup;
-        private System.Windows.Forms.ColumnHeader code;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGroup;
+        private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader locateX;
         private System.Windows.Forms.ColumnHeader locateY;
         private System.Windows.Forms.ColumnHeader SizeX;
         private System.Windows.Forms.ColumnHeader SizeY;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.TextBox tbGroupCode;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblGroupNameTitle;
+        private System.Windows.Forms.Label lblLocXTitle;
+        private System.Windows.Forms.Label lblLocYTitle;
+        private System.Windows.Forms.Label lblSzXTitle;
+        private System.Windows.Forms.Label lblSzYTitle;
         private System.Windows.Forms.TextBox tbGroupName;
         private System.Windows.Forms.TextBox tbLocateX;
         private System.Windows.Forms.TextBox tbLocateY;
@@ -370,6 +424,14 @@
         private System.Windows.Forms.TextBox tbSizeY;
         private System.Windows.Forms.Button btnInput;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGroupSelected;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboPosNo;
+        private System.Windows.Forms.Label lblPosNo;
+        private System.Windows.Forms.Button btnViewPosNo;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

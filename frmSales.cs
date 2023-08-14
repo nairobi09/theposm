@@ -233,7 +233,7 @@ namespace thepos
             get_goodsgroup();
             get_goodsitem();
             display_goodsgroup();
-            ClickedGoodsGroup(mGoodsGroup[0].code);   // 최초실행후 첮 구룹을 선택한 화면을 보여주자...
+            ClickedGoodsGroup(mGoodsGroup[0].code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
         }
 
 
@@ -452,13 +452,18 @@ namespace thepos
                 btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
                 btnGoodsGroup.Dock = DockStyle.Fill;
 
-                if (mGoodsGroup[i].columnspan > 1 & mGoodsGroup[i].rowspan > 1)
+                
+                if (mGoodsGroup[i].columnspan == 1)
                 {
-                    btnGoodsGroup.Font = font16;
+                    btnGoodsGroup.Font = font9;
+                }
+                else if (mGoodsGroup[i].columnspan >= 3 & mGoodsGroup[i].rowspan == 2)
+                {
+                    btnGoodsGroup.Font = font20;
                 }
                 else
                 {
-                    btnGoodsGroup.Font = font12;
+                    btnGoodsGroup.Font = font14;
                 }
 
                 btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
@@ -504,17 +509,17 @@ namespace thepos
                     btnGoodsItem.Text = mGoodsItem[i].name + "\n" + mGoodsItem[i].amt.ToString("N0");
                     btnGoodsItem.Dock = DockStyle.Fill;
 
-                    if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
+                    if (mGoodsItem[i].columnspan == 1)
                     {
-                        btnGoodsItem.Font = font8;
+                        btnGoodsItem.Font = font9;
                     }
-                    else if (mGoodsItem[i].columnspan == 2 | mGoodsItem[i].rowspan == 2)
+                    else if (mGoodsItem[i].columnspan >= 3 | mGoodsItem[i].rowspan == 2)
                     {
-                        btnGoodsItem.Font = font14;
+                        btnGoodsItem.Font = font20;
                     }
                     else
                     {
-                        btnGoodsItem.Font = font20;
+                        btnGoodsItem.Font = font14;
                     }
                     
                     btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
@@ -1770,7 +1775,7 @@ namespace thepos
         private void MenuItemGoods_Click(Object sender, System.EventArgs e)
         {
             Form fFlow;
-            fFlow = new frmSysGoods();
+            fFlow = new frmSysGoodsItem();
             fFlow.Show();
         }
 
