@@ -128,7 +128,7 @@ namespace thepos
         }
 
 
-
+        public static Font font5;
         public static Font font8;
         public static Font font9;
         public static Font font10;
@@ -245,8 +245,8 @@ namespace thepos
         // 로컬 + 서버
         public struct GoodsGroup
         {
-            public string code;  // 3
-            public string name;
+            public string group_code;
+            public string group_name;
             public int column;
             public int row;
             public int columnspan;
@@ -257,8 +257,10 @@ namespace thepos
 
         public struct GoodsItem
         {
-            public string code;  // 6
-            public string name;
+            
+            public string group_code;
+            public string item_code;
+            public string item_name;
             public int amt;
             public String ticket; // 일반상품 0. 티켓상품 1
             public String taxfree; // 과세품 0, 면세품 1
@@ -579,9 +581,9 @@ namespace thepos
         {
             for (int i = 0; i < mGoodsItem.Length; i++)
             {
-                if (mGoodsItem[i].code == code)
+                if (mGoodsItem[i].item_code == code)
                 {
-                    return mGoodsItem[i].name;
+                    return mGoodsItem[i].item_name;
                 }
             }
 
@@ -1268,6 +1270,33 @@ namespace thepos
             }
         }
 
+        public static bool mRequestDelete(String sUrl, Dictionary<string, string> parameters, ref JObject obj, ref String err_msg)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(parameters);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var method = new HttpMethod("DELETE");
+                var request = new HttpRequestMessage(method, mBaseUri + sUrl);
+                request.Content = data;
+
+
+                var response = mHttpClient.SendAsync(request).Result;
+
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
+
+                obj = JObject.Parse(responseString);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                err_msg = ex.Message;
+                return false;
+            }
+        }
 
 
 
@@ -1279,5 +1308,19 @@ namespace thepos
             byte[] result = sha.ComputeHash(data);
             return Convert.ToBase64String(result);
         }
+
+
+        public static bool get_biz_status(ref String bis_status, ref String biz_date)
+        {
+
+
+
+
+
+
+
+            return true;
+        }
+
     }
 }

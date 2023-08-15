@@ -34,6 +34,7 @@
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.taxfree = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
             this.tbGoodsName = new System.Windows.Forms.TextBox();
             this.tbGoodsAmt = new System.Windows.Forms.TextBox();
@@ -48,9 +49,9 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblMemoTitle = new System.Windows.Forms.Label();
             this.tbMemo = new System.Windows.Forms.TextBox();
+            this.lblMemoTitle = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,10 +68,11 @@
             this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
-            this.lvwList.Location = new System.Drawing.Point(30, 58);
+            this.lvwList.HideSelection = false;
+            this.lvwList.Location = new System.Drawing.Point(94, 58);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(505, 613);
+            this.lvwList.Size = new System.Drawing.Size(489, 613);
             this.lvwList.TabIndex = 39;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -107,11 +109,16 @@
             this.usage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.usage.Width = 50;
             // 
+            // memo
+            // 
+            this.memo.Text = "비고";
+            this.memo.Width = 130;
+            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.Location = new System.Drawing.Point(32, 23);
+            this.lblTitle.Location = new System.Drawing.Point(96, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(136, 19);
             this.lblTitle.TabIndex = 40;
@@ -121,7 +128,7 @@
             // 
             this.tbGoodsName.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbGoodsName.ForeColor = System.Drawing.Color.Black;
-            this.tbGoodsName.Location = new System.Drawing.Point(103, 28);
+            this.tbGoodsName.Location = new System.Drawing.Point(95, 28);
             this.tbGoodsName.MaxLength = 30;
             this.tbGoodsName.Name = "tbGoodsName";
             this.tbGoodsName.Size = new System.Drawing.Size(105, 26);
@@ -131,7 +138,7 @@
             // 
             this.tbGoodsAmt.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbGoodsAmt.ForeColor = System.Drawing.Color.Black;
-            this.tbGoodsAmt.Location = new System.Drawing.Point(103, 66);
+            this.tbGoodsAmt.Location = new System.Drawing.Point(95, 66);
             this.tbGoodsAmt.MaxLength = 16;
             this.tbGoodsAmt.Name = "tbGoodsAmt";
             this.tbGoodsAmt.Size = new System.Drawing.Size(105, 26);
@@ -142,7 +149,7 @@
             this.lblGoodsNameTitle.AutoSize = true;
             this.lblGoodsNameTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblGoodsNameTitle.Location = new System.Drawing.Point(22, 35);
+            this.lblGoodsNameTitle.Location = new System.Drawing.Point(14, 35);
             this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
             this.lblGoodsNameTitle.Size = new System.Drawing.Size(49, 14);
             this.lblGoodsNameTitle.TabIndex = 43;
@@ -153,7 +160,7 @@
             this.lblGoodsAmtTitle.AutoSize = true;
             this.lblGoodsAmtTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsAmtTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(22, 75);
+            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(14, 75);
             this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
             this.lblGoodsAmtTitle.Size = new System.Drawing.Size(39, 16);
             this.lblGoodsAmtTitle.TabIndex = 44;
@@ -164,7 +171,7 @@
             this.lblTaxFreeTitle.AutoSize = true;
             this.lblTaxFreeTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTaxFreeTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTaxFreeTitle.Location = new System.Drawing.Point(22, 161);
+            this.lblTaxFreeTitle.Location = new System.Drawing.Point(14, 161);
             this.lblTaxFreeTitle.Name = "lblTaxFreeTitle";
             this.lblTaxFreeTitle.Size = new System.Drawing.Size(71, 16);
             this.lblTaxFreeTitle.TabIndex = 44;
@@ -175,7 +182,7 @@
             this.lblTicketTitle.AutoSize = true;
             this.lblTicketTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTicketTitle.Location = new System.Drawing.Point(22, 123);
+            this.lblTicketTitle.Location = new System.Drawing.Point(14, 123);
             this.lblTicketTitle.Name = "lblTicketTitle";
             this.lblTicketTitle.Size = new System.Drawing.Size(71, 16);
             this.lblTicketTitle.TabIndex = 43;
@@ -184,7 +191,7 @@
             // cbTicket
             // 
             this.cbTicket.AutoSize = true;
-            this.cbTicket.Location = new System.Drawing.Point(106, 125);
+            this.cbTicket.Location = new System.Drawing.Point(98, 125);
             this.cbTicket.Name = "cbTicket";
             this.cbTicket.Size = new System.Drawing.Size(15, 14);
             this.cbTicket.TabIndex = 45;
@@ -193,7 +200,7 @@
             // cbTaxFree
             // 
             this.cbTaxFree.AutoSize = true;
-            this.cbTaxFree.Location = new System.Drawing.Point(106, 161);
+            this.cbTaxFree.Location = new System.Drawing.Point(98, 161);
             this.cbTaxFree.Name = "cbTaxFree";
             this.cbTaxFree.Size = new System.Drawing.Size(15, 14);
             this.cbTaxFree.TabIndex = 45;
@@ -204,7 +211,7 @@
             this.lblActiveTitle.AutoSize = true;
             this.lblActiveTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblActiveTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblActiveTitle.Location = new System.Drawing.Point(22, 200);
+            this.lblActiveTitle.Location = new System.Drawing.Point(14, 200);
             this.lblActiveTitle.Name = "lblActiveTitle";
             this.lblActiveTitle.Size = new System.Drawing.Size(55, 16);
             this.lblActiveTitle.TabIndex = 44;
@@ -213,7 +220,7 @@
             // cbActive
             // 
             this.cbActive.AutoSize = true;
-            this.cbActive.Location = new System.Drawing.Point(106, 200);
+            this.cbActive.Location = new System.Drawing.Point(98, 200);
             this.cbActive.Name = "cbActive";
             this.cbActive.Size = new System.Drawing.Size(15, 14);
             this.cbActive.TabIndex = 45;
@@ -223,9 +230,9 @@
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(584, 524);
+            this.btnAdd.Location = new System.Drawing.Point(615, 393);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(120, 50);
+            this.btnAdd.Size = new System.Drawing.Size(182, 50);
             this.btnAdd.TabIndex = 46;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
@@ -236,9 +243,9 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(710, 524);
+            this.btnUpdate.Location = new System.Drawing.Point(615, 449);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(120, 50);
+            this.btnUpdate.Size = new System.Drawing.Size(182, 50);
             this.btnUpdate.TabIndex = 46;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -260,37 +267,45 @@
             this.groupBox1.Controls.Add(this.lblTicketTitle);
             this.groupBox1.Controls.Add(this.tbGoodsName);
             this.groupBox1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(559, 111);
+            this.groupBox1.Location = new System.Drawing.Point(598, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(299, 323);
+            this.groupBox1.Size = new System.Drawing.Size(214, 306);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             // 
-            // memo
+            // tbMemo
             // 
-            this.memo.Text = "비고";
-            this.memo.Width = 150;
+            this.tbMemo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbMemo.ForeColor = System.Drawing.Color.Black;
+            this.tbMemo.Location = new System.Drawing.Point(18, 261);
+            this.tbMemo.MaxLength = 16;
+            this.tbMemo.Name = "tbMemo";
+            this.tbMemo.Size = new System.Drawing.Size(182, 26);
+            this.tbMemo.TabIndex = 42;
             // 
             // lblMemoTitle
             // 
             this.lblMemoTitle.AutoSize = true;
             this.lblMemoTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMemoTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblMemoTitle.Location = new System.Drawing.Point(22, 241);
+            this.lblMemoTitle.Location = new System.Drawing.Point(14, 241);
             this.lblMemoTitle.Name = "lblMemoTitle";
             this.lblMemoTitle.Size = new System.Drawing.Size(39, 16);
             this.lblMemoTitle.TabIndex = 44;
             this.lblMemoTitle.Text = "비고";
             // 
-            // tbMemo
+            // btnDelete
             // 
-            this.tbMemo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbMemo.ForeColor = System.Drawing.Color.Black;
-            this.tbMemo.Location = new System.Drawing.Point(26, 261);
-            this.tbMemo.MaxLength = 16;
-            this.tbMemo.Name = "tbMemo";
-            this.tbMemo.Size = new System.Drawing.Size(252, 26);
-            this.tbMemo.TabIndex = 42;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.Location = new System.Drawing.Point(615, 505);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(182, 30);
+            this.btnDelete.TabIndex = 49;
+            this.btnDelete.TabStop = false;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmSysGoods
             // 
@@ -298,6 +313,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 720);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
@@ -338,5 +354,6 @@
         private System.Windows.Forms.ColumnHeader memo;
         private System.Windows.Forms.TextBox tbMemo;
         private System.Windows.Forms.Label lblMemoTitle;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

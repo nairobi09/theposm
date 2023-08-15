@@ -41,7 +41,8 @@
             // 
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStop.Location = new System.Drawing.Point(398, 487);
+            this.btnStop.ForeColor = System.Drawing.Color.Red;
+            this.btnStop.Location = new System.Drawing.Point(394, 408);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(100, 50);
             this.btnStop.TabIndex = 26;
@@ -54,7 +55,8 @@
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnEnter.Location = new System.Drawing.Point(262, 487);
+            this.btnEnter.ForeColor = System.Drawing.Color.Red;
+            this.btnEnter.Location = new System.Drawing.Point(258, 408);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(130, 50);
             this.btnEnter.TabIndex = 25;
@@ -67,6 +69,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Red;
             this.lblTitle.Location = new System.Drawing.Point(153, 33);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(136, 19);

@@ -46,6 +46,7 @@ namespace thepos
             //fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
             fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
 
+            font5 = new Font(fontCollection.Families[0], 5f);
             font8 = new Font(fontCollection.Families[0], 8f);
             font9 = new Font(fontCollection.Families[0], 9f);
             font10 = new Font(fontCollection.Families[0], 10f);
@@ -444,6 +445,35 @@ namespace thepos
         // 판매관리
         private void btnSales_Click(object sender, EventArgs e)
         {
+            //? 영업상태
+            // 영업중상태: 개시후 마감전
+            // 영업마감상태 : 마감이후 개시전
+
+
+            // 1. 영업상태 구함
+
+            String mBizStatus = "";
+
+
+            if (get_biz_status(ref mBizStatus, ref mBizDate))
+            {
+                // 통과
+            }
+            else
+            {
+                // 영업개시 화면을 
+
+            }
+
+
+
+
+
+            // 2. 물어보고 개시입력
+
+
+
+
             Form fFlow;
             fFlow = new frmSales();
             fFlow.ShowDialog();

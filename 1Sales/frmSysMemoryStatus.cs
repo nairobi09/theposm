@@ -25,6 +25,82 @@ namespace thepos
 
 
             ListViewItem item = new ListViewItem();
+
+
+            item.SubItems.Add("");
+            lvwInfo.Items.Add(item);
+
+            item = new ListViewItem();
+            item.SubItems.Add("<goodsGroup>");
+            lvwInfo.Items.Add(item);
+
+            item = new ListViewItem();
+            item.SubItems.Add("group_code");
+            item.SubItems.Add("group_name");
+            item.SubItems.Add("column");
+            item.SubItems.Add("row");
+            item.SubItems.Add("columnspan");
+            item.SubItems.Add("rowspan");
+            lvwInfo.Items.Add(item);
+
+
+            for (int i = 0; i < mGoodsGroup.Length; i++)
+            {
+                item = new ListViewItem();
+                item.SubItems.Add(mGoodsGroup[i].group_code);
+                item.SubItems.Add(mGoodsGroup[i].group_name);
+                item.SubItems.Add(mGoodsGroup[i].column.ToString());
+                item.SubItems.Add(mGoodsGroup[i].row.ToString());
+                item.SubItems.Add(mGoodsGroup[i].columnspan.ToString());
+                item.SubItems.Add(mGoodsGroup[i].rowspan.ToString());
+                lvwInfo.Items.Add(item);
+            }
+
+
+            item = new ListViewItem();
+            item.SubItems.Add("");
+            lvwInfo.Items.Add(item);
+
+            item = new ListViewItem();
+            item.SubItems.Add("<goodsItem>");
+            lvwInfo.Items.Add(item);
+
+
+
+
+            item = new ListViewItem();
+            item.SubItems.Add("group_code");
+            item.SubItems.Add("item_code");
+            item.SubItems.Add("item_name");
+            item.SubItems.Add("amt");
+            item.SubItems.Add("ticket");
+            item.SubItems.Add("taxfree");
+            item.SubItems.Add("column");
+            item.SubItems.Add("row");
+            item.SubItems.Add("columnspan");
+            item.SubItems.Add("rowspan");
+            lvwInfo.Items.Add(item);
+
+
+            for (int i = 0; i < mGoodsItem.Length; i++)
+            {
+                item = new ListViewItem();
+                item.SubItems.Add(mGoodsItem[i].group_code);
+                item.SubItems.Add(mGoodsItem[i].item_code);
+                item.SubItems.Add(mGoodsItem[i].item_name);
+                item.SubItems.Add(mGoodsItem[i].amt.ToString());
+                item.SubItems.Add(mGoodsItem[i].ticket);
+                item.SubItems.Add(mGoodsItem[i].taxfree);
+                item.SubItems.Add(mGoodsItem[i].column.ToString());
+                item.SubItems.Add(mGoodsItem[i].row.ToString());
+                item.SubItems.Add(mGoodsItem[i].columnspan.ToString());
+                item.SubItems.Add(mGoodsItem[i].rowspan.ToString());
+                lvwInfo.Items.Add(item);
+            }
+
+
+
+            item = new ListViewItem();
             item.SubItems.Add("");
             lvwInfo.Items.Add(item);
 

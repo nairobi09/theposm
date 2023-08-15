@@ -58,6 +58,11 @@ namespace thepos
             lblT5.Font = font10;
             lblT6.Font = font10;
 
+            tbLocateX.Font = font12;
+            tbLocateY.Font = font12;
+            tbSizeX.Font = font12;
+            tbSizeY.Font = font12;
+
             btnUpdate.Font = font10;
             btnDelete.Font = font10;
             btnLink.Font = font10;
@@ -181,7 +186,17 @@ namespace thepos
         }
 
         private void reload_server()
-        { 
+        {
+            lvwGoodsLink.Items.Clear();
+
+            tbLocateX.Text = "";
+            tbLocateY.Text = "";
+            tbSizeX.Text = "";
+            tbSizeY.Text = "";
+
+            tableLayoutPanelItemSelected.Controls.Clear();
+
+
             JObject obj = new JObject();
             String err_msg = "";
 
@@ -240,7 +255,7 @@ namespace thepos
                     btnItem.TabStop = false;
                     btnItem.Margin = new Padding(2, 2, 2, 2);
                     btnItem.Padding = new Padding(0, 0, 0, 0);
-                    btnItem.Text = lvwGoodsLink.Items[i].Text + "\n" + lvwGoodsLink.Items[i].SubItems[1].Text;
+                    btnItem.Text = lvwGoodsLink.Items[i].Text;
                     btnItem.Dock = DockStyle.Fill;
 
                     int locX = convert_number(lvwGoodsLink.Items[i].SubItems[2].Text);
@@ -248,9 +263,9 @@ namespace thepos
                     int szX = convert_number(lvwGoodsLink.Items[i].SubItems[4].Text);
                     int szY = convert_number(lvwGoodsLink.Items[i].SubItems[5].Text);
 
-                    if (szX == 1) { btnItem.Font = font9; }
-                    else if (szX >= 3 & szY == 2) { btnItem.Font = font20; }
-                    else { btnItem.Font = font14; }
+                    if (szX == 1) { btnItem.Font = font5; }
+                    else if (szX >= 3 & szY >= 2) { btnItem.Font = font10; }
+                    else { btnItem.Font = font8; }
 
                     tableLayoutPanelItem.Controls.Add(btnItem, locX, locY);
                     tableLayoutPanelItem.SetColumnSpan(btnItem, szX);
@@ -294,10 +309,10 @@ namespace thepos
 
             try
             {
-                int locX = convert_number(lvwGoodsLink.SelectedItems[0].SubItems[2].Text);
-                int locY = convert_number(lvwGoodsLink.SelectedItems[0].SubItems[3].Text);
-                int szX = convert_number(lvwGoodsLink.SelectedItems[0].SubItems[4].Text);
-                int szY = convert_number(lvwGoodsLink.SelectedItems[0].SubItems[5].Text);
+                int locX = convert_number(tbLocateX.Text);
+                int locY = convert_number(tbLocateY.Text);
+                int szX = convert_number(tbSizeX.Text);
+                int szY = convert_number(tbSizeY.Text);
 
                 Button btnGroupBlue = new Button();
 
@@ -311,7 +326,7 @@ namespace thepos
                 btnGroupBlue.Dock = DockStyle.Fill;
 
                 if (szX == 1) { btnGroupBlue.Font = font9; }
-                else if (szX >= 3 & szY == 2) { btnGroupBlue.Font = font20; }
+                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = font20; }
                 else { btnGroupBlue.Font = font14; }
 
 
@@ -330,7 +345,53 @@ namespace thepos
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
 
+
+            if (!check_data())
+            {
+                return;
+            }
+
+
+
+            JObject obj = new JObject();
+            String err_msg = "";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["posNo"] = mSelectedPosNo;
+            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["itemCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
+            parameters["locateX"] = tbLocateX.Text;
+            parameters["locateY"] = tbLocateY.Text;
+            parameters["sizeX"] = tbSizeX.Text;
+            parameters["sizeY"] = tbSizeY.Text;
+
+
+
+            if (mRequestPatch("goodsItem", parameters, ref obj, ref err_msg))
+            {
+                if (obj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return;
+            }
+
+
+            reload_server();
+
+            display_all_console();
 
 
 
@@ -342,19 +403,68 @@ namespace thepos
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
+
+            if (MessageBox.Show("선택 상품연결정보를 삭제합니다.", "thwpos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+                return;
+            }
+
+
+
+            String mSelecteditemCode = lvwGoodsLink.SelectedItems[0].Tag.ToString();
+
+
             //
+            JObject obj = new JObject();
+            String err_msg = "";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["posNo"] = mSelectedPosNo;
+            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["itemCode"] = mSelecteditemCode;
 
 
+            if (mRequestDelete("goodsItem", parameters, ref obj, ref err_msg))
+            {
+                if (obj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return;
+            }
 
 
+            reload_server();
 
-
+            display_all_console();
 
         }
 
         private void btnLink_Click(object sender, EventArgs e)
         {
             if (lvwGoods.SelectedItems.Count == 0) { return; }
+
+
+            if (mSelectedGroupCode == "") 
+            {
+                MessageBox.Show("포스 그룹 조회 해주세요.", "thepos");
+                return; 
+            }
 
 
             for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
@@ -449,7 +559,7 @@ namespace thepos
             locX = tNum;
 
             if (!get_number(tbLocateY.Text, ref tNum)) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
-            if (tNum > 2) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
+            if (tNum > 7) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
             locY = tNum;
 
             if (!get_number(tbSizeX.Text, ref tNum)) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
@@ -457,14 +567,16 @@ namespace thepos
             szX = tNum;
 
             if (!get_number(tbSizeY.Text, ref tNum)) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
-            if (tNum > 2) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
+            if (tNum > 8) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
             szY = tNum;
 
 
             if (locX + szX > 8) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
-            if (locY + szY > 2) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
+            if (locY + szY > 8) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
 
             return true;
         }
+
+
     }
 }

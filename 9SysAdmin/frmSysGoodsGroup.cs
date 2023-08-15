@@ -121,6 +121,15 @@ namespace thepos
             lvwList.Items.Clear();
             tableLayoutPanelGroup.Controls.Clear();
 
+            tbGroupName.Text = "";
+            tbLocateX.Text = "";
+            tbLocateY.Text = "";
+            tbSizeX.Text = "";
+            tbSizeY.Text = "";
+
+
+
+
             JObject obj = new JObject();
             String err_msg = "";
 
@@ -391,7 +400,6 @@ namespace thepos
             parameters["sizeY"] = SzY.ToString();
 
 
-
             if (mRequestPost("goodsGroup", parameters, ref obj, ref err_msg))
             {
                 if (obj["resultCode"].ToString() == "200")
@@ -416,6 +424,62 @@ namespace thepos
             tableLayoutPanelGroupSelected.Controls.Clear();
             display_all_console();
         }
+
+
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (lvwList.SelectedItems.Count == 0) { return; }
+
+
+            if (MessageBox.Show("선택 그룹버튼을 삭제합니다.\n상품 연결정보가 있으면 같이 삭제됩니다.", "thwpos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                
+            }
+            else
+            {
+                return;
+            }
+
+
+
+            JObject obj = new JObject();
+            String err_msg = "";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["posNo"] = mSelectedPosNo;
+            parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
+
+
+            if (mRequestDelete("goodsGroup", parameters, ref obj, ref err_msg))
+            {
+                if (obj["resultCode"].ToString() == "200")
+                {
+                    
+                }
+                else
+                {
+                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return;
+            }
+
+
+            reload_server();
+
+            tableLayoutPanelGroupSelected.Controls.Clear();
+            display_all_console();
+
+
+
+        }
+
 
 
         private bool check_data(ref int locX, ref int locY, ref int szX, ref int szY)
@@ -467,7 +531,6 @@ namespace thepos
 
             display_one_console(tbGroupName.Text, locX, locY, SzX, SzY);
         }
-
 
     }
 }

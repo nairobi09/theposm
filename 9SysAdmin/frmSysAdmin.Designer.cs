@@ -45,9 +45,10 @@
             // 
             this.btnPosMac.BackColor = System.Drawing.Color.LightGray;
             this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPosMac.ForeColor = System.Drawing.Color.Red;
             this.btnPosMac.Location = new System.Drawing.Point(6, 255);
             this.btnPosMac.Name = "btnPosMac";
-            this.btnPosMac.Size = new System.Drawing.Size(100, 50);
+            this.btnPosMac.Size = new System.Drawing.Size(98, 50);
             this.btnPosMac.TabIndex = 0;
             this.btnPosMac.TabStop = false;
             this.btnPosMac.Text = "포스기기\r\n인증";
@@ -58,9 +59,10 @@
             // 
             this.btnUser.BackColor = System.Drawing.Color.LightGray;
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser.ForeColor = System.Drawing.Color.Red;
             this.btnUser.Location = new System.Drawing.Point(6, 309);
             this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(100, 50);
+            this.btnUser.Size = new System.Drawing.Size(98, 50);
             this.btnUser.TabIndex = 0;
             this.btnUser.TabStop = false;
             this.btnUser.Text = "사용자인증";
@@ -85,7 +87,7 @@
             this.panelCertConsole.Controls.Add(this.btnUser);
             this.panelCertConsole.Location = new System.Drawing.Point(1, 75);
             this.panelCertConsole.Name = "panelCertConsole";
-            this.panelCertConsole.Size = new System.Drawing.Size(110, 403);
+            this.panelCertConsole.Size = new System.Drawing.Size(108, 403);
             this.panelCertConsole.TabIndex = 2;
             this.panelCertConsole.Visible = false;
             // 
@@ -95,7 +97,7 @@
             this.btnSysPayConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysPayConsole.Location = new System.Drawing.Point(6, 179);
             this.btnSysPayConsole.Name = "btnSysPayConsole";
-            this.btnSysPayConsole.Size = new System.Drawing.Size(100, 50);
+            this.btnSysPayConsole.Size = new System.Drawing.Size(98, 50);
             this.btnSysPayConsole.TabIndex = 0;
             this.btnSysPayConsole.TabStop = false;
             this.btnSysPayConsole.Text = "결제버튼배치";
@@ -108,7 +110,7 @@
             this.btnSysGoodsLayout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsLayout.Location = new System.Drawing.Point(6, 113);
             this.btnSysGoodsLayout.Name = "btnSysGoodsLayout";
-            this.btnSysGoodsLayout.Size = new System.Drawing.Size(100, 50);
+            this.btnSysGoodsLayout.Size = new System.Drawing.Size(98, 50);
             this.btnSysGoodsLayout.TabIndex = 0;
             this.btnSysGoodsLayout.TabStop = false;
             this.btnSysGoodsLayout.Text = "상품배치";
@@ -121,7 +123,7 @@
             this.btnSysGoods.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoods.Location = new System.Drawing.Point(6, 3);
             this.btnSysGoods.Name = "btnSysGoods";
-            this.btnSysGoods.Size = new System.Drawing.Size(100, 50);
+            this.btnSysGoods.Size = new System.Drawing.Size(98, 50);
             this.btnSysGoods.TabIndex = 0;
             this.btnSysGoods.TabStop = false;
             this.btnSysGoods.Text = "기초상품\r\n관리";
@@ -134,7 +136,7 @@
             this.btnSysGoodsGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsGroup.Location = new System.Drawing.Point(6, 58);
             this.btnSysGoodsGroup.Name = "btnSysGoodsGroup";
-            this.btnSysGoodsGroup.Size = new System.Drawing.Size(100, 50);
+            this.btnSysGoodsGroup.Size = new System.Drawing.Size(98, 50);
             this.btnSysGoodsGroup.TabIndex = 0;
             this.btnSysGoodsGroup.TabStop = false;
             this.btnSysGoodsGroup.Text = "상품그룹";
@@ -147,7 +149,7 @@
             this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPos.Location = new System.Drawing.Point(6, 9);
             this.btnPos.Name = "btnPos";
-            this.btnPos.Size = new System.Drawing.Size(100, 50);
+            this.btnPos.Size = new System.Drawing.Size(98, 50);
             this.btnPos.TabIndex = 0;
             this.btnPos.TabStop = false;
             this.btnPos.Text = "포스기기\r\n등록신청";

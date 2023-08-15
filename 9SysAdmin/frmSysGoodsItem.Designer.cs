@@ -178,7 +178,7 @@
             // 
             this.lblT4.AutoSize = true;
             this.lblT4.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT4.Location = new System.Drawing.Point(10, 65);
+            this.lblT4.Location = new System.Drawing.Point(7, 68);
             this.lblT4.Name = "lblT4";
             this.lblT4.Size = new System.Drawing.Size(34, 14);
             this.lblT4.TabIndex = 68;
@@ -188,7 +188,7 @@
             // 
             this.lblT3.AutoSize = true;
             this.lblT3.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT3.Location = new System.Drawing.Point(12, 38);
+            this.lblT3.Location = new System.Drawing.Point(9, 40);
             this.lblT3.Name = "lblT3";
             this.lblT3.Size = new System.Drawing.Size(27, 14);
             this.lblT3.TabIndex = 69;
@@ -357,7 +357,7 @@
             // 
             this.btnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLink.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLink.Location = new System.Drawing.Point(764, 224);
+            this.btnLink.Location = new System.Drawing.Point(764, 56);
             this.btnLink.Name = "btnLink";
             this.btnLink.Size = new System.Drawing.Size(96, 35);
             this.btnLink.TabIndex = 90;
@@ -377,7 +377,7 @@
             this.groupBox1.Controls.Add(this.tbSizeY);
             this.groupBox1.Controls.Add(this.tbSizeX);
             this.groupBox1.Controls.Add(this.tbLocateY);
-            this.groupBox1.Location = new System.Drawing.Point(751, 49);
+            this.groupBox1.Location = new System.Drawing.Point(751, 91);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(123, 167);
             this.groupBox1.TabIndex = 93;
@@ -445,7 +445,7 @@
             this.btnView.Location = new System.Drawing.Point(279, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(90, 27);
-            this.btnView.TabIndex = 98;
+            this.btnView.TabIndex = 99;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -455,10 +455,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 720);
+            this.Controls.Add(this.btnLink);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnLink);
             this.Controls.Add(this.tableLayoutPanelItem);
             this.Controls.Add(this.lvwGoods);
             this.Controls.Add(this.lblTitle);

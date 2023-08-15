@@ -116,8 +116,8 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        mGoodsGroup[i].code = arr[i]["groupCode"].ToString();
-                        mGoodsGroup[i].name = arr[i]["goodsGroupName"].ToString();
+                        mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
+                        mGoodsGroup[i].group_name = arr[i]["goodsGroupName"].ToString();
                         mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
                         mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
                         mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
@@ -158,8 +158,9 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        mGoodsItem[i].code = arr[i]["itemCode"].ToString();
-                        mGoodsItem[i].name = arr[i]["itemName"].ToString();
+                        mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                        mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
+                        mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
                         mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
                         mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
                         mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
@@ -171,7 +172,7 @@ namespace thepos
                         // 면세상픔은 상품명앞에 *을 붙인다.
                         if (mGoodsItem[i].taxfree == "1")
                         {
-                            mGoodsItem[i].name = "*" + mGoodsItem[i].name;
+                            mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
                         }
                     }
                 }
@@ -198,7 +199,6 @@ namespace thepos
                 { "POINT", "6", "0", "2","4"},
                 { "COMPLEX", "8", "0", "2","2"},
                 { "EASY", "8", "2", "2","2"},
-//                { "MANAGER", "8", "0", "2","4"},
             };
 
             int len = item.Length / 5;
@@ -233,7 +233,7 @@ namespace thepos
             get_goodsgroup();
             get_goodsitem();
             display_goodsgroup();
-            ClickedGoodsGroup(mGoodsGroup[0].code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
+            ClickedGoodsGroup(mGoodsGroup[0].group_code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
         }
 
 
@@ -440,9 +440,9 @@ namespace thepos
             for (int i = 0; i < mGoodsGroup.Length; i++)
             {
                 Button btnGoodsGroup = new Button();
-                String group_code = mGoodsGroup[i].code;
-                btnGoodsGroup.Tag = mGoodsGroup[i].code;
-                btnGoodsGroup.Text = mGoodsGroup[i].name;
+                String group_code = mGoodsGroup[i].group_code;
+                btnGoodsGroup.Tag = mGoodsGroup[i].group_code;
+                btnGoodsGroup.Text = mGoodsGroup[i].group_name;
                 btnGoodsGroup.FlatStyle = FlatStyle.Flat;
 
                 btnGoodsGroup.ForeColor = SystemColors.Highlight; 
@@ -494,26 +494,26 @@ namespace thepos
 
             for (int i = 0; i < mGoodsItem.Length; i++)
             {
-                if (groupcode == mGoodsItem[i].code.Substring(0,3))
+                if (groupcode == mGoodsItem[i].group_code)
                 {
                     int idx = i;
                     btnGoodsItem = new Button();
 
-                    btnGoodsItem.Tag = mGoodsItem[i].code;
+                    btnGoodsItem.Tag = mGoodsItem[i].item_code;
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
                     btnGoodsItem.ForeColor = Color.White;
                     btnGoodsItem.BackColor = SystemColors.Highlight;
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
                     btnGoodsItem.Padding = new Padding(0, 0, 0, 0);
-                    btnGoodsItem.Text = mGoodsItem[i].name + "\n" + mGoodsItem[i].amt.ToString("N0");
+                    btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + mGoodsItem[i].amt.ToString("N0");
                     btnGoodsItem.Dock = DockStyle.Fill;
 
                     if (mGoodsItem[i].columnspan == 1)
                     {
                         btnGoodsItem.Font = font9;
                     }
-                    else if (mGoodsItem[i].columnspan >= 3 | mGoodsItem[i].rowspan == 2)
+                    else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 2)
                     {
                         btnGoodsItem.Font = font20;
                     }
@@ -537,15 +537,15 @@ namespace thepos
         private void ClickedGoodsItem(int i)
         {
             MemOrderItem orderItem = new MemOrderItem();
-            int lv_idx = (get_lvitem_idx(mGoodsItem[i].code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = (get_lvitem_idx(mGoodsItem[i].item_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {
                 ListViewItem lvItem = new ListViewItem();
 
                 orderItem.order_no = 0;
-                orderItem.code = mGoodsItem[i].code.ToString();
-                orderItem.name = mGoodsItem[i].name.ToString();
+                orderItem.code = mGoodsItem[i].item_code.ToString();
+                orderItem.name = mGoodsItem[i].item_name.ToString();
                 orderItem.ticket = mGoodsItem[i].ticket;
                 orderItem.taxfree = mGoodsItem[i].taxfree;
                 orderItem.amt = mGoodsItem[i].amt;
@@ -1540,7 +1540,7 @@ namespace thepos
 
             for (int i = 0; i < mGoodsGroup.Length; i++)
             {
-                if (mGoodsGroup[i].code == groupcode)
+                if (mGoodsGroup[i].group_code == groupcode)
                 {
                     button_idx = i;
                 }

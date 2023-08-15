@@ -121,9 +121,9 @@
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnEnter.Location = new System.Drawing.Point(337, 487);
+            this.btnEnter.Location = new System.Drawing.Point(234, 319);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(130, 50);
+            this.btnEnter.Size = new System.Drawing.Size(127, 50);
             this.btnEnter.TabIndex = 34;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "등록신청";

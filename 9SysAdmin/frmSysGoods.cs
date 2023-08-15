@@ -62,8 +62,8 @@ namespace thepos._9SysAdmin
 
             btnAdd.Font = font12;
             btnUpdate.Font = font12;
+            btnDelete.Font = font12;
 
-            
 
         }
 
@@ -82,6 +82,15 @@ namespace thepos._9SysAdmin
         private void reload_server()
         {
             lvwList.Items.Clear();
+
+            tbGoodsName.Text = "";
+            tbGoodsName.Tag = "";
+            tbGoodsAmt.Text = "";
+            cbTicket.Checked = false;
+            cbTaxFree.Checked = false;
+            cbActive.Checked = false;
+            tbMemo.Text = "";
+
 
             String tTicket, tTaxFree, tActive = "";
 
@@ -335,7 +344,50 @@ namespace thepos._9SysAdmin
         }
 
 
-        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (lvwList.SelectedItems.Count == 0) { return; }
+
+
+            if (MessageBox.Show("선택 상품을 삭제합니다.\n연결된 상품정보가 있을경우 사용체크 제외로 수정하세요.", "thwpos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+                return;
+            }
+
+
+            JObject obj = new JObject();
+            String err_msg = "";
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["itemCode"] = lvwList.SelectedItems[0].Tag.ToString();
+
+
+            if (mRequestDelete("goods", parameters, ref obj, ref err_msg))
+            {
+                if (obj["resultCode"].ToString() == "200")
+                {
+                    MessageBox.Show("정상 삭제 완료.", "thepos");
+                }
+                else
+                {
+                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return;
+            }
+
+
+            reload_server();
+        }
 
 
         private void lvwList_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -395,6 +447,7 @@ namespace thepos._9SysAdmin
 
 
         }
+
 
     }
 }
