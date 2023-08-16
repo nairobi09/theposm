@@ -452,33 +452,43 @@ namespace thepos
 
             // 1. 영업상태 구함
 
-            String mBizStatus = "";
+            String biz_Status = "";
+            String biz_date = "";
+            String cur_date = get_today_date();
 
 
-            if (get_biz_status(ref mBizStatus, ref mBizDate))
+            if (get_bizdate_status(ref biz_Status, ref biz_date))
             {
-                // 통과
+                if (biz_Status == "A")   // A영업중 F영업마감
+                {
+                    // 영업중이면 그대로 판매관리로 진행
+                    mBizDate = biz_date;
+
+                    Form fFlow;
+                    fFlow = new frmSales();
+                    fFlow.ShowDialog();
+                }
+                else if (biz_Status == "F")  // 마감
+                {
+                    if (biz_date == cur_date)
+                    {
+                        MessageBox.Show("판매관리 입력불가\n오늘자 마감등록이 완료되었습니다.", "thepos");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("영업일 미지정입니다. 영업개시 등록바랍니다.", "thepos");
+                        return;
+                    }
+                }
             }
             else
             {
-                // 영업개시 화면을 
-
+                // 서버루틴에서 에러메시지 기표시...
+                return;
             }
-
-
-
-
-
-            // 2. 물어보고 개시입력
-
-
-
-
-            Form fFlow;
-            fFlow = new frmSales();
-            fFlow.ShowDialog();
-
         }
+
 
         // 영업관리
         private void btnBusiness_Click(object sender, EventArgs e)

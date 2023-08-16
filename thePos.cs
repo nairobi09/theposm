@@ -1310,16 +1310,38 @@ namespace thepos
         }
 
 
-        public static bool get_biz_status(ref String bis_status, ref String biz_date)
+        public static bool get_bizdate_status(ref String biz_status, ref String biz_date)
         {
 
+            JObject obj = new JObject();
+            String err_msg = "";
 
+            String sUrl = "bizDateLast?siteId=" + mSiteId;
 
+            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            {
+                if (obj["resultCode"].ToString() == "200")
+                {
+                    String data = obj["bizDate"].ToString();
+                    JArray arr = JArray.Parse(data);
 
+                    biz_date = arr[0]["bizDt"].ToString();
+                    biz_status = arr[0]["bizStatus"].ToString();
 
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("영업개시마감 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                return false;
+            }
 
-
-            return true;
         }
 
     }

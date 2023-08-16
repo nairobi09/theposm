@@ -90,7 +90,7 @@
             this.btnBizClose.ForeColor = System.Drawing.Color.White;
             this.btnBizClose.Location = new System.Drawing.Point(15, 217);
             this.btnBizClose.Name = "btnBizClose";
-            this.btnBizClose.Size = new System.Drawing.Size(120, 80);
+            this.btnBizClose.Size = new System.Drawing.Size(130, 80);
             this.btnBizClose.TabIndex = 27;
             this.btnBizClose.TabStop = false;
             this.btnBizClose.Text = "영업마감";
@@ -103,9 +103,9 @@
             this.btnBizCloseCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizCloseCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizCloseCancel.ForeColor = System.Drawing.Color.White;
-            this.btnBizCloseCancel.Location = new System.Drawing.Point(141, 217);
+            this.btnBizCloseCancel.Location = new System.Drawing.Point(151, 217);
             this.btnBizCloseCancel.Name = "btnBizCloseCancel";
-            this.btnBizCloseCancel.Size = new System.Drawing.Size(90, 80);
+            this.btnBizCloseCancel.Size = new System.Drawing.Size(80, 80);
             this.btnBizCloseCancel.TabIndex = 27;
             this.btnBizCloseCancel.TabStop = false;
             this.btnBizCloseCancel.Text = "마감취소";
@@ -120,7 +120,7 @@
             this.btnBizOpen.ForeColor = System.Drawing.Color.White;
             this.btnBizOpen.Location = new System.Drawing.Point(15, 131);
             this.btnBizOpen.Name = "btnBizOpen";
-            this.btnBizOpen.Size = new System.Drawing.Size(120, 80);
+            this.btnBizOpen.Size = new System.Drawing.Size(130, 80);
             this.btnBizOpen.TabIndex = 27;
             this.btnBizOpen.TabStop = false;
             this.btnBizOpen.Text = "영업개시";
