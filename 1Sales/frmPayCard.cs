@@ -157,9 +157,7 @@ namespace thepos
 
             if (paySeq == 1)
             {
-                // 주문 저장 1
                 order_cnt = SaveOrder(ticketNo);
-
             }
 
 
@@ -276,7 +274,6 @@ namespace thepos
 
 
 
-
             int tAmount = netAmount;
             int tFreeAmount = 0;
             int tTaxAmount = 0;
@@ -284,7 +281,6 @@ namespace thepos
             int tServiceAmt = 0;
             int install = int.Parse(tbInstall.Text);
             PaymentCard mPaymentCard = new PaymentCard();
-
 
 
             if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard) != 0)  // Toss process
@@ -302,11 +298,14 @@ namespace thepos
                     // 주문 저장 1
                     order_cnt = SaveOrder(ticketNo);
 
+                    if (order_cnt == -1)
+                    {
+                        return; // 심각한 에러..
+                    }
                 }
 
 
                 SavePayment(paySeq, "Card", netAmount);  // payment
-
 
 
                 mPaymentCard.site_id = mSiteId;
@@ -327,6 +326,8 @@ namespace thepos
 
                 mPaymentCard.is_cancel = "";        // 취소여부
                 mPaymentCards.Add(mPaymentCard);
+
+
 
 
 

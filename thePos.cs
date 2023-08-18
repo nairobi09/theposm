@@ -21,11 +21,9 @@ using System.IO;
 
 /*
  
-
-
-
-
 로그인 정보
+
+
 
 "userId": "1111",
 "userPw": "ARyUXzDOLLr8RS85hA8CVpMznEI=",
@@ -33,11 +31,6 @@ using System.IO;
 
  
  
-  
-
-
-
-
  */
 
 
@@ -183,7 +176,7 @@ namespace thepos
         public static String mPayChannel = "";
 
 
-        // 이사업자의 포스번호 목록
+        // Site내 포스번호 목록
         public static String[] mPosNoList; 
 
 
@@ -231,11 +224,7 @@ namespace thepos
 
         public static CookieContainer cookies = new CookieContainer();
         public static HttpClientHandler handler = new HttpClientHandler();
-
         public static HttpClient mHttpClient;
-
-
-        //public static HttpClient mHttpClient = new HttpClient();
 
         public static String mBaseUri = "http://211.42.156.219:8080/";
 
@@ -504,6 +493,11 @@ namespace thepos
         //
         public static Boolean mReturn = false;
         public static string mErrorMsg = "";
+
+        public static JObject mObj = new JObject();
+        //public static String mErrMsg = "";
+
+
 
 
         public static String get_MMddHHmm(String d, String t)
@@ -1199,7 +1193,7 @@ namespace thepos
             }
         }
 
-        public static bool mRequestGet(String sUrl, ref JObject obj, ref String err_msg)
+        public static bool mRequestGet(String sUrl)
         {
             try
             {
@@ -1208,18 +1202,18 @@ namespace thepos
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
-                obj = JObject.Parse(responseString);
+                mObj = JObject.Parse(responseString);
 
                 return true;
             }
             catch (Exception ex)
             {
-                err_msg = ex.Message;
+                mErrorMsg = ex.Message;
                 return false;
             }
         }
 
-        public static bool mRequestPost(String sUrl, Dictionary<string, string> parameters, ref JObject obj, ref String err_msg)
+        public static bool mRequestPost(String sUrl, Dictionary<string, string> parameters)
         {
             try
             {
@@ -1230,19 +1224,19 @@ namespace thepos
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
-                obj = JObject.Parse(responseString);
+                mObj = JObject.Parse(responseString);
 
                 return true;
             }
             catch(Exception ex) 
             {
-                err_msg = ex.Message;
+                mErrorMsg = ex.Message;
                 return false;
             }
         }
 
 
-        public static bool mRequestPatch(String sUrl, Dictionary<string, string> parameters, ref JObject obj, ref String err_msg)
+        public static bool mRequestPatch(String sUrl, Dictionary<string, string> parameters)
         {
             try
             {
@@ -1259,18 +1253,18 @@ namespace thepos
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
-                obj = JObject.Parse(responseString);
+                mObj = JObject.Parse(responseString);
 
                 return true;
             }
             catch (Exception ex)
             {
-                err_msg = ex.Message;
+                mErrorMsg = ex.Message;
                 return false;
             }
         }
 
-        public static bool mRequestDelete(String sUrl, Dictionary<string, string> parameters, ref JObject obj, ref String err_msg)
+        public static bool mRequestDelete(String sUrl, Dictionary<string, string> parameters)
         {
             try
             {
@@ -1287,13 +1281,13 @@ namespace thepos
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
-                obj = JObject.Parse(responseString);
+                mObj = JObject.Parse(responseString);
 
                 return true;
             }
             catch (Exception ex)
             {
-                err_msg = ex.Message;
+                mErrorMsg = ex.Message;
                 return false;
             }
         }
@@ -1312,17 +1306,13 @@ namespace thepos
 
         public static bool get_bizdate_status(ref String biz_status, ref String biz_date)
         {
-
-            JObject obj = new JObject();
-            String err_msg = "";
-
             String sUrl = "bizDateLast?siteId=" + mSiteId;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = obj["bizDate"].ToString();
+                    String data = mObj["bizDate"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     biz_date = arr[0]["bizDt"].ToString();
@@ -1332,13 +1322,13 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("영업개시마감 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return false;
             }
 

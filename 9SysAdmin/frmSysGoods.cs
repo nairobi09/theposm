@@ -95,16 +95,13 @@ namespace thepos._9SysAdmin
             String tTicket, tTaxFree, tActive = "";
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
-
             String sUrl = "goods?siteId=" + mSiteId;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String pos = obj["goods"].ToString();
+                    String pos = mObj["goods"].ToString();
                     JArray arr = JArray.Parse(pos);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -160,13 +157,13 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -224,10 +221,6 @@ namespace thepos._9SysAdmin
 
 
 
-
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["itemCode"] = tbGoodsName.Tag.ToString();
@@ -253,21 +246,21 @@ namespace thepos._9SysAdmin
 
 
 
-            if (mRequestPatch("goods", parameters, ref obj, ref err_msg))
+            if (mRequestPatch("goods", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     MessageBox.Show("정상 수정 완료.", "thepos");
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -293,10 +286,6 @@ namespace thepos._9SysAdmin
 
 
 
-
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["itemCode"] = (max_goodscode + 1).ToString();
@@ -321,21 +310,21 @@ namespace thepos._9SysAdmin
             parameters["memo"] = tbMemo.Text;
 
 
-            if (mRequestPost("goods", parameters, ref obj, ref err_msg))
+            if (mRequestPost("goods", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     MessageBox.Show("정상 등록 완료.", "thepos");
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -359,29 +348,27 @@ namespace thepos._9SysAdmin
             }
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["itemCode"] = lvwList.SelectedItems[0].Tag.ToString();
 
 
-            if (mRequestDelete("goods", parameters, ref obj, ref err_msg))
+            if (mRequestDelete("goods", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     MessageBox.Show("정상 삭제 완료.", "thepos");
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 

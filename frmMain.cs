@@ -263,8 +263,6 @@ namespace thepos
         {
 
             //? 서버 
-            JObject obj = new JObject();
-            String err_msg = "";
 
             // 로그인
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -272,24 +270,24 @@ namespace thepos
             parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
             parameters["macAddr"] = mMacAddr;  // 023006617873
 
-            if (mRequestPost("login", parameters, ref obj, ref err_msg))
+            if (mRequestPost("login", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    mSiteId = obj["siteId"].ToString();
+                    mSiteId = mObj["siteId"].ToString();
                     mUserID = tbID.Text;
-                    mUserName = obj["userName"].ToString();
-                    mPosNo = obj["posNo"].ToString();
+                    mUserName = mObj["userName"].ToString();
+                    mPosNo = mObj["posNo"].ToString();
                 }
                 else
                 {
-                    MessageBox.Show("로그인오류\n\n" + obj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -297,11 +295,11 @@ namespace thepos
             // 사이트
             String sUrl = "site?siteId=" + mSiteId;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String sites = obj["sites"].ToString();
+                    String sites = mObj["sites"].ToString();
                     JArray arr = JArray.Parse(sites);
 
                     mSiteName = arr[0]["siteName"].ToString();
@@ -312,26 +310,26 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("사이트정보 오류\n\n" + obj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
 
 
             // 포스
-            sUrl = "pos?siteId=" + mSiteId;
+            sUrl = "pos?siteId=" + mSiteId + "&posStatus=Y";
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String pos = obj["pos"].ToString();
+                    String pos = mObj["pos"].ToString();
                     JArray arr = JArray.Parse(pos);
 
                     mPosNoList = new String[arr.Count];
@@ -339,17 +337,18 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         mPosNoList[i] = arr[i]["posNo"].ToString();
+                        
                     }
                 }
                 else
                 {
-                    MessageBox.Show("포스정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 

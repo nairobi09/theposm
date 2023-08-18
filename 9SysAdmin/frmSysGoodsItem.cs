@@ -73,19 +73,15 @@ namespace thepos
 
         private void get_goods()
         {
-            JObject obj = new JObject();
-            String err_msg = "";
-
             String tTicket, tTaxFree = "";
-
 
             String sUrl = "goods?siteId=" + mSiteId;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = obj["goods"].ToString();
+                    String data = mObj["goods"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -114,13 +110,13 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -134,18 +130,13 @@ namespace thepos
             mSelectedPosNo = comboPosNo.SelectedItem.ToString();
 
 
-
-
-            JObject obj = new JObject();
-            String err_msg = "";
-
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = obj["goodsGroups"].ToString();
+                    String data = mObj["goodsGroups"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -157,18 +148,16 @@ namespace thepos
                     comboGroup.DisplayMember = "Text";
                     comboGroup.ValueMember = "Value";
 
-
-
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
         }
@@ -197,17 +186,13 @@ namespace thepos
             tableLayoutPanelItemSelected.Controls.Clear();
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
-
-
             String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo + "&groupCode=" + mSelectedGroupCode;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = obj["goodsItems"].ToString();
+                    String data = mObj["goodsItems"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -227,13 +212,13 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -322,13 +307,12 @@ namespace thepos
                 btnGroupBlue.TabStop = false;
                 btnGroupBlue.Margin = new Padding(2, 2, 2, 2);
                 btnGroupBlue.Padding = new Padding(0, 0, 0, 0);
-                btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text; ;
+                btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[1].Text;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (szX == 1) { btnGroupBlue.Font = font9; }
-                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = font20; }
-                else { btnGroupBlue.Font = font14; }
-
+                if (szX == 1 | szY == 1) { btnGroupBlue.Font = font9; }
+                else if (szY == 2) { btnGroupBlue.Font = font14; }
+                else { btnGroupBlue.Font = font20; }
 
                 tableLayoutPanelItemSelected.Controls.Add(btnGroupBlue, locX, locY);
                 tableLayoutPanelItemSelected.SetColumnSpan(btnGroupBlue, szX);
@@ -355,9 +339,6 @@ namespace thepos
 
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
@@ -369,22 +350,21 @@ namespace thepos
             parameters["sizeY"] = tbSizeY.Text;
 
 
-
-            if (mRequestPatch("goodsItem", parameters, ref obj, ref err_msg))
+            if (mRequestPatch("goodsItem", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
 
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -392,12 +372,6 @@ namespace thepos
             reload_server();
 
             display_all_console();
-
-
-
-
-
-
 
         }
 
@@ -419,10 +393,6 @@ namespace thepos
             String mSelecteditemCode = lvwGoodsLink.SelectedItems[0].Tag.ToString();
 
 
-            //
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
@@ -430,21 +400,21 @@ namespace thepos
             parameters["itemCode"] = mSelecteditemCode;
 
 
-            if (mRequestDelete("goodsItem", parameters, ref obj, ref err_msg))
+            if (mRequestDelete("goodsItem", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
 
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -480,10 +450,6 @@ namespace thepos
             String mSelecteditemCode = lvwGoods.SelectedItems[0].Tag.ToString();
 
 
-            //
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
@@ -495,21 +461,21 @@ namespace thepos
             parameters["sizeY"] = "1";
 
 
-            if (mRequestPost("goodsItem", parameters, ref obj, ref err_msg))
+            if (mRequestPost("goodsItem", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 

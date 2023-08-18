@@ -97,122 +97,6 @@ namespace thepos
 
 
 
-        void get_goodsgroup()
-        {
-            JObject obj = new JObject();
-            String err_msg = "";
-
-            // 사이트
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
-
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
-            {
-                if (obj["resultCode"].ToString() == "200")
-                {
-                    String goods_group = obj["goodsGroups"].ToString();
-                    JArray arr = JArray.Parse(goods_group);
-
-                    mGoodsGroup = new GoodsGroup[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsGroup[i].group_name = arr[i]["goodsGroupName"].ToString();
-                        mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품그룹정보 오류\n\n" + obj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
-                return;
-            }
-
-
-        }
-
-        void get_goodsitem()
-        {
-            JObject obj = new JObject();
-            String err_msg = "";
-
-            // 사이트
-            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
-
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
-            {
-                if (obj["resultCode"].ToString() == "200")
-                {
-                    String goods_item = obj["goodsItems"].ToString();
-                    JArray arr = JArray.Parse(goods_item);
-
-                    mGoodsItem = new GoodsItem[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
-                        mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
-                        mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
-                        mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
-                        mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
-                        mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
-
-                        // 면세상픔은 상품명앞에 *을 붙인다.
-                        if (mGoodsItem[i].taxfree == "1")
-                        {
-                            mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품그룹정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
-                return;
-            }
-
-        }
-
-        void get_payConsol()
-        {
-            String[,] item = new String[,]
-            {
-                { "CASH", "0", "0", "3","4"},
-                { "CARD", "3", "0", "3","4"},
-                { "POINT", "6", "0", "2","4"},
-                { "COMPLEX", "8", "0", "2","2"},
-                { "EASY", "8", "2", "2","2"},
-            };
-
-            int len = item.Length / 5;
-            mPayConsol = new PayConsol[len];
-
-            for (int i = 0; i < len; i++)
-            {
-                mPayConsol[i].code = item[i, 0];
-                mPayConsol[i].column = int.Parse(item[i, 1]);
-                mPayConsol[i].row = int.Parse(item[i, 2]);
-                mPayConsol[i].columnspan = int.Parse(item[i, 3]);
-                mPayConsol[i].rowspan = int.Parse(item[i, 4]);
-            }
-        }
 
 
         public frmSales()
@@ -223,19 +107,14 @@ namespace thepos
             //Cursor.Hide();
 
             initialize_font();
-
             initialize_the();
 
-
-            get_payConsol();
-            display_payconsol();
-
+            get_display_payConsol();
             get_goodsgroup();
             get_goodsitem();
             display_goodsgroup();
             ClickedGoodsGroup(mGoodsGroup[0].group_code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
         }
-
 
 
         private void initialize_font()
@@ -375,14 +254,46 @@ namespace thepos
         }
 
 
-
-        private void display_payconsol()
+        private void get_display_payConsol()
         {
-            System.Windows.Forms.Button btnPayItem;
+
+            String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["paymentConsoles"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    mPayConsol = new PayConsol[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mPayConsol[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mPayConsol[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mPayConsol[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mPayConsol[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                        mPayConsol[i].code = arr[i]["buttonCode"].ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+            //
+            Button btnPayItem;
 
             tableLayoutPanelPayControl.Controls.Clear();
-
-            this.tableLayoutPanelPayControl.VerticalScroll.Value = 0;
+            tableLayoutPanelPayControl.VerticalScroll.Value = 0;
             tableLayoutPanelPayControl.PerformLayout();
 
             for (int i = 0; i < mPayConsol.Length; i++)
@@ -430,6 +341,94 @@ namespace thepos
                 tableLayoutPanelPayControl.SetColumnSpan(btnPayItem, mPayConsol[i].columnspan);
                 tableLayoutPanelPayControl.SetRowSpan(btnPayItem, mPayConsol[i].rowspan);
             }
+
+
+
+        }
+
+        private void get_goodsgroup()
+        {
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String goods_group = mObj["goodsGroups"].ToString();
+                    JArray arr = JArray.Parse(goods_group);
+
+                    mGoodsGroup = new GoodsGroup[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
+                        mGoodsGroup[i].group_name = arr[i]["goodsGroupName"].ToString();
+                        mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품그룹정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+
+        }
+
+        private void get_goodsitem()
+        {
+            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String goods_item = mObj["goodsItems"].ToString();
+                    JArray arr = JArray.Parse(goods_item);
+
+                    mGoodsItem = new GoodsItem[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                        mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
+                        mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
+                        mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
+                        mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
+                        mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                        mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                        // 면세상픔은 상품명앞에 *을 붙인다.
+                        if (mGoodsItem[i].taxfree == "1")
+                        {
+                            mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품그룹정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
         }
 
         private void display_goodsgroup()
@@ -457,7 +456,7 @@ namespace thepos
                 {
                     btnGoodsGroup.Font = font9;
                 }
-                else if (mGoodsGroup[i].columnspan >= 3 & mGoodsGroup[i].rowspan == 2)
+                else if (mGoodsGroup[i].columnspan >= 3 & mGoodsGroup[i].rowspan >= 2)
                 {
                     btnGoodsGroup.Font = font20;
                 }
@@ -476,6 +475,7 @@ namespace thepos
             }
 
         }
+
 
         private void ClickedGoodsGroup(String groupcode)
         {
@@ -509,17 +509,17 @@ namespace thepos
                     btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + mGoodsItem[i].amt.ToString("N0");
                     btnGoodsItem.Dock = DockStyle.Fill;
 
-                    if (mGoodsItem[i].columnspan == 1)
+                    if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
                         btnGoodsItem.Font = font9;
                     }
-                    else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 2)
+                    else if (mGoodsItem[i].rowspan == 2)
                     {
-                        btnGoodsItem.Font = font20;
+                        btnGoodsItem.Font = font14;
                     }
                     else
                     {
-                        btnGoodsItem.Font = font14;
+                        btnGoodsItem.Font = font20;
                     }
                     
                     btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
@@ -533,6 +533,7 @@ namespace thepos
  
             last_groupcode = groupcode;
         }
+
 
         private void ClickedGoodsItem(int i)
         {
@@ -681,25 +682,93 @@ namespace thepos
             fPay.Show();
         }
 
-        private void ClickedPayManager()
-        {
-            ConsoleDisable();
-
-            Form fPay;
-            fPay = new frmPayManager();
-
-            fPay.Left += this.Location.X;
-            fPay.Top += this.Location.Y;
-
-            fPay.Show();
-        }
-
 
         
         public static int SaveOrder(String ticket_no)
         {
-            //? 서버API로 대체한다..
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
 
+
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            {
+                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["posNo"] = mPosNo;
+                parameters["bizDt"] = mBizDate;
+                parameters["theNo"] = mTheNo;
+                parameters["refNo"] = mRefNo;
+                parameters["orderDate"] = get_today_date();
+                parameters["orderTime"] = get_today_time();
+                parameters["itemCode"] = memOrderItem.code;
+                parameters["itemName"] = memOrderItem.name;
+                parameters["cnt"] = memOrderItem.cnt + "";
+                parameters["amt"] = memOrderItem.amt + "";
+                parameters["ticketYn"] = memOrderItem.ticket;
+                parameters["taxFree"] = memOrderItem.taxfree;
+                parameters["dcAmount"] = memOrderItem.dc_amount + "";
+                parameters["dcrType"] = memOrderItem.dcr_type;
+                parameters["dcrDes"] = memOrderItem.dcr_des;
+                parameters["dcrValue"] = memOrderItem.dcr_value + "";
+                parameters["payClass"] = mPayClass;  //
+                parameters["ticketNo"] = ticket_no;  //
+                parameters["isCancel"] = "";
+
+                if (mRequestPost("orderItem", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return -1;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return -1;
+                }
+            }
+
+
+
+            parameters.Clear();
+            parameters["siteId"] = mSiteId;
+            parameters["posNo"] = mPosNo;
+            parameters["bizDt"] = mBizDate;
+            parameters["theNo"] = mTheNo;
+            parameters["refNo"] = mRefNo;
+            parameters["orderDate"] = get_today_date();
+            parameters["orderTime"] = get_today_time();
+            parameters["cnt"] = mLvwOrderItem.Items.Count + "";
+            parameters["isCancel"] = "";
+
+            if (mRequestPost("orders", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return -1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return -1;
+            }
+
+            return mLvwOrderItem.Items.Count;
+
+
+
+            /*
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
                 dbOrderItem dbOrderItem = new dbOrderItem();
@@ -725,7 +794,6 @@ namespace thepos
                 dbOrderItem.ticket_no = ticket_no;  //
                 dbOrderItem.is_cancel = "";
                 listOrderItem.Add(dbOrderItem);
-
             }
 
             dbOrder dborder = new dbOrder();
@@ -741,6 +809,10 @@ namespace thepos
             listOrder.Add(dborder);
 
             return mLvwOrderItem.Items.Count;
+            */
+
+
+
 
         }
 

@@ -49,16 +49,13 @@ namespace thepos._9SysAdmin
         {
             lvwList.Items.Clear();
 
-            JObject obj = new JObject();
-            String err_msg = "";
-
             String sUrl = "userTemp?siteId=" + "0000";
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String pos = obj["userTemps"].ToString();
+                    String pos = mObj["userTemps"].ToString();
                     JArray arr = JArray.Parse(pos);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -75,13 +72,13 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("포스정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -94,9 +91,6 @@ namespace thepos._9SysAdmin
         {
             if (lvwList.SelectedItems.Count == 0) { return; }
 
-
-            JObject obj = new JObject();
-            String err_msg = "";
 
             // user 추가
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -112,21 +106,21 @@ namespace thepos._9SysAdmin
             parameters["conCnt"] = "0";
 
 
-            if (mRequestPost("user", parameters, ref obj, ref err_msg))
+            if (mRequestPost("user", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     MessageBox.Show("정상 인증등록 완료[1/2].", "thepos");
                 }
                 else
                 {
-                    MessageBox.Show("오류1\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류1\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류1\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류1\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -139,21 +133,21 @@ namespace thepos._9SysAdmin
             parameters["userStatus"] = "Y";
             parameters["registDt"] = get_today_date() + get_today_time();
 
-            if (mRequestPatch("userTemp", parameters, ref obj, ref err_msg))
+            if (mRequestPatch("userTemp", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     MessageBox.Show("정상 인증등록 완료[2/2].", "thepos");
                 }
                 else
                 {
-                    MessageBox.Show("오류2\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류2\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류2\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류2\n\n" + mErrorMsg, "thepos");
                 return;
             }
 

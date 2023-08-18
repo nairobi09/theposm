@@ -118,9 +118,6 @@ namespace thepos._9SysAdmin
             }
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
-
             // 사용자 등록 신청
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = tbSiteId.Text;
@@ -131,22 +128,22 @@ namespace thepos._9SysAdmin
             parameters["conCnt"] = "0";
 
 
-            if (mRequestPost("pos", parameters, ref obj, ref err_msg))
+            if (mRequestPost("pos", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
                     MessageBox.Show("포스기기등록신청완료\n\n" + "관리자의 인증심사 후 사용가능합니다.", "thepos");
                     return;
                 }
                 else
                 {
-                    MessageBox.Show("등록신청오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("등록신청오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
         }

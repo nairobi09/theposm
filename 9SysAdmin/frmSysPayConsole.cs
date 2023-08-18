@@ -105,17 +105,15 @@ namespace thepos._1Sales
             tableLayoutPanelPayControlSelected.Controls.Clear();
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
 
 
             String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
 
-            if (mRequestGet(sUrl, ref obj, ref err_msg))
+            if (mRequestGet(sUrl))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = obj["paymentConsoles"].ToString();
+                    String data = mObj["paymentConsoles"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -134,13 +132,13 @@ namespace thepos._1Sales
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -293,10 +291,6 @@ namespace thepos._1Sales
             String mSelecteditemCode = lvwConsole.SelectedItems[0].Tag.ToString();
 
 
-            //
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
@@ -308,21 +302,21 @@ namespace thepos._1Sales
             parameters["sizeY"] = "1";
 
 
-            if (mRequestPost("paymentConsole", parameters, ref obj, ref err_msg))
+            if (mRequestPost("paymentConsole", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
 
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -406,9 +400,6 @@ namespace thepos._1Sales
             String mSelectedbuttonCode = lvwConsoleLink.SelectedItems[0].Tag.ToString();
 
 
-            //
-            JObject obj = new JObject();
-            String err_msg = "";
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
@@ -416,21 +407,21 @@ namespace thepos._1Sales
             parameters["buttonCode"] = mSelectedbuttonCode;
 
 
-            if (mRequestDelete("paymentConsole", parameters, ref obj, ref err_msg))
+            if (mRequestDelete("paymentConsole", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
 
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
@@ -452,9 +443,6 @@ namespace thepos._1Sales
 
 
 
-            JObject obj = new JObject();
-            String err_msg = "";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
@@ -465,22 +453,21 @@ namespace thepos._1Sales
             parameters["sizeY"] = tbSizeY.Text;
 
 
-
-            if (mRequestPatch("paymentConsole", parameters, ref obj, ref err_msg))
+            if (mRequestPatch("paymentConsole", parameters))
             {
-                if (obj["resultCode"].ToString() == "200")
+                if (mObj["resultCode"].ToString() == "200")
                 {
 
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + obj["resultMsg"].ToString() + "\n" + obj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + err_msg, "thepos");
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
