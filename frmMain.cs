@@ -307,6 +307,7 @@ namespace thepos
                     mCapName = arr[0]["capName"].ToString();
                     //?
                     //mCallCenterNo = arr[0]["callCenterNo"].ToString();
+                    mCallCenterNo = "010-0000-0000";
                 }
                 else
                 {
@@ -354,12 +355,6 @@ namespace thepos
 
 
 
-            //? 개시마감 
-            //mBizDate = "";
-            mBizDate = DateTime.Now.ToString("yyyyMMdd");
-
-
-
 
 
 
@@ -367,72 +362,43 @@ namespace thepos
             //? 로그인 성공
             panelLogin.Visible = false;
 
-            //get_site_pos_user_info();
-
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
 
-
             lblCallCenter.Text = "콜센터: " + mCallCenterNo;
 
-
-            //
             save_registry_info();
 
-        }
 
 
+            //////////////////////////////////
+            //? 개시마감 
+            String biz_date = "";
+            String biz_status = "";
+            mBizDate = "";
+
+            if (get_bizdate_status(ref biz_status, ref biz_date))
+            {
+                if (biz_status == "A")   // A영업중 F영업마감
+                {
+                    mBizDate = biz_date;
+                }
+                else if (biz_status == "F")  // 마감
+                {
+                    //? 개시화면으로 이동?
+
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("개시마감관리 오류\n서버에서 정보를 읽어오지 못했습니다.", "thepos");
+                return;
+            }
 
 
-
-
-
-
-
-        private void get_site_pos_user_info()
-        {
-
-            //? 서버에서 GET 구현 필요
-
-            /*
-            mCallCenterNo = "02-1234-5678";
-
-
-
-            mBizDate = DateTime.Now.ToString("yyyyMMdd");
-            mSiteId = "9011";
-            mPosNo = "01";
-
-            mSiteAlias = "한국스파월드";
-            mSiteName = "주식회사 한국스파월드";
-            mCapName = "김동슈";
-            mRegistNo = "3770110382";
-            mBizAddr = "경기도 광명시 일직로 101-22";
-            mBizTelNo = "031-954-4938";
-
-
-            mTicketType = "PA"; // PA선불
-            //mTicketType = "PD"; // PD후불
-
-            mTicketMedia = "BC";  // BC:BarCode 띠지
-            //mTicketMedia = "RF";  // RF 팔찌
-
-            //mPayChannel = "KCP";
-            mPayChannel = "TOSS";
-
-
-            mPosNoList = new string[4];
-            mPosNoList[0] = "01";
-            mPosNoList[1] = "02";
-            mPosNoList[2] = "03";
-            mPosNoList[3] = "04";
-
-
-            mUserID = "";
-            mUserName = "김토스";
-            */
         }
 
 
@@ -453,8 +419,6 @@ namespace thepos
 
             String biz_Status = "";
             String biz_date = "";
-            String cur_date = get_today_date();
-
 
             if (get_bizdate_status(ref biz_Status, ref biz_date))
             {
@@ -469,16 +433,8 @@ namespace thepos
                 }
                 else if (biz_Status == "F")  // 마감
                 {
-                    if (biz_date == cur_date)
-                    {
-                        MessageBox.Show("판매관리 입력불가\n오늘자 마감등록이 완료되었습니다.", "thepos");
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("영업일 미지정입니다. 영업개시 등록바랍니다.", "thepos");
-                        return;
-                    }
+                    MessageBox.Show("영업개시전입니다. 영업개시 입력바랍니다.", "thepos");
+                    return;
                 }
             }
             else

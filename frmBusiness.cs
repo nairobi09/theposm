@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using thepos._2Business;
 using static thepos.thePos;
 
 
@@ -48,10 +47,6 @@ namespace thepos
             lblPosNo.Font = font9;
             lblBusinessDate.Font = font9;
             lblUserName.Font = font9;
-
-
-            lblDate.Font = font10;
-            lblTime.Font = font14;
 
             btnClose.Font = font12;
 

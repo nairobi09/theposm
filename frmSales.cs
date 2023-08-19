@@ -94,11 +94,6 @@ namespace thepos
 
 
 
-
-
-
-
-
         public frmSales()
         {
             InitializeComponent();
@@ -251,7 +246,47 @@ namespace thepos
             mLblOrderAmountRest = lblOrderAmountRest;
 
 
+                        
+            get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅
+
+
+
         }
+
+
+        private void get_last_theno()
+        {
+
+            String sUrl = "orderLastNo?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["orders"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    String theno = arr[0]["theNo"].ToString();
+
+                    mBillTheNo = int.Parse(theno.Substring(14, 4));
+
+
+                }
+                else
+                {
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
+        }
+
+
 
 
         private void get_display_payConsol()

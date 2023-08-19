@@ -1,4 +1,4 @@
-﻿namespace thepos._2Business
+﻿namespace thepos
 {
     partial class frmBizCloseCancel
     {

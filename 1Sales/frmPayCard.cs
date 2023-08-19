@@ -283,7 +283,7 @@ namespace thepos
             PaymentCard mPaymentCard = new PaymentCard();
 
 
-            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard) != 0)  // Toss process
+            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard) != 0)
             {
                 display_error_msg(mErrorMsg);
             }
@@ -405,7 +405,12 @@ namespace thepos
 
             PaymentCard mPaymentCard2 = new PaymentCard();
 
-            if (mPayChannel == "KCP")
+            if (mPayChannel == "NICE")
+            {
+                paymentNice p = new paymentNice();
+                ret = p.requestNiceCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
+            }
+            else if (mPayChannel == "KCP")
             {
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);

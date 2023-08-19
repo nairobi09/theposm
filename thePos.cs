@@ -38,6 +38,8 @@ using System.IO;
 /*
 
 
+닷넷배제 - x86전용
+
 
 [일반POS] 
 

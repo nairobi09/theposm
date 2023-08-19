@@ -341,6 +341,7 @@
     <Compile Include="van\KCP\ClsString.cs" />
     <Compile Include="van\KCP\ClsWin32Api.cs" />
     <Compile Include="van\KCP\paymentKCP.cs" />
+    <Compile Include="van\Nice\paymentNice.cs" />
     <Compile Include="van\Toss\paymentToss.cs" />
     <Compile Include="frmSetup.cs">
       <SubType>Form</SubType>
