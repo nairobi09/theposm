@@ -171,12 +171,6 @@
     <Compile Include="9SysAdmin\frmSysAdminUserCert.Designer.cs">
       <DependentUpon>frmSysAdminUserCert.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="1Sales\frmFlowCharging.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,12 +337,6 @@
     <Compile Include="van\KCP\paymentKCP.cs" />
     <Compile Include="van\Nice\paymentNice.cs" />
     <Compile Include="van\Toss\paymentToss.cs" />
-    <Compile Include="frmSetup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSetup.Designer.cs">
-      <DependentUpon>frmSetup.cs</DependentUpon>
-    </Compile>
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -375,9 +363,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminUserCert.resx">
       <DependentUpon>frmSysAdminUserCert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowCharging.resx">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
@@ -467,9 +452,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="frmSetup.resx">
-      <DependentUpon>frmSetup.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Font\Pretendard-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

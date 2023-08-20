@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,13 +51,14 @@ namespace thepos
 
             initialize_the();
 
-
+            set_setup_pos();
+            reload_setup_pos();
         }
 
 
         private void initialize_font()
         {
-            lvwOrderItem.Font = font10;
+            lvwList.Font = font12;
 
 
 
@@ -68,14 +70,69 @@ namespace thepos
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 32);
 
-            lvwOrderItem.SmallImageList = imgList;
-            lvwOrderItem.HideSelection = true;
+            lvwList.SmallImageList = imgList;
+            lvwList.HideSelection = true;
 
 
 
 
 
         }
+
+
+        private void set_setup_pos()
+        {
+
+            // 설정항목 정의
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+        private void reload_setup_pos()
+        {
+            String sUrl = "bizDateLast?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["setupPos"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Text = arr[i]["setupName"].ToString();
+                        lvItem.SubItems.Add(arr[i]["setupValue"].ToString());
+                        lvItem.SubItems.Add("");
+                        lvItem.SubItems.Add(arr[i]["memo"].ToString());
+                        lvItem.Tag = arr[i]["setupCode"].ToString();
+                        lvwList.Items.Add(lvItem);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("포스설정 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
+
+        }
+
+
 
         private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)
         {

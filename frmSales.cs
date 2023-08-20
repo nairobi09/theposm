@@ -13,6 +13,7 @@ using System.IO.Ports;
 using System.Text;
 using thepos._1Sales;
 using Newtonsoft.Json.Linq;
+using System.Security.Cryptography;
 
 
 
@@ -249,14 +250,13 @@ namespace thepos
                         
             get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅
 
-
+            get_pos_setup();
 
         }
 
 
         private void get_last_theno()
         {
-
             String sUrl = "orderLastNo?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&posNo=" + mPosNo;
 
             if (mRequestGet(sUrl))
@@ -269,8 +269,6 @@ namespace thepos
                     String theno = arr[0]["theNo"].ToString();
 
                     mBillTheNo = int.Parse(theno.Substring(14, 4));
-
-
                 }
                 else
                 {
@@ -281,11 +279,21 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
             }
+        }
+
+        private void get_pos_setup()
+        {
+
+
+            mPayChannel = "NICE";
+
+
+
+
 
 
 
         }
-
 
 
 
@@ -851,43 +859,63 @@ namespace thepos
 
         }
 
-        public static void SavePayment(int paySeq, String payType, int amount)
+        public static bool SavePayment(int paySeq, String payType, int amount)
         {
-            //? 서버API로 대체한다..
-
+            //!
             if (paySeq == 1)
             {
-                Payment mPayment = new Payment();
-                mPayment.site_id = mSiteId;
-                mPayment.biz_dt = mBizDate;
-                mPayment.pos_no = mPosNo;
-                mPayment.the_no = mTheNo;
-                mPayment.ref_no = mRefNo;
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["posNo"] = mPosNo;
+                parameters["bizDt"] = mBizDate;
+                parameters["theNo"] = mTheNo;
+                parameters["refNo"] = mRefNo;
+                parameters["payDate"] = get_today_date();
+                parameters["payTime"] = get_today_time();
+                parameters["tranType"] = "A";
+                parameters["payClass"] = mPayClass;
+                parameters["billNo"] = mTheNo.Substring(14, 4);
+                parameters["netAmount"] = amount + "";
 
-                mPayment.pay_date = get_today_date();
-                mPayment.pay_time = get_today_time();
-                mPayment.tran_type = "A";
-                mPayment.pay_class = mPayClass;    // OR주문 CH충전 US사용 ST정산
-                mPayment.bill_no = mTheNo.Substring(14, 4);
-                mPayment.net_amount = amount;
 
-                mPayment.amount_cash = 0;
-                mPayment.amount_card = 0;
-                mPayment.amount_easy = 0;
-                mPayment.amount_point = 0;
+                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0;
 
-                if (payType == "Cash") mPayment.amount_cash = amount;
-                else if (payType == "Card") mPayment.amount_card = amount;
-                else if (payType == "Easy") mPayment.amount_easy = amount;
-                else if (payType == "Point") mPayment.amount_point = amount;
+                if (payType == "Cash") amount_cash = amount;
+                else if (payType == "Card") amount_card = amount;
+                else if (payType == "Easy") amount_easy = amount;
+                else if (payType == "Point") amount_point = amount;
 
-                mPayment.is_dc = "";       // 할인여부
-                mPayment.is_cancel = "";   // 취소여부
-                mPayments.Add(mPayment);
+                parameters["amountCash"] = amount_cash + "";
+                parameters["amountCard"] = amount_card + "";
+                parameters["amountEasy"] = amount_easy + "";
+                parameters["amountPoint"] = amount_point + "";
 
+                parameters["isDc"] = "";
+                parameters["isCancel"] = "";
+
+
+                if (mRequestPost("payment", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return false ;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류 payment\n\n" + mErrorMsg, "thepos");
+                    return false;
+                }
             }
             else
             {
+                //?? 복합결제 서버save 필요
                 for (int i = 0; i < mPayments.Count; i++)
                 {
                     if (mPayments[i].the_no == mTheNo)
@@ -907,7 +935,10 @@ namespace thepos
                 }
             }
 
+            return true;
+
         }
+
 
 
 

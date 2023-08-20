@@ -10,39 +10,39 @@ namespace thepos
 {
     internal class paymentNice
     {
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int NICEVCAT(byte[] SendBuf, byte[] RecvBuf);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int REQ_STOP();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int RESTART();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int READER_RESET(string time);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int GET_APPR(byte[] RecvBuf);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int CHK_CARDBIN(byte[] RecvBuf);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int CHK_CASHIC();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int CHK_CASHIC_MP();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int CHK_CARDIN_MP(byte[] RecvBuf);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int REQ_BARCODE(byte[] hwtype, byte[] RecvBuf);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int CHK_CASHIC2();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int NVCATSHUTDOWN();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int SetCnlDisableYN(byte[] NiceDownYN, byte[] CustomCnl);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int GetMac(byte[] Mac);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int REQ_TITLOCK();
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int REQ_CASHIC_AL(byte[] bReaderType, byte[] bRecvBuf);
-        [DllImport("NVCAT.dll", CharSet = CharSet.Unicode)]
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int GetDecSignData(int signtype, byte[] bDir, byte[] bOutdata);
 
         public struct NiceResponse
@@ -208,7 +208,7 @@ namespace thepos
                 paymentCard.amount = int.Parse(mNiceResponse.t거래금액);
 
                 // 거래일시
-                paymentCard.tran_date = mNiceResponse.t승인일시;
+                paymentCard.tran_date = "20" + mNiceResponse.t승인일시;
                 // 승인번호
                 paymentCard.auth_no = mNiceResponse.t승인번호;
 

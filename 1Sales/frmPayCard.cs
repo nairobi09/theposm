@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static thepos.frmPayComplex;
+using static thepos.paymentNice;
 
 
 namespace thepos
@@ -151,27 +152,32 @@ namespace thepos
             }
 
 
-
-            //? 서버API로 교체
             int order_cnt = 0;
 
             if (paySeq == 1)
             {
                 order_cnt = SaveOrder(ticketNo);
+                if (order_cnt == -1)
+                {
+                    return; // 심각한 에러..
+                }
             }
 
 
-            SavePayment(paySeq, "Card", netAmount);  // payment
+            // 서버저장 payment
+            if (!SavePayment(paySeq, "Card", netAmount))
+            {
+                return;
+            }
 
 
-
+            //서버저장 paymentCard
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.site_id = mSiteId;
             mPaymentCard.biz_dt = mBizDate;
             mPaymentCard.pos_no = mPosNo;
             mPaymentCard.the_no = mTheNo;
             mPaymentCard.ref_no = mRefNo;
-
             mPaymentCard.pay_date = get_today_date();
             mPaymentCard.pay_time = get_today_time();
             mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
@@ -179,7 +185,7 @@ namespace thepos
             mPaymentCard.pay_class = mPayClass;
             mPaymentCard.ticket_no = ticketNo;
             mPaymentCard.pay_seq = paySeq;
-            mPaymentCard.tran_date = ""; 
+            mPaymentCard.tran_date = "";
             mPaymentCard.amount = netAmount;
             mPaymentCard.install = tbInstall.Text;
             mPaymentCard.auth_no = tbAuthNo.Text;
@@ -191,7 +197,10 @@ namespace thepos
             mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
             mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
-            mPaymentCards.Add(mPaymentCard);
+
+
+
+            SavePaymentCard(mPaymentCard);
 
 
 
@@ -203,7 +212,6 @@ namespace thepos
 
                 mComplexLblRcvAmount.Text = mComplexRcvAmount.ToString("N0");
                 mComplexLblNestAmount.Text = mComplexNestAmount.ToString("N0");
-
                 mComplexTbReqAmount.Text = mComplexNestAmount.ToString("N0");
 
                 // 리스트뷰 추가
@@ -290,30 +298,32 @@ namespace thepos
             else
             {
                 //정상승인
-                //? 서버API로 교체
                 int order_cnt = 0;
 
                 if (paySeq == 1)
                 {
-                    // 주문 저장 1
-                    order_cnt = SaveOrder(ticketNo);
-
+                    order_cnt = SaveOrder(ticketNo);// 주문 저장 1
                     if (order_cnt == -1)
                     {
+                        MessageBox.Show("주문 서버저장 오류. order", "thepos");
                         return; // 심각한 에러..
                     }
                 }
 
+                // 서버저장 payment
+                if (!SavePayment(paySeq, "Card", netAmount))
+                {
+                    return;
+                }
 
-                SavePayment(paySeq, "Card", netAmount);  // payment
 
 
+                // 서버저장 paymentCard
                 mPaymentCard.site_id = mSiteId;
                 mPaymentCard.biz_dt = mBizDate;
                 mPaymentCard.pos_no = mPosNo;
                 mPaymentCard.the_no = mTheNo;
                 mPaymentCard.ref_no = mRefNo;
-
                 mPaymentCard.pay_date = get_today_date();
                 mPaymentCard.pay_time = get_today_time();
                 mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
@@ -321,13 +331,13 @@ namespace thepos
                 mPaymentCard.pay_class = mPayClass;
                 mPaymentCard.ticket_no = ticketNo;
                 mPaymentCard.pay_seq = paySeq;
-
+                mPaymentCard.is_cancel = "";
                 // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
 
-                mPaymentCard.is_cancel = "";        // 취소여부
-                mPaymentCards.Add(mPaymentCard);
-
-
+                if (!SavePaymentCard(mPaymentCard))
+                {
+                    return;
+                }
 
 
 
@@ -397,6 +407,65 @@ namespace thepos
                 this.Close();
             }
         }
+
+
+
+        private bool SavePaymentCard(PaymentCard mPaymentCard)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Clear();
+            parameters["siteId"] = mPaymentCard.site_id;
+            parameters["posNo"] = mPaymentCard.pos_no;
+            parameters["bizDt"] = mPaymentCard.biz_dt;
+            parameters["theNo"] = mPaymentCard.the_no;
+            parameters["refNo"] = mPaymentCard.ref_no;
+
+            parameters["payDate"] = mPaymentCard.pay_date;
+            parameters["payTime"] = mPaymentCard.pay_time;
+            parameters["payType"] = mPaymentCard.pay_type;
+            parameters["tranType"] = mPaymentCard.tran_type;
+            parameters["payClass"] = mPaymentCard.pay_class;
+
+            parameters["ticketNo"] = mPaymentCard.ticket_no;
+            parameters["paySeq"] = mPaymentCard.pay_seq + "";
+            parameters["tranDate"] = mPaymentCard.tran_date;
+            parameters["amount"] = mPaymentCard.amount + "";
+            parameters["install"] = mPaymentCard.install;
+
+            parameters["authNo"] = mPaymentCard.auth_no;
+            parameters["cardNo"] = mPaymentCard.card_no;
+            parameters["cardName"] = mPaymentCard.card_name;
+            parameters["isuCode"] = mPaymentCard.isu_code;
+            parameters["acqCode"] = mPaymentCard.acq_code;
+
+            parameters["merchantNo"] = mPaymentCard.merchant_no;
+            parameters["tranSerial"] = mPaymentCard.tran_serial;
+            parameters["signPath"] = mPaymentCard.sign_path;
+            //parameters["giftChange"] = "";
+            parameters["isCancel"] = mPaymentCard.is_cancel;
+
+            if (mRequestPost("paymentCard", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류 paymentCard\n\n" + mErrorMsg, "thepos");
+                return false;
+            }
+
+            return true;
+
+        }
+
 
         private static int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
         {
