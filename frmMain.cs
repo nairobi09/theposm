@@ -82,9 +82,6 @@ namespace thepos
             lblCallCenter.Font = font10;
 
 
-
-
-
             // 로그인
 
             lblID.Font = font10;
@@ -108,10 +105,6 @@ namespace thepos
             btnKeyLogin.Font = font12;
 
             lblReqUser.Font = font10;
-
-
-
-
 
         }
 
@@ -211,7 +204,7 @@ namespace thepos
             mPosNo = "";
 
             mBillPrinterPort = "";  // 영수증프린터
-            mTicketMediaPort = "";  // 띠지 or 팔찌
+            mScannerPort = "";  // 띠지 or 팔찌
 
             mUserID = "";
             mUserName = "";
@@ -464,7 +457,9 @@ namespace thepos
         // 환경설정
         private void btnSetup_Click(object sender, EventArgs e)
         {
-
+            Form fFlow;
+            fFlow = new frmSetupPos();
+            fFlow.ShowDialog();
         }
 
 
@@ -558,20 +553,9 @@ namespace thepos
 
         private void picLogo_Click(object sender, EventArgs e)
         {
-            //? SysAdmin 진입경로를 고민필요
 
-
-            frmSysAdminGate fSysAdminGate = new frmSysAdminGate();
-            DialogResult ret = fSysAdminGate.ShowDialog();
-
-            if (ret == DialogResult.OK)
-            {
-                frmSysAdmin frmSysAdmin = new frmSysAdmin();
-                frmSysAdmin.ShowDialog();
-
-            }
-
-
+            frmSysAdmin frmSysAdmin = new frmSysAdmin();
+            frmSysAdmin.ShowDialog();
 
         }
 

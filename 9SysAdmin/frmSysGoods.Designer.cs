@@ -117,7 +117,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(96, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(136, 19);
@@ -126,7 +126,7 @@
             // 
             // tbGoodsName
             // 
-            this.tbGoodsName.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGoodsName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbGoodsName.ForeColor = System.Drawing.Color.Black;
             this.tbGoodsName.Location = new System.Drawing.Point(95, 28);
             this.tbGoodsName.MaxLength = 30;
@@ -136,7 +136,7 @@
             // 
             // tbGoodsAmt
             // 
-            this.tbGoodsAmt.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGoodsAmt.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbGoodsAmt.ForeColor = System.Drawing.Color.Black;
             this.tbGoodsAmt.Location = new System.Drawing.Point(95, 66);
             this.tbGoodsAmt.MaxLength = 16;
@@ -147,7 +147,7 @@
             // lblGoodsNameTitle
             // 
             this.lblGoodsNameTitle.AutoSize = true;
-            this.lblGoodsNameTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGoodsNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.Black;
             this.lblGoodsNameTitle.Location = new System.Drawing.Point(14, 35);
             this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
@@ -158,7 +158,7 @@
             // lblGoodsAmtTitle
             // 
             this.lblGoodsAmtTitle.AutoSize = true;
-            this.lblGoodsAmtTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGoodsAmtTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsAmtTitle.ForeColor = System.Drawing.Color.Black;
             this.lblGoodsAmtTitle.Location = new System.Drawing.Point(14, 75);
             this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
@@ -169,7 +169,7 @@
             // lblTaxFreeTitle
             // 
             this.lblTaxFreeTitle.AutoSize = true;
-            this.lblTaxFreeTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTaxFreeTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTaxFreeTitle.ForeColor = System.Drawing.Color.Black;
             this.lblTaxFreeTitle.Location = new System.Drawing.Point(14, 161);
             this.lblTaxFreeTitle.Name = "lblTaxFreeTitle";
@@ -180,7 +180,7 @@
             // lblTicketTitle
             // 
             this.lblTicketTitle.AutoSize = true;
-            this.lblTicketTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketTitle.ForeColor = System.Drawing.Color.Black;
             this.lblTicketTitle.Location = new System.Drawing.Point(14, 123);
             this.lblTicketTitle.Name = "lblTicketTitle";
@@ -209,7 +209,7 @@
             // lblActiveTitle
             // 
             this.lblActiveTitle.AutoSize = true;
-            this.lblActiveTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblActiveTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblActiveTitle.ForeColor = System.Drawing.Color.Black;
             this.lblActiveTitle.Location = new System.Drawing.Point(14, 200);
             this.lblActiveTitle.Name = "lblActiveTitle";
@@ -229,7 +229,7 @@
             // btnAdd
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.Location = new System.Drawing.Point(615, 393);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(182, 50);
@@ -242,7 +242,7 @@
             // btnUpdate
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.Location = new System.Drawing.Point(615, 449);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(182, 50);
@@ -266,7 +266,7 @@
             this.groupBox1.Controls.Add(this.cbTicket);
             this.groupBox1.Controls.Add(this.lblTicketTitle);
             this.groupBox1.Controls.Add(this.tbGoodsName);
-            this.groupBox1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(598, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(214, 306);
@@ -275,7 +275,7 @@
             // 
             // tbMemo
             // 
-            this.tbMemo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbMemo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbMemo.ForeColor = System.Drawing.Color.Black;
             this.tbMemo.Location = new System.Drawing.Point(18, 261);
             this.tbMemo.MaxLength = 16;
@@ -286,7 +286,7 @@
             // lblMemoTitle
             // 
             this.lblMemoTitle.AutoSize = true;
-            this.lblMemoTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblMemoTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMemoTitle.ForeColor = System.Drawing.Color.Black;
             this.lblMemoTitle.Location = new System.Drawing.Point(14, 241);
             this.lblMemoTitle.Name = "lblMemoTitle";
@@ -297,7 +297,7 @@
             // btnDelete
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.Location = new System.Drawing.Point(615, 505);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(182, 30);
@@ -309,10 +309,8 @@
             // 
             // frmSysGoods
             // 
-            this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 720);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(870, 710);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnUpdate);

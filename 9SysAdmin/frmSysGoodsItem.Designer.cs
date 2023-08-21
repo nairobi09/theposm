@@ -82,10 +82,10 @@
             this.lvwGoodsLink.GridLines = true;
             this.lvwGoodsLink.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoodsLink.HideSelection = false;
-            this.lvwGoodsLink.Location = new System.Drawing.Point(353, 55);
+            this.lvwGoodsLink.Location = new System.Drawing.Point(338, 55);
             this.lvwGoodsLink.MultiSelect = false;
             this.lvwGoodsLink.Name = "lvwGoodsLink";
-            this.lvwGoodsLink.Size = new System.Drawing.Size(387, 247);
+            this.lvwGoodsLink.Size = new System.Drawing.Size(402, 247);
             this.lvwGoodsLink.TabIndex = 43;
             this.lvwGoodsLink.TabStop = false;
             this.lvwGoodsLink.UseCompatibleStateImageBehavior = false;
@@ -140,7 +140,7 @@
             this.tableLayoutPanelItemSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelItemSelected.Location = new System.Drawing.Point(353, 311);
+            this.tableLayoutPanelItemSelected.Location = new System.Drawing.Point(338, 311);
             this.tableLayoutPanelItemSelected.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelItemSelected.Name = "tableLayoutPanelItemSelected";
             this.tableLayoutPanelItemSelected.RowCount = 8;
@@ -157,7 +157,7 @@
             // 
             // comboGroup
             // 
-            this.comboGroup.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.comboGroup.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.comboGroup.FormattingEnabled = true;
             this.comboGroup.Location = new System.Drawing.Point(159, 14);
             this.comboGroup.Name = "comboGroup";
@@ -167,7 +167,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(17, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(96, 19);
@@ -177,8 +177,8 @@
             // lblT4
             // 
             this.lblT4.AutoSize = true;
-            this.lblT4.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT4.Location = new System.Drawing.Point(7, 68);
+            this.lblT4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT4.Location = new System.Drawing.Point(2, 68);
             this.lblT4.Name = "lblT4";
             this.lblT4.Size = new System.Drawing.Size(34, 14);
             this.lblT4.TabIndex = 68;
@@ -187,8 +187,8 @@
             // lblT3
             // 
             this.lblT3.AutoSize = true;
-            this.lblT3.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT3.Location = new System.Drawing.Point(9, 40);
+            this.lblT3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT3.Location = new System.Drawing.Point(4, 40);
             this.lblT3.Name = "lblT3";
             this.lblT3.Size = new System.Drawing.Size(27, 14);
             this.lblT3.TabIndex = 69;
@@ -197,8 +197,8 @@
             // lblT5
             // 
             this.lblT5.AutoSize = true;
-            this.lblT5.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT5.Location = new System.Drawing.Point(45, 15);
+            this.lblT5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT5.Location = new System.Drawing.Point(40, 15);
             this.lblT5.Name = "lblT5";
             this.lblT5.Size = new System.Drawing.Size(16, 14);
             this.lblT5.TabIndex = 70;
@@ -206,8 +206,8 @@
             // 
             // tbLocateX
             // 
-            this.tbLocateX.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbLocateX.Location = new System.Drawing.Point(41, 33);
+            this.tbLocateX.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateX.Location = new System.Drawing.Point(36, 33);
             this.tbLocateX.MaxLength = 1;
             this.tbLocateX.Name = "tbLocateX";
             this.tbLocateX.Size = new System.Drawing.Size(31, 26);
@@ -215,8 +215,8 @@
             // 
             // tbLocateY
             // 
-            this.tbLocateY.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbLocateY.Location = new System.Drawing.Point(78, 33);
+            this.tbLocateY.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateY.Location = new System.Drawing.Point(73, 33);
             this.tbLocateY.MaxLength = 1;
             this.tbLocateY.Name = "tbLocateY";
             this.tbLocateY.Size = new System.Drawing.Size(31, 26);
@@ -224,8 +224,8 @@
             // 
             // tbSizeX
             // 
-            this.tbSizeX.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbSizeX.Location = new System.Drawing.Point(41, 62);
+            this.tbSizeX.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeX.Location = new System.Drawing.Point(36, 62);
             this.tbSizeX.MaxLength = 1;
             this.tbSizeX.Name = "tbSizeX";
             this.tbSizeX.Size = new System.Drawing.Size(31, 26);
@@ -233,8 +233,8 @@
             // 
             // tbSizeY
             // 
-            this.tbSizeY.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbSizeY.Location = new System.Drawing.Point(78, 62);
+            this.tbSizeY.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeY.Location = new System.Drawing.Point(73, 62);
             this.tbSizeY.MaxLength = 1;
             this.tbSizeY.Name = "tbSizeY";
             this.tbSizeY.Size = new System.Drawing.Size(31, 26);
@@ -256,7 +256,7 @@
             this.lvwGoods.Location = new System.Drawing.Point(14, 55);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(330, 382);
+            this.lvwGoods.Size = new System.Drawing.Size(317, 389);
             this.lvwGoods.TabIndex = 80;
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
@@ -288,11 +288,11 @@
             // memo
             // 
             this.memo.Text = "비고";
-            this.memo.Width = 110;
+            this.memo.Width = 97;
             // 
             // comboPosNo
             // 
-            this.comboPosNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.comboPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.comboPosNo.FormattingEnabled = true;
             this.comboPosNo.Location = new System.Drawing.Point(51, 15);
             this.comboPosNo.Name = "comboPosNo";
@@ -314,7 +314,7 @@
             this.tableLayoutPanelItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelItem.Location = new System.Drawing.Point(14, 447);
+            this.tableLayoutPanelItem.Location = new System.Drawing.Point(14, 452);
             this.tableLayoutPanelItem.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelItem.Name = "tableLayoutPanelItem";
             this.tableLayoutPanelItem.RowCount = 8;
@@ -326,14 +326,14 @@
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelItem.Size = new System.Drawing.Size(330, 257);
+            this.tableLayoutPanelItem.Size = new System.Drawing.Size(317, 252);
             this.tableLayoutPanelItem.TabIndex = 84;
             // 
             // btnDelete
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(13, 137);
+            this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.Location = new System.Drawing.Point(8, 137);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(96, 24);
             this.btnDelete.TabIndex = 88;
@@ -344,8 +344,8 @@
             // btnUpdate
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(13, 96);
+            this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Location = new System.Drawing.Point(8, 96);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(96, 35);
             this.btnUpdate.TabIndex = 89;
@@ -356,8 +356,8 @@
             // btnLink
             // 
             this.btnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLink.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLink.Location = new System.Drawing.Point(764, 56);
+            this.btnLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLink.Location = new System.Drawing.Point(756, 56);
             this.btnLink.Name = "btnLink";
             this.btnLink.Size = new System.Drawing.Size(96, 35);
             this.btnLink.TabIndex = 90;
@@ -377,17 +377,17 @@
             this.groupBox1.Controls.Add(this.tbSizeY);
             this.groupBox1.Controls.Add(this.tbSizeX);
             this.groupBox1.Controls.Add(this.tbLocateY);
-            this.groupBox1.Location = new System.Drawing.Point(751, 91);
+            this.groupBox1.Location = new System.Drawing.Point(748, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(123, 167);
+            this.groupBox1.Size = new System.Drawing.Size(113, 167);
             this.groupBox1.TabIndex = 93;
             this.groupBox1.TabStop = false;
             // 
             // lblT6
             // 
             this.lblT6.AutoSize = true;
-            this.lblT6.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT6.Location = new System.Drawing.Point(82, 13);
+            this.lblT6.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT6.Location = new System.Drawing.Point(77, 13);
             this.lblT6.Name = "lblT6";
             this.lblT6.Size = new System.Drawing.Size(17, 16);
             this.lblT6.TabIndex = 70;
@@ -396,8 +396,8 @@
             // btnApply
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApply.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnApply.Location = new System.Drawing.Point(764, 265);
+            this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnApply.Location = new System.Drawing.Point(756, 265);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(96, 35);
             this.btnApply.TabIndex = 95;
@@ -408,7 +408,7 @@
             // lblT1
             // 
             this.lblT1.AutoSize = true;
-            this.lblT1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT1.Location = new System.Drawing.Point(8, 19);
             this.lblT1.Name = "lblT1";
             this.lblT1.Size = new System.Drawing.Size(39, 16);
@@ -418,7 +418,7 @@
             // lblT2
             // 
             this.lblT2.AutoSize = true;
-            this.lblT2.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT2.Location = new System.Drawing.Point(120, 18);
             this.lblT2.Name = "lblT2";
             this.lblT2.Size = new System.Drawing.Size(39, 16);
@@ -432,16 +432,16 @@
             this.groupBox2.Controls.Add(this.lblT2);
             this.groupBox2.Controls.Add(this.comboPosNo);
             this.groupBox2.Controls.Add(this.lblT1);
-            this.groupBox2.Location = new System.Drawing.Point(353, 3);
+            this.groupBox2.Location = new System.Drawing.Point(338, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(387, 46);
+            this.groupBox2.Size = new System.Drawing.Size(402, 46);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
             // 
             // btnView
             // 
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.Location = new System.Drawing.Point(279, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(90, 27);
@@ -452,9 +452,8 @@
             // 
             // frmSysGoodsItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 720);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(870, 710);
             this.Controls.Add(this.btnLink);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnApply);

@@ -134,7 +134,7 @@
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(110, 107);
             this.btnSetup.TabIndex = 0;
-            this.btnSetup.Text = "환경설정";
+            this.btnSetup.Text = "설정";
             this.btnSetup.UseVisualStyleBackColor = false;
             this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
@@ -217,7 +217,7 @@
             this.lblReqUser.ForeColor = System.Drawing.Color.White;
             this.lblReqUser.Location = new System.Drawing.Point(182, 679);
             this.lblReqUser.Name = "lblReqUser";
-            this.lblReqUser.Size = new System.Drawing.Size(112, 15);
+            this.lblReqUser.Size = new System.Drawing.Size(89, 12);
             this.lblReqUser.TabIndex = 41;
             this.lblReqUser.Text = "사용자계정신청";
             this.lblReqUser.Click += new System.EventHandler(this.lblReqUser_Click);
@@ -280,7 +280,7 @@
             this.tbID.Location = new System.Drawing.Point(10, 13);
             this.tbID.MaxLength = 4;
             this.tbID.Name = "tbID";
-            this.tbID.Size = new System.Drawing.Size(156, 29);
+            this.tbID.Size = new System.Drawing.Size(156, 23);
             this.tbID.TabIndex = 38;
             this.tbID.TabStop = false;
             this.tbID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -319,7 +319,7 @@
             this.tbPW.MaxLength = 4;
             this.tbPW.Name = "tbPW";
             this.tbPW.PasswordChar = '*';
-            this.tbPW.Size = new System.Drawing.Size(156, 29);
+            this.tbPW.Size = new System.Drawing.Size(156, 23);
             this.tbPW.TabIndex = 38;
             this.tbPW.TabStop = false;
             this.tbPW.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

@@ -23,7 +23,7 @@ namespace thepos
             InitializeComponent();
 
 
-            if (mSiteId != "")
+            if (mSiteId != "") // 로그인되었다면 panel보이기
             {
                 panelCertConsole.Visible = true;
             }

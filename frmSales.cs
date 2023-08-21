@@ -269,6 +269,11 @@ namespace thepos
                     String theno = arr[0]["theNo"].ToString();
 
                     mBillTheNo = int.Parse(theno.Substring(14, 4));
+
+                    //? 이후 삭제요망
+                    MessageBox.Show("orderLastNo = " + theno, "//?");
+
+
                 }
                 else
                 {
@@ -731,6 +736,37 @@ namespace thepos
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
+            parameters.Clear();
+            parameters["siteId"] = mSiteId;
+            parameters["posNo"] = mPosNo;
+            parameters["bizDt"] = mBizDate;
+            parameters["theNo"] = mTheNo;
+            parameters["refNo"] = mRefNo;
+            parameters["orderDate"] = get_today_date();
+            parameters["orderTime"] = get_today_time();
+            parameters["cnt"] = mLvwOrderItem.Items.Count + "";
+            parameters["isCancel"] = "";
+
+            if (mRequestPost("orders", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return -1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return -1;
+            }
+
+
+
 
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
@@ -765,7 +801,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return -1;
                     }
                 }
@@ -776,86 +812,7 @@ namespace thepos
                 }
             }
 
-
-
-            parameters.Clear();
-            parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mPosNo;
-            parameters["bizDt"] = mBizDate;
-            parameters["theNo"] = mTheNo;
-            parameters["refNo"] = mRefNo;
-            parameters["orderDate"] = get_today_date();
-            parameters["orderTime"] = get_today_time();
-            parameters["cnt"] = mLvwOrderItem.Items.Count + "";
-            parameters["isCancel"] = "";
-
-            if (mRequestPost("orders", parameters))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return -1;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return -1;
-            }
-
             return mLvwOrderItem.Items.Count;
-
-
-
-            /*
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
-            {
-                dbOrderItem dbOrderItem = new dbOrderItem();
-                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                dbOrderItem.site_id = mSiteId;
-                dbOrderItem.biz_dt = mBizDate;
-                dbOrderItem.pos_no = mPosNo;
-                dbOrderItem.the_no = mTheNo;
-                dbOrderItem.ref_no = mRefNo;
-                dbOrderItem.order_date = get_today_date();
-                dbOrderItem.order_time = get_today_time();
-                dbOrderItem.code = memOrderItem.code;
-                dbOrderItem.name = memOrderItem.name;
-                dbOrderItem.cnt = memOrderItem.cnt;
-                dbOrderItem.amt = memOrderItem.amt;
-                dbOrderItem.ticket = memOrderItem.ticket;
-                dbOrderItem.taxfree = memOrderItem.taxfree;
-                dbOrderItem.dc_amount = memOrderItem.dc_amount;
-                dbOrderItem.dcr_type = memOrderItem.dcr_type;
-                dbOrderItem.dcr_des = memOrderItem.dcr_des;
-                dbOrderItem.dcr_value = memOrderItem.dcr_value;
-                dbOrderItem.pay_class = mPayClass;  //
-                dbOrderItem.ticket_no = ticket_no;  //
-                dbOrderItem.is_cancel = "";
-                listOrderItem.Add(dbOrderItem);
-            }
-
-            dbOrder dborder = new dbOrder();
-            dborder.site_id = mSiteId;
-            dborder.biz_dt = mBizDate;
-            dborder.pos_no = mPosNo;
-            dborder.the_no = mTheNo;
-            dborder.ref_no = mRefNo;
-            dborder.order_date = get_today_date();
-            dborder.order_time = get_today_time();
-            dborder.cnt = mLvwOrderItem.Items.Count;
-            dborder.is_cancel = "";
-            listOrder.Add(dborder);
-
-            return mLvwOrderItem.Items.Count;
-            */
-
-
-
 
         }
 

@@ -315,12 +315,6 @@
     <Compile Include="9SysAdmin\frmSysAdmin.Designer.cs">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminGate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysAdminGate.Designer.cs">
-      <DependentUpon>frmSysAdminGate.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSetupPos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,9 +429,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdmin.resx">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysAdminGate.resx">
-      <DependentUpon>frmSysAdminGate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSetupPos.resx">
       <DependentUpon>frmSetupPos.cs</DependentUpon>

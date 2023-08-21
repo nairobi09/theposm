@@ -54,7 +54,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
             this.lblTitle.Location = new System.Drawing.Point(153, 33);
             this.lblTitle.Name = "lblTitle";
@@ -64,7 +64,7 @@
             // 
             // tbSiteId
             // 
-            this.tbSiteId.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteId.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteId.ForeColor = System.Drawing.Color.Black;
             this.tbSiteId.Location = new System.Drawing.Point(234, 170);
             this.tbSiteId.MaxLength = 4;
@@ -75,7 +75,7 @@
             // 
             // tbPosNo
             // 
-            this.tbPosNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPosNo.ForeColor = System.Drawing.Color.Black;
             this.tbPosNo.Location = new System.Drawing.Point(234, 208);
             this.tbPosNo.MaxLength = 2;
@@ -87,7 +87,7 @@
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
-            this.lblInfo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblInfo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblInfo.ForeColor = System.Drawing.Color.Black;
             this.lblInfo.Location = new System.Drawing.Point(153, 99);
             this.lblInfo.Name = "lblInfo";
@@ -98,7 +98,7 @@
             // lblSiteIdTitle
             // 
             this.lblSiteIdTitle.AutoSize = true;
-            this.lblSiteIdTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteIdTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteIdTitle.ForeColor = System.Drawing.Color.Black;
             this.lblSiteIdTitle.Location = new System.Drawing.Point(153, 177);
             this.lblSiteIdTitle.Name = "lblSiteIdTitle";
@@ -109,7 +109,7 @@
             // lblPosNoTitle
             // 
             this.lblPosNoTitle.AutoSize = true;
-            this.lblPosNoTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.Black;
             this.lblPosNoTitle.Location = new System.Drawing.Point(153, 215);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
@@ -120,7 +120,7 @@
             // btnEnter
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnter.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnEnter.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnter.Location = new System.Drawing.Point(234, 319);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(127, 50);
@@ -324,7 +324,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 720);
+            this.ClientSize = new System.Drawing.Size(870, 710);
             this.Controls.Add(this.panelNumpad);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnEnter);

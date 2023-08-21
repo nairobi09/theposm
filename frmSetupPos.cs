@@ -43,6 +43,26 @@ namespace thepos
 {
     public partial class frmSetupPos : Form
     {
+
+
+
+        public struct Setup
+        {
+            public String code;
+            public String name;
+            public String memo;
+        }
+        public static List<Setup> listSetup = new List<Setup>();
+
+
+        
+
+
+
+
+
+
+
         public frmSetupPos()
         {
             InitializeComponent();
@@ -52,7 +72,7 @@ namespace thepos
             initialize_the();
 
             set_setup_pos();
-            reload_setup_pos();
+            //reload_setup_pos();
         }
 
 
@@ -84,8 +104,25 @@ namespace thepos
         {
 
             // 설정항목 정의
+            Setup setup = new Setup();
 
+            listSetup.Clear();
 
+            setup.code = "C1A001";
+            setup.name = "클라이언트유형";
+            listSetup.Add(setup);
+
+            setup.code = "C1A001";
+            setup.name = "클라이언트유형";
+            listSetup.Add(setup);
+
+            setup.code = "C1A001";
+            setup.name = "클라이언트유형";
+            listSetup.Add(setup);
+
+            setup.code = "C1A001";
+            setup.name = "클라이언트유형";
+            listSetup.Add(setup);
 
 
 
@@ -145,6 +182,11 @@ namespace thepos
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
         {
 
         }
