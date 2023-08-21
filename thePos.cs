@@ -38,68 +38,23 @@ using System.IO;
 /*
 
 
-닷넷배제 - x86전용
-
-
-[일반POS] 
-
+- 닷넷배제 가능 - x86전용
 - 다국어 지원 : 영어 중국어 일본어
-- x86 x64 - 밴DLL 관리 
 - 고객용 모니터 화면 - 주문내역 
-
-
-
-
-운영관리
-
-
 - 원격지원 솔루션 - 헬프?
-- 환경정보 관리
-- 로그인
+- 영업마감 - 자동마감(서버 반자동)
 
 
 
-
-영업관리
-
-- 영업일자 : 영업개시, 영업마감 관리
-- 일집계
-- 영업개시(수동), 영업마감(수동,자동), 중간마감(수동)
-
-
-
-
-판매관리
-
-- 결제시 금액관련 세팅
+- 결제시 금액관련 세팅 - 면세금액 세액 봉사료
 - 복합결제, 정산 화면 : frmSale.ConsoleEnable(); frmSale.ConsoleDisable(); 관리 안됨. 창위헤 창뜰경우 콘트롤 꼬임.
-
 - 상품주문 전체할인 아이템 맨아래줄로 배치할 수 있도록 변경
 - 외부 연동 : 결제채널 3사 - KCP/나이스/코밴, 플레이스엠 
 - 영수증프린터, 바코드티지프린터, 스캐너 
 - 락커 연동 : 후불인 경우
-
 - 영수증인쇄 : 바코드 문자출력문제, port설정-처음실행시 먹통문제
-
 - 코너관리
-- 할인정책
 
-
-
-
-[키오스크]
-
-
-
-
-[웹어드민]
-
-
-
-
-[시스어드민]
-
- 
 
 
 
@@ -171,17 +126,11 @@ namespace thepos
         public static String mBizAddr;          // 주소
         public static String mBizTelNo;         // 대표전화
 
-
-        // (후불) 발권  사용  정산 [락커]
-        // (선불) 발권 [충전] 사용  정산
-        // 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
-        public static String mTicketType;  // ""미사용, "PA"선불, "PD"후불
-        public static String mTicketMedia;  // 띠지BC   팔찌RF
-        public static String mPayChannel = "";
+        public static String mPosNo = "";       // 내 포스번호
+        public static String[] mPosNoList;      // Site내 포스번호 목록
 
 
-        // Site내 포스번호 목록
-        public static String[] mPosNoList; 
+
 
 
         // 주문서 - 상품정보 필드관리
@@ -196,13 +145,24 @@ namespace thepos
 
 
         // //////////////////////////////////////////////////////////////////////////////////////////
+        /// 사이트 설정값
+        // (후불) 발권  사용  정산 [락커]
+        // (선불) 발권 [충전] 사용  정산
+        public static String mTicketType;   //발권형태: ""미사용, "PA"선불, "PD"후불// 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
+        public static String mTicketMedia;  // 띠지BC   팔찌RF
+        public static String mPayChannel = "";
+        public static String mLanguage = ""; // KR EN CH
+
+
+
+        // //////////////////////////////////////////////////////////////////////////////////////////
+        /// 포스 설정값 <summary>
         /// 포스 설정값
-        public static String mPosNo = "";
-
+        public static string mClientType = "";  // PC:PC, POS:포스, KIOSK:키오스크
         public static string mBillPrinterPort = "COM7";  // 영수증프린터
-        public static string mTicketMediaPort = "COM7";  // 띠지 or 팔찌
+        public static string mScannerPort = "COM7";  // 스캐너:
 
-        public static string mClientType = "";  // P:일반포스, K:키오스크
+
 
 
 
