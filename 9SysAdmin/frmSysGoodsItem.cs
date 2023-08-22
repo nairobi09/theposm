@@ -240,7 +240,7 @@ namespace thepos
                     btnItem.TabStop = false;
                     btnItem.Margin = new Padding(2, 2, 2, 2);
                     btnItem.Padding = new Padding(0, 0, 0, 0);
-                    btnItem.Text = lvwGoodsLink.Items[i].Text;
+                    btnItem.Text = lvwGoodsLink.Items[i].Text + "\n" + lvwGoodsLink.Items[i].SubItems[1].Text;
                     btnItem.Dock = DockStyle.Fill;
 
                     int locX = convert_number(lvwGoodsLink.Items[i].SubItems[2].Text);
@@ -248,9 +248,9 @@ namespace thepos
                     int szX = convert_number(lvwGoodsLink.Items[i].SubItems[4].Text);
                     int szY = convert_number(lvwGoodsLink.Items[i].SubItems[5].Text);
 
-                    if (szX == 1) { btnItem.Font = font5; }
-                    else if (szX >= 3 & szY >= 2) { btnItem.Font = font10; }
-                    else { btnItem.Font = font8; }
+                    if (szX == 1 | szY == 1) { btnItem.Font = font8; }
+                    else if (szX >= 3 & szY >= 2) { btnItem.Font = font16; }
+                    else { btnItem.Font = font10; }
 
                     tableLayoutPanelItem.Controls.Add(btnItem, locX, locY);
                     tableLayoutPanelItem.SetColumnSpan(btnItem, szX);
@@ -260,9 +260,7 @@ namespace thepos
                 {
 
                 }
-
             }
-
         }
 
         private void lvwGoodsLink_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,9 +308,9 @@ namespace thepos
                 btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[1].Text;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (szX == 1 | szY == 1) { btnGroupBlue.Font = font9; }
-                else if (szY == 2) { btnGroupBlue.Font = font14; }
-                else { btnGroupBlue.Font = font20; }
+                if (szX == 1 | szY == 1) { btnGroupBlue.Font = font8; }
+                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = font16; }
+                else { btnGroupBlue.Font = font10; }
 
                 tableLayoutPanelItemSelected.Controls.Add(btnGroupBlue, locX, locY);
                 tableLayoutPanelItemSelected.SetColumnSpan(btnGroupBlue, szX);
@@ -322,22 +320,16 @@ namespace thepos
             {
 
             }
-
         }
-
-
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
 
-
             if (!check_data())
             {
                 return;
             }
-
-
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
@@ -348,7 +340,6 @@ namespace thepos
             parameters["locateY"] = tbLocateY.Text;
             parameters["sizeX"] = tbSizeX.Text;
             parameters["sizeY"] = tbSizeY.Text;
-
 
             if (mRequestPatch("goodsItem", parameters))
             {

@@ -331,6 +331,7 @@ namespace thepos
                 mPaymentCard.pay_class = mPayClass;
                 mPaymentCard.ticket_no = ticketNo;
                 mPaymentCard.pay_seq = paySeq;
+                mPaymentCard.sign_path = "";
                 mPaymentCard.is_cancel = "";
                 // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
 

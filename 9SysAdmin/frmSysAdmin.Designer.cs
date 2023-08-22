@@ -46,7 +46,7 @@
             this.btnPosMac.BackColor = System.Drawing.Color.LightGray;
             this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPosMac.ForeColor = System.Drawing.Color.Red;
-            this.btnPosMac.Location = new System.Drawing.Point(7, 319);
+            this.btnPosMac.Location = new System.Drawing.Point(7, 310);
             this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPosMac.Name = "btnPosMac";
             this.btnPosMac.Size = new System.Drawing.Size(112, 62);
@@ -61,7 +61,7 @@
             this.btnUser.BackColor = System.Drawing.Color.LightGray;
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUser.ForeColor = System.Drawing.Color.Red;
-            this.btnUser.Location = new System.Drawing.Point(7, 386);
+            this.btnUser.Location = new System.Drawing.Point(7, 379);
             this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(112, 62);
@@ -113,7 +113,7 @@
             // 
             this.btnSysGoodsLayout.BackColor = System.Drawing.Color.LightGray;
             this.btnSysGoodsLayout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsLayout.Location = new System.Drawing.Point(7, 141);
+            this.btnSysGoodsLayout.Location = new System.Drawing.Point(7, 140);
             this.btnSysGoodsLayout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsLayout.Name = "btnSysGoodsLayout";
             this.btnSysGoodsLayout.Size = new System.Drawing.Size(112, 62);
@@ -172,7 +172,7 @@
             this.Controls.Add(this.btnPos);
             this.Controls.Add(this.panelView);
             this.Controls.Add(this.panelCertConsole);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;

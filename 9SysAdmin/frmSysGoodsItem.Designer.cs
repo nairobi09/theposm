@@ -82,10 +82,10 @@
             this.lvwGoodsLink.GridLines = true;
             this.lvwGoodsLink.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoodsLink.HideSelection = false;
-            this.lvwGoodsLink.Location = new System.Drawing.Point(338, 55);
+            this.lvwGoodsLink.Location = new System.Drawing.Point(367, 55);
             this.lvwGoodsLink.MultiSelect = false;
             this.lvwGoodsLink.Name = "lvwGoodsLink";
-            this.lvwGoodsLink.Size = new System.Drawing.Size(402, 247);
+            this.lvwGoodsLink.Size = new System.Drawing.Size(373, 294);
             this.lvwGoodsLink.TabIndex = 43;
             this.lvwGoodsLink.TabStop = false;
             this.lvwGoodsLink.UseCompatibleStateImageBehavior = false;
@@ -104,27 +104,27 @@
             // 
             // locateX
             // 
-            this.locateX.Text = "LocX";
+            this.locateX.Text = "LoX";
             this.locateX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateX.Width = 50;
+            this.locateX.Width = 45;
             // 
             // locateY
             // 
-            this.locateY.Text = "LocY";
+            this.locateY.Text = "LoY";
             this.locateY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateY.Width = 50;
+            this.locateY.Width = 45;
             // 
             // sizeX
             // 
             this.sizeX.Text = "SzX";
             this.sizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeX.Width = 50;
+            this.sizeX.Width = 45;
             // 
             // sizeY
             // 
             this.sizeY.Text = "SzY";
             this.sizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeY.Width = 50;
+            this.sizeY.Width = 45;
             // 
             // tableLayoutPanelItemSelected
             // 
@@ -140,7 +140,7 @@
             this.tableLayoutPanelItemSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelItemSelected.Location = new System.Drawing.Point(338, 311);
+            this.tableLayoutPanelItemSelected.Location = new System.Drawing.Point(438, 359);
             this.tableLayoutPanelItemSelected.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelItemSelected.Name = "tableLayoutPanelItemSelected";
             this.tableLayoutPanelItemSelected.RowCount = 8;
@@ -152,7 +152,7 @@
             this.tableLayoutPanelItemSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelItemSelected.Size = new System.Drawing.Size(521, 393);
+            this.tableLayoutPanelItemSelected.Size = new System.Drawing.Size(415, 338);
             this.tableLayoutPanelItemSelected.TabIndex = 60;
             // 
             // comboGroup
@@ -256,7 +256,7 @@
             this.lvwGoods.Location = new System.Drawing.Point(14, 55);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(317, 389);
+            this.lvwGoods.Size = new System.Drawing.Size(344, 294);
             this.lvwGoods.TabIndex = 80;
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
@@ -275,15 +275,15 @@
             // 
             // ticket
             // 
-            this.ticket.Text = "티";
+            this.ticket.Text = "티켓";
             this.ticket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ticket.Width = 30;
+            this.ticket.Width = 45;
             // 
             // taxfree
             // 
-            this.taxfree.Text = "면";
+            this.taxfree.Text = "면세";
             this.taxfree.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.taxfree.Width = 30;
+            this.taxfree.Width = 45;
             // 
             // memo
             // 
@@ -314,7 +314,7 @@
             this.tableLayoutPanelItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelItem.Location = new System.Drawing.Point(14, 452);
+            this.tableLayoutPanelItem.Location = new System.Drawing.Point(14, 359);
             this.tableLayoutPanelItem.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelItem.Name = "tableLayoutPanelItem";
             this.tableLayoutPanelItem.RowCount = 8;
@@ -326,7 +326,7 @@
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelItem.Size = new System.Drawing.Size(317, 252);
+            this.tableLayoutPanelItem.Size = new System.Drawing.Size(415, 338);
             this.tableLayoutPanelItem.TabIndex = 84;
             // 
             // btnDelete
@@ -377,7 +377,7 @@
             this.groupBox1.Controls.Add(this.tbSizeY);
             this.groupBox1.Controls.Add(this.tbSizeX);
             this.groupBox1.Controls.Add(this.tbLocateY);
-            this.groupBox1.Location = new System.Drawing.Point(748, 91);
+            this.groupBox1.Location = new System.Drawing.Point(748, 119);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(113, 167);
             this.groupBox1.TabIndex = 93;
@@ -397,7 +397,7 @@
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnApply.Location = new System.Drawing.Point(756, 265);
+            this.btnApply.Location = new System.Drawing.Point(756, 310);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(96, 35);
             this.btnApply.TabIndex = 95;
@@ -432,9 +432,9 @@
             this.groupBox2.Controls.Add(this.lblT2);
             this.groupBox2.Controls.Add(this.comboPosNo);
             this.groupBox2.Controls.Add(this.lblT1);
-            this.groupBox2.Location = new System.Drawing.Point(338, 3);
+            this.groupBox2.Location = new System.Drawing.Point(367, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(402, 46);
+            this.groupBox2.Size = new System.Drawing.Size(380, 46);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
             // 
