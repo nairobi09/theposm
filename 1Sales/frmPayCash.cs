@@ -102,19 +102,25 @@ namespace thepos
 
             lbl4.Font = font10;
             lbl5.Font = font10;
-            lbl6.Font = font8;
+            lbl6.Font = font10;
 
-            tbIssuedMethodNo.Font = font12;
-
-            lbl7.Font = font10;
 
             rbTypeIndividual.Font = font12;
             rbTypeBusiness.Font = font12;
             rbTypeSelf.Font = font12;
 
-            lbl8.Font = font10;
+
+            
+            rb고객식별번호.Font = font12;
+            rbKeyin.Font = font12;
+            rb카드거래.Font = font12;
+            rb화면입력.Font = font12;
+            
+            tbIssuedMethodNo.Font = font12;
+
 
             lblAuthNo.Font = font12;
+
 
             btnCashRecept.Font = font12;
 
@@ -155,16 +161,21 @@ namespace thepos
             mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
             mPaymentCash.tran_type = "A";       // 승인 A 취소 C
             mPaymentCash.pay_class = mPayClass;
+
             mPaymentCash.ticket_no = ticketNo;
             mPaymentCash.pay_seq = paySeq; // 
             mPaymentCash.tran_date = "";
             mPaymentCash.amount = netAmount;    // 결제금액
             mPaymentCash.receipt_type = "";     // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
+
             mPaymentCash.issued_method_no = ""; // 현금영수증 고객 식별번호
             mPaymentCash.auth_no = "";          // 승인번호
             mPaymentCash.tran_serial = "";      // tran_serial -> 취소시 tid입력
             mPaymentCash.is_cancel = "";        // 취소여부
-            mPaymentCashs.Add(mPaymentCash);
+            mPaymentCash.van_code = mPayChannel;
+
+            SavePaymentCash(mPaymentCash);
+
 
 
             if (isComplex)
@@ -272,6 +283,60 @@ namespace thepos
 
 
 
+
+        private bool SavePaymentCash(PaymentCash mPaymentCash)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Clear();
+            parameters["siteId"] = mPaymentCash.site_id;
+            parameters["posNo"] = mPaymentCash.pos_no;
+            parameters["bizDt"] = mPaymentCash.biz_dt;
+            parameters["theNo"] = mPaymentCash.the_no;
+            parameters["refNo"] = mPaymentCash.ref_no;
+
+            parameters["payDate"] = mPaymentCash.pay_date;
+            parameters["payTime"] = mPaymentCash.pay_time;
+            parameters["payType"] = mPaymentCash.pay_type;
+            parameters["tranType"] = mPaymentCash.tran_type;
+            parameters["payClass"] = mPaymentCash.pay_class;
+
+            parameters["ticketNo"] = mPaymentCash.ticket_no;
+            parameters["paySeq"] = mPaymentCash.pay_seq + "";
+            parameters["tranDate"] = mPaymentCash.tran_date;
+            parameters["amount"] = mPaymentCash.amount + "";
+            parameters["receiptType"] = mPaymentCash.receipt_type;
+
+            parameters["issuedMethodNo"] = mPaymentCash.issued_method_no;
+            parameters["authNo"] = mPaymentCash.auth_no;
+            parameters["tranSerial"] = mPaymentCash.tran_serial;
+            parameters["isCancel"] = mPaymentCash.is_cancel;
+            parameters["vanCode"] = mPaymentCash.van_code; ;
+
+            if (mRequestPost("paymentCash", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류 paymentCard\n\n" + mErrorMsg, "thepos");
+                return false;
+            }
+
+            return true;
+
+        }
+
+
+
+
         private void btnCashRecept_Click(object sender, EventArgs e)
         {
 
@@ -292,11 +357,19 @@ namespace thepos
 
 
             PaymentCash paymentCash = new PaymentCash();
-            
-            
 
 
-            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out paymentCash) != 0)  // Toss process
+            int input_type = 0;
+
+            if (rb고객식별번호.Checked) input_type = 0;
+            else if (rbKeyin.Checked) input_type = 1;
+            else if (rb카드거래.Checked) input_type = 2;
+            else if (rb화면입력.Checked) input_type = 3;
+
+
+
+
+            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, issues_method_no, out paymentCash) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -330,11 +403,10 @@ namespace thepos
                 paymentCash.pay_seq = paySeq; // 
                 paymentCash.amount = netAmount;
                 paymentCash.receipt_type = receipt_type;
-
-                //
-
                 paymentCash.is_cancel = "";        // 취소여부
-                mPaymentCashs.Add(paymentCash);
+                paymentCash.van_code = mPayChannel;
+
+                SavePaymentCash(paymentCash);
 
 
                 if (isComplex)
@@ -407,24 +479,25 @@ namespace thepos
         }
 
 
-        private void btnCashSelf_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
 
-        int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, String issues_method_no, out PaymentCash mPaymentCash)
+        int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash mPaymentCash)
         {
             int ret = 0;
 
             PaymentCash mPaymentCash2 = new PaymentCash();
 
 
-            if (mPayChannel == "KCP")
+            if (mPayChannel == "NICE")
+            {
+                paymentNice p = new paymentNice();
+                ret = p.requestNiceCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, issues_method_no, out mPaymentCash2);
+            }
+            else if (mPayChannel == "KCP")
             {
                 paymentKCP p = new paymentKCP();
-                ret = p.requestTossCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
+                ret = p.requestKcpCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
             }
             else if (mPayChannel == "TOSS")
             {

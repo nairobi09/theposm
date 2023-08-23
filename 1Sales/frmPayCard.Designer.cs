@@ -74,7 +74,7 @@
             this.panelback.Controls.Add(this.lblT1);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -108,7 +108,7 @@
             // 
             this.tbAuthNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbAuthNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAuthNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbAuthNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbAuthNo.Location = new System.Drawing.Point(119, 76);
             this.tbAuthNo.Name = "tbAuthNo";
             this.tbAuthNo.Size = new System.Drawing.Size(178, 26);
@@ -118,7 +118,7 @@
             // 
             this.tbCardNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbCardNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbCardNo.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCardNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCardNo.Location = new System.Drawing.Point(120, 33);
             this.tbCardNo.MaxLength = 20;
             this.tbCardNo.Name = "tbCardNo";
@@ -317,7 +317,7 @@
             // 
             this.tbInstall.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbInstall.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbInstall.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbInstall.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbInstall.Location = new System.Drawing.Point(121, 43);
             this.tbInstall.MaxLength = 2;
             this.tbInstall.Name = "tbInstall";
@@ -454,8 +454,7 @@
             // 
             // frmPayCard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

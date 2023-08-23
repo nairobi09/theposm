@@ -187,8 +187,6 @@ namespace thepos
             }
 
 
-
-
             // 응답 코드
             String ResCd = mNiceResponse.t응답코드;
             // 응답 메세지
@@ -235,6 +233,171 @@ namespace thepos
                 return -1;
             }
 
+        }
+
+
+
+
+        public int requestNiceCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash pCash)
+        {
+            PaymentCash mPaymentCash = new PaymentCash();
+            pCash = mPaymentCash;
+
+            string FS = ((char)28).ToString();
+            string SendData = "";
+
+            string tReceiptType = "";
+
+            if (receipt_type == "1") tReceiptType = "01";
+            else if (receipt_type == "2") tReceiptType = "02";
+            else if (receipt_type == "S") tReceiptType = "03";
+
+
+
+            if (input_type == 1)
+            {
+                SendData = "0200" + FS + "21" + FS + "K" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + "" + FS + FS + FS + FS + FS + "현금영수증승인KEYIN방식" + FS;
+            }
+            else if (input_type == 0)
+            {
+                SendData = "0200" + FS + "21" + FS + "P" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + issues_method_no + FS + FS + FS + FS + FS + "현금영수증승인POS입력" + FS;
+            }
+            else if (input_type == 2)
+            {
+                SendData = "0200" + FS + "21" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + FS + FS + FS + FS + "현금영수증승인CARD방식" + FS;
+            }
+            else
+            {
+                SendData = "0200" + FS + "21" + FS + "T" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + FS + FS + FS + FS + "현금영수증승인터치방식" + FS;
+            }
+
+            byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
+            byte[] mRecv = new byte[2048];
+
+            int ret = NICEVCAT(mSend, mRecv);
+
+            if (ret != 1)
+            {
+
+                mErrorMsg = "NICE VCAT 오류.";
+                return -1;
+            }
+
+
+
+            int i = 0, j = 0, k = 0;
+            string recvdata = Encoding.Default.GetString(mRecv);
+
+
+            while (true)
+            {
+                if (recvdata.Substring(i, 1) == FS)
+                {
+                    j = j + 1;
+
+                    switch (j)
+                    {
+                        case 1:
+                            mNiceResponse.t거래구분 = recvdata.Substring(k, i - k);  // 거래구분
+                            break;
+                        case 2:
+                            mNiceResponse.t거래유형 = recvdata.Substring(k, i - k);  // 거래유형
+                            break;
+                        case 3:
+                            mNiceResponse.t응답코드 = recvdata.Substring(k, i - k);  // 응답코드
+                            break;
+                        case 4:
+                            mNiceResponse.t거래금액 = recvdata.Substring(k, i - k);  // 거래금액
+                            break;
+                        case 5:
+                            mNiceResponse.t부가세 = recvdata.Substring(k, i - k);  // 부가세
+                            break;
+                        case 6:
+                            mNiceResponse.t봉사료 = recvdata.Substring(k, i - k);  // 봉사료
+                            break;
+                        case 7:
+                            mNiceResponse.t할부 = recvdata.Substring(k, i - k);  // 할부
+                            break;
+                        case 8:
+                            mNiceResponse.t승인번호 = recvdata.Substring(k, i - k);  // 승인번호
+                            break;
+                        case 9:
+                            mNiceResponse.t승인일시 = recvdata.Substring(k, i - k);  // 승인일시
+                            break;
+                        case 10:
+                            mNiceResponse.t발급사코드 = recvdata.Substring(k, i - k);  // 발급사코드
+                            break;
+                        case 11:
+                            mNiceResponse.t발급사명 = recvdata.Substring(k, i - k);  // 발급사명
+                            break;
+                        case 12:
+                            mNiceResponse.t매입사코드 = recvdata.Substring(k, i - k);  // 매입사코드
+                            break;
+                        case 13:
+                            mNiceResponse.t매입사명 = recvdata.Substring(k, i - k);  // 매입사명
+                            break;
+                        case 14:
+                            mNiceResponse.t가맹점번호 = recvdata.Substring(k, i - k);  // 가맹점번호
+                            break;
+                        case 15:
+                            mNiceResponse.t승인CATID = recvdata.Substring(k, i - k);  // 승인CATID
+                            break;
+                        case 16:
+                            mNiceResponse.t잔액 = recvdata.Substring(k, i - k);  // 잔액
+                            break;
+                        case 17:
+                            mNiceResponse.t응답메시지 = recvdata.Substring(k, i - k);  // 응답메시지
+                            break;
+                        case 18:
+                            mNiceResponse.t카드BIN = recvdata.Substring(k, i - k);  // 카드BIN
+                            break;
+                        case 19:
+                            mNiceResponse.t카드구분 = recvdata.Substring(k, i - k);  // 카드구분
+                            break;
+                        case 20:
+                            mNiceResponse.t전문관리번호 = recvdata.Substring(k, i - k);  // 전문관리번호
+                            break;
+                        case 21:
+                            mNiceResponse.t거래일련번호 = recvdata.Substring(k, i - k);  // 거래일련번호
+                            break;
+                    }
+
+                    k = i + 1;
+
+                    if (j == 21)
+                        break;
+                }
+                i = i + 1;
+            }
+
+
+            // 응답 코드
+            String ResCd = mNiceResponse.t응답코드;
+            // 응답 메세지
+            String ResMag = mNiceResponse.t응답메시지;
+
+            // 정상 응답
+            if (ResCd == "0000")
+            {
+                // 거래번호
+                mPaymentCash.tran_serial = mNiceResponse.t전문관리번호;
+                // 거래일시
+                mPaymentCash.tran_date = mNiceResponse.t승인일시;
+                // 승인번호
+                mPaymentCash.auth_no = mNiceResponse.t승인번호;
+
+                mPaymentCash.issued_method_no = mNiceResponse.t카드BIN;
+
+
+                pCash = mPaymentCash;
+
+                return 0;
+            }
+            else
+            {
+                mErrorMsg = ResMag;
+                return -1;
+            }
 
         }
 

@@ -197,8 +197,7 @@ namespace thepos
             mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
             mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
-
-
+            mPaymentCard.van_code = mPayChannel;
 
             SavePaymentCard(mPaymentCard);
 
@@ -333,6 +332,7 @@ namespace thepos
                 mPaymentCard.pay_seq = paySeq;
                 mPaymentCard.sign_path = "";
                 mPaymentCard.is_cancel = "";
+                mPaymentCard.van_code = mPayChannel;
                 // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
 
                 if (!SavePaymentCard(mPaymentCard))
@@ -444,6 +444,7 @@ namespace thepos
             parameters["signPath"] = mPaymentCard.sign_path;
             //parameters["giftChange"] = "";
             parameters["isCancel"] = mPaymentCard.is_cancel;
+            parameters["vanCode"] = mPaymentCard.van_code; ;
 
             if (mRequestPost("paymentCard", parameters))
             {

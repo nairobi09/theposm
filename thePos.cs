@@ -351,6 +351,7 @@ namespace thepos
             public String tran_serial;          // tran_serial -> 취소시 tid입력
             public String sign_path;
             public String is_cancel;    // 취소여부 : "" or "1"
+            public String van_code;
         }
         public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
 
@@ -375,6 +376,7 @@ namespace thepos
             public String auth_no;      // 승인번호
             public String tran_serial;          // tran_serial -> 취소시 tid입력
             public String is_cancel;    // 취소여부
+            public String van_code;
         }
         public static List<PaymentCash> mPaymentCashs = new List<PaymentCash>();
 

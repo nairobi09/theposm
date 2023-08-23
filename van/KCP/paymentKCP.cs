@@ -180,7 +180,7 @@ namespace thepos
         }
 
 
-        public int requestTossCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, String issues_method_no, out PaymentCash pCash)
+        public int requestKcpCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, String issues_method_no, out PaymentCash pCash)
         {
             PaymentCash mPaymentCash = new PaymentCash();
             pCash = mPaymentCash;
