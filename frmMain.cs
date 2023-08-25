@@ -50,6 +50,7 @@ namespace thepos
             font8 = new Font(fontCollection.Families[0], 8f);
             font9 = new Font(fontCollection.Families[0], 9f);
             font10 = new Font(fontCollection.Families[0], 10f);
+            font10bold = new Font(fontCollection.Families[0], 10f, FontStyle.Bold);
             font12 = new Font(fontCollection.Families[0], 12f);
             font12bold = new Font(fontCollection.Families[0], 12f, FontStyle.Bold);
             font13 = new Font(fontCollection.Families[0], 12f);
@@ -68,7 +69,7 @@ namespace thepos
             lblPosNo.Font = font10;
 
             lblUserNameTitle.Font = font10;
-            lblUserName.Font = font10;
+            lblUserName.Font = font9;
 
 
 
@@ -79,8 +80,7 @@ namespace thepos
             btnSupport.Font = font12;
             btnExit.Font = font12;
 
-            lblCallCenter.Font = font10;
-
+            lblCallCenterNo.Font = font10;
 
             // 로그인
 
@@ -191,7 +191,8 @@ namespace thepos
 
             mTicketType = "";  // ""미사용, "PA"선불, "PD"후불
             mTicketMedia = "";  // 띠지BC   팔찌RF
-            mPayChannel = "";
+            mVanCode = "";
+            mCallCenterNo = "";
 
 
             // 이사업자의 포스번호 목록
@@ -298,9 +299,14 @@ namespace thepos
                     mSiteName = arr[0]["siteName"].ToString();
                     mSiteAlias = arr[0]["siteAlias"].ToString();
                     mCapName = arr[0]["capName"].ToString();
+
+
                     //?
                     //mCallCenterNo = arr[0]["callCenterNo"].ToString();
-                    mCallCenterNo = "010-0000-0000";
+                    mCallCenterNo = "콜센터 02-1234-5678  기술지원 010-1234-5678";
+                    mTicketMedia = "BC";
+                    mTicketType = "PA";
+                    mVanCode = "NICE";
                 }
                 else
                 {
@@ -360,7 +366,7 @@ namespace thepos
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
 
-            lblCallCenter.Text = "콜센터: " + mCallCenterNo;
+            lblCallCenterNo.Text = mCallCenterNo;
 
             save_registry_info();
 

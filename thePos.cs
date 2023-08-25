@@ -84,6 +84,7 @@ namespace thepos
         public static Font font8;
         public static Font font9;
         public static Font font10;
+        public static Font font10bold;
         public static Font font12;
         public static Font font12bold;
         public static Font font13;
@@ -150,7 +151,7 @@ namespace thepos
         // (선불) 발권 [충전] 사용  정산
         public static String mTicketType;   //발권형태: ""미사용, "PA"선불, "PD"후불// 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
         public static String mTicketMedia;  // 띠지BC   팔찌RF
-        public static String mPayChannel = "";
+        public static String mVanCode = "";
         public static String mLanguage = ""; // KR EN CH
 
 
@@ -651,18 +652,38 @@ namespace thepos
             int dc_amount = 0;
 
 
-            for (int i = 0; i < listOrder.Count; i++)
+            String sUrl = "orders?theNo=" + tTheNo;
+
+            if (mRequestGet(sUrl))
             {
-                if (listOrder[i].the_no == tTheNo)
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    tOrderDt = listOrder[i].order_date.Substring(0, 4) + "/" +
-                               listOrder[i].order_date.Substring(4, 2) + "/" +
-                               listOrder[i].order_date.Substring(6, 2) + " " +
-                               listOrder[i].order_time.Substring(0, 2) + ":" +
-                               listOrder[i].order_time.Substring(2, 2) + ":" +
-                               listOrder[i].order_time.Substring(4, 2);
+                    String data = mObj["orders"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        String dt = arr[i]["orderDate"].ToString();
+                        tOrderDt = dt.Substring(0, 4) + "/" +
+                                   dt.Substring(4, 2) + "/" +
+                                   dt.Substring(6, 2) + " " +
+                                   dt.Substring(0, 2) + ":" +
+                                   dt.Substring(2, 2) + ":" +
+                                   dt.Substring(4, 2);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
 
             String tStr = tTheNo.Substring(4, 8) + "-" + tTheNo.Substring(12, 2) + "-" + tTheNo.Substring(14, 4);
             int space_cnt = 42 - (encodelen(tOrderDt) + encodelen(tStr));
@@ -674,75 +695,103 @@ namespace thepos
             strPrintOrder += "------------------------------------------\r\n";  // 42
 
 
-            for (int i = 0; i < listOrderItem.Count; i++)
+
+
+            sUrl = "orderItem?theNo=" + tTheNo;
+
+            if (mRequestGet(sUrl))
             {
-                if (listOrderItem[i].the_no == tTheNo)
+                if (mObj["resultCode"].ToString() == "200")
                 {
+                    String data = mObj["orderItems"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                    if (listOrderItem[i].dcr_des == "E") // 전체할인
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        if (listOrderItem[i].dcr_type == "A")
+                        int amt = convert_number(arr[i]["amt"].ToString());
+                        int cnt = convert_number(arr[i]["cnt"].ToString());
+                        int dc_amt = convert_number(arr[i]["dcAmount"].ToString());
+                        String dcr_des = arr[i]["dcrDes"].ToString();
+                        String dcr_type = arr[i]["dcrType"].ToString();
+                        String dcr_value = arr[i]["dcrValue"].ToString();
+
+                        if (dcr_des == "E") // 전체할인
                         {
-                            tStr = "전체할인";
-                            strPrintOrder += tStr + Space(21 - encodelen(tStr));
+                            if (dcr_type == "A")
+                            {
+                                tStr = "전체할인";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
-                            tStr = (-listOrderItem[i].dc_amount).ToString("N0");        // 할인 정액
-                            strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-                        }
-                        else if (listOrderItem[i].dcr_type == "R")
-                        {
-                            tStr = "전체할인-" + listOrderItem[i].dcr_value + "%";
-                            strPrintOrder += tStr + Space(21 - encodelen(tStr));
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+                            }
+                            else if (listOrderItem[i].dcr_type == "R")
+                            {
+                                tStr = "전체할인-" + listOrderItem[i].dcr_value + "%";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
-                            tStr = (-listOrderItem[i].dc_amount).ToString("N0");        // 할인 정액
-                            strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-                        }
-                        strPrintOrder += "\r\n";
-                    }
-                    else                                 // 일반상품항목
-                    {
-                        tStr = listOrderItem[i].name;
-                        strPrintOrder += tStr + Space(18 - encodelen(tStr));
-
-                        tStr = listOrderItem[i].amt.ToString("N0");     //단가
-                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
-
-                        tStr = listOrderItem[i].cnt.ToString("N0");     // 수량
-                        strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
-
-                        tStr = (listOrderItem[i].amt * listOrderItem[i].cnt).ToString("N0");     // 금액 = 단가*수량
-                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
-
-                        strPrintOrder += "\r\n";
-
-                        if (listOrderItem[i].dcr_type == "A")
-                        {
-                            tStr = "    할인";
-                            strPrintOrder += tStr + Space(21 - encodelen(tStr));
-
-                            tStr = (-listOrderItem[i].dc_amount).ToString("N0");        // 할인 정액
-                            strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+                            }
                             strPrintOrder += "\r\n";
                         }
-                        else if (listOrderItem[i].dcr_type == "R")
+                        else                                 // 일반상품항목
                         {
-                            tStr = "    할인-" + listOrderItem[i].dcr_value + "%";
-                            strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
-                            tStr = (-listOrderItem[i].dc_amount).ToString("N0");        // 할인 정액
-                            strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+                            tStr = arr[i]["itemName"].ToString();
+                            strPrintOrder += tStr + Space(18 - encodelen(tStr));
+
+                            tStr = amt.ToString("N0");     //단가
+                            strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                            tStr = cnt.ToString("N0");     // 수량
+                            strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
+
+                            tStr = (amt * cnt).ToString("N0");     // 금액 = 단가*수량
+                            strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
 
                             strPrintOrder += "\r\n";
+
+                            if (dcr_type == "A")
+                            {
+                                tStr = "    할인";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+
+                                strPrintOrder += "\r\n";
+                            }
+                            else if (arr[i]["dcrType"].ToString() == "R")
+                            {
+                                tStr = "    할인-" + arr[i]["dcrValue"].ToString() + "%";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+
+                                strPrintOrder += "\r\n";
+                            }
                         }
+
+                        if (arr[i]["taxFree"].ToString() == "1") tfree_amount += (cnt * amt);
+                        else tax_amount += (cnt * amt);
+
+                        dc_amount += dc_amt;
                     }
-
-                    if (listOrderItem[i].taxfree == "1") tfree_amount += (listOrderItem[i].cnt * listOrderItem[i].amt);
-                    else tax_amount += (listOrderItem[i].cnt * listOrderItem[i].amt);
-
-                    dc_amount += listOrderItem[i].dc_amount;
+                }
+                else
+                {
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
 
 
             ////

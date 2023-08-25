@@ -253,7 +253,6 @@ namespace thepos
             else if (receipt_type == "S") tReceiptType = "03";
 
 
-
             if (input_type == 1)
             {
                 SendData = "0200" + FS + "21" + FS + "K" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + "" + FS + FS + FS + FS + FS + "현금영수증승인KEYIN방식" + FS;

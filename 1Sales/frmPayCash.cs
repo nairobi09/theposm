@@ -97,7 +97,6 @@ namespace thepos
             btn5t.Font = font10;
             btn10t.Font = font10;
             btn50t.Font = font10;
-            btn100t.Font = font10;
             btnReset.Font = font10;
 
             lbl4.Font = font10;
@@ -114,7 +113,6 @@ namespace thepos
             rb고객식별번호.Font = font12;
             rbKeyin.Font = font12;
             rb카드거래.Font = font12;
-            rb화면입력.Font = font12;
             
             tbIssuedMethodNo.Font = font12;
 
@@ -172,7 +170,7 @@ namespace thepos
             mPaymentCash.auth_no = "";          // 승인번호
             mPaymentCash.tran_serial = "";      // tran_serial -> 취소시 tid입력
             mPaymentCash.is_cancel = "";        // 취소여부
-            mPaymentCash.van_code = mPayChannel;
+            mPaymentCash.van_code = mVanCode;
 
             SavePaymentCash(mPaymentCash);
 
@@ -364,8 +362,6 @@ namespace thepos
             if (rb고객식별번호.Checked) input_type = 0;
             else if (rbKeyin.Checked) input_type = 1;
             else if (rb카드거래.Checked) input_type = 2;
-            else if (rb화면입력.Checked) input_type = 3;
-
 
 
 
@@ -404,7 +400,7 @@ namespace thepos
                 paymentCash.amount = netAmount;
                 paymentCash.receipt_type = receipt_type;
                 paymentCash.is_cancel = "";        // 취소여부
-                paymentCash.van_code = mPayChannel;
+                paymentCash.van_code = mVanCode;
 
                 SavePaymentCash(paymentCash);
 
@@ -489,17 +485,17 @@ namespace thepos
             PaymentCash mPaymentCash2 = new PaymentCash();
 
 
-            if (mPayChannel == "NICE")
+            if (mVanCode == "NICE")
             {
                 paymentNice p = new paymentNice();
                 ret = p.requestNiceCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, issues_method_no, out mPaymentCash2);
             }
-            else if (mPayChannel == "KCP")
+            else if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
             }
-            else if (mPayChannel == "TOSS")
+            else if (mVanCode == "TOSS")
             {
                 paymentToss p = new paymentToss();
                 ret = p.requestTossCashAuth(netAmount, receipt_type, issues_method_no, out mPaymentCash2);

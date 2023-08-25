@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using PrinterUtility;
-
+using Newtonsoft.Json.Linq;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -25,7 +25,8 @@ namespace thepos
 
         System.Windows.Forms.TextBox saveKeyDisplay;
 
-
+        String selected_biz_date = "";
+        String selected_pos_no = "";
 
 
 
@@ -59,7 +60,8 @@ namespace thepos
         }
         private void initialize_the()
         {
-            dtBusiness.Value = DateTime.Now;
+            //dtBusiness.Value = DateTime.Now;
+            dtBusiness.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
 
             ImageList imgList = new ImageList();
@@ -70,8 +72,15 @@ namespace thepos
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
+            }
 
-                if (mPosNoList[i] == mPosNo) cbPosNo.SelectedIndex = i;
+            for (int i = 0;i < cbPosNo.Items.Count;i++)
+            {
+                if (cbPosNo.Items[i].ToString() == mPosNo) 
+                { 
+                    cbPosNo.SelectedIndex = i; 
+                    break; 
+                }
             }
 
 
@@ -83,65 +92,75 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-
-            String theNo = "";
             String billNo = tbBillNo.Text;
+
+            String the_no = "";
+
+            selected_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
+            selected_pos_no = cbPosNo.Text;
 
             if (billNo.Length == 4)
             {
-                theNo = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + billNo;
+                the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
             }
-
             
-            viewList(theNo);
+            viewList(selected_biz_date, selected_pos_no, the_no);
         }
 
-        private void viewList(String the_no)
-        { 
 
+        private void viewList(String biz_date, String pos_no, String the_no)
+        { 
             lvwPayManager.Items.Clear();
 
-            for (int i = 0; i < mPayments.Count; i++)
+
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no;
+
+            if (mRequestGet(sUrl))
             {
-
-                if (the_no == "" | mPayments[i].the_no == the_no)
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    ListViewItem lvItem = new ListViewItem();
+                    String data = mObj["payments"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                    lvItem.Tag = mPayments[i].the_no;
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem lvItem = new ListViewItem();
 
-                    lvItem.Text = mPayments[i].bill_no;
+                        lvItem.Tag = arr[i]["theNo"].ToString();
+                        lvItem.Text = arr[i]["billNo"].ToString();
+                        lvItem.SubItems.Add(get_pay_class_name(arr[i]["payClass"].ToString()));
+                        lvItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
+                        lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
+                        lvItem.SubItems.Add(arr[i]["posNo"].ToString());
 
-                    lvItem.SubItems.Add(get_pay_class_name(mPayments[i].pay_class));
+                        if (arr[i]["tranType"].ToString() == "C")
+                            lvItem.SubItems.Add((-convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
+                        else
+                            lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
 
-                    lvItem.SubItems.Add(get_MMddHHmm(mPayments[i].pay_date, mPayments[i].pay_time));
-                    lvItem.SubItems.Add(get_tran_type_name(mPayments[i].tran_type));
+                        //? 할인내용 적용 필요
+                        lvItem.SubItems.Add(arr[i]["isDc"].ToString());
+                        lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
-                    lvItem.SubItems.Add(mPayments[i].pos_no);
-                
+                        //? mPayments[i].is_cancel == "Y" 명 Strikeout으로 바꾼다.
+                        //lvItem.Font = new Font(lvItem.Font, FontStyle.Strikeout);
 
-                    if (mPayments[i].tran_type == "C")
-                        lvItem.SubItems.Add((-mPayments[i].net_amount).ToString("N0"));
-                    else
-                        lvItem.SubItems.Add(mPayments[i].net_amount.ToString("N0"));
+                        lvwPayManager.Items.Add(lvItem);
+                    }
 
-                    //? 할인내용 적용 필요
-                    lvItem.SubItems.Add(mPayments[i].is_dc);
-                    lvItem.SubItems.Add(get_is_cancel_name(mPayments[i].is_cancel));
-                    lvItem.SubItems.Add(mPayments[i].tran_type);
-
-                    //? mPayments[i].is_cancel == "Y" 명 Strikeout으로 바꾼다.
-                    //lvItem.Font = new Font(lvItem.Font, FontStyle.Strikeout);
-
-                    lvwPayManager.Items.Add(lvItem);
+                }
+                else
+                {
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
-
-            if (lvwPayManager.Items.Count == 1)
+            else
             {
-                lvwPayManager.Items[0].Selected = true;
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
             }
         }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -239,7 +258,8 @@ namespace thepos
 
             //? 취소여부 화면갱신
             //lvwPayManager.Items[sel_idx].SubItems[7].Text = payment.is_cancel.ToString();
-            viewList(the_no);
+            
+            viewList(selected_biz_date, selected_pos_no, the_no);
 
 
         }
@@ -302,7 +322,7 @@ namespace thepos
 
                     tbBillNo.Text = billno;
 
-                    viewList(mScanString);
+                    viewList(dt, posno, mScanString);
 
                 }
                 catch

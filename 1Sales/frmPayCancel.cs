@@ -570,12 +570,12 @@ namespace thepos
             PaymentCard cardCancel = new PaymentCard();
             pCardCancel = cardCancel;
 
-            if (mPayChannel == "KCP")
+            if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpCardCancel(mPaymentCards, out pCardCancel);
             }
-            else if (mPayChannel == "TOSS")
+            else if (mVanCode == "TOSS")
             {
                 paymentToss p = new paymentToss();
                 ret = p.requestTossCardCancel(mPaymentCards, out pCardCancel);
@@ -592,12 +592,12 @@ namespace thepos
             PaymentCash cashCancel = new PaymentCash();
             pCashCancel = cashCancel;
 
-            if (mPayChannel == "KCP")
+            if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpCashCancel(paymentCash, out pCashCancel);
             }
-            else if (mPayChannel == "TOSS")
+            else if (mVanCode == "TOSS")
             {
                 paymentToss p = new paymentToss();
                 ret = p.requestTossCashCancel(paymentCash, out pCashCancel);

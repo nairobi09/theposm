@@ -197,7 +197,7 @@ namespace thepos
             mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
             mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
-            mPaymentCard.van_code = mPayChannel;
+            mPaymentCard.van_code = mVanCode;
 
             SavePaymentCard(mPaymentCard);
 
@@ -332,7 +332,7 @@ namespace thepos
                 mPaymentCard.pay_seq = paySeq;
                 mPaymentCard.sign_path = "";
                 mPaymentCard.is_cancel = "";
-                mPaymentCard.van_code = mPayChannel;
+                mPaymentCard.van_code = mVanCode;
                 // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
 
                 if (!SavePaymentCard(mPaymentCard))
@@ -476,17 +476,17 @@ namespace thepos
 
             PaymentCard mPaymentCard2 = new PaymentCard();
 
-            if (mPayChannel == "NICE")
+            if (mVanCode == "NICE")
             {
                 paymentNice p = new paymentNice();
                 ret = p.requestNiceCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
             }
-            else if (mPayChannel == "KCP")
+            else if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
             }
-            else if (mPayChannel == "TOSS")
+            else if (mVanCode == "TOSS")
             {
                 paymentToss p = new paymentToss();
                 ret = p.requestTossCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);

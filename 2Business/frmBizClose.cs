@@ -32,9 +32,10 @@ namespace thepos
 
             lblTitle.Font = font12;
 
-            lblBizDateTitle.Font = font12;
+            lblBizDateTitle.Font = font10;
             lblBizDate.Font = font12bold;
 
+            lblBizStatusTitle.Font = font10;
             lblBizStatus.Font = font12bold;
 
 
@@ -184,8 +185,48 @@ namespace thepos
 
 
 
+            sUrl = "bizDateLast?siteId=" + mSiteId;
 
-            
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["bizDate"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    biz_date = arr[0]["bizDt"].ToString();
+                    biz_status = arr[0]["bizStatus"].ToString();
+
+                    String open_dt = arr[0]["openDt"].ToString();
+                    String close_dt = arr[0]["closeDt"].ToString();
+
+
+                    lblBizDate.Text = biz_date.Substring(0, 4) + "-" + biz_date.Substring(4, 2) + "-" + biz_date.Substring(6, 2);
+
+                    lblLastBizOpenDtInput.Text = open_dt.Substring(0, 4) + "-" + open_dt.Substring(4, 2) + "-" + open_dt.Substring(6, 2) + " " + open_dt.Substring(8, 2) + ":" + open_dt.Substring(10, 2) + ":" + open_dt.Substring(12, 2);
+
+
+                    if (biz_status == "A")
+                    {
+                        lblBizStatus.Text = "영업개시";
+                    }
+                    else if (biz_status == "F")
+                    {
+                        lblBizStatus.Text = "영업마감";
+                        lblLastBizCloseDtInput.Text = close_dt.Substring(0, 4) + "-" + close_dt.Substring(4, 2) + "-" + close_dt.Substring(6, 2) + " " + close_dt.Substring(8, 2) + ":" + close_dt.Substring(10, 2) + ":" + close_dt.Substring(12, 2);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
+
+
 
 
         }

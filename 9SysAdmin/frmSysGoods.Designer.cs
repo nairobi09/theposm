@@ -69,10 +69,10 @@
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(94, 58);
+            this.lvwList.Location = new System.Drawing.Point(32, 58);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(489, 613);
+            this.lvwList.Size = new System.Drawing.Size(544, 613);
             this.lvwList.TabIndex = 39;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -112,13 +112,13 @@
             // memo
             // 
             this.memo.Text = "비고";
-            this.memo.Width = 130;
+            this.memo.Width = 181;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.Location = new System.Drawing.Point(96, 23);
+            this.lblTitle.Location = new System.Drawing.Point(34, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(136, 19);
             this.lblTitle.TabIndex = 40;
@@ -230,7 +230,7 @@
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(615, 393);
+            this.btnAdd.Location = new System.Drawing.Point(605, 393);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(182, 50);
             this.btnAdd.TabIndex = 46;
@@ -243,7 +243,7 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(615, 449);
+            this.btnUpdate.Location = new System.Drawing.Point(605, 449);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(182, 50);
             this.btnUpdate.TabIndex = 46;
@@ -267,9 +267,9 @@
             this.groupBox1.Controls.Add(this.lblTicketTitle);
             this.groupBox1.Controls.Add(this.tbGoodsName);
             this.groupBox1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(598, 58);
+            this.groupBox1.Location = new System.Drawing.Point(588, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(214, 306);
+            this.groupBox1.Size = new System.Drawing.Size(260, 306);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             // 
@@ -280,7 +280,7 @@
             this.tbMemo.Location = new System.Drawing.Point(18, 261);
             this.tbMemo.MaxLength = 16;
             this.tbMemo.Name = "tbMemo";
-            this.tbMemo.Size = new System.Drawing.Size(182, 26);
+            this.tbMemo.Size = new System.Drawing.Size(236, 26);
             this.tbMemo.TabIndex = 42;
             // 
             // lblMemoTitle
@@ -298,7 +298,7 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(615, 505);
+            this.btnDelete.Location = new System.Drawing.Point(605, 505);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(182, 30);
             this.btnDelete.TabIndex = 49;

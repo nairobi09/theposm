@@ -328,7 +328,7 @@
             // 
             // btnInstall00
             // 
-            this.btnInstall00.Location = new System.Drawing.Point(220, 92);
+            this.btnInstall00.Location = new System.Drawing.Point(76, 96);
             this.btnInstall00.Name = "btnInstall00";
             this.btnInstall00.Size = new System.Drawing.Size(79, 46);
             this.btnInstall00.TabIndex = 52;
@@ -360,7 +360,7 @@
             // 
             // btnInstall03
             // 
-            this.btnInstall03.Location = new System.Drawing.Point(70, 92);
+            this.btnInstall03.Location = new System.Drawing.Point(161, 96);
             this.btnInstall03.Name = "btnInstall03";
             this.btnInstall03.Size = new System.Drawing.Size(46, 46);
             this.btnInstall03.TabIndex = 53;
@@ -383,7 +383,7 @@
             // 
             // btnInstall06
             // 
-            this.btnInstall06.Location = new System.Drawing.Point(120, 92);
+            this.btnInstall06.Location = new System.Drawing.Point(211, 96);
             this.btnInstall06.Name = "btnInstall06";
             this.btnInstall06.Size = new System.Drawing.Size(46, 46);
             this.btnInstall06.TabIndex = 54;
@@ -393,7 +393,7 @@
             // 
             // btnInstall12
             // 
-            this.btnInstall12.Location = new System.Drawing.Point(170, 92);
+            this.btnInstall12.Location = new System.Drawing.Point(261, 96);
             this.btnInstall12.Name = "btnInstall12";
             this.btnInstall12.Size = new System.Drawing.Size(46, 46);
             this.btnInstall12.TabIndex = 55;

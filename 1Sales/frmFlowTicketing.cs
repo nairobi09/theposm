@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
+using Newtonsoft.Json.Linq;
 
 namespace thepos
 {
@@ -30,15 +31,8 @@ namespace thepos
             lblTitle.Font = font12;
             btnClose.Font = font12;
 
+            lblBusinessTitle.Font = font9;
             dtBusiness.Font = font10;
-
-            lbl1.Font = font9;
-            lbl2.Font = font9;
-            lbl3.Font = font9;
-
-            dtBusiness.Font = font10;
-            cbPosNo.Font = font10;
-            tbBillNo.Font = font14;
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
@@ -47,23 +41,16 @@ namespace thepos
         }
         private void initialize_the()
         {
-            dtBusiness.Value = DateTime.Now;
+            //dtBusiness.Value = DateTime.Now;
 
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwFlow.SmallImageList = imgList;
 
-            cbPosNo.Items.Clear();
-            for (int i = 0; i < mPosNoList.Length; i++)
-            {
-                cbPosNo.Items.Add(mPosNoList[i]);
-                if (mPosNoList[i] == mPosNo) cbPosNo.SelectedIndex = i;
-            }
-
-
             saveKeyDisplay = mTbKeyDisplayController;
-            mTbKeyDisplayController = tbBillNo;
+
+            dtBusiness.Value = new DateTime(convert_number(mBizDate.Substring(0,4)), convert_number(mBizDate.Substring(4,2)), convert_number(mBizDate.Substring(6,2)));
 
         }
 
@@ -80,6 +67,61 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            lvwFlow.Items.Clear();
+
+            String biz_date = dtBusiness.Value.ToString("yyyyMMdd");
+            
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        String ticket_no = arr[i]["ticketNo"].ToString();
+                        String tStat = arr[i]["flowStep"].ToString();
+                        String ticketing_dt = arr[i]["ticketingDt"].ToString();
+
+                        if (tStat == "0") tStat = "접수";
+                        else if (tStat == "1") tStat = "발권";
+                        else if (tStat == "2") tStat = "충전";
+                        else if (tStat == "3") tStat = "사용중";
+                        else if (tStat == "4") tStat = "정산완료";
+
+                        item.Text = tStat;
+                        item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
+                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
+                        item.SubItems.Add(ticketing_dt.Substring(8, 2) + ":" +
+                                          ticketing_dt.Substring(10, 2) + ":" +
+                                          ticketing_dt.Substring(12, 2));
+
+                        item.Tag = ticket_no;
+
+                        lvwFlow.Items.Add(item);
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
+
+
+
             for (int i = 0; i < mTicketFlowList.Count; i++)
             {
                 ListViewItem item = new ListViewItem();
@@ -110,9 +152,5 @@ namespace thepos
 
         }
 
-        private void btnReader_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

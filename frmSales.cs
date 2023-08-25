@@ -116,19 +116,20 @@ namespace thepos
         private void initialize_font()
         {
 
-            lblTitle01.Font = font9;
-            lblTitle02.Font = font9;
-            lblTitle03.Font = font9;
-            lblTitle04.Font = font9;
-            
-            lblSiteName.Font = font9;
-            lblPosNo.Font = font9;
-            lblBusinessDate.Font = font9;
-            lblUserName.Font = font9;
+            lblSiteNameTitle.Font = font10;
+            lblSiteName.Font = font10;
 
+            lblPosNoTitle.Font = font10;
+            lblPosNo.Font = font10;
+
+            lblUserNameTitle.Font = font10;
+            lblUserName.Font = font10;
+
+            lblBusinessDateTitle.Font = font10;
+            lblBusinessDate.Font = font12bold;
 
             lblDate.Font = font10;
-            lblTime.Font = font14;
+            lblTime.Font = font12bold;
 
             btnClose.Font = font12;
 
@@ -271,7 +272,7 @@ namespace thepos
                     mBillTheNo = int.Parse(theno.Substring(14, 4));
 
                     //? 이후 삭제요망
-                    MessageBox.Show("orderLastNo = " + theno, "//?");
+                    //MessageBox.Show("orderLastNo = " + theno, "//?");
 
 
                 }
@@ -290,7 +291,7 @@ namespace thepos
         {
 
 
-            mPayChannel = "NICE";
+            mVanCode = "NICE";
 
 
 
@@ -916,35 +917,60 @@ namespace thepos
                     TicketFlow ticketFlow = new TicketFlow();
                     MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
 
-                    if (orderItem.ticket == "1")
+                    if (orderItem.ticket == "Y")
                     {
 
                         //? 띠지 or 팔찌 -> 구분하여 
-                        if (mTicketMedia == "BC")
+                        if (mTicketMedia == "BC")  // 띠지
                         {
                             for (int k = 0; k < orderItem.cnt; k++)
                             {
                                 ticket_seq++;
 
-                                ticketFlow.site_id = mSiteId;
-                                ticketFlow.biz_dt = mBizDate;
-                                ticketFlow.the_no = mTheNo;
-                                ticketFlow.ref_no = mTheNo;
-                                ticketFlow.ticket_no = mTheNo + ticket_seq.ToString("000");
-                                ticketFlow.ticketing_dt = get_today_date() + get_today_time();
-                                ticketFlow.charge_dt = "";
-                                ticketFlow.settlement_dt = "";
-                                ticketFlow.point_charge = 0;
-                                ticketFlow.point_usage = 0;
-                                ticketFlow.goods_code = orderItem.code;
-                                ticketFlow.flow_step = "1";                // 발권1 - *충전2 - 사용중3 - 정산(완료)4
-                                ticketFlow.locker_no = "";
-                                ticketFlow.open_locker = "1";              // 최초 open -> 충전 close, 사용 close -> 정산 open
-                                mTicketFlowList.Add(ticketFlow);
+                                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                                parameters.Clear();
+                                parameters["siteId"] = mSiteId;
+                                parameters["bizDt"] = mBizDate;
+                                parameters["theNo"] = mTheNo;
+                                parameters["refNo"] = mRefNo;
+
+                                parameters["ticketNo"] = mTheNo + ticket_seq.ToString("000");
+                                parameters["ticketingDt"] = get_today_date() + get_today_time();
+                                parameters["chargeDt"] = "";
+                                parameters["settlementDt"] = "";
+
+                                parameters["pointCharge"] = "0";
+                                parameters["pointUsage"] = "0";
+                                parameters["settlePointCharge"] = "0";
+                                parameters["settlePointUsage"] = "0";
+
+                                parameters["itemCode"] = orderItem.code;
+                                parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
+                                parameters["lockerNo"] = "";
+                                parameters["openLocker"] = "1";             // 선불 :  항상 open
+                                                                            // 후불 :  최초 open -> 사용 close -> 정산 open
+
+                                if (mRequestPost("ticketFlow", parameters))
+                                {
+                                    if (mObj["resultCode"].ToString() == "200")
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                        return -1;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("시스템오류 ticketFlow\n\n" + mErrorMsg, "thepos");
+                                    return -1;
+                                }
+
 
                                 //? 띠지 출력 필요
-
-
+                                MessageBox.Show("띠지 출력...");
 
                             } 
                         }

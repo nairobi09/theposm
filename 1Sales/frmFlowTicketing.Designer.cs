@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowTicketing));
             this.panelback = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.btnReader = new System.Windows.Forms.Button();
+            this.lblBusinessTitle = new System.Windows.Forms.Label();
             this.dtBusiness = new System.Windows.Forms.DateTimePicker();
-            this.tbBillNo = new System.Windows.Forms.TextBox();
-            this.lbl3 = new System.Windows.Forms.Label();
-            this.cbPosNo = new System.Windows.Forms.ComboBox();
-            this.lbl2 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -60,7 +54,7 @@
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.lvwFlow);
-            this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -69,104 +63,41 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lbl1);
-            this.panel1.Controls.Add(this.btnReader);
+            this.panel1.Controls.Add(this.lblBusinessTitle);
             this.panel1.Controls.Add(this.dtBusiness);
-            this.panel1.Controls.Add(this.tbBillNo);
-            this.panel1.Controls.Add(this.lbl3);
-            this.panel1.Controls.Add(this.cbPosNo);
-            this.panel1.Controls.Add(this.lbl2);
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(482, 67);
             this.panel1.TabIndex = 77;
             // 
-            // lbl1
+            // lblBusinessTitle
             // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.Location = new System.Drawing.Point(12, 14);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(53, 12);
-            this.lbl1.TabIndex = 71;
-            this.lbl1.Text = "영업일자";
-            // 
-            // btnReader
-            // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(382, 8);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(85, 50);
-            this.btnReader.TabIndex = 75;
-            this.btnReader.UseVisualStyleBackColor = false;
-            this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
+            this.lblBusinessTitle.AutoSize = true;
+            this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBusinessTitle.Location = new System.Drawing.Point(12, 26);
+            this.lblBusinessTitle.Name = "lblBusinessTitle";
+            this.lblBusinessTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblBusinessTitle.TabIndex = 71;
+            this.lblBusinessTitle.Text = "영업일자";
             // 
             // dtBusiness
             // 
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(68, 8);
+            this.dtBusiness.Location = new System.Drawing.Point(68, 20);
             this.dtBusiness.Name = "dtBusiness";
             this.dtBusiness.Size = new System.Drawing.Size(97, 22);
             this.dtBusiness.TabIndex = 68;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
-            // 
-            // tbBillNo
-            // 
-            this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(221, 10);
-            this.tbBillNo.MaxLength = 4;
-            this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(54, 30);
-            this.tbBillNo.TabIndex = 74;
-            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lbl3
-            // 
-            this.lbl3.AutoSize = true;
-            this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(174, 14);
-            this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(41, 24);
-            this.lbl3.TabIndex = 70;
-            this.lbl3.Text = "영수증\r\n번호";
-            this.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cbPosNo
-            // 
-            this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Items.AddRange(new object[] {
-            "",
-            "01",
-            "02",
-            "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(68, 37);
-            this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
-            this.cbPosNo.TabIndex = 73;
-            // 
-            // lbl2
-            // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl2.Location = new System.Drawing.Point(12, 42);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(53, 12);
-            this.lbl2.TabIndex = 69;
-            this.lbl2.Text = "포스번호";
             // 
             // btnView
             // 
             this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(287, 8);
+            this.btnView.Location = new System.Drawing.Point(382, 13);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(85, 50);
+            this.btnView.Size = new System.Drawing.Size(85, 39);
             this.btnView.TabIndex = 72;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
@@ -283,13 +214,8 @@
         private System.Windows.Forms.ColumnHeader ticket_no;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Button btnReader;
+        private System.Windows.Forms.Label lblBusinessTitle;
         private System.Windows.Forms.DateTimePicker dtBusiness;
-        private System.Windows.Forms.TextBox tbBillNo;
-        private System.Windows.Forms.Label lbl3;
-        private System.Windows.Forms.ComboBox cbPosNo;
-        private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Button btnView;
     }
 }

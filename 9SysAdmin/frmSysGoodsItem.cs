@@ -19,7 +19,8 @@ namespace thepos
         String mSelectedPosNo = "";
         String mSelectedGroupCode = "";
 
-        private BindingList<object> groupList = new BindingList<object>();
+        private BindingList<object> selected_groupList = new BindingList<object>();
+        private BindingList<object> source_groupList = new BindingList<object>();
 
 
         public frmSysGoodsItem()
@@ -32,7 +33,8 @@ namespace thepos
 
             for (int i = 0; i < mPosNoList.Length; i++)
             {
-                comboPosNo.Items.Add(mPosNoList[i]);
+                cbPosNo.Items.Add(mPosNoList[i]);
+                cbSourcePosNo.Items.Add(mPosNoList[i]);
             }
             
 
@@ -42,11 +44,11 @@ namespace thepos
         {
             lblTitle.Font = font14;
 
-            lblT1.Font = font12;
-            comboPosNo.Font = font12;
+            lblPosNoTitle.Font = font10;
+            cbPosNo.Font = font10;
 
-            lblT2.Font = font12;
-            comboGroup.Font = font12;
+            lblGroupTitle.Font = font10;
+            cbGroup.Font = font10;
 
             btnView.Font = font10;
 
@@ -58,15 +60,25 @@ namespace thepos
             lblT5.Font = font10;
             lblT6.Font = font10;
 
-            tbLocateX.Font = font12;
-            tbLocateY.Font = font12;
-            tbSizeX.Font = font12;
-            tbSizeY.Font = font12;
+            tbLocateX.Font = font10;
+            tbLocateY.Font = font10;
+            tbSizeX.Font = font10;
+            tbSizeY.Font = font10;
 
             btnUpdate.Font = font10;
             btnDelete.Font = font10;
             btnLink.Font = font10;
             btnApply.Font = font10;
+
+
+            lblCopyPosNoTitle.Font = font10;
+            cbSourcePosNo.Font = font10;
+
+            lblCopyGroupTitle.Font = font10;
+            cbSourceGroup.Font = font10;
+
+            btnView.Font = font10;
+
 
         }
 
@@ -127,7 +139,7 @@ namespace thepos
 
         private void comboPosNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mSelectedPosNo = comboPosNo.SelectedItem.ToString();
+            mSelectedPosNo = cbPosNo.SelectedItem.ToString();
 
 
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
@@ -139,14 +151,15 @@ namespace thepos
                     String data = mObj["goodsGroups"].ToString();
                     JArray arr = JArray.Parse(data);
 
+                    selected_groupList.Clear();
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        groupList.Add(new { Text = arr[i]["goodsGroupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
+                        selected_groupList.Add(new { Text = arr[i]["goodsGroupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
                     }
 
-                    comboGroup.DataSource = groupList;
-                    comboGroup.DisplayMember = "Text";
-                    comboGroup.ValueMember = "Value";
+                    cbGroup.DataSource = selected_groupList;
+                    cbGroup.DisplayMember = "Text";
+                    cbGroup.ValueMember = "Value";
 
                 }
                 else
@@ -166,7 +179,8 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            mSelectedGroupCode = comboGroup.SelectedValue.ToString();
+            mSelectedPosNo = cbPosNo.SelectedItem.ToString();
+            mSelectedGroupCode = cbGroup.SelectedValue.ToString();
 
             reload_server();
 
@@ -534,6 +548,164 @@ namespace thepos
             return true;
         }
 
+        private void cbSourcePosNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            String copyPosNo = cbSourcePosNo.SelectedItem.ToString();
 
+
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + copyPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["goodsGroups"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    cbSourceGroup.Items.Clear();
+                    source_groupList.Clear();
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        source_groupList.Add(new { Text = arr[i]["goodsGroupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
+                    }
+
+                    cbSourceGroup.DataSource = source_groupList;
+                    cbSourceGroup.DisplayMember = "Text";
+                    cbSourceGroup.ValueMember = "Value";
+
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            if (mSelectedGroupCode == "")
+            {
+                return;
+            }
+
+
+            if (cbSourcePosNo.SelectedIndex == -1) return;
+            if (cbSourceGroup.SelectedIndex == -1) return;
+
+
+            String sourcePosNo = cbSourcePosNo.SelectedItem.ToString();
+            String sourceGroupCode = cbSourceGroup.SelectedValue.ToString();
+
+
+
+
+
+            if (MessageBox.Show("기존의 연결상품을 모두 삭제하고, 선택한 그룹의 상품을 복사해옵니다.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                // delete
+                for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
+                {
+                    Dictionary<string, string> parameters = new Dictionary<string, string>();
+                    parameters["siteId"] = mSiteId;
+                    parameters["posNo"] = mSelectedPosNo;
+                    parameters["groupCode"] = mSelectedGroupCode;
+                    parameters["itemCode"] = lvwGoodsLink.Items[i].Tag.ToString(); ;
+
+                    if (mRequestDelete("goodsItem", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+
+
+            // copy
+            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + sourcePosNo + "&groupCode=" + sourceGroupCode;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["goodsItems"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        Dictionary<string, string> parameters = new Dictionary<string, string>();
+                        parameters["siteId"] = mSiteId;
+                        parameters["posNo"] = mSelectedPosNo;
+                        parameters["groupCode"] = mSelectedGroupCode;
+                        parameters["itemCode"] = arr[i]["itemCode"].ToString();
+                        parameters["locateX"] = arr[i]["locateX"].ToString();
+                        parameters["locateY"] = arr[i]["locateY"].ToString();
+                        parameters["sizeX"] = arr[i]["sizeX"].ToString();
+                        parameters["sizeY"] = arr[i]["sizeY"].ToString();
+                        
+                        if (mRequestPost("goodsItem", parameters))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+
+
+            MessageBox.Show("복사완료", "thepos");
+
+            reload_server();
+
+            display_all_console();
+
+
+        }
     }
 }

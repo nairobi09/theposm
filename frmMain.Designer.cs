@@ -72,7 +72,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.lblPosNo = new System.Windows.Forms.Label();
-            this.lblCallCenter = new System.Windows.Forms.Label();
+            this.lblCallCenterNo = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -183,7 +183,7 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(44, 71);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(620, 620);
+            this.panel2.Size = new System.Drawing.Size(620, 613);
             this.panel2.TabIndex = 1;
             // 
             // pictureBox1
@@ -215,7 +215,7 @@
             // 
             this.lblReqUser.AutoSize = true;
             this.lblReqUser.ForeColor = System.Drawing.Color.White;
-            this.lblReqUser.Location = new System.Drawing.Point(182, 679);
+            this.lblReqUser.Location = new System.Drawing.Point(182, 700);
             this.lblReqUser.Name = "lblReqUser";
             this.lblReqUser.Size = new System.Drawing.Size(89, 12);
             this.lblReqUser.TabIndex = 41;
@@ -242,7 +242,7 @@
             this.lblPW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPW.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPW.Location = new System.Drawing.Point(18, 231);
+            this.lblPW.Location = new System.Drawing.Point(18, 282);
             this.lblPW.Name = "lblPW";
             this.lblPW.Size = new System.Drawing.Size(74, 48);
             this.lblPW.TabIndex = 39;
@@ -254,7 +254,7 @@
             this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblID.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblID.Location = new System.Drawing.Point(18, 176);
+            this.lblID.Location = new System.Drawing.Point(18, 227);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(74, 48);
             this.lblID.TabIndex = 39;
@@ -266,7 +266,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.tbID);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(97, 176);
+            this.panel4.Location = new System.Drawing.Point(97, 227);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(174, 48);
             this.panel4.TabIndex = 37;
@@ -304,7 +304,7 @@
             this.panelKeyDisplayWhite.BackColor = System.Drawing.Color.White;
             this.panelKeyDisplayWhite.Controls.Add(this.tbPW);
             this.panelKeyDisplayWhite.Controls.Add(this.lblKeyDisplayXX);
-            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(97, 230);
+            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(97, 281);
             this.panelKeyDisplayWhite.Name = "panelKeyDisplayWhite";
             this.panelKeyDisplayWhite.Size = new System.Drawing.Size(174, 48);
             this.panelKeyDisplayWhite.TabIndex = 37;
@@ -353,7 +353,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(82, 338);
+            this.panelNumpad.Location = new System.Drawing.Point(82, 362);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
@@ -640,21 +640,21 @@
             this.lblPosNo.Text = "_";
             this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblCallCenter
+            // lblCallCenterNo
             // 
-            this.lblCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCallCenter.ForeColor = System.Drawing.Color.LightGray;
-            this.lblCallCenter.Location = new System.Drawing.Point(813, 711);
-            this.lblCallCenter.Name = "lblCallCenter";
-            this.lblCallCenter.Size = new System.Drawing.Size(166, 14);
-            this.lblCallCenter.TabIndex = 8;
-            this.lblCallCenter.Text = "_";
-            this.lblCallCenter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCallCenterNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCallCenterNo.ForeColor = System.Drawing.Color.LightGray;
+            this.lblCallCenterNo.Location = new System.Drawing.Point(152, 705);
+            this.lblCallCenterNo.Name = "lblCallCenterNo";
+            this.lblCallCenterNo.Size = new System.Drawing.Size(512, 14);
+            this.lblCallCenterNo.TabIndex = 8;
+            this.lblCallCenterNo.Text = "콜센터 02-1234-5678";
+            this.lblCallCenterNo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // picLogo
             // 
             this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.Location = new System.Drawing.Point(47, 707);
+            this.picLogo.Location = new System.Drawing.Point(47, 701);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(65, 18);
             this.picLogo.TabIndex = 10;
@@ -668,7 +668,7 @@
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.panelLogin);
-            this.Controls.Add(this.lblCallCenter);
+            this.Controls.Add(this.lblCallCenterNo);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel3);
@@ -742,7 +742,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Label lblPosNo;
-        private System.Windows.Forms.Label lblCallCenter;
+        private System.Windows.Forms.Label lblCallCenterNo;
         private System.Windows.Forms.Label lblSiteAlias;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblReqUser;

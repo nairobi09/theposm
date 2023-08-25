@@ -28,168 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblBizCloseUser = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblLastBizDtInput = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblCloseUser = new System.Windows.Forms.Label();
+            this.lblBizDateTitle = new System.Windows.Forms.Label();
+            this.lblCloseInput = new System.Windows.Forms.Label();
+            this.lblBiCloseInputTitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.lblLastBizCloseDate = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblCloseUserTitle = new System.Windows.Forms.Label();
             this.btnBizOpenInput = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelBizCloaeCancel = new System.Windows.Forms.Panel();
+            this.lblBizStatus = new System.Windows.Forms.Label();
+            this.lblBizStatusTitle = new System.Windows.Forms.Label();
+            this.lblOpenInputTitle = new System.Windows.Forms.Label();
+            this.lblOpenInput = new System.Windows.Forms.Label();
+            this.lblBizDate = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panelBizCloaeCancel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label2
+            // lblCloseUser
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.Gold;
-            this.label2.Location = new System.Drawing.Point(64, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 16);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "마감현황";
+            this.lblCloseUser.BackColor = System.Drawing.Color.White;
+            this.lblCloseUser.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCloseUser.ForeColor = System.Drawing.Color.Black;
+            this.lblCloseUser.Location = new System.Drawing.Point(153, 168);
+            this.lblCloseUser.Name = "lblCloseUser";
+            this.lblCloseUser.Size = new System.Drawing.Size(189, 25);
+            this.lblCloseUser.TabIndex = 4;
+            this.lblCloseUser.Text = "_";
+            this.lblCloseUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // lblBizDateTitle
             // 
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(172, 99);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 25);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "1차";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBizDateTitle.AutoSize = true;
+            this.lblBizDateTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDateTitle.ForeColor = System.Drawing.Color.White;
+            this.lblBizDateTitle.Location = new System.Drawing.Point(45, 76);
+            this.lblBizDateTitle.Name = "lblBizDateTitle";
+            this.lblBizDateTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblBizDateTitle.TabIndex = 0;
+            this.lblBizDateTitle.Text = "영업일자";
             // 
-            // lblBizCloseUser
+            // lblCloseInput
             // 
-            this.lblBizCloseUser.BackColor = System.Drawing.Color.White;
-            this.lblBizCloseUser.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizCloseUser.ForeColor = System.Drawing.Color.Black;
-            this.lblBizCloseUser.Location = new System.Drawing.Point(172, 163);
-            this.lblBizCloseUser.Name = "lblBizCloseUser";
-            this.lblBizCloseUser.Size = new System.Drawing.Size(142, 25);
-            this.lblBizCloseUser.TabIndex = 4;
-            this.lblBizCloseUser.Text = "0001 - 김토스";
-            this.lblBizCloseUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCloseInput.BackColor = System.Drawing.Color.White;
+            this.lblCloseInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCloseInput.ForeColor = System.Drawing.Color.Black;
+            this.lblCloseInput.Location = new System.Drawing.Point(153, 136);
+            this.lblCloseInput.Name = "lblCloseInput";
+            this.lblCloseInput.Size = new System.Drawing.Size(189, 25);
+            this.lblCloseInput.TabIndex = 4;
+            this.lblCloseInput.Text = "_";
+            this.lblCloseInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // lblBiCloseInputTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(64, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "영업일자";
-            // 
-            // lblLastBizDtInput
-            // 
-            this.lblLastBizDtInput.BackColor = System.Drawing.Color.White;
-            this.lblLastBizDtInput.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizDtInput.ForeColor = System.Drawing.Color.Black;
-            this.lblLastBizDtInput.Location = new System.Drawing.Point(172, 131);
-            this.lblLastBizDtInput.Name = "lblLastBizDtInput";
-            this.lblLastBizDtInput.Size = new System.Drawing.Size(142, 25);
-            this.lblLastBizDtInput.TabIndex = 4;
-            this.lblLastBizDtInput.Text = "2023-06-10 23:45";
-            this.lblLastBizDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(64, 134);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 16);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "마감입력";
+            this.lblBiCloseInputTitle.AutoSize = true;
+            this.lblBiCloseInputTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBiCloseInputTitle.ForeColor = System.Drawing.Color.White;
+            this.lblBiCloseInputTitle.Location = new System.Drawing.Point(45, 139);
+            this.lblBiCloseInputTitle.Name = "lblBiCloseInputTitle";
+            this.lblBiCloseInputTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblBiCloseInputTitle.TabIndex = 0;
+            this.lblBiCloseInputTitle.Text = "마감입력";
             // 
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
             this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTitle.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(185, 16);
+            this.lblTitle.Location = new System.Drawing.Point(166, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(380, 40);
+            this.lblTitle.Size = new System.Drawing.Size(430, 40);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "마감취소";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblLastBizCloseDate
+            // lblCloseUserTitle
             // 
-            this.lblLastBizCloseDate.BackColor = System.Drawing.Color.White;
-            this.lblLastBizCloseDate.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizCloseDate.ForeColor = System.Drawing.Color.Black;
-            this.lblLastBizCloseDate.Location = new System.Drawing.Point(172, 67);
-            this.lblLastBizCloseDate.Name = "lblLastBizCloseDate";
-            this.lblLastBizCloseDate.Size = new System.Drawing.Size(142, 25);
-            this.lblLastBizCloseDate.TabIndex = 4;
-            this.lblLastBizCloseDate.Text = "2023-06-10";
-            this.lblLastBizCloseDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(64, 167);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 16);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "담당자";
+            this.lblCloseUserTitle.AutoSize = true;
+            this.lblCloseUserTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCloseUserTitle.ForeColor = System.Drawing.Color.White;
+            this.lblCloseUserTitle.Location = new System.Drawing.Point(45, 172);
+            this.lblCloseUserTitle.Name = "lblCloseUserTitle";
+            this.lblCloseUserTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblCloseUserTitle.TabIndex = 0;
+            this.lblCloseUserTitle.Text = "담당자";
             // 
             // btnBizOpenInput
             // 
             this.btnBizOpenInput.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBizOpenInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizOpenInput.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizOpenInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpenInput.ForeColor = System.Drawing.Color.White;
-            this.btnBizOpenInput.Location = new System.Drawing.Point(172, 392);
+            this.btnBizOpenInput.Location = new System.Drawing.Point(156, 425);
             this.btnBizOpenInput.Name = "btnBizOpenInput";
             this.btnBizOpenInput.Size = new System.Drawing.Size(142, 60);
             this.btnBizOpenInput.TabIndex = 3;
             this.btnBizOpenInput.Text = "마감취소입력";
             this.btnBizOpenInput.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(64, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "영업차수";
+            this.btnBizOpenInput.Click += new System.EventHandler(this.btnBizOpenInput_Click);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.lblBizCloseUser);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.lblLastBizDtInput);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.lblLastBizCloseDate);
-            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.lblBizDate);
+            this.panel2.Controls.Add(this.lblBizStatus);
+            this.panel2.Controls.Add(this.lblBizStatusTitle);
+            this.panel2.Controls.Add(this.lblCloseUser);
+            this.panel2.Controls.Add(this.lblBizDateTitle);
+            this.panel2.Controls.Add(this.lblOpenInput);
+            this.panel2.Controls.Add(this.lblCloseInput);
+            this.panel2.Controls.Add(this.lblOpenInputTitle);
+            this.panel2.Controls.Add(this.lblBiCloseInputTitle);
+            this.panel2.Controls.Add(this.lblCloseUserTitle);
             this.panel2.Controls.Add(this.btnBizOpenInput);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(185, 69);
+            this.panel2.Location = new System.Drawing.Point(166, 69);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(380, 612);
+            this.panel2.Size = new System.Drawing.Size(430, 612);
             this.panel2.TabIndex = 5;
             // 
             // panelBizCloaeCancel
@@ -202,6 +159,67 @@
             this.panelBizCloaeCancel.Name = "panelBizCloaeCancel";
             this.panelBizCloaeCancel.Size = new System.Drawing.Size(751, 701);
             this.panelBizCloaeCancel.TabIndex = 12;
+            // 
+            // lblBizStatus
+            // 
+            this.lblBizStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBizStatus.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizStatus.ForeColor = System.Drawing.Color.Gold;
+            this.lblBizStatus.Location = new System.Drawing.Point(153, 41);
+            this.lblBizStatus.Name = "lblBizStatus";
+            this.lblBizStatus.Size = new System.Drawing.Size(142, 23);
+            this.lblBizStatus.TabIndex = 17;
+            this.lblBizStatus.Text = "_";
+            this.lblBizStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblBizStatusTitle
+            // 
+            this.lblBizStatusTitle.AutoSize = true;
+            this.lblBizStatusTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizStatusTitle.ForeColor = System.Drawing.Color.White;
+            this.lblBizStatusTitle.Location = new System.Drawing.Point(45, 46);
+            this.lblBizStatusTitle.Name = "lblBizStatusTitle";
+            this.lblBizStatusTitle.Size = new System.Drawing.Size(39, 16);
+            this.lblBizStatusTitle.TabIndex = 16;
+            this.lblBizStatusTitle.Text = "상태";
+            this.lblBizStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblOpenInputTitle
+            // 
+            this.lblOpenInputTitle.AutoSize = true;
+            this.lblOpenInputTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOpenInputTitle.ForeColor = System.Drawing.Color.White;
+            this.lblOpenInputTitle.Location = new System.Drawing.Point(45, 107);
+            this.lblOpenInputTitle.Name = "lblOpenInputTitle";
+            this.lblOpenInputTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblOpenInputTitle.TabIndex = 0;
+            this.lblOpenInputTitle.Text = "개시입력";
+            // 
+            // lblOpenInput
+            // 
+            this.lblOpenInput.BackColor = System.Drawing.Color.White;
+            this.lblOpenInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOpenInput.ForeColor = System.Drawing.Color.Black;
+            this.lblOpenInput.Location = new System.Drawing.Point(153, 104);
+            this.lblOpenInput.Name = "lblOpenInput";
+            this.lblOpenInput.Size = new System.Drawing.Size(189, 25);
+            this.lblOpenInput.TabIndex = 4;
+            this.lblOpenInput.Text = "_";
+            this.lblOpenInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblBizDate
+            // 
+            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBizDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDate.ForeColor = System.Drawing.Color.Gold;
+            this.lblBizDate.Location = new System.Drawing.Point(153, 73);
+            this.lblBizDate.Name = "lblBizDate";
+            this.lblBizDate.Size = new System.Drawing.Size(142, 23);
+            this.lblBizDate.TabIndex = 18;
+            this.lblBizDate.Text = "_";
+            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmBizCloseCancel
             // 
@@ -220,19 +238,19 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblBizCloseUser;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblLastBizDtInput;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblCloseUser;
+        private System.Windows.Forms.Label lblBizDateTitle;
+        private System.Windows.Forms.Label lblCloseInput;
+        private System.Windows.Forms.Label lblBiCloseInputTitle;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblLastBizCloseDate;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblCloseUserTitle;
         private System.Windows.Forms.Button btnBizOpenInput;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelBizCloaeCancel;
+        private System.Windows.Forms.Label lblBizStatus;
+        private System.Windows.Forms.Label lblBizStatusTitle;
+        private System.Windows.Forms.Label lblOpenInput;
+        private System.Windows.Forms.Label lblOpenInputTitle;
+        private System.Windows.Forms.Label lblBizDate;
     }
 }
