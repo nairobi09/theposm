@@ -304,7 +304,6 @@ namespace thepos
                     order_cnt = SaveOrder(ticketNo);// 주문 저장 1
                     if (order_cnt == -1)
                     {
-                        MessageBox.Show("주문 서버저장 오류. order", "thepos");
                         return; // 심각한 에러..
                     }
                 }

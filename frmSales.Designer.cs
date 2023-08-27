@@ -808,7 +808,7 @@ namespace thepos
             this.lblBusinessDate.BackColor = System.Drawing.Color.Transparent;
             this.lblBusinessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lblBusinessDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBusinessDate.Location = new System.Drawing.Point(659, 12);
+            this.lblBusinessDate.Location = new System.Drawing.Point(624, 12);
             this.lblBusinessDate.Margin = new System.Windows.Forms.Padding(0);
             this.lblBusinessDate.Name = "lblBusinessDate";
             this.lblBusinessDate.Size = new System.Drawing.Size(101, 20);
@@ -822,7 +822,7 @@ namespace thepos
             this.lblBusinessDateTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblBusinessDateTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblBusinessDateTitle.ForeColor = System.Drawing.Color.White;
-            this.lblBusinessDateTitle.Location = new System.Drawing.Point(603, 13);
+            this.lblBusinessDateTitle.Location = new System.Drawing.Point(568, 13);
             this.lblBusinessDateTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblBusinessDateTitle.Name = "lblBusinessDateTitle";
             this.lblBusinessDateTitle.Size = new System.Drawing.Size(56, 17);

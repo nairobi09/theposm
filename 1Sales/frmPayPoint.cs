@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using System.Collections;
+using Newtonsoft.Json.Linq;
 
 namespace thepos
 {
@@ -87,18 +88,38 @@ namespace thepos
 
             if (mTicketType == "PA") //  포인트선불
             {
-                //? 서버요청으로 대체
-                for (int i = 0; i < mTicketFlowList.Count; i++)
+                // (충전금액 사용금액 비교) 충전금액 - 사용금액 => 사용가능금액
+                String sUrl = "ticketFlow?ticketNo=" + ticketNo;
+
+                if (mRequestGet(sUrl))
                 {
-                    if (mTicketFlowList[i].ticket_no == ticketNo)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        if (mTicketFlowList[i].point_charge < mTicketFlowList[i].point_usage + netAmount)
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
                         {
-                            MessageBox.Show("포인트 잔액 부족.", "thepos");
-                            return;
+                            int charge = convert_number(arr[i]["pointCharge"].ToString());
+                            int usage = convert_number( arr[i]["pointUsage"].ToString());
+
+                            if (charge < usage + netAmount)
+                            {
+                                MessageBox.Show("포인트 잔액 부족.", "thepos");
+                                return;
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+                }
+
             }
             else
             {
@@ -108,11 +129,8 @@ namespace thepos
 
 
 
-            //? 서버API로 교체
             int order_cnt = 0;
-
             int paySeq = 1;
-
 
             // 주문 저장 1
             order_cnt = SaveOrder(ticketNo);  // order. orderitem
@@ -121,28 +139,29 @@ namespace thepos
 
 
 
-            // 결제 항목 저장
-            PaymentPoint mPaymentPoint = new PaymentPoint();
-            mPaymentPoint.site_id = mSiteId;
-            mPaymentPoint.biz_dt = mBizDate;
-            mPaymentPoint.pos_no = mPosNo;
-            mPaymentPoint.the_no = mTheNo;
-            mPaymentPoint.ref_no = mRefNo;
 
-            mPaymentPoint.pay_date = get_today_date();
-            mPaymentPoint.pay_time = get_today_time();
-            mPaymentPoint.pay_type = mTicketType;       // 결제구분 : 포인트 선불:PA 후불:PD
-            mPaymentPoint.tran_type = "A";       // 승인 A 취소 C
-            mPaymentPoint.pay_class = mPayClass;
-            mPaymentPoint.ticket_no = ticketNo;
-            mPaymentPoint.usage_no = get_point_usage_no();               // 포인트는 다른결제(복합결제)와 달리 포인트 사용건의 구분번호
-            mPaymentPoint.amount = netAmount;    // 결제금액
-            mPaymentPoint.is_cancel = "";        // 취소여부
-            mPaymentPoints.Add(mPaymentPoint);
+            PaymentPoint paymentPoint = new PaymentPoint();
+
+            paymentPoint.site_id = mSiteId;
+            paymentPoint.biz_dt = mBizDate;
+            paymentPoint.pos_no = mPosNo;
+            paymentPoint.the_no = mTheNo;
+            paymentPoint.ref_no = mRefNo;
+
+            paymentPoint.pay_date = get_today_date();
+            paymentPoint.pay_time = get_today_time();
+            paymentPoint.pay_type = mTicketType;        // 선불 후불
+            paymentPoint.tran_type = "A";               // 승인 A 취소 C
+            paymentPoint.pay_class = mPayClass;
+            paymentPoint.ticket_no = ticketNo;
+            paymentPoint.usage_no = "";
+            paymentPoint.amount = netAmount;
+            paymentPoint.is_cancel = "";                // 취소여부
+
+            SavePaymentPoint(paymentPoint);
 
 
             SetDisplayAlarm("I", "주문" + order_cnt + "건 포인트 결제 등록.");
-
 
 
             // 티켓 저장
@@ -156,13 +175,58 @@ namespace thepos
                 // 영수증 출력 개발요망
             }
 
-
             mClearSaleForm();
 
-
             this.Close();
+        }
+
+
+
+        private bool SavePaymentPoint(PaymentPoint mPaymentPoint)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Clear();
+            parameters["siteId"] = mPaymentPoint.site_id;
+            parameters["posNo"] = mPaymentPoint.pos_no;
+            parameters["bizDt"] = mPaymentPoint.biz_dt;
+            parameters["theNo"] = mPaymentPoint.the_no;
+            parameters["refNo"] = mPaymentPoint.ref_no;
+
+            parameters["payDate"] = mPaymentPoint.pay_date;
+            parameters["payTime"] = mPaymentPoint.pay_time;
+            parameters["payType"] = mPaymentPoint.pay_type;
+            parameters["tranType"] = mPaymentPoint.tran_type;
+            parameters["payClass"] = mPaymentPoint.pay_class;
+
+            parameters["ticketNo"] = mPaymentPoint.ticket_no;
+            parameters["usage_no"] = mPaymentPoint.usage_no;
+            parameters["amount"] = mPaymentPoint.amount + "";
+            parameters["isCancel"] = mPaymentPoint.is_cancel;
+
+            if (mRequestPost("paymentPoint", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류 paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류 paymentPointd\n\n" + mErrorMsg, "thepos");
+                return false;
+            }
+
+            return true;
 
         }
+
+
+
 
 
         String get_point_usage_no()

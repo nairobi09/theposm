@@ -420,7 +420,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품그룹정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -468,7 +468,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품그룹정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -911,6 +911,7 @@ namespace thepos
             if (mPayClass == "OR") // 주문(접수-발권)
             {
                 int ticket_seq = 0;
+                String t_ticket_no = "";
 
                 for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
                 {
@@ -919,66 +920,71 @@ namespace thepos
 
                     if (orderItem.ticket == "Y")
                     {
-
-                        //? 띠지 or 팔찌 -> 구분하여 
-                        if (mTicketMedia == "BC")  // 띠지
+                        for (int k = 0; k < orderItem.cnt; k++)
                         {
-                            for (int k = 0; k < orderItem.cnt; k++)
+                            ticket_seq++;
+
+                            if (mTicketMedia == "BC")  // 띠지
                             {
-                                ticket_seq++;
+                                t_ticket_no = mTheNo + ticket_seq.ToString("000");
 
-                                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                                parameters.Clear();
-                                parameters["siteId"] = mSiteId;
-                                parameters["bizDt"] = mBizDate;
-                                parameters["theNo"] = mTheNo;
-                                parameters["refNo"] = mRefNo;
+                                //? 띠지 출력 필요
+                                MessageBox.Show("띠지 출력입니다... " + t_ticket_no);
 
-                                parameters["ticketNo"] = mTheNo + ticket_seq.ToString("000");
-                                parameters["ticketingDt"] = get_today_date() + get_today_time();
-                                parameters["chargeDt"] = "";
-                                parameters["settlementDt"] = "";
+                            }
+                            else  // 팔찌
+                            {
 
-                                parameters["pointCharge"] = "0";
-                                parameters["pointUsage"] = "0";
-                                parameters["settlePointCharge"] = "0";
-                                parameters["settlePointUsage"] = "0";
+                                //? 팔찌이면 스케너 입력로직 필요
+                                MessageBox.Show("스캐너 입력입니다... ");
 
-                                parameters["itemCode"] = orderItem.code;
-                                parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
-                                parameters["lockerNo"] = "";
-                                parameters["openLocker"] = "1";             // 선불 :  항상 open
-                                                                            // 후불 :  최초 open -> 사용 close -> 정산 open
+                                //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
+                                t_ticket_no = mTheNo + ticket_seq.ToString("000");  // 임시
 
-                                if (mRequestPost("ticketFlow", parameters))
+                            }
+
+
+
+                            Dictionary<string, string> parameters = new Dictionary<string, string>();
+                            parameters.Clear();
+                            parameters["siteId"] = mSiteId;
+                            parameters["bizDt"] = mBizDate;
+                            parameters["theNo"] = mTheNo;
+                            parameters["refNo"] = mRefNo;
+
+                            parameters["ticketNo"] = t_ticket_no;
+                            parameters["ticketingDt"] = get_today_date() + get_today_time();
+                            parameters["chargeDt"] = "";
+                            parameters["settlementDt"] = "";
+
+                            parameters["pointCharge"] = "0";
+                            parameters["pointUsage"] = "0";
+                            parameters["settlePointCharge"] = "0";
+                            parameters["settlePointUsage"] = "0";
+
+                            parameters["itemCode"] = orderItem.code;
+                            parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
+                            parameters["lockerNo"] = "";
+                            parameters["openLocker"] = "1";             // 선불 :  항상 open
+                                                                        // 후불 :  최초 open -> 사용 close -> 정산 open
+                            if (mRequestPost("ticketFlow", parameters))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
                                 {
-                                    if (mObj["resultCode"].ToString() == "200")
-                                    {
 
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                                        return -1;
-                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("시스템오류 ticketFlow\n\n" + mErrorMsg, "thepos");
+                                    MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                                     return -1;
                                 }
-
-
-                                //? 띠지 출력 필요
-                                MessageBox.Show("띠지 출력...");
-
-                            } 
-                        }
-                        else
-                        {
-                            //? 팔찌이면 스케너 입력로직 필요
-
-                        }
+                            }
+                            else
+                            {
+                                MessageBox.Show("시스템오류 ticketFlow\n\n" + mErrorMsg, "thepos");
+                                return -1;
+                            }
+                        } 
 
                     }
                 }

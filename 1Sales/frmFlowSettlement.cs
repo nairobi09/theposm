@@ -31,29 +31,24 @@ namespace thepos
             lblTitle.Font = font12;
             btnClose.Font = font12;
 
-            dtBusiness.Font = font10;
+            lblBizDtTitle.Font = font9;
+            dtBizDt.Font = font10;
 
-            lbl1.Font = font9;
-            lbl2.Font = font9;
-            lbl3.Font = font9;
-            lbl4.Font = font9;
-
-            dtBusiness.Font = font10;
+            lblPosNoTitle.Font = font9;
             cbPosNo.Font = font10;
-            tbTicketNo.Font = font12;
+
+            lblTicketNoTitle.Font = font9;
+            tbTicketNo.Font = font10bold;
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
             lvwFlowPay.Font = font10;
 
-
-
-
         }
 
         private void initialize_the()
         {
-            dtBusiness.Value = DateTime.Now;
+            dtBizDt.Value = DateTime.Now;
 
 
             ImageList imgList = new ImageList();
@@ -67,7 +62,7 @@ namespace thepos
                 cbPosNo.Items.Add(mPosNoList[i]);
                 if (mPosNoList[i] == mPosNo) cbPosNo.SelectedIndex = i;
             }
-
+            
 
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbTicketNo;
@@ -85,7 +80,7 @@ namespace thepos
 
             if (t7No.Length == 7)
             {
-                ticketNo = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
+                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
             }
 
 
@@ -569,7 +564,7 @@ namespace thepos
                     int mm = int.Parse(dt.Substring(4, 2));
                     int dd = int.Parse(dt.Substring(6, 2));
 
-                    dtBusiness.Value = new DateTime(yyyy, mm, dd);
+                    dtBizDt.Value = new DateTime(yyyy, mm, dd);
 
                     for (int i = 0; i < cbPosNo.Items.Count; i++)
                     {

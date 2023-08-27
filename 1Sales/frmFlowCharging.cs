@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
+using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace thepos
 {
@@ -31,15 +33,15 @@ namespace thepos
             lblTitle.Font = font12;
             btnClose.Font = font12;
 
-            dtBusiness.Font = font10;
+            lblBizDtTitle.Font = font9;
+            dtBizDt.Font = font10;
 
-            lbl1.Font = font9;
-            lbl2.Font = font9;
-            lbl3.Font = font9;
-
-            dtBusiness.Font = font10;
+            lblPosNoTitle.Font = font10;
             cbPosNo.Font = font10;
-            tbTicketNo.Font = font14;
+
+            lblTicketNoTitle.Font = font9;
+            tbTicketNo.Font = font10bold;
+
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
@@ -52,32 +54,31 @@ namespace thepos
             btn10t.Font = font10;
             btn50t.Font = font10;
             btn100t.Font = font10;
-
-
-
         }
+
         private void initialize_the()
         {
-            dtBusiness.Value = DateTime.Now;
-
-
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwFlow.SmallImageList = imgList;
+
+            saveKeyDisplay = mTbKeyDisplayController;
+            mTbKeyDisplayController = tbTicketNo;
+
+            mPayClass = "CH"; // 충전 charge
+
+
+            //dtBusiness.Value = DateTime.Now;
+            dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+
 
             cbPosNo.Items.Clear();
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
-                if (mPosNoList[i] == mPosNo) cbPosNo.SelectedIndex = i;
             }
+            cbPosNo.Items.Add("");
 
-
-            saveKeyDisplay = mTbKeyDisplayController;
-            mTbKeyDisplayController = tbTicketNo;
-
-
-            mPayClass = "CH"; // 충전 charge
 
         }
 
@@ -97,60 +98,97 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+
+            if (cbPosNo.SelectedIndex < 0) return;
+
+
+            String biz_date = dtBizDt.Value.ToString("yyyyMMdd");
+            String pos_no = cbPosNo.Text;
+
             String ticketNo = "";
             String t7No = tbTicketNo.Text;
 
             if (t7No.Length == 7)
             {
-                ticketNo = mSiteId + dtBusiness.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
+                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
             }
 
-            view_flow(ticketNo);
 
+            view_flow(biz_date, pos_no, ticketNo);
         }
 
 
-        public void view_flow(String ticket_no)
+        public void view_flow(String biz_date, String pos_no, String t_no)
         {
 
             lvwFlow.Items.Clear();
 
-            for (int i = 0; i < mTicketFlowList.Count; i++)
+
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&ticketNo=" + t_no;
+
+            if (mRequestGet(sUrl))
             {
-                ListViewItem item = new ListViewItem();
-                item.Tag = mTicketFlowList[i].ticket_no;
-
-                String tStat = "";
-
-                if (mTicketFlowList[i].flow_step == "0") tStat = "접수";
-                else if (mTicketFlowList[i].flow_step == "1") tStat = "발권";
-                else if (mTicketFlowList[i].flow_step == "2") tStat = "충전";
-                else if (mTicketFlowList[i].flow_step == "3") tStat = "사용중";
-                else if (mTicketFlowList[i].flow_step == "4") tStat = "정산완료";
-
-                item.Text = tStat;
-                item.Tag = mTicketFlowList[i].ticket_no;
-                item.SubItems.Add(get_goods_name(mTicketFlowList[i].goods_code));
-                item.SubItems.Add(mTicketFlowList[i].ticket_no.Substring(14, 4) + "-" + mTicketFlowList[i].ticket_no.Substring(18, 3));
-
-                String tStr = "";
-
-                if (mTicketFlowList[i].charge_dt != "")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    tStr = mTicketFlowList[i].charge_dt.Substring(8, 2) + ":" +
-                                  mTicketFlowList[i].charge_dt.Substring(10, 2) + ":" +
-                                  mTicketFlowList[i].charge_dt.Substring(12, 2);
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        String ticket_no = arr[i]["ticketNo"].ToString();
+                        String tStat = arr[i]["flowStep"].ToString();
+                        String ticketing_dt = arr[i]["ticketingDt"].ToString();
+                        String charge_dt = arr[i]["chargeDt"].ToString();
+                        int point_charge = convert_number(arr[i]["pointCharge"].ToString());
+
+
+                        if (tStat == "0") tStat = "접수";
+                        else if (tStat == "1") tStat = "발권";
+                        else if (tStat == "2") tStat = "충전";
+                        else if (tStat == "3") tStat = "사용중";
+                        else if (tStat == "4") tStat = "정산완료";
+
+                        item.Text = tStat;
+                        item.Tag = ticket_no;
+
+                        item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
+                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
+
+                        String tStr = "";
+
+                        if (charge_dt != "")
+                        {
+                            tStr = charge_dt.Substring(8, 2) + ":" +
+                                    charge_dt.Substring(10, 2) + ":" +
+                                    charge_dt.Substring(12, 2);
+                        }
+                        item.SubItems.Add(tStr);
+
+                        item.SubItems.Add(point_charge.ToString("N0"));
+
+                        lvwFlow.Items.Add(item);
+
+
+                        if (ticket_no == t_no)
+                        {
+                            lvwFlow.Items[i].Selected = true;
+                        }
+                    }
+
                 }
-
-                item.SubItems.Add(tStr);
-                item.SubItems.Add(mTicketFlowList[i].point_charge.ToString("N0"));
-                lvwFlow.Items.Add(item);
-
-                if (mTicketFlowList[i].ticket_no == ticket_no)
+                else
                 {
-                    lvwFlow.Items[i].Selected = true;
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
         }
 
         private void btnScanner_Click(object sender, EventArgs e)
@@ -174,7 +212,7 @@ namespace thepos
                     int mm = int.Parse(dt.Substring(4, 2));
                     int dd = int.Parse(dt.Substring(6, 2));
 
-                    dtBusiness.Value = new DateTime(yyyy, mm, dd);
+                    dtBizDt.Value = new DateTime(yyyy, mm, dd);
 
                     for (int i = 0; i < cbPosNo.Items.Count; i++)
                     {
@@ -186,7 +224,8 @@ namespace thepos
 
                     tbTicketNo.Text = t7no;
 
-                    view_flow(mScanString);
+
+                    view_flow(dt, posno, mScanString);
 
                 }
                 catch

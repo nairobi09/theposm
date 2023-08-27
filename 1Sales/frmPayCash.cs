@@ -139,6 +139,10 @@ namespace thepos
             {
                 // 주문 저장 1
                 order_cnt = SaveOrder(ticketNo);  // order. orderitem
+                if (order_cnt == -1)
+                {
+                    return; // 재로그인 요구
+                }
             }
 
 
@@ -257,15 +261,18 @@ namespace thepos
 
 
 
+                    //? 모듈화?
+                    if (MessageBox.Show("영수증을 출력할까요?.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
 
-                    // 영수증 출력
-                    String headerBill = make_bill_header();
-                    String bodyBill = make_bill_body(mTheNo, "A", "");
-                    String trailerBill = make_bill_trailer();
+                        // 영수증 출력
+                        String headerBill = make_bill_header();
+                        String bodyBill = make_bill_body(mTheNo, "A", "");
+                        String trailerBill = make_bill_trailer();
 
 
-                    PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
-
+                        PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
+                    }
 
 
                 }
@@ -379,6 +386,10 @@ namespace thepos
                 {
                     // 주문 저장 1
                     order_cnt = SaveOrder(ticketNo);  // order. orderitem
+                    if (order_cnt == -1)
+                    {
+                        return; // 재로그인 요구
+                    }
                 }
 
                 SavePayment(paySeq, "Cash", netAmount);  // payment
