@@ -153,13 +153,14 @@
             // 
             this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbTicketNo.Location = new System.Drawing.Point(185, 30);
             this.tbTicketNo.MaxLength = 7;
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(85, 23);
             this.tbTicketNo.TabIndex = 74;
             this.tbTicketNo.TabStop = false;
+            this.tbTicketNo.Text = "0000000";
             this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTicketNoTitle
@@ -170,7 +171,7 @@
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(53, 12);
             this.lblTicketNoTitle.TabIndex = 70;
-            this.lblTicketNoTitle.Text = "발권번호";
+            this.lblTicketNoTitle.Text = "####-###";
             this.lblTicketNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbPosNo

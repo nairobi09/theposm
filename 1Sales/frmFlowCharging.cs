@@ -78,6 +78,7 @@ namespace thepos
                 cbPosNo.Items.Add(mPosNoList[i]);
             }
             cbPosNo.Items.Add("");
+            cbPosNo.SelectedIndex = cbPosNo.Items.Count - 1;
 
 
         }
@@ -108,9 +109,9 @@ namespace thepos
             String ticketNo = "";
             String t7No = tbTicketNo.Text;
 
-            if (t7No.Length == 7)
+            if (t7No.Length == 7 & pos_no.Length == 2)
             {
-                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
+                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + pos_no + t7No;
             }
 
 
@@ -159,9 +160,10 @@ namespace thepos
 
                         if (charge_dt != "")
                         {
-                            tStr = charge_dt.Substring(8, 2) + ":" +
-                                    charge_dt.Substring(10, 2) + ":" +
-                                    charge_dt.Substring(12, 2);
+                            tStr = charge_dt.Substring(4, 2) + "-" +
+                                   charge_dt.Substring(6, 2) + " " +
+                                   charge_dt.Substring(8, 2) + ":" +
+                                   charge_dt.Substring(10, 2);
                         }
                         item.SubItems.Add(tStr);
 
@@ -231,7 +233,7 @@ namespace thepos
                 catch
                 {
                     SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    return;
+                    //return;
                 }
             }
 

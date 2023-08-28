@@ -96,9 +96,10 @@ namespace thepos
                         item.Text = tStat;
                         item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
                         item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
-                        item.SubItems.Add(ticketing_dt.Substring(8, 2) + ":" +
-                                          ticketing_dt.Substring(10, 2) + ":" +
-                                          ticketing_dt.Substring(12, 2));
+                        item.SubItems.Add(ticketing_dt.Substring(4, 2) + "-" +
+                                           ticketing_dt.Substring(6, 2) + " " +
+                                           ticketing_dt.Substring(8, 2) + ":" +
+                                           ticketing_dt.Substring(10, 2));
 
                         item.Tag = ticket_no;
 

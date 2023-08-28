@@ -45,6 +45,8 @@
             this.dtBizDt = new System.Windows.Forms.DateTimePicker();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.lblTicketNoTitle = new System.Windows.Forms.Label();
+            this.cbPosNo = new System.Windows.Forms.ComboBox();
+            this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.lvwFlow = new System.Windows.Forms.ListView();
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,8 +56,6 @@
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.cbPosNo = new System.Windows.Forms.ComboBox();
-            this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +85,8 @@
             // 
             // tbChargeAmt
             // 
-            this.tbChargeAmt.Location = new System.Drawing.Point(355, 351);
+            this.tbChargeAmt.Location = new System.Drawing.Point(108, 424);
+            this.tbChargeAmt.MaxLength = 7;
             this.tbChargeAmt.Name = "tbChargeAmt";
             this.tbChargeAmt.Size = new System.Drawing.Size(132, 22);
             this.tbChargeAmt.TabIndex = 84;
@@ -96,7 +97,7 @@
             this.btnReset.BackColor = System.Drawing.Color.Gray;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(184, 403);
+            this.btnReset.Location = new System.Drawing.Point(416, 468);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(66, 46);
             this.btnReset.TabIndex = 83;
@@ -109,7 +110,7 @@
             this.btnCharge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCharge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCharge.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCharge.Location = new System.Drawing.Point(355, 403);
+            this.btnCharge.Location = new System.Drawing.Point(108, 468);
             this.btnCharge.Name = "btnCharge";
             this.btnCharge.Size = new System.Drawing.Size(133, 46);
             this.btnCharge.TabIndex = 82;
@@ -120,7 +121,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(289, 358);
+            this.label1.Location = new System.Drawing.Point(42, 431);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 80;
@@ -128,7 +129,7 @@
             // 
             // btn1t
             // 
-            this.btn1t.Location = new System.Drawing.Point(40, 403);
+            this.btn1t.Location = new System.Drawing.Point(272, 468);
             this.btn1t.Name = "btn1t";
             this.btn1t.Size = new System.Drawing.Size(66, 46);
             this.btn1t.TabIndex = 77;
@@ -138,7 +139,7 @@
             // 
             // btn10t
             // 
-            this.btn10t.Location = new System.Drawing.Point(40, 351);
+            this.btn10t.Location = new System.Drawing.Point(272, 416);
             this.btn10t.Name = "btn10t";
             this.btn10t.Size = new System.Drawing.Size(66, 46);
             this.btn10t.TabIndex = 77;
@@ -148,7 +149,7 @@
             // 
             // btn5t
             // 
-            this.btn5t.Location = new System.Drawing.Point(112, 403);
+            this.btn5t.Location = new System.Drawing.Point(344, 468);
             this.btn5t.Name = "btn5t";
             this.btn5t.Size = new System.Drawing.Size(66, 46);
             this.btn5t.TabIndex = 78;
@@ -158,7 +159,7 @@
             // 
             // btn50t
             // 
-            this.btn50t.Location = new System.Drawing.Point(112, 351);
+            this.btn50t.Location = new System.Drawing.Point(344, 416);
             this.btn50t.Name = "btn50t";
             this.btn50t.Size = new System.Drawing.Size(66, 46);
             this.btn50t.TabIndex = 78;
@@ -168,7 +169,7 @@
             // 
             // btn100t
             // 
-            this.btn100t.Location = new System.Drawing.Point(184, 351);
+            this.btn100t.Location = new System.Drawing.Point(416, 416);
             this.btn100t.Name = "btn100t";
             this.btn100t.Size = new System.Drawing.Size(66, 46);
             this.btn100t.TabIndex = 79;
@@ -231,21 +232,44 @@
             this.tbTicketNo.Location = new System.Drawing.Point(189, 33);
             this.tbTicketNo.MaxLength = 7;
             this.tbTicketNo.Name = "tbTicketNo";
-            this.tbTicketNo.Size = new System.Drawing.Size(74, 23);
+            this.tbTicketNo.Size = new System.Drawing.Size(81, 23);
             this.tbTicketNo.TabIndex = 74;
-            this.tbTicketNo.Text = "0000000";
             this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTicketNoTitle
             // 
             this.lblTicketNoTitle.AutoSize = true;
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(187, 19);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(192, 19);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(53, 12);
             this.lblTicketNoTitle.TabIndex = 70;
-            this.lblTicketNoTitle.Text = "발권번호";
+            this.lblTicketNoTitle.Text = "####-###";
             this.lblTicketNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cbPosNo
+            // 
+            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.FormattingEnabled = true;
+            this.cbPosNo.Items.AddRange(new object[] {
+            "",
+            "01",
+            "02",
+            "03"});
+            this.cbPosNo.Location = new System.Drawing.Point(127, 35);
+            this.cbPosNo.Name = "cbPosNo";
+            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
+            this.cbPosNo.TabIndex = 73;
+            // 
+            // lblPosNoTitle
+            // 
+            this.lblPosNoTitle.AutoSize = true;
+            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.Location = new System.Drawing.Point(121, 19);
+            this.lblPosNoTitle.Name = "lblPosNoTitle";
+            this.lblPosNoTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblPosNoTitle.TabIndex = 69;
+            this.lblPosNoTitle.Text = "포스번호";
             // 
             // btnView
             // 
@@ -275,7 +299,7 @@
             this.lvwFlow.Location = new System.Drawing.Point(20, 145);
             this.lvwFlow.MultiSelect = false;
             this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 183);
+            this.lvwFlow.Size = new System.Drawing.Size(483, 254);
             this.lvwFlow.TabIndex = 67;
             this.lvwFlow.UseCompatibleStateImageBehavior = false;
             this.lvwFlow.View = System.Windows.Forms.View.Details;
@@ -296,12 +320,12 @@
             // 
             // charege_dt
             // 
-            this.charege_dt.Text = "충전시간";
-            this.charege_dt.Width = 70;
+            this.charege_dt.Text = "충전일시";
+            this.charege_dt.Width = 90;
             // 
             // amt
             // 
-            this.amt.Text = "충전금액";
+            this.amt.Text = "충전잔액";
             this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amt.Width = 80;
             // 
@@ -332,30 +356,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "충전";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cbPosNo
-            // 
-            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Items.AddRange(new object[] {
-            "",
-            "01",
-            "02",
-            "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(127, 35);
-            this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(40, 21);
-            this.cbPosNo.TabIndex = 73;
-            // 
-            // lblPosNoTitle
-            // 
-            this.lblPosNoTitle.AutoSize = true;
-            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNoTitle.Location = new System.Drawing.Point(121, 19);
-            this.lblPosNoTitle.Name = "lblPosNoTitle";
-            this.lblPosNoTitle.Size = new System.Drawing.Size(53, 12);
-            this.lblPosNoTitle.TabIndex = 69;
-            this.lblPosNoTitle.Text = "포스번호";
             // 
             // frmFlowCharging
             // 

@@ -136,7 +136,7 @@
             this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(403, 473);
+            this.btnPrint.Location = new System.Drawing.Point(403, 620);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(100, 48);
             this.btnPrint.TabIndex = 48;
@@ -158,7 +158,7 @@
             this.lvwFlow.Location = new System.Drawing.Point(20, 139);
             this.lvwFlow.MultiSelect = false;
             this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 320);
+            this.lvwFlow.Size = new System.Drawing.Size(483, 468);
             this.lvwFlow.TabIndex = 44;
             this.lvwFlow.UseCompatibleStateImageBehavior = false;
             this.lvwFlow.View = System.Windows.Forms.View.Details;
@@ -180,7 +180,7 @@
             // ticket_dt
             // 
             this.ticket_dt.Text = "발권시간";
-            this.ticket_dt.Width = 70;
+            this.ticket_dt.Width = 90;
             // 
             // frmFlowTicketing
             // 
