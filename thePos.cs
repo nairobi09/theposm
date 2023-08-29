@@ -427,7 +427,7 @@ namespace thepos
         {
             public String site_id;
             public String biz_dt;  // yyyyMMdd
-            public string pos_no;
+//            public string pos_no;
             public String the_no;   // 결제단위
             public String ref_no;   // 입장단위
             

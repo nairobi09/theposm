@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
+using Newtonsoft.Json.Linq;
 
 namespace thepos
 {
@@ -56,13 +57,17 @@ namespace thepos
             lvwFlow.SmallImageList = imgList;
             lvwFlowPay.SmallImageList = imgList;
 
+            dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+
+
             cbPosNo.Items.Clear();
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
-                if (mPosNoList[i] == mPosNo) cbPosNo.SelectedIndex = i;
             }
-            
+            cbPosNo.Items.Add("");
+            cbPosNo.SelectedIndex = cbPosNo.Items.Count - 1;
+
 
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbTicketNo;
@@ -75,59 +80,83 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            if (cbPosNo.SelectedIndex < 0) return;
+
+
+            String biz_date = dtBizDt.Value.ToString("yyyyMMdd");
+            String pos_no = cbPosNo.Text;
+
             String ticketNo = "";
             String t7No = tbTicketNo.Text;
 
-            if (t7No.Length == 7)
+            if (t7No.Length == 7 & pos_no.Length == 2)
             {
-                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + cbPosNo.Text + t7No;
+                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + pos_no + t7No;
             }
 
 
-            view_flow(ticketNo);
+            view_flow(biz_date, pos_no, ticketNo);
+
         }
 
-        public void view_flow(String ticket_no)
+
+        public void view_flow(String biz_date, String pos_no, String t_no)
         { 
 
-            
             lvwFlow.Items.Clear();
             lvwFlowPay.Items.Clear();
             mLvwOrderItem.Items.Clear();
 
 
-            //? 서버 API로 교체필요
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&ticketNo=" + t_no;
 
-            for (int i = 0; i < mTicketFlowList.Count; i++)
+            if (mRequestGet(sUrl))
             {
-
-
-
-                ListViewItem item = new ListViewItem();
-
-                item.Tag = mTicketFlowList[i].ticket_no;
-                item.Text = mTicketFlowList[i].ticket_no.Substring(14, 4) + "-" + mTicketFlowList[i].ticket_no.Substring(18, 3);
-                item.SubItems.Add(mTicketFlowList[i].point_charge.ToString("N0"));
-                item.SubItems.Add(mTicketFlowList[i].point_usage.ToString("N0"));
-
-                String tStat = "";
-                if (mTicketFlowList[i].flow_step == "0") tStat = "접수";
-                else if (mTicketFlowList[i].flow_step == "1") tStat = "발권";
-                else if (mTicketFlowList[i].flow_step == "2") tStat = "충전";
-                else if (mTicketFlowList[i].flow_step == "3") tStat = "사용중";
-                else if (mTicketFlowList[i].flow_step == "4") tStat = "정산완료";
-
-                item.SubItems.Add(tStat);
-
-                lvwFlow.Items.Add(item);
-
-
-                if (mTicketFlowList[i].ticket_no == ticket_no)
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    lvwFlow.Items[i].Selected = true;
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem item = new ListViewItem();
+
+                        String ticket_no = arr[i]["ticketNo"].ToString();
+                        String tStat = arr[i]["flowStep"].ToString();
+                        int charge_amt = convert_number(arr[i]["pointCharge"].ToString());
+                        int usage_amt = convert_number(arr[i]["pointUsage"].ToString());
+
+                        if (tStat == "0") tStat = "접수";
+                        else if (tStat == "1") tStat = "발권";
+                        else if (tStat == "2") tStat = "충전";
+                        else if (tStat == "3") tStat = "사용중";
+                        else if (tStat == "4") tStat = "정산완료";
+
+
+                        item.Tag = ticket_no;
+                        item.Text = ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3);
+                        item.SubItems.Add(charge_amt.ToString("N0"));
+                        item.SubItems.Add(usage_amt.ToString("N0"));
+
+                        item.SubItems.Add(tStat);
+
+                        lvwFlow.Items.Add(item);
+
+                        if (ticket_no == t_no)
+                        {
+                            lvwFlow.Items[i].Selected = true;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
-
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
 
 
         }
@@ -149,18 +178,52 @@ namespace thepos
         {
             if (lvwFlow.SelectedItems.Count == 0) return;
 
-
             String ticket_no = lvwFlow.SelectedItems[0].Tag.ToString();
 
-            for (int i = 0; i < mTicketFlowList.Count; i++)
+            String sUrl = "ticketFlow?ticketNo=" + ticket_no;
+
+            if (mRequestGet(sUrl))
             {
-                if (mTicketFlowList[i].ticket_no == ticket_no)
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    mThisTicketFlow = mTicketFlowList[i];  // 저장해둔다...
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mThisTicketFlow.site_id = arr[i]["siteId"].ToString();
+                        mThisTicketFlow.biz_dt = arr[i]["bizDt"].ToString();
+                        mThisTicketFlow.the_no = arr[i]["theNo"].ToString();
+                        mThisTicketFlow.ref_no = arr[i]["refNo"].ToString();
+
+                        mThisTicketFlow.ticket_no = arr[i]["ticketNo"].ToString();
+                        mThisTicketFlow.ticketing_dt = arr[i]["ticketingDt"].ToString();
+                        mThisTicketFlow.charge_dt = arr[i]["chargeDt"].ToString();
+                        mThisTicketFlow.settlement_dt = arr[i]["settlementDt"].ToString();
+
+                        mThisTicketFlow.point_charge = convert_number(arr[i]["pointCharge"].ToString());
+                        mThisTicketFlow.point_usage = convert_number(arr[i]["pointUsage"].ToString());
+
+                        mThisTicketFlow.settle_point_charge = convert_number(arr[i]["settlePointCharge"].ToString());
+                        mThisTicketFlow.settle_point_usage = convert_number(arr[i]["settlePointUsage"].ToString());
+
+                        mThisTicketFlow.goods_code = arr[i]["itemCode"].ToString();
+                        mThisTicketFlow.flow_step = arr[i]["flowStep"].ToString();
+
+                        mThisTicketFlow.locker_no = arr[i]["lockerNo"].ToString();
+                        mThisTicketFlow.open_locker = arr[i]["openLocker"].ToString();
+
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
             }
-
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
 
 
             view_orderitem(ticket_no);
@@ -174,52 +237,66 @@ namespace thepos
 
         void view_orderitem(String ticket_no)
         {
-
-
             mLvwOrderItem.Items.Clear();
 
 
-
             //? 서버요청으로 변경 - 발생시간 순서, 
-            for (int i = 0; i < listOrderItem.Count; i++)
+            //? 이후 ticket_no key로 변경
+            //String sUrl = "orderItem?ticketNo=" + ticket_no;
+            String sUrl = "orderItem?refNo=" + ticket_no.Substring(0,18);
+
+            if (mRequestGet(sUrl))
             {
-                if (listOrderItem[i].ticket_no == ticket_no)
+                if (mObj["resultCode"].ToString() == "200")
                 {
+                    String data = mObj["orderItems"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                    MemOrderItem memOrderItem = new MemOrderItem();
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        if (arr[i]["ticketNo"].ToString() == ticket_no)
+                        {
+                            MemOrderItem memOrderItem = new MemOrderItem();
 
-                    memOrderItem.code = listOrderItem[i].code;
-                    memOrderItem.name = listOrderItem[i].name;
-                    memOrderItem.cnt = listOrderItem[i].cnt;
-                    memOrderItem.amt = listOrderItem[i].amt;
-                    memOrderItem.dc_amount = listOrderItem[i].dc_amount;
-                    memOrderItem.dcr_des = listOrderItem[i].dcr_des;
-                    memOrderItem.dcr_type = listOrderItem[i].dcr_type;
-                    memOrderItem.dcr_value = listOrderItem[i].dcr_value;
-                    memOrderItem.ticket = "";
-                    memOrderItem.pay_class = listOrderItem[i].pay_class; ;
-                    memOrderItem.ticket_no = listOrderItem[i].ticket_no;
+                            memOrderItem.code = arr[i]["itemCode"].ToString();
+                            memOrderItem.name = arr[i]["itemName"].ToString();
+                            memOrderItem.cnt = convert_number(arr[i]["cnt"].ToString());
+                            memOrderItem.amt = convert_number(arr[i]["amt"].ToString());
+                            memOrderItem.dc_amount = convert_number(arr[i]["dcAmount"].ToString());
+                            memOrderItem.dcr_des = arr[i]["dcrDes"].ToString();
+                            memOrderItem.dcr_type = arr[i]["dcrType"].ToString();
+                            memOrderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
+                            memOrderItem.ticket = "";
+                            memOrderItem.pay_class = arr[i]["payClass"].ToString();
+                            memOrderItem.ticket_no = arr[i]["ticketNo"].ToString();
 
 
-                    ListViewItem lvwitem = new ListViewItem();
-                    lvwitem.Tag = memOrderItem;
+                            ListViewItem lvwitem = new ListViewItem();
+                            lvwitem.Tag = memOrderItem;
 
-                    lvwitem.Text = "1";
-                    lvwitem.SubItems.Add(memOrderItem.name);                            // 1: name 상품명
-                    lvwitem.SubItems.Add(memOrderItem.amt.ToString("N0"));              // 2: amt 단가
-                    lvwitem.SubItems.Add(memOrderItem.cnt.ToString());                  // 3: cnt 수량
-                    lvwitem.SubItems.Add(memOrderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
+                            lvwitem.Text = "1";
+                            lvwitem.SubItems.Add(memOrderItem.name);                            // 1: name 상품명
+                            lvwitem.SubItems.Add(memOrderItem.amt.ToString("N0"));              // 2: amt 단가
+                            lvwitem.SubItems.Add(memOrderItem.cnt.ToString());                  // 3: cnt 수량
+                            lvwitem.SubItems.Add(memOrderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
 
-                    int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
-                    lvwitem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
-                    lvwitem.SubItems.Add(getDCRmemo(memOrderItem));                     // 6: 메모
-                    lvwitem.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
-                    mLvwOrderItem.Items.Add(lvwitem);
-
+                            int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
+                            lvwitem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
+                            lvwitem.SubItems.Add(getDCRmemo(memOrderItem));                     // 6: 메모
+                            lvwitem.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
+                            mLvwOrderItem.Items.Add(lvwitem);
+                        }
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
             }
-
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
 
 
             //  ReCalculate...
@@ -245,7 +322,6 @@ namespace thepos
                     Amount += (orderItem.cnt * orderItem.amt);
                     dcAmount += orderItem.dc_amount;
                 }
-
             }
 
             netAmount = Amount - dcAmount;
@@ -534,7 +610,7 @@ namespace thepos
             fPayCancel.ShowDialog();
 
             //? 화면갱신
-            view_flow(mThisTicketFlow.ticket_no);
+            //view_flow(mThisTicketFlow.ticket_no);
 
 
 
@@ -544,7 +620,6 @@ namespace thepos
 
         private void btnScanner_Click(object sender, EventArgs e)
         {
-
             btnScanner.Enabled = false;
 
             Form fFlow;
@@ -576,13 +651,12 @@ namespace thepos
 
                     tbTicketNo.Text = t7no;
 
-                    view_flow(mScanString);
-
+                    view_flow(dt, posno, mScanString);
                 }
                 catch
                 {
                     SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    return;
+                    //return;
                 }
             }
 

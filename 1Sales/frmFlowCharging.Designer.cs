@@ -190,14 +190,14 @@
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(482, 74);
+            this.panel1.Size = new System.Drawing.Size(482, 70);
             this.panel1.TabIndex = 76;
             // 
             // lblBizDtTitle
             // 
             this.lblBizDtTitle.AutoSize = true;
             this.lblBizDtTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizDtTitle.Location = new System.Drawing.Point(12, 19);
+            this.lblBizDtTitle.Location = new System.Drawing.Point(12, 16);
             this.lblBizDtTitle.Name = "lblBizDtTitle";
             this.lblBizDtTitle.Size = new System.Drawing.Size(53, 12);
             this.lblBizDtTitle.TabIndex = 71;
@@ -207,7 +207,7 @@
             // 
             this.btnScanner.BackColor = System.Drawing.Color.White;
             this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
-            this.btnScanner.Location = new System.Drawing.Point(382, 16);
+            this.btnScanner.Location = new System.Drawing.Point(382, 13);
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(85, 40);
             this.btnScanner.TabIndex = 75;
@@ -218,7 +218,7 @@
             // 
             this.dtBizDt.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBizDt.Location = new System.Drawing.Point(14, 34);
+            this.dtBizDt.Location = new System.Drawing.Point(14, 31);
             this.dtBizDt.Name = "dtBizDt";
             this.dtBizDt.Size = new System.Drawing.Size(97, 23);
             this.dtBizDt.TabIndex = 68;
@@ -229,7 +229,7 @@
             this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbTicketNo.Location = new System.Drawing.Point(189, 33);
+            this.tbTicketNo.Location = new System.Drawing.Point(189, 30);
             this.tbTicketNo.MaxLength = 7;
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(81, 23);
@@ -240,7 +240,7 @@
             // 
             this.lblTicketNoTitle.AutoSize = true;
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(192, 19);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(192, 16);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(53, 12);
             this.lblTicketNoTitle.TabIndex = 70;
@@ -256,7 +256,7 @@
             "01",
             "02",
             "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(127, 35);
+            this.cbPosNo.Location = new System.Drawing.Point(127, 32);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(40, 21);
             this.cbPosNo.TabIndex = 73;
@@ -265,7 +265,7 @@
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNoTitle.Location = new System.Drawing.Point(121, 19);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(121, 16);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(53, 12);
             this.lblPosNoTitle.TabIndex = 69;
@@ -276,7 +276,7 @@
             this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(287, 16);
+            this.btnView.Location = new System.Drawing.Point(287, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(85, 40);
             this.btnView.TabIndex = 72;

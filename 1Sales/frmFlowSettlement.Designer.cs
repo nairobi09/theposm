@@ -79,7 +79,7 @@
             // 
             this.lbl4.AutoSize = true;
             this.lbl4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl4.Location = new System.Drawing.Point(21, 278);
+            this.lbl4.Location = new System.Drawing.Point(21, 329);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(53, 12);
             this.lbl4.TabIndex = 71;
@@ -91,7 +91,7 @@
             this.btnCancelReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancelReq.ForeColor = System.Drawing.Color.White;
-            this.btnCancelReq.Location = new System.Drawing.Point(380, 466);
+            this.btnCancelReq.Location = new System.Drawing.Point(380, 469);
             this.btnCancelReq.Name = "btnCancelReq";
             this.btnCancelReq.Size = new System.Drawing.Size(122, 48);
             this.btnCancelReq.TabIndex = 77;
@@ -113,7 +113,7 @@
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(482, 74);
+            this.panel1.Size = new System.Drawing.Size(482, 70);
             this.panel1.TabIndex = 76;
             // 
             // lblBizDtTitle
@@ -160,7 +160,6 @@
             this.tbTicketNo.Size = new System.Drawing.Size(85, 23);
             this.tbTicketNo.TabIndex = 74;
             this.tbTicketNo.TabStop = false;
-            this.tbTicketNo.Text = "0000000";
             this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTicketNoTitle
@@ -220,10 +219,10 @@
             this.lvwFlowPay.FullRowSelect = true;
             this.lvwFlowPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwFlowPay.HideSelection = false;
-            this.lvwFlowPay.Location = new System.Drawing.Point(20, 293);
+            this.lvwFlowPay.Location = new System.Drawing.Point(20, 344);
             this.lvwFlowPay.MultiSelect = false;
             this.lvwFlowPay.Name = "lvwFlowPay";
-            this.lvwFlowPay.Size = new System.Drawing.Size(482, 158);
+            this.lvwFlowPay.Size = new System.Drawing.Size(482, 112);
             this.lvwFlowPay.TabIndex = 67;
             this.lvwFlowPay.UseCompatibleStateImageBehavior = false;
             this.lvwFlowPay.View = System.Windows.Forms.View.Details;
@@ -269,7 +268,7 @@
             this.lvwFlow.Location = new System.Drawing.Point(20, 145);
             this.lvwFlow.MultiSelect = false;
             this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 125);
+            this.lvwFlow.Size = new System.Drawing.Size(483, 171);
             this.lvwFlow.TabIndex = 67;
             this.lvwFlow.UseCompatibleStateImageBehavior = false;
             this.lvwFlow.View = System.Windows.Forms.View.Details;
