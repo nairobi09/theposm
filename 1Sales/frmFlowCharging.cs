@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using Newtonsoft.Json.Linq;
-using System.Runtime.InteropServices;
 
 namespace thepos
 {
