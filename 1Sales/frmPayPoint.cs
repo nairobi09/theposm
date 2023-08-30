@@ -83,9 +83,6 @@ namespace thepos
             }
 
 
-            mRefNo = ticketNo.Substring(0, 18);
-
-
             if (mTicketType == "PA") //  포인트선불
             {
                 // (충전금액 사용금액 비교) 충전금액 - 사용금액 => 사용가능금액
@@ -123,7 +120,7 @@ namespace thepos
             }
             else
             {
-                // 후불이면 검증안함.
+                // 후불이면 검증안함..
             }
 
 

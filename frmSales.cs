@@ -873,23 +873,82 @@ namespace thepos
             }
             else
             {
-                //?? 복합결제 서버save 필요
-                for (int i = 0; i < mPayments.Count; i++)
+                int amount_net = 0;
+                int amount_cash = 0;
+                int amount_card = 0;
+                int amount_easy = 0;
+                int amount_point = 0;
+
+
+                // GET
+                String sUrl = "payment?theNo=" + mTheNo;
+
+                if (mRequestGet(sUrl))
                 {
-                    if (mPayments[i].the_no == mTheNo)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        Payment p = new Payment();
-                        p = mPayments[i];
-                        p.net_amount += amount;
+                        String data = mObj["payments"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-                        if (payType == "Cash") p.amount_cash += amount;
-                        else if (payType == "Card") p.amount_card += amount;
-                        else if (payType == "Easy") p.amount_easy += amount;
-                        else if (payType == "Point") p.amount_point += amount;
+                        if (arr.Count != 1)
+                        {
+                            MessageBox.Show("결제데이터 오류 \n Cnt=" + arr.Count, "thepos");
+                            return false;
+                        }
 
-                        mPayments[i] = p;
+                        amount_net = convert_number(arr[0]["netAmount"].ToString());
+                        amount_cash = convert_number(arr[0]["amountCash"].ToString());
+                        amount_card = convert_number(arr[0]["amountCard"].ToString());
+                        amount_easy = convert_number(arr[0]["amountEasy"].ToString());
+                        amount_point = convert_number(arr[0]["amountPoint"].ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+                }
+
+
+
+                amount_net += amount;
+
+                if (payType == "Cash") amount_cash += amount;
+                else if (payType == "Card") amount_card += amount;
+                else if (payType == "Easy") amount_easy += amount;
+                else if (payType == "Point") amount_point += amount;
+
+
+
+                //
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["theNo"] = mTheNo;
+                
+                parameters["netAmount"] = amount_net + "";
+                parameters["amountCash"] = amount_cash + "";
+                parameters["amountCard"] = amount_card + "";
+                parameters["amountEasy"] = amount_easy + "";
+                parameters["amountPoint"] = amount_point + "";
+
+                if (mRequestPatch("payment", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
 
                     }
+                    else   조회결과가 없습니다.  확인필요~~~
+                    {
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
+                    return false;
                 }
             }
 
@@ -903,8 +962,6 @@ namespace thepos
         public static int SaveTicket(String ticket_no, String subClass)  // subClass : 사용 US,  충전 CH
         {
             // Order 0, charge 1, settlement 2
-
-            
             
             if (mPayClass == "OR") // 주문(접수-발권)
             {
@@ -913,7 +970,6 @@ namespace thepos
 
                 for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
                 {
-                    TicketFlow ticketFlow = new TicketFlow();
                     MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
 
                     if (orderItem.ticket == "Y")
@@ -932,15 +988,15 @@ namespace thepos
                             }
                             else  // 팔찌
                             {
-
                                 //? 팔찌이면 스케너 입력로직 필요
                                 MessageBox.Show("스캐너 입력입니다... ");
 
+
                                 //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
-                                t_ticket_no = mTheNo + ticket_seq.ToString("000");  // 임시
+                                t_ticket_no = mTheNo + ticket_seq.ToString("000");  //? 임시
+
 
                             }
-
 
 
                             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -1015,12 +1071,10 @@ namespace thepos
                         }
 
                         prev_point_charge = convert_number(arr[0]["pointCharge"].ToString());
-
-
                     }
                     else
                     {
-                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("티켓데이터 충전 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -1060,31 +1114,69 @@ namespace thepos
             }
             else if (mPayClass == "US") // 포인트 사용
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
-                int usage_amout = orderItem.amt;
+                
+                int usage_amout = mNetAmount;
+                String t_no = ticket_no;
 
+                int prev_point_usage = 0;
 
-                for (int i = 0; i < mTicketFlowList.Count; i++)
+                // GET
+                String sUrl = "ticketFlow?ticketNo=" + t_no;
+
+                if (mRequestGet(sUrl))
                 {
-                    if (mTicketFlowList[i].ticket_no == ticket_no)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        TicketFlow ticketFlow = new TicketFlow();
-                        ticketFlow = mTicketFlowList[i];
-                        ticketFlow.charge_dt = get_today_date() + get_today_time();
-                        ticketFlow.point_usage += usage_amout;
-                        ticketFlow.flow_step = "3";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-
-                        if (mTicketType == "PD") // 후불
+                        if (arr.Count != 1)
                         {
-                            ticketFlow.open_locker = "0"; // 폐쇄0 개방1
+                            MessageBox.Show("티켓데이터 사용 오류 \n ticketFlowCnt=" + arr.Count, "thepos");
+                            return -1;
                         }
 
-                        mTicketFlowList[i] = ticketFlow;
-
-                        return 1;
+                        prev_point_usage = convert_number(arr[0]["pointUsage"].ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+                }
+
+
+
+
+
+                // PATCH
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["ticketNo"] = t_no;
+                parameters["flowStep"] = "3";
+                parameters["pointUsage"] = prev_point_usage + usage_amout + "";
+
+                if (mRequestPatch("ticketFlow", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        MessageBox.Show("정상 사용 완료.", "thepos");
+                        return 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return -1;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return -1;
+                }
+
 
 
             }
@@ -1870,6 +1962,19 @@ namespace thepos
 
         private void btnFlowCharging_Click(object sender, EventArgs e)
         {
+            if (mTicketType == "PA")  //선불형
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("선불형인 경우만 충전할 수 있습니다.", "thepos");
+                return;
+            }
+
+
+
+
             if (lvwOrderItem.Items.Count > 0)
             {
                 SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");

@@ -211,13 +211,13 @@ namespace thepos
 
         public struct GoodsItem
         {
-            
             public string group_code;
             public string item_code;
             public string item_name;
             public int amt;
             public String ticket; // 일반상품 0. 티켓상품 1
             public String taxfree; // 과세품 0, 면세품 1
+            public String shop_code;
             public int column;
             public int row;
             public int columnspan;
@@ -245,6 +245,7 @@ namespace thepos
             public int amt;
             public String ticket;
             public String taxfree;
+            public String shop_code;
             public int dc_amount;       // 실할인금액
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"

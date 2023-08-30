@@ -38,6 +38,7 @@
             this.btnSysGoods = new System.Windows.Forms.Button();
             this.btnSysGoodsGroup = new System.Windows.Forms.Button();
             this.btnPos = new System.Windows.Forms.Button();
+            this.btnSysShop = new System.Windows.Forms.Button();
             this.panelCertConsole.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.btnPosMac.BackColor = System.Drawing.Color.LightGray;
             this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPosMac.ForeColor = System.Drawing.Color.Red;
-            this.btnPosMac.Location = new System.Drawing.Point(7, 310);
+            this.btnPosMac.Location = new System.Drawing.Point(7, 395);
             this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPosMac.Name = "btnPosMac";
             this.btnPosMac.Size = new System.Drawing.Size(112, 62);
@@ -61,7 +62,7 @@
             this.btnUser.BackColor = System.Drawing.Color.LightGray;
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUser.ForeColor = System.Drawing.Color.Red;
-            this.btnUser.Location = new System.Drawing.Point(7, 379);
+            this.btnUser.Location = new System.Drawing.Point(7, 464);
             this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(112, 62);
@@ -82,16 +83,17 @@
             // 
             // panelCertConsole
             // 
+            this.panelCertConsole.Controls.Add(this.btnSysShop);
             this.panelCertConsole.Controls.Add(this.btnPosMac);
             this.panelCertConsole.Controls.Add(this.btnSysPayConsole);
             this.panelCertConsole.Controls.Add(this.btnSysGoodsLayout);
             this.panelCertConsole.Controls.Add(this.btnSysGoods);
             this.panelCertConsole.Controls.Add(this.btnSysGoodsGroup);
             this.panelCertConsole.Controls.Add(this.btnUser);
-            this.panelCertConsole.Location = new System.Drawing.Point(1, 94);
+            this.panelCertConsole.Location = new System.Drawing.Point(1, 92);
             this.panelCertConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCertConsole.Name = "panelCertConsole";
-            this.panelCertConsole.Size = new System.Drawing.Size(123, 504);
+            this.panelCertConsole.Size = new System.Drawing.Size(123, 599);
             this.panelCertConsole.TabIndex = 2;
             this.panelCertConsole.Visible = false;
             // 
@@ -99,7 +101,7 @@
             // 
             this.btnSysPayConsole.BackColor = System.Drawing.Color.LightGray;
             this.btnSysPayConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysPayConsole.Location = new System.Drawing.Point(7, 224);
+            this.btnSysPayConsole.Location = new System.Drawing.Point(7, 309);
             this.btnSysPayConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysPayConsole.Name = "btnSysPayConsole";
             this.btnSysPayConsole.Size = new System.Drawing.Size(112, 62);
@@ -113,7 +115,7 @@
             // 
             this.btnSysGoodsLayout.BackColor = System.Drawing.Color.LightGray;
             this.btnSysGoodsLayout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsLayout.Location = new System.Drawing.Point(7, 140);
+            this.btnSysGoodsLayout.Location = new System.Drawing.Point(7, 225);
             this.btnSysGoodsLayout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsLayout.Name = "btnSysGoodsLayout";
             this.btnSysGoodsLayout.Size = new System.Drawing.Size(112, 62);
@@ -127,7 +129,7 @@
             // 
             this.btnSysGoods.BackColor = System.Drawing.Color.LightGray;
             this.btnSysGoods.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoods.Location = new System.Drawing.Point(7, 4);
+            this.btnSysGoods.Location = new System.Drawing.Point(7, 89);
             this.btnSysGoods.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoods.Name = "btnSysGoods";
             this.btnSysGoods.Size = new System.Drawing.Size(112, 62);
@@ -141,7 +143,7 @@
             // 
             this.btnSysGoodsGroup.BackColor = System.Drawing.Color.LightGray;
             this.btnSysGoodsGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsGroup.Location = new System.Drawing.Point(7, 72);
+            this.btnSysGoodsGroup.Location = new System.Drawing.Point(7, 157);
             this.btnSysGoodsGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsGroup.Name = "btnSysGoodsGroup";
             this.btnSysGoodsGroup.Size = new System.Drawing.Size(112, 62);
@@ -164,6 +166,19 @@
             this.btnPos.Text = "포스기기\r\n등록신청";
             this.btnPos.UseVisualStyleBackColor = false;
             this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
+            // 
+            // btnSysShop
+            // 
+            this.btnSysShop.BackColor = System.Drawing.Color.LightGray;
+            this.btnSysShop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysShop.Location = new System.Drawing.Point(6, 4);
+            this.btnSysShop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysShop.Name = "btnSysShop";
+            this.btnSysShop.Size = new System.Drawing.Size(112, 62);
+            this.btnSysShop.TabIndex = 1;
+            this.btnSysShop.TabStop = false;
+            this.btnSysShop.Text = "샵관리";
+            this.btnSysShop.UseVisualStyleBackColor = false;
             // 
             // frmSysAdmin
             // 
@@ -196,5 +211,6 @@
         private System.Windows.Forms.Button btnSysGoods;
         private System.Windows.Forms.Button btnSysGoodsLayout;
         private System.Windows.Forms.Button btnSysPayConsole;
+        private System.Windows.Forms.Button btnSysShop;
     }
 }
