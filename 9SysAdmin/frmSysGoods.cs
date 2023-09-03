@@ -17,6 +17,8 @@ namespace thepos._9SysAdmin
 {
     public partial class frmSysGoods : Form
     {
+        private BindingList<object> shopList = new BindingList<object>();
+
 
         int max_goodscode = 100000;  // 6자리
 
@@ -30,12 +32,6 @@ namespace thepos._9SysAdmin
 
             initialize_font();
             initialize_the();
-
-
-
-
-
-
 
 
             reload_server();
@@ -55,6 +51,10 @@ namespace thepos._9SysAdmin
 
             lblTicketTitle.Font = font12;
             lblTaxFreeTitle.Font = font12;
+
+            lblShopTitle.Font = font12;
+            cbShop.Font = font12;
+
             lblActiveTitle.Font = font12;
 
             lblMemoTitle.Font = font12;
@@ -75,6 +75,12 @@ namespace thepos._9SysAdmin
             lvwList.SmallImageList = imgList;
             lvwList.HideSelection = true;
 
+
+            cbShop.Items.Clear();
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                cbShop.Items.Add(mShop[i].shop_name);
+            }
 
         }
 
@@ -107,8 +113,16 @@ namespace thepos._9SysAdmin
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
+
+                        lvItem.Tag = arr[i]["itemCode"].ToString();
+
                         lvItem.Text = arr[i]["itemName"].ToString();
+
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
+                        lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
+
 
                         tTicket = "";
                         tTaxFree = "";
@@ -124,7 +138,7 @@ namespace thepos._9SysAdmin
 
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
-                        lvItem.Tag = arr[i]["itemCode"].ToString();
+                        
 
                         if (tActive != "Y")
                         {
@@ -180,24 +194,35 @@ namespace thepos._9SysAdmin
             tbGoodsName.Tag = lvwList.SelectedItems[0].Tag;
             tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[1].Text;
 
-            if (lvwList.SelectedItems[0].SubItems[2].Text == "Y")
+            String shop_code = lvwList.SelectedItems[0].SubItems[2].Text;
+
+
+            cbShop.SelectedIndex = -1;
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                if (mShop[i].shop_code == shop_code)
+                {
+                    cbShop.SelectedIndex = i;
+                }
+            }
+
+
+            if (lvwList.SelectedItems[0].SubItems[4].Text == "Y")
                 cbTicket.Checked = true;
             else
                 cbTicket.Checked = false;
 
-            if (lvwList.SelectedItems[0].SubItems[3].Text == "Y")
+            if (lvwList.SelectedItems[0].SubItems[5].Text == "Y")
                 cbTaxFree.Checked = true;
             else
                 cbTaxFree.Checked = false;
 
-            if (lvwList.SelectedItems[0].SubItems[4].Text == "Y")
+            if (lvwList.SelectedItems[0].SubItems[6].Text == "Y")
                 cbActive.Checked = true;
             else
                 cbActive.Checked = false;
 
-
-            tbMemo.Text = lvwList.SelectedItems[0].SubItems[5].Text;
-
+            tbMemo.Text = lvwList.SelectedItems[0].SubItems[7].Text;
 
         }
 
@@ -219,6 +244,7 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+            if (cbShop.SelectedIndex == -1) return;
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -226,6 +252,9 @@ namespace thepos._9SysAdmin
             parameters["itemCode"] = tbGoodsName.Tag.ToString();
             parameters["itemName"] = tbGoodsName.Text.Trim();
             parameters["amt"] = tbGoodsAmt.Text;
+
+            parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
+
 
             if (cbTicket.Checked)
                 parameters["ticketYn"] = "Y";
@@ -284,6 +313,8 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+            if (cbShop.SelectedIndex == -1) return;
+
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -291,6 +322,9 @@ namespace thepos._9SysAdmin
             parameters["itemCode"] = (max_goodscode + 1).ToString();
             parameters["itemName"] = tbGoodsName.Text.Trim();
             parameters["amt"] = tbGoodsAmt.Text;
+
+            parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
+
 
             if (cbTicket.Checked)
                 parameters["ticketYn"] = "Y";

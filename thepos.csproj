@@ -201,6 +201,18 @@
     <Compile Include="1Sales\frmOrderDCR.Designer.cs">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysSite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysSite.Designer.cs">
+      <DependentUpon>frmSysSite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysShop.Designer.cs">
+      <DependentUpon>frmSysShop.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBusiness.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,6 +384,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmOrderDCR.resx">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysSite.resx">
+      <DependentUpon>frmSysSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysShop.resx">
+      <DependentUpon>frmSysShop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBusiness.resx">
       <DependentUpon>frmBusiness.cs</DependentUpon>

@@ -127,6 +127,17 @@ namespace thepos
         public static String mBizAddr;          // 주소
         public static String mBizTelNo;         // 대표전화
 
+
+
+
+
+
+
+
+
+
+
+
         public static String mPosNo = "";       // 내 포스번호
         public static String[] mPosNoList;      // Site내 포스번호 목록
 
@@ -197,6 +208,14 @@ namespace thepos
 
         // //////////////////////////////////////////////////////////////////////////////////////////
         // 로컬 + 서버
+        public struct Shop
+        {
+            public string shop_code;
+            public string shop_name;
+        }
+        public static Shop[] mShop;
+
+
         public struct GoodsGroup
         {
             public string group_code;
@@ -342,7 +361,6 @@ namespace thepos
             public int service_amount;
             public int tax;
 
-
             public String install;      // 할부개월 00 03
             public String auth_no;      // 승인번호
             public String card_no;      // 카드번호
@@ -382,8 +400,13 @@ namespace thepos
         }
         public static List<PaymentCash> mPaymentCashs = new List<PaymentCash>();
 
+
         public struct PaymentEasy
         {
+
+
+
+
 
         }
         public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
@@ -405,12 +428,8 @@ namespace thepos
             public String usage_no;
             public int amount;
             public String is_cancel;
-
-
-
         }
         public static List<PaymentPoint> mPaymentPoints = new List<PaymentPoint>();
-
 
 
 
@@ -418,6 +437,12 @@ namespace thepos
         public struct Cert
         {
             public String the_no;       // 
+
+
+
+
+
+
         }
 
 
@@ -427,8 +452,7 @@ namespace thepos
         public struct TicketFlow
         {
             public String site_id;
-            public String biz_dt;  // yyyyMMdd
-//            public string pos_no;
+            public String biz_dt;
             public String the_no;   // 결제단위
             public String ref_no;   // 입장단위
             
@@ -455,15 +479,12 @@ namespace thepos
 
 
 
-
-
-
         //
         public static Boolean mReturn = false;
         public static string mErrorMsg = "";
 
         public static JObject mObj = new JObject();
-        //public static String mErrMsg = "";
+        
 
 
 
@@ -651,8 +672,8 @@ namespace thepos
             int tfree_amount = 0;
             int dc_amount = 0;
 
+            //!
             String sUrl = "orders?theNo=" + tTheNo;
-
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -692,9 +713,8 @@ namespace thepos
             strPrintOrder += "------------------------------------------\r\n";  // 42
 
 
-
+            //!
             sUrl = "orderItem?theNo=" + tTheNo;
-
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -770,7 +790,7 @@ namespace thepos
                             }
                         }
 
-                        if (arr[i]["taxFree"].ToString() == "1") tfree_amount += (cnt * amt);
+                        if (arr[i]["taxFree"].ToString() == "Y") tfree_amount += (cnt * amt);
                         else tax_amount += (cnt * amt);
 
                         dc_amount += dc_amt;
@@ -788,9 +808,7 @@ namespace thepos
 
 
 
-
-
-            ////
+            //
             strPrintPayment = "------------------------------------------\r\n";  // 42
 
             if (tfree_amount > 0)
@@ -850,7 +868,7 @@ namespace thepos
 
 
 
-            // 현금결제
+            //! 현금결제
             sUrl = "paymentCash?theNo=" + tTheNo;
 
             if (mRequestGet(sUrl))
@@ -919,9 +937,16 @@ namespace thepos
                                 {
                                     tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";
                                 }
-                                else if (no.Length == 11 & no.Substring(0, 3) == "010")
+                                else if (no.Length == 11)
                                 {
-                                    tStr = no.Substring(0, 3) + "-****-" + no.Substring(6, 4);
+                                    if (no.Substring(0, 3) == "010")
+                                    {
+                                        tStr = no.Substring(0, 3) + "-****-" + no.Substring(6, 4);
+                                    }
+                                    else
+                                    {
+                                        tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
+                                    }
                                 }
                                 else if (no.Length > 8)
                                 {
@@ -944,8 +969,7 @@ namespace thepos
 
 
 
-
-            // 카드결제
+            //! 카드결제
             sUrl = "paymentCard?theNo=" + tTheNo;
 
             if (mRequestGet(sUrl))
@@ -986,7 +1010,6 @@ namespace thepos
                             String no = arr[i]["cardNo"].ToString();
 
 
-
                             if (no.Contains('*'))
                             {
                                 tStr = no;
@@ -1004,11 +1027,8 @@ namespace thepos
                                 tStr = no;
                             }
 
-
-
                             strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                             strPrintPayment += "\r\n";
-
 
                             if (arr[i]["install"].ToString() == "00")
                                 tStr = "할부개월:일시불";
@@ -1029,14 +1049,14 @@ namespace thepos
 
 
 
-            // 포인트
-            sUrl = "paymentCard?theNo=" + tTheNo;
+            //! 포인트
+            sUrl = "paymentPoint?theNo=" + tTheNo;
 
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["paymentCards"].ToString();
+                    String data = mObj["paymentPoints"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -1384,6 +1404,20 @@ namespace thepos
                 return false;
             }
 
+        }
+
+
+        public static String get_shop_name(String shop_code)
+        {
+            for (int i = 0; i < mShop.Length; i++)
+            { 
+                if (mShop[i].shop_code == shop_code)
+                {
+                    return mShop[i].shop_name;
+                }
+            }
+
+            return "";
         }
 
     }

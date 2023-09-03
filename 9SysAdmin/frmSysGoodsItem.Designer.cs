@@ -69,6 +69,7 @@
             this.lblCopyGroupTitle = new System.Windows.Forms.Label();
             this.cbSourcePosNo = new System.Windows.Forms.ComboBox();
             this.lblCopyPosNoTitle = new System.Windows.Forms.Label();
+            this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -84,15 +85,15 @@
             this.locateY,
             this.sizeX,
             this.sizeY});
-            this.lvwGoodsLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwGoodsLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwGoodsLink.FullRowSelect = true;
             this.lvwGoodsLink.GridLines = true;
             this.lvwGoodsLink.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoodsLink.HideSelection = false;
-            this.lvwGoodsLink.Location = new System.Drawing.Point(367, 55);
+            this.lvwGoodsLink.Location = new System.Drawing.Point(401, 55);
             this.lvwGoodsLink.MultiSelect = false;
             this.lvwGoodsLink.Name = "lvwGoodsLink";
-            this.lvwGoodsLink.Size = new System.Drawing.Size(373, 333);
+            this.lvwGoodsLink.Size = new System.Drawing.Size(339, 333);
             this.lvwGoodsLink.TabIndex = 43;
             this.lvwGoodsLink.TabStop = false;
             this.lvwGoodsLink.UseCompatibleStateImageBehavior = false;
@@ -102,12 +103,13 @@
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 100;
+            this.name.Width = 80;
             // 
             // amt
             // 
             this.amt.Text = "단가";
             this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amt.Width = 50;
             // 
             // locateX
             // 
@@ -253,6 +255,7 @@
             this.lvwGoods.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.item_name,
             this.amt1,
+            this.shop,
             this.ticket,
             this.taxfree,
             this.memo});
@@ -263,7 +266,7 @@
             this.lvwGoods.Location = new System.Drawing.Point(14, 55);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(344, 333);
+            this.lvwGoods.Size = new System.Drawing.Size(381, 333);
             this.lvwGoods.TabIndex = 80;
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
@@ -295,7 +298,7 @@
             // memo
             // 
             this.memo.Text = "비고";
-            this.memo.Width = 97;
+            this.memo.Width = 80;
             // 
             // cbPosNo
             // 
@@ -342,7 +345,7 @@
             this.btnDelete.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.Location = new System.Drawing.Point(8, 131);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(96, 22);
+            this.btnDelete.Size = new System.Drawing.Size(96, 30);
             this.btnDelete.TabIndex = 88;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -524,6 +527,10 @@
             this.lblCopyPosNoTitle.TabIndex = 97;
             this.lblCopyPosNoTitle.Text = "소스포스";
             // 
+            // shop
+            // 
+            this.shop.Text = "샵";
+            // 
             // frmSysGoodsItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -595,5 +602,6 @@
         private System.Windows.Forms.Label lblCopyGroupTitle;
         private System.Windows.Forms.ComboBox cbSourcePosNo;
         private System.Windows.Forms.Label lblCopyPosNoTitle;
+        private System.Windows.Forms.ColumnHeader shop;
     }
 }

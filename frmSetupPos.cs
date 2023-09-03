@@ -17,20 +17,11 @@ using static thepos.thePos;
 
 /*
 
- * 상품그룹 배치유형 : 0:Flow형, 1:Table형    -> 상품 배치유형: 상품그룹테이블에 저장
+
  * 
  * 컴포트 : 영수증프린터, 라벨프린터 
- * 결제밴사구분 : TOSS KCP NICE KOVAN
  * 클라이언트유형? : PC, 포스, 키오스크 -> 마우스포인터 표시여부
  * 
-
-
-
-
-
-
-
-
 
 
 
@@ -56,10 +47,6 @@ namespace thepos
 
 
         
-
-
-
-
 
 
 

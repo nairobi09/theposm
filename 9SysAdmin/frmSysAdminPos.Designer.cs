@@ -104,7 +104,7 @@
             this.lblSiteIdTitle.Name = "lblSiteIdTitle";
             this.lblSiteIdTitle.Size = new System.Drawing.Size(71, 16);
             this.lblSiteIdTitle.TabIndex = 31;
-            this.lblSiteIdTitle.Text = "기관코드";
+            this.lblSiteIdTitle.Text = "고객코드";
             // 
             // lblPosNoTitle
             // 

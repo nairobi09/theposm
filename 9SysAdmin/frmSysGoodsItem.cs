@@ -27,6 +27,7 @@ namespace thepos
         {
             InitializeComponent();
             initialize_font();
+            initialize_the();
 
             get_goods();
 
@@ -53,7 +54,7 @@ namespace thepos
             btnView.Font = font10;
 
             lvwGoods.Font = font10;
-            lvwGoodsLink.Font = font12;
+            lvwGoodsLink.Font = font10;
 
             lblT3.Font = font10;
             lblT4.Font = font10;
@@ -83,6 +84,17 @@ namespace thepos
         }
 
 
+        private void initialize_the()
+        {
+            ImageList imgList = new ImageList();
+            imgList.ImageSize = new Size(1, 28);
+
+            lvwGoodsLink.SmallImageList = imgList;
+            lvwGoodsLink.HideSelection = true;
+
+
+        }
+
         private void get_goods()
         {
             String tTicket, tTaxFree = "";
@@ -103,6 +115,7 @@ namespace thepos
                             ListViewItem lvItem = new ListViewItem();
                             lvItem.Text = arr[i]["itemName"].ToString();
                             lvItem.SubItems.Add(arr[i]["amt"].ToString());
+                            lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
 
                             tTicket = "";
                             tTaxFree = "";

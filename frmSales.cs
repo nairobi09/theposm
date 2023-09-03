@@ -46,17 +46,13 @@ namespace thepos
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
 
-
         public static String mRightFace = "";
 
         public static String mPayClass = "OR"; // order
 
 
-
         public static TextBox mTbKeyDisplaySales;            // Sales화면의 key display
         public static TextBox mTbKeyDisplayController;  // 공용컨트롤러
-
-
 
 
         public static Panel mPanelTitleConsole;
@@ -74,8 +70,6 @@ namespace thepos
 
         public static int mNetAmount = 0;
         public static Timer mTimerAlarm;
-
-
 
 
         //
@@ -126,7 +120,7 @@ namespace thepos
             lblUserName.Font = font10;
 
             lblBusinessDateTitle.Font = font10;
-            lblBusinessDate.Font = font12bold;
+            lblBizDate.Font = font12bold;
 
             lblDate.Font = font10;
             lblTime.Font = font12bold;
@@ -192,7 +186,7 @@ namespace thepos
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
 
-            lblBusinessDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
+            lblBizDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
             lblUserName.Text = mUserName;
 
 
@@ -206,8 +200,6 @@ namespace thepos
 
             //? 리스트뷰 항목이 추가 변경될때 합계를 다시 계산하기위해 
             //  리스트뷰 변경 이벤트 추가
-
-
 
 
             btnKey1.Click += (sender, args) => ClickedKey("1");
@@ -251,6 +243,8 @@ namespace thepos
                         
             get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅
 
+            get_site_info();
+
             get_pos_setup();
 
         }
@@ -287,14 +281,18 @@ namespace thepos
             }
         }
 
-        private void get_pos_setup()
+
+        private void get_site_info()
         {
 
 
-            mVanCode = "NICE";
 
 
+        }
 
+
+        private void get_pos_setup()
+        {
 
 
 
@@ -451,6 +449,7 @@ namespace thepos
                         mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
                         mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
                         mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
+                        mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
                         mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
                         mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
                         mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
@@ -604,6 +603,7 @@ namespace thepos
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
+                orderItem.shop_code = mGoodsItem[i].shop_code;
 
                 lvItem.Tag = orderItem;
                 lvItem.Text = (lvwOrderItem.Items.Count + 1).ToString();
@@ -784,6 +784,7 @@ namespace thepos
                 parameters["itemName"] = memOrderItem.name;
                 parameters["cnt"] = memOrderItem.cnt + "";
                 parameters["amt"] = memOrderItem.amt + "";
+                parameters["shopCode"] = memOrderItem.shop_code;
                 parameters["ticketYn"] = memOrderItem.ticket;
                 parameters["taxFree"] = memOrderItem.taxfree;
                 parameters["dcAmount"] = memOrderItem.dc_amount + "";
@@ -926,7 +927,8 @@ namespace thepos
                 //
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["theNo"] = mTheNo;
-                
+                parameters["tranType"] = "A";
+
                 parameters["netAmount"] = amount_net + "";
                 parameters["amountCash"] = amount_cash + "";
                 parameters["amountCard"] = amount_card + "";
@@ -939,7 +941,7 @@ namespace thepos
                     {
 
                     }
-                    else   조회결과가 없습니다.  확인필요~~~
+                    else
                     {
                         MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return false;
@@ -991,10 +993,8 @@ namespace thepos
                                 //? 팔찌이면 스케너 입력로직 필요
                                 MessageBox.Show("스캐너 입력입니다... ");
 
-
                                 //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
                                 t_ticket_no = mTheNo + ticket_seq.ToString("000");  //? 임시
-
 
                             }
 

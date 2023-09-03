@@ -77,7 +77,7 @@
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.lvwPayManager);
-            this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -102,7 +102,7 @@
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl1.Location = new System.Drawing.Point(12, 14);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
@@ -133,7 +133,7 @@
             // 
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBillNo.Font = new System.Drawing.Font("굴림체", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBillNo.Location = new System.Drawing.Point(188, 28);
             this.tbBillNo.MaxLength = 4;
             this.tbBillNo.Name = "tbBillNo";
@@ -144,7 +144,7 @@
             // lbl3
             // 
             this.lbl3.AutoSize = true;
-            this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.Location = new System.Drawing.Point(186, 12);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(29, 12);
@@ -154,7 +154,7 @@
             // 
             // cbPosNo
             // 
-            this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Items.AddRange(new object[] {
             "",
@@ -169,7 +169,7 @@
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.Location = new System.Drawing.Point(12, 42);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(53, 12);
@@ -192,12 +192,12 @@
             // lblLayoutBill
             // 
             this.lblLayoutBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblLayoutBill.Font = new System.Drawing.Font("GulimChe", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLayoutBill.Location = new System.Drawing.Point(20, 386);
+            this.lblLayoutBill.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLayoutBill.Location = new System.Drawing.Point(20, 429);
             this.lblLayoutBill.Multiline = true;
             this.lblLayoutBill.Name = "lblLayoutBill";
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.lblLayoutBill.Size = new System.Drawing.Size(363, 285);
+            this.lblLayoutBill.Size = new System.Drawing.Size(363, 245);
             this.lblLayoutBill.TabIndex = 55;
             // 
             // btnClose
@@ -231,8 +231,8 @@
             // cbGood
             // 
             this.cbGood.AutoSize = true;
-            this.cbGood.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbGood.Location = new System.Drawing.Point(398, 393);
+            this.cbGood.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGood.Location = new System.Drawing.Point(398, 439);
             this.cbGood.Name = "cbGood";
             this.cbGood.Size = new System.Drawing.Size(105, 15);
             this.cbGood.TabIndex = 49;
@@ -246,7 +246,7 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(398, 580);
+            this.button4.Location = new System.Drawing.Point(398, 626);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(105, 48);
             this.button4.TabIndex = 48;
@@ -258,7 +258,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(398, 526);
+            this.button1.Location = new System.Drawing.Point(398, 572);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 48);
             this.button1.TabIndex = 48;
@@ -270,7 +270,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(398, 472);
+            this.btnCancel.Location = new System.Drawing.Point(398, 518);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 48);
             this.btnCancel.TabIndex = 48;
@@ -283,7 +283,7 @@
             this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(398, 418);
+            this.btnPrint.Location = new System.Drawing.Point(398, 464);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(105, 48);
             this.btnPrint.TabIndex = 48;
@@ -310,7 +310,7 @@
             this.lvwPayManager.Location = new System.Drawing.Point(20, 139);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
-            this.lvwPayManager.Size = new System.Drawing.Size(483, 237);
+            this.lvwPayManager.Size = new System.Drawing.Size(483, 284);
             this.lvwPayManager.TabIndex = 44;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;

@@ -69,6 +69,17 @@ namespace thepos
         }
 
 
+        private void btnSysShop_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Shop") return;
+
+            mThisButtonClick = "Shop";
+            panelView.Controls.Clear();
+
+            frmSysShop fSysAdmin = new frmSysShop() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
 
         private void btnSysGoods_Click(object sender, EventArgs e)
         {
@@ -117,6 +128,18 @@ namespace thepos
             panelView.Controls.Clear();
 
             frmSysPayConsole fSysAdmin = new frmSysPayConsole() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+        private void btnSysSite_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Site") return;
+
+            mThisButtonClick = "Site";
+            panelView.Controls.Clear();
+
+            frmSysSite fSysAdmin = new frmSysSite() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }

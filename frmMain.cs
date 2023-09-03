@@ -111,9 +111,7 @@ namespace thepos
         private void initialize_the()
         {
 
-
             //? Cursor.Hide();
-
 
             clear_login_init();
 
@@ -174,12 +172,6 @@ namespace thepos
             mPosNo = "";
             mUserName = "";
 
-            lblSiteAlias.Text = "";
-            lblSiteName.Text = "";
-            lblPosNo.Text = "";
-            lblUserName.Text = "";
-
-
             mSiteId = "";
             mSiteName = "";         // 매장명
             mSiteAlias = "";        // 매장명
@@ -188,30 +180,31 @@ namespace thepos
             mBizAddr = "";          // 주소
             mBizTelNo = "";         // 대표전화
 
-
             mTicketType = "";  // ""미사용, "PA"선불, "PD"후불
             mTicketMedia = "";  // 띠지BC   팔찌RF
             mVanCode = "";
             mCallCenterNo = "";
 
 
-            // 이사업자의 포스번호 목록
-            //mPosNoList.Initialize();
 
             mCornerType = "";  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
+
+            mPosNo = "";
+            mBizDate = "";
+
+
+            // 이사업자의 포스번호 목록
+            //mPosNoList.Initialize();
             //mCornerCode.Initialize(); // 코너 코드
             //mCornerName.Initialize(); // 코너 명
 
-            mPosNo = "";
+
 
             mBillPrinterPort = "";  // 영수증프린터
             mScannerPort = "";  // 띠지 or 팔찌
 
             mUserID = "";
             mUserName = "";
-
-            mBizDate = "";
-
 
             tbPW.Text = "";
 
@@ -221,15 +214,12 @@ namespace thepos
             lblUserName.Text = "";
 
 
-
         }
-
 
 
 
         private void ClickedKey(string sKey)
         {
-
             if (sKey == "BS")
             {
                 if (mTbKeyDisplayController.Text.Length > 0)
@@ -249,20 +239,13 @@ namespace thepos
 
 
 
-
-
-
-
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
-
-            //? 서버 
-
             // 로그인
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["userId"] = tbID.Text;
             parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
-            parameters["macAddr"] = mMacAddr;  // 023006617873
+            parameters["macAddr"] = mMacAddr;
 
             if (mRequestPost("login", parameters))
             {
@@ -293,20 +276,22 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String sites = mObj["sites"].ToString();
-                    JArray arr = JArray.Parse(sites);
+                    String data = mObj["sites"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                    mSiteName = arr[0]["siteName"].ToString();
-                    mSiteAlias = arr[0]["siteAlias"].ToString();
-                    mCapName = arr[0]["capName"].ToString();
-
-
-                    //?
-                    //mCallCenterNo = arr[0]["callCenterNo"].ToString();
-                    mCallCenterNo = "콜센터 02-1234-5678  기술지원 010-1234-5678";
-                    mTicketMedia = "BC";
-                    mTicketType = "PA";
-                    mVanCode = "NICE";
+                    if (arr.Count == 1)
+                    {
+                        mSiteName = arr[0]["siteName"].ToString();
+                        mSiteAlias = arr[0]["siteAlias"].ToString();
+                        mRegistNo = arr[0]["registNo"].ToString();
+                        mCapName = arr[0]["capName"].ToString();
+                        mBizAddr = arr[0]["bizAddr"].ToString();
+                        mBizTelNo = arr[0]["bizTelNo"].ToString();
+                        mTicketType = arr[0]["ticketType"].ToString();
+                        mTicketMedia = arr[0]["ticketMedia"].ToString();
+                        mVanCode = arr[0]["vanCode"].ToString();
+                        mCallCenterNo = arr[0]["callCenterNo"].ToString();
+                    }
                 }
                 else
                 {
@@ -319,6 +304,40 @@ namespace thepos
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
+
+
+            //? 메인에서 필요한가? 매출관리로 이동 검토필요...
+            // 샵
+            sUrl = "shop?siteId=" + mSiteId;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["shops"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    mShop = new Shop[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mShop[i].shop_code = arr[i]["shopCode"].ToString();
+                        mShop[i].shop_name = arr[i]["shopName"].ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+
 
 
 
@@ -396,7 +415,6 @@ namespace thepos
                 MessageBox.Show("개시마감관리 오류\n서버에서 정보를 읽어오지 못했습니다.", "thepos");
                 return;
             }
-
 
         }
 

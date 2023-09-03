@@ -76,7 +76,7 @@ namespace thepos
             this.lblSiteNameTitle = new System.Windows.Forms.Label();
             this.lblUserNameTitle = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.lblBusinessDate = new System.Windows.Forms.Label();
+            this.lblBizDate = new System.Windows.Forms.Label();
             this.lblBusinessDateTitle = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
@@ -680,7 +680,7 @@ namespace thepos
             this.panelTitleConsole.Controls.Add(this.lblSiteNameTitle);
             this.panelTitleConsole.Controls.Add(this.lblUserNameTitle);
             this.panelTitleConsole.Controls.Add(this.lblUserName);
-            this.panelTitleConsole.Controls.Add(this.lblBusinessDate);
+            this.panelTitleConsole.Controls.Add(this.lblBizDate);
             this.panelTitleConsole.Controls.Add(this.lblBusinessDateTitle);
             this.panelTitleConsole.Controls.Add(this.lblDate);
             this.panelTitleConsole.Controls.Add(this.lblTime);
@@ -802,19 +802,19 @@ namespace thepos
             this.lblUserName.Text = "_";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBusinessDate
+            // lblBizDate
             // 
-            this.lblBusinessDate.AutoSize = true;
-            this.lblBusinessDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblBusinessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.lblBusinessDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBusinessDate.Location = new System.Drawing.Point(624, 12);
-            this.lblBusinessDate.Margin = new System.Windows.Forms.Padding(0);
-            this.lblBusinessDate.Name = "lblBusinessDate";
-            this.lblBusinessDate.Size = new System.Drawing.Size(101, 20);
-            this.lblBusinessDate.TabIndex = 31;
-            this.lblBusinessDate.Text = "2023-08-25";
-            this.lblBusinessDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBizDate.AutoSize = true;
+            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.lblBizDate.ForeColor = System.Drawing.Color.Gold;
+            this.lblBizDate.Location = new System.Drawing.Point(624, 12);
+            this.lblBizDate.Margin = new System.Windows.Forms.Padding(0);
+            this.lblBizDate.Name = "lblBizDate";
+            this.lblBizDate.Size = new System.Drawing.Size(101, 20);
+            this.lblBizDate.TabIndex = 31;
+            this.lblBizDate.Text = "2023-08-25";
+            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblBusinessDateTitle
             // 
@@ -1570,7 +1570,7 @@ namespace thepos
         private System.Windows.Forms.Label lblSiteNameTitle;
         private System.Windows.Forms.Label lblUserNameTitle;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label lblBusinessDate;
+        private System.Windows.Forms.Label lblBizDate;
         private System.Windows.Forms.Label lblBusinessDateTitle;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblTime;

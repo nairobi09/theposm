@@ -27,6 +27,7 @@ namespace thepos
 
         String selected_biz_date = "";
         String selected_pos_no = "";
+        String selected_the_no = "";
 
 
 
@@ -94,17 +95,15 @@ namespace thepos
         {
             String billNo = tbBillNo.Text;
 
-            String the_no = "";
-
             selected_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
             selected_pos_no = cbPosNo.Text;
 
             if (billNo.Length == 4)
             {
-                the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
+                selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
             }
             
-            viewList(selected_biz_date, selected_pos_no, the_no);
+            viewList(selected_biz_date, selected_pos_no, selected_the_no);
         }
 
 
@@ -113,8 +112,8 @@ namespace thepos
             lvwPayManager.Items.Clear();
 
 
+            //!
             String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no;
-
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -140,11 +139,22 @@ namespace thepos
 
                         //? 할인내용 적용 필요
                         lvItem.SubItems.Add(arr[i]["isDc"].ToString());
+
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
-                        //? mPayments[i].is_cancel == "Y" 명 Strikeout으로 바꾼다.
-                        //lvItem.Font = new Font(lvItem.Font, FontStyle.Strikeout);
+                        if (arr[i]["isCancel"].ToString() == "Y")
+                        {
+                            lvItem.ForeColor = Color.Silver;
+                            lvItem.SubItems[1].ForeColor = Color.Silver;
+                            lvItem.SubItems[2].ForeColor = Color.Silver;
+                            lvItem.SubItems[3].ForeColor = Color.Silver;
+                            lvItem.SubItems[4].ForeColor = Color.Silver;
+                            lvItem.SubItems[5].ForeColor = Color.Silver;
+                            lvItem.SubItems[6].ForeColor = Color.Silver;
+                            lvItem.SubItems[7].ForeColor = Color.Silver;
+                            lvItem.SubItems[8].ForeColor = Color.Silver;
+                        }
 
                         lvwPayManager.Items.Add(lvItem);
                     }
@@ -236,15 +246,7 @@ namespace thepos
             }
 
             String the_no = lvwPayManager.SelectedItems[0].Tag.ToString();
-            Payment payment = get_payment_by_theno(the_no);
-
-            /* //? 제외
-            if (payment.is_cancel == "Y")
-            {
-                SetDisplayAlarm("W", "기취소건.");
-                return;
-            }
-            */
+            
 
             int sel_idx = lvwPayManager.SelectedItems[0].Index;
 
@@ -253,32 +255,12 @@ namespace thepos
             fPayCancel.Top += this.Location.Y;
             fPayCancel.ShowDialog();
 
-
-            //payment = get_payment_by_theno(the_no);
-
-            //? 취소여부 화면갱신
-            //lvwPayManager.Items[sel_idx].SubItems[7].Text = payment.is_cancel.ToString();
             
-            viewList(selected_biz_date, selected_pos_no, the_no);
-
+            
+            viewList(selected_biz_date, selected_pos_no, selected_the_no);
 
         }
 
-        private Payment get_payment_by_theno(String the_no)
-        {
-            Payment p = new Payment();
-
-            for (int i = 0; i < mPayments.Count; i++)
-            {
-                if (mPayments[i].the_no == the_no)
-                {
-                    p = mPayments[i];
-                    return p;
-                }
-            }
-
-            return p;
-        }
 
         private void cbwithoutGoods_CheckedChanged(object sender, EventArgs e)
         {

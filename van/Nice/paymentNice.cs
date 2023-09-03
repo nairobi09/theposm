@@ -236,6 +236,17 @@ namespace thepos
         }
 
 
+        public int requestNiceCardCancel(PaymentCard pCard, out PaymentCard pCardCancel)
+        {
+            pCardCancel = pCard;
+
+            //?
+
+
+
+
+            return 0;
+        }
 
 
         public int requestNiceCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash pCash)
@@ -399,6 +410,20 @@ namespace thepos
             }
 
         }
+
+
+        public int requestNiceCashCancel(PaymentCash pCash, out PaymentCash pCashCancel)
+        {
+            pCashCancel = pCash;
+
+            //?
+
+
+
+            return 0;
+        }
+
+
 
     }
 }

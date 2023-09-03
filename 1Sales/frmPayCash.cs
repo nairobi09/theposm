@@ -325,13 +325,13 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류 paymentCard\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류 paymentCash\n\n" + mErrorMsg, "thepos");
                 return false;
             }
 
