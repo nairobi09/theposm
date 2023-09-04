@@ -52,7 +52,7 @@ namespace thepos
 
             dtBusiness.Font = font10;
             cbPosNo.Font = font10;
-            tbBillNo.Font = font14;
+            tbBillNo.Font = font12;
 
             btnView.Font = font10;
             lvwPayManager.Font = font10;
@@ -143,6 +143,21 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
+
+
+                        if (convert_number(arr[i]["amountCash"].ToString()) > 0) lvItem.SubItems.Add("1");
+                        else lvItem.SubItems.Add("0");
+
+                        if (convert_number(arr[i]["amountCard"].ToString()) > 0) lvItem.SubItems.Add("1");
+                        else lvItem.SubItems.Add("0");
+
+                        if (convert_number(arr[i]["amountPoint"].ToString()) > 0) lvItem.SubItems.Add("1");
+                        else lvItem.SubItems.Add("0");
+
+                        if (convert_number(arr[i]["amountEasy"].ToString()) > 0) lvItem.SubItems.Add("1");
+                        else lvItem.SubItems.Add("0");
+
+
                         if (arr[i]["isCancel"].ToString() == "Y")
                         {
                             lvItem.ForeColor = Color.Silver;
@@ -203,8 +218,12 @@ namespace thepos
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
             String tranType = lvwPayManager.SelectedItems[0].SubItems[8].Text;
 
+            String is_payment = lvwPayManager.SelectedItems[0].SubItems[9].Text +
+                                lvwPayManager.SelectedItems[0].SubItems[10].Text +
+                                lvwPayManager.SelectedItems[0].SubItems[11].Text +
+                                lvwPayManager.SelectedItems[0].SubItems[12].Text;
 
-            lblLayoutBill.Text = make_bill_header() + make_bill_body(tTheNo, tranType, "") + make_bill_trailer();
+            lblLayoutBill.Text = make_bill_header() + make_bill_body(tTheNo, tranType, "", is_payment) + make_bill_trailer();
 
 
         }
@@ -223,11 +242,14 @@ namespace thepos
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
             String tranType = lvwPayManager.SelectedItems[0].SubItems[8].Text;
 
-
+            String is_payment = lvwPayManager.SelectedItems[0].SubItems[9].Text +
+                    lvwPayManager.SelectedItems[0].SubItems[10].Text +
+                    lvwPayManager.SelectedItems[0].SubItems[11].Text +
+                    lvwPayManager.SelectedItems[0].SubItems[12].Text;
 
 
             String headerBill = make_bill_header();
-            String bodyBill = make_bill_body(tTheNo, tranType, "");
+            String bodyBill = make_bill_body(tTheNo, tranType, "", is_payment);
             String trailerBill = make_bill_trailer();
 
 

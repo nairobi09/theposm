@@ -1939,11 +1939,18 @@ namespace thepos
 
         public static void countup_the_no()
         {
-            //? 재기동시 초기화된 이후의 연속성을 고민한다.. -> 서버에 물어본다.
-
+            //! 재기동시 초기화된 이후의 연속성. -> 서버에 물어본다.  last_the_no();
             mTheNo = mSiteId + mBizDate + mPosNo + (++mBillTheNo).ToString("0000");
+
+
+            //? 이렇게 하면 안됨. 
             mRefNo = mTheNo;
             
+
+
+            // the_no : 결제단위 - cash card complex point easy 결제버튼을 누른경우 새로운 the_no부여
+            // ref_no : 입장단위 - 포인트 충전 정산의 경우 티켓번호 18자리로 세트
+
 
         }
 

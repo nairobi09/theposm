@@ -237,7 +237,7 @@ namespace thepos._9SysAdmin
                 return;  
             }
 
-            int tNum = 0;
+
             if (!is_number(tbGoodsAmt.Text.Trim()))
             {
                 MessageBox.Show("상품단가 오류.", "thepos");
@@ -306,7 +306,6 @@ namespace thepos._9SysAdmin
                 return;
             }
 
-            int tNum = 0;
             if (!is_number(tbGoodsAmt.Text.Trim()))
             {
                 MessageBox.Show("상품단가 오류.", "thepos");

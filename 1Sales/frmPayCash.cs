@@ -267,7 +267,7 @@ namespace thepos
 
                         // 영수증 출력
                         String headerBill = make_bill_header();
-                        String bodyBill = make_bill_body(mTheNo, "A", "");
+                        String bodyBill = make_bill_body(mTheNo, "A", "", "1101"); //?
                         String trailerBill = make_bill_trailer();
 
 

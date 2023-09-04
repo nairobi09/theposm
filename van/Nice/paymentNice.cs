@@ -288,7 +288,6 @@ namespace thepos
 
             if (ret != 1)
             {
-
                 mErrorMsg = "NICE VCAT 오류.";
                 return -1;
             }
@@ -414,7 +413,23 @@ namespace thepos
 
         public int requestNiceCashCancel(PaymentCash pCash, out PaymentCash pCashCancel)
         {
+            PaymentCash mPaymentCash = new PaymentCash();
+            pCash = mPaymentCash;
+
+            string FS = ((char)28).ToString();
+            string SendData = "";
+
+            string tReceiptType = "";
+
+            if (pCash.receipt_type == "1") tReceiptType = "01";
+            else if (pCash.receipt_type == "2") tReceiptType = "02";
+            else if (pCash.receipt_type == "S") tReceiptType = "03";
+
+
             pCashCancel = pCash;
+
+
+
 
             //?
 

@@ -137,8 +137,6 @@ namespace thepos._9SysAdmin
             if (lvwList.SelectedItems.Count == 0) { return; }
 
 
-            String sUrl = "pos";
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = lvwList.SelectedItems[0].Text;

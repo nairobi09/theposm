@@ -59,6 +59,10 @@
             this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cash = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Easy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Point = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -125,7 +129,7 @@
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBusiness.Location = new System.Drawing.Point(68, 8);
             this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(97, 22);
+            this.dtBusiness.Size = new System.Drawing.Size(104, 22);
             this.dtBusiness.TabIndex = 68;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
@@ -133,11 +137,11 @@
             // 
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("굴림체", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(188, 28);
+            this.tbBillNo.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBillNo.Location = new System.Drawing.Point(198, 28);
             this.tbBillNo.MaxLength = 4;
             this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(54, 30);
+            this.tbBillNo.Size = new System.Drawing.Size(54, 26);
             this.tbBillNo.TabIndex = 74;
             this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -145,7 +149,7 @@
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.Location = new System.Drawing.Point(186, 12);
+            this.lbl3.Location = new System.Drawing.Point(196, 12);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(29, 12);
             this.lbl3.TabIndex = 70;
@@ -302,7 +306,11 @@
             this.amount,
             this.dc,
             this.cancel,
-            this.trantype});
+            this.trantype,
+            this.Cash,
+            this.Card,
+            this.Easy,
+            this.Point});
             this.lvwPayManager.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -376,6 +384,26 @@
             this.amount_card.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amount_card.Width = 80;
             // 
+            // Cash
+            // 
+            this.Cash.Text = "";
+            this.Cash.Width = 0;
+            // 
+            // Card
+            // 
+            this.Card.Text = "";
+            this.Card.Width = 0;
+            // 
+            // Easy
+            // 
+            this.Easy.Text = "";
+            this.Easy.Width = 0;
+            // 
+            // Point
+            // 
+            this.Point.Text = "";
+            this.Point.Width = 0;
+            // 
             // frmPayManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -429,5 +457,9 @@
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.ColumnHeader Cash;
+        private System.Windows.Forms.ColumnHeader Card;
+        private System.Windows.Forms.ColumnHeader Easy;
+        private System.Windows.Forms.ColumnHeader Point;
     }
 }

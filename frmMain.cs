@@ -27,8 +27,6 @@ namespace thepos
 
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
 
-        int AdminClickCount = 0;
-
 
 
         public frmMain()
