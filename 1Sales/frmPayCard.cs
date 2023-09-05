@@ -441,7 +441,7 @@ namespace thepos
             parameters["merchantNo"] = mPaymentCard.merchant_no;
             parameters["tranSerial"] = mPaymentCard.tran_serial;
             parameters["signPath"] = mPaymentCard.sign_path;
-            //parameters["giftChange"] = "";
+            parameters["giftChange"] = mPaymentCard.gift_change + "";
             parameters["isCancel"] = mPaymentCard.is_cancel;
             parameters["vanCode"] = mPaymentCard.van_code; ;
 

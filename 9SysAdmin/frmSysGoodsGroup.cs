@@ -132,7 +132,7 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = arr[i]["goodsGroupName"].ToString();
+                        lvItem.Text = arr[i]["groupName"].ToString();
                         lvItem.SubItems.Add(arr[i]["locateX"].ToString());
                         lvItem.SubItems.Add(arr[i]["locateY"].ToString());
                         lvItem.SubItems.Add(arr[i]["sizeX"].ToString());

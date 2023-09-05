@@ -57,6 +57,13 @@ namespace thepos
             btnView.Font = font10;
             lvwPayManager.Font = font10;
 
+            // 폰트적용 제외
+            //lblLayoutBill.Font = font12;
+
+            cbGoodsOptional.Font = font9;
+            btnPrint.Font = font10;
+            btnCancel.Font = font10;
+
 
         }
         private void initialize_the()
@@ -113,6 +120,7 @@ namespace thepos
 
 
             //!
+            //String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
             String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no;
             if (mRequestGet(sUrl))
             {
@@ -140,7 +148,14 @@ namespace thepos
                         //? 할인내용 적용 필요
                         lvItem.SubItems.Add(arr[i]["isDc"].ToString());
 
-                        lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+                        if (arr[i]["isCancel"].ToString() == "Y")
+                            lvItem.SubItems.Add("취소됨");
+                        else if (arr[i]["isCancel"].ToString() == "0")
+                            lvItem.SubItems.Add("취소중");
+                        else
+                            lvItem.SubItems.Add("");
+
+
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
 

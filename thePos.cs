@@ -368,8 +368,9 @@ namespace thepos
             public String isu_code;     // 발급사코드
             public String acq_code;     // 매입사코드
             public String merchant_no;  // 가맹점번호
-            public String tran_serial;          // tran_serial -> 취소시 tid입력
+            public String tran_serial;  // tran_serial -> 취소시 tid입력
             public String sign_path;
+            public int gift_change;     // 기프트 잔액
             public String is_cancel;    // 취소여부 : "" or "1"
             public String van_code;
         }
@@ -689,13 +690,14 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        String dt = arr[i]["orderDate"].ToString();
-                        tOrderDt = dt.Substring(0, 4) + "/" +
-                                   dt.Substring(4, 2) + "/" +
-                                   dt.Substring(6, 2) + " " +
-                                   dt.Substring(0, 2) + ":" +
-                                   dt.Substring(2, 2) + ":" +
-                                   dt.Substring(4, 2);
+                        String d = arr[i]["orderDate"].ToString();
+                        String t = arr[i]["orderTime"].ToString();
+                        tOrderDt = d.Substring(0, 4) + "/" +
+                                   d.Substring(4, 2) + "/" +
+                                   d.Substring(6, 2) + " " +
+                                   t.Substring(0, 2) + ":" +
+                                   t.Substring(2, 2) + ":" +
+                                   t.Substring(4, 2);
                     }
                 }
                 else

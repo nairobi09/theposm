@@ -42,7 +42,7 @@
             this.lblLayoutBill = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.cbGood = new System.Windows.Forms.CheckBox();
+            this.cbGoodsOptional = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -72,13 +72,13 @@
             this.panelback.Controls.Add(this.lblLayoutBill);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Controls.Add(this.cbGood);
+            this.panelback.Controls.Add(this.cbGoodsOptional);
             this.panelback.Controls.Add(this.button4);
             this.panelback.Controls.Add(this.button1);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.lvwPayManager);
-            this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -103,7 +103,7 @@
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl1.Location = new System.Drawing.Point(12, 14);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
@@ -134,7 +134,7 @@
             // 
             this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("GulimChe", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBillNo.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBillNo.Location = new System.Drawing.Point(198, 28);
             this.tbBillNo.MaxLength = 4;
             this.tbBillNo.Name = "tbBillNo";
@@ -145,7 +145,7 @@
             // lbl3
             // 
             this.lbl3.AutoSize = true;
-            this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.Location = new System.Drawing.Point(196, 12);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(29, 12);
@@ -155,7 +155,7 @@
             // 
             // cbPosNo
             // 
-            this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Items.AddRange(new object[] {
             "",
@@ -170,7 +170,7 @@
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.Location = new System.Drawing.Point(12, 42);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(53, 12);
@@ -193,7 +193,7 @@
             // lblLayoutBill
             // 
             this.lblLayoutBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblLayoutBill.Font = new System.Drawing.Font("GulimChe", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLayoutBill.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLayoutBill.Location = new System.Drawing.Point(20, 429);
             this.lblLayoutBill.Multiline = true;
             this.lblLayoutBill.Name = "lblLayoutBill";
@@ -229,18 +229,18 @@
             this.lblTitle.Text = "결제내역관리";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cbGood
+            // cbGoodsOptional
             // 
-            this.cbGood.AutoSize = true;
-            this.cbGood.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbGood.Location = new System.Drawing.Point(398, 439);
-            this.cbGood.Name = "cbGood";
-            this.cbGood.Size = new System.Drawing.Size(105, 15);
-            this.cbGood.TabIndex = 49;
-            this.cbGood.Text = "상품내역 미출력";
-            this.cbGood.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbGood.UseVisualStyleBackColor = true;
-            this.cbGood.CheckedChanged += new System.EventHandler(this.cbwithoutGoods_CheckedChanged);
+            this.cbGoodsOptional.AutoSize = true;
+            this.cbGoodsOptional.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGoodsOptional.Location = new System.Drawing.Point(398, 439);
+            this.cbGoodsOptional.Name = "cbGoodsOptional";
+            this.cbGoodsOptional.Size = new System.Drawing.Size(94, 15);
+            this.cbGoodsOptional.TabIndex = 49;
+            this.cbGoodsOptional.Text = "상품내역 제외";
+            this.cbGoodsOptional.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbGoodsOptional.UseVisualStyleBackColor = true;
+            this.cbGoodsOptional.CheckedChanged += new System.EventHandler(this.cbwithoutGoods_CheckedChanged);
             // 
             // button4
             // 
@@ -410,7 +410,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lvwPayManager;
-        private System.Windows.Forms.CheckBox cbGood;
+        private System.Windows.Forms.CheckBox cbGoodsOptional;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPrint;

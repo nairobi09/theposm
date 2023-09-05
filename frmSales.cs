@@ -409,7 +409,7 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsGroup[i].group_name = arr[i]["goodsGroupName"].ToString();
+                        mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
                         mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
                         mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
                         mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());

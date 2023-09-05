@@ -659,7 +659,7 @@
             this.picLogo.Size = new System.Drawing.Size(65, 18);
             this.picLogo.TabIndex = 10;
             this.picLogo.TabStop = false;
-            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
+            this.picLogo.DoubleClick += new System.EventHandler(this.picLogo_DoubleClick);
             // 
             // frmMain
             // 

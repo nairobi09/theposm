@@ -570,15 +570,6 @@ namespace thepos
 
             reg.SetValue("ID", dID);
 
-
-        }
-
-        private void picLogo_Click(object sender, EventArgs e)
-        {
-
-            frmSysAdmin frmSysAdmin = new frmSysAdmin();
-            frmSysAdmin.ShowDialog();
-
         }
 
         private void lblReqUser_Click(object sender, EventArgs e)
@@ -587,5 +578,11 @@ namespace thepos
             fReqUser.ShowDialog();
         }
 
+        private void picLogo_DoubleClick(object sender, EventArgs e)
+        {
+            frmSysAdmin frmSysAdmin = new frmSysAdmin();
+            frmSysAdmin.ShowDialog();
+
+        }
     }
 }

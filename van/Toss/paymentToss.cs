@@ -195,10 +195,10 @@ namespace thepos
 
 
 
-        public int requestTossCardCancel(PaymentCard pCard, out PaymentCard pCardCancel)
+        public int requestTossCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
         {
             int ret = 0;
-            pCardCancel = pCard;
+            pCardCancel = pCardAuth;
 
 
             try
@@ -223,15 +223,15 @@ namespace thepos
             ret = UPay_Set("LGD_REQTYPE", "CANCEL");
             //ret = UPay_Set("LGD_MID", "");
 
-            ret = UPay_Set("LGD_AMOUNT", pCard.amount.ToString());
-            ret = UPay_Set("LGD_INSTALL", pCard.install);
-            ret = UPay_Set("LGD_TID", pCard.tran_serial);
+            ret = UPay_Set("LGD_AMOUNT", pCardAuth.amount.ToString());
+            ret = UPay_Set("LGD_INSTALL", pCardAuth.install);
+            ret = UPay_Set("LGD_TID", pCardAuth.tran_serial);
             ret = UPay_Set("LGD_TAXFREEAMOUNT", "0");
             ret = UPay_Set("LGD_VAT", "0");
             ret = UPay_Set("VAN_SFEEAMOUNT", "0");
             ret = UPay_Set("VAN_TRANTYPE", "S1");  // S0 승인, S1 취소
-            ret = UPay_Set("VAN_CAPDATE", pCard.tran_date);
-            ret = UPay_Set("VAN_AUTHNO", pCard.auth_no);
+            ret = UPay_Set("VAN_CAPDATE", pCardAuth.tran_date);
+            ret = UPay_Set("VAN_AUTHNO", pCardAuth.auth_no);
 
 
             ret = UPay_TX();

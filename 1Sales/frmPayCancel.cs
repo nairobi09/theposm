@@ -45,6 +45,7 @@ namespace thepos
             lvwPay.Items.Clear();
 
             //!
+            //String sUrl = "paymentCard?theNo=" + theNo + "&tranType=A";
             String sUrl = "paymentCard?theNo=" + theNo;
             if (mRequestGet(sUrl))
             {
@@ -67,7 +68,13 @@ namespace thepos
                         else
                             lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
 
-                        lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+                        if (arr[i]["isCancel"].ToString() == "Y")
+                            lvItem.SubItems.Add("취소됨");
+                        else if (arr[i]["isCancel"].ToString() == "0")
+                            lvItem.SubItems.Add("취소중");
+                        else
+                            lvItem.SubItems.Add("");
+
                         lvItem.SubItems.Add(arr[i]["theNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["payType"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
@@ -105,6 +112,7 @@ namespace thepos
 
 
             //!
+            //sUrl = "paymentCash?theNo=" + theNo + "&tranType=A";
             sUrl = "paymentCash?theNo=" + theNo;
             if (mRequestGet(sUrl))
             {
@@ -127,7 +135,15 @@ namespace thepos
                         else
                             lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
 
-                        lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+                        
+                        if (arr[i]["isCancel"].ToString() == "Y")
+                            lvItem.SubItems.Add("취소됨");
+                        else if (arr[i]["isCancel"].ToString() == "0")
+                            lvItem.SubItems.Add("취소중");
+                        else 
+                            lvItem.SubItems.Add("");
+
+
                         lvItem.SubItems.Add(arr[i]["theNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["payType"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
@@ -272,15 +288,28 @@ namespace thepos
                             pCardAuth.pos_no = arr[0]["posNo"].ToString();
                             pCardAuth.the_no = arr[0]["theNo"].ToString();
                             pCardAuth.ref_no = arr[0]["refNo"].ToString();
+
                             pCardAuth.pay_date = arr[0]["payDate"].ToString();
                             pCardAuth.pay_time = arr[0]["payTime"].ToString();
                             pCardAuth.pay_type = arr[0]["payType"].ToString();
                             pCardAuth.tran_type = arr[0]["tranType"].ToString();
                             pCardAuth.pay_class = arr[0]["payClass"].ToString();
+
                             pCardAuth.ticket_no = arr[0]["ticketNo"].ToString();
                             pCardAuth.pay_seq = convert_number(arr[0]["paySeq"].ToString());
                             pCardAuth.tran_date = arr[0]["tranDate"].ToString();
                             pCardAuth.amount = convert_number(arr[0]["amount"].ToString());
+                            pCardAuth.install = arr[0]["install"].ToString();
+
+                            pCardAuth.auth_no = arr[0]["authNo"].ToString();
+                            pCardAuth.card_no = arr[0]["cardNo"].ToString();
+
+                            pCardAuth.card_name = arr[0]["cardName"].ToString();
+                            pCardAuth.isu_code = arr[0]["isuCode"].ToString();
+                            pCardAuth.acq_code = arr[0]["acqCode"].ToString();
+                            pCardAuth.merchant_no = arr[0]["merchantNo"].ToString();
+                            pCardAuth.tran_serial = arr[0]["tranSerial"].ToString();
+
                             pCardAuth.tax_amount = 0;
                             pCardAuth.tfree_amount = 0;
                             pCardAuth.service_amount = 0;
@@ -313,43 +342,89 @@ namespace thepos
                     //?
                     PaymentCard pCardCancel = new PaymentCard();
 
-                    if (requestCardCancel(mPaymentCards[idx], out pCardCancel) != 0)  // Toss process
+                    if (requestCardCancel(pCardAuth, out pCardCancel) != 0)  // Toss process
                     {
                         display_error_msg(mErrorMsg);
                     }
                     else
                     {
                         //
-                        cancel_order_and_payments(mPaymentCards[idx].amount);
-
-                        //pCardCancel.site_id = mSiteId;
-                        //pCardCancel.biz_dt = mBizDate;
-                        //pCardCancel.pos_no = mPosNo;
-                        //pCardCancel.the_no = mPaymentCards[idx].the_no;
-                        //pCardCancel.ref_no = mPaymentCards[idx].ref_no;
-
-                        pCardCancel.pay_date = get_today_date();
-                        pCardCancel.pay_time = get_today_time();
-                        pCardCancel.pay_type = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
-                        pCardCancel.tran_type = "C";       // 승인 A 취소 C
-
-                        //pCardCancel.pay_class = mPayClass;
-                        //pCardCancel.ticket_no = mPaymentCards[idx].ticket_no;
-                        //pCardCancel.pay_seq = mPaymentCards[idx].pay_seq;
-                        //pCardCancel.install = mPaymentCards[idx].install;  //
-                        //pCardCancel.auth_no = mPaymentCards[idx].auth_no; //
-                        //pCardCancel.card_name = mPaymentCards[idx].card_name;  //
-
-                        pCardCancel.is_cancel = "Y";        // 취소여부
-
-                        mPaymentCards.Add(pCardCancel);
+                        cancel_order_and_payments(pCardAuth.amount);
 
 
-                        //? 승인건에 취소마킹
-                        PaymentCard pc = new PaymentCard();
-                        pc = mPaymentCards[idx];
-                        pc.is_cancel = "Y";
-                        mPaymentCards[idx] = pc;
+                        //!
+                        parameters["siteId"] = mSiteId;
+                        parameters["posNo"] = mPosNo;
+                        parameters["bizDt"] = mBizDate;
+                        parameters["theNo"] = pCardAuth.the_no;
+                        parameters["refNo"] = pCardAuth.ref_no;
+                        parameters["payDate"] = get_today_date();
+                        parameters["payTime"] = get_today_time();
+                        parameters["payType"] = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
+                        parameters["tranType"] = "C";       // 승인 A 취소 C
+                        parameters["payClass"] = mPayClass;
+                        parameters["ticketNo"] = pCardAuth.ticket_no;
+                        parameters["paySeq"] = pCardAuth.pay_seq + "";
+                        parameters["tranDate"] = pCardCancel.tran_date;
+                        parameters["amount"] = pCardAuth.amount + "";
+                        parameters["install"] = pCardAuth.install;
+                        parameters["authNo"] = pCardCancel.auth_no;
+                        parameters["cardNo"] = pCardCancel.card_no;
+                        parameters["cardName"] = pCardCancel.card_name;
+                        parameters["isuCode"] = pCardCancel.isu_code;
+                        parameters["acqCode"] = pCardCancel.acq_code;
+                        parameters["merchantNo"] = pCardCancel.merchant_no;
+                        parameters["tranSerial"] = pCardCancel.tran_serial;     // tran_serial -> 취소시 tid입력
+                        parameters["signPath"] = "";
+                        parameters["giftChange"] = "";
+                        parameters["isCancel"] = "Y";
+                        parameters["vanCode"] = mVanCode;
+
+                        if (mRequestPost("paymentCard", parameters))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+                            }
+                            else
+                            {
+                                MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("시스템오류 paymentCard\n\n" + mErrorMsg, "thepos");
+                            return;
+                        }
+
+
+
+                        //! 승인건에 취소마킹
+                        parameters.Clear();
+                        parameters["siteId"] = mSiteId;
+                        parameters["theNo"] = pCardAuth.the_no;
+                        parameters["payType"] = "C1";
+                        parameters["tranType"] = "A";
+                        parameters["paySeq"] = pCardAuth.pay_seq + "";
+                        parameters["isCancel"] = "Y";
+
+                        if (mRequestPatch("paymentCard", parameters))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+                            }
+                            else
+                            {
+                                MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
+                            return;
+                        }
+
 
 
                         SetDisplayAlarm("I", "카드결제 취소.");
@@ -500,7 +575,6 @@ namespace thepos
                 {
                     PaymentCash pCashCancel = new PaymentCash();
 
-
                     //? input_type을 구하는 창이 필요한가?
 
 
@@ -513,25 +587,6 @@ namespace thepos
                     {
                         //
                         cancel_order_and_payments(pCashAuth.amount);
-
-
-                        pCashCancel.site_id = mSiteId;
-                        pCashCancel.biz_dt = mBizDate;
-                        pCashCancel.pos_no = mPosNo;
-                        pCashCancel.the_no = pCashAuth.the_no;
-                        pCashCancel.ref_no = pCashAuth.ref_no;
-
-                        pCashCancel.pay_date = get_today_date();
-                        pCashCancel.pay_time = get_today_time();
-                        pCashCancel.pay_type = "R1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
-                        pCashCancel.tran_type = "C";       // 승인 A 취소 C
-                        pCashCancel.pay_class = mPayClass;
-                        pCashCancel.ticket_no = pCashAuth.ticket_no;
-                        pCashCancel.pay_seq = pCashAuth.pay_seq;
-                        pCashCancel.amount = pCashAuth.amount;
-                        pCashCancel.receipt_type = pCashAuth.receipt_type;
-
-                        pCashCancel.is_cancel = "Y";        // 취소여부
 
 
                         //! 취소건 추가
@@ -550,7 +605,7 @@ namespace thepos
 
                         parameters["ticketNo"] = pCashCancel.ticket_no;
                         parameters["paySeq"] = pCashCancel.pay_seq + "";
-                        parameters["tranDate"] = "";
+                        parameters["tranDate"] = pCashCancel.tran_date;
                         parameters["amount"] = pCashCancel.amount + "";
                         parameters["receiptType"] = pCashCancel.receipt_type + "";
 
@@ -558,7 +613,7 @@ namespace thepos
                         parameters["authNo"] = pCashCancel.auth_no;
                         parameters["tranSerial"] = pCashCancel.tran_serial;
                         parameters["isCancel"] = "Y";
-                        parameters["vanCode"] = pCashCancel.van_code;
+                        parameters["vanCode"] = mVanCode;
 
                         if (mRequestPost("paymentCash", parameters))
                         {
@@ -630,7 +685,7 @@ namespace thepos
 
                     parameters["ticketNo"] = pCashAuth.ticket_no;
                     parameters["paySeq"] = pCashAuth.pay_seq + "";
-                    parameters["tranDate"] = "";
+                    parameters["tranDate"] = pCashAuth.tran_date;
                     parameters["amount"] = pCashAuth.amount + "";
                     parameters["receiptType"] = pCashAuth.receipt_type + "";
 
@@ -638,7 +693,7 @@ namespace thepos
                     parameters["authNo"] = pCashAuth.auth_no;
                     parameters["tranSerial"] = pCashAuth.tran_serial;
                     parameters["isCancel"] = "Y";
-                    parameters["vanCode"] = pCashAuth.van_code;
+                    parameters["vanCode"] = mVanCode;
 
                     if (mRequestPost("paymentCash", parameters))
                     {
@@ -954,7 +1009,7 @@ namespace thepos
 
 
 
-        int requestCardCancel(PaymentCard mPaymentCards, out PaymentCard pCardCancel)
+        int requestCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
         {
             int ret = 0;
             PaymentCard cardCancel = new PaymentCard();
@@ -963,13 +1018,19 @@ namespace thepos
             if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
-                ret = p.requestKcpCardCancel(mPaymentCards, out pCardCancel);
+                ret = p.requestKcpCardCancel(pCardAuth, out pCardCancel);
+            }
+            else if (mVanCode == "NICE")
+            {
+                paymentNice p = new paymentNice();
+                ret = p.requestNiceCardCancel(pCardAuth, out pCardCancel);
             }
             else if (mVanCode == "TOSS")
             {
                 paymentToss p = new paymentToss();
-                ret = p.requestTossCardCancel(mPaymentCards, out pCardCancel);
+                ret = p.requestTossCardCancel(pCardAuth, out pCardCancel);
             }
+
 
             return ret;
         }
