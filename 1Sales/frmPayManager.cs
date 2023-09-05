@@ -144,18 +144,22 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
 
+                        String is_cash = "0";
+                        String is_card = "0";
+                        String is_point = "0";
+                        String is_easy = "0";
 
-                        if (convert_number(arr[i]["amountCash"].ToString()) > 0) lvItem.SubItems.Add("1");
-                        else lvItem.SubItems.Add("0");
+                        String is_payment = "";
 
-                        if (convert_number(arr[i]["amountCard"].ToString()) > 0) lvItem.SubItems.Add("1");
-                        else lvItem.SubItems.Add("0");
 
-                        if (convert_number(arr[i]["amountPoint"].ToString()) > 0) lvItem.SubItems.Add("1");
-                        else lvItem.SubItems.Add("0");
+                        if (convert_number(arr[i]["amountCash"].ToString()) > 0) is_cash = "1";
+                        if (convert_number(arr[i]["amountCard"].ToString()) > 0) is_card = "1";
+                        if (convert_number(arr[i]["amountPoint"].ToString()) > 0) is_point = "1";
+                        if (convert_number(arr[i]["amountEasy"].ToString()) > 0) is_easy = "1";
 
-                        if (convert_number(arr[i]["amountEasy"].ToString()) > 0) lvItem.SubItems.Add("1");
-                        else lvItem.SubItems.Add("0");
+                        is_payment = is_cash + is_card + is_point + is_easy;
+
+                        lvItem.SubItems.Add(is_payment);
 
 
                         if (arr[i]["isCancel"].ToString() == "Y")
@@ -218,13 +222,9 @@ namespace thepos
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
             String tranType = lvwPayManager.SelectedItems[0].SubItems[8].Text;
 
-            String is_payment = lvwPayManager.SelectedItems[0].SubItems[9].Text +
-                                lvwPayManager.SelectedItems[0].SubItems[10].Text +
-                                lvwPayManager.SelectedItems[0].SubItems[11].Text +
-                                lvwPayManager.SelectedItems[0].SubItems[12].Text;
+            String is_payment = lvwPayManager.SelectedItems[0].SubItems[9].Text;
 
             lblLayoutBill.Text = make_bill_header() + make_bill_body(tTheNo, tranType, "", is_payment) + make_bill_trailer();
-
 
         }
 
@@ -242,10 +242,7 @@ namespace thepos
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
             String tranType = lvwPayManager.SelectedItems[0].SubItems[8].Text;
 
-            String is_payment = lvwPayManager.SelectedItems[0].SubItems[9].Text +
-                    lvwPayManager.SelectedItems[0].SubItems[10].Text +
-                    lvwPayManager.SelectedItems[0].SubItems[11].Text +
-                    lvwPayManager.SelectedItems[0].SubItems[12].Text;
+            String is_payment = lvwPayManager.SelectedItems[0].SubItems[9].Text;
 
 
             String headerBill = make_bill_header();
