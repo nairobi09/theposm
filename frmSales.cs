@@ -104,6 +104,11 @@ namespace thepos
             get_goodsitem();
             display_goodsgroup();
             ClickedGoodsGroup(mGoodsGroup[0].group_code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
+                        
+            get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅
+
+            get_pos_setup();
+
         }
 
 
@@ -238,15 +243,6 @@ namespace thepos
             mLblOrderAmountNet = lblOrderAmountNet;
             mLblOrderAmountReceive = lblOrderAmountReceive;
             mLblOrderAmountRest = lblOrderAmountRest;
-
-
-                        
-            get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅
-
-            get_site_info();
-
-            get_pos_setup();
-
         }
 
 
@@ -279,15 +275,6 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
             }
-        }
-
-
-        private void get_site_info()
-        {
-
-
-
-
         }
 
 
@@ -957,8 +944,6 @@ namespace thepos
             return true;
 
         }
-
-
 
 
         public static int SaveTicket(String ticket_no, String subClass)  // subClass : 사용 US,  충전 CH

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace thepos
 {
-    public partial class frmCustomerDisplay : Form
+    public partial class frmSub : Form
     {
-        public frmCustomerDisplay()
+        public frmSub()
         {
             InitializeComponent();
         }

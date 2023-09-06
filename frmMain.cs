@@ -27,7 +27,7 @@ namespace thepos
 
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
 
-
+        String in_patern = "";
 
         public frmMain()
         {
@@ -578,11 +578,14 @@ namespace thepos
             fReqUser.ShowDialog();
         }
 
-        private void picLogo_DoubleClick(object sender, EventArgs e)
+        private void picLogo_Click(object sender, EventArgs e)
         {
-            frmSysAdmin frmSysAdmin = new frmSysAdmin();
+
+            frmSysAdmin frmSysAdmin = new frmSysAdmin(in_patern);
             frmSysAdmin.ShowDialog();
 
+            in_patern = "";
         }
+
     }
 }

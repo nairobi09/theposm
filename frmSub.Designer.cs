@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmCustomerDisplay
+    partial class frmSub
     {
         /// <summary>
         /// Required designer variable.
@@ -55,14 +55,14 @@
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountChargeTitle);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountDCTitle);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountSumTitle);
-            this.panelOrderSumBlack.Location = new System.Drawing.Point(611, 82);
+            this.panelOrderSumBlack.Location = new System.Drawing.Point(590, 76);
             this.panelOrderSumBlack.Name = "panelOrderSumBlack";
             this.panelOrderSumBlack.Size = new System.Drawing.Size(379, 597);
-            this.panelOrderSumBlack.TabIndex = 1;
+            this.panelOrderSumBlack.TabIndex = 2;
             // 
             // lblOrderAmountRest
             // 
-            this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRest.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRest.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRest.Location = new System.Drawing.Point(243, 428);
             this.lblOrderAmountRest.Name = "lblOrderAmountRest";
@@ -73,7 +73,7 @@
             // 
             // lblOrderAmountReceive
             // 
-            this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceive.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceive.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmountReceive.Location = new System.Drawing.Point(243, 356);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
@@ -84,7 +84,7 @@
             // 
             // lblOrderAmountNet
             // 
-            this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountNet.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountNet.Location = new System.Drawing.Point(243, 284);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
@@ -95,7 +95,7 @@
             // 
             // lblOrderAmountDC
             // 
-            this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDC.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDC.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmountDC.Location = new System.Drawing.Point(243, 206);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
@@ -106,7 +106,7 @@
             // 
             // lblOrderAmount
             // 
-            this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmount.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmount.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmount.Location = new System.Drawing.Point(243, 127);
             this.lblOrderAmount.Name = "lblOrderAmount";
@@ -118,7 +118,7 @@
             // lblOrderAmountRestTitle
             // 
             this.lblOrderAmountRestTitle.AutoSize = true;
-            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(22, 437);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
@@ -129,7 +129,7 @@
             // lblOrderAmountReceiveTitle
             // 
             this.lblOrderAmountReceiveTitle.AutoSize = true;
-            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceiveTitle.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(24, 365);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
@@ -140,7 +140,7 @@
             // lblOrderAmountChargeTitle
             // 
             this.lblOrderAmountChargeTitle.AutoSize = true;
-            this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(24, 293);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
@@ -151,7 +151,7 @@
             // lblOrderAmountDCTitle
             // 
             this.lblOrderAmountDCTitle.AutoSize = true;
-            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDCTitle.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(24, 215);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
@@ -162,7 +162,7 @@
             // lblOrderAmountSumTitle
             // 
             this.lblOrderAmountSumTitle.AutoSize = true;
-            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountSumTitle.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(24, 136);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
@@ -170,7 +170,7 @@
             this.lblOrderAmountSumTitle.TabIndex = 0;
             this.lblOrderAmountSumTitle.Text = "합계금액";
             // 
-            // frmCustomerDisplay
+            // frmSub
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -178,8 +178,8 @@
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.panelOrderSumBlack);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmCustomerDisplay";
-            this.Text = "frmCustomerDisplay";
+            this.Name = "frmSub";
+            this.Text = "frmSub";
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
             this.ResumeLayout(false);

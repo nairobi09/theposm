@@ -29,49 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysAdmin));
-            this.btnPosMac = new System.Windows.Forms.Button();
-            this.btnUser = new System.Windows.Forms.Button();
             this.panelView = new System.Windows.Forms.Panel();
-            this.panelCertConsole = new System.Windows.Forms.Panel();
+            this.panelAdminConsole = new System.Windows.Forms.Panel();
+            this.btnSysSite = new System.Windows.Forms.Button();
             this.btnSysShop = new System.Windows.Forms.Button();
             this.btnSysPayConsole = new System.Windows.Forms.Button();
             this.btnSysGoodsLayout = new System.Windows.Forms.Button();
             this.btnSysGoods = new System.Windows.Forms.Button();
             this.btnSysGoodsGroup = new System.Windows.Forms.Button();
             this.btnPos = new System.Windows.Forms.Button();
-            this.btnSysSite = new System.Windows.Forms.Button();
+            this.panelCertConsole = new System.Windows.Forms.Panel();
+            this.btnPosMac = new System.Windows.Forms.Button();
+            this.btnUser = new System.Windows.Forms.Button();
+            this.panelAdminConsole.SuspendLayout();
             this.panelCertConsole.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnPosMac
-            // 
-            this.btnPosMac.BackColor = System.Drawing.Color.LightGray;
-            this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPosMac.ForeColor = System.Drawing.Color.Red;
-            this.btnPosMac.Location = new System.Drawing.Point(7, 451);
-            this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnPosMac.Name = "btnPosMac";
-            this.btnPosMac.Size = new System.Drawing.Size(112, 62);
-            this.btnPosMac.TabIndex = 0;
-            this.btnPosMac.TabStop = false;
-            this.btnPosMac.Text = "포스기기\r\n인증";
-            this.btnPosMac.UseVisualStyleBackColor = false;
-            this.btnPosMac.Click += new System.EventHandler(this.btnPosMac_Click);
-            // 
-            // btnUser
-            // 
-            this.btnUser.BackColor = System.Drawing.Color.LightGray;
-            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUser.ForeColor = System.Drawing.Color.Red;
-            this.btnUser.Location = new System.Drawing.Point(7, 520);
-            this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(112, 62);
-            this.btnUser.TabIndex = 0;
-            this.btnUser.TabStop = false;
-            this.btnUser.Text = "사용자인증";
-            this.btnUser.UseVisualStyleBackColor = false;
-            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
             // panelView
             // 
@@ -82,22 +54,34 @@
             this.panelView.Size = new System.Drawing.Size(870, 710);
             this.panelView.TabIndex = 1;
             // 
-            // panelCertConsole
+            // panelAdminConsole
             // 
-            this.panelCertConsole.Controls.Add(this.btnSysSite);
-            this.panelCertConsole.Controls.Add(this.btnSysShop);
-            this.panelCertConsole.Controls.Add(this.btnPosMac);
-            this.panelCertConsole.Controls.Add(this.btnSysPayConsole);
-            this.panelCertConsole.Controls.Add(this.btnSysGoodsLayout);
-            this.panelCertConsole.Controls.Add(this.btnSysGoods);
-            this.panelCertConsole.Controls.Add(this.btnSysGoodsGroup);
-            this.panelCertConsole.Controls.Add(this.btnUser);
-            this.panelCertConsole.Location = new System.Drawing.Point(1, 88);
-            this.panelCertConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelCertConsole.Name = "panelCertConsole";
-            this.panelCertConsole.Size = new System.Drawing.Size(123, 628);
-            this.panelCertConsole.TabIndex = 2;
-            this.panelCertConsole.Visible = false;
+            this.panelAdminConsole.Controls.Add(this.btnSysSite);
+            this.panelAdminConsole.Controls.Add(this.btnSysShop);
+            this.panelAdminConsole.Controls.Add(this.btnSysPayConsole);
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsLayout);
+            this.panelAdminConsole.Controls.Add(this.btnSysGoods);
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroup);
+            this.panelAdminConsole.Location = new System.Drawing.Point(1, 88);
+            this.panelAdminConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelAdminConsole.Name = "panelAdminConsole";
+            this.panelAdminConsole.Size = new System.Drawing.Size(123, 440);
+            this.panelAdminConsole.TabIndex = 2;
+            this.panelAdminConsole.Visible = false;
+            // 
+            // btnSysSite
+            // 
+            this.btnSysSite.BackColor = System.Drawing.Color.LightGray;
+            this.btnSysSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysSite.Location = new System.Drawing.Point(6, 4);
+            this.btnSysSite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysSite.Name = "btnSysSite";
+            this.btnSysSite.Size = new System.Drawing.Size(112, 62);
+            this.btnSysSite.TabIndex = 2;
+            this.btnSysSite.TabStop = false;
+            this.btnSysSite.Text = "사업장\r\n관리";
+            this.btnSysSite.UseVisualStyleBackColor = false;
+            this.btnSysSite.Click += new System.EventHandler(this.btnSysSite_Click);
             // 
             // btnSysShop
             // 
@@ -183,27 +167,54 @@
             this.btnPos.UseVisualStyleBackColor = false;
             this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
             // 
-            // btnSysSite
+            // panelCertConsole
             // 
-            this.btnSysSite.BackColor = System.Drawing.Color.LightGray;
-            this.btnSysSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysSite.Location = new System.Drawing.Point(6, 4);
-            this.btnSysSite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSysSite.Name = "btnSysSite";
-            this.btnSysSite.Size = new System.Drawing.Size(112, 62);
-            this.btnSysSite.TabIndex = 2;
-            this.btnSysSite.TabStop = false;
-            this.btnSysSite.Text = "사업장\r\n관리";
-            this.btnSysSite.UseVisualStyleBackColor = false;
-            this.btnSysSite.Click += new System.EventHandler(this.btnSysSite_Click);
+            this.panelCertConsole.Controls.Add(this.btnPosMac);
+            this.panelCertConsole.Controls.Add(this.btnUser);
+            this.panelCertConsole.Location = new System.Drawing.Point(1, 535);
+            this.panelCertConsole.Name = "panelCertConsole";
+            this.panelCertConsole.Size = new System.Drawing.Size(122, 184);
+            this.panelCertConsole.TabIndex = 3;
+            this.panelCertConsole.Visible = false;
+            // 
+            // btnPosMac
+            // 
+            this.btnPosMac.BackColor = System.Drawing.Color.LightGray;
+            this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPosMac.ForeColor = System.Drawing.Color.Red;
+            this.btnPosMac.Location = new System.Drawing.Point(7, 4);
+            this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPosMac.Name = "btnPosMac";
+            this.btnPosMac.Size = new System.Drawing.Size(112, 62);
+            this.btnPosMac.TabIndex = 1;
+            this.btnPosMac.TabStop = false;
+            this.btnPosMac.Text = "포스기기\r\n인증";
+            this.btnPosMac.UseVisualStyleBackColor = false;
+            this.btnPosMac.Click += new System.EventHandler(this.btnPosMac_Click);
+            // 
+            // btnUser
+            // 
+            this.btnUser.BackColor = System.Drawing.Color.LightGray;
+            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser.ForeColor = System.Drawing.Color.Red;
+            this.btnUser.Location = new System.Drawing.Point(7, 73);
+            this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUser.Name = "btnUser";
+            this.btnUser.Size = new System.Drawing.Size(112, 62);
+            this.btnUser.TabIndex = 2;
+            this.btnUser.TabStop = false;
+            this.btnUser.Text = "사용자인증";
+            this.btnUser.UseVisualStyleBackColor = false;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
             // frmSysAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panelCertConsole);
             this.Controls.Add(this.btnPos);
             this.Controls.Add(this.panelView);
-            this.Controls.Add(this.panelCertConsole);
+            this.Controls.Add(this.panelAdminConsole);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -212,17 +223,15 @@
             this.Name = "frmSysAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "thepos Admin";
+            this.panelAdminConsole.ResumeLayout(false);
             this.panelCertConsole.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnPosMac;
-        private System.Windows.Forms.Button btnUser;
         private System.Windows.Forms.Panel panelView;
-        private System.Windows.Forms.Panel panelCertConsole;
+        private System.Windows.Forms.Panel panelAdminConsole;
         private System.Windows.Forms.Button btnPos;
         private System.Windows.Forms.Button btnSysGoodsGroup;
         private System.Windows.Forms.Button btnSysGoods;
@@ -230,5 +239,8 @@
         private System.Windows.Forms.Button btnSysPayConsole;
         private System.Windows.Forms.Button btnSysShop;
         private System.Windows.Forms.Button btnSysSite;
+        private System.Windows.Forms.Panel panelCertConsole;
+        private System.Windows.Forms.Button btnPosMac;
+        private System.Windows.Forms.Button btnUser;
     }
 }

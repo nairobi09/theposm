@@ -721,7 +721,7 @@ namespace thepos
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.LightGray;
             this.btnClose.Location = new System.Drawing.Point(968, 2);
             this.btnClose.Name = "btnClose";
@@ -890,7 +890,7 @@ namespace thepos
             // 
             // lblOrderAmountRest
             // 
-            this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRest.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRest.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRest.Location = new System.Drawing.Point(34, 255);
             this.lblOrderAmountRest.Name = "lblOrderAmountRest";
@@ -901,7 +901,7 @@ namespace thepos
             // 
             // lblOrderAmountReceive
             // 
-            this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceive.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceive.Location = new System.Drawing.Point(34, 203);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
             this.lblOrderAmountReceive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -911,7 +911,7 @@ namespace thepos
             // 
             // lblOrderAmountNet
             // 
-            this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountNet.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountNet.Location = new System.Drawing.Point(34, 151);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
@@ -922,7 +922,7 @@ namespace thepos
             // 
             // lblOrderAmountDC
             // 
-            this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDC.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDC.Location = new System.Drawing.Point(34, 94);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
             this.lblOrderAmountDC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -932,7 +932,7 @@ namespace thepos
             // 
             // lblOrderAmount
             // 
-            this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmount.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmount.Location = new System.Drawing.Point(34, 35);
             this.lblOrderAmount.Name = "lblOrderAmount";
             this.lblOrderAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -943,7 +943,7 @@ namespace thepos
             // lblOrderAmountRestTitle
             // 
             this.lblOrderAmountRestTitle.AutoSize = true;
-            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(3, 243);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
@@ -954,7 +954,7 @@ namespace thepos
             // lblOrderAmountReceiveTitle
             // 
             this.lblOrderAmountReceiveTitle.AutoSize = true;
-            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 191);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
             this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 12);
@@ -964,7 +964,7 @@ namespace thepos
             // lblOrderAmountChargeTitle
             // 
             this.lblOrderAmountChargeTitle.AutoSize = true;
-            this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 139);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
@@ -975,7 +975,7 @@ namespace thepos
             // lblOrderAmountDCTitle
             // 
             this.lblOrderAmountDCTitle.AutoSize = true;
-            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 82);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
             this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 12);
@@ -985,7 +985,7 @@ namespace thepos
             // lblOrderAmountSumTitle
             // 
             this.lblOrderAmountSumTitle.AutoSize = true;
-            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 23);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
             this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 12);
@@ -1443,7 +1443,7 @@ namespace thepos
             this.Controls.Add(this.panelFlowConsole);
             this.Controls.Add(this.panelNumpad);
             this.Controls.Add(this.panelOrderConsole);
-            this.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("Gulim", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
