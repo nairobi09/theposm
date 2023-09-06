@@ -71,7 +71,7 @@
             this.panelback.Controls.Add(this.lblT1);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -81,7 +81,7 @@
             // 
             this.tbReqAmount.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbReqAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbReqAmount.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbReqAmount.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbReqAmount.Location = new System.Drawing.Point(130, 221);
             this.tbReqAmount.Margin = new System.Windows.Forms.Padding(2);
             this.tbReqAmount.Name = "tbReqAmount";
@@ -138,6 +138,7 @@
             this.cardno,
             this.amount,
             this.authno});
+            this.lvwPay.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwPay.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPay.FullRowSelect = true;
             this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;

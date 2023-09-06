@@ -18,7 +18,7 @@ namespace thepos
         String mThisButtonClick = "";
 
 
-        public frmSysAdmin(String pass_patern)
+        public frmSysAdmin(String in_patern)
         {
             InitializeComponent();
 
@@ -27,16 +27,8 @@ namespace thepos
             {
                 panelAdminConsole.Visible = true;
 
-                String m1 = get_today_date().Substring(2,1);
-                String m2 = get_today_date().Substring(3, 1);
-                String d1 = get_today_date().Substring(4, 1);
-                String d2 = get_today_date().Substring(5, 1);
 
-                여기를 고치자...
-
-
-
-                if (pass_patern == "1123")
+                if (in_patern == "0012")
                 {
                     panelCertConsole.Visible = true;
                 }

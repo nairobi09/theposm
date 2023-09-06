@@ -87,8 +87,11 @@ namespace thepos
             btnRequestCard.Font = font10;
             btnRequestEasy.Font = font10;
 
-
             mTbReqAmount = tbReqAmount;
+
+            lvwPay.Font = font10;
+
+
         }
 
         private void initial_the()

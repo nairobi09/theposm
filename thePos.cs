@@ -929,7 +929,7 @@ namespace thepos
                                     {
                                         tStr = "지출증빙";
                                     }
-                                    else if (arr[i]["receiptType"].ToString() == "3") //? 자진밝급
+                                    else if (arr[i]["receiptType"].ToString() == "S") //? 자진밝급
                                     {
                                         tStr = "자진발급";
                                     }

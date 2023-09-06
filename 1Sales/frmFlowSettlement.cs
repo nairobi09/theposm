@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using Newtonsoft.Json.Linq;
+using System.Security.Policy;
+using System.Diagnostics.Eventing.Reader;
 
 namespace thepos
 {
@@ -224,6 +226,10 @@ namespace thepos
 
 
             //?  - 발생시간 순서, 
+
+            충전 사용 - 표시
+
+
             String sUrl = "orderItem?ticketNo=" + ticket_no;
 
             if (mRequestGet(sUrl))
@@ -374,86 +380,118 @@ namespace thepos
             }
 
 
-            //? 서버API로 변경
-            for (int i = 0; i < mPaymentCards.Count; i++)
+
+            //!
+            String sUrl = "paymentCard?ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
+            if (mRequestGet(sUrl))
             {
-                if (mPaymentCards[i].ticket_no == ticket_no & mPaymentCards[i].tran_type == "A" & mPaymentCards[i].pay_class == "CH")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    ListViewItem item = new ListViewItem();
-                    point_back bpoint = new point_back();
+                    String data = mObj["paymentCards"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                    item.Text = mPaymentCards[i].the_no.Substring(14, 4);
-                    item.SubItems.Add(get_pay_class_name(mPaymentCards[i].pay_class));
-                    item.SubItems.Add(get_pay_type_name(mPaymentCards[i].pay_type));
-                    item.SubItems.Add(mPaymentCards[i].amount.ToString("N0"));
-
-                    if (mPaymentCards[i].is_cancel == "Y")
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        item.SubItems.Add("취소-완료");
-                        bpoint.result_code = "1";
+                        ListViewItem item = new ListViewItem();
+                        point_back bpoint = new point_back();
+
+                        item.Text = arr[i]["theNo"].ToString().Substring(14, 4);
+                        item.SubItems.Add(get_pay_class_name(arr[i]["payClass"].ToString()));
+                        item.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
+                        item.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
+
+                        if (arr[i]["isCancel"].ToString() == "Y")
+                        {
+                            item.SubItems.Add("취소-완료");
+                            bpoint.result_code = "1";
+                        }
+                        else
+                        {
+                            item.SubItems.Add("취소요망");
+                            bpoint.result_code = "0";
+                        }
+
+                        bpoint.pay_type = arr[i]["payType"].ToString();
+                        bpoint.pay_seq = convert_number(arr[i]["paySeq"].ToString());
+                        bpoint.the_no = arr[i]["theNo"].ToString();
+                        bpoint.amount = convert_number(arr[i]["amount"].ToString());
+                        bpoint.result_code = "";
+                        bpoint.tran_type = "";
+
+                        item.Tag = bpoint;
+
+                        lvwFlowPay.Items.Add(item);
                     }
-                    else
-                    {
-                        item.SubItems.Add("취소요망");
-                        bpoint.result_code = "0";
-                    }
-
-                    bpoint.pay_type = mPaymentCards[i].pay_type;
-                    bpoint.pay_seq = mPaymentCards[i].pay_seq;
-                    bpoint.the_no = mPaymentCards[i].the_no;
-                    bpoint.amount = mPaymentCards[i].amount;
-                    bpoint.result_code = "";
-                    bpoint.tran_type = "";
-
-                    item.Tag = bpoint;
-
-                    lvwFlowPay.Items.Add(item);
                 }
+                else
+                {
+                    MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
             }
 
 
-            for (int i = 0; i < mPaymentCashs.Count; i++)
+
+            //!
+            sUrl = "paymentCash?ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
+            if (mRequestGet(sUrl))
             {
-                if (mPaymentCashs[i].ticket_no == ticket_no & mPaymentCashs[i].tran_type == "A" & mPaymentCashs[i].pay_class == "CH")
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    ListViewItem item = new ListViewItem();
-                    point_back bpoint = new point_back();
+                    String data = mObj["paymentCashs"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                    item.Text = mPaymentCashs[i].the_no.Substring(14, 4);
-                    item.SubItems.Add(get_pay_class_name(mPaymentCashs[i].pay_class));
-                    item.SubItems.Add(get_pay_type_name(mPaymentCashs[i].pay_type));
-                    item.SubItems.Add(mPaymentCashs[i].amount.ToString("N0"));
-
-                    if (mPaymentCashs[i].is_cancel == "Y")
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        item.SubItems.Add("취소-완료");
-                        bpoint.result_code = "1";
+                        ListViewItem item = new ListViewItem();
+                        point_back bpoint = new point_back();
+
+                        item.Text = arr[i]["theNo"].ToString().Substring(14, 4);
+                        item.SubItems.Add(get_pay_class_name(arr[i]["payClass"].ToString()));
+                        item.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
+                        item.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
+
+                        if (arr[i]["isCancel"].ToString() == "Y")
+                        {
+                            item.SubItems.Add("취소-완료");
+                            bpoint.result_code = "1";
+                        }
+                        else
+                        {
+                            item.SubItems.Add("취소요망");
+                            bpoint.result_code = "0";
+                        }
+
+                        bpoint.pay_type = arr[i]["payType"].ToString();
+                        bpoint.pay_seq = convert_number(arr[i]["paySeq"].ToString());
+                        bpoint.the_no = arr[i]["theNo"].ToString();
+                        bpoint.amount = convert_number(arr[i]["amount"].ToString());
+                        bpoint.result_code = "";
+                        bpoint.tran_type = "";
+
+                        item.Tag = bpoint;
+
+                        lvwFlowPay.Items.Add(item);
+
                     }
-                    else
-                    {
-                        item.SubItems.Add("취소필요");
-                        bpoint.result_code = "0";
-                    }
-
-                    bpoint.pay_type = mPaymentCashs[i].pay_type;
-                    bpoint.pay_seq = mPaymentCashs[i].pay_seq;
-                    bpoint.the_no = mPaymentCashs[i].the_no;
-                    bpoint.amount = mPaymentCashs[i].amount;
-                    bpoint.result_code = "";
-                    bpoint.tran_type = "";
-
-                    item.Tag = bpoint;
-
-                    lvwFlowPay.Items.Add(item);
+                }
+                else
+                {
+                    MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
+            }
+
+
 
             //? 간편결제 추가
             //
-
-
-
-
 
 
         }

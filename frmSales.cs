@@ -1170,45 +1170,107 @@ namespace thepos
                 MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
                 int settle_amt = orderItem.amt;
 
-                for (int i = 0; i < mTicketFlowList.Count; i++)
+                String t_no = ticket_no;
+
+                int settle_point_usage = 0;
+                int settle_point_charge = 0;
+                int point_usage = 0;
+                int point_charge = 0;
+                String flow_step = "";
+                String open_locker = "";
+
+
+
+                // GET
+                String sUrl = "ticketFlow?ticketNo=" + t_no;
+
+                if (mRequestGet(sUrl))
                 {
-                    if (mTicketFlowList[i].ticket_no == ticket_no)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        TicketFlow ticketFlow = new TicketFlow();
-                        ticketFlow = mTicketFlowList[i];
-                        ticketFlow.settlement_dt = get_today_date() + get_today_time();
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-
-                        //? ???
-                        if (subClass == "US")
+                        if (arr.Count != 1)
                         {
-                            ticketFlow.settle_point_usage += settle_amt;
-                        }
-                        else if (subClass == "CH")
-                        {
-                            ticketFlow.settle_point_charge += settle_amt;
-                        }
-                        
-
-
-
-                        if (ticketFlow.point_usage == ticketFlow.settle_point_usage & ticketFlow.point_charge == ticketFlow.settle_point_charge)
-                        {
-                            ticketFlow.flow_step = "4";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
-
-
-                            if (mTicketType == "PD") // 후불
-                            {
-                                ticketFlow.open_locker = "0"; // 폐쇄0 개방1
-                            }
-
+                            MessageBox.Show("티켓데이터 사용 오류 \n ticketFlowCnt=" + arr.Count, "thepos");
+                            return -1;
                         }
 
-                        mTicketFlowList[i] = ticketFlow;
+                        point_charge = convert_number(arr[0]["pointCharge"].ToString());
+                        point_usage = convert_number(arr[0]["pointUsage"].ToString());
+                        settle_point_charge = convert_number(arr[0]["settlePointCharge"].ToString());
+                        settle_point_usage = convert_number(arr[0]["settlePointUsage"].ToString());
+                        flow_step = arr[0]["flowStep"].ToString();
+                        open_locker = arr[0]["openLocker"].ToString();
 
-                        return 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+                }
+
+
+
+                if (subClass == "US")
+                {
+                    settle_point_usage += settle_amt;
+                }
+                else if (subClass == "CH")
+                {
+                    settle_point_charge += settle_amt;
+                }
+
+
+
+                if (point_usage == settle_point_usage & point_charge == settle_point_charge)
+                {
+                    flow_step = "4";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
+
+                    if (mTicketType == "PD") // 후불
+                    {
+                        open_locker = "1"; // 폐쇄0 개방1
+                    }
+
+                }
+
+
+                // PATCH
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["ticketNo"] = t_no;
+                parameters["settlement_dt"] = get_today_date() + get_today_time();
+
+                parameters["settlePointCharge"] = settle_point_charge + "";
+                parameters["settlePointUsage"] = settle_point_usage + "";
+
+                parameters["flowStep"] = flow_step;
+
+
+
+                if (mRequestPatch("ticketFlow", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        MessageBox.Show("정상 사용 완료.", "thepos");
+                        return 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return -1;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return -1;
+                }
+
             }
 
             return 0;

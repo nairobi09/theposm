@@ -260,7 +260,7 @@ namespace thepos
 
             //if (lvwPay.SelectedItems[0].SubItems[8].Text == "C") return;  // 취소건 제외
 
-            if (lvwPay.SelectedItems[0].SubItems[5].Text == "Y")
+            if (lvwPay.SelectedItems[0].SubItems[5].Text == "Y" | lvwPay.SelectedItems[0].SubItems[5].Text == "취소됨")
             {
                 SetDisplayAlarm("W", "취소된 승인 or 취소건.");
                 return;  // 취소건, 취소된 승인건 - 제외

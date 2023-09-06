@@ -587,5 +587,19 @@ namespace thepos
             in_patern = "";
         }
 
+        private void lblSiteAlias_Click(object sender, EventArgs e)
+        {
+            in_patern += "0";
+        }
+
+        private void lblPosNoTitle_Click(object sender, EventArgs e)
+        {
+            in_patern += "1";
+        }
+
+        private void lblUserNameTitle_Click(object sender, EventArgs e)
+        {
+            in_patern += "2";
+        }
     }
 }

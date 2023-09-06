@@ -130,9 +130,7 @@ namespace thepos
 
         private void btnCashSimple_Click(object sender, EventArgs e)
         {
-
-
-            //? 서버API로 교체
+            //!
             int order_cnt = 0;
 
             if (paySeq == 1)
@@ -147,7 +145,6 @@ namespace thepos
 
 
             SavePayment(paySeq, "Cash", netAmount);  // payment - 신규, 수정 포함
-
 
 
             // 결제 항목 저장

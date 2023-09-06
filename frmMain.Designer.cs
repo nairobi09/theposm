@@ -67,7 +67,7 @@
             this.lblUserNameTitle = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel_in_0 = new System.Windows.Forms.Panel();
             this.lblSiteAlias = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
@@ -82,7 +82,7 @@
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelNumpad.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.panel_in_0.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
@@ -103,7 +103,7 @@
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Black;
-            this.btnExit.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnExit.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Location = new System.Drawing.Point(169, 229);
             this.btnExit.Name = "btnExit";
@@ -116,7 +116,7 @@
             // btnSupport
             // 
             this.btnSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSupport.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSupport.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSupport.ForeColor = System.Drawing.Color.White;
             this.btnSupport.Location = new System.Drawing.Point(169, 116);
             this.btnSupport.Name = "btnSupport";
@@ -128,7 +128,7 @@
             // btnSetup
             // 
             this.btnSetup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSetup.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSetup.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSetup.ForeColor = System.Drawing.Color.White;
             this.btnSetup.Location = new System.Drawing.Point(169, 3);
             this.btnSetup.Name = "btnSetup";
@@ -141,7 +141,7 @@
             // btnBusiness
             // 
             this.btnBusiness.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnBusiness.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBusiness.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBusiness.ForeColor = System.Drawing.Color.White;
             this.btnBusiness.Location = new System.Drawing.Point(3, 116);
             this.btnBusiness.Name = "btnBusiness";
@@ -154,7 +154,7 @@
             // btnReports
             // 
             this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReports.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnReports.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Location = new System.Drawing.Point(3, 229);
             this.btnReports.Name = "btnReports";
@@ -167,7 +167,7 @@
             // btnSales
             // 
             this.btnSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnSales.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSales.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSales.ForeColor = System.Drawing.Color.White;
             this.btnSales.Location = new System.Drawing.Point(3, 3);
             this.btnSales.Name = "btnSales";
@@ -205,8 +205,8 @@
             this.panelLogin.Controls.Add(this.panel4);
             this.panelLogin.Controls.Add(this.panelKeyDisplayWhite);
             this.panelLogin.Controls.Add(this.panelNumpad);
-            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLogin.Location = new System.Drawing.Point(0, 0);
+            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelLogin.Location = new System.Drawing.Point(684, 0);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
@@ -226,7 +226,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.LightGray;
             this.btnClose.Location = new System.Drawing.Point(231, 71);
             this.btnClose.Name = "btnClose";
@@ -240,7 +240,7 @@
             // lblPW
             // 
             this.lblPW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPW.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPW.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblPW.Location = new System.Drawing.Point(18, 282);
             this.lblPW.Name = "lblPW";
@@ -252,7 +252,7 @@
             // lblID
             // 
             this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblID.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblID.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblID.Location = new System.Drawing.Point(18, 227);
             this.lblID.Name = "lblID";
@@ -275,7 +275,7 @@
             // 
             this.tbID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.tbID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbID.Font = new System.Drawing.Font("Gulim", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbID.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbID.ForeColor = System.Drawing.Color.Gold;
             this.tbID.Location = new System.Drawing.Point(10, 13);
             this.tbID.MaxLength = 4;
@@ -313,7 +313,7 @@
             // 
             this.tbPW.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.tbPW.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbPW.Font = new System.Drawing.Font("Gulim", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbPW.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPW.ForeColor = System.Drawing.Color.Gold;
             this.tbPW.Location = new System.Drawing.Point(10, 13);
             this.tbPW.MaxLength = 4;
@@ -546,7 +546,7 @@
             // 
             // lblSiteName
             // 
-            this.lblSiteName.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteName.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.ForeColor = System.Drawing.Color.Gold;
             this.lblSiteName.Location = new System.Drawing.Point(7, 49);
             this.lblSiteName.Name = "lblSiteName";
@@ -557,7 +557,7 @@
             // 
             // lblUserNameTitle
             // 
-            this.lblUserNameTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUserNameTitle.ForeColor = System.Drawing.Color.White;
             this.lblUserNameTitle.Location = new System.Drawing.Point(-1, 5);
             this.lblUserNameTitle.Name = "lblUserNameTitle";
@@ -565,10 +565,11 @@
             this.lblUserNameTitle.TabIndex = 3;
             this.lblUserNameTitle.Text = "담당자";
             this.lblUserNameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblUserNameTitle.Click += new System.EventHandler(this.lblUserNameTitle_Click);
             // 
             // lblUserName
             // 
-            this.lblUserName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUserName.ForeColor = System.Drawing.Color.Gold;
             this.lblUserName.Location = new System.Drawing.Point(137, 5);
             this.lblUserName.Name = "lblUserName";
@@ -587,19 +588,19 @@
             this.panel3.Size = new System.Drawing.Size(275, 31);
             this.panel3.TabIndex = 4;
             // 
-            // panel5
+            // panel_in_0
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.lblSiteAlias);
-            this.panel5.Controls.Add(this.lblSiteName);
-            this.panel5.Location = new System.Drawing.Point(705, 71);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(275, 77);
-            this.panel5.TabIndex = 5;
+            this.panel_in_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_in_0.Controls.Add(this.lblSiteAlias);
+            this.panel_in_0.Controls.Add(this.lblSiteName);
+            this.panel_in_0.Location = new System.Drawing.Point(705, 71);
+            this.panel_in_0.Name = "panel_in_0";
+            this.panel_in_0.Size = new System.Drawing.Size(275, 77);
+            this.panel_in_0.TabIndex = 5;
             // 
             // lblSiteAlias
             // 
-            this.lblSiteAlias.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteAlias.ForeColor = System.Drawing.Color.Gold;
             this.lblSiteAlias.Location = new System.Drawing.Point(6, 11);
             this.lblSiteAlias.Name = "lblSiteAlias";
@@ -607,6 +608,7 @@
             this.lblSiteAlias.TabIndex = 3;
             this.lblSiteAlias.Text = "___";
             this.lblSiteAlias.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSiteAlias.Click += new System.EventHandler(this.lblSiteAlias_Click);
             // 
             // panel6
             // 
@@ -620,7 +622,7 @@
             // 
             // lblPosNoTitle
             // 
-            this.lblPosNoTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.White;
             this.lblPosNoTitle.Location = new System.Drawing.Point(-1, 5);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
@@ -628,10 +630,11 @@
             this.lblPosNoTitle.TabIndex = 3;
             this.lblPosNoTitle.Text = "포스번호";
             this.lblPosNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosNoTitle.Click += new System.EventHandler(this.lblPosNoTitle_Click);
             // 
             // lblPosNo
             // 
-            this.lblPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
             this.lblPosNo.Location = new System.Drawing.Point(137, 5);
             this.lblPosNo.Name = "lblPosNo";
@@ -642,7 +645,7 @@
             // 
             // lblCallCenterNo
             // 
-            this.lblCallCenterNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCallCenterNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenterNo.ForeColor = System.Drawing.Color.LightGray;
             this.lblCallCenterNo.Location = new System.Drawing.Point(152, 705);
             this.lblCallCenterNo.Name = "lblCallCenterNo";
@@ -669,7 +672,7 @@
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.lblCallCenterNo);
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel_in_0);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -692,7 +695,7 @@
             this.panelKeyDisplayWhite.PerformLayout();
             this.panelNumpad.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
+            this.panel_in_0.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
@@ -738,7 +741,7 @@
         private System.Windows.Forms.Label lblUserNameTitle;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel_in_0;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Label lblPosNo;
