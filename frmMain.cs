@@ -31,11 +31,17 @@ namespace thepos
 
         public frmMain()
         {
+            Screen[] scr = Screen.AllScreens;
+            this.Location = scr[0].Bounds.Location;
+
             InitializeComponent();
 
             initialize_font();
 
             initialize_the();
+
+            start_sub_screen();
+
         }
 
 
@@ -163,6 +169,21 @@ namespace thepos
 
         }
 
+
+        private void start_sub_screen()
+        {
+            Screen[] scr = Screen.AllScreens;
+
+            if (scr.Length > 1)
+            {
+                frmSub fSub = new frmSub();
+                fSub.Location = scr[1].Bounds.Location; // 두번째 스크린에 뛰움
+                fSub.Show();
+            }
+
+        }
+
+
         private void clear_login_init()
         {
             mSiteAlias = "";
@@ -215,7 +236,6 @@ namespace thepos
         }
 
 
-
         private void ClickedKey(string sKey)
         {
             if (sKey == "BS")
@@ -234,7 +254,6 @@ namespace thepos
                 mTbKeyDisplayController.Text += sKey;
             }
         }
-
 
 
         private void btnKeyLogin_Click(object sender, EventArgs e)
@@ -415,9 +434,6 @@ namespace thepos
             }
 
         }
-
-
-
 
 
 

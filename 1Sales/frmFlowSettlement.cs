@@ -227,7 +227,7 @@ namespace thepos
 
             //?  - 발생시간 순서, 
 
-            충전 사용 - 표시
+            //충전 사용 - 표시
 
 
             String sUrl = "orderItem?ticketNo=" + ticket_no;
