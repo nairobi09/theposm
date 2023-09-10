@@ -35,5 +35,6 @@ namespace thepos
         {
             Close();
         }
+
     }
 }

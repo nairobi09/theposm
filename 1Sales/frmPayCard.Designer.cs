@@ -59,6 +59,7 @@
             this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,7 +99,7 @@
             this.groupBox2.Controls.Add(this.rbCard2);
             this.groupBox2.Controls.Add(this.rbCard1);
             this.groupBox2.Controls.Add(this.rbCard0);
-            this.groupBox2.Location = new System.Drawing.Point(23, 373);
+            this.groupBox2.Location = new System.Drawing.Point(23, 407);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(479, 248);
             this.groupBox2.TabIndex = 57;
@@ -152,7 +153,7 @@
             this.btnKeyInputAuthNo.BackColor = System.Drawing.Color.Gray;
             this.btnKeyInputAuthNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputAuthNo.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(320, 70);
+            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(330, 70);
             this.btnKeyInputAuthNo.Name = "btnKeyInputAuthNo";
             this.btnKeyInputAuthNo.Size = new System.Drawing.Size(40, 37);
             this.btnKeyInputAuthNo.TabIndex = 51;
@@ -165,7 +166,7 @@
             this.btnKeyInputCardNo.BackColor = System.Drawing.Color.Gray;
             this.btnKeyInputCardNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputCardNo.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInputCardNo.Location = new System.Drawing.Point(320, 26);
+            this.btnKeyInputCardNo.Location = new System.Drawing.Point(330, 26);
             this.btnKeyInputCardNo.Name = "btnKeyInputCardNo";
             this.btnKeyInputCardNo.Size = new System.Drawing.Size(40, 37);
             this.btnKeyInputCardNo.TabIndex = 51;
@@ -198,7 +199,7 @@
             // btnCardTemp
             // 
             this.btnCardTemp.BackColor = System.Drawing.Color.White;
-            this.btnCardTemp.Location = new System.Drawing.Point(330, 146);
+            this.btnCardTemp.Location = new System.Drawing.Point(330, 159);
             this.btnCardTemp.Name = "btnCardTemp";
             this.btnCardTemp.Size = new System.Drawing.Size(130, 54);
             this.btnCardTemp.TabIndex = 50;
@@ -299,6 +300,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.tbInstall);
             this.groupBox1.Controls.Add(this.btnInstall00);
             this.groupBox1.Controls.Add(this.btnCardRequest);
@@ -307,9 +309,9 @@
             this.groupBox1.Controls.Add(this.btnKeyInputInstall);
             this.groupBox1.Controls.Add(this.btnInstall06);
             this.groupBox1.Controls.Add(this.btnInstall12);
-            this.groupBox1.Location = new System.Drawing.Point(23, 169);
+            this.groupBox1.Location = new System.Drawing.Point(23, 153);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(480, 178);
+            this.groupBox1.Size = new System.Drawing.Size(480, 226);
             this.groupBox1.TabIndex = 56;
             this.groupBox1.TabStop = false;
             // 
@@ -328,9 +330,9 @@
             // 
             // btnInstall00
             // 
-            this.btnInstall00.Location = new System.Drawing.Point(76, 96);
+            this.btnInstall00.Location = new System.Drawing.Point(55, 100);
             this.btnInstall00.Name = "btnInstall00";
-            this.btnInstall00.Size = new System.Drawing.Size(79, 46);
+            this.btnInstall00.Size = new System.Drawing.Size(71, 46);
             this.btnInstall00.TabIndex = 52;
             this.btnInstall00.Text = "일시불";
             this.btnInstall00.UseVisualStyleBackColor = true;
@@ -341,7 +343,7 @@
             this.btnCardRequest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardRequest.ForeColor = System.Drawing.Color.White;
-            this.btnCardRequest.Location = new System.Drawing.Point(330, 33);
+            this.btnCardRequest.Location = new System.Drawing.Point(330, 131);
             this.btnCardRequest.Name = "btnCardRequest";
             this.btnCardRequest.Size = new System.Drawing.Size(130, 57);
             this.btnCardRequest.TabIndex = 47;
@@ -360,7 +362,7 @@
             // 
             // btnInstall03
             // 
-            this.btnInstall03.Location = new System.Drawing.Point(161, 96);
+            this.btnInstall03.Location = new System.Drawing.Point(132, 100);
             this.btnInstall03.Name = "btnInstall03";
             this.btnInstall03.Size = new System.Drawing.Size(46, 46);
             this.btnInstall03.TabIndex = 53;
@@ -383,7 +385,7 @@
             // 
             // btnInstall06
             // 
-            this.btnInstall06.Location = new System.Drawing.Point(211, 96);
+            this.btnInstall06.Location = new System.Drawing.Point(182, 100);
             this.btnInstall06.Name = "btnInstall06";
             this.btnInstall06.Size = new System.Drawing.Size(46, 46);
             this.btnInstall06.TabIndex = 54;
@@ -393,7 +395,7 @@
             // 
             // btnInstall12
             // 
-            this.btnInstall12.Location = new System.Drawing.Point(261, 96);
+            this.btnInstall12.Location = new System.Drawing.Point(232, 100);
             this.btnInstall12.Name = "btnInstall12";
             this.btnInstall12.Size = new System.Drawing.Size(46, 46);
             this.btnInstall12.TabIndex = 55;
@@ -404,7 +406,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(144, 118);
+            this.lblNetAmount.Location = new System.Drawing.Point(144, 99);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
@@ -417,7 +419,7 @@
             // lblT1
             // 
             this.lblT1.AutoSize = true;
-            this.lblT1.Location = new System.Drawing.Point(50, 128);
+            this.lblT1.Location = new System.Drawing.Point(50, 109);
             this.lblT1.Name = "lblT1";
             this.lblT1.Size = new System.Drawing.Size(91, 14);
             this.lblT1.TabIndex = 48;
@@ -451,6 +453,16 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "카드결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(196, 170);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(82, 18);
+            this.checkBox1.TabIndex = 57;
+            this.checkBox1.Text = "은련카드";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // frmPayCard
             // 
@@ -507,5 +519,6 @@
         private System.Windows.Forms.TextBox tbInstall;
         private System.Windows.Forms.TextBox tbAuthNo;
         private System.Windows.Forms.TextBox tbCardNo;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

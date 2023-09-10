@@ -315,12 +315,6 @@
     <Compile Include="9SysAdmin\frmSysGoodsItem.Designer.cs">
       <DependentUpon>frmSysGoodsItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmSysMemoryStatus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="1Sales\frmSysMemoryStatus.Designer.cs">
-      <DependentUpon>frmSysMemoryStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -447,9 +441,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroup.resx">
       <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmSysMemoryStatus.resx">
-      <DependentUpon>frmSysMemoryStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdmin.resx">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>

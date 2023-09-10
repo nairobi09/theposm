@@ -36,6 +36,7 @@
             this.lblT21 = new System.Windows.Forms.Label();
             this.lblBizCloseUser = new System.Windows.Forms.Label();
             this.lblT12 = new System.Windows.Forms.Label();
+            this.lblLastBizDtInput = new System.Windows.Forms.Label();
             this.lblT13 = new System.Windows.Forms.Label();
             this.lblLastBizCloseDate = new System.Windows.Forms.Label();
             this.lblT14 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.lblT22 = new System.Windows.Forms.Label();
             this.tbBizOpenAmount = new System.Windows.Forms.TextBox();
             this.lblT23 = new System.Windows.Forms.Label();
-            this.lblLastBizDtInput = new System.Windows.Forms.Label();
             this.panelBizOpen.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,9 +56,8 @@
             this.panelBizOpen.Controls.Add(this.lblTitle);
             this.panelBizOpen.Controls.Add(this.panel2);
             this.panelBizOpen.Location = new System.Drawing.Point(0, 0);
-            this.panelBizOpen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelBizOpen.Name = "panelBizOpen";
-            this.panelBizOpen.Size = new System.Drawing.Size(858, 875);
+            this.panelBizOpen.Size = new System.Drawing.Size(751, 701);
             this.panelBizOpen.TabIndex = 11;
             // 
             // lblTitle
@@ -67,9 +66,9 @@
             this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(155, 20);
+            this.lblTitle.Location = new System.Drawing.Point(136, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(558, 50);
+            this.lblTitle.Size = new System.Drawing.Size(488, 40);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "영업개시";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -92,10 +91,9 @@
             this.panel2.Controls.Add(this.lblT22);
             this.panel2.Controls.Add(this.tbBizOpenAmount);
             this.panel2.Controls.Add(this.lblT23);
-            this.panel2.Location = new System.Drawing.Point(155, 86);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Location = new System.Drawing.Point(136, 69);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(558, 764);
+            this.panel2.Size = new System.Drawing.Size(488, 612);
             this.panel2.TabIndex = 5;
             // 
             // lblT11
@@ -103,9 +101,9 @@
             this.lblT11.AutoSize = true;
             this.lblT11.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT11.ForeColor = System.Drawing.Color.Gold;
-            this.lblT11.Location = new System.Drawing.Point(73, 38);
+            this.lblT11.Location = new System.Drawing.Point(64, 30);
             this.lblT11.Name = "lblT11";
-            this.lblT11.Size = new System.Drawing.Size(89, 20);
+            this.lblT11.Size = new System.Drawing.Size(71, 16);
             this.lblT11.TabIndex = 0;
             this.lblT11.Text = "마감현황";
             // 
@@ -114,9 +112,9 @@
             this.lblBizOpenUser.BackColor = System.Drawing.Color.White;
             this.lblBizOpenUser.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizOpenUser.ForeColor = System.Drawing.Color.Black;
-            this.lblBizOpenUser.Location = new System.Drawing.Point(197, 379);
+            this.lblBizOpenUser.Location = new System.Drawing.Point(172, 303);
             this.lblBizOpenUser.Name = "lblBizOpenUser";
-            this.lblBizOpenUser.Size = new System.Drawing.Size(187, 31);
+            this.lblBizOpenUser.Size = new System.Drawing.Size(164, 25);
             this.lblBizOpenUser.TabIndex = 4;
             this.lblBizOpenUser.Text = "0001 - 김토스";
             this.lblBizOpenUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,9 +124,9 @@
             this.lblT21.AutoSize = true;
             this.lblT21.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT21.ForeColor = System.Drawing.Color.Gold;
-            this.lblT21.Location = new System.Drawing.Point(73, 264);
+            this.lblT21.Location = new System.Drawing.Point(64, 211);
             this.lblT21.Name = "lblT21";
-            this.lblT21.Size = new System.Drawing.Size(89, 20);
+            this.lblT21.Size = new System.Drawing.Size(71, 16);
             this.lblT21.TabIndex = 0;
             this.lblT21.Text = "영업개시";
             // 
@@ -137,9 +135,9 @@
             this.lblBizCloseUser.BackColor = System.Drawing.Color.White;
             this.lblBizCloseUser.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizCloseUser.ForeColor = System.Drawing.Color.Black;
-            this.lblBizCloseUser.Location = new System.Drawing.Point(197, 164);
+            this.lblBizCloseUser.Location = new System.Drawing.Point(172, 131);
             this.lblBizCloseUser.Name = "lblBizCloseUser";
-            this.lblBizCloseUser.Size = new System.Drawing.Size(187, 31);
+            this.lblBizCloseUser.Size = new System.Drawing.Size(164, 25);
             this.lblBizCloseUser.TabIndex = 4;
             this.lblBizCloseUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -148,20 +146,31 @@
             this.lblT12.AutoSize = true;
             this.lblT12.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT12.ForeColor = System.Drawing.Color.White;
-            this.lblT12.Location = new System.Drawing.Point(73, 89);
+            this.lblT12.Location = new System.Drawing.Point(64, 71);
             this.lblT12.Name = "lblT12";
-            this.lblT12.Size = new System.Drawing.Size(89, 20);
+            this.lblT12.Size = new System.Drawing.Size(71, 16);
             this.lblT12.TabIndex = 0;
             this.lblT12.Text = "영업일자";
+            // 
+            // lblLastBizDtInput
+            // 
+            this.lblLastBizDtInput.BackColor = System.Drawing.Color.White;
+            this.lblLastBizDtInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLastBizDtInput.ForeColor = System.Drawing.Color.Black;
+            this.lblLastBizDtInput.Location = new System.Drawing.Point(172, 99);
+            this.lblLastBizDtInput.Name = "lblLastBizDtInput";
+            this.lblLastBizDtInput.Size = new System.Drawing.Size(164, 25);
+            this.lblLastBizDtInput.TabIndex = 4;
+            this.lblLastBizDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblT13
             // 
             this.lblT13.AutoSize = true;
             this.lblT13.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT13.ForeColor = System.Drawing.Color.White;
-            this.lblT13.Location = new System.Drawing.Point(73, 128);
+            this.lblT13.Location = new System.Drawing.Point(64, 102);
             this.lblT13.Name = "lblT13";
-            this.lblT13.Size = new System.Drawing.Size(89, 20);
+            this.lblT13.Size = new System.Drawing.Size(71, 16);
             this.lblT13.TabIndex = 0;
             this.lblT13.Text = "마감입력";
             // 
@@ -170,9 +179,9 @@
             this.lblLastBizCloseDate.BackColor = System.Drawing.Color.White;
             this.lblLastBizCloseDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLastBizCloseDate.ForeColor = System.Drawing.Color.Black;
-            this.lblLastBizCloseDate.Location = new System.Drawing.Point(197, 84);
+            this.lblLastBizCloseDate.Location = new System.Drawing.Point(172, 67);
             this.lblLastBizCloseDate.Name = "lblLastBizCloseDate";
-            this.lblLastBizCloseDate.Size = new System.Drawing.Size(187, 31);
+            this.lblLastBizCloseDate.Size = new System.Drawing.Size(164, 25);
             this.lblLastBizCloseDate.TabIndex = 4;
             this.lblLastBizCloseDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -181,9 +190,9 @@
             this.lblT14.AutoSize = true;
             this.lblT14.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT14.ForeColor = System.Drawing.Color.White;
-            this.lblT14.Location = new System.Drawing.Point(73, 169);
+            this.lblT14.Location = new System.Drawing.Point(64, 135);
             this.lblT14.Name = "lblT14";
-            this.lblT14.Size = new System.Drawing.Size(69, 20);
+            this.lblT14.Size = new System.Drawing.Size(55, 16);
             this.lblT14.TabIndex = 0;
             this.lblT14.Text = "담당자";
             // 
@@ -193,10 +202,9 @@
             this.btnBizOpenInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizOpenInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpenInput.ForeColor = System.Drawing.Color.White;
-            this.btnBizOpenInput.Location = new System.Drawing.Point(197, 498);
-            this.btnBizOpenInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBizOpenInput.Location = new System.Drawing.Point(172, 398);
             this.btnBizOpenInput.Name = "btnBizOpenInput";
-            this.btnBizOpenInput.Size = new System.Drawing.Size(187, 67);
+            this.btnBizOpenInput.Size = new System.Drawing.Size(164, 54);
             this.btnBizOpenInput.TabIndex = 3;
             this.btnBizOpenInput.Text = "개시입력";
             this.btnBizOpenInput.UseVisualStyleBackColor = false;
@@ -207,9 +215,9 @@
             this.lblT24.AutoSize = true;
             this.lblT24.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT24.ForeColor = System.Drawing.Color.White;
-            this.lblT24.Location = new System.Drawing.Point(73, 384);
+            this.lblT24.Location = new System.Drawing.Point(64, 307);
             this.lblT24.Name = "lblT24";
-            this.lblT24.Size = new System.Drawing.Size(69, 20);
+            this.lblT24.Size = new System.Drawing.Size(55, 16);
             this.lblT24.TabIndex = 0;
             this.lblT24.Text = "담당자";
             // 
@@ -218,10 +226,9 @@
             this.dtpBizDate.CalendarMonthBackground = System.Drawing.Color.Moccasin;
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(197, 301);
-            this.dtpBizDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpBizDate.Location = new System.Drawing.Point(172, 241);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(187, 30);
+            this.dtpBizDate.Size = new System.Drawing.Size(164, 26);
             this.dtpBizDate.TabIndex = 2;
             // 
             // lblT22
@@ -229,9 +236,9 @@
             this.lblT22.AutoSize = true;
             this.lblT22.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT22.ForeColor = System.Drawing.Color.White;
-            this.lblT22.Location = new System.Drawing.Point(72, 306);
+            this.lblT22.Location = new System.Drawing.Point(63, 245);
             this.lblT22.Name = "lblT22";
-            this.lblT22.Size = new System.Drawing.Size(89, 20);
+            this.lblT22.Size = new System.Drawing.Size(71, 16);
             this.lblT22.TabIndex = 0;
             this.lblT22.Text = "영업일자";
             // 
@@ -239,11 +246,10 @@
             // 
             this.tbBizOpenAmount.BackColor = System.Drawing.Color.Moccasin;
             this.tbBizOpenAmount.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBizOpenAmount.Location = new System.Drawing.Point(197, 339);
-            this.tbBizOpenAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbBizOpenAmount.Location = new System.Drawing.Point(172, 271);
             this.tbBizOpenAmount.MaxLength = 10;
             this.tbBizOpenAmount.Name = "tbBizOpenAmount";
-            this.tbBizOpenAmount.Size = new System.Drawing.Size(187, 30);
+            this.tbBizOpenAmount.Size = new System.Drawing.Size(164, 26);
             this.tbBizOpenAmount.TabIndex = 1;
             // 
             // lblT23
@@ -251,32 +257,19 @@
             this.lblT23.AutoSize = true;
             this.lblT23.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT23.ForeColor = System.Drawing.Color.White;
-            this.lblT23.Location = new System.Drawing.Point(73, 343);
+            this.lblT23.Location = new System.Drawing.Point(64, 274);
             this.lblT23.Name = "lblT23";
-            this.lblT23.Size = new System.Drawing.Size(109, 20);
+            this.lblT23.Size = new System.Drawing.Size(87, 16);
             this.lblT23.TabIndex = 0;
             this.lblT23.Text = "개시준비금";
             // 
-            // lblLastBizDtInput
-            // 
-            this.lblLastBizDtInput.BackColor = System.Drawing.Color.White;
-            this.lblLastBizDtInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizDtInput.ForeColor = System.Drawing.Color.Black;
-            this.lblLastBizDtInput.Location = new System.Drawing.Point(197, 124);
-            this.lblLastBizDtInput.Name = "lblLastBizDtInput";
-            this.lblLastBizDtInput.Size = new System.Drawing.Size(187, 31);
-            this.lblLastBizDtInput.TabIndex = 4;
-            this.lblLastBizDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // frmBizOpen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(857, 875);
+            this.ClientSize = new System.Drawing.Size(750, 700);
             this.Controls.Add(this.panelBizOpen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmBizOpen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmBizOpen";

@@ -396,6 +396,18 @@ namespace thepos
 
                         //? 
                         // 티켓 출력 개발요망
+                        if (MessageBox.Show("영수증을 출력할까요?.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+
+                            // 영수증 출력
+                            String headerBill = make_bill_header();
+                            String bodyBill = make_bill_body(mTheNo, "A", "", "1101"); //?
+                            String trailerBill = make_bill_trailer();
+
+
+                            PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
+                        }
+
 
                     }
 

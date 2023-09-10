@@ -23,9 +23,9 @@ namespace thepos
         private void initialize_font()
         {
             btnLogout.Font = font14;
-            brnRestart.Font = font14;
+            btnRestart.Font = font14;
             btnExit.Font = font14;
-
+            btnCancel.Font = font14;
         }
 
 
@@ -35,20 +35,22 @@ namespace thepos
             Close();
         }
 
-        private void brnRestart_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Retry; // 재기동
-            Close();
-        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;    // 종료
             Close();
         }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;    // 취소
             Close();
         }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }
+

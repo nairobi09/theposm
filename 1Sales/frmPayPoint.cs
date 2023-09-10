@@ -143,7 +143,7 @@ namespace thepos
             paymentPoint.biz_dt = mBizDate;
             paymentPoint.pos_no = mPosNo;
             paymentPoint.the_no = mTheNo;
-            paymentPoint.ref_no = mRefNo;
+            paymentPoint.ref_no = ticketNo.Substring(1, 18);
 
             paymentPoint.pay_date = get_today_date();
             paymentPoint.pay_time = get_today_time();

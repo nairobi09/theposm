@@ -109,6 +109,14 @@ namespace thepos
 
             get_pos_setup();
 
+
+            // Sub Screen 
+            if (fSub != null)
+            {
+                mPanelOrderInfo.Visible = true;
+            }
+
+
         }
 
 
@@ -188,7 +196,7 @@ namespace thepos
             //Title에 일자 요일을 표시
             setCurrentDateTitle();
 
-            lblSiteName.Text = mSiteName;
+            lblSiteName.Text = mSiteAlias;
             lblPosNo.Text = mPosNo;
 
             lblBizDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
@@ -243,6 +251,7 @@ namespace thepos
             mLblOrderAmountNet = lblOrderAmountNet;
             mLblOrderAmountReceive = lblOrderAmountReceive;
             mLblOrderAmountRest = lblOrderAmountRest;
+
         }
 
 
@@ -1698,7 +1707,6 @@ namespace thepos
             else return 0;
 
 
-
             if (tdcamount > amount)
             {
                 return amount;
@@ -1737,8 +1745,6 @@ namespace thepos
             int Amount = 0;
             int dcAmount = 0;
             mNetAmount = 0;
-            
-            
 
             MemOrderItem orderItemInfo;
 
@@ -1750,11 +1756,45 @@ namespace thepos
                 mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
             }
 
-            mLblOrderAmount.Text =Amount.ToString("N0");
+            mLblOrderAmount.Text = Amount.ToString("N0");
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
             mLblOrderAmountNet.Text = mNetAmount.ToString("N0");
             mLblOrderAmountReceive.Text = "";
             mLblOrderAmountRest.Text = "";
+
+            // Sub Screen 표시
+            DisplaySubScreen();
+        }
+
+    
+
+
+        public static void DisplaySubScreen()
+        {
+            if (fSub != null)
+            {
+                mPanelOrderInfo.Visible = true;
+
+                mSublvwOrderItem.Items.Clear();
+
+                for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+                {
+                    ListViewItem lvItem = new ListViewItem();
+                    lvItem.Text = mLvwOrderItem.Items[i].Text;
+                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[1]);
+                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[2]);
+                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[3]);
+                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[4]);
+                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[5]);
+                    mSublvwOrderItem.Items.Add(lvItem);
+                }
+
+                mSublblOrderAmount.Text = mLblOrderAmount.Text;
+                mSublblOrderAmountDC.Text = mLblOrderAmountDC.Text;
+                mSublblOrderAmountNet.Text = mLblOrderAmountNet.Text;
+                mSublblOrderAmountReceive.Text = mLblOrderAmountReceive.Text;
+                mSublblOrderAmountRest.Text = mLblOrderAmountRest.Text;
+            }
         }
 
 
@@ -1933,6 +1973,13 @@ namespace thepos
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+
+            if (fSub != null)
+            {
+                mPanelOrderInfo.Visible = false;
+            }
+
+
             this.Close();
         }
 
@@ -2055,7 +2102,6 @@ namespace thepos
                 return;
             }
 
-
             ConsoleDisable();
 
             Form fFlow;
@@ -2077,43 +2123,637 @@ namespace thepos
 
 
 
-        private void picLogo_Click(object sender, EventArgs e)
-        {
-            ContextMenu m = new ContextMenu();
-            m.MenuItems.Add(new MenuItem("메모리상태", MenuItemMemoryStatus_Click));
-            m.MenuItems.Add(new MenuItem("상품그룹등록", MenuItemGoodsGroup_Click));
-            m.MenuItems.Add(new MenuItem("상품등록", MenuItemGoods_Click));
-            m.MenuItems.Add(new MenuItem("결제콘솔", MenuItemPayConsol_Click));
 
-            picLogo.ContextMenu = m;
+
+        // 
+        public static String make_bill_header()
+        {
+            String strPrint = "";
+
+            String tStr = mSiteName + " " + mBizTelNo;
+            strPrint += tStr;
+            strPrint += "\r\n";
+
+            tStr = mBizAddr;
+            strPrint += tStr;
+            strPrint += "\r\n";
+
+            tStr = mCapName + " ";
+
+            if (mRegistNo.Length == 10)
+            {
+                tStr += mRegistNo.Substring(0, 3) + "-" + mRegistNo.Substring(3, 2) + "-" + mRegistNo.Substring(5, 5);
+            }
+            else
+            {
+                tStr += mRegistNo;
+            }
+
+            strPrint += tStr;
+            strPrint += "\r\n";
+            strPrint += "\r\n";
+
+
+            return strPrint;
         }
 
-        private void MenuItemMemoryStatus_Click(Object sender, System.EventArgs e)
+        public static String make_bill_trailer()
         {
-            Form fFlow;
-            fFlow = new frmSysMemoryStatus();
-            fFlow.Show();
+            String strPrint = "";
+
+            String tStr = "  물품반품시 본 영수증을 필히 지참하여";
+            strPrint += tStr;
+            strPrint += "\r\n";
+
+            tStr = "  주시기 바랍니다.";
+            strPrint += tStr;
+            strPrint += "\r\n";
+
+            return strPrint;
+
         }
 
-        private void MenuItemGoodsGroup_Click(Object sender, System.EventArgs e)
+        public static String make_bill_body(String tTheNo, String tranType, String except_order, String is_payment)
         {
-            Form fFlow;
-            fFlow = new frmSysGoodsGroup();
-            fFlow.Show();
+            String strPrintHeader = "";
+            String strPrintOrder = "";
+            String strPrintPayment = "";
+
+            String tOrderDt = "";
+            int tax_amount = 0;
+            int tfree_amount = 0;
+            int dc_amount = 0;
+
+            String is_payment_cash = is_payment.Substring(0, 1);
+            String is_payment_card = is_payment.Substring(1, 1);
+            String is_payment_point = is_payment.Substring(2, 1);
+            String is_payment_easy = is_payment.Substring(3, 1);
+
+
+
+            //!
+            String sUrl = "orders?theNo=" + tTheNo;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["orders"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        String d = arr[i]["orderDate"].ToString();
+                        String t = arr[i]["orderTime"].ToString();
+                        tOrderDt = d.Substring(0, 4) + "/" +
+                                   d.Substring(4, 2) + "/" +
+                                   d.Substring(6, 2) + " " +
+                                   t.Substring(0, 2) + ":" +
+                                   t.Substring(2, 2) + ":" +
+                                   t.Substring(4, 2);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("주문 데이터 오류. \n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. orders\n\n" + mErrorMsg, "thepos");
+            }
+
+
+            String tStr = tTheNo.Substring(4, 8) + "-" + tTheNo.Substring(12, 2) + "-" + tTheNo.Substring(14, 4);
+            int space_cnt = 42 - (encodelen(tOrderDt) + encodelen(tStr));
+            strPrintHeader = tOrderDt + Space(space_cnt) + tStr;
+            strPrintHeader += "\r\n";
+
+            strPrintOrder = "==========================================\r\n";  // 42
+            strPrintOrder += "상품명                 단가  수량     금액\r\n";
+            strPrintOrder += "------------------------------------------\r\n";  // 42
+
+
+            //!
+            sUrl = "orderItem?theNo=" + tTheNo;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["orderItems"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        int amt = convert_number(arr[i]["amt"].ToString());
+                        int cnt = convert_number(arr[i]["cnt"].ToString());
+                        int dc_amt = convert_number(arr[i]["dcAmount"].ToString());
+                        String dcr_des = arr[i]["dcrDes"].ToString();
+                        String dcr_type = arr[i]["dcrType"].ToString();
+                        String dcr_value = arr[i]["dcrValue"].ToString();
+
+                        if (dcr_des == "E") // 전체할인
+                        {
+                            if (dcr_type == "A")
+                            {
+                                tStr = "전체할인";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+                            }
+                            else if (listOrderItem[i].dcr_type == "R")
+                            {
+                                tStr = "전체할인-" + listOrderItem[i].dcr_value + "%";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+                            }
+                            strPrintOrder += "\r\n";
+                        }
+                        else                                 // 일반상품항목
+                        {
+
+                            tStr = arr[i]["itemName"].ToString();
+                            strPrintOrder += tStr + Space(18 - encodelen(tStr));
+
+                            tStr = amt.ToString("N0");     //단가
+                            strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                            tStr = cnt.ToString("N0");     // 수량
+                            strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
+
+                            tStr = (amt * cnt).ToString("N0");     // 금액 = 단가*수량
+                            strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                            strPrintOrder += "\r\n";
+
+                            if (dcr_type == "A")
+                            {
+                                tStr = "    할인";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+
+                                strPrintOrder += "\r\n";
+                            }
+                            else if (arr[i]["dcrType"].ToString() == "R")
+                            {
+                                tStr = "    할인-" + arr[i]["dcrValue"].ToString() + "%";
+                                strPrintOrder += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = (-dc_amt).ToString("N0");        // 할인 정액
+                                strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
+
+                                strPrintOrder += "\r\n";
+                            }
+                        }
+
+                        if (arr[i]["taxFree"].ToString() == "Y") tfree_amount += (cnt * amt);
+                        else tax_amount += (cnt * amt);
+
+                        dc_amount += dc_amt;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
+            //
+            strPrintPayment = "------------------------------------------\r\n";  // 42
+
+            if (tfree_amount > 0)
+            {
+                tStr = "*면세품목가액";
+                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                tStr = (tfree_amount).ToString("N0");
+                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+
+                strPrintPayment += "\r\n";
+            }
+
+            if (tax_amount > 0)
+            {
+                int t_tax = tax_amount / 11;   // 부가세액
+                int t_amt = tax_amount - t_tax; // 공급가액
+
+                tStr = "과세품목가액";
+                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+                tStr = (t_amt).ToString("N0");
+                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                strPrintPayment += "\r\n";
+
+                tStr = "부 가 세 액";
+                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+                tStr = (t_tax).ToString("N0");
+                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                strPrintPayment += "\r\n";
+            }
+
+            strPrintPayment += "------------------------------------------\r\n";  // 42
+
+            int tsum = tfree_amount + tax_amount;
+            int tnet = tsum - dc_amount;
+
+
+            tStr = "총합계";
+            strPrintPayment += tStr + Space(21 - encodelen(tStr));
+            tStr = (tsum).ToString("N0");
+            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+            strPrintPayment += "\r\n";
+
+            tStr = "할인계";
+            strPrintPayment += tStr + Space(21 - encodelen(tStr));
+            tStr = (-dc_amount).ToString("N0");
+            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+            strPrintPayment += "\r\n";
+
+            tStr = "결제대상금액";
+            strPrintPayment += tStr + Space(21 - encodelen(tStr));
+            tStr = (tnet).ToString("N0");
+            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+            strPrintPayment += "\r\n";
+
+            strPrintPayment += "------------------------------------------\r\n";  // 42
+
+
+
+            //! 현금결제
+            if (is_payment_cash == "1")
+            {
+                sUrl = "paymentCash?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCashs"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                int amount = convert_number(arr[i]["amount"].ToString());
+
+
+                                if (arr[i]["payType"].ToString() == "R0") // 단순현금
+                                {
+
+                                    tStr = "현금";
+                                    strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                    if (tranType == "C")
+                                        tStr = (-amount).ToString("N0");
+                                    else
+                                        tStr = amount.ToString("N0");
+
+                                    strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+
+                                }
+                                else if (arr[i]["payType"].ToString() == "R1") // 현금영수증
+                                {
+                                    tStr = "현금영수증";
+                                    strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                    if (tranType == "C")
+                                        tStr = (-amount).ToString("N0");
+                                    else
+                                        tStr = amount.ToString("N0");
+
+                                    strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                    strPrintPayment += "\r\n";
+
+                                    if (arr[i]["receiptType"].ToString() == "1") // 소득공제
+                                    {
+                                        tStr = "소득공제";
+                                    }
+                                    else if (arr[i]["receiptType"].ToString() == "2") // 지출증빙
+                                    {
+                                        tStr = "지출증빙";
+                                    }
+                                    else if (arr[i]["receiptType"].ToString() == "S") //? 자진밝급
+                                    {
+                                        tStr = "자진발급";
+                                    }
+
+                                    strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                    String no = arr[i]["issuedMethodNo"].ToString() + "";
+
+                                    if (no.Contains('*'))
+                                    {
+                                        tStr = no;
+                                    }
+                                    else if (no.Length == 16)
+                                    {
+                                        tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";
+                                    }
+                                    else if (no.Length == 11)
+                                    {
+                                        if (no.Substring(0, 3) == "010")
+                                        {
+                                            tStr = no.Substring(0, 3) + "-****-" + no.Substring(6, 4);
+                                        }
+                                        else
+                                        {
+                                            tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
+                                        }
+                                    }
+                                    else if (no.Length > 8)
+                                    {
+                                        tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
+                                    }
+                                    else
+                                    {
+                                        tStr = no;
+                                    }
+
+                                    strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                }
+
+                                strPrintPayment += "\r\n";
+                                strPrintPayment += "\r\n";
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            //! 카드결제
+            if (is_payment_card == "1")
+            {
+                sUrl = "paymentCard?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCards"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                if (arr[i]["payType"].ToString() == "C1") tStr = "카드결제";
+                                else if (arr[i]["payType"].ToString() == "C9") tStr = "카드결제";  //? 임의등록
+
+                                if (tranType == "C")
+                                {
+                                    tStr += "취소";
+                                }
+
+                                int amount = convert_number(arr[i]["amount"].ToString());
+
+
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                if (tranType == "C")
+                                    tStr = (-amount).ToString("N0");
+                                else
+                                    tStr = amount.ToString("N0");
+
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+
+                                tStr = arr[i]["cardName"].ToString();
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                String no = arr[i]["cardNo"].ToString();
+
+
+                                if (no.Contains('*'))
+                                {
+                                    tStr = no;
+                                }
+                                else if (no.Length == 16)
+                                {
+                                    tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";
+                                }
+                                else if (no.Length > 8)
+                                {
+                                    tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
+                                }
+                                else
+                                {
+                                    tStr = no;
+                                }
+
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+
+                                if (arr[i]["install"].ToString() == "00")
+                                    tStr = "할부개월:일시불";
+                                else
+                                    tStr = "할부개월:" + arr[i]["install"].ToString();
+
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+                                tStr = "승인번호:" + arr[i]["authNo"].ToString();
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+                                strPrintPayment += "\r\n";
+
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
+            //! 포인트
+            if (is_payment_point == "1")
+            {
+                sUrl = "paymentPoint?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentPoints"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                int amount = convert_number(arr[i]["amount"].ToString());
+
+                                if (arr[i]["payType"].ToString() == "PA") // 선불 포인트  //? 잔여포인트 표시
+                                {
+                                    tStr = "포인트";
+                                }
+                                else if (arr[i]["payType"].ToString() == "PD") // 후불 포인트
+                                {
+                                    tStr = "포인트";
+                                }
+
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                if (tranType == "C")
+                                    tStr = (-amount).ToString("N0");
+                                else
+                                    tStr = amount.ToString("N0");
+
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+
+                                strPrintPayment += "\r\n";
+                                strPrintPayment += "\r\n";
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            //? 간편결제
+            if (is_payment_easy == "1")
+            {
+
+
+            }
+
+
+
+
+            strPrintPayment += "------------------------------------------\r\n";  // 42
+
+            if (except_order == "Y")
+            {
+                return strPrintHeader + strPrintPayment;
+            }
+            else
+            {
+                return strPrintHeader + strPrintOrder + strPrintPayment;
+            }
         }
 
-        private void MenuItemGoods_Click(Object sender, System.EventArgs e)
+        public static string Space(int count)
         {
-            Form fFlow;
-            fFlow = new frmSysGoodsItem();
-            fFlow.Show();
+            return new String(' ', count);
         }
 
-        private void MenuItemPayConsol_Click(Object sender, System.EventArgs e)
+        public static string CharCount(char c, int count)
         {
-            Form fFlow;
-            fFlow = new frmSysPayConsole();
-            fFlow.Show();
+            return new String(c, count);
+        }
+
+        public static int encodelen(string str)
+        {
+            return Encoding.Default.GetBytes(str).Length;
+        }
+
+        public static void PrintBill(String headerBill, String bodyBill, String trailerBill, String theNo)
+        {
+
+            try
+            {
+
+                SerialPort port = new SerialPort();
+
+                if (port.IsOpen)
+                    port.Close();
+
+
+                port.PortName = mBillPrinterPort;
+                port.BaudRate = (int)9600; //고정
+                port.DataBits = (int)8;
+                port.Parity = Parity.None;
+                port.StopBits = StopBits.One;
+
+                port.Open();
+                port.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("영수증프린터 에러.\r\n" + ex.Message);
+                return;
+            }
+
+
+            try
+            {
+                const string ESC = "\u001B";
+                const string InitializePrinter = ESC + "@";
+
+                PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+                byte[] BytesValue = new byte[100];
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(headerBill));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+                //              
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(bodyBill));
+
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(trailerBill));
+
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                // 바코드
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(theNo));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
+
+                //? 영수증출력
+                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);
+                return;
+            }
+
+        }
+
+        private static string strPosTitle(string title)
+        {
+            int blen = Encoding.Default.GetBytes(title).Length;
+            int slen = title.Length;
+            int len = 16 - (blen - slen);
+
+            return string.Format("{0,-" + len + "}{1,3}", title, 1) + " : ";
+        }
+
+        public static byte[] CutPage()
+        {
+
+            byte[] partial_cut = new byte[3] { 0x1D, 0x56, 0x00 };
+
+            return partial_cut;
+
+
         }
     }
 }

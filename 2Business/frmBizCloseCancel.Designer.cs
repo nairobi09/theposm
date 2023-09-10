@@ -36,12 +36,12 @@
             this.lblCloseUserTitle = new System.Windows.Forms.Label();
             this.btnBizOpenInput = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panelBizCloaeCancel = new System.Windows.Forms.Panel();
+            this.lblBizDate = new System.Windows.Forms.Label();
             this.lblBizStatus = new System.Windows.Forms.Label();
             this.lblBizStatusTitle = new System.Windows.Forms.Label();
-            this.lblOpenInputTitle = new System.Windows.Forms.Label();
             this.lblOpenInput = new System.Windows.Forms.Label();
-            this.lblBizDate = new System.Windows.Forms.Label();
+            this.lblOpenInputTitle = new System.Windows.Forms.Label();
+            this.panelBizCloaeCancel = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panelBizCloaeCancel.SuspendLayout();
             this.SuspendLayout();
@@ -149,16 +149,18 @@
             this.panel2.Size = new System.Drawing.Size(430, 612);
             this.panel2.TabIndex = 5;
             // 
-            // panelBizCloaeCancel
+            // lblBizDate
             // 
-            this.panelBizCloaeCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelBizCloaeCancel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelBizCloaeCancel.Controls.Add(this.lblTitle);
-            this.panelBizCloaeCancel.Controls.Add(this.panel2);
-            this.panelBizCloaeCancel.Location = new System.Drawing.Point(0, 0);
-            this.panelBizCloaeCancel.Name = "panelBizCloaeCancel";
-            this.panelBizCloaeCancel.Size = new System.Drawing.Size(751, 701);
-            this.panelBizCloaeCancel.TabIndex = 12;
+            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBizDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDate.ForeColor = System.Drawing.Color.Gold;
+            this.lblBizDate.Location = new System.Drawing.Point(153, 73);
+            this.lblBizDate.Name = "lblBizDate";
+            this.lblBizDate.Size = new System.Drawing.Size(142, 23);
+            this.lblBizDate.TabIndex = 18;
+            this.lblBizDate.Text = "_";
+            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblBizStatus
             // 
@@ -185,17 +187,6 @@
             this.lblBizStatusTitle.Text = "상태";
             this.lblBizStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblOpenInputTitle
-            // 
-            this.lblOpenInputTitle.AutoSize = true;
-            this.lblOpenInputTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOpenInputTitle.ForeColor = System.Drawing.Color.White;
-            this.lblOpenInputTitle.Location = new System.Drawing.Point(45, 107);
-            this.lblOpenInputTitle.Name = "lblOpenInputTitle";
-            this.lblOpenInputTitle.Size = new System.Drawing.Size(71, 16);
-            this.lblOpenInputTitle.TabIndex = 0;
-            this.lblOpenInputTitle.Text = "개시입력";
-            // 
             // lblOpenInput
             // 
             this.lblOpenInput.BackColor = System.Drawing.Color.White;
@@ -208,23 +199,31 @@
             this.lblOpenInput.Text = "_";
             this.lblOpenInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBizDate
+            // lblOpenInputTitle
             // 
-            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblBizDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblBizDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBizDate.Location = new System.Drawing.Point(153, 73);
-            this.lblBizDate.Name = "lblBizDate";
-            this.lblBizDate.Size = new System.Drawing.Size(142, 23);
-            this.lblBizDate.TabIndex = 18;
-            this.lblBizDate.Text = "_";
-            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOpenInputTitle.AutoSize = true;
+            this.lblOpenInputTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOpenInputTitle.ForeColor = System.Drawing.Color.White;
+            this.lblOpenInputTitle.Location = new System.Drawing.Point(45, 107);
+            this.lblOpenInputTitle.Name = "lblOpenInputTitle";
+            this.lblOpenInputTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblOpenInputTitle.TabIndex = 0;
+            this.lblOpenInputTitle.Text = "개시입력";
+            // 
+            // panelBizCloaeCancel
+            // 
+            this.panelBizCloaeCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.panelBizCloaeCancel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelBizCloaeCancel.Controls.Add(this.lblTitle);
+            this.panelBizCloaeCancel.Controls.Add(this.panel2);
+            this.panelBizCloaeCancel.Location = new System.Drawing.Point(0, 0);
+            this.panelBizCloaeCancel.Name = "panelBizCloaeCancel";
+            this.panelBizCloaeCancel.Size = new System.Drawing.Size(751, 701);
+            this.panelBizCloaeCancel.TabIndex = 12;
             // 
             // frmBizCloseCancel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(750, 700);
             this.Controls.Add(this.panelBizCloaeCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -20,6 +20,10 @@ namespace thepos
 
             initialize_font();
             initialize_the();
+
+            lblSiteAlias.Text = mSiteAlias;
+            lblSiteName.Text = mSiteName;
+
         }
 
 
@@ -27,17 +31,20 @@ namespace thepos
         {
             lvwOrderItem.Font = font20;
 
-            lblOrderAmountSumTitle.Font = font14;
-            lblOrderAmountDCTitle.Font = font14;
-            lblOrderAmountChargeTitle.Font = font14;
-            lblOrderAmountReceiveTitle.Font = font14;
-            lblOrderAmountRestTitle.Font = font14;
+            lblOrderAmountSumTitle.Font = font20;
+            lblOrderAmountDCTitle.Font = font20;
+            lblOrderAmountChargeTitle.Font = font20;
+            lblOrderAmountReceiveTitle.Font = font20;
+            lblOrderAmountRestTitle.Font = font20;
 
-            lblOrderAmount.Font = font20;
-            lblOrderAmountDC.Font = font20;
-            lblOrderAmountNet.Font = font20;
-            lblOrderAmountReceive.Font = font20;
-            lblOrderAmountRest.Font = font20;
+            lblOrderAmount.Font = font24;
+            lblOrderAmountDC.Font = font24;
+            lblOrderAmountNet.Font = font24;
+            lblOrderAmountReceive.Font = font24;
+            lblOrderAmountRest.Font = font24;
+
+            lblSiteAlias.Font = font24;
+            lblSiteName.Font = font12;
 
 
         }
@@ -45,11 +52,21 @@ namespace thepos
         private void initialize_the()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 32);
+            imgList.ImageSize = new Size(1, 60);
+
+            lvwOrderItem.SmallImageList = imgList;
+            lvwOrderItem.HideSelection = true;
 
 
+            mPanelOrderInfo = panelOrderInfo;
+            mSublvwOrderItem = lvwOrderItem;
 
 
+            mSublblOrderAmount = lblOrderAmount;
+            mSublblOrderAmountDC = lblOrderAmountDC;
+            mSublblOrderAmountNet = lblOrderAmountNet;
+            mSublblOrderAmountReceive = lblOrderAmountReceive;
+            mSublblOrderAmountRest = lblOrderAmountRest;
 
 
 

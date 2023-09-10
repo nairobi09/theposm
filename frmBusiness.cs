@@ -38,15 +38,20 @@ namespace thepos
         private void initialize_font()
         {
 
-            lblTitle01.Font = font9;
-            lblTitle02.Font = font9;
-            lblTitle03.Font = font9;
-            lblTitle04.Font = font9;
+            lblSiteNameTitle.Font = font10;
+            lblSiteName.Font = font10;
 
-            lblSiteName.Font = font9;
-            lblPosNo.Font = font9;
-            lblBusinessDate.Font = font9;
-            lblUserName.Font = font9;
+            lblPosNoTitle.Font = font10;
+            lblPosNo.Font = font10;
+
+            lblUserNameTitle.Font = font10;
+            lblUserName.Font = font10;
+
+            lblBusinessDateTitle.Font = font10;
+            lblBizDate.Font = font12bold;
+
+            lblDate.Font = font10;
+            lblTime.Font = font12bold;
 
             btnClose.Font = font12;
 
@@ -79,11 +84,11 @@ namespace thepos
 
             if (mBizDate.Length == 8)
             {
-                lblBusinessDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
+                lblBizDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
             }
             else
             {
-                lblBusinessDate.Text = "";
+                lblBizDate.Text = "";
             }
             
             
@@ -178,7 +183,6 @@ namespace thepos
 
             Close();
         }
-
 
     }
 }

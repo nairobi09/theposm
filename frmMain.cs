@@ -40,8 +40,6 @@ namespace thepos
 
             initialize_the();
 
-            start_sub_screen();
-
         }
 
 
@@ -61,6 +59,7 @@ namespace thepos
             font14 = new Font(fontCollection.Families[0], 14f);
             font16 = new Font(fontCollection.Families[0], 16f);
             font20 = new Font(fontCollection.Families[0], 20f);
+            font24 = new Font(fontCollection.Families[0], 24f);
 
 
             btnClose.Font = font12;
@@ -176,7 +175,7 @@ namespace thepos
 
             if (scr.Length > 1)
             {
-                frmSub fSub = new frmSub();
+                fSub = new frmSub();
                 fSub.Location = scr[1].Bounds.Location; // 두번째 스크린에 뛰움
                 fSub.Show();
             }
@@ -219,8 +218,7 @@ namespace thepos
 
 
 
-            mBillPrinterPort = "";  // 영수증프린터
-            mScannerPort = "";  // 띠지 or 팔찌
+
 
             mUserID = "";
             mUserName = "";
@@ -390,6 +388,27 @@ namespace thepos
 
 
 
+            // setup pos
+            sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["setupPos"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        if (arr[i]["setupCode"].ToString() == "BillPrinterPort")         mBillPrinterPort = arr[i]["setupValue"].ToString();
+                        else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort")  mTicketPrinterPort = arr[i]["setupValue"].ToString();
+                        else if (arr[i]["setupCode"].ToString() == "ScannerPort")        mScannerPort = arr[i]["setupValue"].ToString();
+                        else if (arr[i]["setupCode"].ToString() == "PosType")            mPosType = arr[i]["setupValue"].ToString();
+                        else if (arr[i]["setupCode"].ToString() == "CustomerMonitor")    mCustomerMonitor = arr[i]["setupValue"].ToString();
+                    }
+                }
+            }
+
 
 
 
@@ -432,6 +451,14 @@ namespace thepos
                 MessageBox.Show("개시마감관리 오류\n서버에서 정보를 읽어오지 못했습니다.", "thepos");
                 return;
             }
+
+
+
+            // sub screen
+            start_sub_screen();
+
+
+
 
         }
 

@@ -86,7 +86,7 @@
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBusiness.Location = new System.Drawing.Point(68, 20);
             this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(97, 22);
+            this.dtBusiness.Size = new System.Drawing.Size(112, 22);
             this.dtBusiness.TabIndex = 68;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
