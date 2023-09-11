@@ -197,5 +197,37 @@ namespace thepos._9SysAdmin
             tbShopName.Text = lvwList.SelectedItems[0].SubItems[1].Text;
 
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (lvwList.SelectedItems.Count == 0) { return; }
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["shopCode"] = tbShopCode.Text.Trim();
+
+
+            if (mRequestDelete("shop", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    MessageBox.Show("정상 삭제 완료.", "thepos");
+                }
+                else
+                {
+                    MessageBox.Show("샵정보 오류. shop\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+            reload_server();
+
+
+        }
     }
 }

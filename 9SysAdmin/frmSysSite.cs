@@ -15,11 +15,11 @@ namespace thepos._9SysAdmin
     public partial class frmSysSite : Form
     {
 
-        String[] mTicketType;
-        String[] mTicketTypeText;
-        String[] mTicketMedia;
-        String[] mTicketMediaText;
-        String[] mVanCode;
+        String[] tmTicketType;
+        String[] tmTicketTypeText;
+        String[] tmTicketMedia;
+        String[] tmTicketMediaText;
+        String[] tmVanCode;
 
 
         public frmSysSite()
@@ -77,32 +77,32 @@ namespace thepos._9SysAdmin
             imgList.ImageSize = new Size(1, 32);
 
 
-            mTicketType = new String[2] { "PA", "PD" };
-            mTicketTypeText = new String[2] { "선불", "후불" };
+            tmTicketType = new String[2] { "PA", "PD" };
+            tmTicketTypeText = new String[2] { "선불", "후불" };
 
-            mTicketMedia = new String[2] { "BC", "RF" };
-            mTicketMediaText = new String[2] { "띠지", "팔찌" };
+            tmTicketMedia = new String[2] { "BC", "RF" };
+            tmTicketMediaText = new String[2] { "띠지", "팔찌" };
 
-            mVanCode = new String[3] { "KCP", "NICE", "KOVAN" };
+            tmVanCode = new String[3] { "KCP", "NICE", "KOVAN" };
 
 
 
             cbTicketType.Items.Clear();
-            for (int i = 0; i < mTicketTypeText.Length; i++)
+            for (int i = 0; i < tmTicketTypeText.Length; i++)
             {
-                cbTicketType.Items.Add(mTicketTypeText[i]);
+                cbTicketType.Items.Add(tmTicketTypeText[i]);
             }
 
             cbTicketMedia.Items.Clear();
-            for (int i = 0; i < mTicketMediaText.Length; i++)
+            for (int i = 0; i < tmTicketMediaText.Length; i++)
             {
-                cbTicketMedia.Items.Add(mTicketMediaText[i]);
+                cbTicketMedia.Items.Add(tmTicketMediaText[i]);
             }
 
             cbVanCode.Items.Clear();
-            for (int i = 0; i < mVanCode.Length; i++)
+            for (int i = 0; i < tmVanCode.Length; i++)
             {
-                cbVanCode.Items.Add(mVanCode[i]);
+                cbVanCode.Items.Add(tmVanCode[i]);
             }
 
 
@@ -135,7 +135,7 @@ namespace thepos._9SysAdmin
                         String ticketType = arr[0]["ticketType"].ToString();
                         for (int i = 0; i < ticketType.Length; i++)
                         {
-                            if (mTicketType[i] == ticketType)
+                            if (tmTicketType[i] == ticketType)
                             {
                                 cbTicketType.SelectedIndex = i;
                             }
@@ -145,7 +145,7 @@ namespace thepos._9SysAdmin
                         String ticketMedia = arr[0]["ticketMedia"].ToString();
                         for (int i = 0; i < mTicketType.Length; i++)
                         {
-                            if (mTicketMedia[i] == ticketMedia)
+                            if (tmTicketMedia[i] == ticketMedia)
                             {
                                 cbTicketMedia.SelectedIndex = i;
                             }
@@ -153,9 +153,9 @@ namespace thepos._9SysAdmin
 
                         //
                         String vanCode = arr[0]["vanCode"].ToString();
-                        for (int i = 0; i < mVanCode.Length; i++)
+                        for (int i = 0; i < tmVanCode.Length; i++)
                         {
-                            if (mVanCode[i] == vanCode)
+                            if (tmVanCode[i] == vanCode)
                             {
                                 cbVanCode.SelectedIndex = i;
                             }
@@ -198,26 +198,36 @@ namespace thepos._9SysAdmin
             if (cbTicketType.SelectedIndex < 0)
                 parameters["ticketType"] = "";
             else
-                parameters["ticketType"] = mTicketType[cbTicketType.SelectedIndex];
+                parameters["ticketType"] = tmTicketType[cbTicketType.SelectedIndex];
 
             if (cbTicketMedia.SelectedIndex < 0)
                 parameters["ticketMedia"] = "";
             else
-                parameters["ticketMedia"] = mTicketMedia[cbTicketMedia.SelectedIndex];
+                parameters["ticketMedia"] = tmTicketMedia[cbTicketMedia.SelectedIndex];
 
             if (cbVanCode.SelectedIndex < 0)
                 parameters["vanCode"] = "";
             else
-                parameters["vanCode"] = mVanCode[cbVanCode.SelectedIndex];
-
+                parameters["vanCode"] = tmVanCode[cbVanCode.SelectedIndex];
 
             parameters["callCenterNo"] = tbCallCenter.Text;
-
-
+            
+            
             if (mRequestPatch("site", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
+                    mSiteName = tbSiteName.Text;
+                    mSiteAlias = tbSiteAlias.Text;
+                    mCapName = tbRegistNo.Text;
+                    mRegistNo = tbCapName.Text;
+                    mBizAddr = tbBizAddr.Text;
+                    mBizTelNo = tbBizTelNo.Text;
+                    mTicketType = tmTicketType[cbTicketType.SelectedIndex];
+                    mTicketMedia = tmTicketMedia[cbTicketMedia.SelectedIndex];
+                    mVanCode = tmVanCode[cbVanCode.SelectedIndex];
+                    mCallCenterNo = tbCallCenter.Text;
+
                     MessageBox.Show("정상 수정 완료.", "thepos");
                 }
                 else

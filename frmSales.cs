@@ -14,6 +14,7 @@ using System.Text;
 using thepos._1Sales;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
+using System.IO;
 
 
 
@@ -2723,15 +2724,15 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
+
                 //? 영수증출력
                 PrintExtensions.Print(BytesValue, mBillPrinterPort);
-
-
+                
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);
+                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;
             }
 

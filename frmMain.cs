@@ -455,9 +455,11 @@ namespace thepos
 
 
             // sub screen
-            start_sub_screen();
-
-
+            if (mCustomerMonitor == "Y")
+            {
+                start_sub_screen();
+            }
+            
 
 
         }

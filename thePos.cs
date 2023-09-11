@@ -102,22 +102,6 @@ namespace thepos
         // 로그인후 다운로드되어야할 환경값들
         //
 
-
-        // 사용자 인증 절차
-
-
-
-
-        // //////////////////////////////////////////////////////////////////////////////////////////
-        // thepos 전체 설정
-
-        // 콜센터 연락처
-        public static String mCallCenterNo = "";
-
-
-
-
-
         // //////////////////////////////////////////////////////////////////////////////////////////
         // 사이트 설정값
         public static String mSiteId = "";
@@ -128,6 +112,14 @@ namespace thepos
         public static String mBizAddr;          // 주소
         public static String mBizTelNo;         // 대표전화
 
+        // (후불) 발권  사용  정산 [락커]
+        // (선불) 발권 [충전] 사용  정산
+        public static String mTicketType;   //발권형태: ""미사용, "PA"선불, "PD"후불// 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
+        public static String mTicketMedia;  // 띠지BC   팔찌RF
+        public static String mVanCode = "";
+
+        // 콜센터 연락처
+        public static String mCallCenterNo = "";
 
 
 
@@ -151,13 +143,7 @@ namespace thepos
 
 
 
-        // //////////////////////////////////////////////////////////////////////////////////////////
-        /// 사이트 설정값
-        // (후불) 발권  사용  정산 [락커]
-        // (선불) 발권 [충전] 사용  정산
-        public static String mTicketType;   //발권형태: ""미사용, "PA"선불, "PD"후불// 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
-        public static String mTicketMedia;  // 띠지BC   팔찌RF
-        public static String mVanCode = "";
+
         public static String mLanguage = ""; // KR EN CH
 
 
