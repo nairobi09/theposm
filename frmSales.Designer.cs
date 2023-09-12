@@ -188,7 +188,7 @@ namespace thepos
             this.btnFlowTicketing.Size = new System.Drawing.Size(60, 48);
             this.btnFlowTicketing.TabIndex = 0;
             this.btnFlowTicketing.TabStop = false;
-            this.btnFlowTicketing.Text = "발권";
+            this.btnFlowTicketing.Text = "티켓";
             this.btnFlowTicketing.UseVisualStyleBackColor = false;
             this.btnFlowTicketing.Click += new System.EventHandler(this.btnFlowTicketing_Click);
             // 

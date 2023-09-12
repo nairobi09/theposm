@@ -35,12 +35,12 @@
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.lvwFlow = new System.Windows.Forms.ListView();
+            this.lvwList = new System.Windows.Forms.ListView();
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnTicketReact = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,11 +49,11 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.btnTicketReact);
             this.panelback.Controls.Add(this.panel1);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Controls.Add(this.btnPrint);
-            this.panelback.Controls.Add(this.lvwFlow);
+            this.panelback.Controls.Add(this.lvwList);
             this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
@@ -131,37 +131,24 @@
             this.lblTitle.Text = "발권";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnPrint
+            // lvwList
             // 
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(403, 620);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 48);
-            this.btnPrint.TabIndex = 48;
-            this.btnPrint.Text = "재출력";
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // lvwFlow
-            // 
-            this.lvwFlow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.stat,
             this.goods,
-            this.ticket_no,
-            this.ticket_dt});
-            this.lvwFlow.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lvwFlow.FullRowSelect = true;
-            this.lvwFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwFlow.HideSelection = false;
-            this.lvwFlow.Location = new System.Drawing.Point(20, 139);
-            this.lvwFlow.MultiSelect = false;
-            this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 468);
-            this.lvwFlow.TabIndex = 44;
-            this.lvwFlow.UseCompatibleStateImageBehavior = false;
-            this.lvwFlow.View = System.Windows.Forms.View.Details;
+            this.ticket_dt,
+            this.ticket_no});
+            this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwList.FullRowSelect = true;
+            this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwList.HideSelection = false;
+            this.lvwList.Location = new System.Drawing.Point(20, 139);
+            this.lvwList.MultiSelect = false;
+            this.lvwList.Name = "lvwList";
+            this.lvwList.Size = new System.Drawing.Size(483, 468);
+            this.lvwList.TabIndex = 44;
+            this.lvwList.UseCompatibleStateImageBehavior = false;
+            this.lvwList.View = System.Windows.Forms.View.Details;
             // 
             // stat
             // 
@@ -172,15 +159,28 @@
             this.goods.Text = "상품";
             this.goods.Width = 90;
             // 
-            // ticket_no
-            // 
-            this.ticket_no.Text = "발권번호";
-            this.ticket_no.Width = 100;
-            // 
             // ticket_dt
             // 
             this.ticket_dt.Text = "발권시간";
             this.ticket_dt.Width = 90;
+            // 
+            // ticket_no
+            // 
+            this.ticket_no.Text = "티켓번호";
+            this.ticket_no.Width = 100;
+            // 
+            // btnTicketReact
+            // 
+            this.btnTicketReact.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTicketReact.ForeColor = System.Drawing.Color.White;
+            this.btnTicketReact.Location = new System.Drawing.Point(368, 625);
+            this.btnTicketReact.Name = "btnTicketReact";
+            this.btnTicketReact.Size = new System.Drawing.Size(134, 48);
+            this.btnTicketReact.TabIndex = 78;
+            this.btnTicketReact.Text = "띠지출력";
+            this.btnTicketReact.UseVisualStyleBackColor = false;
+            this.btnTicketReact.Click += new System.EventHandler(this.btnTicketReact_Click);
             // 
             // frmFlowTicketing
             // 
@@ -207,15 +207,15 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.ListView lvwFlow;
+        private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader stat;
         private System.Windows.Forms.ColumnHeader goods;
         private System.Windows.Forms.ColumnHeader ticket_dt;
         private System.Windows.Forms.ColumnHeader ticket_no;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblBusinessTitle;
         private System.Windows.Forms.DateTimePicker dtBusiness;
         private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnTicketReact;
     }
 }

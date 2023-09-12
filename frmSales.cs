@@ -2274,8 +2274,11 @@ namespace thepos
                         }
                         else                                 // 일반상품항목
                         {
+                            if (arr[i]["taxFree"].ToString() == "Y")
+                                tStr = "*" + arr[i]["itemName"].ToString();
+                            else
+                                tStr = arr[i]["itemName"].ToString();
 
-                            tStr = arr[i]["itemName"].ToString();
                             strPrintOrder += tStr + Space(18 - encodelen(tStr));
 
                             tStr = amt.ToString("N0");     //단가
@@ -2710,7 +2713,9 @@ namespace thepos
 
                 // 바코드
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(theNo));
+
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
 
 
@@ -2727,7 +2732,9 @@ namespace thepos
 
                 //? 영수증출력
                 PrintExtensions.Print(BytesValue, mBillPrinterPort);
-                
+
+
+
 
             }
             catch (Exception ex)
