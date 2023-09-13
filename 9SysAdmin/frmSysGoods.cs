@@ -7,9 +7,11 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static thepos.thePos;
 
 
@@ -462,12 +464,22 @@ namespace thepos._9SysAdmin
 
             }
 
-
-
-
-
         }
 
 
+        private void pbImage_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = openFileDialog.ShowDialog();
+
+            //OK버튼 클릭시
+            if (dr == DialogResult.OK)
+            {
+                string fileFullName = openFileDialog.FileName;
+
+                System.Drawing.Image image = System.Drawing.Image.FromFile(fileFullName);
+                this.pbImage.Image = image;
+
+            }
+        }
     }
 }

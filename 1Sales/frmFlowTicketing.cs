@@ -15,9 +15,6 @@ namespace thepos
 {
     public partial class frmFlowTicketing : Form
     {
-        TextBox saveKeyDisplay;
-
-
         public frmFlowTicketing()
         {
             InitializeComponent();
