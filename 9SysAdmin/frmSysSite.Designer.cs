@@ -113,7 +113,7 @@
             this.groupBox1.Controls.Add(this.lblSiteName);
             this.groupBox1.Location = new System.Drawing.Point(173, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(492, 249);
+            this.groupBox1.Size = new System.Drawing.Size(524, 249);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             // 
@@ -130,7 +130,7 @@
             this.tbBizAddr.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizAddr.Location = new System.Drawing.Point(178, 155);
             this.tbBizAddr.Name = "tbBizAddr";
-            this.tbBizAddr.Size = new System.Drawing.Size(279, 26);
+            this.tbBizAddr.Size = new System.Drawing.Size(331, 26);
             this.tbBizAddr.TabIndex = 54;
             // 
             // tbCapName
@@ -219,7 +219,7 @@
             this.groupBox2.Controls.Add(this.lblTicketType);
             this.groupBox2.Location = new System.Drawing.Point(173, 323);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(491, 202);
+            this.groupBox2.Size = new System.Drawing.Size(523, 202);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
             // 
@@ -255,7 +255,7 @@
             this.tbCallCenter.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCallCenter.Location = new System.Drawing.Point(178, 135);
             this.tbCallCenter.Name = "tbCallCenter";
-            this.tbCallCenter.Size = new System.Drawing.Size(279, 26);
+            this.tbCallCenter.Size = new System.Drawing.Size(331, 26);
             this.tbCallCenter.TabIndex = 55;
             // 
             // lblCallCenter

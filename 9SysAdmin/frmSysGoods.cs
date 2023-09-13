@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -62,6 +63,9 @@ namespace thepos._9SysAdmin
             lblMemoTitle.Font = font12;
             tbMemo.Font = font12;
 
+            lblImageTitle.Font = font12;
+            btnX.Font = font12;
+
             btnAdd.Font = font12;
             btnUpdate.Font = font12;
             btnDelete.Font = font12;
@@ -71,10 +75,6 @@ namespace thepos._9SysAdmin
 
         private void initialize_the()
         {
-            ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 32);
-
-            lvwList.SmallImageList = imgList;
             lvwList.HideSelection = true;
 
 
@@ -114,14 +114,18 @@ namespace thepos._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        ListViewItem lvItem = new ListViewItem();
+                        ListViewItem lvItem;
 
-                        lvItem.Tag = arr[i]["itemCode"].ToString();
+                        if (arr[i]["imagePath"].ToString() == "")
+                            lvItem = new ListViewItem(arr[i]["itemName"].ToString());
+                        else
+                            lvItem = new ListViewItem(arr[i]["itemName"].ToString(), 0);
 
-                        lvItem.Text = arr[i]["itemName"].ToString();
+
+
+                        lvItem.Tag = arr[i]["imagePath"].ToString();
 
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
-
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
 
@@ -137,10 +141,7 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tActive);
-
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
-
-                        
 
                         if (tActive != "Y")
                         {
@@ -151,6 +152,10 @@ namespace thepos._9SysAdmin
                             lvItem.SubItems[4].ForeColor = Color.Silver;
                             lvItem.SubItems[5].ForeColor = Color.Silver;
                         }
+
+                        // itemcode
+                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
+
 
 
                         lvwList.Items.Add(lvItem);
@@ -193,7 +198,7 @@ namespace thepos._9SysAdmin
             if (lvwList.SelectedItems.Count == 0) { return; }
 
             tbGoodsName.Text = lvwList.SelectedItems[0].Text;
-            tbGoodsName.Tag = lvwList.SelectedItems[0].Tag;
+            tbGoodsName.Tag = lvwList.SelectedItems[0].SubItems[8].Text;  // code
             tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[1].Text;
 
             String shop_code = lvwList.SelectedItems[0].SubItems[2].Text;
@@ -226,7 +231,25 @@ namespace thepos._9SysAdmin
 
             tbMemo.Text = lvwList.SelectedItems[0].SubItems[7].Text;
 
+            pbImage.Image = null;
+
+            if (lvwList.SelectedItems[0].Tag.ToString().Trim() != "")
+            {
+                try
+                {
+                byte[] imgBytes = Convert.FromBase64String(lvwList.SelectedItems[0].Tag.ToString());
+                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                pbImage.Image = System.Drawing.Image.FromStream(ms, true);
+                }
+                catch
+                {
+
+                }
+            }
         }
+
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -274,6 +297,18 @@ namespace thepos._9SysAdmin
                 parameters["active"] = "N";
 
             parameters["memo"] = tbMemo.Text;
+
+
+            if (pbImage.Image == null)
+            {
+                parameters["imagePath"] = "";
+            }
+            else
+            {
+                var ms = new MemoryStream();
+                pbImage.Image.Save(ms, pbImage.Image.RawFormat);
+                parameters["imagePath"] = Convert.ToBase64String(ms.ToArray());
+            }
 
 
 
@@ -344,6 +379,18 @@ namespace thepos._9SysAdmin
 
             parameters["memo"] = tbMemo.Text;
 
+            if (pbImage.Image == null)
+            {
+                parameters["imagePath"] = "";
+            }
+            else
+            {
+                var ms = new MemoryStream();
+                pbImage.Image.Save(ms, pbImage.Image.RawFormat);
+                parameters["imagePath"] = Convert.ToBase64String(ms.ToArray());
+            }
+
+
 
             if (mRequestPost("goods", parameters))
             {
@@ -386,7 +433,7 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = lvwList.SelectedItems[0].Tag.ToString();
+            parameters["itemCode"] = tbGoodsName.Tag.ToString();
 
 
             if (mRequestDelete("goods", parameters))
@@ -480,6 +527,11 @@ namespace thepos._9SysAdmin
                 this.pbImage.Image = image;
 
             }
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            pbImage.Image = null;
         }
     }
 }

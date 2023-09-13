@@ -123,6 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1Sales\frmYesNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmYesNo.Designer.cs">
+      <DependentUpon>frmYesNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysGoods.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +352,9 @@
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="1Sales\frmYesNo.resx">
+      <DependentUpon>frmYesNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoods.resx">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
     </EmbeddedResource>
@@ -486,7 +495,9 @@
     <Content Include="res\Code128code.png" />
     <Content Include="res\icon-n-act_com_setting-2.png" />
     <Content Include="res\icon_65.ico" />
+    <Content Include="res\image_add_32x32.png" />
     <Content Include="res\logo1.png" />
+    <Content Include="res\lvw32x32.png" />
     <Content Include="res\thepos.png" />
     <Content Include="thepos.ico" />
   </ItemGroup>

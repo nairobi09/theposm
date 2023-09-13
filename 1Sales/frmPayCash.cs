@@ -13,6 +13,7 @@ using static thepos.frmPayComplex;
 using static thepos.paymentToss;
 using System.IO;
 using System.Diagnostics;
+using thepos._1Sales;
 
 namespace thepos
 {
@@ -259,14 +260,11 @@ namespace thepos
 
 
                     //? 모듈화?
-                    if (MessageBox.Show("영수증을 출력할까요?.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (is_print_bill())
                     {
-
-                        // 영수증 출력
                         String headerBill = make_bill_header();
                         String bodyBill = make_bill_body(mTheNo, "A", "", "1101"); //?
                         String trailerBill = make_bill_trailer();
-
 
                         PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
                     }
@@ -581,5 +579,18 @@ namespace thepos
             mTbKeyDisplayController = saveKeyDisplay;
         }
 
+
+        private bool is_print_bill()
+        {
+            frmYesNo fYesNo = new frmYesNo();
+            fYesNo.ShowDialog();
+
+
+
+
+
+            return true;
+
+        }
     }
 }

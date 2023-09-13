@@ -109,6 +109,7 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(110, 107);
             this.btnExit.TabIndex = 0;
+            this.btnExit.TabStop = false;
             this.btnExit.Text = "종료";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -122,6 +123,7 @@
             this.btnSupport.Name = "btnSupport";
             this.btnSupport.Size = new System.Drawing.Size(110, 107);
             this.btnSupport.TabIndex = 0;
+            this.btnSupport.TabStop = false;
             this.btnSupport.Text = "원격지원";
             this.btnSupport.UseVisualStyleBackColor = false;
             // 
@@ -134,6 +136,7 @@
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(110, 107);
             this.btnSetup.TabIndex = 0;
+            this.btnSetup.TabStop = false;
             this.btnSetup.Text = "설정";
             this.btnSetup.UseVisualStyleBackColor = false;
             this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
@@ -147,6 +150,7 @@
             this.btnBusiness.Name = "btnBusiness";
             this.btnBusiness.Size = new System.Drawing.Size(160, 107);
             this.btnBusiness.TabIndex = 0;
+            this.btnBusiness.TabStop = false;
             this.btnBusiness.Text = "영업관리";
             this.btnBusiness.UseVisualStyleBackColor = false;
             this.btnBusiness.Click += new System.EventHandler(this.btnBusiness_Click);
@@ -160,6 +164,7 @@
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(160, 107);
             this.btnReports.TabIndex = 0;
+            this.btnReports.TabStop = false;
             this.btnReports.Text = "매출관리";
             this.btnReports.UseVisualStyleBackColor = false;
             this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
@@ -173,6 +178,7 @@
             this.btnSales.Name = "btnSales";
             this.btnSales.Size = new System.Drawing.Size(160, 107);
             this.btnSales.TabIndex = 0;
+            this.btnSales.TabStop = false;
             this.btnSales.Text = "판매관리";
             this.btnSales.UseVisualStyleBackColor = false;
             this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
@@ -657,7 +663,7 @@
             // picLogo
             // 
             this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.Location = new System.Drawing.Point(47, 701);
+            this.picLogo.Location = new System.Drawing.Point(47, 702);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(65, 18);
             this.picLogo.TabIndex = 10;
