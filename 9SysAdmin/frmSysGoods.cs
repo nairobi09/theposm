@@ -238,9 +238,10 @@ namespace thepos._9SysAdmin
                 try
                 {
                 byte[] imgBytes = Convert.FromBase64String(lvwList.SelectedItems[0].Tag.ToString());
+                
                 MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
-
                 ms.Write(imgBytes, 0, imgBytes.Length);
+
                 pbImage.Image = System.Drawing.Image.FromStream(ms, true);
                 }
                 catch

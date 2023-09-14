@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static thepos.thePos;
 
 namespace thepos._1Sales
 {
@@ -15,6 +16,28 @@ namespace thepos._1Sales
         public frmYesNo()
         {
             InitializeComponent();
+
+            initialize_font();
+
+
+        }
+
+        private void initialize_font()
+        {
+            lblTitle.Font = font16;
+            btnYes.Font = font12;
+            btnNo.Font = font12;
+        }
+
+        private void btnYes_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnNo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

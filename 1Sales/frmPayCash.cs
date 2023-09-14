@@ -583,11 +583,11 @@ namespace thepos
         private bool is_print_bill()
         {
             frmYesNo fYesNo = new frmYesNo();
-            fYesNo.ShowDialog();
-
-
-
-
+            var result = fYesNo.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                return true;
+            }
 
             return true;
 
