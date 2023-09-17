@@ -84,6 +84,8 @@ namespace thepos
             btnInstall03.Font = font10;
             btnInstall06.Font = font10;
             btnInstall12.Font = font10;
+            
+            chkCUP.Font = font10;
 
             btnCardRequest.Font = font10;
 
@@ -254,11 +256,14 @@ namespace thepos
                 {
                     strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
                     SetDisplayAlarm("I", strAlarm);
-
-                    //? 
-                    // 티켓 출력 개발요망
-
                 }
+
+
+                // 영수증 출력
+                // 안에서 여부를 물어보고 출력한다. 
+                print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+
+
 
                 mClearSaleForm();
 
@@ -281,6 +286,13 @@ namespace thepos
 
 
 
+            String is_cup = "0";
+
+            if (chkCUP.Checked == true) { is_cup = "1"; }
+
+
+            //? 결제시 금액 세팅 - 면세금액 세금 봉사료
+
             int tAmount = netAmount;
             int tFreeAmount = 0;
             int tTaxAmount = 0;
@@ -290,7 +302,7 @@ namespace thepos
             PaymentCard mPaymentCard = new PaymentCard();
 
 
-            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard) != 0)
+            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)
             {
                 display_error_msg(mErrorMsg);
             }
@@ -393,23 +405,14 @@ namespace thepos
                     {
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
                         SetDisplayAlarm("I", strAlarm);
-
-                        //? 
-                        // 티켓 출력 개발요망
-                        if (MessageBox.Show("영수증을 출력할까요?.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-
-                            // 영수증 출력
-                            String headerBill = make_bill_header();
-                            String bodyBill = make_bill_body(mTheNo, "A", "", "1101"); //?
-                            String trailerBill = make_bill_trailer();
-
-
-                            PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
-                        }
-
-
                     }
+
+
+                    // 영수증 출력
+                    // 안에서 여부를 물어보고 출력한다. 
+                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+
+
 
                     mClearSaleForm();
 
@@ -480,7 +483,7 @@ namespace thepos
         }
 
 
-        private static int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard mPaymentCard)
+        private static int requestCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, String is_cup, out PaymentCard mPaymentCard)
         {
             int ret = 0;
 
@@ -490,7 +493,7 @@ namespace thepos
             if (mVanCode == "NICE")
             {
                 paymentNice p = new paymentNice();
-                ret = p.requestNiceCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
+                ret = p.requestNiceCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard2);
             }
             else if (mVanCode == "KCP")
             {

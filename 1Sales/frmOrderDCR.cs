@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,7 @@ namespace thepos
 
         struct DCR
         {
-            public string dcr_code;
+            public string dcr_name;
             public string dcr_des;
             public string dcr_type;
             public int dcr_value;
@@ -63,25 +64,35 @@ namespace thepos
             // 할인형식 : 정액형(A:Amount), 정율형(R:Rate)
             // 할인값   : 정액 - 금액, 정율 - 할인율(%)
 
-            String[,] dcr = new String[,]
+
+            String sUrl = "dcrFavorite?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
             {
-                {"001","S","A", "500"},
-                {"002","S","R", "20"},
-                {"003","E","A", "1000"},
-                {"004","E","R", "10"},
-                {"004","S","R", "100"}
-            };
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String pos = mObj["dcr"].ToString();
+                    JArray arr = JArray.Parse(pos);
 
-            int len = dcr.Length / 4;
+                    mDCR = new DCR[arr.Count];
 
-            mDCR = new DCR[len];
-
-            for (int i = 0; i < len; i++)
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mDCR[i].dcr_name = arr[i]["dcrName"].ToString();
+                        mDCR[i].dcr_des = arr[i]["dcrDes"].ToString();
+                        mDCR[i].dcr_type = arr[i]["dcrType"].ToString();
+                        mDCR[i].dcr_value = Int32.Parse(arr[i]["dcrValue"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
             {
-                mDCR[i].dcr_code = dcr[i, 0];
-                mDCR[i].dcr_des = dcr[i, 1];
-                mDCR[i].dcr_type = dcr[i, 2];
-                mDCR[i].dcr_value = Int32.Parse(dcr[i, 3]);
+                MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
+                return;
             }
         }
 
@@ -121,11 +132,11 @@ namespace thepos
                 if (mDCR[i].dcr_des == "E") des = "전체 ";
                 else des = "선택 ";
 
-                String btn_title = des + mDCR[i].dcr_value.ToString("N0") + type + " 할인";
+                String btn_title = mDCR[i].dcr_name + "\n" + des + mDCR[i].dcr_value.ToString("N0") + type + " 할인";
 
                 btnDCR[i].Text = btn_title;
                 btnDCR[i].Height = 50;
-                btnDCR[i].Width = 190;
+                btnDCR[i].Width = 230;
                 btnDCR[i].Font = font12;
 
                 btnDCR[i].FlatStyle = FlatStyle.Flat;
@@ -343,7 +354,6 @@ namespace thepos
         }
 
 
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -354,9 +364,6 @@ namespace thepos
         {
             frmSales.ConsoleEnable();
         }
-
-
-
 
     }
 }

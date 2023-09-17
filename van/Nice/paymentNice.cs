@@ -45,6 +45,9 @@ namespace thepos
         [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int GetDecSignData(int signtype, byte[] bDir, byte[] bOutdata);
 
+        [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
+        public static extern int NICEVCATB(byte[] SendBuf, byte[] RecvBuf);
+
         public struct NiceResponse
         {
             public String t거래구분;
@@ -68,13 +71,19 @@ namespace thepos
             public String t카드구분;
             public String t전문관리번호;
             public String t거래일련번호;
+            public String t발생포인트;
+            public String t가용포인트;
+            public String t누적포인트;
+            public String t캐시백가맹점포멧;
+            public String t캐시백승인번호;
+            public String t기기번호;
         }
         public static NiceResponse mNiceResponse = new NiceResponse();
 
 
 
 
-        public int requestNiceCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, out PaymentCard pCard)
+        public int requestNiceCardAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, int install, String is_cup, out PaymentCard pCard)
         {
             PaymentCard paymentCard = new PaymentCard();
             pCard = paymentCard;
@@ -83,8 +92,11 @@ namespace thepos
             string Halbu = String.Format("{0:00}", install);
             string SendData = "";
 
+            if (is_cup == "1") //은련
+                SendData = "0200" + FS + "UP" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + FS + FS + FS + FS + "해외은련승인요청" + FS;
+            else
+                SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용승인" + FS;
 
-            SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용승인" + FS;
 
             byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
             byte[] mRecv = new byte[2048];
@@ -309,7 +321,6 @@ namespace thepos
 
 
 
-
             int input_type = 0;
 
 
@@ -364,20 +375,152 @@ namespace thepos
                 mErrorMsg = ResMag;
                 return -1;
             }
-
-
-
-
-
-
-
-
-            //?
-
-
-
-            return 0;
         }
+
+
+
+        // 간편결제
+
+        public int requestNiceEasyAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String tBarcodeNo, out PaymentEasy pEasy)
+        {
+            PaymentEasy paymentEasy = new PaymentEasy();
+            pEasy = paymentEasy;
+
+            string FS = ((char)28).ToString();
+            string SendData = "";
+
+//          SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + "" +    FS + FS + FS + FS + "신용승인" + FS;
+            SendData = "0300" + FS + "10" + FS + "L" + FS + tAmount + FS + "0" + FS + "0" +          FS + "00" +  FS + "" + FS + "" + FS + "" + FS + FS + FS + tBarcodeNo + FS + FS + FS + FS + "" +         FS + "" + FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
+
+
+
+            byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
+            byte[] mRecv = new byte[2048];
+
+            int ret = NICEVCATB(mSend, mRecv);
+
+            if (ret != 1)
+            {
+                mErrorMsg = "NICE VCAT 오류.";
+                return -1;
+            }
+
+
+            //
+            mNiceResponse = parse_response(mRecv);
+
+
+            // 응답 코드
+            String ResCd = mNiceResponse.t응답코드;
+            // 응답 메세지
+            String ResMag = mNiceResponse.t응답메시지;
+
+            // 정상 응답
+            if (ResCd == "0000")
+            {
+                // 마스킹 카드번호
+                paymentEasy.card_no = mNiceResponse.t카드BIN;
+                // 거래번호
+                paymentEasy.tran_serial = mNiceResponse.t거래일련번호;
+
+                // 총거래 금액
+                paymentEasy.amount = int.Parse(mNiceResponse.t거래금액);
+
+                // 거래일시
+                paymentEasy.tran_date = mNiceResponse.t승인일시;
+                // 승인번호
+                paymentEasy.auth_no = mNiceResponse.t승인번호;
+
+
+                //? 발급사,매입사 코드 -> 공통관리코드로 변환 필요
+                // 매입사 코드
+                paymentEasy.acq_code = mNiceResponse.t매입사코드;
+                // 발급사 코드
+                paymentEasy.isu_code = mNiceResponse.t발급사코드;
+
+
+                // 발급사 명
+                paymentEasy.card_name = mNiceResponse.t발급사명;
+                // 가맹점 번호
+                paymentEasy.merchant_no = mNiceResponse.t가맹점번호;
+                // 기프트잔액
+                if (is_number(mNiceResponse.t잔액))
+                    paymentEasy.gift_change = int.Parse(mNiceResponse.t잔액);
+                else
+                    paymentEasy.gift_change = 0;
+
+                pEasy = paymentEasy;
+
+                return 0;
+            }
+            else
+            {
+                mErrorMsg = ResMag;
+                return -1;
+            }
+
+        }
+
+
+        public int requestNiceEasyCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
+        {
+            pCardCancel = pCardAuth;
+
+            string FS = ((char)28).ToString();
+            string Halbu = String.Format("{0:00}", pCardAuth.install);
+            string SendData = "";
+
+
+            //!
+            SendData = "0420" + FS + "10" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용취소" + FS;
+            byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
+            byte[] mRecv = new byte[2048];
+
+            int ret = NICEVCAT(mSend, mRecv);
+
+            if (ret != 1)
+            {
+                mErrorMsg = "NICE VCAT 오류.";
+                return -1;
+            }
+
+
+            //
+            mNiceResponse = parse_response(mRecv);
+
+
+            // 응답 코드
+            String ResCd = mNiceResponse.t응답코드;
+            // 응답 메세지
+            String ResMag = mNiceResponse.t응답메시지;
+
+            // 정상 응답
+            if (ResCd == "0000")
+            {
+                pCardCancel.tran_date = mNiceResponse.t승인일시;
+
+                if (is_number(mNiceResponse.t잔액))
+                    pCardCancel.gift_change = int.Parse(mNiceResponse.t잔액);
+                else
+                    pCardCancel.gift_change = 0;
+
+
+                return 0;
+            }
+            else
+            {
+                mErrorMsg = ResMag;
+                return -1;
+            }
+
+        }
+
+
+
+
+
+
+
 
 
 
@@ -460,11 +603,28 @@ namespace thepos
                         case 21:
                             mNiceResponse.t거래일련번호 = recvdata.Substring(k, i - k);  // 거래일련번호
                             break;
+                        case 22:
+                            mNiceResponse.t발생포인트 = recvdata.Substring(k, i - k);  //
+                            break;
+                        case 23:
+                            mNiceResponse.t가용포인트 = recvdata.Substring(k, i - k);  //
+                            break;
+                        case 24:
+                            mNiceResponse.t누적포인트 = recvdata.Substring(k, i - k);  //
+                            break;
+                        case 25:
+                            mNiceResponse.t캐시백가맹점포멧 = recvdata.Substring(k, i - k);  //
+                            break;
+                        case 26:
+                            mNiceResponse.t캐시백승인번호 = recvdata.Substring(k, i - k);  //
+                            break;
+                        case 27:
+                            mNiceResponse.t기기번호 = recvdata.Substring(k, i - k);  //
+                            break;
                     }
-
                     k = i + 1;
 
-                    if (j == 21)
+                    if (j == 27)
                         break;
                 }
                 i = i + 1;

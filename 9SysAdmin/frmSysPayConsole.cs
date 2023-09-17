@@ -173,18 +173,18 @@ namespace thepos._1Sales
 
                     btnItem.Dock = DockStyle.Fill;
 
-                    int locX = convert_number(lvwConsoleLink.Items[i].SubItems[1].Text);
-                    int locY = convert_number(lvwConsoleLink.Items[i].SubItems[2].Text);
-                    int szX = convert_number(lvwConsoleLink.Items[i].SubItems[3].Text);
-                    int szY = convert_number(lvwConsoleLink.Items[i].SubItems[4].Text);
+                    int loc_x = convert_number(lvwConsoleLink.Items[i].SubItems[lvwConsoleLink.Columns.IndexOf(locX)].Text);
+                    int loc_y = convert_number(lvwConsoleLink.Items[i].SubItems[lvwConsoleLink.Columns.IndexOf(locY)].Text);
+                    int sz_x = convert_number(lvwConsoleLink.Items[i].SubItems[lvwConsoleLink.Columns.IndexOf(szX)].Text);
+                    int sz_y = convert_number(lvwConsoleLink.Items[i].SubItems[lvwConsoleLink.Columns.IndexOf(szY)].Text);
 
-                    if (szX == 1) { btnItem.Font = font9; }
-                    else if (szX >= 3 & szY >= 2) { btnItem.Font = font20; }
+                    if (sz_x == 1) { btnItem.Font = font9; }
+                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = font20; }
                     else { btnItem.Font = font14; }
 
-                    tableLayoutPanelPayControl.Controls.Add(btnItem, locX, locY);
-                    tableLayoutPanelPayControl.SetColumnSpan(btnItem, szX);
-                    tableLayoutPanelPayControl.SetRowSpan(btnItem, szY);
+                    tableLayoutPanelPayControl.Controls.Add(btnItem, loc_x, loc_y);
+                    tableLayoutPanelPayControl.SetColumnSpan(btnItem, sz_x);
+                    tableLayoutPanelPayControl.SetRowSpan(btnItem, sz_y);
                 }
                 catch (Exception ex)
                 {
@@ -208,10 +208,10 @@ namespace thepos._1Sales
             }
             else
             {
-                tbLocateX.Text = lvwConsoleLink.SelectedItems[0].SubItems[1].Text;
-                tbLocateY.Text = lvwConsoleLink.SelectedItems[0].SubItems[2].Text;
-                tbSizeX.Text = lvwConsoleLink.SelectedItems[0].SubItems[3].Text;
-                tbSizeY.Text = lvwConsoleLink.SelectedItems[0].SubItems[4].Text;
+                tbLocateX.Text = lvwConsoleLink.SelectedItems[0].SubItems[lvwConsoleLink.Columns.IndexOf(locX)].Text;
+                tbLocateY.Text = lvwConsoleLink.SelectedItems[0].SubItems[lvwConsoleLink.Columns.IndexOf(locY)].Text;
+                tbSizeX.Text = lvwConsoleLink.SelectedItems[0].SubItems[lvwConsoleLink.Columns.IndexOf(szX)].Text;
+                tbSizeY.Text = lvwConsoleLink.SelectedItems[0].SubItems[lvwConsoleLink.Columns.IndexOf(szY)].Text;
 
                 display_selected_console();
             }

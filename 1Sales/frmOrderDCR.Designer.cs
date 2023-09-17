@@ -37,6 +37,8 @@
             this.flowLayoutPanelDCR = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.lblTitle1 = new System.Windows.Forms.Label();
             this.lblTitle2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -58,7 +60,7 @@
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.btnDCCancel);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -75,7 +77,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(207, 377);
+            this.panel1.Size = new System.Drawing.Size(173, 446);
             this.panel1.TabIndex = 47;
             // 
             // btnAllRate
@@ -84,9 +86,9 @@
             this.btnAllRate.FlatAppearance.BorderSize = 0;
             this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllRate.ForeColor = System.Drawing.Color.White;
-            this.btnAllRate.Location = new System.Drawing.Point(25, 279);
+            this.btnAllRate.Location = new System.Drawing.Point(24, 336);
             this.btnAllRate.Name = "btnAllRate";
-            this.btnAllRate.Size = new System.Drawing.Size(150, 60);
+            this.btnAllRate.Size = new System.Drawing.Size(119, 85);
             this.btnAllRate.TabIndex = 0;
             this.btnAllRate.TabStop = false;
             this.btnAllRate.Text = "전체 % 적용";
@@ -99,9 +101,9 @@
             this.btnAllAmount.FlatAppearance.BorderSize = 0;
             this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllAmount.ForeColor = System.Drawing.Color.White;
-            this.btnAllAmount.Location = new System.Drawing.Point(24, 199);
+            this.btnAllAmount.Location = new System.Drawing.Point(24, 236);
             this.btnAllAmount.Name = "btnAllAmount";
-            this.btnAllAmount.Size = new System.Drawing.Size(150, 60);
+            this.btnAllAmount.Size = new System.Drawing.Size(119, 85);
             this.btnAllAmount.TabIndex = 0;
             this.btnAllAmount.TabStop = false;
             this.btnAllAmount.Text = "전체 ₩ 적용";
@@ -114,9 +116,9 @@
             this.btnSelRate.FlatAppearance.BorderSize = 0;
             this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelRate.ForeColor = System.Drawing.Color.White;
-            this.btnSelRate.Location = new System.Drawing.Point(24, 108);
+            this.btnSelRate.Location = new System.Drawing.Point(24, 128);
             this.btnSelRate.Name = "btnSelRate";
-            this.btnSelRate.Size = new System.Drawing.Size(150, 60);
+            this.btnSelRate.Size = new System.Drawing.Size(119, 85);
             this.btnSelRate.TabIndex = 0;
             this.btnSelRate.TabStop = false;
             this.btnSelRate.Text = "선택 % 적용";
@@ -129,9 +131,9 @@
             this.btnSelAmount.FlatAppearance.BorderSize = 0;
             this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelAmount.ForeColor = System.Drawing.Color.White;
-            this.btnSelAmount.Location = new System.Drawing.Point(24, 28);
+            this.btnSelAmount.Location = new System.Drawing.Point(24, 25);
             this.btnSelAmount.Name = "btnSelAmount";
-            this.btnSelAmount.Size = new System.Drawing.Size(150, 60);
+            this.btnSelAmount.Size = new System.Drawing.Size(119, 85);
             this.btnSelAmount.TabIndex = 0;
             this.btnSelAmount.TabStop = false;
             this.btnSelAmount.Text = "선택 ₩ 적용";
@@ -144,11 +146,13 @@
             this.flowLayoutPanelDCR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanelDCR.Controls.Add(this.button1);
             this.flowLayoutPanelDCR.Controls.Add(this.button2);
-            this.flowLayoutPanelDCR.Location = new System.Drawing.Point(261, 120);
+            this.flowLayoutPanelDCR.Controls.Add(this.button3);
+            this.flowLayoutPanelDCR.Controls.Add(this.button4);
+            this.flowLayoutPanelDCR.Location = new System.Drawing.Point(222, 120);
             this.flowLayoutPanelDCR.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelDCR.Name = "flowLayoutPanelDCR";
             this.flowLayoutPanelDCR.Padding = new System.Windows.Forms.Padding(20);
-            this.flowLayoutPanelDCR.Size = new System.Drawing.Size(242, 504);
+            this.flowLayoutPanelDCR.Size = new System.Drawing.Size(280, 536);
             this.flowLayoutPanelDCR.TabIndex = 46;
             // 
             // button1
@@ -160,7 +164,7 @@
             this.button1.Location = new System.Drawing.Point(25, 25);
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 50);
+            this.button1.Size = new System.Drawing.Size(230, 50);
             this.button1.TabIndex = 45;
             this.button1.TabStop = false;
             this.button1.Text = "선택 10%";
@@ -175,16 +179,46 @@
             this.button2.Location = new System.Drawing.Point(25, 85);
             this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 50);
+            this.button2.Size = new System.Drawing.Size(230, 50);
             this.button2.TabIndex = 45;
             this.button2.TabStop = false;
             this.button2.Text = "선택 20%";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatAppearance.BorderSize = 2;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(25, 145);
+            this.button3.Margin = new System.Windows.Forms.Padding(5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(230, 50);
+            this.button3.TabIndex = 46;
+            this.button3.TabStop = false;
+            this.button3.Text = "선택 20%";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatAppearance.BorderSize = 2;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(25, 205);
+            this.button4.Margin = new System.Windows.Forms.Padding(5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(230, 50);
+            this.button4.TabIndex = 47;
+            this.button4.TabStop = false;
+            this.button4.Text = "선택 20%";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // lblTitle1
             // 
             this.lblTitle1.AutoSize = true;
-            this.lblTitle1.Location = new System.Drawing.Point(77, 91);
+            this.lblTitle1.Location = new System.Drawing.Point(55, 91);
             this.lblTitle1.Name = "lblTitle1";
             this.lblTitle1.Size = new System.Drawing.Size(87, 14);
             this.lblTitle1.TabIndex = 44;
@@ -193,7 +227,7 @@
             // lblTitle2
             // 
             this.lblTitle2.AutoSize = true;
-            this.lblTitle2.Location = new System.Drawing.Point(315, 91);
+            this.lblTitle2.Location = new System.Drawing.Point(282, 91);
             this.lblTitle2.Name = "lblTitle2";
             this.lblTitle2.Size = new System.Drawing.Size(115, 14);
             this.lblTitle2.TabIndex = 44;
@@ -221,9 +255,9 @@
             this.btnDCCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDCCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDCCancel.ForeColor = System.Drawing.Color.White;
-            this.btnDCCancel.Location = new System.Drawing.Point(45, 564);
+            this.btnDCCancel.Location = new System.Drawing.Point(45, 596);
             this.btnDCCancel.Name = "btnDCCancel";
-            this.btnDCCancel.Size = new System.Drawing.Size(150, 60);
+            this.btnDCCancel.Size = new System.Drawing.Size(119, 60);
             this.btnDCCancel.TabIndex = 42;
             this.btnDCCancel.TabStop = false;
             this.btnDCCancel.Text = "할인취소";
@@ -280,5 +314,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblTitle1;
         private System.Windows.Forms.Label lblTitle2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -258,19 +258,13 @@ namespace thepos
                     SetDisplayAlarm("I", strAlarm);
 
 
-
-                    //? 모듈화?
-                    if (is_print_bill())
-                    {
-                        String headerBill = make_bill_header();
-                        String bodyBill = make_bill_body(mTheNo, "A", "", "1101"); //?
-                        String trailerBill = make_bill_trailer();
-
-                        PrintBill(headerBill, bodyBill, trailerBill, mTheNo);
-                    }
-
-
                 }
+
+
+                // 영수증 출력
+                // 안에서 여부를 물어보고 출력한다. 
+                print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+
 
 
                 mClearSaleForm();
@@ -464,11 +458,13 @@ namespace thepos
                     {
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
                         SetDisplayAlarm("I", strAlarm);
-
-                        //? 
-                        // 티켓 출력 개발요망
-
                     }
+
+
+                    // 영수증 출력
+                    // 안에서 여부를 물어보고 출력한다. 
+                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+
 
                     mClearSaleForm();
 
@@ -580,17 +576,6 @@ namespace thepos
         }
 
 
-        private bool is_print_bill()
-        {
-            frmYesNo fYesNo = new frmYesNo();
-            var result = fYesNo.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                return true;
-            }
 
-            return true;
-
-        }
     }
 }

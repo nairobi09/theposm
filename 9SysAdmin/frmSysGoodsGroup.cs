@@ -180,10 +180,10 @@ namespace thepos
             else
             {
                 tbGroupName.Text = lvwList.SelectedItems[0].Text;
-                tbLocateX.Text = lvwList.SelectedItems[0].SubItems[1].Text;
-                tbLocateY.Text = lvwList.SelectedItems[0].SubItems[2].Text;
-                tbSizeX.Text = lvwList.SelectedItems[0].SubItems[3].Text;
-                tbSizeY.Text = lvwList.SelectedItems[0].SubItems[4].Text;
+                tbLocateX.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locX)].Text;
+                tbLocateY.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locY)].Text;
+                tbSizeX.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szX)].Text;
+                tbSizeY.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szY)].Text;
 
                 display_selected_console();
             }
@@ -197,10 +197,10 @@ namespace thepos
 
             try
             {
-                int locX = convert_number(lvwList.SelectedItems[0].SubItems[1].Text);
-                int locY = convert_number(lvwList.SelectedItems[0].SubItems[2].Text);
-                int szX = convert_number(lvwList.SelectedItems[0].SubItems[3].Text);
-                int szY = convert_number(lvwList.SelectedItems[0].SubItems[4].Text);
+                int loc_x = convert_number(lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locX)].Text);
+                int loc_y = convert_number(lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locY)].Text);
+                int sz_x = convert_number(lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szX)].Text);
+                int sz_y = convert_number(lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szY)].Text);
 
                 Button btnGroupBlue = new Button();
 
@@ -213,14 +213,14 @@ namespace thepos
                 btnGroupBlue.Text = lvwList.SelectedItems[0].Text; ;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (szX == 1)                   { btnGroupBlue.Font = font9; }
-                else if (szX >= 3 & szY == 2)   { btnGroupBlue.Font = font20; }
-                else                            { btnGroupBlue.Font = font14; }
+                if (sz_x == 1)                      { btnGroupBlue.Font = font9; }
+                else if (sz_x >= 3 & sz_y == 2)     { btnGroupBlue.Font = font20; }
+                else                                { btnGroupBlue.Font = font14; }
 
 
-                tableLayoutPanelGroupSelected.Controls.Add(btnGroupBlue, locX, locY);
-                tableLayoutPanelGroupSelected.SetColumnSpan(btnGroupBlue, szX);
-                tableLayoutPanelGroupSelected.SetRowSpan(btnGroupBlue, szY);
+                tableLayoutPanelGroupSelected.Controls.Add(btnGroupBlue, loc_x, loc_y);
+                tableLayoutPanelGroupSelected.SetColumnSpan(btnGroupBlue, sz_x);
+                tableLayoutPanelGroupSelected.SetRowSpan(btnGroupBlue, sz_y);
             }
             catch (Exception ex) 
             { 
@@ -281,18 +281,18 @@ namespace thepos
                     btnGroup.Text = lvwList.Items[i].Text;
                     btnGroup.Dock = DockStyle.Fill;
 
-                    int locX = convert_number(lvwList.Items[i].SubItems[1].Text);
-                    int locY = convert_number(lvwList.Items[i].SubItems[2].Text);
-                    int szX = convert_number(lvwList.Items[i].SubItems[3].Text);
-                    int szY = convert_number(lvwList.Items[i].SubItems[4].Text);
+                    int loc_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(locX)].Text);
+                    int loc_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(locY)].Text);
+                    int sz_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szX)].Text);
+                    int sz_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szY)].Text);
 
-                    if (szX == 1)                   { btnGroup.Font = font9; }
-                    else if (szX >= 3 & szY == 2)   { btnGroup.Font = font20; }
+                    if (sz_x == 1)                   { btnGroup.Font = font9; }
+                    else if (sz_x >= 3 & sz_y == 2)   { btnGroup.Font = font20; }
                     else                            { btnGroup.Font = font14; }
 
-                    tableLayoutPanelGroup.Controls.Add(btnGroup, locX, locY);
-                    tableLayoutPanelGroup.SetColumnSpan(btnGroup, szX);
-                    tableLayoutPanelGroup.SetRowSpan(btnGroup, szY);
+                    tableLayoutPanelGroup.Controls.Add(btnGroup, loc_x, loc_y);
+                    tableLayoutPanelGroup.SetColumnSpan(btnGroup, sz_x);
+                    tableLayoutPanelGroup.SetRowSpan(btnGroup, sz_y);
                 }
                 catch (Exception ex) 
                 { 

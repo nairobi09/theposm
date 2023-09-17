@@ -19,7 +19,6 @@ namespace thepos._1Sales
 
             initialize_font();
 
-
         }
 
         private void initialize_font()
@@ -31,13 +30,14 @@ namespace thepos._1Sales
 
         private void btnYes_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
         private void btnNo_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.No;
+            this.Close();
         }
     }
 }

@@ -270,18 +270,18 @@ namespace thepos
                     btnItem.Text = lvwGoodsLink.Items[i].Text + "\n" + lvwGoodsLink.Items[i].SubItems[1].Text;
                     btnItem.Dock = DockStyle.Fill;
 
-                    int locX = convert_number(lvwGoodsLink.Items[i].SubItems[2].Text);
-                    int locY = convert_number(lvwGoodsLink.Items[i].SubItems[3].Text);
-                    int szX = convert_number(lvwGoodsLink.Items[i].SubItems[4].Text);
-                    int szY = convert_number(lvwGoodsLink.Items[i].SubItems[5].Text);
+                    int loc_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(locX)].Text);
+                    int loc_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(locY)].Text);
+                    int sz_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text);
+                    int sz_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text);
 
-                    if (szX == 1 | szY == 1) { btnItem.Font = font8; }
-                    else if (szX >= 3 & szY >= 2) { btnItem.Font = font16; }
+                    if (sz_x == 1 | sz_y == 1) { btnItem.Font = font8; }
+                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = font16; }
                     else { btnItem.Font = font10; }
 
-                    tableLayoutPanelItem.Controls.Add(btnItem, locX, locY);
-                    tableLayoutPanelItem.SetColumnSpan(btnItem, szX);
-                    tableLayoutPanelItem.SetRowSpan(btnItem, szY);
+                    tableLayoutPanelItem.Controls.Add(btnItem, loc_x, loc_y);
+                    tableLayoutPanelItem.SetColumnSpan(btnItem, sz_x);
+                    tableLayoutPanelItem.SetRowSpan(btnItem, sz_y);
                 }
                 catch (Exception ex)
                 {
@@ -303,10 +303,10 @@ namespace thepos
             }
             else
             {
-                tbLocateX.Text = lvwGoodsLink.SelectedItems[0].SubItems[2].Text;
-                tbLocateY.Text = lvwGoodsLink.SelectedItems[0].SubItems[3].Text;
-                tbSizeX.Text = lvwGoodsLink.SelectedItems[0].SubItems[4].Text;
-                tbSizeY.Text = lvwGoodsLink.SelectedItems[0].SubItems[5].Text;
+                tbLocateX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(locX)].Text;
+                tbLocateY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(locY)].Text;
+                tbSizeX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text;
+                tbSizeY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text;
 
                 display_selected_console();
             }
@@ -332,7 +332,7 @@ namespace thepos
                 btnGroupBlue.TabStop = false;
                 btnGroupBlue.Margin = new Padding(2, 2, 2, 2);
                 btnGroupBlue.Padding = new Padding(0, 0, 0, 0);
-                btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[1].Text;
+                btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(amt)].Text;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
                 if (szX == 1 | szY == 1) { btnGroupBlue.Font = font8; }

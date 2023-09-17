@@ -167,10 +167,13 @@ namespace thepos
             if (ticket_cnt > 0)
             {
                 SetDisplayAlarm("I", " 포인트 사용등록 완료.");
-
-                //? 
-                // 영수증 출력 개발요망
             }
+
+            // 영수증 출력
+            // 안에서 여부를 물어보고 출력한다. 
+            print_bill(mTheNo, "A", "", "0010"); // cash card point easy
+
+
 
             mClearSaleForm();
 

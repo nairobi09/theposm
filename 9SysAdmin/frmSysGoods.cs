@@ -28,49 +28,63 @@ namespace thepos._9SysAdmin
         private int sortColumn = -1;
 
 
-        public frmSysGoods()
+        String sv_itemName = "";
+        String sv_itemNameEN = "";
+        String sv_itemNameCH = "";
+        String sv_itemNameJP = "";
 
+        String sv_amt = "";
+        String sv_shopCode = "";
+        String sv_ticketYn = "";
+        String sv_taxFree = "";
+        String sv_active = "";
+        String sv_soldout = "";
+        String sv_memo = "";
+        String ch_imagePath = "";
+
+
+
+        public frmSysGoods()
         {
             InitializeComponent();
 
             initialize_font();
             initialize_the();
 
-
-            reload_server();
+            reload_all();
         }
 
         private void initialize_font()
         {
             lblTitle.Font = font14;
-            lvwList.Font = font12;
+            lvwList.Font = font10;
 
+            lblGoodsNameTitle.Font = font9;
+            tbGoodsName.Font = font10;
+            tbGoodsNameEN.Font = font10;
+            tbGoodsNameCH.Font = font10;
+            tbGoodsNameJP.Font = font10;
 
-            lblGoodsNameTitle.Font = font12;
-            tbGoodsName.Font = font12;
+            cbTicket.Font = font10;
+            cbTaxFree.Font = font10;
+            cbActive.Font = font10;
+            cbSoldout.Font = font10;
 
-            lblGoodsAmtTitle.Font = font12;
-            tbGoodsAmt.Font = font12;
+            lblGoodsAmtTitle.Font = font9;
+            tbGoodsAmt.Font = font10;
 
-            lblTicketTitle.Font = font12;
-            lblTaxFreeTitle.Font = font12;
+            lblShopTitle.Font = font10;
+            cbShop.Font = font10;
 
-            lblShopTitle.Font = font12;
-            cbShop.Font = font12;
+            lblMemoTitle.Font = font9;
+            tbMemo.Font = font10;
 
-            lblActiveTitle.Font = font12;
-
-            lblMemoTitle.Font = font12;
-            tbMemo.Font = font12;
-
-            lblImageTitle.Font = font12;
-            btnX.Font = font12;
+            lblImageTitle.Font = font9;
+            btnX.Font = font9;
 
             btnAdd.Font = font12;
             btnUpdate.Font = font12;
             btnDelete.Font = font12;
-
-
         }
 
         private void initialize_the()
@@ -83,28 +97,37 @@ namespace thepos._9SysAdmin
             {
                 cbShop.Items.Add(mShop[i].shop_name);
             }
-
         }
 
-
-        private void reload_server()
+        private void clear_console()
         {
-            lvwList.Items.Clear();
-
             tbGoodsName.Text = "";
+            tbGoodsNameEN.Text = "";
+            tbGoodsNameCH.Text = "";
+            tbGoodsNameJP.Text = "";
+
             tbGoodsName.Tag = "";
             tbGoodsAmt.Text = "";
+            cbShop.SelectedIndex = -1;
             cbTicket.Checked = false;
             cbTaxFree.Checked = false;
             cbActive.Checked = false;
             tbMemo.Text = "";
+            pbImage.Image = null;
+        }
 
 
-            String tTicket, tTaxFree, tActive = "";
+        private void reload_all()
+        {
+            lvwList.Items.Clear();
 
+            clear_console();
+
+
+
+            String tTicket, tTaxFree, tActive, tSoldout = "";
 
             String sUrl = "goods?siteId=" + mSiteId;
-
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -119,28 +142,32 @@ namespace thepos._9SysAdmin
                         if (arr[i]["imagePath"].ToString() == "")
                             lvItem = new ListViewItem(arr[i]["itemName"].ToString());
                         else
-                            lvItem = new ListViewItem(arr[i]["itemName"].ToString(), 0);
+                            lvItem = new ListViewItem(arr[i]["itemName"].ToString(), 0);  // image index = 0
 
+                        lvItem.SubItems.Add(arr[i]["itemNameEn"].ToString());
+                        lvItem.SubItems.Add(arr[i]["itemNameCh"].ToString());
+                        lvItem.SubItems.Add(arr[i]["itemNameJp"].ToString());
 
-
-                        lvItem.Tag = arr[i]["imagePath"].ToString();
-
+                        // itemcode
+                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
 
-
                         tTicket = "";
                         tTaxFree = "";
                         tActive = "";
+                        tSoldout = "";
 
                         if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
                         if (arr[i]["active"].ToString() == "Y") tActive = "Y";
+                        if (arr[i]["soldout"].ToString() == "Y") tSoldout = "Y";
 
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tActive);
+                        lvItem.SubItems.Add(tSoldout);
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
                         if (tActive != "Y")
@@ -153,16 +180,12 @@ namespace thepos._9SysAdmin
                             lvItem.SubItems[5].ForeColor = Color.Silver;
                         }
 
-                        // itemcode
-                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
+
+                        lvItem.Tag = arr[i]["imagePath"].ToString();
 
 
 
                         lvwList.Items.Add(lvItem);
-
-
-
-
 
 
                         int code_num = 0;
@@ -187,21 +210,114 @@ namespace thepos._9SysAdmin
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
+        }
+
+
+        private ListViewItem reload_select(string code)
+        {
+            String tTicket, tTaxFree, tActive, tSoldout = "";
+
+            String sUrl = "goods?siteId=" + mSiteId + "&itemCode=" + code;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String pos = mObj["goods"].ToString();
+                    JArray arr = JArray.Parse(pos);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem lvItem;
+
+                        if (arr[i]["imagePath"].ToString() == "")
+                            lvItem = new ListViewItem(arr[i]["itemName"].ToString());
+                        else
+                            lvItem = new ListViewItem(arr[i]["itemName"].ToString(), 0);  // image index = 0
+
+                        lvItem.SubItems.Add(arr[i]["itemNameEn"].ToString());
+                        lvItem.SubItems.Add(arr[i]["itemNameCh"].ToString());
+                        lvItem.SubItems.Add(arr[i]["itemNameJp"].ToString());
+
+                        // itemcode
+                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["amt"].ToString());
+                        lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
+                        lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
+
+                        tTicket = "";
+                        tTaxFree = "";
+                        tActive = "";
+                        tSoldout = "";
+
+                        if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
+                        if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
+                        if (arr[i]["active"].ToString() == "Y") tActive = "Y";
+                        if (arr[i]["soldout"].ToString() == "Y") tSoldout = "Y";
+
+                        lvItem.SubItems.Add(tTicket);
+                        lvItem.SubItems.Add(tTaxFree);
+                        lvItem.SubItems.Add(tActive);
+                        lvItem.SubItems.Add(tSoldout);
+                        lvItem.SubItems.Add(arr[i]["memo"].ToString());
+
+                        if (tActive != "Y")
+                        {
+                            lvItem.ForeColor = Color.Silver;
+                            lvItem.SubItems[1].ForeColor = Color.Silver;
+                            lvItem.SubItems[2].ForeColor = Color.Silver;
+                            lvItem.SubItems[3].ForeColor = Color.Silver;
+                            lvItem.SubItems[4].ForeColor = Color.Silver;
+                            lvItem.SubItems[5].ForeColor = Color.Silver;
+                        }
+
+                        lvItem.Tag = arr[i]["imagePath"].ToString();
 
 
 
+                        int code_num = 0;
+                        if (get_number(arr[i]["itemCode"].ToString(), ref code_num))
+                        {
+                            if (max_goodscode < code_num)
+                            {
+                                max_goodscode = code_num;
+                            }
+                        }
+
+                        return lvItem;
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return null;
+            }
+
+            return null;
 
         }
+
 
         private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwList.SelectedItems.Count == 0) { return; }
 
-            tbGoodsName.Text = lvwList.SelectedItems[0].Text;
-            tbGoodsName.Tag = lvwList.SelectedItems[0].SubItems[8].Text;  // code
-            tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[1].Text;
+            tbGoodsName.Tag = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodscode)].Text;  // code
 
-            String shop_code = lvwList.SelectedItems[0].SubItems[2].Text;
+            tbGoodsName.Text = lvwList.SelectedItems[0].Text;
+            tbGoodsNameEN.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameEN)].Text;
+            tbGoodsNameCH.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameCH)].Text;
+            tbGoodsNameJP.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameJP)].Text;
+
+            tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(amt)].Text;
+
+            String shop_code = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(shopcode)].Text;
 
 
             cbShop.SelectedIndex = -1;
@@ -214,22 +330,28 @@ namespace thepos._9SysAdmin
             }
 
 
-            if (lvwList.SelectedItems[0].SubItems[4].Text == "Y")
+            if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(ticket)].Text == "Y")
                 cbTicket.Checked = true;
             else
                 cbTicket.Checked = false;
 
-            if (lvwList.SelectedItems[0].SubItems[5].Text == "Y")
+            if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(taxfree)].Text == "Y")
                 cbTaxFree.Checked = true;
             else
                 cbTaxFree.Checked = false;
 
-            if (lvwList.SelectedItems[0].SubItems[6].Text == "Y")
+            if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(active)].Text == "Y")
                 cbActive.Checked = true;
             else
                 cbActive.Checked = false;
 
-            tbMemo.Text = lvwList.SelectedItems[0].SubItems[7].Text;
+            if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(soldout)].Text == "Y")
+                cbSoldout.Checked = true;
+            else
+                cbSoldout.Checked = false;
+
+
+            tbMemo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(memo)].Text;
 
             pbImage.Image = null;
 
@@ -237,18 +359,36 @@ namespace thepos._9SysAdmin
             {
                 try
                 {
-                byte[] imgBytes = Convert.FromBase64String(lvwList.SelectedItems[0].Tag.ToString());
+                    byte[] imgBytes = Convert.FromBase64String(lvwList.SelectedItems[0].Tag.ToString());
                 
-                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
-                ms.Write(imgBytes, 0, imgBytes.Length);
+                    MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                    ms.Write(imgBytes, 0, imgBytes.Length);
 
-                pbImage.Image = System.Drawing.Image.FromStream(ms, true);
+                    pbImage.Image = System.Drawing.Image.FromStream(ms, true);
                 }
                 catch
                 {
 
                 }
             }
+
+
+            // 보관
+            sv_itemName = tbGoodsName.Text;
+            sv_itemNameEN = tbGoodsNameEN.Text;
+            sv_itemNameCH = tbGoodsNameCH.Text;
+            sv_itemNameJP = tbGoodsNameJP.Text;
+
+            sv_amt = tbGoodsAmt.Text;
+            sv_shopCode = cbShop.SelectedIndex + "";
+            sv_ticketYn = cbTicket.Checked + "";
+            sv_taxFree = cbTaxFree.Checked + "";
+            sv_active = cbActive.Checked + "";
+            sv_soldout = cbSoldout.Checked + "";
+            sv_memo = tbMemo.Text;
+            ch_imagePath = "0";
+
+
         }
 
 
@@ -273,42 +413,92 @@ namespace thepos._9SysAdmin
             if (cbShop.SelectedIndex == -1) return;
 
 
+            //
+            String select_goodscode = tbGoodsName.Tag.ToString();
+            int select_index = lvwList.SelectedItems[0].Index;
+
+
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = tbGoodsName.Tag.ToString();
-            parameters["itemName"] = tbGoodsName.Text.Trim();
-            parameters["amt"] = tbGoodsAmt.Text;
+            parameters["itemCode"] = select_goodscode;
 
-            parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
+            // 변경된 항목만 파라메터에 넣는다.
+            // 
+            if (sv_itemName != tbGoodsName.Text.Trim())
+                parameters["itemName"] = tbGoodsName.Text.Trim();
 
+            if (sv_itemNameEN != tbGoodsNameEN.Text.Trim())
+                parameters["itemNameEn"] = tbGoodsNameEN.Text.Trim();
 
-            if (cbTicket.Checked)
-                parameters["ticketYn"] = "Y";
-            else
-                parameters["ticketYn"] = "N";
+            if (sv_itemNameCH != tbGoodsNameCH.Text.Trim())
+                parameters["itemNameCh"] = tbGoodsNameCH.Text.Trim();
 
-            if (cbTaxFree.Checked)
-                parameters["taxFree"] = "Y";
-            else
-                parameters["taxFree"] = "N";
-
-            if (cbActive.Checked)
-                parameters["active"] = "Y";
-            else
-                parameters["active"] = "N";
-
-            parameters["memo"] = tbMemo.Text;
+            if (sv_itemNameJP != tbGoodsNameJP.Text.Trim())
+                parameters["itemNameJp"] = tbGoodsNameJP.Text.Trim();
 
 
-            if (pbImage.Image == null)
+            //
+            if (sv_amt != tbGoodsAmt.Text)
+                parameters["amt"] = tbGoodsAmt.Text;
+
+            //
+            if (sv_shopCode != cbShop.SelectedIndex + "")
+                parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
+
+            //
+            if (sv_ticketYn != cbTicket.Checked + "")
             {
-                parameters["imagePath"] = "";
+                if (cbTicket.Checked)
+                    parameters["ticketYn"] = "Y";
+                else
+                    parameters["ticketYn"] = "N";
             }
-            else
+
+            //
+            if (sv_taxFree != cbTaxFree.Checked + "")
             {
-                var ms = new MemoryStream();
-                pbImage.Image.Save(ms, pbImage.Image.RawFormat);
-                parameters["imagePath"] = Convert.ToBase64String(ms.ToArray());
+                if (cbTaxFree.Checked)
+                    parameters["taxFree"] = "Y";
+                else
+                    parameters["taxFree"] = "N";
+            }
+
+            //
+            if (sv_active != cbActive.Checked + "")
+            {
+                if (cbActive.Checked)
+                    parameters["active"] = "Y";
+                else
+                    parameters["active"] = "N";
+            }
+
+            //
+            if (sv_soldout != cbSoldout.Checked + "")
+            {
+                if (cbSoldout.Checked)
+                    parameters["soldout"] = "Y";
+                else
+                    parameters["soldout"] = "N";
+            }
+
+            //
+            if (sv_memo != tbMemo.Text)
+                parameters["memo"] = tbMemo.Text;
+
+            //
+            if (ch_imagePath == "1")
+            {
+                if (pbImage.Image == null)
+                {
+                    parameters["imagePath"] = "";
+                }
+                else
+                {
+                    var ms = new MemoryStream();
+                    pbImage.Image.Save(ms, pbImage.Image.RawFormat);
+                    parameters["imagePath"] = Convert.ToBase64String(ms.ToArray());
+                }
             }
 
 
@@ -317,7 +507,7 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 수정 완료.", "thepos");
+                    
                 }
                 else
                 {
@@ -332,7 +522,18 @@ namespace thepos._9SysAdmin
             }
 
 
-            reload_server();
+            //
+            ListViewItem lvItem = reload_select(select_goodscode);
+
+            if (lvItem != null)
+            {
+                lvwList.Items[select_index] = lvItem;
+                lvItem.Selected = true;
+                lvwList.Select();
+                lvwList.EnsureVisible(select_index);
+            }
+
+            MessageBox.Show("정상 수정 완료.", "thepos");
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -353,11 +554,18 @@ namespace thepos._9SysAdmin
             if (cbShop.SelectedIndex == -1) return;
 
 
+            //
+            max_goodscode++;
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = (max_goodscode + 1).ToString();
+            parameters["itemCode"] = max_goodscode.ToString();
+
             parameters["itemName"] = tbGoodsName.Text.Trim();
+            parameters["itemNameEN"] = tbGoodsNameEN.Text.Trim();
+            parameters["itemNameCH"] = tbGoodsNameCH.Text.Trim();
+            parameters["itemNameJP"] = tbGoodsNameJP.Text.Trim();
+
             parameters["amt"] = tbGoodsAmt.Text;
 
             parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
@@ -377,6 +585,12 @@ namespace thepos._9SysAdmin
                 parameters["active"] = "Y";
             else
                 parameters["active"] = "N";
+
+            if (cbSoldout.Checked)
+                parameters["soldout"] = "Y";
+            else
+                parameters["soldout"] = "N";
+
 
             parameters["memo"] = tbMemo.Text;
 
@@ -412,7 +626,18 @@ namespace thepos._9SysAdmin
             }
 
 
-            reload_server();
+            //
+            ListViewItem lvItem = reload_select(max_goodscode.ToString());
+
+            if (lvItem != null)
+            {
+                lvItem.Selected = true;
+                lvwList.Items.Add(lvItem);
+                lvwList.Select();
+
+                lvwList.EnsureVisible(lvwList.Items.Count - 1);
+            }
+
         }
 
 
@@ -430,6 +655,8 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+
+            int select_index = lvwList.SelectedItems[0].Index;
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -455,8 +682,11 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+            // 
+            lvwList.Items[select_index].Remove();
 
-            reload_server();
+            clear_console();
+
         }
 
 
@@ -527,12 +757,14 @@ namespace thepos._9SysAdmin
                 System.Drawing.Image image = System.Drawing.Image.FromFile(fileFullName);
                 this.pbImage.Image = image;
 
+                ch_imagePath = "1";
             }
         }
 
         private void btnX_Click(object sender, EventArgs e)
         {
             pbImage.Image = null;
+            ch_imagePath = "1";
         }
     }
 }

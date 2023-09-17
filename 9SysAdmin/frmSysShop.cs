@@ -21,7 +21,6 @@ namespace thepos._9SysAdmin
             initialize_font();
             initialize_the();
 
-
             reload_server();
         }
 
@@ -31,19 +30,15 @@ namespace thepos._9SysAdmin
             lblTitle.Font = font14;
             lvwList.Font = font12;
 
-
             lblGoodsNameTitle.Font = font12;
             tbShopCode.Font = font12;
 
             lblGoodsAmtTitle.Font = font12;
             tbShopName.Font = font12;
 
-
             btnAdd.Font = font12;
             btnUpdate.Font = font12;
             btnDelete.Font = font12;
-
-
         }
 
         private void initialize_the()

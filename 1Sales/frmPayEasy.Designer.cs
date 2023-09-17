@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayEasy));
             this.panelback = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEasyAuth = new System.Windows.Forms.Button();
             this.lblT3 = new System.Windows.Forms.Label();
-            this.tbCardNo = new System.Windows.Forms.TextBox();
-            this.btnReader = new System.Windows.Forms.Button();
+            this.tbBarcodeNo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -74,8 +72,7 @@
             // 
             this.groupBox1.Controls.Add(this.btnEasyAuth);
             this.groupBox1.Controls.Add(this.lblT3);
-            this.groupBox1.Controls.Add(this.tbCardNo);
-            this.groupBox1.Controls.Add(this.btnReader);
+            this.groupBox1.Controls.Add(this.tbBarcodeNo);
             this.groupBox1.Location = new System.Drawing.Point(23, 172);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(479, 171);
@@ -87,7 +84,7 @@
             this.btnEasyAuth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnEasyAuth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEasyAuth.ForeColor = System.Drawing.Color.White;
-            this.btnEasyAuth.Location = new System.Drawing.Point(334, 86);
+            this.btnEasyAuth.Location = new System.Drawing.Point(318, 85);
             this.btnEasyAuth.Name = "btnEasyAuth";
             this.btnEasyAuth.Size = new System.Drawing.Size(121, 54);
             this.btnEasyAuth.TabIndex = 58;
@@ -100,30 +97,20 @@
             this.lblT3.AutoSize = true;
             this.lblT3.Location = new System.Drawing.Point(28, 44);
             this.lblT3.Name = "lblT3";
-            this.lblT3.Size = new System.Drawing.Size(63, 14);
+            this.lblT3.Size = new System.Drawing.Size(77, 14);
             this.lblT3.TabIndex = 48;
-            this.lblT3.Text = "카드번호";
+            this.lblT3.Text = "바코드번호";
             // 
-            // tbCardNo
+            // tbBarcodeNo
             // 
-            this.tbCardNo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.tbCardNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbCardNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbCardNo.Location = new System.Drawing.Point(121, 39);
-            this.tbCardNo.MaxLength = 20;
-            this.tbCardNo.Name = "tbCardNo";
-            this.tbCardNo.Size = new System.Drawing.Size(190, 26);
-            this.tbCardNo.TabIndex = 52;
-            // 
-            // btnReader
-            // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(209, 86);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(102, 54);
-            this.btnReader.TabIndex = 50;
-            this.btnReader.UseVisualStyleBackColor = false;
+            this.tbBarcodeNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbBarcodeNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbBarcodeNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBarcodeNo.Location = new System.Drawing.Point(121, 39);
+            this.tbBarcodeNo.MaxLength = 50;
+            this.tbBarcodeNo.Name = "tbBarcodeNo";
+            this.tbBarcodeNo.Size = new System.Drawing.Size(318, 26);
+            this.tbBarcodeNo.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -285,7 +272,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmPayEasy";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayEasy_FormClosed);
             this.panelback.ResumeLayout(false);
             this.panelback.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -300,8 +286,7 @@
 
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnReader;
-        private System.Windows.Forms.TextBox tbCardNo;
+        private System.Windows.Forms.TextBox tbBarcodeNo;
         private System.Windows.Forms.Label lblNetAmount;
         private System.Windows.Forms.Label lblT1;
         private System.Windows.Forms.Button btnClose;

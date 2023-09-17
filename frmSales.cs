@@ -720,7 +720,7 @@ namespace thepos
             ConsoleDisable();
 
             Form fPay;
-            fPay = new frmPayEasy();
+            fPay = new frmPayEasy(mNetAmount, false, 1, true);
 
             fPay.Left += this.Location.X;
             fPay.Top += this.Location.Y;
@@ -2763,5 +2763,23 @@ namespace thepos
 
 
         }
+
+
+        public static void print_bill(String the_no, String tran_type, String except_order, String is_payment)
+        {
+            frmYesNo fYesNo = new frmYesNo();
+            var result = fYesNo.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                String headerBill = make_bill_header();
+                String bodyBill = make_bill_body(the_no, tran_type, except_order, is_payment);
+                String trailerBill = make_bill_trailer();
+
+                PrintBill(headerBill, bodyBill, trailerBill, the_no);
+
+            }
+        }
+
+
     }
 }

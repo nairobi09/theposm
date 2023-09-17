@@ -32,10 +32,10 @@
             this.tableLayoutPanelGroup = new System.Windows.Forms.TableLayoutPanel();
             this.lvwList = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.locX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.locY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.szX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.szY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblGroupNameTitle = new System.Windows.Forms.Label();
             this.lblLocXTitle = new System.Windows.Forms.Label();
             this.lblLocYTitle = new System.Windows.Forms.Label();
@@ -89,10 +89,10 @@
             this.lvwList.BackColor = System.Drawing.SystemColors.Window;
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
-            this.locateX,
-            this.locateY,
-            this.SizeX,
-            this.SizeY});
+            this.locX,
+            this.locY,
+            this.szX,
+            this.szY});
             this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -113,29 +113,29 @@
             this.name.Text = "그룹명";
             this.name.Width = 110;
             // 
-            // locateX
+            // locX
             // 
-            this.locateX.Text = "locX";
-            this.locateX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateX.Width = 50;
+            this.locX.Text = "locX";
+            this.locX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.locX.Width = 50;
             // 
-            // locateY
+            // locY
             // 
-            this.locateY.Text = "locY";
-            this.locateY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateY.Width = 50;
+            this.locY.Text = "locY";
+            this.locY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.locY.Width = 50;
             // 
-            // SizeX
+            // szX
             // 
-            this.SizeX.Text = "SzX";
-            this.SizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.SizeX.Width = 50;
+            this.szX.Text = "SzX";
+            this.szX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.szX.Width = 50;
             // 
-            // SizeY
+            // szY
             // 
-            this.SizeY.Text = "SzY";
-            this.SizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.SizeY.Width = 50;
+            this.szY.Text = "SzY";
+            this.szY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.szY.Width = 50;
             // 
             // lblGroupNameTitle
             // 
@@ -407,10 +407,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGroup;
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader locateX;
-        private System.Windows.Forms.ColumnHeader locateY;
-        private System.Windows.Forms.ColumnHeader SizeX;
-        private System.Windows.Forms.ColumnHeader SizeY;
+        private System.Windows.Forms.ColumnHeader locX;
+        private System.Windows.Forms.ColumnHeader locY;
+        private System.Windows.Forms.ColumnHeader szX;
+        private System.Windows.Forms.ColumnHeader szY;
         private System.Windows.Forms.Label lblGroupNameTitle;
         private System.Windows.Forms.Label lblLocXTitle;
         private System.Windows.Forms.Label lblLocYTitle;

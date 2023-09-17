@@ -31,10 +31,10 @@
             this.lvwGoodsLink = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.locX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.locY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.szX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.szY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanelItemSelected = new System.Windows.Forms.TableLayoutPanel();
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             this.lvwGoods = new System.Windows.Forms.ListView();
             this.item_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.taxfree = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,7 +70,6 @@
             this.lblCopyGroupTitle = new System.Windows.Forms.Label();
             this.cbSourcePosNo = new System.Windows.Forms.ComboBox();
             this.lblCopyPosNoTitle = new System.Windows.Forms.Label();
-            this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,10 +81,10 @@
             this.lvwGoodsLink.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.amt,
-            this.locateX,
-            this.locateY,
-            this.sizeX,
-            this.sizeY});
+            this.locX,
+            this.locY,
+            this.szX,
+            this.szY});
             this.lvwGoodsLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwGoodsLink.FullRowSelect = true;
             this.lvwGoodsLink.GridLines = true;
@@ -111,29 +111,29 @@
             this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amt.Width = 50;
             // 
-            // locateX
+            // locX
             // 
-            this.locateX.Text = "LoX";
-            this.locateX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateX.Width = 45;
+            this.locX.Text = "LoX";
+            this.locX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.locX.Width = 45;
             // 
-            // locateY
+            // locY
             // 
-            this.locateY.Text = "LoY";
-            this.locateY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateY.Width = 45;
+            this.locY.Text = "LoY";
+            this.locY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.locY.Width = 45;
             // 
-            // sizeX
+            // szX
             // 
-            this.sizeX.Text = "SzX";
-            this.sizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeX.Width = 45;
+            this.szX.Text = "SzX";
+            this.szX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.szX.Width = 45;
             // 
-            // sizeY
+            // szY
             // 
-            this.sizeY.Text = "SzY";
-            this.sizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeY.Width = 45;
+            this.szY.Text = "SzY";
+            this.szY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.szY.Width = 45;
             // 
             // tableLayoutPanelItemSelected
             // 
@@ -282,6 +282,10 @@
             this.amt1.Text = "단가";
             this.amt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amt1.Width = 50;
+            // 
+            // shop
+            // 
+            this.shop.Text = "샵";
             // 
             // ticket
             // 
@@ -527,10 +531,6 @@
             this.lblCopyPosNoTitle.TabIndex = 97;
             this.lblCopyPosNoTitle.Text = "소스포스";
             // 
-            // shop
-            // 
-            this.shop.Text = "샵";
-            // 
             // frmSysGoodsItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -564,11 +564,11 @@
         private System.Windows.Forms.ListView lvwGoodsLink;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader amt;
-        private System.Windows.Forms.ColumnHeader locateX;
-        private System.Windows.Forms.ColumnHeader locateY;
-        private System.Windows.Forms.ColumnHeader sizeX;
+        private System.Windows.Forms.ColumnHeader locX;
+        private System.Windows.Forms.ColumnHeader locY;
+        private System.Windows.Forms.ColumnHeader szX;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelItemSelected;
-        private System.Windows.Forms.ColumnHeader sizeY;
+        private System.Windows.Forms.ColumnHeader szY;
         private System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblT4;

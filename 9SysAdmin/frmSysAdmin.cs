@@ -22,7 +22,6 @@ namespace thepos
         {
             InitializeComponent();
 
-
             if (mSiteId != "") // 로그인되었다면 panel보이기
             {
                 panelAdminConsole.Visible = true;
@@ -73,7 +72,6 @@ namespace thepos
             fSysAdmin.Show();
         }
 
-
         private void btnSysShop_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "Shop") return;
@@ -98,7 +96,6 @@ namespace thepos
             fSysAdmin.Show();
         }
 
-
         private void btnSysGoodsGroup_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "GoodsGroup") return;
@@ -110,8 +107,6 @@ namespace thepos
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
-
-
 
         private void btnSysGoodsItem_Click(object sender, EventArgs e)
         {
@@ -149,6 +144,16 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnDcrFavorite_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DcrFavorite") return;
 
+            mThisButtonClick = "DcrFavorite";
+            panelView.Controls.Clear();
+
+            frmSysDcrFavorite fSysAdmin = new frmSysDcrFavorite() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
     }
 }

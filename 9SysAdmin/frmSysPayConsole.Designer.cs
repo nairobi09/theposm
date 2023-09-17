@@ -43,10 +43,10 @@
             this.item_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwConsoleLink = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.locateY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sizeY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.locX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.locY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.szX = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.szY = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnLink = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -185,10 +185,10 @@
             this.lvwConsoleLink.BackColor = System.Drawing.SystemColors.Window;
             this.lvwConsoleLink.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
-            this.locateX,
-            this.locateY,
-            this.sizeX,
-            this.sizeY});
+            this.locX,
+            this.locY,
+            this.szX,
+            this.szY});
             this.lvwConsoleLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwConsoleLink.FullRowSelect = true;
             this.lvwConsoleLink.GridLines = true;
@@ -209,29 +209,29 @@
             this.name.Text = "항목명";
             this.name.Width = 100;
             // 
-            // locateX
+            // locX
             // 
-            this.locateX.Text = "LocX";
-            this.locateX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateX.Width = 50;
+            this.locX.Text = "LocX";
+            this.locX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.locX.Width = 50;
             // 
-            // locateY
+            // locY
             // 
-            this.locateY.Text = "LocY";
-            this.locateY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.locateY.Width = 50;
+            this.locY.Text = "LocY";
+            this.locY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.locY.Width = 50;
             // 
-            // sizeX
+            // szX
             // 
-            this.sizeX.Text = "SzX";
-            this.sizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeX.Width = 50;
+            this.szX.Text = "SzX";
+            this.szX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.szX.Width = 50;
             // 
-            // sizeY
+            // szY
             // 
-            this.sizeY.Text = "SzY";
-            this.sizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.sizeY.Width = 50;
+            this.szY.Text = "SzY";
+            this.szY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.szY.Width = 50;
             // 
             // btnLink
             // 
@@ -441,10 +441,10 @@
         private System.Windows.Forms.ColumnHeader item_name;
         private System.Windows.Forms.ListView lvwConsoleLink;
         private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader locateX;
-        private System.Windows.Forms.ColumnHeader locateY;
-        private System.Windows.Forms.ColumnHeader sizeX;
-        private System.Windows.Forms.ColumnHeader sizeY;
+        private System.Windows.Forms.ColumnHeader locX;
+        private System.Windows.Forms.ColumnHeader locY;
+        private System.Windows.Forms.ColumnHeader szX;
+        private System.Windows.Forms.ColumnHeader szY;
         private System.Windows.Forms.Button btnLink;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.GroupBox groupBox1;

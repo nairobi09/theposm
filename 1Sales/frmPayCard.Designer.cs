@@ -47,6 +47,7 @@
             this.rbCard1 = new System.Windows.Forms.RadioButton();
             this.rbCard0 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkCUP = new System.Windows.Forms.CheckBox();
             this.tbInstall = new System.Windows.Forms.TextBox();
             this.btnInstall00 = new System.Windows.Forms.Button();
             this.btnCardRequest = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panelback.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -300,7 +300,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.chkCUP);
             this.groupBox1.Controls.Add(this.tbInstall);
             this.groupBox1.Controls.Add(this.btnInstall00);
             this.groupBox1.Controls.Add(this.btnCardRequest);
@@ -314,6 +314,16 @@
             this.groupBox1.Size = new System.Drawing.Size(480, 226);
             this.groupBox1.TabIndex = 56;
             this.groupBox1.TabStop = false;
+            // 
+            // chkCUP
+            // 
+            this.chkCUP.AutoSize = true;
+            this.chkCUP.Location = new System.Drawing.Point(196, 170);
+            this.chkCUP.Name = "chkCUP";
+            this.chkCUP.Size = new System.Drawing.Size(82, 18);
+            this.chkCUP.TabIndex = 57;
+            this.chkCUP.Text = "은련카드";
+            this.chkCUP.UseVisualStyleBackColor = true;
             // 
             // tbInstall
             // 
@@ -454,16 +464,6 @@
             this.lblTitle.Text = "카드결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(196, 170);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(82, 18);
-            this.checkBox1.TabIndex = 57;
-            this.checkBox1.Text = "은련카드";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // frmPayCard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -519,6 +519,6 @@
         private System.Windows.Forms.TextBox tbInstall;
         private System.Windows.Forms.TextBox tbAuthNo;
         private System.Windows.Forms.TextBox tbCardNo;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkCUP;
     }
 }
