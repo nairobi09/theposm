@@ -74,6 +74,7 @@
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenterNo = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.panelDivision = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -670,18 +671,26 @@
             this.picLogo.TabStop = false;
             this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
             // 
+            // panelDivision
+            // 
+            this.panelDivision.Location = new System.Drawing.Point(0, 0);
+            this.panelDivision.Name = "panelDivision";
+            this.panelDivision.Size = new System.Drawing.Size(30, 30);
+            this.panelDivision.TabIndex = 11;
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.panelDivision);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.lblCallCenterNo);
             this.Controls.Add(this.panel_in_0);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -755,5 +764,6 @@
         private System.Windows.Forms.Label lblSiteAlias;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblReqUser;
+        private System.Windows.Forms.Panel panelDivision;
     }
 }

@@ -61,11 +61,14 @@ namespace thepos
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void frmFlowTicketing_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSales.ConsoleEnable();
+
+            mPanelMiddle.Visible = false;
         }
 
         private void btnView_Click(object sender, EventArgs e)

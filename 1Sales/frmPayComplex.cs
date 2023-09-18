@@ -36,6 +36,8 @@ namespace thepos
 
         public static TextBox mTbReqAmount;
 
+        public static Panel mPanelHigh;
+
 
         public frmPayComplex()
         {
@@ -116,37 +118,16 @@ namespace thepos
             //복합결제인 경우 리스트뷰 상품을 클릭하면 클릭된 금액을 복합결제 결제할 금액에 표시한다.
             saveRightFace = mRightFace;
             mRightFace = "PayComplex";
+
+
+            mPanelHigh = panelHigh;
+            mPanelHigh.Width = this.Width;
+            mPanelHigh.Height = this.Height;
+
+
         }
 
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-
-            if (mComplexNestAmount == 0) // 복합결제 완료
-            {
-                mClearSaleForm();
-                this.Close();
-            }
-            else if (mComplexNetAmount == mComplexNestAmount) // 시작전
-            {
-                this.Close();
-            }
-            else  // 부분결제 진행중
-            {
-                SetDisplayAlarm("W", "복합결제 진행중에는 화면을 닫을 수 없습니다."); 
-            }
-
-
-            
-        }
-
-        private void frmPayComplex_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            frmSales.ConsoleEnable();
-            mTbKeyDisplayController = saveKeyDisplay;
-            mRightFace = saveRightFace;
-
-        }
 
         private void btnRequestCash_Click(object sender, EventArgs e)
         {
@@ -175,7 +156,6 @@ namespace thepos
                 return;
             }
 
-
             if (mComplexNestAmount < reqAmount)
             {
                 SetDisplayAlarm("W", "결제요청금액 오류.");
@@ -189,27 +169,58 @@ namespace thepos
             }
 
 
-            Form fPay;
+            //#
+            Form fForm;
+            panelHigh.Controls.Clear();
+            panelHigh.Visible = true;
 
             if (pay_type == "CARD")
-                fPay = new frmPayCard(reqAmount, true, mPaySeq, is_last); // int amount, bool is_complex, int pay_seq, bool is_last
+                fForm = new frmPayCard(reqAmount, true, mPaySeq, is_last) { TopLevel = false, TopMost = true }; // int amount, bool is_complex, int pay_seq, bool is_last
             else if (pay_type == "CASH")
-                fPay = new frmPayCash(reqAmount, true, mPaySeq, is_last);
+                fForm = new frmPayCash(reqAmount, true, mPaySeq, is_last) { TopLevel = false, TopMost = true };
             else if (pay_type == "EASY")
-                //fPay = new frmPayEasy(reqAmount, true, mPaySeq, is_last);
-                return;
+                fForm = new frmPayEasy(reqAmount, true, mPaySeq, is_last) { TopLevel = false, TopMost = true };
             else return;
 
-            fPay.Left = this.Location.X;
-            fPay.Top = this.Location.Y;
-
-            fPay.Show();
+            panelHigh.Controls.Add(fForm);
+            fForm.Show();
         }
+
 
         private void lvwPay_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
             e.NewWidth = lvwPay.Columns[e.ColumnIndex].Width;
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            if (mComplexNestAmount == 0) // 복합결제 완료
+            {
+                mClearSaleForm();
+                this.Close();
+            }
+            else if (mComplexNetAmount == mComplexNestAmount) // 시작전
+            {
+                this.Close();
+            }
+            else  // 부분결제 진행중
+            {
+                SetDisplayAlarm("W", "복합결제 진행중에는 화면을 닫을 수 없습니다."); 
+            }
+        }
+
+        private void frmPayComplex_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmSales.ConsoleEnable();
+            mTbKeyDisplayController = saveKeyDisplay;
+            mRightFace = saveRightFace;
+
+            mPanelMiddle.Visible = false;
+
+        }
+
     }
+
 }

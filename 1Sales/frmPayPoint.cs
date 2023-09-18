@@ -64,7 +64,7 @@ namespace thepos
         {
             frmSales.ConsoleEnable();
             mPayClass = "OR"; // 원복: order
-
+            mPanelMiddle.Visible = false;
         }
 
         private void btnReader_Click(object sender, EventArgs e)

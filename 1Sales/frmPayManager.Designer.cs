@@ -43,8 +43,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.cbGoodsOptional = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lvwPayManager = new System.Windows.Forms.ListView();
@@ -73,8 +71,6 @@
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Controls.Add(this.cbGoodsOptional);
-            this.panelback.Controls.Add(this.button4);
-            this.panelback.Controls.Add(this.button1);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrint);
             this.panelback.Controls.Add(this.lvwPayManager);
@@ -242,30 +238,6 @@
             this.cbGoodsOptional.UseVisualStyleBackColor = true;
             this.cbGoodsOptional.CheckedChanged += new System.EventHandler(this.cbwithoutGoods_CheckedChanged);
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(398, 626);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(105, 48);
-            this.button4.TabIndex = 48;
-            this.button4.Text = "현금영수증";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(398, 572);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 48);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "결제변경";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
@@ -390,7 +362,6 @@
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmPayManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmSetup";
@@ -410,7 +381,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lvwPayManager;
         private System.Windows.Forms.CheckBox cbGoodsOptional;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ColumnHeader pay_class;
@@ -423,7 +393,6 @@
         private System.Windows.Forms.ColumnHeader cancel;
         private System.Windows.Forms.ColumnHeader order_dt;
         private System.Windows.Forms.ColumnHeader tran_type;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox lblLayoutBill;
         private System.Windows.Forms.ColumnHeader trantype;
         private System.Windows.Forms.Panel panel1;

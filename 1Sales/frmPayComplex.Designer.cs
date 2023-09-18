@@ -50,6 +50,7 @@
             this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.panelHigh = new System.Windows.Forms.Panel();
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -292,13 +293,21 @@
             this.lblTitle.Text = "복합결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panelHigh
+            // 
+            this.panelHigh.Location = new System.Drawing.Point(0, 0);
+            this.panelHigh.Name = "panelHigh";
+            this.panelHigh.Size = new System.Drawing.Size(68, 43);
+            this.panelHigh.TabIndex = 58;
+            this.panelHigh.Visible = false;
+            // 
             // frmPayComplex
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 704);
+            this.Controls.Add(this.panelHigh);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmPayComplex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmPayComplex";
@@ -334,5 +343,6 @@
         private System.Windows.Forms.Label lblT3;
         private System.Windows.Forms.Label lblT2;
         private System.Windows.Forms.ColumnHeader tran;
+        private System.Windows.Forms.Panel panelHigh;
     }
 }

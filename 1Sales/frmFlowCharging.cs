@@ -93,6 +93,9 @@ namespace thepos
 
             mTbKeyDisplayController = saveKeyDisplay;
             mPayClass = "OR"; // 원복: order
+
+            mPanelMiddle.Visible = false;
+
         }
 
 

@@ -573,6 +573,11 @@ namespace thepos
             frmSales.ConsoleEnable();
 
             mTbKeyDisplayController = saveKeyDisplay;
+
+            if (isComplex == true)
+                mPanelHigh.Visible = false;
+            else
+                mPanelMiddle.Visible = false;
         }
 
 

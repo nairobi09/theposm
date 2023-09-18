@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Collections.Generic;
 using static thepos.thePos;
+using static thepos.frmMain;
 using static thepos.frmPayComplex;
 using System.Diagnostics;
 using PrinterUtility;
@@ -87,6 +88,8 @@ namespace thepos
         }
         PayConsol[] mPayConsol;
 
+
+        public static Panel mPanelMiddle;
 
 
 
@@ -252,6 +255,15 @@ namespace thepos
             mLblOrderAmountNet = lblOrderAmountNet;
             mLblOrderAmountReceive = lblOrderAmountReceive;
             mLblOrderAmountRest = lblOrderAmountRest;
+
+
+
+            //
+            mPanelMiddle = panelMiddle;
+            mPanelMiddle.Width = 529;
+            mPanelMiddle.Height = 704;
+
+
 
         }
 
@@ -633,99 +645,95 @@ namespace thepos
         {
             if (mNetAmount == 0) return;
 
-            //?
             countup_the_no();
-
 
             ConsoleDisable();
 
-            Form fPay;
-            fPay = new frmPayCash(mNetAmount, false, 1, true); // int amount, bool is_complex, int pay_seq, bool is_last
+            //#
+            mPanelMiddle.Visible = true;
+            mPanelMiddle.Controls.Clear();
 
-            fPay.Left += this.Location.X;
-            fPay.Top += this.Location.Y;
+            frmPayCash fForm = new frmPayCash(mNetAmount, false, 1, true) { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fPay.Show();
         }
 
         private void ClickedPayCard()
         {
             if (mNetAmount == 0) return;
 
-            
-            //
             countup_the_no();
-
 
             ConsoleDisable();
 
-            Form fPay;
-            fPay = new frmPayCard(mNetAmount, false, 1, true);
+            //#
+            mPanelMiddle.Visible = true;
+            mPanelMiddle.Controls.Clear();
 
-            fPay.Left += this.Location.X;
-            fPay.Top += this.Location.Y;
+            frmPayCard fForm = new frmPayCard(mNetAmount, false, 1, true) { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fPay.Show();
         }
 
         private void ClickedPayPoint()
         {
             if (mNetAmount == 0) return;
 
-            //
             countup_the_no();
-
 
             ConsoleDisable();
 
-            Form fPay;
-            fPay = new frmPayPoint();
+            //#
+            mPanelMiddle.Visible = true;
+            mPanelMiddle.Controls.Clear();
 
-            fPay.Left += this.Location.X;
-            fPay.Top += this.Location.Y;
+            frmPayPoint fForm = new frmPayPoint() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fPay.Show();
         }
 
         private void ClickedPayComplex()
         {
             if (mNetAmount == 0) return;
 
-
-            //
             countup_the_no();
-
 
             ConsoleDisable();
 
-            Form fPay;
-            fPay = new frmPayComplex();
+            //#
+            panelMiddle.Visible = true;
+            panelMiddle.Controls.Clear();
 
-            fPay.Left += this.Location.X;
-            fPay.Top += this.Location.Y;
+            frmPayComplex fForm = new frmPayComplex() { TopLevel = false, TopMost = true };
+            panelMiddle.Height = fForm.Height;
+            panelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fPay.Show();
         }
 
         private void ClickedPayEasy()
         {
             if (mNetAmount == 0) return;
 
-
-
-            //
             countup_the_no();
-
 
             ConsoleDisable();
 
-            Form fPay;
-            fPay = new frmPayEasy(mNetAmount, false, 1, true);
+            //#
+            mPanelMiddle.Visible = true;
+            mPanelMiddle.Controls.Clear();
 
-            fPay.Left += this.Location.X;
-            fPay.Top += this.Location.Y;
+            frmPayEasy fForm = new frmPayEasy(mNetAmount, false, 1, true) { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fPay.Show();
         }
 
 
@@ -1433,12 +1441,15 @@ namespace thepos
             {
                 ConsoleDisable();
 
-                frmOrderDCR fAmountDC = new frmOrderDCR();
+                //#
+                mPanelMiddle.Visible = true;
+                mPanelMiddle.Controls.Clear();
 
-                fAmountDC.Left += this.Location.X;
-                fAmountDC.Top += this.Location.Y;
+                frmOrderDCR fForm = new frmOrderDCR() { TopLevel = false, TopMost = true };
+                mPanelMiddle.Height = fForm.Height;
+                mPanelMiddle.Controls.Add(fForm);
+                fForm.Show();
 
-                fAmountDC.Show();
             }
         }
 
@@ -1486,11 +1497,21 @@ namespace thepos
                 {
                     ConsoleDisable();
 
+                    //??
+                    //#
+
+
+
+
+
+
                     frmOrderWaiting fWaiting = new frmOrderWaiting();
                     fWaiting.Left += this.Location.X;
                     fWaiting.Top += this.Location.Y;
 
                     var result = fWaiting.ShowDialog();
+                    
+
                     if (result == DialogResult.OK)
                     {
                         int lv_no = 0;
@@ -1566,12 +1587,15 @@ namespace thepos
         {
             ConsoleDisable();
 
-            frmPayManager fLogo = new frmPayManager();
+            //#
+            mPanelMiddle.Visible = true;
+            mPanelMiddle.Controls.Clear();
 
-            fLogo.Left += this.Location.X;
-            fLogo.Top += this.Location.Y;
+            frmPayManager fForm = new frmPayManager() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fLogo.Show();
         }
 
 
@@ -1980,8 +2004,10 @@ namespace thepos
                 mPanelOrderInfo.Visible = false;
             }
 
-
             this.Close();
+
+            mPanelDivision.Visible = false;
+
         }
 
         private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)
@@ -2053,13 +2079,15 @@ namespace thepos
         {
             ConsoleDisable();
 
-            Form fFlow;
-            fFlow = new frmFlowTicketing();
 
-            fFlow.Left += this.Location.X;
-            fFlow.Top += this.Location.Y;
+            mPanelMiddle.Visible = true;
+            mPanelMiddle.Controls.Clear();
 
-            fFlow.Show();
+            frmFlowTicketing fForm = new frmFlowTicketing() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+
         }
 
         private void btnFlowCharging_Click(object sender, EventArgs e)
@@ -2075,24 +2103,23 @@ namespace thepos
             }
 
 
-
-
             if (lvwOrderItem.Items.Count > 0)
             {
                 SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
                 return;
             }
 
-
             ConsoleDisable();
 
-            Form fFlow;
-            fFlow = new frmFlowCharging();
+            //#
+            panelMiddle.Visible = true;
+            panelMiddle.Controls.Clear();
 
-            fFlow.Left += this.Location.X;
-            fFlow.Top += this.Location.Y;
+            frmFlowCharging fForm = new frmFlowCharging() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            panelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fFlow.Show();
         }
 
         private void btnFlowSettlement_Click(object sender, EventArgs e)
@@ -2105,13 +2132,15 @@ namespace thepos
 
             ConsoleDisable();
 
-            Form fFlow;
-            fFlow = new frmFlowSettlement();
+            //#
+            panelMiddle.Visible = true;
+            panelMiddle.Controls.Clear();
 
-            fFlow.Left += this.Location.X;
-            fFlow.Top += this.Location.Y;
+            frmFlowSettlement fForm = new frmFlowSettlement() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            panelMiddle.Controls.Add(fForm);
+            fForm.Show();
 
-            fFlow.Show();
         }
 
 
@@ -2780,6 +2809,9 @@ namespace thepos
             }
         }
 
+        private void btnFlowLocker_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

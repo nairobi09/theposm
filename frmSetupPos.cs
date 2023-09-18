@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
-
+using static thepos.frmMain;
 
 
 
@@ -253,6 +253,8 @@ namespace thepos
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+
+            mPanelDivision.Visible = false;
         }
 
 

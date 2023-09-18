@@ -431,6 +431,8 @@ namespace thepos
             public string pos_no;
             public String the_no;   // 결제단위
             public String ref_no;   // 입장단위
+            public String pay_date;
+            public String pay_time;
             public String pay_type;     // 결제구분 : 인증(T1)
             public String isu_code;     // M0 플레이스엠
             public String ticket_no;

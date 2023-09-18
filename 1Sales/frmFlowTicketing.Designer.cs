@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnTicketReact = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBusinessTitle = new System.Windows.Forms.Label();
             this.dtBusiness = new System.Windows.Forms.DateTimePicker();
@@ -40,7 +41,6 @@
             this.goods = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnTicketReact = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,19 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
+            // 
+            // btnTicketReact
+            // 
+            this.btnTicketReact.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTicketReact.ForeColor = System.Drawing.Color.White;
+            this.btnTicketReact.Location = new System.Drawing.Point(368, 625);
+            this.btnTicketReact.Name = "btnTicketReact";
+            this.btnTicketReact.Size = new System.Drawing.Size(134, 48);
+            this.btnTicketReact.TabIndex = 78;
+            this.btnTicketReact.Text = "띠지출력";
+            this.btnTicketReact.UseVisualStyleBackColor = false;
+            this.btnTicketReact.Click += new System.EventHandler(this.btnTicketReact_Click);
             // 
             // panel1
             // 
@@ -169,27 +182,12 @@
             this.ticket_no.Text = "티켓번호";
             this.ticket_no.Width = 100;
             // 
-            // btnTicketReact
-            // 
-            this.btnTicketReact.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTicketReact.ForeColor = System.Drawing.Color.White;
-            this.btnTicketReact.Location = new System.Drawing.Point(368, 625);
-            this.btnTicketReact.Name = "btnTicketReact";
-            this.btnTicketReact.Size = new System.Drawing.Size(134, 48);
-            this.btnTicketReact.TabIndex = 78;
-            this.btnTicketReact.Text = "띠지출력";
-            this.btnTicketReact.UseVisualStyleBackColor = false;
-            this.btnTicketReact.Click += new System.EventHandler(this.btnTicketReact_Click);
-            // 
             // frmFlowTicketing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmFlowTicketing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmFlowTicketing";

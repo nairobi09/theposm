@@ -100,6 +100,7 @@ namespace thepos
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+
         }
 
         private void lvwWaiting_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -108,5 +109,9 @@ namespace thepos
             e.NewWidth = lvwWaiting.Columns[e.ColumnIndex].Width;
         }
 
+        private void frmOrderWaiting_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            mPanelMiddle.Visible = false;
+        }
     }
 }

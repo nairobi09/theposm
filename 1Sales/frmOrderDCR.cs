@@ -358,11 +358,14 @@ namespace thepos
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+
         }
 
         private void frmAmountDC_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSales.ConsoleEnable();
+
+            mPanelMiddle.Visible = false;
         }
 
     }

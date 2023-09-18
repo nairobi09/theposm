@@ -19,12 +19,13 @@ using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
+using thepos._9SysAdmin;
 
 namespace thepos
 {
     public partial class frmMain : Form
     {
-
+        public static Panel mPanelDivision;
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
 
         String in_patern = "";
@@ -115,6 +116,13 @@ namespace thepos
         {
 
             //? Cursor.Hide();
+
+            mPanelDivision = panelDivision;
+
+            mPanelDivision.Width = 1024;
+            mPanelDivision.Height = 768;
+            mPanelDivision.Visible = false;
+
 
             clear_login_init();
 
@@ -460,8 +468,6 @@ namespace thepos
                 start_sub_screen();
             }
             
-
-
         }
 
 
@@ -487,9 +493,14 @@ namespace thepos
                     // 영업중이면 그대로 판매관리로 진행
                     mBizDate = biz_date;
 
-                    Form fFlow;
-                    fFlow = new frmSales();
-                    fFlow.ShowDialog();
+                    panelDivision.Visible = true;
+                    panelDivision.Controls.Clear();
+
+                    frmSales fForm = new frmSales() { TopLevel = false, TopMost = true };
+                    panelDivision.Controls.Add(fForm);
+                    fForm.Show();
+
+
                 }
                 else if (biz_Status == "F")  // 마감
                 {
@@ -508,25 +519,37 @@ namespace thepos
         // 영업관리
         private void btnBusiness_Click(object sender, EventArgs e)
         {
-            Form fFlow;
-            fFlow = new frmBusiness();
-            fFlow.ShowDialog();
+            panelDivision.Visible = true;
+            panelDivision.Controls.Clear();
+
+            frmBusiness fForm = new frmBusiness() { TopLevel = false, TopMost = true };
+            panelDivision.Controls.Add(fForm);
+            fForm.Show();
+
         }
 
         // 매출관리
         private void btnReports_Click(object sender, EventArgs e)
         {
-            Form fFlow;
-            fFlow = new frmReports();
-            fFlow.ShowDialog();
+            panelDivision.Visible = true;
+            panelDivision.Controls.Clear();
+
+            frmReports fForm = new frmReports() { TopLevel = false, TopMost = true };
+            panelDivision.Controls.Add(fForm);
+            fForm.Show();
+
         }
 
         // 환경설정
         private void btnSetup_Click(object sender, EventArgs e)
         {
-            Form fFlow;
-            fFlow = new frmSetupPos();
-            fFlow.ShowDialog();
+            panelDivision.Visible = true;
+            panelDivision.Controls.Clear();
+
+            frmSetupPos fForm = new frmSetupPos() { TopLevel = false, TopMost = true };
+            panelDivision.Controls.Add(fForm);
+            fForm.Show();
+
         }
 
 

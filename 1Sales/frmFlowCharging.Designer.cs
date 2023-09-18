@@ -359,12 +359,10 @@
             // 
             // frmFlowCharging
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 545);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmFlowCharging";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmFlowCharging";

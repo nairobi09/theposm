@@ -284,7 +284,6 @@
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmOrderDCR";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmDC";

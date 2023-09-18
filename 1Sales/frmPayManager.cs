@@ -215,7 +215,7 @@ namespace thepos
         {
             frmSales.ConsoleEnable();
             mTbKeyDisplayController = saveKeyDisplay;
-            
+            mPanelMiddle.Visible = false;
         }
 
         private void lvwPayManager_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)

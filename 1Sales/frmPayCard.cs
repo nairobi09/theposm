@@ -529,6 +529,7 @@ namespace thepos
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void frmPayCard_FormClosed(object sender, FormClosedEventArgs e)
@@ -536,6 +537,12 @@ namespace thepos
             frmSales.ConsoleEnable();
 
             mTbKeyDisplayController = saveKeyDisplay;
+
+            if (isComplex == true)
+                mPanelHigh.Visible = false;
+            else
+                mPanelMiddle.Visible = false;
+
         }
 
     }

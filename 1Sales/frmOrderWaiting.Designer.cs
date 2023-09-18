@@ -51,7 +51,7 @@
             this.panelback.Controls.Add(this.btnOK);
             this.panelback.Controls.Add(this.lvwWaiting);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -157,10 +157,10 @@
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(488, 56);
             this.Name = "frmOrderWaiting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmWaiting";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderWaiting_FormClosed);
             this.panelback.ResumeLayout(false);
             this.ResumeLayout(false);
 

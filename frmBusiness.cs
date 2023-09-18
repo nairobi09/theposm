@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
+using static thepos.frmMain;
 
 
 namespace thepos
@@ -29,7 +30,6 @@ namespace thepos
             initialize_font();
 
             initialize_the();
-
 
         }
 
@@ -91,10 +91,7 @@ namespace thepos
                 lblBizDate.Text = "";
             }
             
-            
-            
             lblUserName.Text = mUserName;
-
 
             btnKey1.Click += (sender, args) => ClickedKey("1");
             btnKey2.Click += (sender, args) => ClickedKey("2");
@@ -182,6 +179,8 @@ namespace thepos
         {
 
             Close();
+
+            mPanelDivision.Visible = false;
         }
 
     }

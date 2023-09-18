@@ -309,15 +309,26 @@ namespace thepos
 
         }
 
+        void display_error_msg(string msg)
+        {
+            MessageBox.Show(msg, "thepos");
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        void display_error_msg(string msg)
+        private void frmPayEasy_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show(msg, "thepos");
+            frmSales.ConsoleEnable();
+
+            mTbKeyDisplayController = saveKeyDisplay;
+
+            if (isComplex == true)
+                mPanelHigh.Visible = false;
+            else
+                mPanelMiddle.Visible = false;
         }
     }
 }
