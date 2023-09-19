@@ -614,7 +614,6 @@ namespace thepos
             return "";
         }
 
-
         public static String get_shop_name(String shop_code)
         {
             for (int i = 0; i < mShop.Length; i++)
@@ -627,7 +626,6 @@ namespace thepos
 
             return "";
         }
-
 
         public static bool is_number(String str)
         {
@@ -650,9 +648,6 @@ namespace thepos
             return false;
         }
 
-
-
-
         public static int convert_number(String str)
         {
             int out_number;
@@ -662,37 +657,6 @@ namespace thepos
             }
 
             return -1;
-        }
-
-
-
-        // 
-        public static int mGetAsync(String URL, ref String responseString)
-        {
-
-            try
-            {
-                HttpResponseMessage response = mHttpClient.GetAsync(URL).Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = response.Content;
-                    responseString = responseContent.ReadAsStringAsync().Result;
-
-                    return 0;
-                }
-                else
-                {
-                    responseString = response.ReasonPhrase;
-                    return -1;
-                }
-
-            }
-            catch (Exception ex2)
-            {
-                responseString = ex2.Message;
-                return -1;
-            }
         }
 
         public static bool mRequestGet(String sUrl)
@@ -795,7 +759,6 @@ namespace thepos
         }
 
 
-
         public static string SHA1HashCrypt(string val)
         {
             //고정로직
@@ -836,8 +799,6 @@ namespace thepos
             }
 
         }
-
-
 
     }
 }
