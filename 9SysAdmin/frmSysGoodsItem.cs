@@ -285,7 +285,8 @@ namespace thepos
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show("오류. display all console()\n\n" + ex.Message, "thepos");
+                    return;
                 }
             }
         }
@@ -345,6 +346,8 @@ namespace thepos
             }
             catch (Exception ex)
             {
+                MessageBox.Show("오류. display selected console()\n\n" + ex.Message, "thepos");
+                return;
 
             }
         }

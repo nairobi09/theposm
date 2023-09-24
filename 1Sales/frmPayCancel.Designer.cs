@@ -46,8 +46,8 @@
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.p_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.t_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,7 +169,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(372, 421);
+            this.btnCancel.Location = new System.Drawing.Point(370, 571);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(130, 57);
             this.btnCancel.TabIndex = 48;
@@ -187,8 +187,8 @@
             this.amount,
             this.cc,
             this.t_no,
-            this.p_type,
-            this.t_type});
+            this.paytype,
+            this.trantype});
             this.lvwPay.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPay.FullRowSelect = true;
             this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -196,7 +196,7 @@
             this.lvwPay.Location = new System.Drawing.Point(17, 178);
             this.lvwPay.MultiSelect = false;
             this.lvwPay.Name = "lvwPay";
-            this.lvwPay.Size = new System.Drawing.Size(485, 236);
+            this.lvwPay.Size = new System.Drawing.Size(485, 375);
             this.lvwPay.TabIndex = 44;
             this.lvwPay.UseCompatibleStateImageBehavior = false;
             this.lvwPay.View = System.Windows.Forms.View.Details;
@@ -235,13 +235,15 @@
             // 
             this.t_no.Width = 0;
             // 
-            // p_type
+            // paytype
             // 
-            this.p_type.Width = 0;
+            this.paytype.Text = "";
+            this.paytype.Width = 0;
             // 
-            // t_type
+            // trantype
             // 
-            this.t_type.Width = 0;
+            this.trantype.Text = "";
+            this.trantype.Width = 0;
             // 
             // frmPayCancel
             // 
@@ -253,6 +255,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmPayCancel";
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayCancel_FormClosed);
             this.panelback.ResumeLayout(false);
             this.panelback.PerformLayout();
             this.ResumeLayout(false);
@@ -273,13 +276,13 @@
         private System.Windows.Forms.ColumnHeader cc;
         private System.Windows.Forms.ColumnHeader tran;
         private System.Windows.Forms.ColumnHeader t_no;
-        private System.Windows.Forms.ColumnHeader p_type;
+        private System.Windows.Forms.ColumnHeader paytype;
         private System.Windows.Forms.Label lblCancelAmount;
         private System.Windows.Forms.Label lblNetAmount;
         private System.Windows.Forms.Label lblT2;
         private System.Windows.Forms.Label lblT1;
         private System.Windows.Forms.Label lblNestAmount;
         private System.Windows.Forms.Label lblT3;
-        private System.Windows.Forms.ColumnHeader t_type;
+        private System.Windows.Forms.ColumnHeader trantype;
     }
 }

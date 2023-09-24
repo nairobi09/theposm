@@ -161,9 +161,11 @@ namespace thepos
 
             lblName.Text = lvwList.SelectedItems[0].Text;
             lblValue.Text = lvwList.SelectedItems[0].SubItems[1].Text.ToString();
+            cbValue.SelectedIndex = -1;
 
 
-            
+
+
             if (code == listSetup[0].code | code == listSetup[1].code | code == listSetup[2].code) // BillPrinterPort TicketPrinterPort ScannerPort
             {
                 cbValue.Enabled = true;

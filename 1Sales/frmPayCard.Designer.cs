@@ -318,9 +318,10 @@
             // chkCUP
             // 
             this.chkCUP.AutoSize = true;
+            this.chkCUP.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkCUP.Location = new System.Drawing.Point(196, 170);
             this.chkCUP.Name = "chkCUP";
-            this.chkCUP.Size = new System.Drawing.Size(82, 18);
+            this.chkCUP.Size = new System.Drawing.Size(90, 20);
             this.chkCUP.TabIndex = 57;
             this.chkCUP.Text = "은련카드";
             this.chkCUP.UseVisualStyleBackColor = true;

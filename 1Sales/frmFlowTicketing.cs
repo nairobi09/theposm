@@ -69,6 +69,7 @@ namespace thepos
             frmSales.ConsoleEnable();
 
             mPanelMiddle.Visible = false;
+            mPanelMiddle.Controls.Clear();
         }
 
         private void btnView_Click(object sender, EventArgs e)

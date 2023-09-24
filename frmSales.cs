@@ -7,6 +7,7 @@ using System.Drawing.Text;
 using System.Collections.Generic;
 using static thepos.thePos;
 using static thepos.frmMain;
+using static thepos.frmFlowCharging;
 using static thepos.frmPayComplex;
 using System.Diagnostics;
 using PrinterUtility;
@@ -67,8 +68,6 @@ namespace thepos
         public static Label mLblOrderAmountDC;
         public static Label mLblOrderAmountNet;
         public static Label mLblOrderAmountReceive;
-        public static Label mLblOrderAmountRest;
-
 
         public static int mNetAmount = 0;
         public static Timer mTimerAlarm;
@@ -90,6 +89,9 @@ namespace thepos
 
 
         public static Panel mPanelMiddle;
+        public static Panel mPanelPayment;
+
+        public static Button mBtnOrderWaiting;
 
 
 
@@ -159,13 +161,11 @@ namespace thepos
             lblOrderAmountDCTitle.Font = font9;
             lblOrderAmountChargeTitle.Font = font9;
             lblOrderAmountReceiveTitle.Font = font9;
-            lblOrderAmountRestTitle.Font = font9;
 
             lblOrderAmount.Font = font14;
             lblOrderAmountDC.Font = font14;
             lblOrderAmountNet.Font = font14;
             lblOrderAmountReceive.Font = font14;
-            lblOrderAmountRest.Font = font14;
             
             //lblKeyDisplay.Font = font13;
             tbKeyDisplay.Font = font14;
@@ -250,19 +250,22 @@ namespace thepos
             //mLblKeyDisplay = lblKeyDisplay;
             mLvwOrderItem = lvwOrderItem;
 
+            mBtnOrderWaiting = btnOrderWaiting;
+
             mLblOrderAmount = lblOrderAmount;
             mLblOrderAmountDC = lblOrderAmountDC;
             mLblOrderAmountNet = lblOrderAmountNet;
             mLblOrderAmountReceive = lblOrderAmountReceive;
-            mLblOrderAmountRest = lblOrderAmountRest;
-
 
 
             //
+            mPanelPayment = panelPayment;
+            mPanelPayment.Width = 529;
+            mPanelPayment.Height = 704;
+
             mPanelMiddle = panelMiddle;
             mPanelMiddle.Width = 529;
             mPanelMiddle.Height = 704;
-
 
 
         }
@@ -641,23 +644,130 @@ namespace thepos
         }
 
 
+
+        //
+        private void btnFlowCert_Click(object sender, EventArgs e)
+        {
+            ConsoleDisable();
+
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowCert fForm = new frmFlowCert() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+        }
+
+        private void btnFlowTicketing_Click(object sender, EventArgs e)
+        {
+            ConsoleDisable();
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowTicketing fForm = new frmFlowTicketing() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+
+        }
+
+        private void btnFlowCharging_Click(object sender, EventArgs e)
+        {
+            if (mTicketType == "PA")  //선불형
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("티켓유형 후불형으로 설정되어있습니다. \n선불형인 경우만 충전할 수 있습니다.", "thepos");
+                return;
+            }
+
+
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
+                return;
+            }
+
+            ConsoleDisable();
+
+            //#
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowCharging fForm = new frmFlowCharging() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+
+        }
+
+        private void btnFlowSettlement_Click(object sender, EventArgs e)
+        {
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
+                return;
+            }
+
+            ConsoleDisable();
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowSettlement fForm = new frmFlowSettlement() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+
+        }
+
+        private void btnFlowLocker_Click(object sender, EventArgs e)
+        {
+            ConsoleDisable();
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowLocker fForm = new frmFlowLocker() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+        }
+
+
+        //
         private void ClickedPayCash()
         {
             if (mNetAmount == 0) return;
 
             countup_the_no();
-
             ConsoleDisable();
 
             //#
-            mPanelMiddle.Visible = true;
-            mPanelMiddle.Controls.Clear();
+            int select_idx = -1;
 
-            frmPayCash fForm = new frmPayCash(mNetAmount, false, 1, true) { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            mPanelMiddle.Controls.Add(fForm);
+            if (mPayClass == "CH")
+            {
+                select_idx = frmFlowCharging.mLvwFlow.SelectedItems[0].Index;
+            }
+            else if (mPayClass == "ST")
+            {
+
+            }
+
+            mPanelPayment.Visible = true;
+            mPanelPayment.Controls.Clear();
+
+            frmPayCash fForm = new frmPayCash(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
+            mPanelPayment.Height = fForm.Height;
+            mPanelPayment.Controls.Add(fForm);
             fForm.Show();
-
+            mPanelPayment.BringToFront();
         }
 
         private void ClickedPayCard()
@@ -665,18 +775,28 @@ namespace thepos
             if (mNetAmount == 0) return;
 
             countup_the_no();
-
             ConsoleDisable();
 
             //#
-            mPanelMiddle.Visible = true;
-            mPanelMiddle.Controls.Clear();
+            int select_idx = -1;
 
-            frmPayCard fForm = new frmPayCard(mNetAmount, false, 1, true) { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            mPanelMiddle.Controls.Add(fForm);
+            if (mPayClass == "CH")
+            {
+                select_idx = frmFlowCharging.mLvwFlow.SelectedItems[0].Index;
+            }
+            else if (mPayClass == "ST")
+            {
+
+            }
+
+            mPanelPayment.Visible = true;
+            mPanelPayment.Controls.Clear();
+
+            frmPayCard fForm = new frmPayCard(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
+            mPanelPayment.Height = fForm.Height;
+            mPanelPayment.Controls.Add(fForm);
             fForm.Show();
-
+            mPanelPayment.BringToFront();
         }
 
         private void ClickedPayPoint()
@@ -684,18 +804,17 @@ namespace thepos
             if (mNetAmount == 0) return;
 
             countup_the_no();
-
             ConsoleDisable();
 
             //#
-            mPanelMiddle.Visible = true;
-            mPanelMiddle.Controls.Clear();
+            mPanelPayment.Visible = true;
+            mPanelPayment.Controls.Clear();
 
             frmPayPoint fForm = new frmPayPoint() { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            mPanelMiddle.Controls.Add(fForm);
+            mPanelPayment.Height = fForm.Height;
+            mPanelPayment.Controls.Add(fForm);
             fForm.Show();
-
+            mPanelPayment.BringToFront();
         }
 
         private void ClickedPayComplex()
@@ -703,17 +822,28 @@ namespace thepos
             if (mNetAmount == 0) return;
 
             countup_the_no();
-
             ConsoleDisable();
 
             //#
-            panelMiddle.Visible = true;
-            panelMiddle.Controls.Clear();
+            int select_idx = -1;
 
-            frmPayComplex fForm = new frmPayComplex() { TopLevel = false, TopMost = true };
-            panelMiddle.Height = fForm.Height;
-            panelMiddle.Controls.Add(fForm);
+            if (mPayClass == "CH")
+            {
+                select_idx = frmFlowCharging.mLvwFlow.SelectedItems[0].Index;
+            }
+            else if (mPayClass == "ST")
+            {
+
+            }
+
+            mPanelPayment.Visible = true;
+            mPanelPayment.Controls.Clear();
+
+            frmPayComplex fForm = new frmPayComplex(select_idx) { TopLevel = false, TopMost = true };
+            mPanelPayment.Height = fForm.Height;
+            mPanelPayment.Controls.Add(fForm);
             fForm.Show();
+            mPanelPayment.BringToFront();
 
         }
 
@@ -722,17 +852,28 @@ namespace thepos
             if (mNetAmount == 0) return;
 
             countup_the_no();
-
             ConsoleDisable();
 
             //#
-            mPanelMiddle.Visible = true;
-            mPanelMiddle.Controls.Clear();
+            int select_idx = -1;
 
-            frmPayEasy fForm = new frmPayEasy(mNetAmount, false, 1, true) { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            mPanelMiddle.Controls.Add(fForm);
+            if (mPayClass == "CH")
+            {
+                select_idx = frmFlowCharging.mLvwFlow.SelectedItems[0].Index;
+            }
+            else if (mPayClass == "ST")
+            {
+
+            }
+
+            mPanelPayment.Visible = true;
+            mPanelPayment.Controls.Clear();
+
+            frmPayEasy fForm = new frmPayEasy(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
+            mPanelPayment.Height = fForm.Height;
+            mPanelPayment.Controls.Add(fForm);
             fForm.Show();
+            mPanelPayment.BringToFront();
 
         }
 
@@ -994,7 +1135,7 @@ namespace thepos
                             else  // 팔찌
                             {
                                 //? 팔찌이면 스케너 입력로직 필요
-                                MessageBox.Show("스캐너 입력입니다... ");
+                                MessageBox.Show("스캐너 팔찌 입력입니다... ");
 
                                 //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
                                 t_ticket_no = mTheNo + ticket_seq.ToString("000");  //? 임시
@@ -1153,8 +1294,6 @@ namespace thepos
 
 
 
-
-
                 // PATCH
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["ticketNo"] = t_no;
@@ -1235,15 +1374,14 @@ namespace thepos
 
 
 
-                if (subClass == "US")
+                if (subClass == "US")  // 정산시 사용분 결제
                 {
                     settle_point_usage += settle_amt;
                 }
-                else if (subClass == "CH")
+                else if (subClass == "CH")  // 정산시 충전분 취소
                 {
                     settle_point_charge += settle_amt;
                 }
-
 
 
                 if (point_usage == settle_point_usage & point_charge == settle_point_charge)
@@ -1252,9 +1390,8 @@ namespace thepos
 
                     if (mTicketType == "PD") // 후불
                     {
-                        open_locker = "1"; // 폐쇄0 개방1
+                        open_locker = "1"; //? 락커  폐쇄0 개방1
                     }
-
                 }
 
 
@@ -1442,8 +1579,8 @@ namespace thepos
                 ConsoleDisable();
 
                 //#
-                mPanelMiddle.Visible = true;
                 mPanelMiddle.Controls.Clear();
+                mPanelMiddle.Visible = true;
 
                 frmOrderDCR fForm = new frmOrderDCR() { TopLevel = false, TopMost = true };
                 mPanelMiddle.Height = fForm.Height;
@@ -1497,90 +1634,86 @@ namespace thepos
                 {
                     ConsoleDisable();
 
-                    //??
                     //#
+                    mPanelMiddle.Visible = true;
+                    mPanelMiddle.Controls.Clear();
 
+                    frmOrderWaiting fForm = new frmOrderWaiting() { TopLevel = false, TopMost = true };
+                    mPanelMiddle.Height = fForm.Height;
+                    mPanelMiddle.Controls.Add(fForm);
+                    fForm.Show();
 
-
-
-
-
-                    frmOrderWaiting fWaiting = new frmOrderWaiting();
-                    fWaiting.Left += this.Location.X;
-                    fWaiting.Top += this.Location.Y;
-
-                    var result = fWaiting.ShowDialog();
-                    
-
-                    if (result == DialogResult.OK)
-                    {
-                        int lv_no = 0;
-                        for (int i = 0; i < listWaitingItem.Count; i++)
-                        {
-                            if (listWaitingItem[i].order_no == mSelectedWaitingNo)
-                            {
-                                lv_no++;
-
-                                ListViewItem lvItem = new ListViewItem();
-
-                                lvItem.Tag = listWaitingItem[i];
-
-                                MemOrderItem orderItem = new MemOrderItem();
-                                orderItem = listWaitingItem[i];
-
-                                lvItem.Text = (lv_no).ToString();
-                                lvItem.SubItems.Add(orderItem.name);                            // 1: name 상품명
-                                lvItem.SubItems.Add(orderItem.amt.ToString("N0"));              // 2: amt 단가
-                                lvItem.SubItems.Add(orderItem.cnt.ToString());                  // 3: cnt 수량
-                                lvItem.SubItems.Add(orderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
-                                
-                                int net_amount = (orderItem.amt * orderItem.cnt) - orderItem.dc_amount;
-                                lvItem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
-
-                                lvItem.SubItems.Add(getDCRmemo(orderItem));                     // 6: 메모
-
-                                lvwOrderItem.Items.Add(lvItem);
-                                lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
-                            }
-                        }
-                        lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
-
-
-                        for (int i = listWaitingItem.Count - 1; i >= 0; i--)
-                        {
-                            if (listWaitingItem[i].order_no == mSelectedWaitingNo)
-                            {
-                                listWaitingItem.RemoveAt(i);
-                            }
-                        }
-
-                        for (int i = 0; i < listWaiting.Count; i++)
-                        {
-                            if (listWaiting[i].order_no == mSelectedWaitingNo)
-                            {
-                                listWaiting.RemoveAt(i);
-                            }
-                        }
-                    }
-
-                    //
-                    if (listWaiting.Count > 0)
-                    {
-                        btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
-                    }
-                    else
-                    {
-                        btnOrderWaiting.Text = "대기";
-                    }
-
-                    ReCalculateAmount();
-
-                    ConsoleEnable();
                 }
             }
 
         }
 
+
+        public static void set_wating_data()
+        {
+            int lv_no = 0;
+            for (int i = 0; i < listWaitingItem.Count; i++)
+            {
+                if (listWaitingItem[i].order_no == mSelectedWaitingNo)
+                {
+                    lv_no++;
+
+                    ListViewItem lvItem = new ListViewItem();
+
+                    lvItem.Tag = listWaitingItem[i];
+
+                    MemOrderItem orderItem = new MemOrderItem();
+                    orderItem = listWaitingItem[i];
+
+                    lvItem.Text = (lv_no).ToString();
+                    lvItem.SubItems.Add(orderItem.name);                            // 1: name 상품명
+                    lvItem.SubItems.Add(orderItem.amt.ToString("N0"));              // 2: amt 단가
+                    lvItem.SubItems.Add(orderItem.cnt.ToString());                  // 3: cnt 수량
+                    lvItem.SubItems.Add(orderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
+
+                    int net_amount = (orderItem.amt * orderItem.cnt) - orderItem.dc_amount;
+                    lvItem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
+
+                    lvItem.SubItems.Add(getDCRmemo(orderItem));                     // 6: 메모
+
+                    mLvwOrderItem.Items.Add(lvItem);
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+                }
+            }
+            mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
+
+
+            for (int i = listWaitingItem.Count - 1; i >= 0; i--)
+            {
+                if (listWaitingItem[i].order_no == mSelectedWaitingNo)
+                {
+                    listWaitingItem.RemoveAt(i);
+                }
+            }
+
+            for (int i = 0; i < listWaiting.Count; i++)
+            {
+                if (listWaiting[i].order_no == mSelectedWaitingNo)
+                {
+                    listWaiting.RemoveAt(i);
+                }
+            }
+
+
+            //
+            if (listWaiting.Count > 0)
+            {
+                mBtnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
+            }
+            else
+            {
+                mBtnOrderWaiting.Text = "대기";
+            }
+
+            ReCalculateAmount();
+
+
+        }
 
 
         private void btnPayManager_Click(object sender, EventArgs e)
@@ -1588,8 +1721,8 @@ namespace thepos
             ConsoleDisable();
 
             //#
-            mPanelMiddle.Visible = true;
             mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
 
             frmPayManager fForm = new frmPayManager() { TopLevel = false, TopMost = true };
             mPanelMiddle.Height = fForm.Height;
@@ -1784,9 +1917,8 @@ namespace thepos
             mLblOrderAmount.Text = Amount.ToString("N0");
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
             mLblOrderAmountNet.Text = mNetAmount.ToString("N0");
-            mLblOrderAmountReceive.Text = "";
-            mLblOrderAmountRest.Text = "";
-
+            mLblOrderAmountReceive.Text = "0";
+            
             // Sub Screen 표시
             DisplaySubScreen();
         }
@@ -1818,7 +1950,6 @@ namespace thepos
                 mSublblOrderAmountDC.Text = mLblOrderAmountDC.Text;
                 mSublblOrderAmountNet.Text = mLblOrderAmountNet.Text;
                 mSublblOrderAmountReceive.Text = mLblOrderAmountReceive.Text;
-                mSublblOrderAmountRest.Text = mLblOrderAmountRest.Text;
             }
         }
 
@@ -2063,85 +2194,13 @@ namespace thepos
             //! 재기동시 초기화된 이후의 연속성. -> 서버에 물어본다.  last_the_no();
             mTheNo = mSiteId + mBizDate + mPosNo + (++mBillTheNo).ToString("0000");
 
-
             //? 이렇게 하면 안됨. 
             mRefNo = mTheNo;
-            
-
-
             // the_no : 결제단위 - cash card complex point easy 결제버튼을 누른경우 새로운 the_no부여
             // ref_no : 입장단위 - 포인트 충전 정산의 경우 티켓번호 18자리로 세트
-
-
         }
 
-        private void btnFlowTicketing_Click(object sender, EventArgs e)
-        {
-            ConsoleDisable();
 
-
-            mPanelMiddle.Visible = true;
-            mPanelMiddle.Controls.Clear();
-
-            frmFlowTicketing fForm = new frmFlowTicketing() { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            mPanelMiddle.Controls.Add(fForm);
-            fForm.Show();
-
-        }
-
-        private void btnFlowCharging_Click(object sender, EventArgs e)
-        {
-            if (mTicketType == "PA")  //선불형
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("선불형인 경우만 충전할 수 있습니다.", "thepos");
-                return;
-            }
-
-
-            if (lvwOrderItem.Items.Count > 0)
-            {
-                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
-                return;
-            }
-
-            ConsoleDisable();
-
-            //#
-            panelMiddle.Visible = true;
-            panelMiddle.Controls.Clear();
-
-            frmFlowCharging fForm = new frmFlowCharging() { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            panelMiddle.Controls.Add(fForm);
-            fForm.Show();
-
-        }
-
-        private void btnFlowSettlement_Click(object sender, EventArgs e)
-        {
-            if (lvwOrderItem.Items.Count > 0)
-            {
-                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
-                return;
-            }
-
-            ConsoleDisable();
-
-            //#
-            panelMiddle.Visible = true;
-            panelMiddle.Controls.Clear();
-
-            frmFlowSettlement fForm = new frmFlowSettlement() { TopLevel = false, TopMost = true };
-            mPanelMiddle.Height = fForm.Height;
-            panelMiddle.Controls.Add(fForm);
-            fForm.Show();
-
-        }
 
 
 
@@ -2203,24 +2262,24 @@ namespace thepos
 
         }
 
-        public static String make_bill_body(String tTheNo, String tranType, String except_order, String is_payment)
+        public static String make_bill_body(String tTheNo, String tranType, String except_order, String pay_keep)
         {
             String strPrintHeader = "";
             String strPrintOrder = "";
             String strPrintPayment = "";
 
             String tOrderDt = "";
-            int tax_amount = 0;
-            int tfree_amount = 0;
-            int dc_amount = 0;
+            int t과세가액 = 0;
+            int t면세가액 = 0;
+            int t할인금액 = 0;
 
-            String is_payment_cash = is_payment.Substring(0, 1);
-            String is_payment_card = is_payment.Substring(1, 1);
-            String is_payment_point = is_payment.Substring(2, 1);
-            String is_payment_easy = is_payment.Substring(3, 1);
+            String pay_keep_cash = pay_keep.Substring(0, 1);
+            String pay_keep_card = pay_keep.Substring(1, 1);
+            String pay_keep_point = pay_keep.Substring(2, 1);
+            String pay_keep_easy = pay_keep.Substring(3, 1);
 
 
-
+             
             //!
             String sUrl = "orders?theNo=" + tTheNo;
             if (mRequestGet(sUrl))
@@ -2234,12 +2293,8 @@ namespace thepos
                     {
                         String d = arr[i]["orderDate"].ToString();
                         String t = arr[i]["orderTime"].ToString();
-                        tOrderDt = d.Substring(0, 4) + "/" +
-                                   d.Substring(4, 2) + "/" +
-                                   d.Substring(6, 2) + " " +
-                                   t.Substring(0, 2) + ":" +
-                                   t.Substring(2, 2) + ":" +
-                                   t.Substring(4, 2);
+                        tOrderDt = d.Substring(0, 4) + "/" + d.Substring(4, 2) + "/" +d.Substring(6, 2) + " " +
+                                   t.Substring(0, 2) + ":" + t.Substring(2, 2) + ":" + t.Substring(4, 2);
                     }
                 }
                 else
@@ -2258,12 +2313,13 @@ namespace thepos
             strPrintHeader = tOrderDt + Space(space_cnt) + tStr;
             strPrintHeader += "\r\n";
 
+
+
+            //!
             strPrintOrder = "==========================================\r\n";  // 42
             strPrintOrder += "상품명                 단가  수량     금액\r\n";
             strPrintOrder += "------------------------------------------\r\n";  // 42
 
-
-            //!
             sUrl = "orderItem?theNo=" + tTheNo;
             if (mRequestGet(sUrl))
             {
@@ -2343,10 +2399,10 @@ namespace thepos
                             }
                         }
 
-                        if (arr[i]["taxFree"].ToString() == "Y") tfree_amount += (cnt * amt);
-                        else tax_amount += (cnt * amt);
+                        if (arr[i]["taxFree"].ToString() == "Y") t면세가액 += ((cnt * amt) - dc_amt);
+                        else t과세가액 += ((cnt * amt) - dc_amt);
 
-                        dc_amount += dc_amt;
+                        t할인금액 += dc_amt;
                     }
                 }
                 else
@@ -2358,27 +2414,26 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
             }
-
-
+            
 
             //
             strPrintPayment = "------------------------------------------\r\n";  // 42
 
-            if (tfree_amount > 0)
+            if (t면세가액 > 0)
             {
                 tStr = "*면세품목가액";
                 strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
-                tStr = (tfree_amount).ToString("N0");
+                tStr = (t면세가액).ToString("N0");
                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
 
                 strPrintPayment += "\r\n";
             }
 
-            if (tax_amount > 0)
+            if (t과세가액 > 0)  // 공급가액
             {
-                int t_tax = tax_amount / 11;   // 부가세액
-                int t_amt = tax_amount - t_tax; // 공급가액
+                int t_tax = t과세가액 / 11;   // 부가세액
+                int t_amt = t과세가액 - t_tax; // 공급가액
 
                 tStr = "과세품목가액";
                 strPrintPayment += tStr + Space(21 - encodelen(tStr));
@@ -2395,8 +2450,8 @@ namespace thepos
 
             strPrintPayment += "------------------------------------------\r\n";  // 42
 
-            int tsum = tfree_amount + tax_amount;
-            int tnet = tsum - dc_amount;
+            int tsum = t과세가액 + t면세가액 + t할인금액;
+            int tnet = tsum - t할인금액;
 
 
             tStr = "총합계";
@@ -2407,7 +2462,7 @@ namespace thepos
 
             tStr = "할인계";
             strPrintPayment += tStr + Space(21 - encodelen(tStr));
-            tStr = (-dc_amount).ToString("N0");
+            tStr = (-t할인금액).ToString("N0");
             strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
             strPrintPayment += "\r\n";
 
@@ -2422,7 +2477,7 @@ namespace thepos
 
 
             //! 현금결제
-            if (is_payment_cash == "1")
+            if (pay_keep_cash == "1")
             {
                 sUrl = "paymentCash?theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
@@ -2524,7 +2579,7 @@ namespace thepos
 
 
             //! 카드결제
-            if (is_payment_card == "1")
+            if (pay_keep_card == "1")
             {
                 sUrl = "paymentCard?theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
@@ -2591,7 +2646,7 @@ namespace thepos
                                     tStr = "할부개월:" + arr[i]["install"].ToString();
 
                                 strPrintPayment += tStr + Space(21 - encodelen(tStr));
-                                tStr = "승인번호:" + arr[i]["authNo"].ToString();
+                                tStr = "승인번호:" + arr[i]["authNo"].ToString().Trim();
                                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                                 strPrintPayment += "\r\n";
                                 strPrintPayment += "\r\n";
@@ -2605,7 +2660,7 @@ namespace thepos
 
 
             //! 포인트
-            if (is_payment_point == "1")
+            if (pay_keep_point == "1")
             {
                 sUrl = "paymentPoint?theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
@@ -2649,12 +2704,80 @@ namespace thepos
 
 
             //? 간편결제
-            if (is_payment_easy == "1")
+            if (pay_keep_easy == "1")
             {
+                sUrl = "paymentEasy?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentEasys"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                tStr = "";
+                                if (arr[i]["payType"].ToString() == "E1") tStr = "간편결제";
+
+                                if (tranType == "C")
+                                {
+                                    tStr += "취소";
+                                }
+
+                                int amount = convert_number(arr[i]["amount"].ToString());
 
 
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                if (tranType == "C")
+                                    tStr = (-amount).ToString("N0");
+                                else
+                                    tStr = amount.ToString("N0");
+
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+
+                                tStr = arr[i]["cardName"].ToString();
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                String no = arr[i]["cardNo"].ToString();
+
+
+                                if (no.Contains('*'))
+                                {
+                                    tStr = no;
+                                }
+                                else if (no.Length == 16)
+                                {
+                                    tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";
+                                }
+                                else if (no.Length > 8)
+                                {
+                                    tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
+                                }
+                                else
+                                {
+                                    tStr = no;
+                                }
+
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+
+
+                                tStr = "";
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+                                tStr = "승인번호:" + arr[i]["authNo"].ToString();
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+                                strPrintPayment += "\r\n";
+
+                            }
+                        }
+                    }
+                }
             }
-
 
 
 
@@ -2669,6 +2792,7 @@ namespace thepos
                 return strPrintHeader + strPrintOrder + strPrintPayment;
             }
         }
+
 
         public static string Space(int count)
         {
@@ -2687,15 +2811,12 @@ namespace thepos
 
         public static void PrintBill(String headerBill, String bodyBill, String trailerBill, String theNo)
         {
-
             try
             {
-
                 SerialPort port = new SerialPort();
 
                 if (port.IsOpen)
                     port.Close();
-
 
                 port.PortName = mBillPrinterPort;
                 port.BaudRate = (int)9600; //고정
@@ -2763,8 +2884,6 @@ namespace thepos
                 PrintExtensions.Print(BytesValue, mBillPrinterPort);
 
 
-
-
             }
             catch (Exception ex)
             {
@@ -2785,33 +2904,27 @@ namespace thepos
 
         public static byte[] CutPage()
         {
-
             byte[] partial_cut = new byte[3] { 0x1D, 0x56, 0x00 };
 
             return partial_cut;
 
-
         }
 
 
-        public static void print_bill(String the_no, String tran_type, String except_order, String is_payment)
+        public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep)
         {
             frmYesNo fYesNo = new frmYesNo();
             var result = fYesNo.ShowDialog();
             if (result == DialogResult.Yes)
             {
                 String headerBill = make_bill_header();
-                String bodyBill = make_bill_body(the_no, tran_type, except_order, is_payment);
+                String bodyBill = make_bill_body(the_no, tran_type, except_order, pay_keep);
                 String trailerBill = make_bill_trailer();
 
                 PrintBill(headerBill, bodyBill, trailerBill, the_no);
-
             }
         }
 
-        private void btnFlowLocker_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

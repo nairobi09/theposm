@@ -122,13 +122,13 @@
             this.rb카드거래.Name = "rb카드거래";
             this.rb카드거래.Size = new System.Drawing.Size(81, 18);
             this.rb카드거래.TabIndex = 50;
-            this.rb카드거래.TabStop = true;
             this.rb카드거래.Text = "카드거래";
             this.rb카드거래.UseVisualStyleBackColor = true;
             // 
             // rbKeyin
             // 
             this.rbKeyin.AutoSize = true;
+            this.rbKeyin.Checked = true;
             this.rbKeyin.Location = new System.Drawing.Point(136, 56);
             this.rbKeyin.Name = "rbKeyin";
             this.rbKeyin.Size = new System.Drawing.Size(60, 18);
@@ -144,7 +144,6 @@
             this.rb고객식별번호.Name = "rb고객식별번호";
             this.rb고객식별번호.Size = new System.Drawing.Size(109, 18);
             this.rb고객식별번호.TabIndex = 50;
-            this.rb고객식별번호.TabStop = true;
             this.rb고객식별번호.Text = "고객식별번호";
             this.rb고객식별번호.UseVisualStyleBackColor = true;
             // 

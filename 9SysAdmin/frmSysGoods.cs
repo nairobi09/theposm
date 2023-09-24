@@ -225,40 +225,40 @@ namespace thepos._9SysAdmin
                     String pos = mObj["goods"].ToString();
                     JArray arr = JArray.Parse(pos);
 
-                    for (int i = 0; i < arr.Count; i++)
+                    if (arr.Count > 0)
                     {
                         ListViewItem lvItem;
 
-                        if (arr[i]["imagePath"].ToString() == "")
-                            lvItem = new ListViewItem(arr[i]["itemName"].ToString());
+                        if (arr[0]["imagePath"].ToString() == "")
+                            lvItem = new ListViewItem(arr[0]["itemName"].ToString());
                         else
-                            lvItem = new ListViewItem(arr[i]["itemName"].ToString(), 0);  // image index = 0
+                            lvItem = new ListViewItem(arr[0]["itemName"].ToString(), 0);  // image index = 0
 
-                        lvItem.SubItems.Add(arr[i]["itemNameEn"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemNameCh"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemNameJp"].ToString());
+                        lvItem.SubItems.Add(arr[0]["itemNameEn"].ToString());
+                        lvItem.SubItems.Add(arr[0]["itemNameCh"].ToString());
+                        lvItem.SubItems.Add(arr[0]["itemNameJp"].ToString());
 
                         // itemcode
-                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
-                        lvItem.SubItems.Add(arr[i]["amt"].ToString());
-                        lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
-                        lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
+                        lvItem.SubItems.Add(arr[0]["itemCode"].ToString());
+                        lvItem.SubItems.Add(arr[0]["amt"].ToString());
+                        lvItem.SubItems.Add(arr[0]["shopCode"].ToString());
+                        lvItem.SubItems.Add(get_shop_name(arr[0]["shopCode"].ToString()));
 
                         tTicket = "";
                         tTaxFree = "";
                         tActive = "";
                         tSoldout = "";
 
-                        if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
-                        if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
-                        if (arr[i]["active"].ToString() == "Y") tActive = "Y";
-                        if (arr[i]["soldout"].ToString() == "Y") tSoldout = "Y";
+                        if (arr[0]["ticketYn"].ToString() == "Y") tTicket = "Y";
+                        if (arr[0]["taxFree"].ToString() == "Y") tTaxFree = "Y";
+                        if (arr[0]["active"].ToString() == "Y") tActive = "Y";
+                        if (arr[0]["soldout"].ToString() == "Y") tSoldout = "Y";
 
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tActive);
                         lvItem.SubItems.Add(tSoldout);
-                        lvItem.SubItems.Add(arr[i]["memo"].ToString());
+                        lvItem.SubItems.Add(arr[0]["memo"].ToString());
 
                         if (tActive != "Y")
                         {
@@ -270,12 +270,11 @@ namespace thepos._9SysAdmin
                             lvItem.SubItems[5].ForeColor = Color.Silver;
                         }
 
-                        lvItem.Tag = arr[i]["imagePath"].ToString();
-
+                        lvItem.Tag = arr[0]["imagePath"].ToString();
 
 
                         int code_num = 0;
-                        if (get_number(arr[i]["itemCode"].ToString(), ref code_num))
+                        if (get_number(arr[0]["itemCode"].ToString(), ref code_num))
                         {
                             if (max_goodscode < code_num)
                             {

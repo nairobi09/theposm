@@ -397,7 +397,7 @@ namespace thepos
             public String is_cancel;    // 취소여부 : "" or "1"
             public String van_code;
 
-            public int pay_type2;  // KKP
+            public String pay_type2;  // KKP
         }
         public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
 
@@ -522,13 +522,24 @@ namespace thepos
         public static String get_pay_class_name(String code)
         {
             String name = "";
-            if (code == "OR") name = "일반";
+            if (code == "OR") name = "주문";
             else if (code == "CH") name = "충전";
             else if (code == "US") name = "포인트";
             else if (code == "ST") name = "정산";
             return name;
         }
 
+
+
+        public static String get_pay_type_group_name(String group)
+        {
+            //is_cash + is_card + is_point + is_easy;
+            if (group == "1000") return "현금";
+            else if (group == "0100") return "카드";
+            else if (group == "0010") return "포인트";
+            else if (group == "0001") return "간편";
+            else return "복합";
+        }
 
 
         public static String get_pay_type_name(String code)
@@ -541,6 +552,7 @@ namespace thepos
             else if (code == "R9") name = "임의등록";
             else if (code == "PA") name = "포인트선불";
             else if (code == "PD") name = "포인트후불";
+            else if (code == "E1") name = "간편";
 
             return name;
         }

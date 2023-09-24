@@ -82,12 +82,10 @@ namespace thepos
             this.lblTime = new System.Windows.Forms.Label();
             this.panelOrderSumWhile = new System.Windows.Forms.Panel();
             this.panelOrderSumBlack = new System.Windows.Forms.Panel();
-            this.lblOrderAmountRest = new System.Windows.Forms.Label();
             this.lblOrderAmountReceive = new System.Windows.Forms.Label();
             this.lblOrderAmountNet = new System.Windows.Forms.Label();
             this.lblOrderAmountDC = new System.Windows.Forms.Label();
             this.lblOrderAmount = new System.Windows.Forms.Label();
-            this.lblOrderAmountRestTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountReceiveTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountChargeTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountDCTitle = new System.Windows.Forms.Label();
@@ -111,13 +109,10 @@ namespace thepos
             this.panelGoodsItem = new System.Windows.Forms.Panel();
             this.panelGoodsItemWhite2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanelGoodsItem = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelGoodsItemWhite = new System.Windows.Forms.Panel();
             this.panelGoodsGroup = new System.Windows.Forms.Panel();
             this.panelGoodsGroupWhite2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanelGoodsGroup = new System.Windows.Forms.TableLayoutPanel();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
             this.panelGoodsGroupWhite = new System.Windows.Forms.Panel();
             this.tableLayoutPanelPayControl = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
@@ -125,6 +120,7 @@ namespace thepos
             this.btnPay3 = new System.Windows.Forms.Button();
             this.timerAlarmDisplay = new System.Windows.Forms.Timer(this.components);
             this.panelMiddle = new System.Windows.Forms.Panel();
+            this.panelPayment = new System.Windows.Forms.Panel();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -138,11 +134,9 @@ namespace thepos
             this.panelOrderLvw.SuspendLayout();
             this.panelGoodsItem.SuspendLayout();
             this.panelGoodsItemWhite2.SuspendLayout();
-            this.tableLayoutPanelGoodsItem.SuspendLayout();
             this.panelGoodsItemWhite.SuspendLayout();
             this.panelGoodsGroup.SuspendLayout();
             this.panelGoodsGroupWhite2.SuspendLayout();
-            this.tableLayoutPanelGoodsGroup.SuspendLayout();
             this.panelGoodsGroupWhite.SuspendLayout();
             this.tableLayoutPanelPayControl.SuspendLayout();
             this.SuspendLayout();
@@ -574,9 +568,9 @@ namespace thepos
             this.btnOrderItemScrollDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderItemScrollDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderItemScrollDn.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(445, 352);
+            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(445, 353);
             this.btnOrderItemScrollDn.Name = "btnOrderItemScrollDn";
-            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(35, 40);
+            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(35, 39);
             this.btnOrderItemScrollDn.TabIndex = 0;
             this.btnOrderItemScrollDn.TabStop = false;
             this.btnOrderItemScrollDn.Text = "▼";
@@ -589,9 +583,9 @@ namespace thepos
             this.btnOrderItemScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderItemScrollUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderItemScrollUp.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(407, 352);
+            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(407, 353);
             this.btnOrderItemScrollUp.Name = "btnOrderItemScrollUp";
-            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(35, 40);
+            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(35, 39);
             this.btnOrderItemScrollUp.TabIndex = 0;
             this.btnOrderItemScrollUp.TabStop = false;
             this.btnOrderItemScrollUp.Text = "▲";
@@ -872,12 +866,10 @@ namespace thepos
             // panelOrderSumBlack
             // 
             this.panelOrderSumBlack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountRest);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountReceive);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountNet);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountDC);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmount);
-            this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountRestTitle);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountReceiveTitle);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountChargeTitle);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountDCTitle);
@@ -887,21 +879,10 @@ namespace thepos
             this.panelOrderSumBlack.Size = new System.Drawing.Size(142, 306);
             this.panelOrderSumBlack.TabIndex = 0;
             // 
-            // lblOrderAmountRest
-            // 
-            this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountRest.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountRest.Location = new System.Drawing.Point(34, 255);
-            this.lblOrderAmountRest.Name = "lblOrderAmountRest";
-            this.lblOrderAmountRest.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblOrderAmountRest.Size = new System.Drawing.Size(102, 21);
-            this.lblOrderAmountRest.TabIndex = 1;
-            this.lblOrderAmountRest.Text = "0";
-            // 
             // lblOrderAmountReceive
             // 
             this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceive.Location = new System.Drawing.Point(34, 203);
+            this.lblOrderAmountReceive.Location = new System.Drawing.Point(34, 229);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
             this.lblOrderAmountReceive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountReceive.Size = new System.Drawing.Size(103, 21);
@@ -912,7 +893,7 @@ namespace thepos
             // 
             this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountNet.Location = new System.Drawing.Point(34, 151);
+            this.lblOrderAmountNet.Location = new System.Drawing.Point(34, 177);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
             this.lblOrderAmountNet.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountNet.Size = new System.Drawing.Size(103, 21);
@@ -922,7 +903,7 @@ namespace thepos
             // lblOrderAmountDC
             // 
             this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDC.Location = new System.Drawing.Point(34, 94);
+            this.lblOrderAmountDC.Location = new System.Drawing.Point(34, 120);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
             this.lblOrderAmountDC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountDC.Size = new System.Drawing.Size(103, 21);
@@ -932,29 +913,18 @@ namespace thepos
             // lblOrderAmount
             // 
             this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmount.Location = new System.Drawing.Point(34, 35);
+            this.lblOrderAmount.Location = new System.Drawing.Point(34, 61);
             this.lblOrderAmount.Name = "lblOrderAmount";
             this.lblOrderAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmount.Size = new System.Drawing.Size(103, 21);
             this.lblOrderAmount.TabIndex = 1;
             this.lblOrderAmount.Text = "0";
             // 
-            // lblOrderAmountRestTitle
-            // 
-            this.lblOrderAmountRestTitle.AutoSize = true;
-            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(3, 243);
-            this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
-            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(53, 12);
-            this.lblOrderAmountRestTitle.TabIndex = 0;
-            this.lblOrderAmountRestTitle.Text = "반환금액";
-            // 
             // lblOrderAmountReceiveTitle
             // 
             this.lblOrderAmountReceiveTitle.AutoSize = true;
             this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 191);
+            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 217);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
             this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountReceiveTitle.TabIndex = 0;
@@ -965,7 +935,7 @@ namespace thepos
             this.lblOrderAmountChargeTitle.AutoSize = true;
             this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 139);
+            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 165);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
             this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountChargeTitle.TabIndex = 0;
@@ -975,7 +945,7 @@ namespace thepos
             // 
             this.lblOrderAmountDCTitle.AutoSize = true;
             this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 82);
+            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 108);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
             this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountDCTitle.TabIndex = 0;
@@ -985,7 +955,7 @@ namespace thepos
             // 
             this.lblOrderAmountSumTitle.AutoSize = true;
             this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 23);
+            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 49);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
             this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountSumTitle.TabIndex = 0;
@@ -1048,6 +1018,7 @@ namespace thepos
             this.btnFlowCert.TabStop = false;
             this.btnFlowCert.Text = "인증";
             this.btnFlowCert.UseVisualStyleBackColor = false;
+            this.btnFlowCert.Click += new System.EventHandler(this.btnFlowCert_Click);
             // 
             // panelDisplayAlarmWhite
             // 
@@ -1184,7 +1155,6 @@ namespace thepos
             this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGoodsItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsItem.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanelGoodsItem.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanelGoodsItem.Location = new System.Drawing.Point(1, 1);
             this.tableLayoutPanelGoodsItem.Margin = new System.Windows.Forms.Padding(0);
@@ -1200,23 +1170,6 @@ namespace thepos
             this.tableLayoutPanelGoodsItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanelGoodsItem.Size = new System.Drawing.Size(521, 393);
             this.tableLayoutPanelGoodsItem.TabIndex = 22;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.tableLayoutPanelGoodsItem.SetColumnSpan(this.button2, 2);
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(2, 2);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.tableLayoutPanelGoodsItem.SetRowSpan(this.button2, 2);
-            this.button2.Size = new System.Drawing.Size(126, 94);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "바닐라라떼\r\n1";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // panelGoodsItemWhite
             // 
@@ -1260,8 +1213,6 @@ namespace thepos
             this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGoodsGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelGoodsGroup.Controls.Add(this.button19, 0, 0);
-            this.tableLayoutPanelGoodsGroup.Controls.Add(this.button20, 3, 0);
             this.tableLayoutPanelGoodsGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanelGoodsGroup.Location = new System.Drawing.Point(1, 1);
             this.tableLayoutPanelGoodsGroup.Margin = new System.Windows.Forms.Padding(0);
@@ -1271,40 +1222,6 @@ namespace thepos
             this.tableLayoutPanelGoodsGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelGoodsGroup.Size = new System.Drawing.Size(521, 130);
             this.tableLayoutPanelGoodsGroup.TabIndex = 0;
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button19.CausesValidation = false;
-            this.tableLayoutPanelGoodsGroup.SetColumnSpan(this.button19, 3);
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.ForeColor = System.Drawing.Color.White;
-            this.button19.Location = new System.Drawing.Point(2, 2);
-            this.button19.Margin = new System.Windows.Forms.Padding(2);
-            this.button19.Name = "button19";
-            this.tableLayoutPanelGoodsGroup.SetRowSpan(this.button19, 2);
-            this.button19.Size = new System.Drawing.Size(191, 125);
-            this.button19.TabIndex = 0;
-            this.button19.Text = "커피";
-            this.button19.UseVisualStyleBackColor = false;
-            // 
-            // button20
-            // 
-            this.button20.BackColor = System.Drawing.Color.White;
-            this.button20.CausesValidation = false;
-            this.tableLayoutPanelGoodsGroup.SetColumnSpan(this.button20, 2);
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.button20.Location = new System.Drawing.Point(197, 2);
-            this.button20.Margin = new System.Windows.Forms.Padding(2);
-            this.button20.Name = "button20";
-            this.tableLayoutPanelGoodsGroup.SetRowSpan(this.button20, 2);
-            this.button20.Size = new System.Drawing.Size(126, 125);
-            this.button20.TabIndex = 0;
-            this.button20.Text = "티켓";
-            this.button20.UseVisualStyleBackColor = false;
             // 
             // panelGoodsGroupWhite
             // 
@@ -1412,9 +1329,18 @@ namespace thepos
             this.panelMiddle.BackColor = System.Drawing.Color.DarkGray;
             this.panelMiddle.Location = new System.Drawing.Point(488, 56);
             this.panelMiddle.Name = "panelMiddle";
-            this.panelMiddle.Size = new System.Drawing.Size(100, 43);
+            this.panelMiddle.Size = new System.Drawing.Size(110, 175);
             this.panelMiddle.TabIndex = 51;
             this.panelMiddle.Visible = false;
+            // 
+            // panelPayment
+            // 
+            this.panelPayment.BackColor = System.Drawing.Color.DarkGray;
+            this.panelPayment.Location = new System.Drawing.Point(488, 56);
+            this.panelPayment.Name = "panelPayment";
+            this.panelPayment.Size = new System.Drawing.Size(177, 84);
+            this.panelPayment.TabIndex = 52;
+            this.panelPayment.Visible = false;
             // 
             // frmSales
             // 
@@ -1422,6 +1348,7 @@ namespace thepos
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ControlBox = false;
+            this.Controls.Add(this.panelPayment);
             this.Controls.Add(this.panelMiddle);
             this.Controls.Add(this.btnOrderItemScrollDn);
             this.Controls.Add(this.tableLayoutPanelPayControl);
@@ -1460,11 +1387,9 @@ namespace thepos
             this.panelOrderLvw.ResumeLayout(false);
             this.panelGoodsItem.ResumeLayout(false);
             this.panelGoodsItemWhite2.ResumeLayout(false);
-            this.tableLayoutPanelGoodsItem.ResumeLayout(false);
             this.panelGoodsItemWhite.ResumeLayout(false);
             this.panelGoodsGroup.ResumeLayout(false);
             this.panelGoodsGroupWhite2.ResumeLayout(false);
-            this.tableLayoutPanelGoodsGroup.ResumeLayout(false);
             this.panelGoodsGroupWhite.ResumeLayout(false);
             this.tableLayoutPanelPayControl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1504,12 +1429,10 @@ namespace thepos
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Panel panelOrderSumWhile;
         private System.Windows.Forms.Panel panelOrderSumBlack;
-        private System.Windows.Forms.Label lblOrderAmountRest;
         private System.Windows.Forms.Label lblOrderAmountReceive;
         private System.Windows.Forms.Label lblOrderAmountNet;
         private System.Windows.Forms.Label lblOrderAmountDC;
         private System.Windows.Forms.Label lblOrderAmount;
-        private System.Windows.Forms.Label lblOrderAmountRestTitle;
         private System.Windows.Forms.Label lblOrderAmountReceiveTitle;
         private System.Windows.Forms.Label lblOrderAmountChargeTitle;
         private System.Windows.Forms.Label lblOrderAmountDCTitle;
@@ -1532,10 +1455,7 @@ namespace thepos
         private System.Windows.Forms.Panel panelGoodsItem;
         private System.Windows.Forms.Panel panelGoodsItemWhite;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsItem;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panelGoodsGroup;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Panel panelGoodsGroupWhite;
         private System.Windows.Forms.Panel panelGoodsGroupWhite2;
         private System.Windows.Forms.Panel panelGoodsItemWhite2;
@@ -1566,6 +1486,7 @@ namespace thepos
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panelMiddle;
+        private System.Windows.Forms.Panel panelPayment;
     }
 }
 

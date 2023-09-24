@@ -17,6 +17,7 @@ namespace thepos
     {
         TextBox saveKeyDisplay;
 
+        public static ListView mLvwFlow;
 
         int mChargeAmt = 0;
 
@@ -64,6 +65,7 @@ namespace thepos
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = tbTicketNo;
 
+            // 
             mPayClass = "CH"; // 충전 charge
 
 
@@ -79,6 +81,7 @@ namespace thepos
             cbPosNo.Items.Add("");
             cbPosNo.SelectedIndex = cbPosNo.Items.Count - 1;
 
+            mLvwFlow = lvwFlow;
 
         }
 
@@ -95,6 +98,7 @@ namespace thepos
             mPayClass = "OR"; // 원복: order
 
             mPanelMiddle.Visible = false;
+            mPanelMiddle.Controls.Clear();
 
         }
 
@@ -123,9 +127,7 @@ namespace thepos
 
         public void view_flow(String biz_date, String pos_no, String t_no)
         {
-
             lvwFlow.Items.Clear();
-
 
             String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&ticketNo=" + t_no;
 
@@ -190,10 +192,75 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
             }
-
-
-
         }
+
+
+
+        public static void review_flow(String t_no, int select_index)
+        {
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&ticketNo=" + t_no;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count > 0)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        String ticket_no = arr[0]["ticketNo"].ToString();
+                        String tStat = arr[0]["flowStep"].ToString();
+                        String ticketing_dt = arr[0]["ticketingDt"].ToString();
+                        String charge_dt = arr[0]["chargeDt"].ToString();
+                        int point_charge = convert_number(arr[0]["pointCharge"].ToString());
+
+
+                        if (tStat == "0") tStat = "접수";
+                        else if (tStat == "1") tStat = "발권";
+                        else if (tStat == "2") tStat = "충전";
+                        else if (tStat == "3") tStat = "사용중";
+                        else if (tStat == "4") tStat = "정산완료";
+
+                        item.Text = tStat;
+                        item.Tag = ticket_no;
+
+                        item.SubItems.Add(get_goods_name(arr[0]["itemCode"].ToString()));
+                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
+
+                        String tStr = "";
+
+                        if (charge_dt != "")
+                        {
+                            tStr = charge_dt.Substring(4, 2) + "-" +
+                                   charge_dt.Substring(6, 2) + " " +
+                                   charge_dt.Substring(8, 2) + ":" +
+                                   charge_dt.Substring(10, 2);
+                        }
+                        item.SubItems.Add(tStr);
+
+                        item.SubItems.Add(point_charge.ToString("N0"));
+
+                        mLvwFlow.Items[select_index] = item;
+                        item.Selected = true;
+                        mLvwFlow.Select();
+                        mLvwFlow.EnsureVisible(select_index);
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
+        }
+
 
         private void btnScanner_Click(object sender, EventArgs e)
         {

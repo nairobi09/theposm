@@ -366,6 +366,7 @@ namespace thepos
             frmSales.ConsoleEnable();
 
             mPanelMiddle.Visible = false;
+            mPanelMiddle.Controls.Clear();
         }
 
     }

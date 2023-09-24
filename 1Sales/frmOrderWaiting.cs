@@ -66,7 +66,8 @@ namespace thepos
 
             mSelectedWaitingNo = int.Parse(lvwWaiting.SelectedItems[0].Tag.ToString());
 
-            this.DialogResult = DialogResult.OK;
+            set_wating_data();
+
             this.Close();
         }
 
@@ -93,12 +94,22 @@ namespace thepos
                 }
 
                 lvwWaiting.SelectedItems[0].Remove();
+
+                if (listWaiting.Count > 0)
+                {
+                    mBtnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
+                }
+                else
+                {
+                    mBtnOrderWaiting.Text = "대기";
+                }
+
+
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
             this.Close();
 
         }
@@ -112,6 +123,8 @@ namespace thepos
         private void frmOrderWaiting_FormClosed(object sender, FormClosedEventArgs e)
         {
             mPanelMiddle.Visible = false;
+
+            ConsoleEnable();
         }
     }
 }

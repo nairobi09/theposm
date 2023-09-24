@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
+using static thepos.frmFlowCharging;
 using static thepos.frmPayComplex;
-using static thepos.paymentToss;
 using System.Collections;
 using System.Numerics;
 
@@ -26,14 +26,12 @@ namespace thepos
         bool isComplex = false;
         int paySeq = 1;
         bool isLast = false;
-
+        int selectIdx = -1;
 
         String ticketNo = "";
 
 
-
-
-        public frmPayEasy(int net_amount, bool is_complex, int seq, bool is_last)
+        public frmPayEasy(int net_amount, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
 
@@ -44,6 +42,7 @@ namespace thepos
             isComplex = is_complex;
             paySeq = seq;
             isLast = is_last;
+            selectIdx = select_index;
 
             netAmount = net_amount;
             lblNetAmount.Text = netAmount.ToString("N0");
@@ -67,7 +66,9 @@ namespace thepos
             }
             else if (mPayClass == "ST")
             {
-
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                mRefNo = orderItem.ticket_no.Substring(0, 18);
+                ticketNo = orderItem.ticket_no;
             }
 
 
@@ -76,11 +77,17 @@ namespace thepos
         private void initialize_font()
         {
             lblTitle.Font = font12;
-
-
-
-
             btnClose.Font = font12;
+
+            lblNetAmountTitle.Font = font10;
+            lblNetAmount.Font = font12;
+
+            lblBarcodeNoTitle.Font = font10;
+            tbBarcodeNo.Font = font12;
+
+            chkKakao.Font = font12;
+
+            btnEasyAuth.Font = font12;
         }
 
         private void initial_the()
@@ -100,11 +107,15 @@ namespace thepos
             int tServiceAmt = 0;
 
             String barcode_no = tbBarcodeNo.Text;
+            String is_kakaopay = "";
 
             PaymentEasy mPaymentEasy = new PaymentEasy();
 
 
-            if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, out mPaymentEasy) != 0)
+            if (chkKakao.Checked == true) is_kakaopay = "1";
+
+
+            if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)
             {
                 display_error_msg(mErrorMsg);
             }
@@ -138,7 +149,7 @@ namespace thepos
                 mPaymentEasy.ref_no = mRefNo;
                 mPaymentEasy.pay_date = get_today_date();
                 mPaymentEasy.pay_time = get_today_time();
-                mPaymentEasy.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
+                mPaymentEasy.pay_type = "E1";       // 결제구분 : , 간편결제(E1)
                 mPaymentEasy.tran_type = "A";       // 승인 A 취소 C
                 mPaymentEasy.pay_class = mPayClass;
                 mPaymentEasy.ticket_no = ticketNo;
@@ -204,7 +215,27 @@ namespace thepos
 
                     if (ticket_cnt > 0)
                     {
-                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                        if (mPayClass == "OR")
+                        {
+                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                            //? 티켓 출력 필요
+                        }
+                        else if (mPayClass == "CH")
+                        {
+                            strAlarm += " 티켓충전 완료.";
+
+                            // 충전화면 리스트뷰 갱신
+                            frmFlowCharging.review_flow(ticketNo, selectIdx);
+
+                        }
+                        else if (mPayClass == "ST")
+                        {
+                            strAlarm += " 티켓정산 등록.";
+
+                            //? 정산화면 리스트뷰 갱신 필요
+                        }
+
                         SetDisplayAlarm("I", strAlarm);
                     }
 
@@ -226,7 +257,7 @@ namespace thepos
         }
 
 
-        private static int requestEasyAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String barcode_no, out PaymentEasy mPaymentEasy)
+        private static int requestEasyAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String barcode_no, String is_kakaoPay, out PaymentEasy mPaymentEasy)
         {
             int ret = 0;
 
@@ -241,6 +272,7 @@ namespace thepos
             else if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
+                ret = p.requestKcpEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaoPay, out mPaymentEasy2);
             }
             else if (mVanCode == "TOSS")
             {
@@ -285,7 +317,8 @@ namespace thepos
             parameters["signPath"] = mPaymentEasy.sign_path;
             parameters["giftChange"] = mPaymentEasy.gift_change + "";
             parameters["isCancel"] = mPaymentEasy.is_cancel;
-            parameters["vanCode"] = mPaymentEasy.van_code; ;
+            parameters["vanCode"] = mPaymentEasy.van_code;
+            parameters["payType2"] = mPaymentEasy.pay_type2;
 
             if (mRequestPost("paymentEasy", parameters))
             {
@@ -328,7 +361,7 @@ namespace thepos
             if (isComplex == true)
                 mPanelHigh.Visible = false;
             else
-                mPanelMiddle.Visible = false;
+                mPanelPayment.Visible = false;
         }
     }
 }

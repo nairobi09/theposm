@@ -223,8 +223,9 @@ namespace thepos
                 tableLayoutPanelGroupSelected.SetRowSpan(btnGroupBlue, sz_y);
             }
             catch (Exception ex) 
-            { 
-            
+            {
+                MessageBox.Show("오류. display selected console()\n\n" + ex.Message, "thepos");
+                return;
             }
 
         }
@@ -257,6 +258,8 @@ namespace thepos
             }
             catch (Exception ex)
             {
+                MessageBox.Show("오류. display one console()\n\n" + ex.Message, "thepos");
+                return;
 
             }
 
@@ -295,8 +298,9 @@ namespace thepos
                     tableLayoutPanelGroup.SetRowSpan(btnGroup, sz_y);
                 }
                 catch (Exception ex) 
-                { 
-                
+                {
+                    MessageBox.Show("오류. display all console()\n\n" + ex.Message, "thepos");
+                    return;
                 }
 
             }

@@ -74,9 +74,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(398, 600);
+            this.btnDelete.Location = new System.Drawing.Point(362, 472);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 48);
+            this.btnDelete.Size = new System.Drawing.Size(88, 66);
             this.btnDelete.TabIndex = 43;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -85,9 +85,9 @@
             // btnOK
             // 
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnOK.Location = new System.Drawing.Point(132, 600);
+            this.btnOK.Location = new System.Drawing.Point(96, 472);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(260, 48);
+            this.btnOK.Size = new System.Drawing.Size(260, 66);
             this.btnOK.TabIndex = 42;
             this.btnOK.Text = "선택";
             this.btnOK.UseVisualStyleBackColor = true;

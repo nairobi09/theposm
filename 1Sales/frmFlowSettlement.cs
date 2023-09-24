@@ -76,6 +76,10 @@ namespace thepos
 
             mPayClass = "ST"; // 정산 settement
 
+
+            //? 후불식이이면 취소버튼을 안보이게한다.. 
+            if (mTicketType == "PD") btnCancelReq.Visible = false;
+
         }
 
 
@@ -201,6 +205,7 @@ namespace thepos
             mPayClass = "OR"; // 원복: order
 
             mPanelMiddle.Visible = false;
+            mPanelMiddle.Controls.Clear();
         }
 
         private void lvwFlow_SelectedIndexChanged(object sender, EventArgs e)
@@ -323,8 +328,7 @@ namespace thepos
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
             mLblOrderAmountNet.Text = netAmount.ToString("N0");
             mLblOrderAmountReceive.Text = receiveAmount.ToString("N0");
-            mLblOrderAmountRest.Text = restAmount.ToString("N0");
-
+            
 
             // Sub Screen 표시
             DisplaySubScreen();
@@ -611,8 +615,7 @@ namespace thepos
                 mLblOrderAmountDC.Text = "";
                 mLblOrderAmountNet.Text = "0";
                 mLblOrderAmountReceive.Text = Amount.ToString("N0");
-                mLblOrderAmountRest.Text = Amount.ToString("N0");
-
+                
                 DisplaySubScreen();
 
             }
@@ -632,11 +635,14 @@ namespace thepos
             if (bpoint.pay_type == "PA" | bpoint.pay_type == "PD") return;
 
 
+            //?
+            int select_idx = 0;
 
-            frmPayCancel fPayCancel = new frmPayCancel(bpoint.the_no, mThisTicketFlow.ticket_no);
+            frmPayCancel fPayCancel = new frmPayCancel(bpoint.the_no, mThisTicketFlow.ticket_no, "1111", select_idx);
             fPayCancel.Left += this.Location.X;
             fPayCancel.Top += this.Location.Y;
             fPayCancel.ShowDialog();
+
 
             //? 화면갱신
             view_flowpay(mThisTicketFlow.ticket_no);

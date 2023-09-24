@@ -7,9 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
+using static thepos.frmFlowCharging;
 using static thepos.frmPayComplex;
-using static thepos.paymentNice;
-
 
 namespace thepos
 {
@@ -23,13 +22,14 @@ namespace thepos
         bool isComplex = false;
         int paySeq = 1;
         bool isLast = false;
+        int selectIdx = -1;
 
         TextBox saveKeyDisplay;
 
         String ticketNo = "";
 
 
-        public frmPayCard(int net_amount, bool is_complex, int seq, bool is_last)
+        public frmPayCard(int net_amount, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
 
@@ -39,6 +39,7 @@ namespace thepos
             isComplex = is_complex;
             paySeq = seq;
             isLast = is_last;
+            selectIdx = select_index;
 
             netAmount = net_amount;
             lblNetAmount.Text = netAmount.ToString("N0");
@@ -62,7 +63,9 @@ namespace thepos
             }
             else if (mPayClass == "ST")
             {
-
+                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                mRefNo = orderItem.ticket_no.Substring(0, 18);
+                ticketNo = orderItem.ticket_no;
             }
 
         }
@@ -85,7 +88,7 @@ namespace thepos
             btnInstall06.Font = font10;
             btnInstall12.Font = font10;
             
-            chkCUP.Font = font10;
+            chkCUP.Font = font12;
 
             btnCardRequest.Font = font10;
 
@@ -200,7 +203,6 @@ namespace thepos
             mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
             mPaymentCard.van_code = mVanCode;
-
             SavePaymentCard(mPaymentCard);
 
 
@@ -254,14 +256,35 @@ namespace thepos
 
                 if (ticket_cnt > 0)
                 {
-                    strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                    if (mPayClass == "OR")
+                    {
+                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                        //? 티켓 출력 필요
+                    }
+                    else if (mPayClass == "CH")
+                    {
+                        strAlarm += " 티켓충전 완료.";
+
+                        // 충전화면 리스트뷰 갱신
+                        frmFlowCharging.review_flow(ticketNo, selectIdx);
+
+                    }
+                    else if (mPayClass == "ST")
+                    {
+                        strAlarm += " 티켓정산 등록.";
+
+                        //? 정산화면 리스트뷰 갱신 필요
+                    }
+
                     SetDisplayAlarm("I", strAlarm);
                 }
 
 
-                // 영수증 출력
-                // 안에서 여부를 물어보고 출력한다. 
-                print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+                if (mPaySeq == 1)
+                    print_bill(mTheNo, "A", "", "0100"); // card
+                else
+                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
 
 
@@ -276,14 +299,11 @@ namespace thepos
 
         private void btnCardRequest_Click(object sender, EventArgs e)
         {
-            //int d= mNetAmount;
-
             if (tbInstall.Text.Length != 2)
             {
                 SetDisplayAlarm("W", "할부개월 오류.");
                 return;
             }
-
 
 
             String is_cup = "0";
@@ -399,19 +419,40 @@ namespace thepos
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
                     // 티켓 저장
-                    int ticket_cnt = SaveTicket("", "");
+                    int ticket_cnt = SaveTicket("", "");   // ticket_no, subClass
 
                     if (ticket_cnt > 0)
                     {
-                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                        if (mPayClass == "OR")
+                        {
+                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                            //? 티켓 출력 필요
+                        }
+                        else if (mPayClass == "CH")
+                        {
+                            strAlarm += " 티켓충전 완료.";
+
+                            // 충전화면 리스트뷰 갱신
+                            frmFlowCharging.review_flow(ticketNo, selectIdx);
+
+                        }
+                        else if (mPayClass == "ST")
+                        {
+                            strAlarm += " 티켓정산 등록.";
+
+                            //? 정산화면 리스트뷰 갱신 필요
+                        }
+
                         SetDisplayAlarm("I", strAlarm);
                     }
 
 
                     // 영수증 출력
-                    // 안에서 여부를 물어보고 출력한다. 
-                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
-
+                    if (mPaySeq == 1)
+                        print_bill(mTheNo, "A", "", "0100"); // card
+                    else
+                        print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
 
                     mClearSaleForm();
@@ -445,6 +486,11 @@ namespace thepos
             parameters["paySeq"] = mPaymentCard.pay_seq + "";
             parameters["tranDate"] = mPaymentCard.tran_date;
             parameters["amount"] = mPaymentCard.amount + "";
+            parameters["taxAmount"] = mPaymentCard.tax_amount + "";
+
+            parameters["freeAmount"] = mPaymentCard.tfree_amount + "";
+            parameters["serviceAmt"] = mPaymentCard.service_amount + "";
+            parameters["tax"] = mPaymentCard.tax + "";
             parameters["install"] = mPaymentCard.install;
 
             parameters["authNo"] = mPaymentCard.auth_no;
@@ -498,7 +544,7 @@ namespace thepos
             else if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
-                ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
+                ret = p.requestKcpCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard2);
             }
             else if (mVanCode == "TOSS")
             {
@@ -541,7 +587,7 @@ namespace thepos
             if (isComplex == true)
                 mPanelHigh.Visible = false;
             else
-                mPanelMiddle.Visible = false;
+                mPanelPayment.Visible = false;
 
         }
 

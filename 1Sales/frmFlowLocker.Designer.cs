@@ -1,6 +1,6 @@
-﻿namespace thepos
+﻿namespace thepos._1Sales
 {
-    partial class frmFlowTicketing
+    partial class frmFlowLocker
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dtBusiness = new System.Windows.Forms.DateTimePicker();
             this.panelback = new System.Windows.Forms.Panel();
             this.btnTicketReact = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBusinessTitle = new System.Windows.Forms.Label();
-            this.dtBusiness = new System.Windows.Forms.DateTimePicker();
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -44,6 +44,15 @@
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // dtBusiness
+            // 
+            this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtBusiness.Location = new System.Drawing.Point(68, 20);
+            this.dtBusiness.Name = "dtBusiness";
+            this.dtBusiness.Size = new System.Drawing.Size(112, 22);
+            this.dtBusiness.TabIndex = 68;
+            this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
             // panelback
             // 
@@ -58,7 +67,7 @@
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
-            this.panelback.TabIndex = 4;
+            this.panelback.TabIndex = 6;
             // 
             // btnTicketReact
             // 
@@ -71,7 +80,6 @@
             this.btnTicketReact.TabIndex = 78;
             this.btnTicketReact.Text = "띠지출력";
             this.btnTicketReact.UseVisualStyleBackColor = false;
-            this.btnTicketReact.Click += new System.EventHandler(this.btnTicketReact_Click);
             // 
             // panel1
             // 
@@ -94,15 +102,6 @@
             this.lblBusinessTitle.TabIndex = 71;
             this.lblBusinessTitle.Text = "영업일자";
             // 
-            // dtBusiness
-            // 
-            this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(68, 20);
-            this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(112, 22);
-            this.dtBusiness.TabIndex = 68;
-            this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
-            // 
             // btnView
             // 
             this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
@@ -114,7 +113,6 @@
             this.btnView.TabIndex = 72;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnClose
             // 
@@ -141,7 +139,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(483, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "티켓";
+            this.lblTitle.Text = "락커";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lvwList
@@ -182,17 +180,16 @@
             this.ticket_no.Text = "티켓번호";
             this.ticket_no.Width = 100;
             // 
-            // frmFlowTicketing
+            // frmFlowLocker
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmFlowTicketing";
+            this.Name = "frmFlowLocker";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "frmFlowTicketing";
-            this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowTicketing_FormClosed);
+            this.Text = "frmFlowLocker";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowLocker_FormClosed);
             this.panelback.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -202,7 +199,12 @@
 
         #endregion
 
+        private System.Windows.Forms.DateTimePicker dtBusiness;
         private System.Windows.Forms.Panel panelback;
+        private System.Windows.Forms.Button btnTicketReact;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblBusinessTitle;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lvwList;
@@ -210,10 +212,5 @@
         private System.Windows.Forms.ColumnHeader goods;
         private System.Windows.Forms.ColumnHeader ticket_dt;
         private System.Windows.Forms.ColumnHeader ticket_no;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblBusinessTitle;
-        private System.Windows.Forms.DateTimePicker dtBusiness;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Button btnTicketReact;
     }
 }

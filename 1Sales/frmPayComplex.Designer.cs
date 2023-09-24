@@ -156,7 +156,7 @@
             // no
             // 
             this.no.Text = "#";
-            this.no.Width = 30;
+            this.no.Width = 20;
             // 
             // pay_dt
             // 
@@ -175,7 +175,7 @@
             // 
             // cardno
             // 
-            this.cardno.Text = "카드/수단번호";
+            this.cardno.Text = "카드/번호";
             this.cardno.Width = 100;
             // 
             // amount

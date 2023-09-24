@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
+using static thepos.frmFlowCharging;
 using static thepos.frmPayComplex;
-using static thepos.paymentToss;
 using System.IO;
 using System.Diagnostics;
 using thepos._1Sales;
@@ -30,12 +30,13 @@ namespace thepos
         bool isComplex = false;
         int paySeq = 0;
         bool isLast = false;
+        int selectIdx = -1;
 
         TextBox saveKeyDisplay;
 
         String ticketNo = "";
 
-        public frmPayCash(int net_amount, bool is_complex, int seq, bool is_last)
+        public frmPayCash(int net_amount, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
             initialize_font();
@@ -43,6 +44,7 @@ namespace thepos
             isComplex = is_complex;
             paySeq = seq;
             isLast = is_last;
+            selectIdx = select_index;
 
             netAmount = net_amount;
             rcvAmount = 0;
@@ -64,7 +66,6 @@ namespace thepos
                 MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
                 mRefNo = orderItem.ticket_no.Substring(0,18);
                 ticketNo = orderItem.ticket_no;
-
             }
             else if (mPayClass == "US")
             {
@@ -225,25 +226,22 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 // 티켓 저장
-                int ticket_cnt = SaveTicket(ticketNo, "US"); // 정산애먼  subClass 사용
+                int ticket_cnt = SaveTicket(ticketNo, "US"); // 정산에만  subClass 사용
 
                 if (ticket_cnt > 0)
                 {
-
                     if (mPayClass == "OR") // 주문(접수-발권)
                     {
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
 
                         //? 티켓 출력 필요
-
-
                     }
                     else if (mPayClass == "CH") // 충전
                     {
                         strAlarm += " 티켓충전 완료.";
 
-                        //? 충전화면 리스트뷰 갱신 필요
-
+                        // 충전화면 리스트뷰 갱신
+                        frmFlowCharging.review_flow(ticketNo, selectIdx);
 
                     }
                     else if (mPayClass == "ST") // 정산
@@ -251,21 +249,20 @@ namespace thepos
                         strAlarm += " 티켓정산 등록.";
 
                         //? 정산화면 리스트뷰 갱신 필요
-                        
-
                     }
    
                     SetDisplayAlarm("I", strAlarm);
-
 
                 }
 
 
                 // 영수증 출력
-                // 안에서 여부를 물어보고 출력한다. 
-                print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+                if (mPaySeq == 1)
+                    print_bill(mTheNo, "A", "", "1000"); // cash
+                else
+                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
-
+                
 
                 mClearSaleForm();
 
@@ -274,60 +271,6 @@ namespace thepos
 
             this.Close();
         }
-
-
-
-
-        private bool SavePaymentCash(PaymentCash mPaymentCash)
-        {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Clear();
-            parameters["siteId"] = mPaymentCash.site_id;
-            parameters["posNo"] = mPaymentCash.pos_no;
-            parameters["bizDt"] = mPaymentCash.biz_dt;
-            parameters["theNo"] = mPaymentCash.the_no;
-            parameters["refNo"] = mPaymentCash.ref_no;
-
-            parameters["payDate"] = mPaymentCash.pay_date;
-            parameters["payTime"] = mPaymentCash.pay_time;
-            parameters["payType"] = mPaymentCash.pay_type;
-            parameters["tranType"] = mPaymentCash.tran_type;
-            parameters["payClass"] = mPaymentCash.pay_class;
-
-            parameters["ticketNo"] = mPaymentCash.ticket_no;
-            parameters["paySeq"] = mPaymentCash.pay_seq + "";
-            parameters["tranDate"] = mPaymentCash.tran_date;
-            parameters["amount"] = mPaymentCash.amount + "";
-            parameters["receiptType"] = mPaymentCash.receipt_type;
-
-            parameters["issuedMethodNo"] = mPaymentCash.issued_method_no;
-            parameters["authNo"] = mPaymentCash.auth_no;
-            parameters["tranSerial"] = mPaymentCash.tran_serial;
-            parameters["isCancel"] = mPaymentCash.is_cancel;
-            parameters["vanCode"] = mPaymentCash.van_code; ;
-
-            if (mRequestPost("paymentCash", parameters))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류 paymentCash\n\n" + mErrorMsg, "thepos");
-                return false;
-            }
-
-            return true;
-
-        }
-
 
 
 
@@ -368,7 +311,6 @@ namespace thepos
             else
             {
                 //정상승인
-                //? 서버API로 교체
                 int order_cnt = 0;
 
                 if (paySeq == 1)
@@ -456,14 +398,36 @@ namespace thepos
 
                     if (ticket_cnt > 0)
                     {
-                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+                        if (mPayClass == "OR")
+                        {
+                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                            //? 티켓 출력 필요
+                        }
+                        else if (mPayClass == "CH")
+                        {
+                            strAlarm += " 티켓충전 완료.";
+
+                            // 충전화면 리스트뷰 갱신
+                            frmFlowCharging.review_flow(ticketNo, selectIdx);
+
+                        }
+                        else if (mPayClass == "ST")
+                        {
+                            strAlarm += " 티켓정산 등록.";
+
+                            //? 정산화면 리스트뷰 갱신 필요
+                        }
+
                         SetDisplayAlarm("I", strAlarm);
                     }
 
 
                     // 영수증 출력
-                    // 안에서 여부를 물어보고 출력한다. 
-                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+                    if (mPaySeq == 1)
+                        print_bill(mTheNo, "A", "", "1000"); // cash
+                    else
+                        print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
 
                     mClearSaleForm();
@@ -477,12 +441,62 @@ namespace thepos
         }
 
 
+        private bool SavePaymentCash(PaymentCash mPaymentCash)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Clear();
+            parameters["siteId"] = mPaymentCash.site_id;
+            parameters["posNo"] = mPaymentCash.pos_no;
+            parameters["bizDt"] = mPaymentCash.biz_dt;
+            parameters["theNo"] = mPaymentCash.the_no;
+            parameters["refNo"] = mPaymentCash.ref_no;
+
+            parameters["payDate"] = mPaymentCash.pay_date;
+            parameters["payTime"] = mPaymentCash.pay_time;
+            parameters["payType"] = mPaymentCash.pay_type;
+            parameters["tranType"] = mPaymentCash.tran_type;
+            parameters["payClass"] = mPaymentCash.pay_class;
+
+            parameters["ticketNo"] = mPaymentCash.ticket_no;
+            parameters["paySeq"] = mPaymentCash.pay_seq + "";
+            parameters["tranDate"] = mPaymentCash.tran_date;
+            parameters["amount"] = mPaymentCash.amount + "";
+            parameters["receiptType"] = mPaymentCash.receipt_type;
+
+            parameters["issuedMethodNo"] = mPaymentCash.issued_method_no;
+            parameters["authNo"] = mPaymentCash.auth_no;
+            parameters["tranSerial"] = mPaymentCash.tran_serial;
+            parameters["isCancel"] = mPaymentCash.is_cancel;
+            parameters["vanCode"] = mPaymentCash.van_code; ;
+
+            if (mRequestPost("paymentCash", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류 paymentCash\n\n" + mErrorMsg, "thepos");
+                return false;
+            }
+
+            return true;
+
+        }
+
 
 
 
         int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash mPaymentCash)
         {
-            int ret = 0;
+            int ret = -1;
 
             PaymentCash mPaymentCash2 = new PaymentCash();
 
@@ -496,6 +510,11 @@ namespace thepos
             {
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
+            }
+            else if (mVanCode == "KOVAN")
+            {
+                paymentKovan p = new paymentKovan();
+                //ret = p.requestKovanCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
             }
             else if (mVanCode == "TOSS")
             {
@@ -559,10 +578,6 @@ namespace thepos
         }
 
 
-
-
-
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -577,7 +592,8 @@ namespace thepos
             if (isComplex == true)
                 mPanelHigh.Visible = false;
             else
-                mPanelMiddle.Visible = false;
+                mPanelPayment.Visible = false;
+
         }
 
 

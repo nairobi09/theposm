@@ -389,8 +389,8 @@ namespace thepos
             string FS = ((char)28).ToString();
             string SendData = "";
 
-//          SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + "" +    FS + FS + FS + FS + "신용승인" + FS;
-            SendData = "0300" + FS + "10" + FS + "L" + FS + tAmount + FS + "0" + FS + "0" +          FS + "00" +  FS + "" + FS + "" + FS + "" + FS + FS + FS + tBarcodeNo + FS + FS + FS + FS + "" +         FS + "" + FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
+//          SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS +              FS + "" +  FS + FS + FS +      FS + "신용승인" + FS;
+            SendData = "0300" + FS + "10" + FS + "L" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + "00" +  FS + "" + FS + "" + FS + "" + FS + FS + FS + tBarcodeNo + FS +       FS + FS + FS + "" + FS + "" +         FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
 
 
 
@@ -449,6 +449,9 @@ namespace thepos
                 else
                     paymentEasy.gift_change = 0;
 
+                paymentEasy.pay_type2 = mNiceResponse.t기기번호;
+
+
                 pEasy = paymentEasy;
 
                 return 0;
@@ -462,17 +465,14 @@ namespace thepos
         }
 
 
-        public int requestNiceEasyCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
+        public int requestNiceEasyCancel(PaymentEasy pEasyAuth, out PaymentEasy pEasyCancel)
         {
-            pCardCancel = pCardAuth;
-
+            pEasyCancel = pEasyAuth;
             string FS = ((char)28).ToString();
-            string Halbu = String.Format("{0:00}", pCardAuth.install);
+
             string SendData = "";
-
-
-            //!
-            SendData = "0420" + FS + "10" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용취소" + FS;
+            SendData = "0520" + FS + "10" + FS + "L" + FS + pEasyAuth.amount + FS + pEasyAuth.tax + FS + pEasyAuth.service_amount + FS + "00" +  FS + pEasyAuth.auth_no + FS + pEasyAuth.tran_date + FS + "" + FS + FS + FS + "" + FS + FS + FS + FS + pEasyAuth.tran_serial + FS + "" + FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
+            //SendData = "0420" + FS + "10" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용취소" + FS;
             byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
             byte[] mRecv = new byte[2048];
 
@@ -497,12 +497,12 @@ namespace thepos
             // 정상 응답
             if (ResCd == "0000")
             {
-                pCardCancel.tran_date = mNiceResponse.t승인일시;
+                pEasyCancel.tran_date = mNiceResponse.t승인일시;
 
                 if (is_number(mNiceResponse.t잔액))
-                    pCardCancel.gift_change = int.Parse(mNiceResponse.t잔액);
+                    pEasyCancel.gift_change = int.Parse(mNiceResponse.t잔액);
                 else
-                    pCardCancel.gift_change = 0;
+                    pEasyCancel.gift_change = 0;
 
 
                 return 0;
@@ -514,14 +514,6 @@ namespace thepos
             }
 
         }
-
-
-
-
-
-
-
-
 
 
         private NiceResponse parse_response(byte[] mRecv)

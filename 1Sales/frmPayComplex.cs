@@ -14,9 +14,6 @@ namespace thepos
 {
     public partial class frmPayComplex : Form
     {
-
-
-
         public static int mComplexNetAmount = 0;
         public static int mComplexRcvAmount = 0;
         public static int mComplexNestAmount = 0;
@@ -38,13 +35,17 @@ namespace thepos
 
         public static Panel mPanelHigh;
 
+        int selectIdx = -1;
 
-        public frmPayComplex()
+
+        public frmPayComplex(int select_index)
         {
             InitializeComponent();
 
             initialize_font();
             initial_the();
+
+            selectIdx = select_index;
 
 
             mComplexNetAmount = mNetAmount;
@@ -175,11 +176,11 @@ namespace thepos
             panelHigh.Visible = true;
 
             if (pay_type == "CARD")
-                fForm = new frmPayCard(reqAmount, true, mPaySeq, is_last) { TopLevel = false, TopMost = true }; // int amount, bool is_complex, int pay_seq, bool is_last
+                fForm = new frmPayCard(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true }; // int amount, bool is_complex, int pay_seq, bool is_last, int select_idx
             else if (pay_type == "CASH")
-                fForm = new frmPayCash(reqAmount, true, mPaySeq, is_last) { TopLevel = false, TopMost = true };
+                fForm = new frmPayCash(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
             else if (pay_type == "EASY")
-                fForm = new frmPayEasy(reqAmount, true, mPaySeq, is_last) { TopLevel = false, TopMost = true };
+                fForm = new frmPayEasy(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
             else return;
 
             panelHigh.Controls.Add(fForm);
@@ -217,7 +218,7 @@ namespace thepos
             mTbKeyDisplayController = saveKeyDisplay;
             mRightFace = saveRightFace;
 
-            mPanelMiddle.Visible = false;
+            mPanelPayment.Visible = false;
 
         }
 

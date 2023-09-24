@@ -123,6 +123,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1Sales\frmFlowCert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmFlowCert.Designer.cs">
+      <DependentUpon>frmFlowCert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="1Sales\frmFlowLocker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmFlowLocker.Designer.cs">
+      <DependentUpon>frmFlowLocker.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysDcrFavorite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,12 +212,6 @@
     </Compile>
     <Compile Include="1Sales\frmFlowTicketing.Designer.cs">
       <DependentUpon>frmFlowTicketing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="1Sales\frmLayoutBill.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="1Sales\frmLayoutBill.Designer.cs">
-      <DependentUpon>frmLayoutBill.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmOrderDCR.cs">
       <SubType>Form</SubType>
@@ -353,11 +359,18 @@
     <Compile Include="van\KCP\ClsString.cs" />
     <Compile Include="van\KCP\ClsWin32Api.cs" />
     <Compile Include="van\KCP\paymentKCP.cs" />
+    <Compile Include="van\KOVAN\paymentKovan.cs" />
     <Compile Include="van\Nice\paymentNice.cs" />
     <Compile Include="van\Toss\paymentToss.cs" />
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="1Sales\frmFlowCert.resx">
+      <DependentUpon>frmFlowCert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmFlowLocker.resx">
+      <DependentUpon>frmFlowLocker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysDcrFavorite.resx">
       <DependentUpon>frmSysDcrFavorite.cs</DependentUpon>
     </EmbeddedResource>
@@ -396,9 +409,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowTicketing.resx">
       <DependentUpon>frmFlowTicketing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmLayoutBill.resx">
-      <DependentUpon>frmLayoutBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmOrderDCR.resx">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>

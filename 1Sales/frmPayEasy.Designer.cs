@@ -31,7 +31,7 @@
             this.panelback = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEasyAuth = new System.Windows.Forms.Button();
-            this.lblT3 = new System.Windows.Forms.Label();
+            this.lblBarcodeNoTitle = new System.Windows.Forms.Label();
             this.tbBarcodeNo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -41,9 +41,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNetAmount = new System.Windows.Forms.Label();
-            this.lblT1 = new System.Windows.Forms.Label();
+            this.lblNetAmountTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.chkKakao = new System.Windows.Forms.CheckBox();
             this.panelback.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -56,7 +57,7 @@
             this.panelback.Controls.Add(this.groupBox1);
             this.panelback.Controls.Add(this.groupBox2);
             this.panelback.Controls.Add(this.lblNetAmount);
-            this.panelback.Controls.Add(this.lblT1);
+            this.panelback.Controls.Add(this.lblNetAmountTitle);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -67,12 +68,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkKakao);
             this.groupBox1.Controls.Add(this.btnEasyAuth);
-            this.groupBox1.Controls.Add(this.lblT3);
+            this.groupBox1.Controls.Add(this.lblBarcodeNoTitle);
             this.groupBox1.Controls.Add(this.tbBarcodeNo);
             this.groupBox1.Location = new System.Drawing.Point(23, 172);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(479, 171);
+            this.groupBox1.Size = new System.Drawing.Size(479, 223);
             this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
             // 
@@ -81,7 +83,7 @@
             this.btnEasyAuth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnEasyAuth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEasyAuth.ForeColor = System.Drawing.Color.White;
-            this.btnEasyAuth.Location = new System.Drawing.Point(318, 85);
+            this.btnEasyAuth.Location = new System.Drawing.Point(318, 127);
             this.btnEasyAuth.Name = "btnEasyAuth";
             this.btnEasyAuth.Size = new System.Drawing.Size(121, 54);
             this.btnEasyAuth.TabIndex = 58;
@@ -89,14 +91,14 @@
             this.btnEasyAuth.UseVisualStyleBackColor = false;
             this.btnEasyAuth.Click += new System.EventHandler(this.btnEasyAuth_Click);
             // 
-            // lblT3
+            // lblBarcodeNoTitle
             // 
-            this.lblT3.AutoSize = true;
-            this.lblT3.Location = new System.Drawing.Point(28, 44);
-            this.lblT3.Name = "lblT3";
-            this.lblT3.Size = new System.Drawing.Size(77, 14);
-            this.lblT3.TabIndex = 48;
-            this.lblT3.Text = "바코드번호";
+            this.lblBarcodeNoTitle.AutoSize = true;
+            this.lblBarcodeNoTitle.Location = new System.Drawing.Point(28, 44);
+            this.lblBarcodeNoTitle.Name = "lblBarcodeNoTitle";
+            this.lblBarcodeNoTitle.Size = new System.Drawing.Size(77, 14);
+            this.lblBarcodeNoTitle.TabIndex = 48;
+            this.lblBarcodeNoTitle.Text = "바코드번호";
             // 
             // tbBarcodeNo
             // 
@@ -117,9 +119,9 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(23, 358);
+            this.groupBox2.Location = new System.Drawing.Point(23, 481);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(479, 173);
+            this.groupBox2.Size = new System.Drawing.Size(479, 189);
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             // 
@@ -193,14 +195,14 @@
             this.lblNetAmount.Text = "0";
             this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblT1
+            // lblNetAmountTitle
             // 
-            this.lblT1.AutoSize = true;
-            this.lblT1.Location = new System.Drawing.Point(50, 128);
-            this.lblT1.Name = "lblT1";
-            this.lblT1.Size = new System.Drawing.Size(91, 14);
-            this.lblT1.TabIndex = 48;
-            this.lblT1.Text = "결제대상금액";
+            this.lblNetAmountTitle.AutoSize = true;
+            this.lblNetAmountTitle.Location = new System.Drawing.Point(50, 128);
+            this.lblNetAmountTitle.Name = "lblNetAmountTitle";
+            this.lblNetAmountTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblNetAmountTitle.TabIndex = 48;
+            this.lblNetAmountTitle.Text = "결제대상금액";
             // 
             // btnClose
             // 
@@ -231,6 +233,17 @@
             this.lblTitle.Text = "간편결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // chkKakao
+            // 
+            this.chkKakao.AutoSize = true;
+            this.chkKakao.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkKakao.Location = new System.Drawing.Point(121, 127);
+            this.chkKakao.Name = "chkKakao";
+            this.chkKakao.Size = new System.Drawing.Size(106, 20);
+            this.chkKakao.TabIndex = 59;
+            this.chkKakao.Text = "카카오페이";
+            this.chkKakao.UseVisualStyleBackColor = true;
+            // 
             // frmPayEasy
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -257,10 +270,10 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.TextBox tbBarcodeNo;
         private System.Windows.Forms.Label lblNetAmount;
-        private System.Windows.Forms.Label lblT1;
+        private System.Windows.Forms.Label lblNetAmountTitle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblT3;
+        private System.Windows.Forms.Label lblBarcodeNoTitle;
         private System.Windows.Forms.Button btnEasyAuth;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -270,5 +283,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkKakao;
     }
 }
