@@ -166,7 +166,7 @@ namespace thepos._1Sales
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "CASH") { button_name = "현금\n결제"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "CARD") { button_name = "카드\n결제"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "COMPLEX") { button_name = "복합\n결제"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "POINT") { button_name = "포인트\n결제"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "POINT") { button_name = "포인트\n사용"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "EASY") { button_name = "간편\n결제"; }
 
                     btnItem.Text = button_name;
@@ -244,7 +244,7 @@ namespace thepos._1Sales
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CASH") { button_name = "현금\n결제"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CARD") { button_name = "카드\n결제"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "COMPLEX") { button_name = "복합\n결제"; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "POINT") { button_name = "포인트\n결제"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "POINT") { button_name = "포인트\n사용"; btnGroupBlue.BackColor = Color.SaddleBrown; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "EASY") { button_name = "간편\n결제"; }
 
                 btnGroupBlue.Text = button_name;

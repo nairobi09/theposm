@@ -381,7 +381,8 @@ namespace thepos
                 }
                 else if (mPayConsol[i].code == "POINT")
                 {
-                    btnPayItem.Text = "포인트\r결제";
+                    btnPayItem.BackColor = Color.SaddleBrown;
+                    btnPayItem.Text = "포인트\r사용";
                     btnPayItem.Click += (sender, args) => ClickedPayPoint();
                 }
                 else if (mPayConsol[i].code == "COMPLEX")
@@ -1105,11 +1106,11 @@ namespace thepos
         }
 
 
-        public static int SaveTicket(String ticket_no, String subClass)  // subClass : 사용 US,  충전 CH
+        public static int SaveTicket(String ticket_no, String pay_class, String subClass)  // subClass : 사용 US,  충전 CH
         {
             // Order 0, charge 1, settlement 2
             
-            if (mPayClass == "OR") // 주문(접수-발권)
+            if (pay_class == "OR") // 주문(접수-발권)
             {
                 int ticket_seq = 0;
                 String t_ticket_no = "";
@@ -1190,7 +1191,7 @@ namespace thepos
                 return ticket_seq;
 
             }
-            else if (mPayClass == "CH") // 충전
+            else if (pay_class == "CH") // 충전
             {
                 MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
                 int charge_amt = orderItem.amt;
@@ -1256,7 +1257,7 @@ namespace thepos
 
 
             }
-            else if (mPayClass == "US") // 포인트 사용
+            else if (pay_class == "US") // 포인트 사용
             {
                 
                 int usage_amout = mNetAmount;
@@ -1322,7 +1323,7 @@ namespace thepos
 
 
             }
-            else if (mPayClass == "ST") // 정산
+            else if (pay_class == "ST") // 정산
             {
                 MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
                 int settle_amt = orderItem.amt;

@@ -41,13 +41,13 @@
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.lvwFlowPay = new System.Windows.Forms.ListView();
+            this.lvwTicketPay = new System.Windows.Forms.ListView();
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.payclass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.result = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvwFlow = new System.Windows.Forms.ListView();
+            this.lvwTicketFlow = new System.Windows.Forms.ListView();
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.charge_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,8 +65,8 @@
             this.panelback.Controls.Add(this.lbl4);
             this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
-            this.panelback.Controls.Add(this.lvwFlowPay);
-            this.panelback.Controls.Add(this.lvwFlow);
+            this.panelback.Controls.Add(this.lvwTicketPay);
+            this.panelback.Controls.Add(this.lvwTicketFlow);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -207,26 +207,26 @@
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // lvwFlowPay
+            // lvwTicketPay
             // 
-            this.lvwFlowPay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwTicketPay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.no,
             this.payclass,
             this.paytype,
             this.amt,
             this.result});
-            this.lvwFlowPay.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lvwFlowPay.FullRowSelect = true;
-            this.lvwFlowPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwFlowPay.HideSelection = false;
-            this.lvwFlowPay.Location = new System.Drawing.Point(20, 344);
-            this.lvwFlowPay.MultiSelect = false;
-            this.lvwFlowPay.Name = "lvwFlowPay";
-            this.lvwFlowPay.Size = new System.Drawing.Size(482, 130);
-            this.lvwFlowPay.TabIndex = 67;
-            this.lvwFlowPay.UseCompatibleStateImageBehavior = false;
-            this.lvwFlowPay.View = System.Windows.Forms.View.Details;
-            this.lvwFlowPay.SelectedIndexChanged += new System.EventHandler(this.lvwFlowPay_SelectedIndexChanged);
+            this.lvwTicketPay.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwTicketPay.FullRowSelect = true;
+            this.lvwTicketPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwTicketPay.HideSelection = false;
+            this.lvwTicketPay.Location = new System.Drawing.Point(20, 344);
+            this.lvwTicketPay.MultiSelect = false;
+            this.lvwTicketPay.Name = "lvwTicketPay";
+            this.lvwTicketPay.Size = new System.Drawing.Size(482, 130);
+            this.lvwTicketPay.TabIndex = 67;
+            this.lvwTicketPay.UseCompatibleStateImageBehavior = false;
+            this.lvwTicketPay.View = System.Windows.Forms.View.Details;
+            this.lvwTicketPay.SelectedIndexChanged += new System.EventHandler(this.lvwTicketPay_SelectedIndexChanged);
             // 
             // no
             // 
@@ -254,25 +254,25 @@
             this.result.Text = "경과";
             this.result.Width = 160;
             // 
-            // lvwFlow
+            // lvwTicketFlow
             // 
-            this.lvwFlow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwTicketFlow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ticket_no,
             this.charge_amt,
             this.usage_amt,
             this.stat});
-            this.lvwFlow.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lvwFlow.FullRowSelect = true;
-            this.lvwFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwFlow.HideSelection = false;
-            this.lvwFlow.Location = new System.Drawing.Point(20, 142);
-            this.lvwFlow.MultiSelect = false;
-            this.lvwFlow.Name = "lvwFlow";
-            this.lvwFlow.Size = new System.Drawing.Size(483, 175);
-            this.lvwFlow.TabIndex = 67;
-            this.lvwFlow.UseCompatibleStateImageBehavior = false;
-            this.lvwFlow.View = System.Windows.Forms.View.Details;
-            this.lvwFlow.SelectedIndexChanged += new System.EventHandler(this.lvwFlow_SelectedIndexChanged);
+            this.lvwTicketFlow.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwTicketFlow.FullRowSelect = true;
+            this.lvwTicketFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwTicketFlow.HideSelection = false;
+            this.lvwTicketFlow.Location = new System.Drawing.Point(20, 142);
+            this.lvwTicketFlow.MultiSelect = false;
+            this.lvwTicketFlow.Name = "lvwTicketFlow";
+            this.lvwTicketFlow.Size = new System.Drawing.Size(483, 175);
+            this.lvwTicketFlow.TabIndex = 67;
+            this.lvwTicketFlow.UseCompatibleStateImageBehavior = false;
+            this.lvwTicketFlow.View = System.Windows.Forms.View.Details;
+            this.lvwTicketFlow.SelectedIndexChanged += new System.EventHandler(this.lvwTicketFlow_SelectedIndexChanged);
             // 
             // ticket_no
             // 
@@ -355,14 +355,14 @@
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ListView lvwFlow;
+        private System.Windows.Forms.ListView lvwTicketFlow;
         private System.Windows.Forms.ColumnHeader stat;
         private System.Windows.Forms.ColumnHeader ticket_no;
         private System.Windows.Forms.ColumnHeader charge_amt;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ColumnHeader usage_amt;
-        private System.Windows.Forms.ListView lvwFlowPay;
+        private System.Windows.Forms.ListView lvwTicketPay;
         private System.Windows.Forms.ColumnHeader paytype;
         private System.Windows.Forms.ColumnHeader amt;
         private System.Windows.Forms.ColumnHeader result;

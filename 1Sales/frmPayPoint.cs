@@ -95,16 +95,21 @@ namespace thepos
                         String data = mObj["ticketFlows"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        for (int i = 0; i < arr.Count; i++)
+                        if (arr.Count == 1)
                         {
-                            int charge = convert_number(arr[i]["pointCharge"].ToString());
-                            int usage = convert_number( arr[i]["pointUsage"].ToString());
+                            int charge = convert_number(arr[0]["pointCharge"].ToString());
+                            int usage = convert_number( arr[0]["pointUsage"].ToString());
 
                             if (charge < usage + netAmount)
                             {
                                 MessageBox.Show("포인트 잔액 부족.", "thepos");
                                 return;
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("티켓정보 오류. ticketFlow", "thepos");
+                            return;
                         }
                     }
                     else
@@ -162,7 +167,7 @@ namespace thepos
 
 
             // 티켓 저장
-            int ticket_cnt = SaveTicket(ticketNo, "");
+            int ticket_cnt = SaveTicket(ticketNo, mPayClass, "");
 
             if (ticket_cnt > 0)
             {

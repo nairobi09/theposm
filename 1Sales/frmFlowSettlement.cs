@@ -44,8 +44,8 @@ namespace thepos
             tbTicketNo.Font = font10bold;
 
             btnView.Font = font10;
-            lvwFlow.Font = font10;
-            lvwFlowPay.Font = font10;
+            lvwTicketFlow.Font = font10;
+            lvwTicketPay.Font = font10;
 
         }
 
@@ -56,8 +56,8 @@ namespace thepos
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
-            lvwFlow.SmallImageList = imgList;
-            lvwFlowPay.SmallImageList = imgList;
+            lvwTicketFlow.SmallImageList = imgList;
+            lvwTicketPay.SmallImageList = imgList;
 
             dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
@@ -82,6 +82,16 @@ namespace thepos
 
         }
 
+
+        struct point_back
+        {
+            public string pay_type;
+            public string the_no;
+            public int pay_seq;
+            public string tran_type;
+            public int amount;
+            public string result_code;
+        }
 
 
         private void btnView_Click(object sender, EventArgs e)
@@ -109,8 +119,8 @@ namespace thepos
         public void view_flow(String biz_date, String pos_no, String t_no)
         { 
 
-            lvwFlow.Items.Clear();
-            lvwFlowPay.Items.Clear();
+            lvwTicketFlow.Items.Clear();
+            lvwTicketPay.Items.Clear();
             mLvwOrderItem.Items.Clear();
 
 
@@ -171,11 +181,11 @@ namespace thepos
                         item.SubItems.Add(usage_amt.ToString("N0"));
                         item.SubItems.Add(tStat);
 
-                        lvwFlow.Items.Add(item);
+                        lvwTicketFlow.Items.Add(item);
 
                         if (ticket_no == t_no)
                         {
-                            lvwFlow.Items[i].Selected = true;
+                            lvwTicketFlow.Items[i].Selected = true;
                         }
                     }
                 }
@@ -208,15 +218,16 @@ namespace thepos
             mPanelMiddle.Controls.Clear();
         }
 
-        private void lvwFlow_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwTicketFlow_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lvwFlow.SelectedItems.Count == 0) return;
+            if (lvwTicketFlow.SelectedItems.Count == 0) return;
 
             //
-            mThisTicketFlow = (TicketFlow)lvwFlow.SelectedItems[0].Tag;
+            mThisTicketFlow = (TicketFlow)lvwTicketFlow.SelectedItems[0].Tag;
             String ticket_no = mThisTicketFlow.ticket_no;
 
-
+            //?
+            여기서 정산 순서, 프로세스를 고민...
             //
             view_orderitem(ticket_no);
 
@@ -249,7 +260,7 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
 
-                        if (arr[i]["payClass"].ToString() == "CH" | arr[i]["payClass"].ToString() == "US")
+                        if ((arr[i]["payClass"].ToString() == "CH" | arr[i]["payClass"].ToString() == "US") & arr[i]["isCancel"].ToString() != "Y")
                         {
                             MemOrderItem memOrderItem = new MemOrderItem();
 
@@ -278,7 +289,7 @@ namespace thepos
                             int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
                             lvwitem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
                             lvwitem.SubItems.Add(getDCRmemo(memOrderItem));                     // 6: 메모
-                            lvwitem.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
+                            lvwitem.SubItems.Add(lvwTicketFlow.SelectedItems[0].Tag.ToString());
                             mLvwOrderItem.Items.Add(lvwitem);
                         }
 
@@ -336,16 +347,6 @@ namespace thepos
         }
 
 
-        struct point_back
-        {
-            public string pay_type;
-            public string the_no;
-            public int pay_seq;
-            public string tran_type;
-            public int amount;
-            public string result_code;
-        }
-
 
 
         void view_flowpay(String ticket_no)
@@ -356,7 +357,7 @@ namespace thepos
 
 
 
-            lvwFlowPay.Items.Clear();
+            lvwTicketPay.Items.Clear();
 
             if (mThisTicketFlow.point_usage > 0)
             {
@@ -389,7 +390,7 @@ namespace thepos
 
                 item.Tag = bpoint;
 
-                lvwFlowPay.Items.Add(item);
+                lvwTicketPay.Items.Add(item);
             }
 
 
@@ -433,7 +434,7 @@ namespace thepos
 
                         item.Tag = bpoint;
 
-                        lvwFlowPay.Items.Add(item);
+                        lvwTicketPay.Items.Add(item);
                     }
                 }
                 else
@@ -487,18 +488,17 @@ namespace thepos
 
                         item.Tag = bpoint;
 
-                        lvwFlowPay.Items.Add(item);
-
+                        lvwTicketPay.Items.Add(item);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("결제데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
             }
 
 
@@ -509,15 +509,15 @@ namespace thepos
 
         }
 
-        private void lvwFlowPay_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwTicketPay_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             mLvwOrderItem.Items.Clear();
             
 
-            if (lvwFlowPay.SelectedItems.Count < 1) { return; }
+            if (lvwTicketPay.SelectedItems.Count < 1) { return; }
 
-            point_back bpoint = (point_back)lvwFlowPay.SelectedItems[0].Tag;
+            point_back bpoint = (point_back)lvwTicketPay.SelectedItems[0].Tag;
 
 
 
@@ -557,7 +557,7 @@ namespace thepos
                     int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
                     lvwitem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
                     lvwitem.SubItems.Add(getDCRmemo(memOrderItem));                     // 6: 메모
-                    lvwitem.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
+                    lvwitem.SubItems.Add(lvwTicketFlow.SelectedItems[0].Tag.ToString());
                     mLvwOrderItem.Items.Add(lvwitem);
 
                     ReCalculateAmount();
@@ -593,7 +593,7 @@ namespace thepos
                 int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
                 lvwitem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
                 lvwitem.SubItems.Add(getDCRmemo(memOrderItem));                     // 6: 메모
-                lvwitem.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
+                lvwitem.SubItems.Add(lvwTicketFlow.SelectedItems[0].Tag.ToString());
                 mLvwOrderItem.Items.Add(lvwitem);
 
 
@@ -625,9 +625,9 @@ namespace thepos
         private void btnCancelReq_Click(object sender, EventArgs e)
         {
 
-            if (lvwFlowPay.SelectedItems.Count < 1) { return; }
+            if (lvwTicketPay.SelectedItems.Count < 1) { return; }
 
-            point_back bpoint = (point_back)lvwFlowPay.SelectedItems[0].Tag;
+            point_back bpoint = (point_back)lvwTicketPay.SelectedItems[0].Tag;
 
             if (bpoint.result_code == "1") return;
 

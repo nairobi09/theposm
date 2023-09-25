@@ -226,7 +226,7 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 // 티켓 저장
-                int ticket_cnt = SaveTicket(ticketNo, "US"); // 정산에만  subClass 사용
+                int ticket_cnt = SaveTicket(ticketNo, mPayClass, "US"); // 정산에만  subClass 사용
 
                 if (ticket_cnt > 0)
                 {
@@ -394,7 +394,7 @@ namespace thepos
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
                     // 티켓 저장
-                    int ticket_cnt = SaveTicket("", "");
+                    int ticket_cnt = SaveTicket("", mPayClass, "");
 
                     if (ticket_cnt > 0)
                     {

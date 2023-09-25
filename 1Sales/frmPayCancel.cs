@@ -199,7 +199,7 @@ namespace thepos
                 {
                     ListViewItem lvItem = new ListViewItem();
                     lvItem.Tag = arr[i]["theNo"].ToString();
-                    lvItem.Text = arr[i]["paySeq"].ToString();
+
                     lvItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
                     lvItem.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
                     lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
@@ -221,6 +221,12 @@ namespace thepos
                     lvItem.SubItems.Add(arr[i]["theNo"].ToString());
                     lvItem.SubItems.Add(arr[i]["payType"].ToString());
                     lvItem.SubItems.Add(arr[i]["tranType"].ToString());
+
+                    if (arr[i]["payType"].ToString() == "PA" | arr[i]["payType"].ToString() == "PD")
+                        lvItem.Text = "1";
+                    else
+                        lvItem.Text = arr[i]["paySeq"].ToString();
+
 
                     if (arr[i]["isCancel"].ToString() == "Y")
                     {
@@ -898,68 +904,194 @@ namespace thepos
             }
             else if (pay_type == "PA" | pay_type == "PD")
             {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                PaymentPoint pPointAuth = new PaymentPoint();
 
-                for (int i = 0; i < mPaymentPoints.Count; i++)
+                String sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + theNo + "&tranType=A";
+                if (mRequestGet(sUrl))
                 {
-                    if (mPaymentPoints[i].the_no == the_no)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        idx = i; break;
+                        String data = mObj["paymentPoints"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            pPointAuth.site_id = arr[0]["siteId"].ToString();
+                            pPointAuth.biz_dt = arr[0]["bizDt"].ToString();
+                            pPointAuth.pos_no = arr[0]["posNo"].ToString();
+                            pPointAuth.the_no = arr[0]["theNo"].ToString();
+                            pPointAuth.ref_no = arr[0]["refNo"].ToString();
+
+                            pPointAuth.pay_date = arr[0]["payDate"].ToString();
+                            pPointAuth.pay_time = arr[0]["payTime"].ToString();
+                            pPointAuth.pay_type = arr[0]["payType"].ToString();
+                            pPointAuth.tran_type = arr[0]["tranType"].ToString();
+                            pPointAuth.pay_class = arr[0]["payClass"].ToString();
+                            pPointAuth.ticket_no = arr[0]["ticketNo"].ToString();
+                            pPointAuth.usage_no = arr[0]["usageNo"].ToString();
+                            pPointAuth.amount = convert_number(arr[0]["amount"].ToString());
+                            pPointAuth.is_cancel = arr[0]["isCancel"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("결제자료 오류. paymentPoint\n\n", "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제자료 오류. paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
                     }
                 }
-
-
-                //? 자동취소
-                cancel_order_and_payments(mPaymentPoints[idx].amount);
-
-                //?  서버전환
-                PaymentPoint paymentPoint = new PaymentPoint();
-                paymentPoint.site_id = mSiteId;
-                paymentPoint.biz_dt = mBizDate;
-                paymentPoint.pos_no = mPosNo;
-                paymentPoint.the_no = mPaymentPoints[idx].the_no;
-                paymentPoint.ref_no = mPaymentPoints[idx].ref_no;
-
-                paymentPoint.pay_date = get_today_date();
-                paymentPoint.pay_time = get_today_time();
-                paymentPoint.pay_type = mPaymentPoints[idx].pay_type;       // 결제구분
-                paymentPoint.tran_type = "C";       // 승인 A 취소 C
-                paymentPoint.pay_class = mPayClass;
-                paymentPoint.ticket_no = mPaymentPoints[idx].ticket_no;
-                paymentPoint.usage_no = mPaymentPoints[idx].usage_no;
-                paymentPoint.amount = mPaymentPoints[idx].amount;
-                paymentPoint.is_cancel = "Y";        // 취소여부
-                mPaymentPoints.Add(paymentPoint);
-
-
-                // 승인건에 취소마킹
-                PaymentPoint pc = new PaymentPoint();
-                pc = mPaymentPoints[idx];
-                pc.is_cancel = "Y";
-                mPaymentPoints[idx] = pc;
-
-
-
-                //?
-                for (int i = 0; i < mTicketFlowList.Count; i++)
+                else
                 {
-                    if (mTicketFlowList[i].ticket_no == mPaymentPoints[idx].ticket_no)
-                    {
-                        TicketFlow ticketFlow = new TicketFlow();
-                        ticketFlow = mTicketFlowList[i];
-                        ticketFlow.point_usage -= mPaymentPoints[idx].amount;
-
-                        mTicketFlowList[i] = ticketFlow;
-                    }
+                    MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
+                    return;
                 }
 
-                SetDisplayAlarm("I", "포인트 취소.");
-                MessageBox.Show("포인트 취소 성공", "thepos");
+                //if (pPointAuth.pay_type == "PA")  // PA or PD
+                {
+                    // 자동취소
+                    cancel_order_and_payments(pPointAuth.amount);
+
+                    parameters.Clear();
+                    parameters["siteId"] = mSiteId;
+                    parameters["bizDt"] = mBizDate;
+                    parameters["posNo"] = mPosNo;
+                    parameters["theNo"] = pPointAuth.the_no;
+                    parameters["refNo"] = pPointAuth.ref_no;
+
+                    parameters["payDate"] = get_today_date();
+                    parameters["payTime"] = get_today_time();
+                    parameters["payType"] = pPointAuth.pay_type;
+                    parameters["tranType"] = "C";
+                    parameters["payClass"] = pPointAuth.pay_class;
+
+                    parameters["ticketNo"] = pPointAuth.ticket_no;
+                    parameters["usageNo"] = pPointAuth.usage_no;
+                    parameters["amount"] = pPointAuth.amount + "";
+                    parameters["isCancel"] = "Y";
+
+                    if (mRequestPost("paymentPoint", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                            is_apply = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("오류 paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류 paymentPoint\n\n" + mErrorMsg, "thepos");
+                        return;
+                    }
+
+
+                    // 승인건에 취소마킹
+                    parameters.Clear();
+                    parameters["siteId"] = mSiteId;
+                    parameters["theNo"] = theNo;
+                    parameters["payType"] = pPointAuth.pay_type;
+                    parameters["tranType"] = "A";
+                    parameters["isCancel"] = "Y";
+
+                    if (mRequestPatch("paymentPoint", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("오류. paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
+                        return;
+                    }
+
+
+                    //? 포인트 취소시 ticket_flow 사용 차감 적용
+
+                    MessageBox.Show("티켓 포인트사용분이 차감됩니다.", "thepos");
+                    int point_usage = 0;
+
+                    sUrl = "ticketFlow?ticketNo=" + pPointAuth.ticket_no; ;
+                    if (mRequestGet(sUrl))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                            String data = mObj["ticketFlows"].ToString();
+                            JArray arr = JArray.Parse(data);
+
+                            if (arr.Count == 1)
+                            {
+                                point_usage  = convert_number(arr[0]["pointUsage"].ToString());
+                            }
+                            else
+                            {
+                                MessageBox.Show("티켓자료 오류. tickeetFlow\n\n", "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("티켓자료 오류. tickeetFlow\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류. tickeetFlow\n\n" + mErrorMsg, "thepos");
+                        return;
+                    }
+
+
+                    point_usage -= pPointAuth.amount;
+
+
+                    parameters.Clear();
+                    parameters["siteId"] = mSiteId;
+                    parameters["ticketNo"] = pPointAuth.ticket_no;
+                    parameters["pointUsage"] = point_usage + "";
+                    if (mRequestPatch("ticketFlow", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("티켓자료 오류. tickeetFlow\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류. tickeetFlow\n\n" + mErrorMsg, "thepos");
+                        return;
+                    }
+
+
+                    //
+                    SetDisplayAlarm("I", "포인트 취소.");
+                    MessageBox.Show("포인트 취소 성공", "thepos");
+
+                }
+
             }
 
-
+            //? 이거 뭐임?
             if (mPayClass == "ST")
             {
-                SaveTicket(ticketNo, "CH");  // CH 충전
+                SaveTicket(ticketNo, mPayClass, "CH");  // CH 충전
             }
 
 

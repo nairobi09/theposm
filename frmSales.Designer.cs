@@ -627,7 +627,7 @@ namespace thepos
             // 
             // btnPay2
             // 
-            this.btnPay2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnPay2.BackColor = System.Drawing.Color.SaddleBrown;
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay2, 2);
             this.btnPay2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -640,7 +640,7 @@ namespace thepos
             this.btnPay2.Size = new System.Drawing.Size(102, 152);
             this.btnPay2.TabIndex = 0;
             this.btnPay2.TabStop = false;
-            this.btnPay2.Text = "포인트\r\n결제\r\n";
+            this.btnPay2.Text = "포인트\r\n사용";
             this.btnPay2.UseVisualStyleBackColor = false;
             // 
             // timerSecondEvent
