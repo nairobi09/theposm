@@ -972,6 +972,7 @@ namespace thepos
 
         }
 
+
         void cancel_order_and_payments(int amount)
         {
             // 주문건 취소 세트
@@ -1158,7 +1159,6 @@ namespace thepos
         }
 
 
-
         int requestCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
         {
             int ret = 0;
@@ -1175,15 +1175,16 @@ namespace thepos
                 paymentNice p = new paymentNice();
                 ret = p.requestNiceCardCancel(pCardAuth, out pCardCancel);
             }
-            else if (mVanCode == "TOSS")
+            else if (mVanCode == "KOVAN")
             {
-                paymentToss p = new paymentToss();
-                ret = p.requestTossCardCancel(pCardAuth, out pCardCancel);
+                paymentKovan p = new paymentKovan();
+                //ret = p.requestKovanCardCancel(pCardAuth, out pCardCancel);
             }
 
 
             return ret;
         }
+
 
         int requestCashCancel(PaymentCash paymentCash, out PaymentCash pCashCancel)
         {
@@ -1201,10 +1202,10 @@ namespace thepos
                 paymentNice p = new paymentNice();
                 ret = p.requestNiceCashCancel(paymentCash, out pCashCancel);
             }
-            else if (mVanCode == "TOSS")
+            else if (mVanCode == "KOVAN")
             {
-                paymentToss p = new paymentToss();
-                ret = p.requestTossCashCancel(paymentCash, out pCashCancel);
+                paymentKovan p = new paymentKovan();
+                //ret = p.requestKovanCashCancel(paymentCash, out pCashCancel);
             }
 
             return ret;
