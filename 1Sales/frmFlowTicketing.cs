@@ -34,6 +34,7 @@ namespace thepos
             btnView.Font = font10;
             lvwList.Font = font10;
 
+            btnTicketReact.Font = font10;
 
         }
         private void initialize_the()
@@ -52,6 +53,7 @@ namespace thepos
             else
             {
                 // 띠지는 디폴트
+                btnTicketReact.Text = "띠지출력";
             }
 
 
@@ -98,7 +100,8 @@ namespace thepos
                         else if (tStat == "1") tStat = "발권";
                         else if (tStat == "2") tStat = "충전";
                         else if (tStat == "3") tStat = "사용중";
-                        else if (tStat == "4") tStat = "정산완료";
+                        else if (tStat == "4") tStat = "정산중";
+                        else if (tStat == "9") tStat = "정산완료";
 
                         item.Text = tStat;
                         item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
@@ -107,7 +110,7 @@ namespace thepos
                         ticketing_dt.Substring(8, 2) + ":" +
                         ticketing_dt.Substring(10, 2));
 
-                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
+                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2));
                         //item.SubItems.Add(bangle_no);
 
                         item.Tag = ticket_no;
@@ -152,7 +155,9 @@ namespace thepos
             {
                 // 티켓출력
 
+                String ticket_no = lvwList.SelectedItems[0].Tag.ToString();
 
+                print_ticket(ticket_no);
 
             }
         }

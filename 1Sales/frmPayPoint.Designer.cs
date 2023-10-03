@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayPoint));
             this.panelback = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnRequestAuth = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnReader = new System.Windows.Forms.Button();
             this.lblNetAmount = new System.Windows.Forms.Label();
             this.lblT1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -63,7 +61,6 @@
             this.groupBox1.Controls.Add(this.tbTicketNo);
             this.groupBox1.Controls.Add(this.btnRequestAuth);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnReader);
             this.groupBox1.Location = new System.Drawing.Point(23, 176);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(479, 179);
@@ -76,11 +73,11 @@
             this.tbTicketNo.Location = new System.Drawing.Point(121, 38);
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(209, 23);
-            this.tbTicketNo.TabIndex = 60;
+            this.tbTicketNo.TabIndex = 0;
             // 
             // btnRequestAuth
             // 
-            this.btnRequestAuth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnRequestAuth.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnRequestAuth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestAuth.ForeColor = System.Drawing.Color.White;
             this.btnRequestAuth.Location = new System.Drawing.Point(273, 79);
@@ -99,17 +96,6 @@
             this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 48;
             this.label1.Text = "티켓번호";
-            // 
-            // btnReader
-            // 
-            this.btnReader.BackColor = System.Drawing.Color.White;
-            this.btnReader.Image = ((System.Drawing.Image)(resources.GetObject("btnReader.Image")));
-            this.btnReader.Location = new System.Drawing.Point(150, 79);
-            this.btnReader.Name = "btnReader";
-            this.btnReader.Size = new System.Drawing.Size(102, 54);
-            this.btnReader.TabIndex = 50;
-            this.btnReader.UseVisualStyleBackColor = false;
-            this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
             // 
             // lblNetAmount
             // 
@@ -135,7 +121,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnClose.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -151,7 +137,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -159,7 +145,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(483, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "포인트결제";
+            this.lblTitle.Text = "포인트사용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmPayPoint
@@ -191,7 +177,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRequestAuth;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnReader;
         private System.Windows.Forms.TextBox tbTicketNo;
     }
 }

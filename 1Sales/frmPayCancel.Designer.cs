@@ -38,14 +38,14 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lvwPay = new System.Windows.Forms.ListView();
+            this.lvwList = new System.Windows.Forms.ListView();
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tran = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.t_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.theno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
@@ -64,12 +64,13 @@
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Controls.Add(this.btnCancel);
-            this.panelback.Controls.Add(this.lvwPay);
+            this.panelback.Controls.Add(this.lvwList);
             this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
+            this.panelback.Paint += new System.Windows.Forms.PaintEventHandler(this.panelback_Paint);
             // 
             // lblNestAmount
             // 
@@ -83,6 +84,7 @@
             this.lblNestAmount.Tag = "0";
             this.lblNestAmount.Text = "0";
             this.lblNestAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNestAmount.Click += new System.EventHandler(this.lblNestAmount_Click);
             // 
             // lblCancelAmount
             // 
@@ -96,6 +98,7 @@
             this.lblCancelAmount.Tag = "0";
             this.lblCancelAmount.Text = "0";
             this.lblCancelAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCancelAmount.Click += new System.EventHandler(this.lblCancelAmount_Click);
             // 
             // lblT3
             // 
@@ -105,6 +108,7 @@
             this.lblT3.Size = new System.Drawing.Size(77, 13);
             this.lblT3.TabIndex = 52;
             this.lblT3.Text = "미취소금액";
+            this.lblT3.Click += new System.EventHandler(this.lblT3_Click);
             // 
             // lblNetAmount
             // 
@@ -118,6 +122,7 @@
             this.lblNetAmount.Tag = "0";
             this.lblNetAmount.Text = "0";
             this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNetAmount.Click += new System.EventHandler(this.lblNetAmount_Click);
             // 
             // lblT2
             // 
@@ -127,6 +132,7 @@
             this.lblT2.Size = new System.Drawing.Size(63, 13);
             this.lblT2.TabIndex = 52;
             this.lblT2.Text = "취소금액";
+            this.lblT2.Click += new System.EventHandler(this.lblT2_Click);
             // 
             // lblT1
             // 
@@ -136,6 +142,7 @@
             this.lblT1.Size = new System.Drawing.Size(91, 13);
             this.lblT1.TabIndex = 53;
             this.lblT1.Text = "취소대상금액";
+            this.lblT1.Click += new System.EventHandler(this.lblT1_Click);
             // 
             // btnClose
             // 
@@ -163,6 +170,7 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "반품/취소";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // btnCancel
             // 
@@ -177,29 +185,30 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lvwPay
+            // lvwList
             // 
-            this.lvwPay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.no,
             this.pay_dt,
             this.pay_type,
             this.tran,
             this.amount,
             this.cc,
-            this.t_no,
+            this.theno,
             this.paytype,
             this.trantype});
-            this.lvwPay.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lvwPay.FullRowSelect = true;
-            this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwPay.HideSelection = false;
-            this.lvwPay.Location = new System.Drawing.Point(17, 178);
-            this.lvwPay.MultiSelect = false;
-            this.lvwPay.Name = "lvwPay";
-            this.lvwPay.Size = new System.Drawing.Size(485, 375);
-            this.lvwPay.TabIndex = 44;
-            this.lvwPay.UseCompatibleStateImageBehavior = false;
-            this.lvwPay.View = System.Windows.Forms.View.Details;
+            this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwList.FullRowSelect = true;
+            this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwList.HideSelection = false;
+            this.lvwList.Location = new System.Drawing.Point(17, 178);
+            this.lvwList.MultiSelect = false;
+            this.lvwList.Name = "lvwList";
+            this.lvwList.Size = new System.Drawing.Size(485, 375);
+            this.lvwList.TabIndex = 44;
+            this.lvwList.UseCompatibleStateImageBehavior = false;
+            this.lvwList.View = System.Windows.Forms.View.Details;
+            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwPay_SelectedIndexChanged);
             // 
             // no
             // 
@@ -231,9 +240,10 @@
             // 
             this.cc.Text = "취소";
             // 
-            // t_no
+            // theno
             // 
-            this.t_no.Width = 0;
+            this.theno.Text = "";
+            this.theno.Width = 0;
             // 
             // paytype
             // 
@@ -268,14 +278,14 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ListView lvwPay;
+        private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader no;
         private System.Windows.Forms.ColumnHeader pay_dt;
         private System.Windows.Forms.ColumnHeader pay_type;
         private System.Windows.Forms.ColumnHeader amount;
         private System.Windows.Forms.ColumnHeader cc;
         private System.Windows.Forms.ColumnHeader tran;
-        private System.Windows.Forms.ColumnHeader t_no;
+        private System.Windows.Forms.ColumnHeader theno;
         private System.Windows.Forms.ColumnHeader paytype;
         private System.Windows.Forms.Label lblCancelAmount;
         private System.Windows.Forms.Label lblNetAmount;

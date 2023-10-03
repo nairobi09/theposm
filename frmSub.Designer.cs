@@ -59,7 +59,7 @@
             // 
             // panelOrderSumBlack
             // 
-            this.panelOrderSumBlack.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelOrderSumBlack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.panelOrderSumBlack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountRest);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountReceive);
@@ -79,8 +79,8 @@
             // lblOrderAmountRest
             // 
             this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountRest.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblOrderAmountRest.Location = new System.Drawing.Point(151, 297);
+            this.lblOrderAmountRest.ForeColor = System.Drawing.Color.Gold;
+            this.lblOrderAmountRest.Location = new System.Drawing.Point(151, 317);
             this.lblOrderAmountRest.Name = "lblOrderAmountRest";
             this.lblOrderAmountRest.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountRest.Size = new System.Drawing.Size(153, 34);
@@ -90,8 +90,8 @@
             // lblOrderAmountReceive
             // 
             this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceive.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmountReceive.Location = new System.Drawing.Point(151, 244);
+            this.lblOrderAmountReceive.ForeColor = System.Drawing.Color.White;
+            this.lblOrderAmountReceive.Location = new System.Drawing.Point(151, 259);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
             this.lblOrderAmountReceive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountReceive.Size = new System.Drawing.Size(154, 34);
@@ -101,8 +101,8 @@
             // lblOrderAmountNet
             // 
             this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountNet.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblOrderAmountNet.Location = new System.Drawing.Point(151, 190);
+            this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Gold;
+            this.lblOrderAmountNet.Location = new System.Drawing.Point(151, 200);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
             this.lblOrderAmountNet.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountNet.Size = new System.Drawing.Size(154, 34);
@@ -112,8 +112,8 @@
             // lblOrderAmountDC
             // 
             this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDC.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmountDC.Location = new System.Drawing.Point(151, 134);
+            this.lblOrderAmountDC.ForeColor = System.Drawing.Color.White;
+            this.lblOrderAmountDC.Location = new System.Drawing.Point(151, 139);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
             this.lblOrderAmountDC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountDC.Size = new System.Drawing.Size(154, 34);
@@ -123,7 +123,7 @@
             // lblOrderAmount
             // 
             this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmount.ForeColor = System.Drawing.Color.Black;
+            this.lblOrderAmount.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmount.Location = new System.Drawing.Point(151, 75);
             this.lblOrderAmount.Name = "lblOrderAmount";
             this.lblOrderAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -135,8 +135,8 @@
             // 
             this.lblOrderAmountRestTitle.AutoSize = true;
             this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(23, 301);
+            this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
+            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(23, 321);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
             this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(124, 27);
             this.lblOrderAmountRestTitle.TabIndex = 0;
@@ -146,8 +146,8 @@
             // 
             this.lblOrderAmountReceiveTitle.AutoSize = true;
             this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceiveTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(25, 248);
+            this.lblOrderAmountReceiveTitle.ForeColor = System.Drawing.Color.White;
+            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(25, 263);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
             this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(124, 27);
             this.lblOrderAmountReceiveTitle.TabIndex = 0;
@@ -157,8 +157,8 @@
             // 
             this.lblOrderAmountChargeTitle.AutoSize = true;
             this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(25, 194);
+            this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
+            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(25, 204);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
             this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(124, 27);
             this.lblOrderAmountChargeTitle.TabIndex = 0;
@@ -168,8 +168,8 @@
             // 
             this.lblOrderAmountDCTitle.AutoSize = true;
             this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDCTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(25, 138);
+            this.lblOrderAmountDCTitle.ForeColor = System.Drawing.Color.White;
+            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(25, 143);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
             this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(124, 27);
             this.lblOrderAmountDCTitle.TabIndex = 0;
@@ -179,7 +179,7 @@
             // 
             this.lblOrderAmountSumTitle.AutoSize = true;
             this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountSumTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblOrderAmountSumTitle.ForeColor = System.Drawing.Color.White;
             this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(25, 79);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
             this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(124, 27);
@@ -188,7 +188,7 @@
             // 
             // panelOrderInfo
             // 
-            this.panelOrderInfo.BackColor = System.Drawing.Color.GhostWhite;
+            this.panelOrderInfo.BackColor = System.Drawing.Color.Lavender;
             this.panelOrderInfo.Controls.Add(this.panel_in_0);
             this.panelOrderInfo.Controls.Add(this.lvwOrderItem);
             this.panelOrderInfo.Controls.Add(this.panelOrderSumBlack);
@@ -200,7 +200,7 @@
             // 
             // panel_in_0
             // 
-            this.panel_in_0.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel_in_0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.panel_in_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_in_0.Controls.Add(this.lblSiteAlias);
             this.panel_in_0.Controls.Add(this.lblSiteName);
@@ -212,7 +212,7 @@
             // lblSiteAlias
             // 
             this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSiteAlias.ForeColor = System.Drawing.Color.Black;
+            this.lblSiteAlias.ForeColor = System.Drawing.Color.White;
             this.lblSiteAlias.Location = new System.Drawing.Point(19, 83);
             this.lblSiteAlias.Name = "lblSiteAlias";
             this.lblSiteAlias.Size = new System.Drawing.Size(297, 33);
@@ -223,7 +223,7 @@
             // lblSiteName
             // 
             this.lblSiteName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSiteName.ForeColor = System.Drawing.Color.Black;
+            this.lblSiteName.ForeColor = System.Drawing.Color.White;
             this.lblSiteName.Location = new System.Drawing.Point(22, 137);
             this.lblSiteName.Name = "lblSiteName";
             this.lblSiteName.Size = new System.Drawing.Size(294, 27);
@@ -233,7 +233,7 @@
             // 
             // lvwOrderItem
             // 
-            this.lvwOrderItem.BackColor = System.Drawing.Color.GhostWhite;
+            this.lvwOrderItem.BackColor = System.Drawing.Color.AliceBlue;
             this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.no,
             this.name,

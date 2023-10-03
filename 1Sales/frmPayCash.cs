@@ -226,7 +226,7 @@ namespace thepos
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
                 // 티켓 저장
-                int ticket_cnt = SaveTicket(ticketNo, mPayClass, "US"); // 정산에만  subClass 사용
+                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", 0);
 
                 if (ticket_cnt > 0)
                 {
@@ -234,7 +234,8 @@ namespace thepos
                     {
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
 
-                        //? 티켓 출력 필요
+                        // 티켓출력은 SaveTicketFlow() 내에서 한다.
+
                     }
                     else if (mPayClass == "CH") // 충전
                     {
@@ -249,6 +250,7 @@ namespace thepos
                         strAlarm += " 티켓정산 등록.";
 
                         //? 정산화면 리스트뷰 갱신 필요
+                        //
                     }
    
                     SetDisplayAlarm("I", strAlarm);
@@ -394,7 +396,7 @@ namespace thepos
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
                     // 티켓 저장
-                    int ticket_cnt = SaveTicket("", mPayClass, "");
+                    int ticket_cnt = SaveTicketFlow("", mPayClass, "", 0);
 
                     if (ticket_cnt > 0)
                     {

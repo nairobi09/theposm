@@ -17,6 +17,7 @@ using thepos._1Sales;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 using System.IO;
+using System.Web.UI.WebControls.Expressions;
 
 
 
@@ -68,6 +69,7 @@ namespace thepos
         public static Label mLblOrderAmountDC;
         public static Label mLblOrderAmountNet;
         public static Label mLblOrderAmountReceive;
+        public static Label mLblOrderAmountRest;
 
         public static int mNetAmount = 0;
         public static Timer mTimerAlarm;
@@ -90,8 +92,11 @@ namespace thepos
 
         public static Panel mPanelMiddle;
         public static Panel mPanelPayment;
+        public static Panel mPanelCancel;
 
         public static Button mBtnOrderWaiting;
+
+        public static TableLayoutPanel mTableLayoutPanelPayControl;
 
 
 
@@ -161,12 +166,14 @@ namespace thepos
             lblOrderAmountDCTitle.Font = font9;
             lblOrderAmountChargeTitle.Font = font9;
             lblOrderAmountReceiveTitle.Font = font9;
+            lblOrderAmountRestTitle.Font = font9;
 
             lblOrderAmount.Font = font14;
             lblOrderAmountDC.Font = font14;
             lblOrderAmountNet.Font = font14;
             lblOrderAmountReceive.Font = font14;
-            
+            lblOrderAmountRest.Font = font14;
+
             //lblKeyDisplay.Font = font13;
             tbKeyDisplay.Font = font14;
 
@@ -256,9 +263,14 @@ namespace thepos
             mLblOrderAmountDC = lblOrderAmountDC;
             mLblOrderAmountNet = lblOrderAmountNet;
             mLblOrderAmountReceive = lblOrderAmountReceive;
+            mLblOrderAmountRest = lblOrderAmountRest;
 
 
-            //
+            // 아래순서가 Z-order인것같음.
+            mPanelCancel = panelCancel;
+            mPanelCancel.Width = 529;
+            mPanelCancel.Height = 704;
+
             mPanelPayment = panelPayment;
             mPanelPayment.Width = 529;
             mPanelPayment.Height = 704;
@@ -267,6 +279,8 @@ namespace thepos
             mPanelMiddle.Width = 529;
             mPanelMiddle.Height = 704;
 
+
+            mTableLayoutPanelPayControl = tableLayoutPanelPayControl;
 
         }
 
@@ -638,6 +652,7 @@ namespace thepos
             else
             {
                 set_item_change_ordercnt(lv_idx, "add", 1);
+                lvwOrderItem.Items[lv_idx].EnsureVisible();
                 lvwOrderItem.Items[lv_idx].Selected = true;
             }
 
@@ -802,6 +817,14 @@ namespace thepos
 
         private void ClickedPayPoint()
         {
+            // 
+            if (mPayClass != "OR")
+            {
+                MessageBox.Show("[충전, 정산]의 결제는 [포인트사용]을 할 수 없습니다.", "thepos");
+                return;
+            }
+
+
             if (mNetAmount == 0) return;
 
             countup_the_no();
@@ -1106,10 +1129,13 @@ namespace thepos
         }
 
 
-        public static int SaveTicket(String ticket_no, String pay_class, String subClass)  // subClass : 사용 US,  충전 CH
+        public static int SaveTicketFlow(String ticket_no, String pay_class, String settle_class, int settle_amt)  
         {
-            // Order 0, charge 1, settlement 2
-            
+            // settle_class, settel_amt 는 정상시에만 사용
+            // 정산의 경우 subClass : 사용 US,  충전 CH
+            // 사용승인, 충전취소 -> 구분하여 업데이트
+
+
             if (pay_class == "OR") // 주문(접수-발권)
             {
                 int ticket_seq = 0;
@@ -1127,10 +1153,9 @@ namespace thepos
 
                             if (mTicketMedia == "BC")  // 띠지
                             {
-                                t_ticket_no = mTheNo + ticket_seq.ToString("000");
-
-                                //? 띠지 출력 필요
-                                MessageBox.Show("띠지 출력입니다... " + t_ticket_no);
+                                // 티켓번호 + 2자리로 변경
+                                //t_ticket_no = mTheNo + ticket_seq.ToString("000");
+                                t_ticket_no = mTheNo + ticket_seq.ToString("00");
 
                             }
                             else  // 팔찌
@@ -1139,7 +1164,7 @@ namespace thepos
                                 MessageBox.Show("스캐너 팔찌 입력입니다... ");
 
                                 //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
-                                t_ticket_no = mTheNo + ticket_seq.ToString("000");  //? 임시
+                                t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
 
                             }
 
@@ -1155,6 +1180,9 @@ namespace thepos
                             parameters["ticketingDt"] = get_today_date() + get_today_time();
                             parameters["chargeDt"] = "";
                             parameters["settlementDt"] = "";
+
+                            parameters["pointChargeCnt"] = "0";
+                            parameters["pointUsageCnt"] = "0";
 
                             parameters["pointCharge"] = "0";
                             parameters["pointUsage"] = "0";
@@ -1183,6 +1211,17 @@ namespace thepos
                                 MessageBox.Show("시스템오류 ticketFlow\n\n" + mErrorMsg, "thepos");
                                 return -1;
                             }
+
+
+                            //
+                            // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
+                            if (mTicketMedia == "BC")  // 띠지
+                            {
+                                //? 띠지 출력 필요
+                                //? 임시로 띠지대신 티켓을 출력합니다...
+                                print_ticket(t_ticket_no);
+
+                            }
                         } 
 
                     }
@@ -1197,6 +1236,7 @@ namespace thepos
                 int charge_amt = orderItem.amt;
                 String t_no = orderItem.ticket_no;
 
+                int prev_point_charge_cnt = 0;
                 int prev_point_charge = 0;
 
                 // GET
@@ -1215,6 +1255,7 @@ namespace thepos
                             return -1;
                         }
 
+                        prev_point_charge_cnt = convert_number(arr[0]["pointChargeCnt"].ToString());
                         prev_point_charge = convert_number(arr[0]["pointCharge"].ToString());
                     }
                     else
@@ -1232,6 +1273,7 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["ticketNo"] = t_no;
                 parameters["flowStep"] = "2";
+                parameters["pointChargeCnt"] = (++prev_point_charge_cnt) + "";
                 parameters["pointCharge"] = (prev_point_charge + charge_amt) + "";
                 parameters["chargeDt"] = get_today_date() + get_today_time();
 
@@ -1263,6 +1305,7 @@ namespace thepos
                 int usage_amout = mNetAmount;
                 String t_no = ticket_no;
 
+                int prev_point_usage_cnt = 0;
                 int prev_point_usage = 0;
 
                 // GET
@@ -1281,6 +1324,7 @@ namespace thepos
                             return -1;
                         }
 
+                        prev_point_usage_cnt = convert_number(arr[0]["pointUsageCnt"].ToString());
                         prev_point_usage = convert_number(arr[0]["pointUsage"].ToString());
                     }
                     else
@@ -1299,13 +1343,14 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["ticketNo"] = t_no;
                 parameters["flowStep"] = "3";
+                parameters["pointUsageCnt"] = (++prev_point_usage_cnt) + "";
                 parameters["pointUsage"] = prev_point_usage + usage_amout + "";
 
                 if (mRequestPatch("ticketFlow", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        MessageBox.Show("정상 사용 완료.", "thepos");
+                        //MessageBox.Show("정상 사용 완료.", "thepos");
                         return 1;
                     }
                     else
@@ -1320,13 +1365,9 @@ namespace thepos
                     return -1;
                 }
 
-
-
             }
             else if (pay_class == "ST") // 정산
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
-                int settle_amt = orderItem.amt;
 
                 String t_no = ticket_no;
 
@@ -1340,7 +1381,7 @@ namespace thepos
 
 
                 // GET
-                String sUrl = "ticketFlow?ticketNo=" + t_no;
+                String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
                 if (mRequestGet(sUrl))
                 {
@@ -1375,11 +1416,11 @@ namespace thepos
 
 
 
-                if (subClass == "US")  // 정산시 사용분 결제
+                if (settle_class == "US")  // 정산시 사용분 결제
                 {
                     settle_point_usage += settle_amt;
                 }
-                else if (subClass == "CH")  // 정산시 충전분 취소
+                else if (settle_class == "CH")  // 정산시 충전분 취소
                 {
                     settle_point_charge += settle_amt;
                 }
@@ -1387,12 +1428,16 @@ namespace thepos
 
                 if (point_usage == settle_point_usage & point_charge == settle_point_charge)
                 {
-                    flow_step = "4";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산(완료)4
+                    flow_step = "9";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산중4 - 정산(완료)9
 
                     if (mTicketType == "PD") // 후불
                     {
                         open_locker = "1"; //? 락커  폐쇄0 개방1
                     }
+                }
+                else
+                {
+                    flow_step = "4"; 
                 }
 
 
@@ -1412,7 +1457,7 @@ namespace thepos
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        MessageBox.Show("정상 사용 완료.", "thepos");
+                        //MessageBox.Show("정상 사용 완료.", "thepos");
                         return 1;
                     }
                     else
@@ -1431,6 +1476,385 @@ namespace thepos
 
             return 0;
         }
+
+
+
+        public static int CheckCancelTicketFlow(String auth_pay_class, String the_no, String ticket_no)
+        {
+            // return int
+            // 1 취소대상, 0 취소대상없음, -1 취소불가, -9 error
+
+
+            //발급(기본) 1 - *충전2 - 사용중3 - 정산중4 - 정산완료9
+
+            if (auth_pay_class == "OR")  // 주문건의 취소
+            {
+                String sUrl = "ticketFlow?theNo=" + the_no;
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        int MaxflowStep = 0;
+
+                        if (arr.Count > 0)
+                        {
+                            for (int i = 0; i < arr.Count; i++)
+                            {
+                                if (convert_number(arr[i]["flowStep"].ToString()) > MaxflowStep)
+                                {
+                                    MaxflowStep = convert_number(arr[0]["flowStep"].ToString());
+                                }
+                            }
+
+                            if (MaxflowStep == 1)
+                            {
+                                return 1;
+                            }
+                            else
+                            {
+                                MessageBox.Show("티켓사용이후 주문취소불가.", "thepos");
+                                return -1;
+                            }
+                        }
+                        else
+                        {
+                            // 티켓 대상없음
+                            return 0;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("데이터 오류2. ticketFlow", "thepos");
+                        return -9;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("데이터 오류3. ticketFlow", "thepos");
+                    return -9;
+                }
+
+            }
+            else if (auth_pay_class == "CH")  // 충전건의 취소
+            {
+                int flowstep = get_flowstep_by_ticketno(ticket_no);
+                // X : step,  -9 :error,  0 : 대상없음, -1 : 취소불가
+
+                if (flowstep == -9)
+                {
+                    MessageBox.Show("티켓데이터 오류. ticketFlow.", "thepos");
+                    return -9;
+                }
+
+                if (flowstep == 0) // 취소대상없음
+                {
+                    return 0;
+                }
+
+                //
+                if (flowstep > 2)
+                {
+                    MessageBox.Show("포인트사용이후 충전취소불가.", "thepos");
+                    return -1;
+                }
+
+                return 1;  // 정상취소 가능 
+
+            }
+            else if (auth_pay_class == "US")  // 포인트사용건의 취소
+            {
+                int flowstep = get_flowstep_by_ticketno(ticket_no);
+                // X : step,  -9 :error,  0 : 대상없음, -1 : 취소불가
+
+                if (flowstep == -9)
+                {
+                    MessageBox.Show("티켓데이터 오류. ticketFlow.", "thepos");
+                    return -9;
+                }
+
+                if (flowstep == 0) // 취소대상없음
+                {
+                    return 0;
+                }
+
+                //
+                if (flowstep > 3)
+                {
+                    MessageBox.Show("정산이후 포인트사용 취소불가.", "thepos");
+                    return -1;
+                }
+
+                return 1;
+
+            }
+            else if (auth_pay_class == "ST")  // 포인트사용분의 승인건의 취소
+            {
+                //? 고민중.. 취소불가 or 취소가능(정산중일경우)
+
+
+                int flowstep = get_flowstep_by_ticketno(ticket_no);
+                // X : step,  -9 :error,  0 : 대상없음, -1 : 취소불가
+
+                if (flowstep == -9)
+                {
+                    MessageBox.Show("티켓데이터 오류. ticketFlow.", "thepos");
+                    return -9;
+                }
+
+                if (flowstep == 0) // 취소대상없음
+                {
+                    return 0;
+                }
+
+
+                //
+                if (flowstep > 4) // 9:정산완료
+                {
+                    MessageBox.Show("정산완료된 건입니다. 단독 취소불가.", "thepos");
+                    return -1;
+                }
+
+                return 1;
+            }
+
+            return 0;
+        }
+
+
+        public static void CancelTicketFlow(String auth_pay_class, String the_no, String ticket_no, int cancel_amount)
+        {
+            //접수0 - 발급1 - *충전2 - 사용중3 - 정산중4 - 정산완료9
+
+            if (auth_pay_class == "OR")  // 주문건의 취소
+            {
+                //? 취소의 Action의 무엇?   delete or cancel marking
+
+
+            }
+            else if (auth_pay_class == "CH")  // 충전건의 취소
+            {
+                int charge_amount = 0;
+                int charge_cnt = 0;
+                String flow_step = "";
+
+                String sUrl = "ticketFlow?ticketNo=" + ticket_no;
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            charge_amount = convert_number(arr[0]["pointCharge"].ToString());
+                            charge_cnt = convert_number(arr[0]["pointChargeCnt"].ToString());
+
+                            charge_amount -= cancel_amount;
+                            charge_cnt--;
+
+                            if (charge_cnt == 0)
+                            {
+                                flow_step = "1";
+                            }
+                            else
+                            {
+                                flow_step = "2";
+                            }
+
+
+                            // 수정
+                            Dictionary<string, string> parameters = new Dictionary<string, string>();
+                            parameters.Clear();
+                            parameters["siteId"] = mSiteId;
+                            parameters["ticketNo"] = ticket_no;
+
+                            parameters["pointCharge"] = charge_amount + "";
+                            parameters["pointChargeCnt"] = charge_cnt + "";
+                            parameters["flowStep"] = flow_step;
+
+                            if (mRequestPatch("ticketFlow", parameters))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                MessageBox.Show("티켓데이터 포인트충전취소 오류. ticketFlow", "thepos");
+                return;
+
+            }
+            else if (auth_pay_class == "US")  // 포인트사용건의 취소
+            {
+                int usage_amount = 0;
+                int usage_cnt = 0;
+                String flow_step = "";
+
+                String sUrl = "ticketFlow?ticketNo=" + ticket_no;
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            usage_amount = convert_number(arr[0]["pointUsage"].ToString());
+                            usage_cnt = convert_number(arr[0]["pointUsageCnt"].ToString());
+
+                            usage_amount -= cancel_amount;
+                            usage_cnt--;
+
+                            if (usage_cnt == 0)
+                            {
+                                if (mTicketType == "PA")  //선불
+                                {
+                                    flow_step = "2";
+                                }
+                                else  // 후불
+                                { 
+                                    flow_step = "1";
+                                }
+                            }
+                            else
+                            {
+                                flow_step = "3";
+                            }
+
+                            // 수정
+                            Dictionary<string, string> parameters = new Dictionary<string, string>();
+                            parameters.Clear();
+                            parameters["siteId"] = mSiteId;
+                            parameters["ticketNo"] = ticket_no;
+
+                            parameters["pointUsage"] = usage_amount + "";
+                            parameters["pointUsageCnt"] = usage_cnt + "";
+                            parameters["flowStep"] = flow_step;
+
+                            if (mRequestPatch("ticketFlow", parameters))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                MessageBox.Show("티켓데이터 포인트사용취소 오류. ticketFlow", "thepos");
+                return;
+
+            }
+            else if (auth_pay_class == "ST")  // 포인트사용분의 승인건의 취소
+            {
+
+                //? 취소가 가능한게 맞는가?
+
+                int settle_charge_amount = 0;
+                int settle_usage_amount = 0;
+                int charge_amount = 0;
+                int usage_amount = 0;
+
+                String flow_step = "";
+
+                String sUrl = "ticketFlow?ticketNo=" + ticket_no;
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["ticketFlows"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            settle_charge_amount = convert_number(arr[0]["settlePointCharge"].ToString());
+                            settle_usage_amount = convert_number(arr[0]["settlePointUsage"].ToString());
+
+                            settle_usage_amount -= cancel_amount;
+
+
+                            if (settle_usage_amount == 0 & settle_charge_amount == 0)
+                            {
+                                flow_step = "3";  // 사용중
+                            }
+                            else
+                            {
+                                flow_step = "4";  // 정산중
+                            }
+
+                            // 수정
+                            Dictionary<string, string> parameters = new Dictionary<string, string>();
+                            parameters.Clear();
+                            parameters["siteId"] = mSiteId;
+                            parameters["ticketNo"] = ticket_no;
+
+                            parameters["settlePointUsage"] = settle_usage_amount + "";
+                            parameters["flowStep"] = flow_step;
+
+                            if (mRequestPatch("ticketFlow", parameters))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                MessageBox.Show("정산완료후 취소불가. ticketFlow", "thepos");
+                return;
+
+            }
+
+        }
+
+
+
+        public static int get_flowstep_by_ticketno(String ticket_no)
+        {
+            String sUrl = "ticketFlow?ticketNo=" + ticket_no;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count == 1)
+                    {
+                        return convert_number(arr[0]["flowStep"].ToString());
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return -9;
+                }
+            }
+            else
+            {
+                return -9;
+            }
+        }
+
 
 
 
@@ -1815,12 +2239,14 @@ namespace thepos
         {
             MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[lv_idx].Tag;
 
-
             if (orderItem.dcr_des == "E")
             {
                 SetDisplayAlarm("W", "전체할인 수량변경 불가.");
                 return;
             }
+
+            ListViewItem lvwItem = new ListViewItem();
+            lvwItem = lvwOrderItem.Items[lv_idx];
 
 
             if (jobtype == "add")
@@ -1836,17 +2262,26 @@ namespace thepos
                 return;
             }
 
-            lvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
-
 
             orderItem.dc_amount = get_dc_amount(orderItem);
-
-
             int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
-            lvwOrderItem.Items[lv_idx].SubItems[4].Text = orderItem.dc_amount.ToString("###,###,###");
-            lvwOrderItem.Items[lv_idx].SubItems[5].Text = net_amount.ToString("N0");        // net_amount
 
-            lvwOrderItem.Items[lv_idx].Tag = orderItem;
+
+            lvwItem.SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
+            lvwItem.SubItems[4].Text = orderItem.dc_amount.ToString("###,###,###");
+            lvwItem.SubItems[5].Text = net_amount.ToString("N0");        // net_amount
+            lvwItem.Tag = orderItem;
+
+            mLvwOrderItem.Items[lv_idx] = lvwItem;
+
+
+            /*
+            mLvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
+            mLvwOrderItem.Items[lv_idx].SubItems[4].Text = orderItem.dc_amount.ToString("###,###,###");
+            mLvwOrderItem.Items[lv_idx].SubItems[5].Text = net_amount.ToString("N0");        // net_amount
+            mLvwOrderItem.Items[lv_idx].Tag = orderItem;
+            */
+
         }
 
 
@@ -1919,7 +2354,8 @@ namespace thepos
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
             mLblOrderAmountNet.Text = mNetAmount.ToString("N0");
             mLblOrderAmountReceive.Text = "0";
-            
+            mLblOrderAmountRest.Text = "0";
+
             // Sub Screen 표시
             DisplaySubScreen();
         }
@@ -1951,6 +2387,7 @@ namespace thepos
                 mSublblOrderAmountDC.Text = mLblOrderAmountDC.Text;
                 mSublblOrderAmountNet.Text = mLblOrderAmountNet.Text;
                 mSublblOrderAmountReceive.Text = mLblOrderAmountReceive.Text;
+                mSublblOrderAmountRest.Text = mLblOrderAmountRest.Text;
             }
         }
 
@@ -2203,15 +2640,11 @@ namespace thepos
 
 
 
-
-
         private void btnKeyEnter_Click(object sender, EventArgs e)
         {
             //? 열린창에 따라서 순번대로 입력하는 UI로 기능 개발
             // 카드결제 창 - 3개 입력항목 감안
         }
-
-
 
 
 
@@ -2810,6 +3243,87 @@ namespace thepos
             return Encoding.Default.GetBytes(str).Length;
         }
 
+
+        public static void print_ticket(String t_ticket_no)
+        {
+            try
+            {
+                SerialPort port = new SerialPort();
+
+                if (port.IsOpen)
+                    port.Close();
+
+                port.PortName = mBillPrinterPort;
+                port.BaudRate = (int)9600; //고정
+                port.DataBits = (int)8;
+                port.Parity = Parity.None;
+                port.StopBits = StopBits.One;
+
+                port.Open();
+                port.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("영수증프린터 에러.\r\n" + ex.Message);
+                return;
+            }
+
+
+            try
+            {
+                const string ESC = "\u001B";
+                const string InitializePrinter = ESC + "@";
+
+                PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+                byte[] BytesValue = new byte[100];
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                String strPrint = ("티켓번호: " + t_ticket_no);
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                // 바코드
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(t_ticket_no));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
+
+
+                //? 영수증출력
+                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
+                return;
+            }
+
+        }
+
+
         public static void PrintBill(String headerBill, String bodyBill, String trailerBill, String theNo)
         {
             try
@@ -2894,6 +3408,7 @@ namespace thepos
 
         }
 
+
         private static string strPosTitle(string title)
         {
             int blen = Encoding.Default.GetBytes(title).Length;
@@ -2927,5 +3442,89 @@ namespace thepos
         }
 
 
+
+        public static int requestCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
+        {
+            int ret = 0;
+            PaymentCard cardCancel = new PaymentCard();
+            pCardCancel = cardCancel;
+
+            if (mVanCode == "KCP")
+            {
+                paymentKCP p = new paymentKCP();
+                ret = p.requestKcpCardCancel(pCardAuth, out pCardCancel);
+            }
+            else if (mVanCode == "NICE")
+            {
+                paymentNice p = new paymentNice();
+                ret = p.requestNiceCardCancel(pCardAuth, out pCardCancel);
+            }
+            else if (mVanCode == "KOVAN")
+            {
+                paymentKovan p = new paymentKovan();
+                //ret = p.requestKovanCardCancel(pCardAuth, out pCardCancel);
+            }
+
+
+            return ret;
+        }
+
+
+        public static int requestCashCancel(PaymentCash paymentCash, out PaymentCash pCashCancel)
+        {
+            int ret = 0;
+            PaymentCash cashCancel = new PaymentCash();
+            pCashCancel = cashCancel;
+
+            if (mVanCode == "KCP")
+            {
+                paymentKCP p = new paymentKCP();
+                ret = p.requestKcpCashCancel(paymentCash, out pCashCancel);
+            }
+            else if (mVanCode == "NICE")
+            {
+                paymentNice p = new paymentNice();
+                ret = p.requestNiceCashCancel(paymentCash, out pCashCancel);
+            }
+            else if (mVanCode == "KOVAN")
+            {
+                paymentKovan p = new paymentKovan();
+                //ret = p.requestKovanCashCancel(paymentCash, out pCashCancel);
+            }
+
+            return ret;
+        }
+
+
+        public static int requestEasyCancel(PaymentEasy paymentEasy, out PaymentEasy pEasyCancel)
+        {
+            int ret = 0;
+            PaymentEasy easyCancel = new PaymentEasy();
+            pEasyCancel = easyCancel;
+
+            if (mVanCode == "KCP")
+            {
+                paymentKCP p = new paymentKCP();
+                ret = p.requestKcpEasyCancel(paymentEasy, out pEasyCancel);
+            }
+            else if (mVanCode == "NICE")
+            {
+                paymentNice p = new paymentNice();
+                ret = p.requestNiceEasyCancel(paymentEasy, out pEasyCancel);
+            }
+            else if (mVanCode == "KOVAN")
+            {
+                paymentKovan p = new paymentKovan();
+                //   ret = p.requestKovanEasyCancel(paymentEasy, out pEasyCancel);
+            }
+
+            return ret;
+        }
+
+
+        public static void display_error_msg(string msg)
+        {
+            MessageBox.Show(msg, "thepos");
+        }
     }
 }

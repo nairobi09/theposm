@@ -101,6 +101,7 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(66, 46);
             this.btnReset.TabIndex = 83;
+            this.btnReset.TabStop = false;
             this.btnReset.Text = "초기화";
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -114,6 +115,7 @@
             this.btnCharge.Name = "btnCharge";
             this.btnCharge.Size = new System.Drawing.Size(133, 46);
             this.btnCharge.TabIndex = 82;
+            this.btnCharge.TabStop = false;
             this.btnCharge.Text = "충전";
             this.btnCharge.UseVisualStyleBackColor = false;
             this.btnCharge.Click += new System.EventHandler(this.btnCharge_Click);
@@ -133,6 +135,7 @@
             this.btn1t.Name = "btn1t";
             this.btn1t.Size = new System.Drawing.Size(66, 46);
             this.btn1t.TabIndex = 77;
+            this.btn1t.TabStop = false;
             this.btn1t.Text = "천원";
             this.btn1t.UseVisualStyleBackColor = true;
             this.btn1t.Click += new System.EventHandler(this.btn1t_Click);
@@ -143,6 +146,7 @@
             this.btn10t.Name = "btn10t";
             this.btn10t.Size = new System.Drawing.Size(66, 46);
             this.btn10t.TabIndex = 77;
+            this.btn10t.TabStop = false;
             this.btn10t.Text = "만원";
             this.btn10t.UseVisualStyleBackColor = true;
             this.btn10t.Click += new System.EventHandler(this.btn10t_Click);
@@ -153,6 +157,7 @@
             this.btn5t.Name = "btn5t";
             this.btn5t.Size = new System.Drawing.Size(66, 46);
             this.btn5t.TabIndex = 78;
+            this.btn5t.TabStop = false;
             this.btn5t.Text = "오천원";
             this.btn5t.UseVisualStyleBackColor = true;
             this.btn5t.Click += new System.EventHandler(this.btn5t_Click);
@@ -163,6 +168,7 @@
             this.btn50t.Name = "btn50t";
             this.btn50t.Size = new System.Drawing.Size(66, 46);
             this.btn50t.TabIndex = 78;
+            this.btn50t.TabStop = false;
             this.btn50t.Text = "오만원";
             this.btn50t.UseVisualStyleBackColor = true;
             this.btn50t.Click += new System.EventHandler(this.btn50t_Click);
@@ -173,6 +179,7 @@
             this.btn100t.Name = "btn100t";
             this.btn100t.Size = new System.Drawing.Size(66, 46);
             this.btn100t.TabIndex = 79;
+            this.btn100t.TabStop = false;
             this.btn100t.Text = "십만원";
             this.btn100t.UseVisualStyleBackColor = true;
             this.btn100t.Click += new System.EventHandler(this.btn100t_Click);

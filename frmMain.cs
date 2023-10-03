@@ -467,7 +467,14 @@ namespace thepos
             {
                 start_sub_screen();
             }
-            
+
+
+            //? 데이터 체크 임시
+            Form f = new frmCheckData();
+            f.Show();
+
+
+
         }
 
 

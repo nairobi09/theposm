@@ -41,10 +41,10 @@
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.lvwTicketPay = new System.Windows.Forms.ListView();
+            this.lvwTicketSettle = new System.Windows.Forms.ListView();
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.payclass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.result = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwTicketFlow = new System.Windows.Forms.ListView();
@@ -52,6 +52,8 @@
             this.charge_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.settle_charge_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.settle_usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
@@ -65,7 +67,7 @@
             this.panelback.Controls.Add(this.lbl4);
             this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
-            this.panelback.Controls.Add(this.lvwTicketPay);
+            this.panelback.Controls.Add(this.lvwTicketSettle);
             this.panelback.Controls.Add(this.lvwTicketFlow);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
@@ -79,7 +81,7 @@
             // 
             this.lbl4.AutoSize = true;
             this.lbl4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl4.Location = new System.Drawing.Point(21, 329);
+            this.lbl4.Location = new System.Drawing.Point(21, 358);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(53, 12);
             this.lbl4.TabIndex = 71;
@@ -96,7 +98,7 @@
             this.btnCancelReq.Size = new System.Drawing.Size(122, 48);
             this.btnCancelReq.TabIndex = 77;
             this.btnCancelReq.TabStop = false;
-            this.btnCancelReq.Text = "취소요청";
+            this.btnCancelReq.Text = " 충전취소";
             this.btnCancelReq.UseVisualStyleBackColor = false;
             this.btnCancelReq.Click += new System.EventHandler(this.btnCancelReq_Click);
             // 
@@ -168,9 +170,9 @@
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketNoTitle.Location = new System.Drawing.Point(187, 15);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
-            this.lblTicketNoTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblTicketNoTitle.Size = new System.Drawing.Size(47, 12);
             this.lblTicketNoTitle.TabIndex = 70;
-            this.lblTicketNoTitle.Text = "####-###";
+            this.lblTicketNoTitle.Text = "####-##";
             this.lblTicketNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbPosNo
@@ -207,41 +209,42 @@
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // lvwTicketPay
+            // lvwTicketSettle
             // 
-            this.lvwTicketPay.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwTicketSettle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.no,
             this.payclass,
-            this.paytype,
+            this.cnt,
             this.amt,
             this.result});
-            this.lvwTicketPay.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lvwTicketPay.FullRowSelect = true;
-            this.lvwTicketPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwTicketPay.HideSelection = false;
-            this.lvwTicketPay.Location = new System.Drawing.Point(20, 344);
-            this.lvwTicketPay.MultiSelect = false;
-            this.lvwTicketPay.Name = "lvwTicketPay";
-            this.lvwTicketPay.Size = new System.Drawing.Size(482, 130);
-            this.lvwTicketPay.TabIndex = 67;
-            this.lvwTicketPay.UseCompatibleStateImageBehavior = false;
-            this.lvwTicketPay.View = System.Windows.Forms.View.Details;
-            this.lvwTicketPay.SelectedIndexChanged += new System.EventHandler(this.lvwTicketPay_SelectedIndexChanged);
+            this.lvwTicketSettle.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lvwTicketSettle.FullRowSelect = true;
+            this.lvwTicketSettle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwTicketSettle.HideSelection = false;
+            this.lvwTicketSettle.Location = new System.Drawing.Point(20, 373);
+            this.lvwTicketSettle.MultiSelect = false;
+            this.lvwTicketSettle.Name = "lvwTicketSettle";
+            this.lvwTicketSettle.Size = new System.Drawing.Size(482, 98);
+            this.lvwTicketSettle.TabIndex = 67;
+            this.lvwTicketSettle.UseCompatibleStateImageBehavior = false;
+            this.lvwTicketSettle.View = System.Windows.Forms.View.Details;
+            this.lvwTicketSettle.SelectedIndexChanged += new System.EventHandler(this.lvwTicketSettle_SelectedIndexChanged);
             // 
             // no
             // 
-            this.no.Text = "####";
-            this.no.Width = 50;
+            this.no.Text = "발권번호";
+            this.no.Width = 100;
             // 
             // payclass
             // 
-            this.payclass.Text = "유형";
+            this.payclass.Text = "결제유형";
             this.payclass.Width = 80;
             // 
-            // paytype
+            // cnt
             // 
-            this.paytype.Text = "결제";
-            this.paytype.Width = 80;
+            this.cnt.Text = "건";
+            this.cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.cnt.Width = 40;
             // 
             // amt
             // 
@@ -252,7 +255,7 @@
             // result
             // 
             this.result.Text = "경과";
-            this.result.Width = 160;
+            this.result.Width = 120;
             // 
             // lvwTicketFlow
             // 
@@ -260,7 +263,9 @@
             this.ticket_no,
             this.charge_amt,
             this.usage_amt,
-            this.stat});
+            this.stat,
+            this.settle_charge_amt,
+            this.settle_usage_amt});
             this.lvwTicketFlow.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwTicketFlow.FullRowSelect = true;
             this.lvwTicketFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -268,7 +273,7 @@
             this.lvwTicketFlow.Location = new System.Drawing.Point(20, 142);
             this.lvwTicketFlow.MultiSelect = false;
             this.lvwTicketFlow.Name = "lvwTicketFlow";
-            this.lvwTicketFlow.Size = new System.Drawing.Size(483, 175);
+            this.lvwTicketFlow.Size = new System.Drawing.Size(483, 204);
             this.lvwTicketFlow.TabIndex = 67;
             this.lvwTicketFlow.UseCompatibleStateImageBehavior = false;
             this.lvwTicketFlow.View = System.Windows.Forms.View.Details;
@@ -277,7 +282,7 @@
             // ticket_no
             // 
             this.ticket_no.Text = "발권번호";
-            this.ticket_no.Width = 100;
+            this.ticket_no.Width = 80;
             // 
             // charge_amt
             // 
@@ -295,6 +300,16 @@
             // 
             this.stat.Text = "상태";
             this.stat.Width = 80;
+            // 
+            // settle_charge_amt
+            // 
+            this.settle_charge_amt.Text = "정산충전";
+            this.settle_charge_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // settle_usage_amt
+            // 
+            this.settle_usage_amt.Text = "정산사용";
+            this.settle_usage_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnClose
             // 
@@ -362,13 +377,15 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ColumnHeader usage_amt;
-        private System.Windows.Forms.ListView lvwTicketPay;
-        private System.Windows.Forms.ColumnHeader paytype;
+        private System.Windows.Forms.ListView lvwTicketSettle;
         private System.Windows.Forms.ColumnHeader amt;
         private System.Windows.Forms.ColumnHeader result;
         private System.Windows.Forms.Label lbl4;
         private System.Windows.Forms.Button btnCancelReq;
         private System.Windows.Forms.ColumnHeader payclass;
         private System.Windows.Forms.ColumnHeader no;
+        private System.Windows.Forms.ColumnHeader cnt;
+        private System.Windows.Forms.ColumnHeader settle_charge_amt;
+        private System.Windows.Forms.ColumnHeader settle_usage_amt;
     }
 }

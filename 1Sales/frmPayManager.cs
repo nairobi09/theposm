@@ -29,7 +29,6 @@ namespace thepos
         String selected_pos_no = "";
         String selected_the_no = "";
 
-        public static Panel mPanelCancel;
         public static System.Windows.Forms.ListView mLvwPayManager;
 
 
@@ -64,7 +63,6 @@ namespace thepos
 
             cbGoodsExcept.Font = font9;
             btnPrint.Font = font10;
-            btnCancel.Font = font10;
 
 
         }
@@ -98,9 +96,8 @@ namespace thepos
             mTbKeyDisplayController = tbBillNo;
 
 
-            mPanelCancel = panelCancel;
-            mPanelCancel.Width = this.Width;
-            mPanelCancel.Height = this.Height;
+            mPanelCancel.Width = 529;
+            mPanelCancel.Height = 704;
 
             mLvwPayManager = lvwPayManager;
 
@@ -219,10 +216,10 @@ namespace thepos
         }
 
 
-        public static void reviewList(String the_no, int select_index)
+        public static void reviewList(String biz_date, String the_no, int select_index)
         {
 
-            String sUrl = "payment?siteId=" + mSiteId + "&theNo=" + the_no + "&tranType=A";
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -407,13 +404,15 @@ namespace thepos
 
 
             //#
-            panelCancel.Controls.Clear();
-            panelCancel.Visible = true;
+            mPanelCancel.Controls.Clear();
+            mPanelCancel.Visible = true;
 
-            Form fForm = new frmPayCancel(the_no, "", pay_keep, select_idx) { TopLevel = false, TopMost = true };
+            Form fForm = new frmPayCancel(the_no, selected_biz_date, pay_keep, select_idx) { TopLevel = false, TopMost = true };
 
-            panelCancel.Controls.Add(fForm);
+            mPanelCancel.Controls.Add(fForm);
             fForm.Show();
+
+            mPanelCancel.BringToFront();
 
         }
 

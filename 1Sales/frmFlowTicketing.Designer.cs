@@ -65,11 +65,11 @@
             this.btnTicketReact.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTicketReact.ForeColor = System.Drawing.Color.White;
-            this.btnTicketReact.Location = new System.Drawing.Point(368, 625);
+            this.btnTicketReact.Location = new System.Drawing.Point(362, 625);
             this.btnTicketReact.Name = "btnTicketReact";
-            this.btnTicketReact.Size = new System.Drawing.Size(134, 48);
+            this.btnTicketReact.Size = new System.Drawing.Size(140, 48);
             this.btnTicketReact.TabIndex = 78;
-            this.btnTicketReact.Text = "띠지출력";
+            this.btnTicketReact.Text = "띠지출력/팔찌등록";
             this.btnTicketReact.UseVisualStyleBackColor = false;
             this.btnTicketReact.Click += new System.EventHandler(this.btnTicketReact_Click);
             // 
@@ -180,7 +180,7 @@
             // ticket_no
             // 
             this.ticket_no.Text = "티켓번호";
-            this.ticket_no.Width = 100;
+            this.ticket_no.Width = 90;
             // 
             // frmFlowTicketing
             // 

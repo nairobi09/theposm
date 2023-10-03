@@ -466,6 +466,9 @@ namespace thepos
             public String charge_dt;      // 충전일시
             public String settlement_dt;  // 정산일시
 
+            public int point_charge_cnt;        // 충전횟수
+            public int point_usage_cnt;         // 사용횟수
+
             public int point_charge;        // 충전금액
             public int point_usage;         // 사용금액(누적)
 

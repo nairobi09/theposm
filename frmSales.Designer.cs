@@ -82,6 +82,8 @@ namespace thepos
             this.lblTime = new System.Windows.Forms.Label();
             this.panelOrderSumWhile = new System.Windows.Forms.Panel();
             this.panelOrderSumBlack = new System.Windows.Forms.Panel();
+            this.lblOrderAmountRest = new System.Windows.Forms.Label();
+            this.lblOrderAmountRestTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountReceive = new System.Windows.Forms.Label();
             this.lblOrderAmountNet = new System.Windows.Forms.Label();
             this.lblOrderAmountDC = new System.Windows.Forms.Label();
@@ -121,6 +123,7 @@ namespace thepos
             this.timerAlarmDisplay = new System.Windows.Forms.Timer(this.components);
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
+            this.panelCancel = new System.Windows.Forms.Panel();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -866,6 +869,8 @@ namespace thepos
             // panelOrderSumBlack
             // 
             this.panelOrderSumBlack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountRest);
+            this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountRestTitle);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountReceive);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountNet);
             this.panelOrderSumBlack.Controls.Add(this.lblOrderAmountDC);
@@ -879,10 +884,32 @@ namespace thepos
             this.panelOrderSumBlack.Size = new System.Drawing.Size(142, 306);
             this.panelOrderSumBlack.TabIndex = 0;
             // 
+            // lblOrderAmountRest
+            // 
+            this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRest.ForeColor = System.Drawing.Color.Gold;
+            this.lblOrderAmountRest.Location = new System.Drawing.Point(34, 261);
+            this.lblOrderAmountRest.Name = "lblOrderAmountRest";
+            this.lblOrderAmountRest.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblOrderAmountRest.Size = new System.Drawing.Size(103, 21);
+            this.lblOrderAmountRest.TabIndex = 3;
+            this.lblOrderAmountRest.Text = "0";
+            // 
+            // lblOrderAmountRestTitle
+            // 
+            this.lblOrderAmountRestTitle.AutoSize = true;
+            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
+            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 249);
+            this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
+            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblOrderAmountRestTitle.TabIndex = 2;
+            this.lblOrderAmountRestTitle.Text = "반환금액";
+            // 
             // lblOrderAmountReceive
             // 
             this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceive.Location = new System.Drawing.Point(34, 229);
+            this.lblOrderAmountReceive.Location = new System.Drawing.Point(34, 213);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
             this.lblOrderAmountReceive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountReceive.Size = new System.Drawing.Size(103, 21);
@@ -893,7 +920,7 @@ namespace thepos
             // 
             this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountNet.Location = new System.Drawing.Point(34, 177);
+            this.lblOrderAmountNet.Location = new System.Drawing.Point(34, 161);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
             this.lblOrderAmountNet.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountNet.Size = new System.Drawing.Size(103, 21);
@@ -903,7 +930,7 @@ namespace thepos
             // lblOrderAmountDC
             // 
             this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDC.Location = new System.Drawing.Point(34, 120);
+            this.lblOrderAmountDC.Location = new System.Drawing.Point(34, 104);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
             this.lblOrderAmountDC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmountDC.Size = new System.Drawing.Size(103, 21);
@@ -913,7 +940,7 @@ namespace thepos
             // lblOrderAmount
             // 
             this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmount.Location = new System.Drawing.Point(34, 61);
+            this.lblOrderAmount.Location = new System.Drawing.Point(34, 45);
             this.lblOrderAmount.Name = "lblOrderAmount";
             this.lblOrderAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblOrderAmount.Size = new System.Drawing.Size(103, 21);
@@ -924,7 +951,7 @@ namespace thepos
             // 
             this.lblOrderAmountReceiveTitle.AutoSize = true;
             this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 217);
+            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 201);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
             this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountReceiveTitle.TabIndex = 0;
@@ -935,7 +962,7 @@ namespace thepos
             this.lblOrderAmountChargeTitle.AutoSize = true;
             this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 165);
+            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 149);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
             this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountChargeTitle.TabIndex = 0;
@@ -945,7 +972,7 @@ namespace thepos
             // 
             this.lblOrderAmountDCTitle.AutoSize = true;
             this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 108);
+            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 92);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
             this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountDCTitle.TabIndex = 0;
@@ -955,7 +982,7 @@ namespace thepos
             // 
             this.lblOrderAmountSumTitle.AutoSize = true;
             this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 49);
+            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 33);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
             this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountSumTitle.TabIndex = 0;
@@ -1342,12 +1369,22 @@ namespace thepos
             this.panelPayment.TabIndex = 52;
             this.panelPayment.Visible = false;
             // 
+            // panelCancel
+            // 
+            this.panelCancel.BackColor = System.Drawing.Color.DarkGray;
+            this.panelCancel.Location = new System.Drawing.Point(488, 56);
+            this.panelCancel.Name = "panelCancel";
+            this.panelCancel.Size = new System.Drawing.Size(140, 100);
+            this.panelCancel.TabIndex = 53;
+            this.panelCancel.Visible = false;
+            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ControlBox = false;
+            this.Controls.Add(this.panelCancel);
             this.Controls.Add(this.panelPayment);
             this.Controls.Add(this.panelMiddle);
             this.Controls.Add(this.btnOrderItemScrollDn);
@@ -1487,6 +1524,9 @@ namespace thepos
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panelMiddle;
         private System.Windows.Forms.Panel panelPayment;
+        private System.Windows.Forms.Label lblOrderAmountRest;
+        private System.Windows.Forms.Label lblOrderAmountRestTitle;
+        private System.Windows.Forms.Panel panelCancel;
     }
 }
 

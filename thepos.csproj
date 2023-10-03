@@ -237,6 +237,18 @@
     <Compile Include="frmBusiness.Designer.cs">
       <DependentUpon>frmBusiness.cs</DependentUpon>
     </Compile>
+    <Compile Include="1Sales\frmFlowSettleChargeCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmFlowSettleChargeCancel.Designer.cs">
+      <DependentUpon>frmFlowSettleChargeCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCheckData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCheckData.Designer.cs">
+      <DependentUpon>frmCheckData.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +383,9 @@
     <EmbeddedResource Include="1Sales\frmFlowLocker.resx">
       <DependentUpon>frmFlowLocker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmFlowSettleChargeCancel.resx">
+      <DependentUpon>frmFlowSettleChargeCancel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysDcrFavorite.resx">
       <DependentUpon>frmSysDcrFavorite.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,6 +436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBusiness.resx">
       <DependentUpon>frmBusiness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCheckData.resx">
+      <DependentUpon>frmCheckData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmExit.resx">
       <DependentUpon>frmExit.cs</DependentUpon>

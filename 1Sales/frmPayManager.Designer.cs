@@ -59,7 +59,6 @@
             this.paykeep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panelCancel = new System.Windows.Forms.Panel();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -248,7 +247,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 48);
             this.btnCancel.TabIndex = 48;
-            this.btnCancel.Text = "취소";
+            this.btnCancel.Text = "결제취소";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -362,20 +361,11 @@
             this.amount_card.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amount_card.Width = 80;
             // 
-            // panelCancel
-            // 
-            this.panelCancel.Location = new System.Drawing.Point(0, 0);
-            this.panelCancel.Name = "panelCancel";
-            this.panelCancel.Size = new System.Drawing.Size(68, 43);
-            this.panelCancel.TabIndex = 59;
-            this.panelCancel.Visible = false;
-            // 
             // frmPayManager
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(529, 704);
-            this.Controls.Add(this.panelCancel);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPayManager";
@@ -422,6 +412,5 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ColumnHeader paykeep;
         private System.Windows.Forms.ColumnHeader pay_type;
-        private System.Windows.Forms.Panel panelCancel;
     }
 }

@@ -158,7 +158,7 @@ namespace thepos
                         item.Tag = ticket_no;
 
                         item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
-                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
+                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2));
 
                         String tStr = "";
 
@@ -227,7 +227,7 @@ namespace thepos
                         item.Tag = ticket_no;
 
                         item.SubItems.Add(get_goods_name(arr[0]["itemCode"].ToString()));
-                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 3));
+                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2));
 
                         String tStr = "";
 
@@ -267,7 +267,7 @@ namespace thepos
             btnScanner.Enabled = false;
 
             Form fFlow;
-            fFlow = new frmScanner(21);  // ticket_no
+            fFlow = new frmScanner(20);  // ticket_no
             fFlow.ShowDialog();
 
 
@@ -277,7 +277,7 @@ namespace thepos
                 {
                     String dt = mScanString.Substring(4, 8);
                     String posno = mScanString.Substring(12, 2);
-                    String t7no = mScanString.Substring(14, 7);
+                    String t6no = mScanString.Substring(14, 6);
 
                     int yyyy = int.Parse(dt.Substring(0, 4));
                     int mm = int.Parse(dt.Substring(4, 2));
@@ -293,7 +293,7 @@ namespace thepos
                         }
                     }
 
-                    tbTicketNo.Text = t7no;
+                    tbTicketNo.Text = t6no;
 
 
                     view_flow(dt, posno, mScanString);
@@ -328,6 +328,18 @@ namespace thepos
                 SetDisplayAlarm("W", "금액오류");
                 return;
             }
+
+
+
+            int flowstep = get_flowstep_by_ticketno(lvwFlow.SelectedItems[0].Tag.ToString());
+
+            if (flowstep > 3) // 사용이상
+            {
+                MessageBox.Show("정산이후에는 포인트충전할 수 없습니다.", "thepos");
+                return;
+            }
+
+
 
 
 
