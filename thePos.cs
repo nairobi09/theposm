@@ -310,7 +310,7 @@ namespace thepos
             public String ref_no;   // 입장단위
             public String pay_date;
             public String pay_time;
-            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
+            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C0)
             public String tran_type;    // 승인 A 취소 C
             public String pay_class;
             public String ticket_no;
@@ -346,7 +346,7 @@ namespace thepos
             public String ref_no;   // 입장단위
             public String pay_date;
             public String pay_time;
-            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C9)
+            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C0)
             public String tran_type;    // 승인 A 취소 C
             public String pay_class;
             public String ticket_no;
@@ -549,7 +549,7 @@ namespace thepos
         {
             String name = "";
             if (code == "C1") name = "카드승인결제";
-            else if (code == "C9") name = "카드임의등록";
+            else if (code == "C0") name = "카드임의등록";
             else if (code == "R0") name = "단순현금";
             else if (code == "R1") name = "현금영수증";
             else if (code == "R9") name = "임의등록";

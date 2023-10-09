@@ -115,7 +115,7 @@ namespace thepos
             String ticketNo = "";
             String t7No = tbTicketNo.Text;
 
-            if (t7No.Length == 7 & pos_no.Length == 2)
+            if (t7No.Length == 6 & pos_no.Length == 2)
             {
                 ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + pos_no + t7No;
             }
@@ -152,7 +152,8 @@ namespace thepos
                         else if (tStat == "1") tStat = "발권";
                         else if (tStat == "2") tStat = "충전";
                         else if (tStat == "3") tStat = "사용중";
-                        else if (tStat == "4") tStat = "정산완료";
+                        else if (tStat == "4") tStat = "정산중";
+                        else if (tStat == "9") tStat = "정산완료";
 
                         item.Text = tStat;
                         item.Tag = ticket_no;

@@ -210,8 +210,15 @@ namespace thepos
 
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
+                    int settel_amt = netAmount;
+                    if (isComplex)
+                    {
+                        settel_amt = mComplexRcvAmount;
+                    }
+
                     // 티켓 저장
-                    int ticket_cnt = SaveTicketFlow("", mPayClass, "", 0);
+                    int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
 
                     if (ticket_cnt > 0)
                     {
@@ -354,7 +361,13 @@ namespace thepos
 
         private void frmPayEasy_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSales.ConsoleEnable();
+            if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+            {
+            }
+            else
+            {
+                frmSales.ConsoleEnable();
+            }
 
             mTbKeyDisplayController = saveKeyDisplay;
 

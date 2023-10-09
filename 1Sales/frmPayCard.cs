@@ -8,11 +8,11 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static thepos.frmFlowCharging;
+using static thepos.frmFlowSettlement;
 using static thepos.frmPayComplex;
 
 namespace thepos
 {
-
     public partial class frmPayCard : Form
     {
         RadioButton[] rbCard = new RadioButton[9];
@@ -46,6 +46,7 @@ namespace thepos
 
             saveKeyDisplay = mTbKeyDisplayController;
             mTbKeyDisplayController = mTbKeyDisplaySales;
+
 
             if (mPayClass == "OR")
             {
@@ -159,12 +160,21 @@ namespace thepos
 
             int order_cnt = 0;
 
-            if (paySeq == 1)
+            if (mPayClass == "ST")
             {
-                order_cnt = SaveOrder(ticketNo);
-                if (order_cnt == -1)
+                // 정산- 포인트 사용분의 재승인인 경우
+                //  - order, orderItem 은 그대로 유지.
+                //  - 결제는 새로 받고, 기존 payment, paymentPoint 결제는 취소마킹
+            }
+            else
+            {
+                if (paySeq == 1)
                 {
-                    return; // 심각한 에러..
+                    order_cnt = SaveOrder(ticketNo);
+                    if (order_cnt == -1)
+                    {
+                        return; // 심각한 에러.. 재로그인 요구
+                    }
                 }
             }
 
@@ -183,11 +193,13 @@ namespace thepos
             mPaymentCard.pos_no = mPosNo;
             mPaymentCard.the_no = mTheNo;
             mPaymentCard.ref_no = mRefNo;
+
             mPaymentCard.pay_date = get_today_date();
             mPaymentCard.pay_time = get_today_time();
-            mPaymentCard.pay_type = "C9";       // 결제구분 : 카드걀제(C1), 임의등록(C9)
+            mPaymentCard.pay_type = "C0";       // 결제구분 : 임의등록(C0), 카드걀제(C1)
             mPaymentCard.tran_type = "A";       // 승인 A 취소 C
             mPaymentCard.pay_class = mPayClass;
+
             mPaymentCard.ticket_no = ticketNo;
             mPaymentCard.pay_seq = paySeq;
             mPaymentCard.tran_date = "";
@@ -251,8 +263,15 @@ namespace thepos
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
+                int settel_amt = netAmount;
+                if (isComplex)
+                {
+                    settel_amt = mComplexRcvAmount;
+                }
+
                 // 티켓 저장
-                int ticket_cnt = SaveTicketFlow("", mPayClass, "", 0);
+                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
 
                 if (ticket_cnt > 0)
                 {
@@ -260,7 +279,7 @@ namespace thepos
                     {
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
 
-                        //? 티켓 출력 필요
+                        // 티켓출력은 SaveTicketFlow() 내에서 한다.
                     }
                     else if (mPayClass == "CH")
                     {
@@ -274,18 +293,26 @@ namespace thepos
                     {
                         strAlarm += " 티켓정산 등록.";
 
-                        //? 정산화면 리스트뷰 갱신 필요
+                        // 정산화면 리스트뷰 갱신
+                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
                     }
 
                     SetDisplayAlarm("I", strAlarm);
                 }
 
 
+                // 영수증 출력
                 if (mPaySeq == 1)
                     print_bill(mTheNo, "A", "", "0100"); // card
                 else
                     print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
+
+                // 정산-포인트사용분에 대해 취소마킹
+                if (mPayClass == "ST")
+                {
+                    cancel_point_payment(ticketNo);
+                }
 
 
                 mClearSaleForm();
@@ -356,7 +383,7 @@ namespace thepos
                 mPaymentCard.ref_no = mRefNo;
                 mPaymentCard.pay_date = get_today_date();
                 mPaymentCard.pay_time = get_today_time();
-                mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C9)
+                mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C0)
                 mPaymentCard.tran_type = "A";       // 승인 A 취소 C
                 mPaymentCard.pay_class = mPayClass;
                 mPaymentCard.ticket_no = ticketNo;
@@ -418,8 +445,15 @@ namespace thepos
 
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
+                    int settel_amt = netAmount;
+                    if (isComplex)
+                    {
+                        settel_amt = mComplexRcvAmount;
+                    }
+
                     // 티켓 저장
-                    int ticket_cnt = SaveTicketFlow("", mPayClass, "", 0);
+                    int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
 
                     if (ticket_cnt > 0)
                     {
@@ -441,7 +475,8 @@ namespace thepos
                         {
                             strAlarm += " 티켓정산 등록.";
 
-                            //? 정산화면 리스트뷰 갱신 필요
+                            // 정산화면 리스트뷰 갱신
+                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
                         }
 
                         SetDisplayAlarm("I", strAlarm);
@@ -453,6 +488,13 @@ namespace thepos
                         print_bill(mTheNo, "A", "", "0100"); // card
                     else
                         print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+
+                    
+                    // 정산-포인트사용분에 대해 취소마킹
+                    if (mPayClass == "ST")
+                    {
+                        cancel_point_payment(ticketNo);
+                    }
 
 
                     mClearSaleForm();
@@ -580,7 +622,13 @@ namespace thepos
 
         private void frmPayCard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSales.ConsoleEnable();
+            if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+            {
+            }
+            else
+            {
+                frmSales.ConsoleEnable();
+            }
 
             mTbKeyDisplayController = saveKeyDisplay;
 

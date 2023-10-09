@@ -41,6 +41,7 @@
             this.goods = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bangle_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -150,7 +151,8 @@
             this.stat,
             this.goods,
             this.ticket_dt,
-            this.ticket_no});
+            this.ticket_no,
+            this.bangle_no});
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -181,6 +183,11 @@
             // 
             this.ticket_no.Text = "티켓번호";
             this.ticket_no.Width = 90;
+            // 
+            // bangle_no
+            // 
+            this.bangle_no.Text = "팔찌번호";
+            this.bangle_no.Width = 90;
             // 
             // frmFlowTicketing
             // 
@@ -215,5 +222,6 @@
         private System.Windows.Forms.DateTimePicker dtBusiness;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnTicketReact;
+        private System.Windows.Forms.ColumnHeader bangle_no;
     }
 }

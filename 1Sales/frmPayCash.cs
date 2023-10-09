@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static thepos.frmFlowCharging;
+using static thepos.frmFlowSettlement;
 using static thepos.frmPayComplex;
 using System.IO;
 using System.Diagnostics;
@@ -56,7 +57,6 @@ namespace thepos
             mTbKeyDisplayController = tbIssuedMethodNo;
 
 
-
             if (mPayClass == "OR")
             {
 
@@ -73,9 +73,9 @@ namespace thepos
             }
             else if (mPayClass == "ST")
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
-                mRefNo = orderItem.ticket_no.Substring(0, 18);
-                ticketNo = orderItem.ticket_no;
+                //?
+                ticketNo = frmFlowSettlement.mSelectedTicketNo;
+                mRefNo = ticketNo.Substring(0, 18);
             }
 
 
@@ -135,18 +135,31 @@ namespace thepos
             //!
             int order_cnt = 0;
 
-            if (paySeq == 1)
+            if (mPayClass == "ST")
             {
-                // 주문 저장 1
-                order_cnt = SaveOrder(ticketNo);  // order. orderitem
-                if (order_cnt == -1)
+                // 정산- 포인트 사용분의 재승인인 경우
+                //  - order, orderItem 은 그대로 유지.
+                //  - 결제는 새로 받고, 기존 payment, paymentPoint 결제는 취소마킹
+            }
+            else
+            {
+                if (paySeq == 1)
                 {
-                    return; // 재로그인 요구
+                    // 주문 저장 1
+                    order_cnt = SaveOrder(ticketNo);  // order. orderitem
+                    if (order_cnt == -1)
+                    {
+                        return; // 재로그인 요구
+                    }
                 }
             }
 
 
-            SavePayment(paySeq, "Cash", netAmount);  // payment - 신규, 수정 포함
+            // 서버저장 payment
+            if (!SavePayment(paySeq, "Cash", netAmount))
+            {
+                return;
+            }
 
 
             // 결제 항목 저장
@@ -159,7 +172,7 @@ namespace thepos
 
             mPaymentCash.pay_date = get_today_date();
             mPaymentCash.pay_time = get_today_time();
-            mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1), 임의등록(R9)
+            mPaymentCash.pay_type = "R0";       // 결제구분 : 단순현금(R0), 현금영수중(R1)
             mPaymentCash.tran_type = "A";       // 승인 A 취소 C
             mPaymentCash.pay_class = mPayClass;
 
@@ -168,14 +181,16 @@ namespace thepos
             mPaymentCash.tran_date = "";
             mPaymentCash.amount = netAmount;    // 결제금액
             mPaymentCash.receipt_type = "";     // 현금영수증 : 개인 소득공제 1 사업자 지출증빙 2
-
             mPaymentCash.issued_method_no = ""; // 현금영수증 고객 식별번호
             mPaymentCash.auth_no = "";          // 승인번호
             mPaymentCash.tran_serial = "";      // tran_serial -> 취소시 tid입력
             mPaymentCash.is_cancel = "";        // 취소여부
             mPaymentCash.van_code = mVanCode;
 
-            SavePaymentCash(mPaymentCash);
+            if (!SavePaymentCash(mPaymentCash))
+            {
+                return;
+            }
 
 
 
@@ -225,8 +240,14 @@ namespace thepos
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
+                int settel_amt = netAmount;
+                if (isComplex)
+                {
+                    settel_amt = mComplexRcvAmount;
+                }
+
                 // 티켓 저장
-                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", 0);
+                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
 
                 if (ticket_cnt > 0)
                 {
@@ -235,7 +256,6 @@ namespace thepos
                         strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
 
                         // 티켓출력은 SaveTicketFlow() 내에서 한다.
-
                     }
                     else if (mPayClass == "CH") // 충전
                     {
@@ -249,12 +269,11 @@ namespace thepos
                     {
                         strAlarm += " 티켓정산 등록.";
 
-                        //? 정산화면 리스트뷰 갱신 필요
-                        //
+                        // 정산화면 리스트뷰 갱신 필요
+                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
                     }
    
                     SetDisplayAlarm("I", strAlarm);
-
                 }
 
 
@@ -264,7 +283,13 @@ namespace thepos
                 else
                     print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
-                
+
+                // 정산-포인트사용분에 대해 취소마킹
+                if (mPayClass == "ST")
+                {
+                    cancel_point_payment(ticketNo);
+                }
+
 
                 mClearSaleForm();
 
@@ -395,8 +420,15 @@ namespace thepos
 
                 if (isLast)     // 복합결제 마지막이거나 단독결제라면...
                 {
+                    int settel_amt = netAmount;
+                    if (isComplex)
+                    {
+                        settel_amt = mComplexRcvAmount;
+                    }
+
                     // 티켓 저장
-                    int ticket_cnt = SaveTicketFlow("", mPayClass, "", 0);
+                    int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
 
                     if (ticket_cnt > 0)
                     {
@@ -418,7 +450,8 @@ namespace thepos
                         {
                             strAlarm += " 티켓정산 등록.";
 
-                            //? 정산화면 리스트뷰 갱신 필요
+                            // 정산화면 리스트뷰 갱신
+                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
                         }
 
                         SetDisplayAlarm("I", strAlarm);
@@ -432,6 +465,13 @@ namespace thepos
                         print_bill(mTheNo, "A", "", "1101"); // cash card point easy
 
 
+                    // 정산-포인트사용분에 대해 취소마킹
+                    if (mPayClass == "ST")
+                    {
+                        cancel_point_payment(ticketNo);
+                    }
+
+
                     mClearSaleForm();
 
                     mPaySeq = 1;
@@ -441,6 +481,7 @@ namespace thepos
             }
 
         }
+
 
 
         private bool SavePaymentCash(PaymentCash mPaymentCash)
@@ -495,7 +536,6 @@ namespace thepos
 
 
 
-
         int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash mPaymentCash)
         {
             int ret = -1;
@@ -530,7 +570,6 @@ namespace thepos
 
             return ret;
         }
-
 
 
 
@@ -587,7 +626,14 @@ namespace thepos
 
         private void frmPayCash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSales.ConsoleEnable();
+            if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+            {
+
+            }
+            else
+            {
+                frmSales.ConsoleEnable();
+            }
 
             mTbKeyDisplayController = saveKeyDisplay;
 

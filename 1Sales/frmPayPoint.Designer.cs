@@ -32,9 +32,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnRequestAuth = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTicketNoTitle = new System.Windows.Forms.Label();
             this.lblNetAmount = new System.Windows.Forms.Label();
-            this.lblT1 = new System.Windows.Forms.Label();
+            this.lblNetAmountTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
@@ -47,7 +47,7 @@
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelback.Controls.Add(this.groupBox1);
             this.panelback.Controls.Add(this.lblNetAmount);
-            this.panelback.Controls.Add(this.lblT1);
+            this.panelback.Controls.Add(this.lblNetAmountTitle);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -60,7 +60,7 @@
             // 
             this.groupBox1.Controls.Add(this.tbTicketNo);
             this.groupBox1.Controls.Add(this.btnRequestAuth);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblTicketNoTitle);
             this.groupBox1.Location = new System.Drawing.Point(23, 176);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(479, 179);
@@ -88,14 +88,14 @@
             this.btnRequestAuth.UseVisualStyleBackColor = false;
             this.btnRequestAuth.Click += new System.EventHandler(this.btnRequestPoint_Click);
             // 
-            // label1
+            // lblTicketNoTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 14);
-            this.label1.TabIndex = 48;
-            this.label1.Text = "티켓번호";
+            this.lblTicketNoTitle.AutoSize = true;
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(28, 43);
+            this.lblTicketNoTitle.Name = "lblTicketNoTitle";
+            this.lblTicketNoTitle.Size = new System.Drawing.Size(63, 14);
+            this.lblTicketNoTitle.TabIndex = 48;
+            this.lblTicketNoTitle.Text = "티켓번호";
             // 
             // lblNetAmount
             // 
@@ -110,14 +110,14 @@
             this.lblNetAmount.Text = "0";
             this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblT1
+            // lblNetAmountTitle
             // 
-            this.lblT1.AutoSize = true;
-            this.lblT1.Location = new System.Drawing.Point(50, 128);
-            this.lblT1.Name = "lblT1";
-            this.lblT1.Size = new System.Drawing.Size(91, 14);
-            this.lblT1.TabIndex = 48;
-            this.lblT1.Text = "결제대상금액";
+            this.lblNetAmountTitle.AutoSize = true;
+            this.lblNetAmountTitle.Location = new System.Drawing.Point(50, 128);
+            this.lblNetAmountTitle.Name = "lblNetAmountTitle";
+            this.lblNetAmountTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblNetAmountTitle.TabIndex = 48;
+            this.lblNetAmountTitle.Text = "결제대상금액";
             // 
             // btnClose
             // 
@@ -171,12 +171,12 @@
 
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Label lblNetAmount;
-        private System.Windows.Forms.Label lblT1;
+        private System.Windows.Forms.Label lblNetAmountTitle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRequestAuth;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTicketNoTitle;
         private System.Windows.Forms.TextBox tbTicketNo;
     }
 }

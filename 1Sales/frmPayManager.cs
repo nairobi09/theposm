@@ -128,7 +128,7 @@ namespace thepos
 
 
             //!
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -162,13 +162,10 @@ namespace thepos
 
 
                         lvItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
-                        lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
+                        //lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
                         lvItem.SubItems.Add(arr[i]["posNo"].ToString());
 
-                        if (arr[i]["tranType"].ToString() == "C")
-                            lvItem.SubItems.Add((-convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
-                        else
-                            lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
+                        lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
 
                         //? 할인내용 적용 필요
                         lvItem.SubItems.Add(arr[i]["isDc"].ToString());
@@ -181,7 +178,7 @@ namespace thepos
                             lvItem.SubItems.Add("");
 
 
-                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
+                        //lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
 
                         lvItem.SubItems.Add(pay_keep);
@@ -219,7 +216,7 @@ namespace thepos
         public static void reviewList(String biz_date, String the_no, int select_index)
         {
 
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&theNo=" + the_no + "&tranType=A";
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&theNo=" + the_no;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -253,13 +250,8 @@ namespace thepos
 
 
                         lvItem.SubItems.Add(get_MMddHHmm(arr[0]["payDate"].ToString(), arr[0]["payTime"].ToString()));
-                        lvItem.SubItems.Add(get_tran_type_name(arr[0]["tranType"].ToString()));
                         lvItem.SubItems.Add(arr[0]["posNo"].ToString());
-
-                        if (arr[0]["tranType"].ToString() == "C")
-                            lvItem.SubItems.Add((-convert_number(arr[0]["netAmount"].ToString())).ToString("N0"));
-                        else
-                            lvItem.SubItems.Add((convert_number(arr[0]["netAmount"].ToString())).ToString("N0"));
+                        lvItem.SubItems.Add((convert_number(arr[0]["netAmount"].ToString())).ToString("N0"));
 
                         //? 할인내용 적용 필요
                         lvItem.SubItems.Add(arr[0]["isDc"].ToString());
@@ -270,9 +262,6 @@ namespace thepos
                             lvItem.SubItems.Add("취소중");
                         else
                             lvItem.SubItems.Add("");
-
-
-                        lvItem.SubItems.Add(arr[0]["tranType"].ToString());
 
 
                         lvItem.SubItems.Add(pay_keep);
@@ -341,12 +330,12 @@ namespace thepos
             }
 
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
-            String tran_type = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(trantype)].Text;
             String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 아래와 동일
             String cancel_name = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel)].Text;
 
+            String tran_type = "A";
             if (cancel_name == "Y" | cancel_name == "취소됨")
             {
                 tran_type = "C";
@@ -365,13 +354,13 @@ namespace thepos
             }
 
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
-            String tran_type = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(trantype)].Text;
             String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
 
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
             String cancel_name = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel)].Text;
 
+            String tran_type = "A";
             if (cancel_name == "Y" | cancel_name == "취소됨")
             {
                 tran_type = "C";

@@ -48,6 +48,8 @@ namespace thepos
         {
             //fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
             fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
+            //fontCollection.AddFontFile("Font\\TOSSPRODUCTSANSTTF-MEDIUM.TTF");
+
 
             font5 = new Font(fontCollection.Families[0], 5f);
             font8 = new Font(fontCollection.Families[0], 8f);

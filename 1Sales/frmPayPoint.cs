@@ -41,9 +41,16 @@ namespace thepos
             lblTitle.Font = font12;
             btnClose.Font = font12;
 
-            lblNetAmount.Font = font10;
 
-            lblT1.Font = font10;
+            lblNetAmountTitle.Font = font12;
+            lblNetAmount.Font = font12;
+
+
+            lblTicketNoTitle.Font = font12;
+            tbTicketNo.Font = font12;
+
+            btnRequestAuth.Font = font12;
+
         }
 
         private void initial_the()

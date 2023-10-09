@@ -50,12 +50,10 @@
             this.pay_class = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.order_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tran_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paykeep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -271,12 +269,10 @@
             this.pay_class,
             this.pay_type,
             this.order_dt,
-            this.tran_type,
             this.pos_no,
             this.amount,
             this.dc,
             this.cancel,
-            this.trantype,
             this.paykeep});
             this.lvwPayManager.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwPayManager.FullRowSelect = true;
@@ -312,11 +308,6 @@
             this.order_dt.Text = "거래시간";
             this.order_dt.Width = 90;
             // 
-            // tran_type
-            // 
-            this.tran_type.Text = "구분";
-            this.tran_type.Width = 40;
-            // 
             // pos_no
             // 
             this.pos_no.Text = "포스";
@@ -338,11 +329,6 @@
             // 
             this.cancel.Text = "취소";
             this.cancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // trantype
-            // 
-            this.trantype.Text = "trantype";
-            this.trantype.Width = 0;
             // 
             // paykeep
             // 
@@ -398,9 +384,7 @@
         private System.Windows.Forms.ColumnHeader dc;
         private System.Windows.Forms.ColumnHeader cancel;
         private System.Windows.Forms.ColumnHeader order_dt;
-        private System.Windows.Forms.ColumnHeader tran_type;
         private System.Windows.Forms.TextBox lblLayoutBill;
-        private System.Windows.Forms.ColumnHeader trantype;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Button btnScanner;

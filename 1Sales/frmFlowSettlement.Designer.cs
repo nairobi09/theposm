@@ -56,6 +56,7 @@
             this.settle_usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnSettleBill = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +65,7 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.btnSettleBill);
             this.panelback.Controls.Add(this.lbl4);
             this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
@@ -93,12 +95,12 @@
             this.btnCancelReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancelReq.ForeColor = System.Drawing.Color.White;
-            this.btnCancelReq.Location = new System.Drawing.Point(380, 481);
+            this.btnCancelReq.Location = new System.Drawing.Point(289, 483);
             this.btnCancelReq.Name = "btnCancelReq";
-            this.btnCancelReq.Size = new System.Drawing.Size(122, 48);
+            this.btnCancelReq.Size = new System.Drawing.Size(104, 42);
             this.btnCancelReq.TabIndex = 77;
             this.btnCancelReq.TabStop = false;
-            this.btnCancelReq.Text = " 충전취소";
+            this.btnCancelReq.Text = "충전취소";
             this.btnCancelReq.UseVisualStyleBackColor = false;
             this.btnCancelReq.Click += new System.EventHandler(this.btnCancelReq_Click);
             // 
@@ -233,7 +235,7 @@
             // no
             // 
             this.no.Text = "발권번호";
-            this.no.Width = 100;
+            this.no.Width = 70;
             // 
             // payclass
             // 
@@ -282,19 +284,19 @@
             // ticket_no
             // 
             this.ticket_no.Text = "발권번호";
-            this.ticket_no.Width = 80;
+            this.ticket_no.Width = 70;
             // 
             // charge_amt
             // 
             this.charge_amt.Text = "충전금액";
             this.charge_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.charge_amt.Width = 80;
+            this.charge_amt.Width = 70;
             // 
             // usage_amt
             // 
             this.usage_amt.Text = "사용금액";
             this.usage_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.usage_amt.Width = 80;
+            this.usage_amt.Width = 70;
             // 
             // stat
             // 
@@ -305,11 +307,13 @@
             // 
             this.settle_charge_amt.Text = "정산충전";
             this.settle_charge_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.settle_charge_amt.Width = 70;
             // 
             // settle_usage_amt
             // 
             this.settle_usage_amt.Text = "정산사용";
             this.settle_usage_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.settle_usage_amt.Width = 70;
             // 
             // btnClose
             // 
@@ -338,6 +342,21 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "정산";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSettleBill
+            // 
+            this.btnSettleBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSettleBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettleBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSettleBill.ForeColor = System.Drawing.Color.White;
+            this.btnSettleBill.Location = new System.Drawing.Point(398, 483);
+            this.btnSettleBill.Name = "btnSettleBill";
+            this.btnSettleBill.Size = new System.Drawing.Size(104, 42);
+            this.btnSettleBill.TabIndex = 78;
+            this.btnSettleBill.TabStop = false;
+            this.btnSettleBill.Text = "정산영수증";
+            this.btnSettleBill.UseVisualStyleBackColor = false;
+            this.btnSettleBill.Click += new System.EventHandler(this.btnSettleBill_Click);
             // 
             // frmFlowSettlement
             // 
@@ -387,5 +406,6 @@
         private System.Windows.Forms.ColumnHeader cnt;
         private System.Windows.Forms.ColumnHeader settle_charge_amt;
         private System.Windows.Forms.ColumnHeader settle_usage_amt;
+        private System.Windows.Forms.Button btnSettleBill;
     }
 }

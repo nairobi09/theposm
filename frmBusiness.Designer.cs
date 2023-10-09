@@ -33,7 +33,7 @@
             this.btnBizClose = new System.Windows.Forms.Button();
             this.btnBizCloseCancel = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBusinessTitle = new System.Windows.Forms.Label();
             this.panelNumpad = new System.Windows.Forms.Panel();
             this.btnKey1 = new System.Windows.Forms.Button();
             this.btnKey2 = new System.Windows.Forms.Button();
@@ -75,7 +75,7 @@
             this.panel1.Controls.Add(this.btnBizClose);
             this.panel1.Controls.Add(this.btnBizCloseCancel);
             this.panel1.Controls.Add(this.btnBizOpen);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblBusinessTitle);
             this.panel1.Controls.Add(this.panelNumpad);
             this.panel1.Location = new System.Drawing.Point(767, 58);
             this.panel1.Name = "panel1";
@@ -86,7 +86,7 @@
             // 
             this.btnBizClose.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBizClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizClose.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizClose.ForeColor = System.Drawing.Color.White;
             this.btnBizClose.Location = new System.Drawing.Point(15, 217);
             this.btnBizClose.Name = "btnBizClose";
@@ -101,7 +101,7 @@
             // 
             this.btnBizCloseCancel.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBizCloseCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizCloseCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizCloseCancel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizCloseCancel.ForeColor = System.Drawing.Color.White;
             this.btnBizCloseCancel.Location = new System.Drawing.Point(151, 217);
             this.btnBizCloseCancel.Name = "btnBizCloseCancel";
@@ -116,7 +116,7 @@
             // 
             this.btnBizOpen.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBizOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizOpen.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpen.ForeColor = System.Drawing.Color.White;
             this.btnBizOpen.Location = new System.Drawing.Point(15, 131);
             this.btnBizOpen.Name = "btnBizOpen";
@@ -127,16 +127,16 @@
             this.btnBizOpen.UseVisualStyleBackColor = false;
             this.btnBizOpen.Click += new System.EventHandler(this.btnBizOpen_Click);
             // 
-            // label1
+            // lblBusinessTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(66, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 22);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "영업관리";
+            this.lblBusinessTitle.AutoSize = true;
+            this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBusinessTitle.ForeColor = System.Drawing.Color.White;
+            this.lblBusinessTitle.Location = new System.Drawing.Point(66, 36);
+            this.lblBusinessTitle.Name = "lblBusinessTitle";
+            this.lblBusinessTitle.Size = new System.Drawing.Size(102, 22);
+            this.lblBusinessTitle.TabIndex = 26;
+            this.lblBusinessTitle.Text = "영업관리";
             // 
             // panelNumpad
             // 
@@ -153,9 +153,9 @@
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
             this.panelNumpad.Location = new System.Drawing.Point(25, 461);
-            this.panelNumpad.Margin = new System.Windows.Forms.Padding(30, 30, 30, 30);
+            this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
-            this.panelNumpad.Padding = new System.Windows.Forms.Padding(30, 30, 30, 30);
+            this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Size = new System.Drawing.Size(190, 218);
             this.panelNumpad.TabIndex = 25;
             // 
@@ -575,7 +575,7 @@
         private System.Windows.Forms.Button btnKey8;
         private System.Windows.Forms.Button btnKey7;
         private System.Windows.Forms.Button btnKeyClear;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBusinessTitle;
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnBizOpen;
         private System.Windows.Forms.Button btnBizClose;

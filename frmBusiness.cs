@@ -56,6 +56,8 @@ namespace thepos
             btnClose.Font = font12;
 
 
+            lblBusinessTitle.Font = font14;
+
             btnBizOpen.Font = font12;
             btnBizClose.Font = font12;
             btnBizCloseCancel.Font = font12;

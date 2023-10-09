@@ -75,7 +75,7 @@ namespace thepos
 
 
             //#
-            String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + biz_dt + "&ticketNo=" + ticket_no + "&tranType=A";
+            String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + biz_dt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -94,7 +94,7 @@ namespace thepos
             }
 
             //#
-            url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + biz_dt + "&ticketNo=" + ticket_no + "&tranType=A";
+            url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + biz_dt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -114,7 +114,7 @@ namespace thepos
 
 
             //#
-            url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + biz_dt + "&ticketNo=" + ticket_no + "&tranType=A";
+            url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + biz_dt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -240,7 +240,7 @@ namespace thepos
 
 
             //
-            if (pay_type == "C1" | pay_type == "C9")
+            if (pay_type == "C1" | pay_type == "C0")
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 PaymentCard pCardAuth = new PaymentCard();
@@ -327,7 +327,7 @@ namespace thepos
                         parameters["refNo"] = pCardAuth.ref_no;
                         parameters["payDate"] = get_today_date();
                         parameters["payTime"] = get_today_time();
-                        parameters["payType"] = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
+                        parameters["payType"] = "C1";       // 결제구분 : , 카드승인(C1), 임의등록(C0)
                         parameters["tranType"] = "C";       // 승인 A 취소 C
                         parameters["payClass"] = pCardAuth.pay_class;
                         parameters["ticketNo"] = pCardAuth.ticket_no;
@@ -399,7 +399,7 @@ namespace thepos
                         MessageBox.Show("카드결제 취소 성공", "thepos");
                     }
                 }
-                else if (pCardAuth.pay_type == "C9")  // 임의 등록
+                else if (pCardAuth.pay_type == "C0")  // 임의 등록
                 {
                     cancel_order_and_payments(pCardAuth.the_no, pCardAuth.amount);
 
@@ -411,7 +411,7 @@ namespace thepos
                     parameters["refNo"] = pCardAuth.ref_no;
                     parameters["payDate"] = get_today_date();
                     parameters["payTime"] = get_today_time();
-                    parameters["payType"] = "C9";       // 결제구분 : , 카드승인(C1), 임의등록(C9)
+                    parameters["payType"] = "C0";       // 결제구분 : , 카드승인(C1), 임의등록(C0)
                     parameters["tranType"] = "C";       // 승인 A 취소 C
                     parameters["payClass"] = pCardAuth.pay_class;
                     parameters["ticketNo"] = pCardAuth.ticket_no;
@@ -454,7 +454,7 @@ namespace thepos
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
                     parameters["theNo"] = pCardAuth.the_no;
-                    parameters["payType"] = "C9";
+                    parameters["payType"] = "C0";
                     parameters["tranType"] = "A";
                     parameters["paySeq"] = pCardAuth.pay_seq + "";
                     parameters["isCancel"] = "Y";
@@ -632,7 +632,13 @@ namespace thepos
                         }
 
                         SetDisplayAlarm("I", "현금영수증 취소.");
-                        MessageBox.Show("현금영수증 취소 성공", "thepos");
+                        //MessageBox.Show("현금영수증 취소 성공", "thepos");
+
+
+                        // 영수증 출력
+                        print_bill(the_no, "C", "", "1000"); // cash
+                        
+
                     }
 
                 }

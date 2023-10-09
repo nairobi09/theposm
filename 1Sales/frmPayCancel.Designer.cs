@@ -42,12 +42,10 @@
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tran = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.theno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,12 +189,10 @@
             this.no,
             this.pay_dt,
             this.pay_type,
-            this.tran,
             this.amount,
             this.cc,
             this.theno,
-            this.paytype,
-            this.trantype});
+            this.paytype});
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -225,11 +221,6 @@
             this.pay_type.Text = "결제";
             this.pay_type.Width = 100;
             // 
-            // tran
-            // 
-            this.tran.Text = "구분";
-            this.tran.Width = 50;
-            // 
             // amount
             // 
             this.amount.Text = "금액";
@@ -249,11 +240,6 @@
             // 
             this.paytype.Text = "";
             this.paytype.Width = 0;
-            // 
-            // trantype
-            // 
-            this.trantype.Text = "";
-            this.trantype.Width = 0;
             // 
             // frmPayCancel
             // 
@@ -284,7 +270,6 @@
         private System.Windows.Forms.ColumnHeader pay_type;
         private System.Windows.Forms.ColumnHeader amount;
         private System.Windows.Forms.ColumnHeader cc;
-        private System.Windows.Forms.ColumnHeader tran;
         private System.Windows.Forms.ColumnHeader theno;
         private System.Windows.Forms.ColumnHeader paytype;
         private System.Windows.Forms.Label lblCancelAmount;
@@ -293,6 +278,5 @@
         private System.Windows.Forms.Label lblT1;
         private System.Windows.Forms.Label lblNestAmount;
         private System.Windows.Forms.Label lblT3;
-        private System.Windows.Forms.ColumnHeader trantype;
     }
 }

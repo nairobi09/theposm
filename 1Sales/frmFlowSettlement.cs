@@ -12,6 +12,7 @@ using static thepos.frmSales;
 using Newtonsoft.Json.Linq;
 using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
+using System.Security.Cryptography;
 
 namespace thepos
 {
@@ -113,7 +114,7 @@ namespace thepos
             mThisTicketNo = "";
             String t7No = tbTicketNo.Text;
 
-            if (t7No.Length == 7 & mThisPosNo.Length == 2)
+            if (t7No.Length == 6 & mThisPosNo.Length == 2)
             {
                 mThisTicketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + mThisPosNo + t7No;
             }
@@ -197,7 +198,15 @@ namespace thepos
 
                         //? 정산완료이면 ForeColor=gray로 변경
 
-
+                        if (ticketFlow.flow_step == "9")
+                        {
+                            item.ForeColor = Color.Silver;
+                            item.SubItems[1].ForeColor = Color.Silver;
+                            item.SubItems[2].ForeColor = Color.Silver;
+                            item.SubItems[3].ForeColor = Color.Silver;
+                            item.SubItems[4].ForeColor = Color.Silver;
+                            item.SubItems[5].ForeColor = Color.Silver;
+                        }
 
 
                         mLvwTicketFlow.Items.Add(item);
@@ -361,6 +370,7 @@ namespace thepos
 
                     item.Tag = bpoint;
 
+
                     lvwTicketSettle.Items.Add(item);
                 }
             }
@@ -385,6 +395,12 @@ namespace thepos
                 {
                     item.SubItems.Add("승인 - 완료");
                     bpoint.result_code = "1";
+
+                    item.ForeColor = Color.Silver;
+                    item.SubItems[1].ForeColor = Color.Silver;
+                    item.SubItems[2].ForeColor = Color.Silver;
+                    item.SubItems[3].ForeColor = Color.Silver;
+                    item.SubItems[4].ForeColor = Color.Silver;
                 }
 
                 bpoint.pay_type = mTicketType;
@@ -655,5 +671,101 @@ namespace thepos
 
         }
 
+
+        public static void cancel_point_payment(String ticket_no)
+        {
+            // 1
+            String[] the_no_set = new string[50];
+            int the_no_set_count = 0;
+
+            String sUrl = "paymentPoint?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&payClass=US";
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["paymentPoints"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        the_no_set[i] = arr[i]["theNo"].ToString();
+                    }
+                    the_no_set_count = arr.Count;
+
+                }
+                else
+                {
+                    MessageBox.Show("결제데이터 오류. paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
+            }
+
+
+
+            // 2
+            for (int i = 0;i < the_no_set_count; i++) 
+            {
+                // Payment
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["bizDt"] = mThisBizDt;
+                parameters["theNo"] = the_no_set[i];
+                parameters["isCancel"] = "Y";
+
+                if (mRequestPatch("payment", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류. paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+
+                // paymentPoint
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["bizDt"] = mThisBizDt;
+                parameters["theNo"] = the_no_set[i];
+                parameters["payType"] = mTicketType;
+                parameters["isCancel"] = "Y";
+
+                if (mRequestPatch("paymentPoint", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류. paymentPoint\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+            }
+
+        }
+
+        private void btnSettleBill_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

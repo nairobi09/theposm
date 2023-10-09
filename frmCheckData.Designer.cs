@@ -73,7 +73,6 @@
             this.p_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_payDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_payTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.p_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_payClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_billNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_netAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -177,7 +176,6 @@
             this.pp_payDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pp_payTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pp_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pp_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pp_payClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pp_ticketNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pp_usageNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -459,7 +457,6 @@
             this.p_refNo,
             this.p_payDate,
             this.p_payTime,
-            this.p_tranType,
             this.p_payClass,
             this.p_billNo,
             this.p_netAmount,
@@ -509,10 +506,6 @@
             // p_payTime
             // 
             this.p_payTime.Text = "payTime";
-            // 
-            // p_tranType
-            // 
-            this.p_tranType.Text = "tranType";
             // 
             // p_payClass
             // 
@@ -1046,7 +1039,6 @@
             this.pp_payDate,
             this.pp_payTime,
             this.pp_payType,
-            this.pp_tranType,
             this.pp_payClass,
             this.pp_ticketNo,
             this.pp_usageNo,
@@ -1096,10 +1088,6 @@
             // pp_payType
             // 
             this.pp_payType.Text = "payType";
-            // 
-            // pp_tranType
-            // 
-            this.pp_tranType.Text = "tranType";
             // 
             // pp_payClass
             // 
@@ -1338,7 +1326,6 @@
         private System.Windows.Forms.ColumnHeader p_refNo;
         private System.Windows.Forms.ColumnHeader p_payDate;
         private System.Windows.Forms.ColumnHeader p_payTime;
-        private System.Windows.Forms.ColumnHeader p_tranType;
         private System.Windows.Forms.ColumnHeader p_payClass;
         private System.Windows.Forms.ColumnHeader p_billNo;
         private System.Windows.Forms.ColumnHeader p_netAmount;
@@ -1441,7 +1428,6 @@
         private System.Windows.Forms.ColumnHeader pp_refNo;
         private System.Windows.Forms.ColumnHeader pp_payDate;
         private System.Windows.Forms.ColumnHeader pp_payTime;
-        private System.Windows.Forms.ColumnHeader pp_tranType;
         private System.Windows.Forms.ColumnHeader pp_payClass;
         private System.Windows.Forms.ColumnHeader pp_ticketNo;
         private System.Windows.Forms.ColumnHeader pp_usageNo;

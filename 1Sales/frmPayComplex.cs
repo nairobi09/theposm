@@ -196,7 +196,6 @@ namespace thepos
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-
             if (mComplexNestAmount == 0) // 복합결제 완료
             {
                 mClearSaleForm();
@@ -208,13 +207,21 @@ namespace thepos
             }
             else  // 부분결제 진행중
             {
-                SetDisplayAlarm("W", "복합결제 진행중에는 화면을 닫을 수 없습니다."); 
+                SetDisplayAlarm("W", "복합결제 진행중에는 화면을 닫을 수 없습니다.");
             }
         }
 
         private void frmPayComplex_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmSales.ConsoleEnable();
+            if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+            {
+            }
+            else
+            {
+                frmSales.ConsoleEnable();
+            }
+
+
             mTbKeyDisplayController = saveKeyDisplay;
             mRightFace = saveRightFace;
 

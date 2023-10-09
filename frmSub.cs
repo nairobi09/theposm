@@ -29,19 +29,20 @@ namespace thepos
 
         private void initialize_font()
         {
-            lvwOrderItem.Font = font20;
+            lblTitle1.Font = font10;
+            lvwOrderItem.Font = font16;
 
-            lblOrderAmountSumTitle.Font = font20;
-            lblOrderAmountDCTitle.Font = font20;
-            lblOrderAmountChargeTitle.Font = font20;
-            lblOrderAmountReceiveTitle.Font = font20;
-            lblOrderAmountRestTitle.Font = font20;
+            lblOrderAmountSumTitle.Font = font14;
+            lblOrderAmountDCTitle.Font = font14;
+            lblOrderAmountReceiveTitle.Font = font14;
+            lblOrderAmountRestTitle.Font = font14;
+            lblOrderAmountNetTitle.Font = font20;
 
-            lblOrderAmount.Font = font24;
-            lblOrderAmountDC.Font = font24;
+            lblOrderAmount.Font = font16;
+            lblOrderAmountDC.Font = font16;
+            lblOrderAmountReceive.Font = font16;
+            lblOrderAmountRest.Font = font16;
             lblOrderAmountNet.Font = font24;
-            lblOrderAmountReceive.Font = font24;
-            lblOrderAmountRest.Font = font24;
 
             lblSiteAlias.Font = font24;
             lblSiteName.Font = font12;

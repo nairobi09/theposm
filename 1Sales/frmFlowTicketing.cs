@@ -104,6 +104,8 @@ namespace thepos
                         else if (tStat == "9") tStat = "정산완료";
 
                         item.Text = tStat;
+
+
                         item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
                         item.SubItems.Add(ticketing_dt.Substring(4, 2) + "-" +
                         ticketing_dt.Substring(6, 2) + " " +
