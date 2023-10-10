@@ -88,7 +88,7 @@
             this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
             this.lblGoodsAmtTitle.Size = new System.Drawing.Size(55, 16);
             this.lblGoodsAmtTitle.TabIndex = 44;
-            this.lblGoodsAmtTitle.Text = "샵이름";
+            this.lblGoodsAmtTitle.Text = "업장명";
             // 
             // lblGoodsNameTitle
             // 
@@ -97,9 +97,9 @@
             this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.Black;
             this.lblGoodsNameTitle.Location = new System.Drawing.Point(14, 39);
             this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
-            this.lblGoodsNameTitle.Size = new System.Drawing.Size(49, 14);
+            this.lblGoodsNameTitle.Size = new System.Drawing.Size(63, 14);
             this.lblGoodsNameTitle.TabIndex = 43;
-            this.lblGoodsNameTitle.Text = "샵코드";
+            this.lblGoodsNameTitle.Text = "업장코드";
             // 
             // tbShopCode
             // 
@@ -143,9 +143,9 @@
             this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(206, 31);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(76, 19);
+            this.lblTitle.Size = new System.Drawing.Size(89, 19);
             this.lblTitle.TabIndex = 51;
-            this.lblTitle.Text = "샵 관리";
+            this.lblTitle.Text = "업장관리";
             // 
             // lvwList
             // 
@@ -169,11 +169,11 @@
             // 
             // shop_code
             // 
-            this.shop_code.Text = "샵코드";
+            this.shop_code.Text = "업장코드";
             // 
             // shop_name
             // 
-            this.shop_name.Text = "샵이름";
+            this.shop_name.Text = "업장명";
             this.shop_name.Width = 100;
             // 
             // frmSysShop

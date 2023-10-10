@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmReportMonth1
+    partial class frmReportCalendar1
     {
         /// <summary>
         /// Required designer variable.

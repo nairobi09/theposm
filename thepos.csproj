@@ -112,6 +112,7 @@
       <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -249,11 +250,23 @@
     <Compile Include="frmCheckData.Designer.cs">
       <DependentUpon>frmCheckData.cs</DependentUpon>
     </Compile>
-    <Compile Include="3Report\frmReportMonth1.cs">
+    <Compile Include="3Report\frmReportCalendar1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3Report\frmReportMonth1.Designer.cs">
-      <DependentUpon>frmReportMonth1.cs</DependentUpon>
+    <Compile Include="3Report\frmReportCalendar1.Designer.cs">
+      <DependentUpon>frmReportCalendar1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportDay1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportDay1.Designer.cs">
+      <DependentUpon>frmReportDay1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportChart1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportChart1.Designer.cs">
+      <DependentUpon>frmReportChart1.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSub.cs">
       <SubType>Form</SubType>
@@ -392,6 +405,12 @@
     <EmbeddedResource Include="1Sales\frmFlowSettleChargeCancel.resx">
       <DependentUpon>frmFlowSettleChargeCancel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportDay1.resx">
+      <DependentUpon>frmReportDay1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportChart1.resx">
+      <DependentUpon>frmReportChart1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysDcrFavorite.resx">
       <DependentUpon>frmSysDcrFavorite.cs</DependentUpon>
     </EmbeddedResource>
@@ -465,8 +484,8 @@
     <EmbeddedResource Include="1Sales\frmPayPoint.resx">
       <DependentUpon>frmPayPoint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3Report\frmReportMonth1.resx">
-      <DependentUpon>frmReportMonth1.cs</DependentUpon>
+    <EmbeddedResource Include="3Report\frmReportCalendar1.resx">
+      <DependentUpon>frmReportCalendar1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReports.resx">
       <DependentUpon>frmReports.cs</DependentUpon>

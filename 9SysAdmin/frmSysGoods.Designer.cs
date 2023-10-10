@@ -423,7 +423,7 @@
             // 
             // shopname
             // 
-            this.shopname.Text = "샵";
+            this.shopname.Text = "업장";
             // 
             // ticket
             // 

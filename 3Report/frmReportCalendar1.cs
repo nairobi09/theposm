@@ -13,7 +13,7 @@ using static thepos.thePos;
 
 namespace thepos
 {
-    public partial class frmReportMonth1 : Form
+    public partial class frmReportCalendar1 : Form
     {
 
         Panel[] panelPixel = new Panel[43];
@@ -23,7 +23,7 @@ namespace thepos
         int[] day_amount = new int[32];  // 1 ~ 31
 
 
-        public frmReportMonth1()
+        public frmReportCalendar1()
         {
             InitializeComponent();
 
@@ -204,7 +204,7 @@ namespace thepos
 
             // GET Request 3차테이블...
 
-            String sUrl = "reportMonthPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&monthPos=" + pos_no;
+            String sUrl = "reportMonthPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

@@ -33,8 +33,8 @@
             this.btnReportDay3 = new System.Windows.Forms.Button();
             this.btnReportDay2 = new System.Windows.Forms.Button();
             this.btnReportMonth3 = new System.Windows.Forms.Button();
-            this.btnReportMonth2 = new System.Windows.Forms.Button();
-            this.btnReportMonth1 = new System.Windows.Forms.Button();
+            this.btnReportChart1 = new System.Windows.Forms.Button();
+            this.btnReportCalendar1 = new System.Windows.Forms.Button();
             this.btnReportDay1 = new System.Windows.Forms.Button();
             this.panelNumpad = new System.Windows.Forms.Panel();
             this.btnKey1 = new System.Windows.Forms.Button();
@@ -68,8 +68,8 @@
             this.panel1.Controls.Add(this.btnReportDay3);
             this.panel1.Controls.Add(this.btnReportDay2);
             this.panel1.Controls.Add(this.btnReportMonth3);
-            this.panel1.Controls.Add(this.btnReportMonth2);
-            this.panel1.Controls.Add(this.btnReportMonth1);
+            this.panel1.Controls.Add(this.btnReportChart1);
+            this.panel1.Controls.Add(this.btnReportCalendar1);
             this.panel1.Controls.Add(this.btnReportDay1);
             this.panel1.Controls.Add(this.panelNumpad);
             this.panel1.Location = new System.Drawing.Point(811, 59);
@@ -87,7 +87,7 @@
             this.btnReportDay3.Location = new System.Drawing.Point(0, 168);
             this.btnReportDay3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportDay3.Name = "btnReportDay3";
-            this.btnReportDay3.Size = new System.Drawing.Size(100, 80);
+            this.btnReportDay3.Size = new System.Drawing.Size(110, 80);
             this.btnReportDay3.TabIndex = 27;
             this.btnReportDay3.TabStop = false;
             this.btnReportDay3.Text = "일거래목록";
@@ -102,7 +102,7 @@
             this.btnReportDay2.Location = new System.Drawing.Point(0, 84);
             this.btnReportDay2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportDay2.Name = "btnReportDay2";
-            this.btnReportDay2.Size = new System.Drawing.Size(100, 80);
+            this.btnReportDay2.Size = new System.Drawing.Size(110, 80);
             this.btnReportDay2.TabIndex = 27;
             this.btnReportDay2.TabStop = false;
             this.btnReportDay2.Text = "포스별 현황";
@@ -114,43 +114,45 @@
             this.btnReportMonth3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportMonth3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnReportMonth3.ForeColor = System.Drawing.Color.White;
-            this.btnReportMonth3.Location = new System.Drawing.Point(104, 168);
+            this.btnReportMonth3.Location = new System.Drawing.Point(113, 168);
             this.btnReportMonth3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportMonth3.Name = "btnReportMonth3";
-            this.btnReportMonth3.Size = new System.Drawing.Size(100, 80);
+            this.btnReportMonth3.Size = new System.Drawing.Size(90, 80);
             this.btnReportMonth3.TabIndex = 27;
             this.btnReportMonth3.TabStop = false;
             this.btnReportMonth3.UseVisualStyleBackColor = false;
             // 
-            // btnReportMonth2
+            // btnReportChart1
             // 
-            this.btnReportMonth2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReportMonth2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportMonth2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnReportMonth2.ForeColor = System.Drawing.Color.White;
-            this.btnReportMonth2.Location = new System.Drawing.Point(104, 84);
-            this.btnReportMonth2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReportMonth2.Name = "btnReportMonth2";
-            this.btnReportMonth2.Size = new System.Drawing.Size(100, 80);
-            this.btnReportMonth2.TabIndex = 27;
-            this.btnReportMonth2.TabStop = false;
-            this.btnReportMonth2.UseVisualStyleBackColor = false;
+            this.btnReportChart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportChart1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportChart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportChart1.ForeColor = System.Drawing.Color.White;
+            this.btnReportChart1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportChart1.Image")));
+            this.btnReportChart1.Location = new System.Drawing.Point(113, 84);
+            this.btnReportChart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportChart1.Name = "btnReportChart1";
+            this.btnReportChart1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportChart1.TabIndex = 27;
+            this.btnReportChart1.TabStop = false;
+            this.btnReportChart1.UseVisualStyleBackColor = false;
+            this.btnReportChart1.Click += new System.EventHandler(this.btnReportChart1_Click);
             // 
-            // btnReportMonth1
+            // btnReportCalendar1
             // 
-            this.btnReportMonth1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReportMonth1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportMonth1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnReportMonth1.ForeColor = System.Drawing.Color.White;
-            this.btnReportMonth1.Location = new System.Drawing.Point(104, 0);
-            this.btnReportMonth1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReportMonth1.Name = "btnReportMonth1";
-            this.btnReportMonth1.Size = new System.Drawing.Size(100, 80);
-            this.btnReportMonth1.TabIndex = 27;
-            this.btnReportMonth1.TabStop = false;
-            this.btnReportMonth1.Text = "월별매출현황";
-            this.btnReportMonth1.UseVisualStyleBackColor = false;
-            this.btnReportMonth1.Click += new System.EventHandler(this.btnReportMonth1_Click);
+            this.btnReportCalendar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportCalendar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportCalendar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportCalendar1.ForeColor = System.Drawing.Color.White;
+            this.btnReportCalendar1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportCalendar1.Image")));
+            this.btnReportCalendar1.Location = new System.Drawing.Point(113, 0);
+            this.btnReportCalendar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportCalendar1.Name = "btnReportCalendar1";
+            this.btnReportCalendar1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportCalendar1.TabIndex = 27;
+            this.btnReportCalendar1.TabStop = false;
+            this.btnReportCalendar1.UseVisualStyleBackColor = false;
+            this.btnReportCalendar1.Click += new System.EventHandler(this.btnReportCalendar1_Click);
             // 
             // btnReportDay1
             // 
@@ -161,11 +163,12 @@
             this.btnReportDay1.Location = new System.Drawing.Point(0, 0);
             this.btnReportDay1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportDay1.Name = "btnReportDay1";
-            this.btnReportDay1.Size = new System.Drawing.Size(100, 80);
+            this.btnReportDay1.Size = new System.Drawing.Size(110, 80);
             this.btnReportDay1.TabIndex = 27;
             this.btnReportDay1.TabStop = false;
             this.btnReportDay1.Text = "업장별 현황";
             this.btnReportDay1.UseVisualStyleBackColor = false;
+            this.btnReportDay1.Click += new System.EventHandler(this.btnReportDay1_Click);
             // 
             // panelNumpad
             // 
@@ -181,7 +184,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(0, 461);
+            this.panelNumpad.Location = new System.Drawing.Point(9, 461);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(34, 38, 34, 38);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(34, 38, 34, 38);
@@ -468,8 +471,8 @@
         private System.Windows.Forms.Button btnReportDay3;
         private System.Windows.Forms.Button btnReportDay2;
         private System.Windows.Forms.Button btnReportMonth3;
-        private System.Windows.Forms.Button btnReportMonth2;
-        private System.Windows.Forms.Button btnReportMonth1;
+        private System.Windows.Forms.Button btnReportChart1;
+        private System.Windows.Forms.Button btnReportCalendar1;
         private System.Windows.Forms.Button btnReportDay1;
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.Panel panelNumpad;

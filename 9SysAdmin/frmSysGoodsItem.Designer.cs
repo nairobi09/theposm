@@ -285,7 +285,7 @@
             // 
             // shop
             // 
-            this.shop.Text = "샵";
+            this.shop.Text = "업장";
             // 
             // ticket
             // 

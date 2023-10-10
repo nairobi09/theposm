@@ -36,8 +36,8 @@ namespace thepos
             btnReportDay2.Font = font10;
             btnReportDay3.Font = font10;
 
-            btnReportMonth1.Font = font10;
-            btnReportMonth2.Font = font10;
+            btnReportCalendar1.Font = font10;
+            btnReportChart1.Font = font10;
             btnReportMonth3.Font = font10;
 
             btnKey1.Font = font14;
@@ -62,14 +62,38 @@ namespace thepos
             mPanelDivision.Visible = false;
         }
 
-        private void btnReportMonth1_Click(object sender, EventArgs e)
+        private void btnReportDay1_Click(object sender, EventArgs e)
         {
-            if (mThisButtonClick == "Month1") return;
+            if (mThisButtonClick == "Day1") return;
 
-            mThisButtonClick = "Month1";
+            mThisButtonClick = "Day1";
             panelReport.Controls.Clear();
 
-            frmReportMonth1 fBiz = new frmReportMonth1() { TopLevel = false, TopMost = true };
+            frmReportDay1 fBiz = new frmReportDay1() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportCalendar1_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Calemdar1") return;
+
+            mThisButtonClick = "Calemdar1";
+            panelReport.Controls.Clear();
+
+            frmReportCalendar1 fBiz = new frmReportCalendar1() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportChart1_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Chart1") return;
+
+            mThisButtonClick = "Chart1";
+            panelReport.Controls.Clear();
+
+            frmReportChart1 fBiz = new frmReportChart1() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
