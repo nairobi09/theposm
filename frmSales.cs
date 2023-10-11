@@ -1240,7 +1240,7 @@ namespace thepos
                 int prev_point_charge = 0;
 
                 // GET
-                String sUrl = "ticketFlow?ticketNo=" + t_no;
+                String sUrl = "ticketFlow?bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
                 if (mRequestGet(sUrl))
                 {
@@ -1271,6 +1271,7 @@ namespace thepos
 
                 // PATCH
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = t_no;
                 parameters["flowStep"] = "2";
                 parameters["pointChargeCnt"] = (++prev_point_charge_cnt) + "";
@@ -1309,7 +1310,7 @@ namespace thepos
                 int prev_point_usage = 0;
 
                 // GET
-                String sUrl = "ticketFlow?ticketNo=" + t_no;
+                String sUrl = "ticketFlow?bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
                 if (mRequestGet(sUrl))
                 {
@@ -1341,6 +1342,7 @@ namespace thepos
 
                 // PATCH
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = t_no;
                 parameters["flowStep"] = "3";
                 parameters["pointUsageCnt"] = (++prev_point_usage_cnt) + "";
@@ -1443,6 +1445,7 @@ namespace thepos
 
                 // PATCH
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = t_no;
                 parameters["settlement_dt"] = get_today_date() + get_today_time();
 

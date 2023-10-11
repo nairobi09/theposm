@@ -216,7 +216,7 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         int day_idx = convert_number(arr[i]["bizDt"].ToString().Substring(6,2));
-                        day_amount[day_idx] = convert_number(arr[i]["bizDt"].ToString());
+                        day_amount[day_idx] = convert_number(arr[i]["netAmount"].ToString());
                     }
                 }
                 else
