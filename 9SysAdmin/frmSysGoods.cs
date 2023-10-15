@@ -172,12 +172,12 @@ namespace thepos._9SysAdmin
 
                         if (tActive != "Y")
                         {
-                            lvItem.ForeColor = Color.Silver;
-                            lvItem.SubItems[1].ForeColor = Color.Silver;
-                            lvItem.SubItems[2].ForeColor = Color.Silver;
-                            lvItem.SubItems[3].ForeColor = Color.Silver;
-                            lvItem.SubItems[4].ForeColor = Color.Silver;
-                            lvItem.SubItems[5].ForeColor = Color.Silver;
+                            lvItem.ForeColor = Color.Gray;
+                            lvItem.SubItems[1].ForeColor = Color.Gray;
+                            lvItem.SubItems[2].ForeColor = Color.Gray;
+                            lvItem.SubItems[3].ForeColor = Color.Gray;
+                            lvItem.SubItems[4].ForeColor = Color.Gray;
+                            lvItem.SubItems[5].ForeColor = Color.Gray;
                         }
 
 
@@ -262,12 +262,12 @@ namespace thepos._9SysAdmin
 
                         if (tActive != "Y")
                         {
-                            lvItem.ForeColor = Color.Silver;
-                            lvItem.SubItems[1].ForeColor = Color.Silver;
-                            lvItem.SubItems[2].ForeColor = Color.Silver;
-                            lvItem.SubItems[3].ForeColor = Color.Silver;
-                            lvItem.SubItems[4].ForeColor = Color.Silver;
-                            lvItem.SubItems[5].ForeColor = Color.Silver;
+                            lvItem.ForeColor = Color.Gray;
+                            lvItem.SubItems[1].ForeColor = Color.Gray;
+                            lvItem.SubItems[2].ForeColor = Color.Gray;
+                            lvItem.SubItems[3].ForeColor = Color.Gray;
+                            lvItem.SubItems[4].ForeColor = Color.Gray;
+                            lvItem.SubItems[5].ForeColor = Color.Gray;
                         }
 
                         lvItem.Tag = arr[0]["imagePath"].ToString();

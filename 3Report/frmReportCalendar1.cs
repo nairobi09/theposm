@@ -45,6 +45,9 @@ namespace thepos
             lblPosNoTitle.Font = font9;
             cbPosNo.Font = font12;
 
+            lblShopTitle.Font = font9;
+            cbShop.Font = font12;
+
             btnView.Font = font10;
 
 
@@ -182,6 +185,16 @@ namespace thepos
             cbPosNo.SelectedIndex = 0;
 
 
+            cbShop.Items.Clear();
+            cbShop.Items.Add("");
+            for (int i = 0; i < mPosNoList.Length; i++)
+            {
+                cbShop.Items.Add(mShop[i].shop_name);
+            }
+            cbShop.SelectedIndex = 0;
+
+
+
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -191,8 +204,16 @@ namespace thepos
 
         void viewMonth()
         {
+            String yyyymm = lblYYYYMM.Text.Replace("-", ""); ;
+
             String pos_no = cbPosNo.Text; ;
-            String yyyymm = lblYYYYMM.Text.Replace("-", "");;
+
+            String shop_code = "";
+
+            if (cbShop.SelectedIndex > 0)
+            {
+                shop_code = mShop[cbShop.SelectedIndex - 1].shop_code;
+            }
 
 
 
@@ -200,16 +221,25 @@ namespace thepos
             {
                 day_amount[i] = 0;
             }
+
+
+
+
+            String sUrl = "";
+
+            if (shop_code != "")
+                sUrl = "reportMonthShop?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&shopCode=" + shop_code;
+            else
+                sUrl = "reportMonthPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no;
             
-
-            // GET Request 3차테이블...
-
-            String sUrl = "reportMonthPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no;
+            
+            
+            
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["monthPos"].ToString();
+                    String data = mObj["monthArr"].ToString();
                     JArray arr = JArray.Parse(data);
 
 
@@ -409,6 +439,22 @@ namespace thepos
 
             lblYYYYMM.Text = NextMonth.ToString("yyyy-MM");
 
+        }
+
+        private void cbPosNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbPosNo.SelectedIndex > 0)
+            {
+                cbShop.SelectedIndex = 0;
+            }
+        }
+
+        private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex > 0)
+            {
+                cbPosNo.SelectedIndex = 0;
+            }
         }
     }
 }

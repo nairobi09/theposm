@@ -296,7 +296,7 @@ namespace thepos
             public int amount_card;
             public int amount_easy;
             public int amount_point;
-            public String is_dc;       // 할인여부
+            public int dc_amount;       // 할인금액
             public String is_cancel;   // 취소여부 : 미취소"", 취소중0, 취소1
         }
         public static List<Payment> mPayments = new List<Payment>();
@@ -525,10 +525,17 @@ namespace thepos
         public static String get_pay_class_name(String code)
         {
             String name = "";
-            if (code == "OR") name = "주문";
+            if (code == "OR") name = "구매";
             else if (code == "CH") name = "충전";
-            else if (code == "US") name = "포인트";
+            else if (code == "US")
+            {
+                if (mTicketType == "PA") name = "선불";
+                else if (mTicketType == "PD") name = "후불";
+                else name = code;
+            }
             else if (code == "ST") name = "정산";
+            else name = code;
+
             return name;
         }
 
@@ -541,6 +548,7 @@ namespace thepos
             else if (group == "0100") return "카드";
             else if (group == "0010") return "포인트";
             else if (group == "0001") return "간편";
+            else if (group == "0000") return group;
             else return "복합";
         }
 
@@ -556,6 +564,7 @@ namespace thepos
             else if (code == "PA") name = "포인트선불";
             else if (code == "PD") name = "포인트후불";
             else if (code == "E1") name = "간편";
+            else name = code;
 
             return name;
         }
@@ -565,6 +574,8 @@ namespace thepos
             String name = "";
             if (code == "A") name = "승인";
             else if (code == "C") name = "취소";
+            else name = code;
+
             return name;
         }
 
@@ -574,8 +585,23 @@ namespace thepos
             String name = "";
             if (code == "PA") name = "선불";
             else if (code == "PD") name = "후불";
+            else name = code;
+
             return name;
         }
+
+
+        public static String get_receipt_type_name(String code)
+        {
+            String name = "";
+            if (code == "1") name = "개인소득공제";
+            else if (code == "2") name = "사업지출증빙";
+            else if (code == "3") name = "자진발급";
+            else name = code;
+
+            return name;
+        }
+
 
 
         public static String get_dcr_des_name(String code)
@@ -583,6 +609,8 @@ namespace thepos
             String name = "";
             if (code == "E") name = "전체";
             else if (code == "S") name = "선택";
+            else name = code;
+
             return name;
         }
 
@@ -591,14 +619,16 @@ namespace thepos
             String name = "";
             if (code == "A") name = "정액(W)";
             else if (code == "R") name = "정율(%)";
+            else name = code;
+
             return name;
         }
 
         public static String get_is_cancel_name(String code)
         {
             String name = "";
-            if (code == "0") name = "취소중";
-            //else if (code == "Y") name = "Y";
+            if (code == "1") name = "취소중";
+            else if (code == "Y") name = "취소됨";
             else name = code;
 
             return name;
@@ -614,7 +644,7 @@ namespace thepos
                 }
             }
 
-            return "";
+            return code;
         }
 
         public static String get_shop_name(String shop_code)
@@ -627,7 +657,7 @@ namespace thepos
                 }
             }
 
-            return "";
+            return shop_code;
         }
 
         public static bool is_number(String str)

@@ -36,6 +36,7 @@
             this.o_bizDt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.o_theNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.o_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.o_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.o_orderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.o_orderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.o_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,6 +50,7 @@
             this.oi_bizDt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_theNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oi_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_orderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_orderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_itemCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,6 +73,7 @@
             this.p_bizDt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_theNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.p_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_payDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_payTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_payClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -80,7 +83,7 @@
             this.p_amountCard = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_amountEasy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_amountPoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.p_isDc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.p_dcAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_isCancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
             this.lvwPaymentCash = new System.Windows.Forms.ListView();
@@ -231,6 +234,7 @@
             this.o_bizDt,
             this.o_theNo,
             this.o_refNo,
+            this.o_tranType,
             this.o_orderDate,
             this.o_orderTime,
             this.o_cnt,
@@ -267,6 +271,11 @@
             // 
             this.o_refNo.Text = "refNo";
             this.o_refNo.Width = 130;
+            // 
+            // o_tranType
+            // 
+            this.o_tranType.Text = "tran";
+            this.o_tranType.Width = 40;
             // 
             // o_orderDate
             // 
@@ -327,6 +336,7 @@
             this.oi_bizDt,
             this.oi_theNo,
             this.oi_refNo,
+            this.oi_tranType,
             this.oi_orderDate,
             this.oi_orderTime,
             this.oi_itemCode,
@@ -375,6 +385,11 @@
             // 
             this.oi_refNo.Text = "refNo";
             this.oi_refNo.Width = 130;
+            // 
+            // oi_tranType
+            // 
+            this.oi_tranType.Text = "tran";
+            this.oi_tranType.Width = 40;
             // 
             // oi_orderDate
             // 
@@ -455,6 +470,7 @@
             this.p_bizDt,
             this.p_theNo,
             this.p_refNo,
+            this.p_tranType,
             this.p_payDate,
             this.p_payTime,
             this.p_payClass,
@@ -464,7 +480,7 @@
             this.p_amountCard,
             this.p_amountEasy,
             this.p_amountPoint,
-            this.p_isDc,
+            this.p_dcAmount,
             this.p_isCancel});
             this.lvwPayment.FullRowSelect = true;
             this.lvwPayment.GridLines = true;
@@ -498,6 +514,11 @@
             // 
             this.p_refNo.Text = "refNo";
             this.p_refNo.Width = 130;
+            // 
+            // p_tranType
+            // 
+            this.p_tranType.Text = "tran";
+            this.p_tranType.Width = 40;
             // 
             // p_payDate
             // 
@@ -535,9 +556,9 @@
             // 
             this.p_amountPoint.Text = "amountPoint";
             // 
-            // p_isDc
+            // p_dcAmount
             // 
-            this.p_isDc.Text = "isDc";
+            this.p_dcAmount.Text = "dcAmount";
             // 
             // p_isCancel
             // 
@@ -620,7 +641,8 @@
             // 
             // pr_tranType
             // 
-            this.pr_tranType.Text = "tranType";
+            this.pr_tranType.Text = "tran";
+            this.pr_tranType.Width = 40;
             // 
             // pr_payClass
             // 
@@ -754,7 +776,8 @@
             // 
             // pc_tranType
             // 
-            this.pc_tranType.Text = "tranType";
+            this.pc_tranType.Text = "tran";
+            this.pc_tranType.Width = 40;
             // 
             // pc_payClass
             // 
@@ -929,7 +952,8 @@
             // 
             // pe_tranType
             // 
-            this.pe_tranType.Text = "tranType";
+            this.pe_tranType.Text = "tran";
+            this.pe_tranType.Width = 40;
             // 
             // pe_payClass
             // 
@@ -1087,7 +1111,8 @@
             // 
             // pp_payType
             // 
-            this.pp_payType.Text = "payType";
+            this.pp_payType.Text = "pay";
+            this.pp_payType.Width = 40;
             // 
             // pp_payClass
             // 
@@ -1252,7 +1277,7 @@
             // frmCheckData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1726, 1221);
+            this.ClientSize = new System.Drawing.Size(1726, 1233);
             this.Controls.Add(this.lvwOrder);
             this.Controls.Add(this.lvwTicketFlow);
             this.Controls.Add(this.label9);
@@ -1333,7 +1358,7 @@
         private System.Windows.Forms.ColumnHeader p_amountCard;
         private System.Windows.Forms.ColumnHeader p_amountEasy;
         private System.Windows.Forms.ColumnHeader p_amountPoint;
-        private System.Windows.Forms.ColumnHeader p_isDc;
+        private System.Windows.Forms.ColumnHeader p_dcAmount;
         private System.Windows.Forms.ColumnHeader p_isCancel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListView lvwPaymentCash;
@@ -1455,5 +1480,8 @@
         private System.Windows.Forms.ColumnHeader t_lockerNo;
         private System.Windows.Forms.ColumnHeader t_openLocker;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ColumnHeader o_tranType;
+        private System.Windows.Forms.ColumnHeader oi_tranType;
+        private System.Windows.Forms.ColumnHeader p_tranType;
     }
 }

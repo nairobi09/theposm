@@ -61,6 +61,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["theNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["refNo"].ToString());
 
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderTime"].ToString());
                         lvItem.SubItems.Add(arr[i]["cnt"].ToString());
@@ -93,6 +94,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["theNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["refNo"].ToString());
 
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderTime"].ToString());
                         lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
@@ -140,6 +142,7 @@ namespace thepos
 
                         lvItem.SubItems.Add(arr[i]["payDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["payTime"].ToString());
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["payClass"].ToString());
                         lvItem.SubItems.Add(arr[i]["billNo"].ToString());
 
@@ -149,7 +152,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["amountEasy"].ToString());
                         lvItem.SubItems.Add(arr[i]["amountPoint"].ToString());
 
-                        lvItem.SubItems.Add(arr[i]["isDc"].ToString());
+                        lvItem.SubItems.Add(arr[i]["dcAmount"].ToString());
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
 
                         lvwPayment.Items.Add(lvItem);

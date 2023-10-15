@@ -134,6 +134,7 @@ namespace thepos
         {
             //!
             int order_cnt = 0;
+            int dcAmount = 0;
 
             if (mPayClass == "ST")
             {
@@ -146,7 +147,7 @@ namespace thepos
                 if (paySeq == 1)
                 {
                     // 주문 저장 1
-                    order_cnt = SaveOrder(ticketNo);  // order. orderitem
+                    order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
                     if (order_cnt == -1)
                     {
                         return; // 재로그인 요구
@@ -156,7 +157,7 @@ namespace thepos
 
 
             // 서버저장 payment
-            if (!SavePayment(paySeq, "Cash", netAmount))
+            if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
             {
                 return;
             }
@@ -312,6 +313,8 @@ namespace thepos
             int tTax = 0;
             int tServiceAmt = 0;
 
+            int dcAmount = 0;
+
 
             if (rbTypeIndividual.Checked == true) receipt_type = "1";
             else if (rbTypeBusiness.Checked == true) receipt_type = "2";
@@ -343,14 +346,14 @@ namespace thepos
                 if (paySeq == 1)
                 {
                     // 주문 저장 1
-                    order_cnt = SaveOrder(ticketNo);  // order. orderitem
+                    order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
                     if (order_cnt == -1)
                     {
                         return; // 재로그인 요구
                     }
                 }
 
-                SavePayment(paySeq, "Cash", netAmount);  // payment
+                SavePayment(paySeq, "Cash", netAmount, dcAmount);  // payment
 
 
                 paymentCash.site_id = mSiteId;

@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmReportDay1
+    partial class frmReportDayShop
     {
         /// <summary>
         /// Required designer variable.
@@ -120,7 +120,7 @@
             this.lblReportTitle.TabIndex = 76;
             this.lblReportTitle.Text = "업장별 매출현황";
             // 
-            // frmReportDay1
+            // frmReportDayShop
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
@@ -132,7 +132,7 @@
             this.Controls.Add(this.lblYYYYMM);
             this.Controls.Add(this.lblReportTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmReportDay1";
+            this.Name = "frmReportDayShop";
             this.Text = "frmReportDay1";
             this.ResumeLayout(false);
             this.PerformLayout();

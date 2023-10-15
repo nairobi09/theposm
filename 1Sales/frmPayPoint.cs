@@ -143,13 +143,14 @@ namespace thepos
             // 
             mRefNo = ticketNo.Substring(0, 18);
 
+            int dcAmount = 0;
             int order_cnt = 0;
             int paySeq = 1;
 
             // 주문 저장 1
-            order_cnt = SaveOrder(ticketNo);  // order. orderitem
+            order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
 
-            SavePayment(paySeq, "Point", netAmount);  // payment - 신규, 수정 포함
+            SavePayment(paySeq, "Point", netAmount, dcAmount);  // payment - 신규, 수정 포함
 
 
 

@@ -690,10 +690,10 @@ namespace thepos
             // 
             this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
             this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
-            this.picLogo.Location = new System.Drawing.Point(7, 4);
+            this.picLogo.Location = new System.Drawing.Point(30, 12);
+            this.picLogo.Margin = new System.Windows.Forms.Padding(0);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
-            this.picLogo.Size = new System.Drawing.Size(80, 35);
+            this.picLogo.Size = new System.Drawing.Size(64, 19);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLogo.TabIndex = 39;
             this.picLogo.TabStop = false;

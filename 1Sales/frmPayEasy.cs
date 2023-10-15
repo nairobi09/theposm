@@ -100,6 +100,8 @@ namespace thepos
         private void btnEasyAuth_Click(object sender, EventArgs e)
         {
 
+            int dcAmount = 0;
+
             int tAmount = netAmount;
             int tFreeAmount = 0;
             int tTaxAmount = 0;
@@ -126,7 +128,7 @@ namespace thepos
 
                 if (paySeq == 1)
                 {
-                    order_cnt = SaveOrder(ticketNo);// 주문 저장 1
+                    order_cnt = SaveOrder(ticketNo, out dcAmount);// 주문 저장 1
                     if (order_cnt == -1)
                     {
                         return; // 심각한 에러..
@@ -134,7 +136,7 @@ namespace thepos
                 }
 
                 // 서버저장 payment
-                if (!SavePayment(paySeq, "Easy", netAmount))
+                if (!SavePayment(paySeq, "Easy", netAmount, dcAmount))
                 {
                     return;
                 }

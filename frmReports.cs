@@ -32,9 +32,9 @@ namespace thepos
             btnClose.Font = font12;
 
             //
-            btnReportDay1.Font = font10;
-            btnReportDay2.Font = font10;
-            btnReportDay3.Font = font10;
+            btnReportDayPos.Font = font10;
+            btnReportDayShop.Font = font10;
+            btnReportDayDetail.Font = font10;
 
             btnReportCalendar1.Font = font10;
             btnReportChart1.Font = font10;
@@ -62,17 +62,31 @@ namespace thepos
             mPanelDivision.Visible = false;
         }
 
-        private void btnReportDay1_Click(object sender, EventArgs e)
+        private void btnReportDayPos_Click(object sender, EventArgs e)
         {
-            if (mThisButtonClick == "Day1") return;
+            if (mThisButtonClick == "DayPos") return;
 
-            mThisButtonClick = "Day1";
+            mThisButtonClick = "DayPos";
             panelReport.Controls.Clear();
 
-            frmReportDay1 fBiz = new frmReportDay1() { TopLevel = false, TopMost = true };
+            //frmReportDayPos fBiz = new frmReportDayPos() { TopLevel = false, TopMost = true };
+            frmReportDayShop fBiz = new frmReportDayShop() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
+        private void btnReportDayShop_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DayShop") return;
+
+            mThisButtonClick = "DayShop";
+            panelReport.Controls.Clear();
+
+            frmReportDayShop fBiz = new frmReportDayShop() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
 
         private void btnReportCalendar1_Click(object sender, EventArgs e)
         {
@@ -94,6 +108,18 @@ namespace thepos
             panelReport.Controls.Clear();
 
             frmReportChart1 fBiz = new frmReportChart1() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportDayDetail_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DayDetail") return;
+
+            mThisButtonClick = "DayDetail";
+            panelReport.Controls.Clear();
+
+            frmReportDayDetail fBiz = new frmReportDayDetail() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }

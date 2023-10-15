@@ -200,12 +200,12 @@ namespace thepos
 
                         if (ticketFlow.flow_step == "9")
                         {
-                            item.ForeColor = Color.Silver;
-                            item.SubItems[1].ForeColor = Color.Silver;
-                            item.SubItems[2].ForeColor = Color.Silver;
-                            item.SubItems[3].ForeColor = Color.Silver;
-                            item.SubItems[4].ForeColor = Color.Silver;
-                            item.SubItems[5].ForeColor = Color.Silver;
+                            item.ForeColor = Color.Gray;
+                            item.SubItems[1].ForeColor = Color.Gray;
+                            item.SubItems[2].ForeColor = Color.Gray;
+                            item.SubItems[3].ForeColor = Color.Gray;
+                            item.SubItems[4].ForeColor = Color.Gray;
+                            item.SubItems[5].ForeColor = Color.Gray;
                         }
 
 
@@ -270,6 +270,22 @@ namespace thepos
         {
             mLvwOrderItem.Items.Clear();
 
+            // 포인트 사용 건수 총액
+            if (mThisTicketFlow.point_usage > 0)
+            {
+                ListViewItem lvwitem = new ListViewItem();
+                lvwitem.Text = "";
+                lvwitem.SubItems.Add("포인트사용");                            // 1: name 상품명
+                lvwitem.SubItems.Add("");              // 2: amt 단가
+                lvwitem.SubItems.Add(mThisTicketFlow.point_usage_cnt.ToString("N0"));                  // 3: cnt 수량
+                lvwitem.SubItems.Add("");     // 4: dc_amount 할인
+
+                lvwitem.SubItems.Add(mThisTicketFlow.point_usage.ToString("N0"));                 // 5: net_amount 금액
+                lvwitem.SubItems.Add("");                     // 6: 메모
+                lvwitem.SubItems.Add("");
+                mLvwOrderItem.Items.Add(lvwitem);
+            }
+
             // 선불식이면 충전을 표시
             if (mTicketType == "PA")
             {
@@ -287,22 +303,6 @@ namespace thepos
                     lvwitem.SubItems.Add("");
                     mLvwOrderItem.Items.Add(lvwitem);
                 }
-            }
-
-            // 포인트 사용 건수 총액
-            if (mThisTicketFlow.point_usage > 0)
-            {
-                ListViewItem lvwitem = new ListViewItem();
-                lvwitem.Text = "";
-                lvwitem.SubItems.Add("포인트사용");                            // 1: name 상품명
-                lvwitem.SubItems.Add("");              // 2: amt 단가
-                lvwitem.SubItems.Add(mThisTicketFlow.point_usage_cnt.ToString("N0"));                  // 3: cnt 수량
-                lvwitem.SubItems.Add("");     // 4: dc_amount 할인
-
-                lvwitem.SubItems.Add(mThisTicketFlow.point_usage.ToString("N0"));                 // 5: net_amount 금액
-                lvwitem.SubItems.Add("");                     // 6: 메모
-                lvwitem.SubItems.Add("");
-                mLvwOrderItem.Items.Add(lvwitem);
             }
 
 
@@ -332,6 +332,45 @@ namespace thepos
             lvwTicketSettle.Items.Clear();
 
 
+            if (mThisTicketFlow.point_usage > 0)
+            {
+                ListViewItem item = new ListViewItem();
+                point_back bpoint = new point_back();
+
+                item.Text = mThisTicketFlow.ticket_no.Substring(14, 4) + "-" + mThisTicketFlow.ticket_no.Substring(18, 2);
+                item.SubItems.Add("포인트사용");
+                item.SubItems.Add(mThisTicketFlow.point_usage_cnt.ToString("N0"));
+                item.SubItems.Add(mThisTicketFlow.point_usage.ToString("N0"));
+
+                if (mThisTicketFlow.settle_point_usage == 0)
+                {
+                    item.SubItems.Add("승인요망");
+                    bpoint.result_code = "0";
+                }
+                else
+                {
+                    item.SubItems.Add("승인 - 완료");
+                    bpoint.result_code = "1";
+
+                    item.ForeColor = Color.Gray;
+                    item.SubItems[1].ForeColor = Color.Gray;
+                    item.SubItems[2].ForeColor = Color.Gray;
+                    item.SubItems[3].ForeColor = Color.Gray;
+                    item.SubItems[4].ForeColor = Color.Gray;
+                }
+
+                bpoint.pay_type = mTicketType;
+                bpoint.pay_seq = 1;
+                bpoint.the_no = "";
+                bpoint.amount = mThisTicketFlow.point_usage;
+                bpoint.pay_class = "US";
+
+                item.Tag = bpoint;
+
+                lvwTicketSettle.Items.Add(item);
+            }
+
+
             if (mTicketType == "PA")
             {
                 if (mThisTicketFlow.point_charge > 0)
@@ -354,11 +393,11 @@ namespace thepos
                         item.SubItems.Add("취소 - 완료");
                         bpoint.result_code = "1";
 
-                        item.ForeColor = Color.Silver;
-                        item.SubItems[1].ForeColor = Color.Silver;
-                        item.SubItems[2].ForeColor = Color.Silver;
-                        item.SubItems[3].ForeColor = Color.Silver;
-                        item.SubItems[4].ForeColor = Color.Silver;
+                        item.ForeColor = Color.Gray;
+                        item.SubItems[1].ForeColor = Color.Gray;
+                        item.SubItems[2].ForeColor = Color.Gray;
+                        item.SubItems[3].ForeColor = Color.Gray;
+                        item.SubItems[4].ForeColor = Color.Gray;
 
                     }
 
@@ -373,45 +412,6 @@ namespace thepos
 
                     lvwTicketSettle.Items.Add(item);
                 }
-            }
-
-
-            if (mThisTicketFlow.point_usage > 0)
-            {
-                ListViewItem item = new ListViewItem();
-                point_back bpoint = new point_back();
-
-                item.Text = mThisTicketFlow.ticket_no.Substring(14, 4) + "-" + mThisTicketFlow.ticket_no.Substring(18, 2);
-                item.SubItems.Add("포인트사용");
-                item.SubItems.Add(mThisTicketFlow.point_usage_cnt.ToString("N0"));
-                item.SubItems.Add(mThisTicketFlow.point_usage.ToString("N0"));
-
-                if (mThisTicketFlow.settle_point_usage == 0)
-                {
-                    item.SubItems.Add("승인요망");
-                    bpoint.result_code = "0";
-                }
-                else
-                {
-                    item.SubItems.Add("승인 - 완료");
-                    bpoint.result_code = "1";
-
-                    item.ForeColor = Color.Silver;
-                    item.SubItems[1].ForeColor = Color.Silver;
-                    item.SubItems[2].ForeColor = Color.Silver;
-                    item.SubItems[3].ForeColor = Color.Silver;
-                    item.SubItems[4].ForeColor = Color.Silver;
-                }
-
-                bpoint.pay_type = mTicketType;
-                bpoint.pay_seq = 1;
-                bpoint.the_no = "";
-                bpoint.amount = mThisTicketFlow.point_usage;
-                bpoint.pay_class = "US";
-
-                item.Tag = bpoint;
-
-                lvwTicketSettle.Items.Add(item);
             }
         }
 

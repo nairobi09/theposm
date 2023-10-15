@@ -160,6 +160,9 @@ namespace thepos
 
             int order_cnt = 0;
 
+            int dcAmount = 0;
+
+
             if (mPayClass == "ST")
             {
                 // 정산- 포인트 사용분의 재승인인 경우
@@ -170,7 +173,7 @@ namespace thepos
             {
                 if (paySeq == 1)
                 {
-                    order_cnt = SaveOrder(ticketNo);
+                    order_cnt = SaveOrder(ticketNo, out dcAmount);
                     if (order_cnt == -1)
                     {
                         return; // 심각한 에러.. 재로그인 요구
@@ -180,7 +183,7 @@ namespace thepos
 
 
             // 서버저장 payment
-            if (!SavePayment(paySeq, "Card", netAmount))
+            if (!SavePayment(paySeq, "Card", netAmount, dcAmount))
             {
                 return;
             }
@@ -338,6 +341,9 @@ namespace thepos
             if (chkCUP.Checked == true) { is_cup = "1"; }
 
 
+            int dcAmount = 0;
+
+
             //? 결제시 금액 세팅 - 면세금액 세금 봉사료
 
             int tAmount = netAmount;
@@ -360,7 +366,7 @@ namespace thepos
 
                 if (paySeq == 1)
                 {
-                    order_cnt = SaveOrder(ticketNo);// 주문 저장 1
+                    order_cnt = SaveOrder(ticketNo, out dcAmount);// 주문 저장 1
                     if (order_cnt == -1)
                     {
                         return; // 심각한 에러..
@@ -368,7 +374,7 @@ namespace thepos
                 }
 
                 // 서버저장 payment
-                if (!SavePayment(paySeq, "Card", netAmount))
+                if (!SavePayment(paySeq, "Card", netAmount, dcAmount))
                 {
                     return;
                 }

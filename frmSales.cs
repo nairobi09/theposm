@@ -307,7 +307,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("데이터 오류. orderLastNo\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -319,7 +319,7 @@ namespace thepos
 
         private void get_pos_setup()
         {
-
+            //?
 
 
 
@@ -903,8 +903,11 @@ namespace thepos
 
 
         
-        public static int SaveOrder(String ticket_no)
+        public static int SaveOrder(String ticket_no, out int return_dc_amount)
         {
+
+            return_dc_amount = 0;
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             parameters.Clear();
@@ -913,6 +916,7 @@ namespace thepos
             parameters["bizDt"] = mBizDate;
             parameters["theNo"] = mTheNo;
             parameters["refNo"] = mRefNo;
+            parameters["tranType"] = "A";
             parameters["orderDate"] = get_today_date();
             parameters["orderTime"] = get_today_time();
             parameters["cnt"] = mLvwOrderItem.Items.Count + "";
@@ -948,6 +952,7 @@ namespace thepos
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["refNo"] = mRefNo;
+                parameters["tranType"] = "A";
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
                 parameters["itemCode"] = memOrderItem.code;
@@ -964,6 +969,10 @@ namespace thepos
                 parameters["payClass"] = mPayClass;  //
                 parameters["ticketNo"] = ticket_no;  //
                 parameters["isCancel"] = "";
+
+                // 이후 payment테이블에 적용하기 위해서..
+                return_dc_amount += memOrderItem.dc_amount;
+
 
                 if (mRequestPost("orderItem", parameters))
                 {
@@ -988,7 +997,7 @@ namespace thepos
 
         }
 
-        public static bool SavePayment(int paySeq, String payType, int amount)
+        public static bool SavePayment(int paySeq, String payType, int amount, int dcAmount)
         {
             //!
             if (paySeq == 1)
@@ -1020,7 +1029,7 @@ namespace thepos
                 parameters["amountEasy"] = amount_easy + "";
                 parameters["amountPoint"] = amount_point + "";
 
-                parameters["isDc"] = "";
+                parameters["dcAmount"] = dcAmount + "";
                 parameters["isCancel"] = "";
 
 
@@ -1096,6 +1105,8 @@ namespace thepos
 
                 //
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["siteId"] = mSiteId;
+                parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["tranType"] = "A";
 
@@ -1177,6 +1188,7 @@ namespace thepos
                             parameters["refNo"] = mRefNo;
 
                             parameters["ticketNo"] = t_ticket_no;
+                            parameters["bangleNo"] = "";  //? 팔찌인 경우 - 값변경 필요
                             parameters["ticketingDt"] = get_today_date() + get_today_time();
                             parameters["chargeDt"] = "";
                             parameters["settlementDt"] = "";
@@ -1807,6 +1819,7 @@ namespace thepos
                             Dictionary<string, string> parameters = new Dictionary<string, string>();
                             parameters.Clear();
                             parameters["siteId"] = mSiteId;
+                            parameters["bizDt"] = mBizDate;
                             parameters["ticketNo"] = ticket_no;
 
                             parameters["pointUsage"] = usage_amount + "";

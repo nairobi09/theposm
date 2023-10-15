@@ -188,15 +188,15 @@ namespace thepos
 
                     if (arr[i]["isCancel"].ToString() == "Y")
                     {
-                        lvItem.ForeColor = Color.Silver;
-                        lvItem.SubItems[1].ForeColor = Color.Silver;
-                        lvItem.SubItems[2].ForeColor = Color.Silver;
-                        lvItem.SubItems[3].ForeColor = Color.Silver;
-                        lvItem.SubItems[4].ForeColor = Color.Silver;
-                        lvItem.SubItems[5].ForeColor = Color.Silver;
-                        lvItem.SubItems[6].ForeColor = Color.Silver;
-                        lvItem.SubItems[7].ForeColor = Color.Silver;
-                        lvItem.SubItems[8].ForeColor = Color.Silver;
+                        lvItem.ForeColor = Color.Gray;
+                        lvItem.SubItems[1].ForeColor = Color.Gray;
+                        lvItem.SubItems[2].ForeColor = Color.Gray;
+                        lvItem.SubItems[3].ForeColor = Color.Gray;
+                        lvItem.SubItems[4].ForeColor = Color.Gray;
+                        lvItem.SubItems[5].ForeColor = Color.Gray;
+                        lvItem.SubItems[6].ForeColor = Color.Gray;
+                        lvItem.SubItems[7].ForeColor = Color.Gray;
+                        lvItem.SubItems[8].ForeColor = Color.Gray;
                     }
 
                     lvwList.Items.Add(lvItem);
@@ -370,6 +370,7 @@ namespace thepos
                         //! 승인건에 취소마킹
                         parameters.Clear();
                         parameters["siteId"] = mSiteId;
+                        parameters["bizDt"] = mBizDate;
                         parameters["theNo"] = pCardAuth.the_no;
                         parameters["payType"] = "C1";
                         parameters["tranType"] = "A";
@@ -453,6 +454,7 @@ namespace thepos
                     //! 승인건에 취소마킹
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
+                    parameters["bizDt"] = mBizDate;
                     parameters["theNo"] = pCardAuth.the_no;
                     parameters["payType"] = "C0";
                     parameters["tranType"] = "A";
@@ -607,6 +609,7 @@ namespace thepos
                         //! 승인건에 취소마킹
                         parameters.Clear();
                         parameters["siteId"] = mSiteId;
+                        parameters["bizDt"] = mBizDate;
                         parameters["theNo"] = the_no;
                         parameters["payType"] = "R1";
                         parameters["tranType"] = "A";
@@ -697,6 +700,7 @@ namespace thepos
                     // 승인건에 취소마킹
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
+                    parameters["bizDt"] = mBizDate;
                     parameters["theNo"] = the_no;
                     parameters["payType"] = "R0";
                     parameters["tranType"] = "A";
@@ -865,6 +869,7 @@ namespace thepos
                         //! 승인건에 취소마킹
                         parameters.Clear();
                         parameters["siteId"] = mSiteId;
+                        parameters["bizDt"] = mBizDate;
                         parameters["theNo"] = pEasyAuth.the_no;
                         parameters["payType"] = "E1";
                         parameters["tranType"] = "A";
@@ -912,6 +917,7 @@ namespace thepos
             // 주문건 취소 세트
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
+            parameters["bizDt"] = mBizDate;
             parameters["theNo"] = the_no;
             parameters["isCancel"] = "Y";
 
@@ -936,6 +942,7 @@ namespace thepos
             //
             parameters.Clear();
             parameters["siteId"] = mSiteId;
+            parameters["bizDt"] = mBizDate;
             parameters["theNo"] = the_no;
             parameters["isCancel"] = "Y";
 
@@ -963,6 +970,7 @@ namespace thepos
             // 1. 승인건 -> 취소마킹
             parameters.Clear();
             parameters["siteId"] = mSiteId;
+            parameters["bizDt"] = mBizDate;
             parameters["theNo"] = the_no;
             parameters["tranType"] = "A";
 
@@ -1000,7 +1008,7 @@ namespace thepos
             int settle_charge_amount = 0;
             String flow_step = "";
 
-            String sUrl = "ticketFlow?ticketNo=" + ticket_no;
+            String sUrl = "ticketFlow?bizDt=" + mBizDate + "&ticketNo=" + ticket_no;
 
             if (mRequestGet(sUrl))
             {
@@ -1034,6 +1042,7 @@ namespace thepos
                         Dictionary<string, string> parameters = new Dictionary<string, string>();
                         parameters.Clear();
                         parameters["siteId"] = mSiteId;
+                        parameters["bizDt"] = mBizDate;
                         parameters["ticketNo"] = ticket_no;
 
                         parameters["settlePointCharge"] = settle_charge_amount + "";

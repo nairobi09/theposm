@@ -116,6 +116,10 @@ namespace thepos
             {
                 selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
             }
+            else
+            {
+                selected_the_no = "";
+            }
             
             viewList(selected_biz_date, selected_pos_no, selected_the_no);
             lblLayoutBill.Text = "";
@@ -128,7 +132,7 @@ namespace thepos
 
 
             //!
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no;
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -168,7 +172,15 @@ namespace thepos
                         lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
 
                         //? 할인내용 적용 필요
-                        lvItem.SubItems.Add(arr[i]["isDc"].ToString());
+
+                        if (convert_number(arr[i]["dcAmount"].ToString()) > 0)
+                        {
+                            lvItem.SubItems.Add("Y");
+                        }
+                        else
+                        {
+                            lvItem.SubItems.Add("");
+                        }
 
                         if (arr[i]["isCancel"].ToString() == "Y")
                             lvItem.SubItems.Add("취소됨");
@@ -186,15 +198,15 @@ namespace thepos
 
                         if (arr[i]["isCancel"].ToString() == "Y")
                         {
-                            lvItem.ForeColor = Color.Silver;
-                            lvItem.SubItems[1].ForeColor = Color.Silver;
-                            lvItem.SubItems[2].ForeColor = Color.Silver;
-                            lvItem.SubItems[3].ForeColor = Color.Silver;
-                            lvItem.SubItems[4].ForeColor = Color.Silver;
-                            lvItem.SubItems[5].ForeColor = Color.Silver;
-                            lvItem.SubItems[6].ForeColor = Color.Silver;
-                            lvItem.SubItems[7].ForeColor = Color.Silver;
-                            lvItem.SubItems[8].ForeColor = Color.Silver;
+                            lvItem.ForeColor = Color.Gray;
+                            lvItem.SubItems[1].ForeColor = Color.Gray;
+                            lvItem.SubItems[2].ForeColor = Color.Gray;
+                            lvItem.SubItems[3].ForeColor = Color.Gray;
+                            lvItem.SubItems[4].ForeColor = Color.Gray;
+                            lvItem.SubItems[5].ForeColor = Color.Gray;
+                            lvItem.SubItems[6].ForeColor = Color.Gray;
+                            lvItem.SubItems[7].ForeColor = Color.Gray;
+                            lvItem.SubItems[8].ForeColor = Color.Gray;
                         }
 
                         lvwPayManager.Items.Add(lvItem);
@@ -213,10 +225,9 @@ namespace thepos
         }
 
 
-        public static void reviewList(String biz_date, String the_no, int select_index)
+        public static void reviewList(String biz_date, String pos_no, String the_no, int select_index)
         {
-
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&theNo=" + the_no;
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -253,8 +264,13 @@ namespace thepos
                         lvItem.SubItems.Add(arr[0]["posNo"].ToString());
                         lvItem.SubItems.Add((convert_number(arr[0]["netAmount"].ToString())).ToString("N0"));
 
-                        //? 할인내용 적용 필요
-                        lvItem.SubItems.Add(arr[0]["isDc"].ToString());
+
+                        // 할인내용 적용 필요
+                        //? 아래 할인금액이 0보다 크면 할인 Y
+                        //lvItem.SubItems.Add(arr[0]["dcAmount"].ToString());
+                        lvItem.SubItems.Add("");
+                        //? 이후 검토요망 - 할인 Y 로 하는것은 없음.
+
 
                         if (arr[0]["isCancel"].ToString() == "Y")
                             lvItem.SubItems.Add("취소됨");
@@ -269,15 +285,15 @@ namespace thepos
 
                         if (arr[0]["isCancel"].ToString() == "Y")
                         {
-                            lvItem.ForeColor = Color.Silver;
-                            lvItem.SubItems[1].ForeColor = Color.Silver;
-                            lvItem.SubItems[2].ForeColor = Color.Silver;
-                            lvItem.SubItems[3].ForeColor = Color.Silver;
-                            lvItem.SubItems[4].ForeColor = Color.Silver;
-                            lvItem.SubItems[5].ForeColor = Color.Silver;
-                            lvItem.SubItems[6].ForeColor = Color.Silver;
-                            lvItem.SubItems[7].ForeColor = Color.Silver;
-                            lvItem.SubItems[8].ForeColor = Color.Silver;
+                            lvItem.ForeColor = Color.Gray;
+                            lvItem.SubItems[1].ForeColor = Color.Gray;
+                            lvItem.SubItems[2].ForeColor = Color.Gray;
+                            lvItem.SubItems[3].ForeColor = Color.Gray;
+                            lvItem.SubItems[4].ForeColor = Color.Gray;
+                            lvItem.SubItems[5].ForeColor = Color.Gray;
+                            lvItem.SubItems[6].ForeColor = Color.Gray;
+                            lvItem.SubItems[7].ForeColor = Color.Gray;
+                            lvItem.SubItems[8].ForeColor = Color.Gray;
                         }
 
                         mLvwPayManager.Items[select_index] = lvItem;
@@ -396,7 +412,7 @@ namespace thepos
             mPanelCancel.Controls.Clear();
             mPanelCancel.Visible = true;
 
-            Form fForm = new frmPayCancel(the_no, selected_biz_date, pay_keep, select_idx) { TopLevel = false, TopMost = true };
+            Form fForm = new frmPayCancel(the_no, selected_pos_no, selected_biz_date, pay_keep, select_idx) { TopLevel = false, TopMost = true };
 
             mPanelCancel.Controls.Add(fForm);
             fForm.Show();

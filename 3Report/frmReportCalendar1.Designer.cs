@@ -213,6 +213,8 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
+            this.cbShop = new System.Windows.Forms.ComboBox();
+            this.lblShopTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -367,7 +369,7 @@
             this.tableLayoutPanel1.Controls.Add(this.sp5, 7, 5);
             this.tableLayoutPanel1.Controls.Add(this.sp6, 7, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel7, 7, 7);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(22, 78);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 70);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -378,7 +380,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(754, 598);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(760, 607);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel9
@@ -388,13 +390,13 @@
             this.panel9.Location = new System.Drawing.Point(365, 518);
             this.panel9.Margin = new System.Windows.Forms.Padding(0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(90, 79);
+            this.panel9.Size = new System.Drawing.Size(90, 88);
             this.panel9.TabIndex = 69;
             // 
             // ra5
             // 
             this.ra5.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra5.Location = new System.Drawing.Point(0, 57);
+            this.ra5.Location = new System.Drawing.Point(0, 64);
             this.ra5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra5.Name = "ra5";
             this.ra5.Size = new System.Drawing.Size(88, 16);
@@ -409,13 +411,13 @@
             this.panel8.Location = new System.Drawing.Point(183, 518);
             this.panel8.Margin = new System.Windows.Forms.Padding(0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(90, 79);
+            this.panel8.Size = new System.Drawing.Size(90, 88);
             this.panel8.TabIndex = 68;
             // 
             // ra3
             // 
             this.ra3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra3.Location = new System.Drawing.Point(0, 57);
+            this.ra3.Location = new System.Drawing.Point(0, 64);
             this.ra3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra3.Name = "ra3";
             this.ra3.Size = new System.Drawing.Size(88, 16);
@@ -430,13 +432,13 @@
             this.panel6.Location = new System.Drawing.Point(92, 518);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(90, 79);
+            this.panel6.Size = new System.Drawing.Size(90, 88);
             this.panel6.TabIndex = 67;
             // 
             // ra2
             // 
             this.ra2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra2.Location = new System.Drawing.Point(0, 57);
+            this.ra2.Location = new System.Drawing.Point(0, 64);
             this.ra2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra2.Name = "ra2";
             this.ra2.Size = new System.Drawing.Size(88, 16);
@@ -451,13 +453,13 @@
             this.panel5.Location = new System.Drawing.Point(1, 518);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(90, 79);
+            this.panel5.Size = new System.Drawing.Size(90, 88);
             this.panel5.TabIndex = 66;
             // 
             // ra1
             // 
             this.ra1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra1.Location = new System.Drawing.Point(0, 57);
+            this.ra1.Location = new System.Drawing.Point(0, 64);
             this.ra1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra1.Name = "ra1";
             this.ra1.Size = new System.Drawing.Size(88, 16);
@@ -472,13 +474,13 @@
             this.panel4.Location = new System.Drawing.Point(274, 518);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(90, 79);
+            this.panel4.Size = new System.Drawing.Size(90, 88);
             this.panel4.TabIndex = 65;
             // 
             // ra4
             // 
             this.ra4.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra4.Location = new System.Drawing.Point(0, 57);
+            this.ra4.Location = new System.Drawing.Point(0, 64);
             this.ra4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra4.Name = "ra4";
             this.ra4.Size = new System.Drawing.Size(88, 16);
@@ -493,13 +495,13 @@
             this.panel3.Location = new System.Drawing.Point(547, 518);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(90, 79);
+            this.panel3.Size = new System.Drawing.Size(90, 88);
             this.panel3.TabIndex = 64;
             // 
             // ra7
             // 
             this.ra7.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra7.Location = new System.Drawing.Point(0, 57);
+            this.ra7.Location = new System.Drawing.Point(0, 64);
             this.ra7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra7.Name = "ra7";
             this.ra7.Size = new System.Drawing.Size(88, 16);
@@ -514,13 +516,13 @@
             this.panel1.Location = new System.Drawing.Point(456, 518);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(90, 79);
+            this.panel1.Size = new System.Drawing.Size(90, 88);
             this.panel1.TabIndex = 63;
             // 
             // ra6
             // 
             this.ra6.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ra6.Location = new System.Drawing.Point(0, 57);
+            this.ra6.Location = new System.Drawing.Point(0, 64);
             this.ra6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ra6.Name = "ra6";
             this.ra6.Size = new System.Drawing.Size(88, 16);
@@ -2027,7 +2029,7 @@
             this.sp1.Location = new System.Drawing.Point(638, 32);
             this.sp1.Margin = new System.Windows.Forms.Padding(0);
             this.sp1.Name = "sp1";
-            this.sp1.Size = new System.Drawing.Size(115, 79);
+            this.sp1.Size = new System.Drawing.Size(121, 79);
             this.sp1.TabIndex = 55;
             // 
             // wa1
@@ -2058,7 +2060,7 @@
             this.panel2.Location = new System.Drawing.Point(638, 1);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(115, 30);
+            this.panel2.Size = new System.Drawing.Size(121, 30);
             this.panel2.TabIndex = 56;
             // 
             // label4
@@ -2080,7 +2082,7 @@
             this.sp2.Location = new System.Drawing.Point(638, 113);
             this.sp2.Margin = new System.Windows.Forms.Padding(0);
             this.sp2.Name = "sp2";
-            this.sp2.Size = new System.Drawing.Size(115, 79);
+            this.sp2.Size = new System.Drawing.Size(121, 79);
             this.sp2.TabIndex = 57;
             // 
             // wa2
@@ -2112,7 +2114,7 @@
             this.sp3.Location = new System.Drawing.Point(638, 194);
             this.sp3.Margin = new System.Windows.Forms.Padding(0);
             this.sp3.Name = "sp3";
-            this.sp3.Size = new System.Drawing.Size(115, 79);
+            this.sp3.Size = new System.Drawing.Size(121, 79);
             this.sp3.TabIndex = 58;
             // 
             // wa3
@@ -2144,7 +2146,7 @@
             this.sp4.Location = new System.Drawing.Point(638, 275);
             this.sp4.Margin = new System.Windows.Forms.Padding(0);
             this.sp4.Name = "sp4";
-            this.sp4.Size = new System.Drawing.Size(115, 79);
+            this.sp4.Size = new System.Drawing.Size(121, 79);
             this.sp4.TabIndex = 59;
             // 
             // wa4
@@ -2176,7 +2178,7 @@
             this.sp5.Location = new System.Drawing.Point(638, 356);
             this.sp5.Margin = new System.Windows.Forms.Padding(0);
             this.sp5.Name = "sp5";
-            this.sp5.Size = new System.Drawing.Size(115, 79);
+            this.sp5.Size = new System.Drawing.Size(121, 79);
             this.sp5.TabIndex = 60;
             // 
             // wa5
@@ -2208,7 +2210,7 @@
             this.sp6.Location = new System.Drawing.Point(638, 437);
             this.sp6.Margin = new System.Windows.Forms.Padding(0);
             this.sp6.Name = "sp6";
-            this.sp6.Size = new System.Drawing.Size(115, 79);
+            this.sp6.Size = new System.Drawing.Size(121, 79);
             this.sp6.TabIndex = 61;
             // 
             // wa6
@@ -2240,13 +2242,13 @@
             this.panel7.Location = new System.Drawing.Point(638, 518);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(115, 79);
+            this.panel7.Size = new System.Drawing.Size(121, 88);
             this.panel7.TabIndex = 62;
             // 
             // ma
             // 
             this.ma.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ma.Location = new System.Drawing.Point(3, 57);
+            this.ma.Location = new System.Drawing.Point(3, 64);
             this.ma.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.ma.Name = "ma";
             this.ma.Size = new System.Drawing.Size(108, 16);
@@ -2268,8 +2270,8 @@
             // 
             this.lblYYYYMM.BackColor = System.Drawing.Color.White;
             this.lblYYYYMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblYYYYMM.Location = new System.Drawing.Point(239, 27);
+            this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblYYYYMM.Location = new System.Drawing.Point(183, 27);
             this.lblYYYYMM.Name = "lblYYYYMM";
             this.lblYYYYMM.Size = new System.Drawing.Size(156, 27);
             this.lblYYYYMM.TabIndex = 3;
@@ -2278,7 +2280,7 @@
             // 
             // btnView
             // 
-            this.btnView.Location = new System.Drawing.Point(592, 27);
+            this.btnView.Location = new System.Drawing.Point(667, 27);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(80, 27);
             this.btnView.TabIndex = 4;
@@ -2292,7 +2294,7 @@
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrev.Location = new System.Drawing.Point(192, 27);
+            this.btnPrev.Location = new System.Drawing.Point(136, 27);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(41, 27);
             this.btnPrev.TabIndex = 5;
@@ -2307,7 +2309,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnNext.Location = new System.Drawing.Point(401, 27);
+            this.btnNext.Location = new System.Drawing.Point(345, 27);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(41, 27);
             this.btnNext.TabIndex = 6;
@@ -2320,30 +2322,50 @@
             // 
             this.cbPosNo.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Items.AddRange(new object[] {
-            "",
-            "01",
-            "02",
-            "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(514, 27);
+            this.cbPosNo.Location = new System.Drawing.Point(458, 27);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(57, 27);
             this.cbPosNo.TabIndex = 75;
+            this.cbPosNo.TabStop = false;
+            this.cbPosNo.SelectedIndexChanged += new System.EventHandler(this.cbPosNo_SelectedIndexChanged);
             // 
             // lblPosNoTitle
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNoTitle.Location = new System.Drawing.Point(455, 33);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(399, 33);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(53, 12);
             this.lblPosNoTitle.TabIndex = 74;
             this.lblPosNoTitle.Text = "포스번호";
             // 
-            // frmReportMonth1
+            // cbShop
+            // 
+            this.cbShop.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.FormattingEnabled = true;
+            this.cbShop.Location = new System.Drawing.Point(562, 27);
+            this.cbShop.Name = "cbShop";
+            this.cbShop.Size = new System.Drawing.Size(92, 27);
+            this.cbShop.TabIndex = 77;
+            this.cbShop.TabStop = false;
+            this.cbShop.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);
+            // 
+            // lblShopTitle
+            // 
+            this.lblShopTitle.AutoSize = true;
+            this.lblShopTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblShopTitle.Location = new System.Drawing.Point(527, 33);
+            this.lblShopTitle.Name = "lblShopTitle";
+            this.lblShopTitle.Size = new System.Drawing.Size(29, 12);
+            this.lblShopTitle.TabIndex = 76;
+            this.lblShopTitle.Text = "업장";
+            // 
+            // frmReportCalendar1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
+            this.Controls.Add(this.cbShop);
+            this.Controls.Add(this.lblShopTitle);
             this.Controls.Add(this.cbPosNo);
             this.Controls.Add(this.lblPosNoTitle);
             this.Controls.Add(this.btnNext);
@@ -2353,7 +2375,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lblReportTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmReportMonth1";
+            this.Name = "frmReportCalendar1";
             this.Text = "frmReportMonth1";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
@@ -2661,5 +2683,7 @@
         private System.Windows.Forms.Label ra7;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Label lblPosNoTitle;
+        private System.Windows.Forms.ComboBox cbShop;
+        private System.Windows.Forms.Label lblShopTitle;
     }
 }

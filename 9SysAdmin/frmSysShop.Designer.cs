@@ -47,7 +47,7 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(501, 314);
+            this.btnDelete.Location = new System.Drawing.Point(502, 314);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(146, 30);
             this.btnDelete.TabIndex = 55;
@@ -73,7 +73,7 @@
             // 
             this.tbShopName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbShopName.ForeColor = System.Drawing.Color.Black;
-            this.tbShopName.Location = new System.Drawing.Point(77, 70);
+            this.tbShopName.Location = new System.Drawing.Point(78, 70);
             this.tbShopName.MaxLength = 16;
             this.tbShopName.Name = "tbShopName";
             this.tbShopName.Size = new System.Drawing.Size(105, 26);
@@ -82,11 +82,11 @@
             // lblGoodsAmtTitle
             // 
             this.lblGoodsAmtTitle.AutoSize = true;
-            this.lblGoodsAmtTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGoodsAmtTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsAmtTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(14, 77);
+            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(12, 77);
             this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
-            this.lblGoodsAmtTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblGoodsAmtTitle.Size = new System.Drawing.Size(46, 13);
             this.lblGoodsAmtTitle.TabIndex = 44;
             this.lblGoodsAmtTitle.Text = "업장명";
             // 
@@ -95,7 +95,7 @@
             this.lblGoodsNameTitle.AutoSize = true;
             this.lblGoodsNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblGoodsNameTitle.Location = new System.Drawing.Point(14, 39);
+            this.lblGoodsNameTitle.Location = new System.Drawing.Point(12, 39);
             this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
             this.lblGoodsNameTitle.Size = new System.Drawing.Size(63, 14);
             this.lblGoodsNameTitle.TabIndex = 43;
@@ -105,7 +105,7 @@
             // 
             this.tbShopCode.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbShopCode.ForeColor = System.Drawing.Color.Black;
-            this.tbShopCode.Location = new System.Drawing.Point(77, 32);
+            this.tbShopCode.Location = new System.Drawing.Point(78, 32);
             this.tbShopCode.MaxLength = 2;
             this.tbShopCode.Name = "tbShopCode";
             this.tbShopCode.Size = new System.Drawing.Size(105, 26);
@@ -115,7 +115,7 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(501, 258);
+            this.btnUpdate.Location = new System.Drawing.Point(502, 258);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(146, 50);
             this.btnUpdate.TabIndex = 52;
@@ -128,7 +128,7 @@
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(501, 202);
+            this.btnAdd.Location = new System.Drawing.Point(502, 202);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(146, 50);
             this.btnAdd.TabIndex = 53;

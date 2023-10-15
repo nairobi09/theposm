@@ -256,17 +256,23 @@
     <Compile Include="3Report\frmReportCalendar1.Designer.cs">
       <DependentUpon>frmReportCalendar1.cs</DependentUpon>
     </Compile>
-    <Compile Include="3Report\frmReportDay1.cs">
+    <Compile Include="3Report\frmReportDayShop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3Report\frmReportDay1.Designer.cs">
-      <DependentUpon>frmReportDay1.cs</DependentUpon>
+    <Compile Include="3Report\frmReportDayShop.Designer.cs">
+      <DependentUpon>frmReportDayShop.cs</DependentUpon>
     </Compile>
     <Compile Include="3Report\frmReportChart1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="3Report\frmReportChart1.Designer.cs">
       <DependentUpon>frmReportChart1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportDayDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportDayDetail.Designer.cs">
+      <DependentUpon>frmReportDayDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSub.cs">
       <SubType>Form</SubType>
@@ -405,8 +411,8 @@
     <EmbeddedResource Include="1Sales\frmFlowSettleChargeCancel.resx">
       <DependentUpon>frmFlowSettleChargeCancel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3Report\frmReportDay1.resx">
-      <DependentUpon>frmReportDay1.cs</DependentUpon>
+    <EmbeddedResource Include="3Report\frmReportDayShop.resx">
+      <DependentUpon>frmReportDayShop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportChart1.resx">
       <DependentUpon>frmReportChart1.cs</DependentUpon>
@@ -486,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportCalendar1.resx">
       <DependentUpon>frmReportCalendar1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportDayDetail.resx">
+      <DependentUpon>frmReportDayDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReports.resx">
       <DependentUpon>frmReports.cs</DependentUpon>

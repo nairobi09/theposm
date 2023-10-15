@@ -30,10 +30,10 @@ namespace thepos._9SysAdmin
             lblTitle.Font = font14;
             lvwList.Font = font12;
 
-            lblGoodsNameTitle.Font = font12;
+            lblGoodsNameTitle.Font = font10;
             tbShopCode.Font = font12;
 
-            lblGoodsAmtTitle.Font = font12;
+            lblGoodsAmtTitle.Font = font10;
             tbShopName.Font = font12;
 
             btnAdd.Font = font12;
@@ -77,7 +77,6 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[i]["shopName"].ToString());
 
                         lvwList.Items.Add(lvItem);
-
                     }
                 }
                 else
