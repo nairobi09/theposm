@@ -2273,14 +2273,14 @@
             this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblYYYYMM.Location = new System.Drawing.Point(183, 27);
             this.lblYYYYMM.Name = "lblYYYYMM";
-            this.lblYYYYMM.Size = new System.Drawing.Size(156, 27);
+            this.lblYYYYMM.Size = new System.Drawing.Size(156, 24);
             this.lblYYYYMM.TabIndex = 3;
             this.lblYYYYMM.Text = "2023-10";
             this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnView
             // 
-            this.btnView.Location = new System.Drawing.Point(667, 27);
+            this.btnView.Location = new System.Drawing.Point(667, 25);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(80, 27);
             this.btnView.TabIndex = 4;
@@ -2296,7 +2296,7 @@
             this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnPrev.Location = new System.Drawing.Point(136, 27);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(41, 27);
+            this.btnPrev.Size = new System.Drawing.Size(41, 24);
             this.btnPrev.TabIndex = 5;
             this.btnPrev.TabStop = false;
             this.btnPrev.Text = "◀";
@@ -2311,7 +2311,7 @@
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnNext.Location = new System.Drawing.Point(345, 27);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(41, 27);
+            this.btnNext.Size = new System.Drawing.Size(41, 24);
             this.btnNext.TabIndex = 6;
             this.btnNext.TabStop = false;
             this.btnNext.Text = "▶";
@@ -2320,11 +2320,11 @@
             // 
             // cbPosNo
             // 
-            this.cbPosNo.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Location = new System.Drawing.Point(458, 27);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(57, 27);
+            this.cbPosNo.Size = new System.Drawing.Size(57, 24);
             this.cbPosNo.TabIndex = 75;
             this.cbPosNo.TabStop = false;
             this.cbPosNo.SelectedIndexChanged += new System.EventHandler(this.cbPosNo_SelectedIndexChanged);
@@ -2341,11 +2341,11 @@
             // 
             // cbShop
             // 
-            this.cbShop.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbShop.FormattingEnabled = true;
             this.cbShop.Location = new System.Drawing.Point(562, 27);
             this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(92, 27);
+            this.cbShop.Size = new System.Drawing.Size(92, 24);
             this.cbShop.TabIndex = 77;
             this.cbShop.TabStop = false;
             this.cbShop.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);

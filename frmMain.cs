@@ -19,7 +19,7 @@ using System.Text.Json;
 using static System.Net.Mime.MediaTypeNames;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
-using thepos._9SysAdmin;
+
 
 namespace thepos
 {
@@ -46,9 +46,9 @@ namespace thepos
 
         private void initialize_font()
         {
-            //fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
-            fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
-            //fontCollection.AddFontFile("Font\\TOSSPRODUCTSANSTTF-MEDIUM.TTF");
+            fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
+            //fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
+            //fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
 
 
             font5 = new Font(fontCollection.Families[0], 5f);
@@ -471,6 +471,12 @@ namespace thepos
             }
 
 
+            get_goodsgroup();
+            get_goodsitem();
+
+
+
+
             //? 데이터 체크 임시
             Form f = new frmCheckData();
             f.Show();
@@ -678,5 +684,9 @@ namespace thepos
         {
             in_patern += "2";
         }
+
+
+
+
     }
 }

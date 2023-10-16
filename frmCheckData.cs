@@ -185,6 +185,7 @@ namespace thepos
 
                         lvItem.SubItems.Add(arr[i]["payDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["payTime"].ToString());
+                        lvItem.SubItems.Add(arr[i]["payType"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["payClass"].ToString());
                         lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
@@ -230,6 +231,7 @@ namespace thepos
 
                         lvItem.SubItems.Add(arr[i]["payDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["payTime"].ToString());
+                        lvItem.SubItems.Add(arr[i]["payType"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["payClass"].ToString());
                         lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
@@ -286,6 +288,7 @@ namespace thepos
 
                         lvItem.SubItems.Add(arr[i]["payDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["payTime"].ToString());
+                        lvItem.SubItems.Add(arr[i]["payType"].ToString());
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["payClass"].ToString());
                         lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());

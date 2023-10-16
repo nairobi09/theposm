@@ -35,15 +35,13 @@
             this.dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_class = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.net_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.net_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.is_cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paykeep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.trantype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.lvwOrder = new System.Windows.Forms.ListView();
-            this.lvwPayment = new System.Windows.Forms.ListView();
-            this.dpkBizDate = new System.Windows.Forms.DateTimePicker();
-            this.btnView = new System.Windows.Forms.Button();
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,6 +50,7 @@
             this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvwPayment = new System.Windows.Forms.ListView();
             this.p_seq_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_tran_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_pay_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,6 +60,8 @@
             this.acq_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_authno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_is_cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
+            this.btnView = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvwList
@@ -75,7 +76,8 @@
             this.dc_amt,
             this.net_amt,
             this.is_cancel,
-            this.paykeep});
+            this.paykeep,
+            this.trantype});
             this.lvwList.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -84,7 +86,7 @@
             this.lvwList.Location = new System.Drawing.Point(20, 70);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(760, 333);
+            this.lvwList.Size = new System.Drawing.Size(760, 353);
             this.lvwList.TabIndex = 0;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -116,17 +118,17 @@
             // 
             this.pay.Text = "결제";
             // 
-            // net_amt
-            // 
-            this.net_amt.Text = "금액";
-            this.net_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.net_amt.Width = 80;
-            // 
             // dc_amt
             // 
             this.dc_amt.Text = "할인";
             this.dc_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dc_amt.Width = 80;
+            // 
+            // net_amt
+            // 
+            this.net_amt.Text = "금액";
+            this.net_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.net_amt.Width = 80;
             // 
             // is_cancel
             // 
@@ -136,6 +138,11 @@
             // 
             this.paykeep.Text = "";
             this.paykeep.Width = 0;
+            // 
+            // trantype
+            // 
+            this.trantype.Text = "";
+            this.trantype.Width = 0;
             // 
             // lblReportTitle
             // 
@@ -159,56 +166,16 @@
             this.net_amount,
             this.memo,
             this.tip});
-            this.lvwOrder.FullRowSelect = true;
             this.lvwOrder.GridLines = true;
             this.lvwOrder.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwOrder.Location = new System.Drawing.Point(20, 409);
+            this.lvwOrder.HideSelection = false;
+            this.lvwOrder.Location = new System.Drawing.Point(20, 429);
             this.lvwOrder.MultiSelect = false;
             this.lvwOrder.Name = "lvwOrder";
-            this.lvwOrder.Size = new System.Drawing.Size(586, 139);
+            this.lvwOrder.Size = new System.Drawing.Size(760, 139);
             this.lvwOrder.TabIndex = 2;
             this.lvwOrder.UseCompatibleStateImageBehavior = false;
             this.lvwOrder.View = System.Windows.Forms.View.Details;
-            // 
-            // lvwPayment
-            // 
-            this.lvwPayment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.p_seq_no,
-            this.p_tran_type,
-            this.p_pay_type,
-            this.p_net_amt,
-            this.p_cardno,
-            this.type2,
-            this.acq_name,
-            this.p_authno,
-            this.p_is_cancel});
-            this.lvwPayment.HideSelection = false;
-            this.lvwPayment.Location = new System.Drawing.Point(20, 554);
-            this.lvwPayment.Name = "lvwPayment";
-            this.lvwPayment.Size = new System.Drawing.Size(760, 124);
-            this.lvwPayment.TabIndex = 3;
-            this.lvwPayment.UseCompatibleStateImageBehavior = false;
-            this.lvwPayment.View = System.Windows.Forms.View.Details;
-            // 
-            // dpkBizDate
-            // 
-            this.dpkBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dpkBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dpkBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpkBizDate.Location = new System.Drawing.Point(318, 24);
-            this.dpkBizDate.Name = "dpkBizDate";
-            this.dpkBizDate.Size = new System.Drawing.Size(139, 23);
-            this.dpkBizDate.TabIndex = 4;
-            // 
-            // btnView
-            // 
-            this.btnView.Location = new System.Drawing.Point(482, 21);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(103, 26);
-            this.btnView.TabIndex = 5;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // no
             // 
@@ -254,6 +221,29 @@
             this.tip.Text = "";
             this.tip.Width = 0;
             // 
+            // lvwPayment
+            // 
+            this.lvwPayment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.p_seq_no,
+            this.p_tran_type,
+            this.p_pay_type,
+            this.p_net_amt,
+            this.p_cardno,
+            this.type2,
+            this.acq_name,
+            this.p_authno,
+            this.p_is_cancel});
+            this.lvwPayment.GridLines = true;
+            this.lvwPayment.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwPayment.HideSelection = false;
+            this.lvwPayment.Location = new System.Drawing.Point(20, 574);
+            this.lvwPayment.MultiSelect = false;
+            this.lvwPayment.Name = "lvwPayment";
+            this.lvwPayment.Size = new System.Drawing.Size(760, 106);
+            this.lvwPayment.TabIndex = 3;
+            this.lvwPayment.UseCompatibleStateImageBehavior = false;
+            this.lvwPayment.View = System.Windows.Forms.View.Details;
+            // 
             // p_seq_no
             // 
             this.p_seq_no.Text = "#";
@@ -277,7 +267,7 @@
             // p_cardno
             // 
             this.p_cardno.Text = "번호";
-            this.p_cardno.Width = 120;
+            this.p_cardno.Width = 140;
             // 
             // type2
             // 
@@ -297,12 +287,32 @@
             // 
             this.p_is_cancel.Text = "취소";
             // 
+            // dtpBizDate
+            // 
+            this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBizDate.Location = new System.Drawing.Point(352, 24);
+            this.dtpBizDate.Name = "dtpBizDate";
+            this.dtpBizDate.Size = new System.Drawing.Size(109, 22);
+            this.dtpBizDate.TabIndex = 4;
+            // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(482, 24);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(103, 23);
+            this.btnView.TabIndex = 5;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
             // frmReportDayDetail
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
             this.Controls.Add(this.btnView);
-            this.Controls.Add(this.dpkBizDate);
+            this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.lvwPayment);
             this.Controls.Add(this.lvwOrder);
             this.Controls.Add(this.lblReportTitle);
@@ -322,7 +332,7 @@
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.ListView lvwOrder;
         private System.Windows.Forms.ListView lvwPayment;
-        private System.Windows.Forms.DateTimePicker dpkBizDate;
+        private System.Windows.Forms.DateTimePicker dtpBizDate;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ColumnHeader the_no;
         private System.Windows.Forms.ColumnHeader pos_no;
@@ -351,5 +361,6 @@
         private System.Windows.Forms.ColumnHeader acq_name;
         private System.Windows.Forms.ColumnHeader p_authno;
         private System.Windows.Forms.ColumnHeader p_is_cancel;
+        private System.Windows.Forms.ColumnHeader trantype;
     }
 }

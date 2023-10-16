@@ -833,5 +833,91 @@ namespace thepos
 
         }
 
+
+        public static void get_goodsgroup()
+        {
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String goods_group = mObj["goodsGroups"].ToString();
+                    JArray arr = JArray.Parse(goods_group);
+
+                    mGoodsGroup = new GoodsGroup[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
+                        mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
+                        mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
+
+        public static void get_goodsitem()
+        {
+            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String goods_item = mObj["goodsItems"].ToString();
+                    JArray arr = JArray.Parse(goods_item);
+
+                    mGoodsItem = new GoodsItem[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                        mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
+                        mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
+                        mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
+                        mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
+                        mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
+                        mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                        mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                        mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                        mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                        mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                        // 면세상픔은 상품명앞에 *을 붙인다.
+                        if (mGoodsItem[i].taxfree == "1")
+                        {
+                            mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+        }
+
     }
 }

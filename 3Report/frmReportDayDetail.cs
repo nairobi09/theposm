@@ -28,8 +28,7 @@ namespace thepos
         private void initialize_font()
         {
             lblReportTitle.Font = font10;
-            //dpkBizDate.Font = font10;
-            //dpkBizDate.CalendarFont = font10;
+            dtpBizDate.Font = font10;
 
             lvwList.Font = font10;
             lvwOrder.Font = font10;
@@ -40,11 +39,13 @@ namespace thepos
 
         private void initialize_the()
         {
+            dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            thisBizDt = dpkBizDate.Value.ToString("yyyyMMdd");
+            thisBizDt = dtpBizDate.Value.ToString("yyyyMMdd");
 
             lvwList.Items.Clear();
 
@@ -96,8 +97,8 @@ namespace thepos
                         else
                             lvItem.SubItems.Add("");
 
-
                         lvItem.SubItems.Add(pay_keep);
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
 
                         if (arr[i]["isCancel"].ToString() == "Y")
@@ -139,16 +140,16 @@ namespace thepos
                 return;
             }
 
-            
+
             lvwOrder.Items.Clear();
             lvwPayment.Items.Clear();
 
             String tTheNo = lvwList.SelectedItems[0].Tag.ToString();
             String pay_keep = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(paykeep)].Text;
-
+            String tran_type = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(trantype)].Text;
 
             // order
-            String sUrl = "orderItem?bizDt=" + thisBizDt + "&theNo=" + tTheNo;
+            String sUrl = "orderItem?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -168,7 +169,6 @@ namespace thepos
 
                         ListViewItem lvItem = new ListViewItem();
 
-                        lvItem.Tag = arr[i]["theNo"].ToString();
                         lvItem.Text = (i + 1).ToString();
 
                         lvItem.SubItems.Add(arr[i]["itemName"].ToString());
@@ -197,7 +197,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -212,6 +212,8 @@ namespace thepos
 
             // payment
 
+            int seq_no = 0;
+
 
             String pay_keep_cash = pay_keep.Substring(0, 1);
             String pay_keep_card = pay_keep.Substring(1, 1);
@@ -221,7 +223,7 @@ namespace thepos
 
             if (pay_keep_cash == "1")
             {
-                sUrl = "paymentCash?theNo=" + tTheNo;
+                sUrl = "paymentCash?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -233,7 +235,7 @@ namespace thepos
                         {
                             ListViewItem lvItem = new ListViewItem();
 
-                            lvItem.Text = arr[i]["paySeq"].ToString();
+                            lvItem.Text = (++seq_no).ToString();
                             lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
                             lvItem.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
 
@@ -244,28 +246,34 @@ namespace thepos
 
                             lvItem.SubItems.Add("");
                             lvItem.SubItems.Add(arr[i]["authNo"].ToString());
-                            lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+
+                            if (arr[i]["isCancel"].ToString() == "Y")
+                                lvItem.SubItems.Add("취소됨");
+                            else if (arr[i]["isCancel"].ToString() == "0")
+                                lvItem.SubItems.Add("취소중");
+                            else
+                                lvItem.SubItems.Add("");
+
 
                             lvwPayment.Items.Add(lvItem);
-
                         }
                     }
                     else
                     {
-                        MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
 
             if (pay_keep_card == "1")
             {
-                sUrl = "paymentCard?theNo=" + tTheNo;
+                sUrl = "paymentCard?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -276,35 +284,108 @@ namespace thepos
                         for (int i = 0; i < arr.Count; i++)
                         {
                             ListViewItem lvItem = new ListViewItem();
-                            lvItem.Text = arr[i]["paySeq"].ToString();
+                            lvItem.Text = (++seq_no).ToString();
                             lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
                             lvItem.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
                             lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
                             lvItem.SubItems.Add(arr[i]["cardNo"].ToString());
-                            lvItem.SubItems.Add(arr[i]["install"].ToString() + "개월");
+
+                            String temp = "";
+                            if (arr[i]["install"].ToString() == "00")
+                            {
+                                temp = "일시불";
+                            }
+                            else
+                            {
+                                temp = arr[i]["install"].ToString() + "개월";
+                            }
+
+                            lvItem.SubItems.Add(temp);
+
                             lvItem.SubItems.Add(arr[i]["cardName"].ToString());
                             lvItem.SubItems.Add(arr[i]["authNo"].ToString());
-                            lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+
+                            if (arr[i]["isCancel"].ToString() == "Y")
+                                lvItem.SubItems.Add("취소됨");
+                            else if (arr[i]["isCancel"].ToString() == "0")
+                                lvItem.SubItems.Add("취소중");
+                            else
+                                lvItem.SubItems.Add("");
+
                             lvwPayment.Items.Add(lvItem);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
 
 
+            if (pay_keep_easy == "1")
+            {
+                sUrl = "paymentEasy?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCards"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            ListViewItem lvItem = new ListViewItem();
+                            lvItem.Text = (++seq_no).ToString();
+                            lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
+                            lvItem.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
+                            lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
+                            lvItem.SubItems.Add(arr[i]["cardNo"].ToString());
 
+                            String temp = "";
+                            if (arr[i]["install"].ToString() == "00")
+                            {
+                                temp = "일시불";
+                            }
+                            else
+                            {
+                                temp = arr[i]["install"].ToString() + "개월";
+                            }
 
+                            lvItem.SubItems.Add(temp);
+
+                            lvItem.SubItems.Add(arr[i]["cardName"].ToString());
+                            lvItem.SubItems.Add(arr[i]["authNo"].ToString());
+
+                            if (arr[i]["isCancel"].ToString() == "Y")
+                                lvItem.SubItems.Add("취소됨");
+                            else if (arr[i]["isCancel"].ToString() == "0")
+                                lvItem.SubItems.Add("취소중");
+                            else
+                                lvItem.SubItems.Add("");
+
+                            lvwPayment.Items.Add(lvItem);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentEasy\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+            }
         }
     }
 }

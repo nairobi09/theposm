@@ -217,7 +217,7 @@ namespace thepos
             mPaymentCard.tran_serial = "";              // tran_serial -> 취소시 tid입력
             mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
-            mPaymentCard.van_code = mVanCode;
+            mPaymentCard.van_code = "";
             SavePaymentCard(mPaymentCard);
 
 

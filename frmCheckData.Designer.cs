@@ -205,6 +205,9 @@
             this.t_lockerNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_openLocker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
+            this.pr_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pc_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pe_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -586,6 +589,7 @@
             this.pr_refNo,
             this.pr_payDate,
             this.pr_payTime,
+            this.pr_payType,
             this.pr_tranType,
             this.pr_payClass,
             this.pr_ticketNo,
@@ -711,6 +715,7 @@
             this.pc_refNo,
             this.pc_payDate,
             this.pc_payTime,
+            this.pc_payType,
             this.pc_tranType,
             this.pc_payClass,
             this.pc_ticketNo,
@@ -886,6 +891,7 @@
             this.pe_refNo,
             this.pe_payDate,
             this.pe_payTime,
+            this.pe_payType,
             this.pe_tranType,
             this.pe_payClass,
             this.pe_ticketNo,
@@ -1111,8 +1117,8 @@
             // 
             // pp_payType
             // 
-            this.pp_payType.Text = "pay";
-            this.pp_payType.Width = 40;
+            this.pp_payType.Text = "payType";
+            this.pp_payType.Width = 80;
             // 
             // pp_payClass
             // 
@@ -1273,6 +1279,21 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "ticket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pr_payType
+            // 
+            this.pr_payType.Text = "payType";
+            this.pr_payType.Width = 80;
+            // 
+            // pc_payType
+            // 
+            this.pc_payType.Text = "payType";
+            this.pc_payType.Width = 80;
+            // 
+            // pe_payType
+            // 
+            this.pe_payType.Text = "payType";
+            this.pe_payType.Width = 80;
             // 
             // frmCheckData
             // 
@@ -1483,5 +1504,8 @@
         private System.Windows.Forms.ColumnHeader o_tranType;
         private System.Windows.Forms.ColumnHeader oi_tranType;
         private System.Windows.Forms.ColumnHeader p_tranType;
+        private System.Windows.Forms.ColumnHeader pr_payType;
+        private System.Windows.Forms.ColumnHeader pc_payType;
+        private System.Windows.Forms.ColumnHeader pe_payType;
     }
 }

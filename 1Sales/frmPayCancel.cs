@@ -479,7 +479,7 @@ namespace thepos
                     parameters["signPath"] = "";
                     parameters["giftChange"] = "";
                     parameters["isCancel"] = "Y";
-                    parameters["vanCode"] = mVanCode;
+                    parameters["vanCode"] = "";
 
                     if (mRequestPost("paymentCard", parameters))
                     {
@@ -734,7 +734,7 @@ namespace thepos
                     parameters["authNo"] = pCashAuth.auth_no;
                     parameters["tranSerial"] = pCashAuth.tran_serial;
                     parameters["isCancel"] = "Y";
-                    parameters["vanCode"] = mVanCode;
+                    parameters["vanCode"] = "";
 
                     if (mRequestPost("paymentCash", parameters))
                     {
@@ -1442,19 +1442,13 @@ namespace thepos
 
                 parameters["netAmount"] = (paymentCancel.net_amount + amount) + "";
 
-                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0;
-
                 String pay_type1 = pay_type.Substring(0, 1);
 
-                if (pay_type1 == "R") amount_cash = paymentCancel.amount_cash + amount;
-                else if (pay_type1 == "C") amount_card = paymentCancel.amount_card + amount;
-                else if (pay_type1 == "E") amount_easy = paymentCancel.amount_easy + amount;
-                else if (pay_type1 == "P") amount_point = paymentCancel.amount_point + amount;
+                if (pay_type1 == "R") parameters["amountCash"] = (paymentCancel.amount_cash + amount).ToString();
+                else if (pay_type1 == "C") parameters["amountCard"] = (paymentCancel.amount_card + amount).ToString();
+                else if (pay_type1 == "E") parameters["amountEasy"] = (paymentCancel.amount_easy + amount).ToString();
+                else if (pay_type1 == "P") parameters["amountPoint"] = (paymentCancel.amount_point + amount).ToString();
 
-                parameters["amountCash"] = amount_cash + "";
-                parameters["amountCard"] = amount_card + "";
-                parameters["amountEasy"] = amount_easy + "";
-                parameters["amountPoint"] = amount_point + "";
 
                 parameters["isCancel"] = is_cancel;
 

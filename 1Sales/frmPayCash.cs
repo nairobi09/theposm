@@ -186,7 +186,7 @@ namespace thepos
             mPaymentCash.auth_no = "";          // 승인번호
             mPaymentCash.tran_serial = "";      // tran_serial -> 취소시 tid입력
             mPaymentCash.is_cancel = "";        // 취소여부
-            mPaymentCash.van_code = mVanCode;
+            mPaymentCash.van_code = "";
 
             if (!SavePaymentCash(mPaymentCash))
             {

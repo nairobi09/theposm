@@ -551,7 +551,7 @@
     <None Include="Font\Pretendard-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\TOSSPRODUCTSANSTTF-MEDIUM.TTF" />
+    <None Include="Font\TossProductSansTTF-Medium.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
