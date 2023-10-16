@@ -228,13 +228,13 @@ namespace thepos
                         {
                             strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
 
-                            //? 티켓 출력 필요
+                            // 티켓출력은 SaveTicketFlow() 내에서 한다.
                         }
                         else if (mPayClass == "CH")
                         {
                             strAlarm += " 티켓충전 완료.";
 
-                            // 충전화면 리스트뷰 갱신
+                            // 충전화면 리스트뷰
                             frmFlowCharging.review_flow(ticketNo, selectIdx);
 
                         }
@@ -242,7 +242,8 @@ namespace thepos
                         {
                             strAlarm += " 티켓정산 등록.";
 
-                            //? 정산화면 리스트뷰 갱신 필요
+                            // 정산화면 리스트뷰 갱신
+                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
                         }
 
                         SetDisplayAlarm("I", strAlarm);

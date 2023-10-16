@@ -262,7 +262,7 @@ namespace thepos
                     {
                         strAlarm += " 티켓충전 완료.";
 
-                        // 충전화면 리스트뷰 갱신
+                        // 충전화면 리스트뷰
                         frmFlowCharging.review_flow(ticketNo, selectIdx);
 
                     }
@@ -270,7 +270,7 @@ namespace thepos
                     {
                         strAlarm += " 티켓정산 등록.";
 
-                        // 정산화면 리스트뷰 갱신 필요
+                        // 정산화면 리스트뷰 갱신
                         frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
                     }
    
