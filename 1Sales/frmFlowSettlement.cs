@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
 using System.Security.Cryptography;
+using System.Drawing.Drawing2D;
 
 namespace thepos
 {
@@ -189,7 +190,7 @@ namespace thepos
 
 
                         item.Tag = ticketFlow;
-                        item.Text = ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2);
+                        item.Text = ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2);
                         item.SubItems.Add(ticketFlow.point_charge.ToString("N0"));
                         item.SubItems.Add(ticketFlow.point_usage.ToString("N0"));
                         item.SubItems.Add(tStat);
@@ -337,7 +338,7 @@ namespace thepos
                 ListViewItem item = new ListViewItem();
                 point_back bpoint = new point_back();
 
-                item.Text = mThisTicketFlow.ticket_no.Substring(14, 4) + "-" + mThisTicketFlow.ticket_no.Substring(18, 2);
+                item.Text = mThisTicketFlow.ticket_no.Substring(14, 6) + "-" + mThisTicketFlow.ticket_no.Substring(20, 2);
                 item.SubItems.Add("포인트사용");
                 item.SubItems.Add(mThisTicketFlow.point_usage_cnt.ToString("N0"));
                 item.SubItems.Add(mThisTicketFlow.point_usage.ToString("N0"));
@@ -378,7 +379,7 @@ namespace thepos
                     ListViewItem item = new ListViewItem();
                     point_back bpoint = new point_back();
 
-                    item.Text = mThisTicketFlow.ticket_no.Substring(14, 4) + "-" + mThisTicketFlow.ticket_no.Substring(18, 2);
+                    item.Text = mThisTicketFlow.ticket_no.Substring(14, 6) + "-" + mThisTicketFlow.ticket_no.Substring(20, 2);
                     item.SubItems.Add("포인트충전");
                     item.SubItems.Add(mThisTicketFlow.point_charge_cnt.ToString("N0"));
                     item.SubItems.Add(mThisTicketFlow.point_charge.ToString("N0"));
@@ -459,8 +460,10 @@ namespace thepos
                                     memOrderItem.dcr_type = arr[i]["dcrType"].ToString();
                                     memOrderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
                                     memOrderItem.ticket = arr[i]["ticketYn"].ToString();
+                                    memOrderItem.taxfree = arr[i]["taxFree"].ToString();
                                     memOrderItem.pay_class = arr[i]["payClass"].ToString();
                                     memOrderItem.ticket_no = arr[i]["ticketNo"].ToString();
+                                    memOrderItem.shop_code = arr[i]["shopCode"].ToString();;
 
 
                                     ListViewItem lvwitem = new ListViewItem();
@@ -470,7 +473,7 @@ namespace thepos
                                     lvwitem.SubItems.Add(memOrderItem.name);                            // 1: name 상품명
                                     lvwitem.SubItems.Add(memOrderItem.amt.ToString("N0"));              // 2: amt 단가
                                     lvwitem.SubItems.Add(memOrderItem.cnt.ToString());                  // 3: cnt 수량
-                                    lvwitem.SubItems.Add(memOrderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
+                                    lvwitem.SubItems.Add(memOrderItem.dc_amount.ToString("##,###"));     // 4: dc_amount 할인
 
                                     int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
                                     lvwitem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
@@ -630,7 +633,7 @@ namespace thepos
             btnScanner.Enabled = false;
 
             Form fFlow;
-            fFlow = new frmScanner(20);  // ticket_no
+            fFlow = new frmScanner(22);  // ticket_no
             fFlow.ShowDialog();
 
 
@@ -705,15 +708,84 @@ namespace thepos
 
 
 
-            // 2
+            // 2 
             for (int i = 0;i < the_no_set_count; i++) 
             {
-                // Payment
+                // Payment 취소건 추가
+                sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&theNo=" + the_no_set[i];
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["payments"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            Dictionary<string, string> param = new Dictionary<string, string>();
+                            param.Clear();
+                            param["siteId"] = mSiteId;
+                            param["posNo"] = mPosNo;
+                            param["bizDt"] = mBizDate;
+                            param["theNo"] = arr[0]["theNo"].ToString();
+                            param["refNo"] = arr[0]["refNo"].ToString();
+                            param["payDate"] = get_today_date();
+                            param["payTime"] = get_today_time();
+                            param["tranType"] = "C";
+                            param["payClass"] = arr[0]["payClass"].ToString();
+                            param["billNo"] = arr[0]["billNo"].ToString();
+                            param["netAmount"] = arr[0]["netAmount"].ToString();
+                            param["amountCash"] = arr[0]["amountCash"].ToString();
+                            param["amountCard"] = arr[0]["amountCard"].ToString();
+                            param["amountEasy"] = arr[0]["amountEasy"].ToString();
+                            param["amountPoint"] = arr[0]["amountPoint"].ToString();
+                            param["dcAmount"] = arr[0]["dcAmount"].ToString();
+                            param["isCancel"] = "Y";
+
+                            if (mRequestPost("payment", param))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {}
+                                else
+                                {
+                                    MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("시스템오류 payment\n\n" + mErrorMsg, "thepos");
+                                return;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("결제데이터 오류. payment\n\n aee.Count=" + arr.Count, "thepos");
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+
+                // payment 승인건 취소마킹
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
                 parameters["bizDt"] = mThisBizDt;
                 parameters["theNo"] = the_no_set[i];
+                parameters["tranType"] = "A";
                 parameters["isCancel"] = "Y";
 
                 if (mRequestPatch("payment", parameters))
@@ -734,7 +806,9 @@ namespace thepos
                 }
 
 
-                // paymentPoint
+
+
+                // paymentPoint승인건 취소마킹
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
                 parameters["bizDt"] = mThisBizDt;

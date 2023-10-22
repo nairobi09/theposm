@@ -39,6 +39,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.lblLocalMode = new System.Windows.Forms.Label();
             this.lblReqUser = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPW = new System.Windows.Forms.Label();
@@ -205,6 +206,7 @@
             // 
             // panelLogin
             // 
+            this.panelLogin.Controls.Add(this.lblLocalMode);
             this.panelLogin.Controls.Add(this.lblReqUser);
             this.panelLogin.Controls.Add(this.btnClose);
             this.panelLogin.Controls.Add(this.lblPW);
@@ -217,6 +219,17 @@
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
+            // 
+            // lblLocalMode
+            // 
+            this.lblLocalMode.AutoSize = true;
+            this.lblLocalMode.ForeColor = System.Drawing.Color.LightGray;
+            this.lblLocalMode.Location = new System.Drawing.Point(190, 658);
+            this.lblLocalMode.Name = "lblLocalMode";
+            this.lblLocalMode.Size = new System.Drawing.Size(77, 12);
+            this.lblLocalMode.TabIndex = 42;
+            this.lblLocalMode.Text = "긴급사용모드";
+            this.lblLocalMode.Click += new System.EventHandler(this.lblLocalMode_Click);
             // 
             // lblReqUser
             // 
@@ -249,7 +262,7 @@
             this.lblPW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPW.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPW.Location = new System.Drawing.Point(18, 282);
+            this.lblPW.Location = new System.Drawing.Point(18, 235);
             this.lblPW.Name = "lblPW";
             this.lblPW.Size = new System.Drawing.Size(74, 48);
             this.lblPW.TabIndex = 39;
@@ -261,7 +274,7 @@
             this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblID.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblID.Location = new System.Drawing.Point(18, 227);
+            this.lblID.Location = new System.Drawing.Point(18, 180);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(74, 48);
             this.lblID.TabIndex = 39;
@@ -273,7 +286,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.tbID);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(97, 227);
+            this.panel4.Location = new System.Drawing.Point(97, 180);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(174, 48);
             this.panel4.TabIndex = 37;
@@ -311,7 +324,7 @@
             this.panelKeyDisplayWhite.BackColor = System.Drawing.Color.White;
             this.panelKeyDisplayWhite.Controls.Add(this.tbPW);
             this.panelKeyDisplayWhite.Controls.Add(this.lblKeyDisplayXX);
-            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(97, 281);
+            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(97, 234);
             this.panelKeyDisplayWhite.Name = "panelKeyDisplayWhite";
             this.panelKeyDisplayWhite.Size = new System.Drawing.Size(174, 48);
             this.panelKeyDisplayWhite.TabIndex = 37;
@@ -360,7 +373,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(82, 362);
+            this.panelNumpad.Location = new System.Drawing.Point(82, 315);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
@@ -765,5 +778,6 @@
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblReqUser;
         private System.Windows.Forms.Panel panelDivision;
+        private System.Windows.Forms.Label lblLocalMode;
     }
 }

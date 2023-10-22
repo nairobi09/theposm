@@ -211,8 +211,11 @@ namespace thepos._9SysAdmin
                 parameters["vanCode"] = tmVanCode[cbVanCode.SelectedIndex];
 
             parameters["callCenterNo"] = tbCallCenter.Text;
-            
-            
+
+            // 
+            parameters["basicDbVer"] = get_today_date() + get_today_time();
+
+
             if (mRequestPatch("site", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -241,6 +244,9 @@ namespace thepos._9SysAdmin
                 MessageBox.Show("시스템오류. site\n\n" + mErrorMsg, "thepos");
                 return;
             }
+
+            // site 수정을 같은 테이블이라 한번에 한다.
+            //set_version_basic_db_change();
 
         }
 

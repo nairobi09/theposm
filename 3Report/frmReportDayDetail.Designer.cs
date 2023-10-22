@@ -147,11 +147,11 @@
             // lblReportTitle
             // 
             this.lblReportTitle.AutoSize = true;
-            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReportTitle.ForeColor = System.Drawing.Color.Black;
             this.lblReportTitle.Location = new System.Drawing.Point(26, 31);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(85, 13);
+            this.lblReportTitle.Size = new System.Drawing.Size(91, 14);
             this.lblReportTitle.TabIndex = 1;
             this.lblReportTitle.Text = "일별매출상세";
             // 
@@ -290,15 +290,16 @@
             // dtpBizDate
             // 
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBizDate.Location = new System.Drawing.Point(352, 24);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(109, 22);
+            this.dtpBizDate.Size = new System.Drawing.Size(109, 23);
             this.dtpBizDate.TabIndex = 4;
             // 
             // btnView
             // 
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.Location = new System.Drawing.Point(482, 24);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(103, 23);

@@ -532,6 +532,10 @@ namespace thepos._9SysAdmin
                 lvwList.EnsureVisible(select_index);
             }
 
+            //
+            set_version_basic_db_change();
+
+
             MessageBox.Show("정상 수정 완료.", "thepos");
         }
 
@@ -637,6 +641,9 @@ namespace thepos._9SysAdmin
                 lvwList.EnsureVisible(lvwList.Items.Count - 1);
             }
 
+            //
+            set_version_basic_db_change();
+
         }
 
 
@@ -683,6 +690,9 @@ namespace thepos._9SysAdmin
 
             // 
             lvwList.Items[select_index].Remove();
+
+            //
+            set_version_basic_db_change();
 
             clear_console();
 

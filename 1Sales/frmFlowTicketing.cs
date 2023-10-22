@@ -112,7 +112,7 @@ namespace thepos
                         ticketing_dt.Substring(8, 2) + ":" +
                         ticketing_dt.Substring(10, 2));
 
-                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2));
+                        item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
                         //item.SubItems.Add(bangle_no);
 
                         item.Tag = ticket_no;

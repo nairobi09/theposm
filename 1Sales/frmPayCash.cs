@@ -64,7 +64,7 @@ namespace thepos
             else if (mPayClass == "CH")
             {
                 MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
-                mRefNo = orderItem.ticket_no.Substring(0,18);
+                mRefNo = orderItem.ticket_no.Substring(0, 20);
                 ticketNo = orderItem.ticket_no;
             }
             else if (mPayClass == "US")
@@ -75,7 +75,7 @@ namespace thepos
             {
                 //?
                 ticketNo = frmFlowSettlement.mSelectedTicketNo;
-                mRefNo = ticketNo.Substring(0, 18);
+                mRefNo = ticketNo.Substring(0, 20);
             }
 
 
@@ -136,22 +136,26 @@ namespace thepos
             int order_cnt = 0;
             int dcAmount = 0;
 
-            if (mPayClass == "ST")
+            if (paySeq == 1)
             {
-                // 정산- 포인트 사용분의 재승인인 경우
-                //  - order, orderItem 은 그대로 유지.
-                //  - 결제는 새로 받고, 기존 payment, paymentPoint 결제는 취소마킹
-            }
-            else
-            {
-                if (paySeq == 1)
+                if (mPayClass == "ST")
                 {
-                    // 주문 저장 1
-                    order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
-                    if (order_cnt == -1)
-                    {
-                        return; // 재로그인 요구
-                    }
+                    // 포인트사용분의 정산 : order, orderItem
+                    // 1. 기사용분 취소마킹
+                    // 2. 취소건 추가
+                    // 3. 신규 승인추가
+
+                    CancelOrderSettle(ticketNo);
+
+                }
+
+
+
+                // 주문 저장 1
+                order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
+                if (order_cnt == -1)
+                {
+                    return; // 재로그인 요구
                 }
             }
 

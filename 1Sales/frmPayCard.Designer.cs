@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbCardTemp = new System.Windows.Forms.GroupBox();
             this.tbAuthNo = new System.Windows.Forms.TextBox();
             this.tbCardNo = new System.Windows.Forms.TextBox();
             this.rbCard7 = new System.Windows.Forms.RadioButton();
@@ -46,7 +46,7 @@
             this.rbCard2 = new System.Windows.Forms.RadioButton();
             this.rbCard1 = new System.Windows.Forms.RadioButton();
             this.rbCard0 = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbCardAuth = new System.Windows.Forms.GroupBox();
             this.chkCUP = new System.Windows.Forms.CheckBox();
             this.tbInstall = new System.Windows.Forms.TextBox();
             this.btnInstall00 = new System.Windows.Forms.Button();
@@ -61,16 +61,16 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbCardTemp.SuspendLayout();
+            this.gbCardAuth.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelback
             // 
             this.panelback.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelback.Controls.Add(this.groupBox2);
-            this.panelback.Controls.Add(this.groupBox1);
+            this.panelback.Controls.Add(this.gbCardTemp);
+            this.panelback.Controls.Add(this.gbCardAuth);
             this.panelback.Controls.Add(this.lblNetAmount);
             this.panelback.Controls.Add(this.lblT1);
             this.panelback.Controls.Add(this.btnClose);
@@ -81,29 +81,29 @@
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 5;
             // 
-            // groupBox2
+            // gbCardTemp
             // 
-            this.groupBox2.Controls.Add(this.tbAuthNo);
-            this.groupBox2.Controls.Add(this.tbCardNo);
-            this.groupBox2.Controls.Add(this.rbCard7);
-            this.groupBox2.Controls.Add(this.lblT4);
-            this.groupBox2.Controls.Add(this.btnKeyInputAuthNo);
-            this.groupBox2.Controls.Add(this.btnKeyInputCardNo);
-            this.groupBox2.Controls.Add(this.rbCard8);
-            this.groupBox2.Controls.Add(this.lblT3);
-            this.groupBox2.Controls.Add(this.btnCardTemp);
-            this.groupBox2.Controls.Add(this.rbCard5);
-            this.groupBox2.Controls.Add(this.rbCard6);
-            this.groupBox2.Controls.Add(this.rbCard3);
-            this.groupBox2.Controls.Add(this.rbCard4);
-            this.groupBox2.Controls.Add(this.rbCard2);
-            this.groupBox2.Controls.Add(this.rbCard1);
-            this.groupBox2.Controls.Add(this.rbCard0);
-            this.groupBox2.Location = new System.Drawing.Point(23, 407);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(479, 248);
-            this.groupBox2.TabIndex = 57;
-            this.groupBox2.TabStop = false;
+            this.gbCardTemp.Controls.Add(this.tbAuthNo);
+            this.gbCardTemp.Controls.Add(this.tbCardNo);
+            this.gbCardTemp.Controls.Add(this.rbCard7);
+            this.gbCardTemp.Controls.Add(this.lblT4);
+            this.gbCardTemp.Controls.Add(this.btnKeyInputAuthNo);
+            this.gbCardTemp.Controls.Add(this.btnKeyInputCardNo);
+            this.gbCardTemp.Controls.Add(this.rbCard8);
+            this.gbCardTemp.Controls.Add(this.lblT3);
+            this.gbCardTemp.Controls.Add(this.btnCardTemp);
+            this.gbCardTemp.Controls.Add(this.rbCard5);
+            this.gbCardTemp.Controls.Add(this.rbCard6);
+            this.gbCardTemp.Controls.Add(this.rbCard3);
+            this.gbCardTemp.Controls.Add(this.rbCard4);
+            this.gbCardTemp.Controls.Add(this.rbCard2);
+            this.gbCardTemp.Controls.Add(this.rbCard1);
+            this.gbCardTemp.Controls.Add(this.rbCard0);
+            this.gbCardTemp.Location = new System.Drawing.Point(23, 407);
+            this.gbCardTemp.Name = "gbCardTemp";
+            this.gbCardTemp.Size = new System.Drawing.Size(479, 248);
+            this.gbCardTemp.TabIndex = 57;
+            this.gbCardTemp.TabStop = false;
             // 
             // tbAuthNo
             // 
@@ -298,22 +298,22 @@
             this.rbCard0.Text = "국민";
             this.rbCard0.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gbCardAuth
             // 
-            this.groupBox1.Controls.Add(this.chkCUP);
-            this.groupBox1.Controls.Add(this.tbInstall);
-            this.groupBox1.Controls.Add(this.btnInstall00);
-            this.groupBox1.Controls.Add(this.btnCardRequest);
-            this.groupBox1.Controls.Add(this.lblT2);
-            this.groupBox1.Controls.Add(this.btnInstall03);
-            this.groupBox1.Controls.Add(this.btnKeyInputInstall);
-            this.groupBox1.Controls.Add(this.btnInstall06);
-            this.groupBox1.Controls.Add(this.btnInstall12);
-            this.groupBox1.Location = new System.Drawing.Point(23, 153);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(480, 226);
-            this.groupBox1.TabIndex = 56;
-            this.groupBox1.TabStop = false;
+            this.gbCardAuth.Controls.Add(this.chkCUP);
+            this.gbCardAuth.Controls.Add(this.tbInstall);
+            this.gbCardAuth.Controls.Add(this.btnInstall00);
+            this.gbCardAuth.Controls.Add(this.btnCardRequest);
+            this.gbCardAuth.Controls.Add(this.lblT2);
+            this.gbCardAuth.Controls.Add(this.btnInstall03);
+            this.gbCardAuth.Controls.Add(this.btnKeyInputInstall);
+            this.gbCardAuth.Controls.Add(this.btnInstall06);
+            this.gbCardAuth.Controls.Add(this.btnInstall12);
+            this.gbCardAuth.Location = new System.Drawing.Point(23, 153);
+            this.gbCardAuth.Name = "gbCardAuth";
+            this.gbCardAuth.Size = new System.Drawing.Size(480, 226);
+            this.gbCardAuth.TabIndex = 56;
+            this.gbCardAuth.TabStop = false;
             // 
             // chkCUP
             // 
@@ -478,10 +478,10 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayCard_FormClosed);
             this.panelback.ResumeLayout(false);
             this.panelback.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbCardTemp.ResumeLayout(false);
+            this.gbCardTemp.PerformLayout();
+            this.gbCardAuth.ResumeLayout(false);
+            this.gbCardAuth.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -497,12 +497,12 @@
         private System.Windows.Forms.Label lblT1;
         private System.Windows.Forms.Button btnCardTemp;
         private System.Windows.Forms.Button btnKeyInputInstall;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbCardAuth;
         private System.Windows.Forms.Button btnInstall00;
         private System.Windows.Forms.Button btnInstall03;
         private System.Windows.Forms.Button btnInstall06;
         private System.Windows.Forms.Button btnInstall12;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbCardTemp;
         private System.Windows.Forms.Label lblT4;
         private System.Windows.Forms.Button btnKeyInputAuthNo;
         private System.Windows.Forms.Button btnKeyInputCardNo;

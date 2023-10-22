@@ -237,7 +237,7 @@
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbTicketNo.Location = new System.Drawing.Point(189, 30);
-            this.tbTicketNo.MaxLength = 7;
+            this.tbTicketNo.MaxLength = 8;
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(81, 23);
             this.tbTicketNo.TabIndex = 74;
@@ -249,9 +249,9 @@
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketNoTitle.Location = new System.Drawing.Point(192, 16);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
-            this.lblTicketNoTitle.Size = new System.Drawing.Size(47, 12);
+            this.lblTicketNoTitle.Size = new System.Drawing.Size(59, 12);
             this.lblTicketNoTitle.TabIndex = 70;
-            this.lblTicketNoTitle.Text = "####-##";
+            this.lblTicketNoTitle.Text = "######-##";
             this.lblTicketNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbPosNo

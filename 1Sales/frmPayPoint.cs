@@ -76,7 +76,7 @@ namespace thepos
         {
             String ticketNo = tbTicketNo.Text.ToString();
 
-            if (ticketNo.Length != 20)
+            if (ticketNo.Length != 22)
             {
                 SetDisplayAlarm("W", "티켓번호 오류");
                 return;
@@ -141,7 +141,7 @@ namespace thepos
 
 
             // 
-            mRefNo = ticketNo.Substring(0, 18);
+            mRefNo = ticketNo.Substring(0, 20);
 
             int dcAmount = 0;
             int order_cnt = 0;
@@ -160,7 +160,7 @@ namespace thepos
             paymentPoint.biz_dt = mBizDate;
             paymentPoint.pos_no = mPosNo;
             paymentPoint.the_no = mTheNo;
-            paymentPoint.ref_no = ticketNo.Substring(0, 18);
+            paymentPoint.ref_no = ticketNo.Substring(0, 20);
 
             paymentPoint.pay_date = get_today_date();
             paymentPoint.pay_time = get_today_time();

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowSettlement));
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnSettleBill = new System.Windows.Forms.Button();
             this.lbl4 = new System.Windows.Forms.Label();
             this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@
             this.settle_usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnSettleBill = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,21 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 6;
+            // 
+            // btnSettleBill
+            // 
+            this.btnSettleBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSettleBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettleBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSettleBill.ForeColor = System.Drawing.Color.White;
+            this.btnSettleBill.Location = new System.Drawing.Point(398, 483);
+            this.btnSettleBill.Name = "btnSettleBill";
+            this.btnSettleBill.Size = new System.Drawing.Size(104, 42);
+            this.btnSettleBill.TabIndex = 78;
+            this.btnSettleBill.TabStop = false;
+            this.btnSettleBill.Text = "정산영수증";
+            this.btnSettleBill.UseVisualStyleBackColor = false;
+            this.btnSettleBill.Click += new System.EventHandler(this.btnSettleBill_Click);
             // 
             // lbl4
             // 
@@ -159,7 +174,7 @@
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbTicketNo.Location = new System.Drawing.Point(185, 30);
-            this.tbTicketNo.MaxLength = 7;
+            this.tbTicketNo.MaxLength = 8;
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(85, 23);
             this.tbTicketNo.TabIndex = 74;
@@ -172,9 +187,9 @@
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketNoTitle.Location = new System.Drawing.Point(187, 15);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
-            this.lblTicketNoTitle.Size = new System.Drawing.Size(47, 12);
+            this.lblTicketNoTitle.Size = new System.Drawing.Size(59, 12);
             this.lblTicketNoTitle.TabIndex = 70;
-            this.lblTicketNoTitle.Text = "####-##";
+            this.lblTicketNoTitle.Text = "######-##";
             this.lblTicketNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbPosNo
@@ -235,7 +250,7 @@
             // no
             // 
             this.no.Text = "발권번호";
-            this.no.Width = 70;
+            this.no.Width = 88;
             // 
             // payclass
             // 
@@ -284,7 +299,7 @@
             // ticket_no
             // 
             this.ticket_no.Text = "발권번호";
-            this.ticket_no.Width = 70;
+            this.ticket_no.Width = 87;
             // 
             // charge_amt
             // 
@@ -342,21 +357,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "정산";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSettleBill
-            // 
-            this.btnSettleBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSettleBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettleBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSettleBill.ForeColor = System.Drawing.Color.White;
-            this.btnSettleBill.Location = new System.Drawing.Point(398, 483);
-            this.btnSettleBill.Name = "btnSettleBill";
-            this.btnSettleBill.Size = new System.Drawing.Size(104, 42);
-            this.btnSettleBill.TabIndex = 78;
-            this.btnSettleBill.TabStop = false;
-            this.btnSettleBill.Text = "정산영수증";
-            this.btnSettleBill.UseVisualStyleBackColor = false;
-            this.btnSettleBill.Click += new System.EventHandler(this.btnSettleBill_Click);
             // 
             // frmFlowSettlement
             // 

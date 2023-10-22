@@ -352,6 +352,9 @@ namespace thepos
                 return;
             }
 
+            //
+            set_version_basic_db_change();
+
 
             reload_server();
 
@@ -401,6 +404,9 @@ namespace thepos
                 return;
             }
 
+            //
+            set_version_basic_db_change();
+
 
             reload_server();
 
@@ -448,6 +454,9 @@ namespace thepos
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
+
+            //
+            set_version_basic_db_change();
 
 
             reload_server();

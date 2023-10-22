@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbCashSimple = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lbl5 = new System.Windows.Forms.Label();
             this.rb카드거래 = new System.Windows.Forms.RadioButton();
@@ -44,7 +44,7 @@
             this.lblAuthNo = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
             this.btnCashRecept = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbCashReceipt = new System.Windows.Forms.GroupBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnCashSimple = new System.Windows.Forms.Button();
             this.lblRestAmount = new System.Windows.Forms.Label();
@@ -60,18 +60,18 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbCashSimple.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbCashReceipt.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelback
             // 
             this.panelback.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelback.Controls.Add(this.groupBox2);
-            this.panelback.Controls.Add(this.groupBox1);
+            this.panelback.Controls.Add(this.gbCashSimple);
+            this.panelback.Controls.Add(this.gbCashReceipt);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -80,18 +80,18 @@
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
             // 
-            // groupBox2
+            // gbCashSimple
             // 
-            this.groupBox2.Controls.Add(this.groupBox4);
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.lblAuthNo);
-            this.groupBox2.Controls.Add(this.lbl6);
-            this.groupBox2.Controls.Add(this.btnCashRecept);
-            this.groupBox2.Location = new System.Drawing.Point(22, 328);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(480, 343);
-            this.groupBox2.TabIndex = 50;
-            this.groupBox2.TabStop = false;
+            this.gbCashSimple.Controls.Add(this.groupBox4);
+            this.gbCashSimple.Controls.Add(this.groupBox3);
+            this.gbCashSimple.Controls.Add(this.lblAuthNo);
+            this.gbCashSimple.Controls.Add(this.lbl6);
+            this.gbCashSimple.Controls.Add(this.btnCashRecept);
+            this.gbCashSimple.Location = new System.Drawing.Point(22, 66);
+            this.gbCashSimple.Name = "gbCashSimple";
+            this.gbCashSimple.Size = new System.Drawing.Size(480, 343);
+            this.gbCashSimple.TabIndex = 50;
+            this.gbCashSimple.TabStop = false;
             // 
             // groupBox4
             // 
@@ -241,32 +241,32 @@
             this.btnCashRecept.UseVisualStyleBackColor = false;
             this.btnCashRecept.Click += new System.EventHandler(this.btnCashRecept_Click);
             // 
-            // groupBox1
+            // gbCashReceipt
             // 
-            this.groupBox1.Controls.Add(this.btnReset);
-            this.groupBox1.Controls.Add(this.btnCashSimple);
-            this.groupBox1.Controls.Add(this.lblRestAmount);
-            this.groupBox1.Controls.Add(this.lblRcvAmount);
-            this.groupBox1.Controls.Add(this.lblNetAmount);
-            this.groupBox1.Controls.Add(this.btn1t);
-            this.groupBox1.Controls.Add(this.lbl3);
-            this.groupBox1.Controls.Add(this.btn5t);
-            this.groupBox1.Controls.Add(this.lbl2);
-            this.groupBox1.Controls.Add(this.lbl1);
-            this.groupBox1.Controls.Add(this.btn10t);
-            this.groupBox1.Controls.Add(this.btn50t);
-            this.groupBox1.Location = new System.Drawing.Point(22, 85);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(478, 219);
-            this.groupBox1.TabIndex = 47;
-            this.groupBox1.TabStop = false;
+            this.gbCashReceipt.Controls.Add(this.btnReset);
+            this.gbCashReceipt.Controls.Add(this.btnCashSimple);
+            this.gbCashReceipt.Controls.Add(this.lblRestAmount);
+            this.gbCashReceipt.Controls.Add(this.lblRcvAmount);
+            this.gbCashReceipt.Controls.Add(this.lblNetAmount);
+            this.gbCashReceipt.Controls.Add(this.btn1t);
+            this.gbCashReceipt.Controls.Add(this.lbl3);
+            this.gbCashReceipt.Controls.Add(this.btn5t);
+            this.gbCashReceipt.Controls.Add(this.lbl2);
+            this.gbCashReceipt.Controls.Add(this.lbl1);
+            this.gbCashReceipt.Controls.Add(this.btn10t);
+            this.gbCashReceipt.Controls.Add(this.btn50t);
+            this.gbCashReceipt.Location = new System.Drawing.Point(22, 415);
+            this.gbCashReceipt.Name = "gbCashReceipt";
+            this.gbCashReceipt.Size = new System.Drawing.Size(478, 257);
+            this.gbCashReceipt.TabIndex = 47;
+            this.gbCashReceipt.TabStop = false;
             // 
             // btnReset
             // 
             this.btnReset.BackColor = System.Drawing.Color.Gray;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(228, 131);
+            this.btnReset.Location = new System.Drawing.Point(228, 149);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(59, 46);
             this.btnReset.TabIndex = 51;
@@ -278,7 +278,7 @@
             // 
             this.btnCashSimple.BackColor = System.Drawing.Color.White;
             this.btnCashSimple.ForeColor = System.Drawing.Color.Black;
-            this.btnCashSimple.Location = new System.Drawing.Point(311, 113);
+            this.btnCashSimple.Location = new System.Drawing.Point(311, 131);
             this.btnCashSimple.Name = "btnCashSimple";
             this.btnCashSimple.Size = new System.Drawing.Size(136, 64);
             this.btnCashSimple.TabIndex = 44;
@@ -289,7 +289,7 @@
             // lblRestAmount
             // 
             this.lblRestAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRestAmount.Location = new System.Drawing.Point(116, 80);
+            this.lblRestAmount.Location = new System.Drawing.Point(116, 98);
             this.lblRestAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblRestAmount.Name = "lblRestAmount";
             this.lblRestAmount.Size = new System.Drawing.Size(162, 26);
@@ -302,7 +302,7 @@
             // 
             this.lblRcvAmount.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblRcvAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRcvAmount.Location = new System.Drawing.Point(116, 50);
+            this.lblRcvAmount.Location = new System.Drawing.Point(116, 68);
             this.lblRcvAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblRcvAmount.Name = "lblRcvAmount";
             this.lblRcvAmount.Size = new System.Drawing.Size(162, 26);
@@ -314,7 +314,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(116, 20);
+            this.lblNetAmount.Location = new System.Drawing.Point(116, 38);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Size = new System.Drawing.Size(162, 26);
@@ -325,7 +325,7 @@
             // 
             // btn1t
             // 
-            this.btn1t.Location = new System.Drawing.Point(16, 131);
+            this.btn1t.Location = new System.Drawing.Point(16, 149);
             this.btn1t.Name = "btn1t";
             this.btn1t.Size = new System.Drawing.Size(50, 46);
             this.btn1t.TabIndex = 44;
@@ -336,7 +336,7 @@
             // lbl3
             // 
             this.lbl3.AutoSize = true;
-            this.lbl3.Location = new System.Drawing.Point(27, 87);
+            this.lbl3.Location = new System.Drawing.Point(27, 105);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(63, 14);
             this.lbl3.TabIndex = 45;
@@ -344,7 +344,7 @@
             // 
             // btn5t
             // 
-            this.btn5t.Location = new System.Drawing.Point(69, 131);
+            this.btn5t.Location = new System.Drawing.Point(69, 149);
             this.btn5t.Name = "btn5t";
             this.btn5t.Size = new System.Drawing.Size(50, 46);
             this.btn5t.TabIndex = 44;
@@ -355,7 +355,7 @@
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(27, 58);
+            this.lbl2.Location = new System.Drawing.Point(27, 76);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(63, 14);
             this.lbl2.TabIndex = 45;
@@ -364,7 +364,7 @@
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(27, 26);
+            this.lbl1.Location = new System.Drawing.Point(27, 44);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(63, 14);
             this.lbl1.TabIndex = 45;
@@ -372,7 +372,7 @@
             // 
             // btn10t
             // 
-            this.btn10t.Location = new System.Drawing.Point(122, 131);
+            this.btn10t.Location = new System.Drawing.Point(122, 149);
             this.btn10t.Name = "btn10t";
             this.btn10t.Size = new System.Drawing.Size(50, 46);
             this.btn10t.TabIndex = 44;
@@ -382,7 +382,7 @@
             // 
             // btn50t
             // 
-            this.btn50t.Location = new System.Drawing.Point(175, 131);
+            this.btn50t.Location = new System.Drawing.Point(175, 149);
             this.btn50t.Name = "btn50t";
             this.btn50t.Size = new System.Drawing.Size(50, 46);
             this.btn50t.TabIndex = 44;
@@ -431,14 +431,14 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayCash_FormClosed);
             this.panelback.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbCashSimple.ResumeLayout(false);
+            this.gbCashSimple.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbCashReceipt.ResumeLayout(false);
+            this.gbCashReceipt.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -448,7 +448,7 @@
         private System.Windows.Forms.Panel panelback;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbCashReceipt;
         private System.Windows.Forms.Button btnCashSimple;
         private System.Windows.Forms.Label lblRestAmount;
         private System.Windows.Forms.Label lblRcvAmount;
@@ -463,7 +463,7 @@
         private System.Windows.Forms.Button btn50t;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button btnCashRecept;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbCashSimple;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lblAuthNo;
         private System.Windows.Forms.TextBox tbIssuedMethodNo;

@@ -39,14 +39,14 @@ namespace thepos
         {
             lblReportTitle.Font = font10;
             btnPrev.Font = font10;
-            lblYYYYMM.Font = font12;
+            lblYYYYMM.Font = font10;
             btnNext.Font = font10;
 
-            lblPosNoTitle.Font = font9;
-            cbPosNo.Font = font12;
+            lblPosNoTitle.Font = font10;
+            cbPosNo.Font = font10;
 
-            lblShopTitle.Font = font9;
-            cbShop.Font = font12;
+            lblShopTitle.Font = font10;
+            cbShop.Font = font10;
 
             btnView.Font = font10;
 
@@ -187,7 +187,7 @@ namespace thepos
 
             cbShop.Items.Clear();
             cbShop.Items.Add("");
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mShop.Length; i++)
             {
                 cbShop.Items.Add(mShop[i].shop_name);
             }

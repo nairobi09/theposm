@@ -112,7 +112,7 @@ namespace thepos
             selected_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
             selected_pos_no = cbPosNo.Text;
 
-            if (billNo.Length == 4)
+            if (billNo.Length == 6)
             {
                 selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
             }
@@ -428,7 +428,7 @@ namespace thepos
 
 
             Form fFlow;
-            fFlow = new frmScanner(18);  // ticket_no
+            fFlow = new frmScanner(20);  // ticket_no
             fFlow.ShowDialog();
 
 
@@ -441,7 +441,7 @@ namespace thepos
                 {
                     String dt = mScanString.Substring(4, 8);
                     String posno = mScanString.Substring(12, 2);
-                    String billno = mScanString.Substring(14, 4);
+                    String billno = mScanString.Substring(14, 6);
 
                     int yyyy = int.Parse(dt.Substring(0, 4));
                     int mm = int.Parse(dt.Substring(4, 2));

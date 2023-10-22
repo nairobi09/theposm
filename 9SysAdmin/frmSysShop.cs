@@ -136,6 +136,10 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+            //
+            set_version_basic_db_change();
+
+
             reload_server();
         }
 
@@ -179,6 +183,10 @@ namespace thepos._9SysAdmin
                 MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
                 return;
             }
+
+            //
+            set_version_basic_db_change();
+
 
             reload_server();
         }

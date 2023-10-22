@@ -27,12 +27,8 @@ namespace thepos
         private void initialize_font()
         {
             lblReportTitle.Font = font10;
-            
-            dtpBizDate.Font = font12;
-            cbShop.Font = font12;
-
+            dtpBizDate.Font = font10;
             btnView.Font = font10;
-
 
             lvwList.Font = font10;
 
@@ -43,20 +39,28 @@ namespace thepos
             dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
 
-
-            cbShop.Items.Clear();
-            cbShop.Items.Add("");
-            for (int i = 0; i < mPosNoList.Length; i++)
-            {
-                cbShop.Items.Add(mShop[i].shop_name);
-            }
-            cbShop.SelectedIndex = 0;
-
-
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
+
+            String save_shopcode = "";
+            int cnt = 0;
+            int amount = 0;
+            int dcAmount = 0;
+            int netAmount = 0;
+
+            int sum_cnt = 0;
+            int sum_amount = 0;
+            int sum_dcAmount = 0;
+            int sum_netAmount = 0;
+
+            int tot_cnt = 0;
+            int tot_amount = 0;
+            int tot_dcAmount = 0;
+            int tot_netAmount = 0;
+
+
 
             thisBizDt = dtpBizDate.Value.ToString("yyyyMMdd");
 
@@ -73,27 +77,89 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        ListViewItem lvItem = new ListViewItem();
+                        cnt = convert_number(arr[i]["cnt"].ToString());
+                        amount = convert_number(arr[i]["amount"].ToString());
+                        dcAmount = convert_number(arr[i]["dcAmount"].ToString());
+                        netAmount = convert_number(arr[i]["netAmount"].ToString());
 
-                        lvItem.Text = get_shop_name(arr[i]["shopCode"].ToString());
-                        lvItem.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
-                        lvItem.SubItems.Add((convert_number(arr[i]["cnt"].ToString())).ToString("N0"));
-                        lvItem.SubItems.Add((convert_number(arr[i]["amount"].ToString())).ToString("N0"));
-                        lvItem.SubItems.Add((convert_number(arr[i]["dcAmount"].ToString())).ToString("N0"));
-                        lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
+                        if (save_shopcode != arr[i]["shopCode"].ToString() & save_shopcode != "")
+                        {
+                            // 업장합계 표시
+                            ListViewItem sumItem = new ListViewItem();
+                            sumItem.Text = "[" + get_shop_name(save_shopcode) + "] 합계";
+                            sumItem.SubItems.Add(sum_cnt.ToString("N0"));
+                            sumItem.SubItems.Add(sum_amount.ToString("N0"));
+                            sumItem.SubItems.Add(sum_dcAmount.ToString("N0"));
+                            sumItem.SubItems.Add(sum_netAmount.ToString("N0"));
+                            lvwList.Items.Add(sumItem);
+                            
+                            sum_cnt = 0;
+                            sum_amount = 0;
+                            sum_dcAmount = 0;
+                            sum_netAmount = 0;
+                        }
 
-                        lvwList.Items.Add(lvItem);
+                        ListViewItem Item = new ListViewItem();
+                        Item.Text = get_goods_name(arr[i]["itemCode"].ToString());
+                        Item.SubItems.Add(cnt.ToString("N0"));
+                        Item.SubItems.Add(amount.ToString("N0"));
+                        Item.SubItems.Add(dcAmount.ToString("N0"));
+                        Item.SubItems.Add(netAmount.ToString("N0"));
+
+                        Item.ForeColor = Color.Gray;
+                        Item.SubItems[1].ForeColor = Color.Gray;
+                        Item.SubItems[2].ForeColor = Color.Gray;
+                        Item.SubItems[3].ForeColor = Color.Gray;
+                        Item.SubItems[4].ForeColor = Color.Gray;
+
+                        lvwList.Items.Add(Item);
+
+
+                        sum_cnt += cnt;
+                        sum_amount += amount;
+                        sum_dcAmount += dcAmount;
+                        sum_netAmount += netAmount;
+
+                        tot_cnt += cnt;
+                        tot_amount += amount;
+                        tot_dcAmount += dcAmount;
+                        tot_netAmount += netAmount;
+
+
+                        save_shopcode = arr[i]["shopCode"].ToString();
+                    }
+
+
+                    if (save_shopcode != "")
+                    {
+                        // 업장합계 표시
+                        ListViewItem sumItem = new ListViewItem();
+                        sumItem.Text = "[" + get_shop_name(save_shopcode) + "] 합계";
+                        sumItem.SubItems.Add(sum_cnt.ToString("N0"));
+                        sumItem.SubItems.Add(sum_amount.ToString("N0"));
+                        sumItem.SubItems.Add(sum_dcAmount.ToString("N0"));
+                        sumItem.SubItems.Add(sum_netAmount.ToString("N0"));
+                        lvwList.Items.Add(sumItem);
+
+                        ListViewItem Item = new ListViewItem();
+                        Item.Text = "[전체] 합계";
+                        Item.SubItems.Add(tot_cnt.ToString("N0"));
+                        Item.SubItems.Add(tot_amount.ToString("N0"));
+                        Item.SubItems.Add(tot_dcAmount.ToString("N0"));
+                        Item.SubItems.Add(tot_netAmount.ToString("N0"));
+                        lvwList.Items.Add(Item);
+
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("결제데이터 오류. reportDayShop\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. reportDayShop\n\n" + mErrorMsg, "thepos");
             }
 
 

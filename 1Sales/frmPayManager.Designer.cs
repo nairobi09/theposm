@@ -133,7 +133,7 @@
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBillNo.Location = new System.Drawing.Point(198, 28);
-            this.tbBillNo.MaxLength = 4;
+            this.tbBillNo.MaxLength = 6;
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(54, 26);
             this.tbBillNo.TabIndex = 74;
@@ -145,9 +145,9 @@
             this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.Location = new System.Drawing.Point(196, 12);
             this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(29, 12);
+            this.lbl3.Size = new System.Drawing.Size(41, 12);
             this.lbl3.TabIndex = 70;
-            this.lbl3.Text = "####";
+            this.lbl3.Text = "######";
             this.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbPosNo
@@ -292,8 +292,8 @@
             // 
             // bill_no
             // 
-            this.bill_no.Text = "####";
-            this.bill_no.Width = 50;
+            this.bill_no.Text = "######";
+            this.bill_no.Width = 67;
             // 
             // pay_class
             // 

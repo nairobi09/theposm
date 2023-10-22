@@ -17,6 +17,7 @@ using System.Net;
 using System.Security.Policy;
 using System.Collections;
 using System.IO;
+using System.Data.SQLite;
 
 
 /*
@@ -93,7 +94,7 @@ namespace thepos
         // 콜센터 연락처
         public static String mCallCenterNo = "";
 
-
+        public static String mServerDbVer = "";
 
 
 
@@ -137,7 +138,7 @@ namespace thepos
         public static String mMacAddr = "";
         public static String mTheNo = "";  // 결제단위
         public static String mRefNo = "";  // 주문단위 입장단위
-        
+
         // 실행중 로컬 운영
         public static String mScanString;
         public static bool mIsScanOK;
@@ -203,7 +204,7 @@ namespace thepos
             public int columnspan;
             public int rowspan;
         }
-        public static  GoodsItem[] mGoodsItem;
+        public static GoodsItem[] mGoodsItem;
 
 
         // 로컬
@@ -244,6 +245,7 @@ namespace thepos
             public String pos_no;
             public String the_no;       // 
             public String ref_no;       // 
+            public String tran_type;
             public String order_date;
             public String order_time;
             public int cnt;             // 항목수
@@ -258,6 +260,7 @@ namespace thepos
             public String pos_no;
             public String the_no;       // 
             public String ref_no;       // 
+            public String tran_type;
             public String order_date;
             public String order_time;
             public String code;         // 상품code(6) or 전체할인코드고정("EDC")
@@ -273,6 +276,8 @@ namespace thepos
             public String pay_class;
             public String ticket_no;
             public String is_cancel;    // Y
+            public String shop_code;
+
         }
         public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
 
@@ -460,7 +465,7 @@ namespace thepos
             public String biz_dt;
             public String the_no;   // 결제단위
             public String ref_no;   // 입장단위
-            
+
             public String ticket_no;
             public String ticketing_dt;   // 발권일시
             public String charge_dt;      // 충전일시
@@ -477,7 +482,7 @@ namespace thepos
 
             public String goods_code;
             public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 사용중인 경우 locker close, 정산완료 locker open.
-            
+
             public String locker_no;        // 추가
             public String open_locker;      // 락커 수동 설정 : 0 폐쇄(기본값), 1 개방
                                             // 정산완료  or 수동 개방상태 -> 락커오픈
@@ -488,6 +493,8 @@ namespace thepos
 
 
         //
+        public static Boolean mLocalMode = false;
+
         public static Boolean mReturn = false;
         public static string mErrorMsg = "";
 
@@ -507,7 +514,7 @@ namespace thepos
 
         public static String get_MMddHHmm(String d, String t)
         {
-            return d.Substring(4,2) + "-" + d.Substring(6, 2) + " " + t.Substring(0, 2) + ":" + t.Substring(2, 2);
+            return d.Substring(4, 2) + "-" + d.Substring(6, 2) + " " + t.Substring(0, 2) + ":" + t.Substring(2, 2);
         }
 
         public static String get_today_date()
@@ -521,7 +528,7 @@ namespace thepos
         }
 
 
-        
+
         public static String get_pay_class_name(String code)
         {
             String name = "";
@@ -636,6 +643,9 @@ namespace thepos
 
         public static String get_goods_name(String code)
         {
+            if (code == "CHARGE")
+                return "충전";
+
             for (int i = 0; i < mGoodsItem.Length; i++)
             {
                 if (mGoodsItem[i].item_code == code)
@@ -649,6 +659,10 @@ namespace thepos
 
         public static String get_shop_name(String shop_code)
         {
+            if (shop_code == "CHARGE")
+                return "충전";
+
+
             for (int i = 0; i < mShop.Length; i++)
             {
                 if (mShop[i].shop_code == shop_code)
@@ -727,7 +741,7 @@ namespace thepos
 
                 return true;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 mErrorMsg = ex.Message;
                 return false;
@@ -834,90 +848,82 @@ namespace thepos
         }
 
 
-        public static void get_goodsgroup()
+        public static void set_version_basic_db_change()
         {
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+            // 1단계 테이블이 변경될 경우 버전을 업데이트한다...
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["basicDbVer"] = get_today_date() + get_today_time();
 
-            if (mRequestGet(sUrl))
+            if (mRequestPatch("site", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String goods_group = mObj["goodsGroups"].ToString();
-                    JArray arr = JArray.Parse(goods_group);
 
-                    mGoodsGroup = new GoodsGroup[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
-                        mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
-                    }
                 }
                 else
                 {
-                    MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. site\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. site\n\n" + mErrorMsg, "thepos");
                 return;
             }
         }
 
 
-        public static void get_goodsitem()
+
+        public static SQLiteDataReader sql_select_local_db(String sql)
         {
-            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+            
+            String cs = "";
 
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String goods_item = mObj["goodsItems"].ToString();
-                    JArray arr = JArray.Parse(goods_item);
+#if DEBUG
+            var enviroment = System.Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
+            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
 
-                    mGoodsItem = new GoodsItem[arr.Count];
+#else
+            cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
+#endif
 
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
-                        mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
-                        mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
-                        mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
-                        mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
-                        mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
-                        mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
 
-                        // 면세상픔은 상품명앞에 *을 붙인다.
-                        if (mGoodsItem[i].taxfree == "1")
-                        {
-                            mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
+            SQLiteConnection con = new SQLiteConnection(cs);
+            con.Open();
 
+
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteDataReader dr = cmd.ExecuteReader();
+
+            return dr;
         }
 
+
+        public static void sql_insert_local_db(String sql)
+        {
+
+            String cs = "";
+
+#if DEBUG
+            var enviroment = System.Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
+            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
+
+#else
+            cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
+#endif
+
+            SQLiteConnection con = new SQLiteConnection(cs);
+            con.Open();
+
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            cmd.ExecuteNonQuery();
+
+
+
+        }
     }
 }

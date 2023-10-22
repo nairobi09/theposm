@@ -48,6 +48,8 @@ namespace thepos
             thisBizDt = dtpBizDate.Value.ToString("yyyyMMdd");
 
             lvwList.Items.Clear();
+            lvwOrder.Items.Clear();
+            lvwPayment.Items.Clear();
 
 
             String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + thisBizDt;
@@ -101,6 +103,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
 
 
+
                         if (arr[i]["isCancel"].ToString() == "Y")
                         {
                             lvItem.ForeColor = Color.Gray;
@@ -147,6 +150,7 @@ namespace thepos
             String tTheNo = lvwList.SelectedItems[0].Tag.ToString();
             String pay_keep = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(paykeep)].Text;
             String tran_type = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(trantype)].Text;
+
 
             // order
             String sUrl = "orderItem?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
@@ -386,6 +390,53 @@ namespace thepos
                 }
 
             }
+
+            if (pay_keep_point == "1")
+            {
+                sUrl = "paymentPoint?bizDt=" + thisBizDt + "&theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentPoints"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            ListViewItem lvItem = new ListViewItem();
+                            lvItem.Text = (++seq_no).ToString();
+                            lvItem.SubItems.Add("");
+                            lvItem.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
+                            lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
+                            lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
+                            lvItem.SubItems.Add("");
+                            lvItem.SubItems.Add("");
+                            lvItem.SubItems.Add(arr[i]["usageNo"].ToString());
+
+                            if (arr[i]["isCancel"].ToString() == "Y")
+                                lvItem.SubItems.Add("취소됨");
+                            else if (arr[i]["isCancel"].ToString() == "0")
+                                lvItem.SubItems.Add("취소중");
+                            else
+                                lvItem.SubItems.Add("");
+
+                            lvwPayment.Items.Add(lvItem);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentEasy\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+            }
+
         }
     }
 }

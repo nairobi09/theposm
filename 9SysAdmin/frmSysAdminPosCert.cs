@@ -108,7 +108,7 @@ namespace thepos._9SysAdmin
             parameters["posStatus"] = "Y";
 
 
-
+            //? bizDt 추가요망
             if (mRequestPatch("pos", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -142,7 +142,7 @@ namespace thepos._9SysAdmin
             parameters["posNo"] = lvwList.SelectedItems[0].Text;
             parameters["posStatus"] = "9"; // 정지
 
-
+            //? bizDt 추가요망
             if (mRequestPatch("pos", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")

@@ -38,7 +38,7 @@ namespace thepos
 
             btnReportCalendar1.Font = font10;
             btnReportChart1.Font = font10;
-            btnReportMonth3.Font = font10;
+            btnReportList1.Font = font10;
 
             btnKey1.Font = font14;
             btnKey2.Font = font14;
@@ -69,8 +69,7 @@ namespace thepos
             mThisButtonClick = "DayPos";
             panelReport.Controls.Clear();
 
-            //frmReportDayPos fBiz = new frmReportDayPos() { TopLevel = false, TopMost = true };
-            frmReportDayShop fBiz = new frmReportDayShop() { TopLevel = false, TopMost = true };
+            frmReportDayPos fBiz = new frmReportDayPos() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
@@ -86,6 +85,19 @@ namespace thepos
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
+        private void btnReportDayDetail_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DayDetail") return;
+
+            mThisButtonClick = "DayDetail";
+            panelReport.Controls.Clear();
+
+            frmReportDayDetail fBiz = new frmReportDayDetail() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
 
 
         private void btnReportCalendar1_Click(object sender, EventArgs e)
@@ -112,14 +124,15 @@ namespace thepos
             fBiz.Show();
         }
 
-        private void btnReportDayDetail_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "DayDetail") return;
 
-            mThisButtonClick = "DayDetail";
+        private void btnReportList1_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "List1") return;
+
+            mThisButtonClick = "List1";
             panelReport.Controls.Clear();
 
-            frmReportDayDetail fBiz = new frmReportDayDetail() { TopLevel = false, TopMost = true };
+            frmReportList1 fBiz = new frmReportList1() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }

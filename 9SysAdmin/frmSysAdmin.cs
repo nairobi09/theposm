@@ -27,7 +27,7 @@ namespace thepos
                 panelAdminConsole.Visible = true;
 
 
-                if (in_patern == "0012")
+                if (in_patern == "1122")
                 {
                     panelCertConsole.Visible = true;
                 }

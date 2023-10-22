@@ -94,6 +94,7 @@
             this.pr_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pr_payDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pr_payTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pr_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pr_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pr_payClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pr_ticketNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -115,6 +116,7 @@
             this.pc_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pc_payDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pc_payTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pc_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pc_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pc_payClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pc_ticketNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -146,6 +148,7 @@
             this.pe_refNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pe_payDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pe_payTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pe_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pe_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pe_payClass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pe_ticketNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -205,9 +208,6 @@
             this.t_lockerNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_openLocker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
-            this.pr_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pc_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pe_payType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -268,12 +268,12 @@
             // o_theNo
             // 
             this.o_theNo.Text = "theNo";
-            this.o_theNo.Width = 130;
+            this.o_theNo.Width = 140;
             // 
             // o_refNo
             // 
             this.o_refNo.Text = "refNo";
-            this.o_refNo.Width = 130;
+            this.o_refNo.Width = 140;
             // 
             // o_tranType
             // 
@@ -382,12 +382,12 @@
             // oi_theNo
             // 
             this.oi_theNo.Text = "theNo";
-            this.oi_theNo.Width = 130;
+            this.oi_theNo.Width = 140;
             // 
             // oi_refNo
             // 
             this.oi_refNo.Text = "refNo";
-            this.oi_refNo.Width = 130;
+            this.oi_refNo.Width = 140;
             // 
             // oi_tranType
             // 
@@ -511,12 +511,12 @@
             // p_theNo
             // 
             this.p_theNo.Text = "theNo";
-            this.p_theNo.Width = 130;
+            this.p_theNo.Width = 140;
             // 
             // p_refNo
             // 
             this.p_refNo.Text = "refNo";
-            this.p_refNo.Width = 130;
+            this.p_refNo.Width = 140;
             // 
             // p_tranType
             // 
@@ -628,12 +628,12 @@
             // pr_theNo
             // 
             this.pr_theNo.Text = "theNo";
-            this.pr_theNo.Width = 130;
+            this.pr_theNo.Width = 140;
             // 
             // pr_refNo
             // 
             this.pr_refNo.Text = "refNo";
-            this.pr_refNo.Width = 130;
+            this.pr_refNo.Width = 140;
             // 
             // pr_payDate
             // 
@@ -642,6 +642,11 @@
             // pr_payTime
             // 
             this.pr_payTime.Text = "payTime";
+            // 
+            // pr_payType
+            // 
+            this.pr_payType.Text = "payType";
+            this.pr_payType.Width = 80;
             // 
             // pr_tranType
             // 
@@ -764,12 +769,12 @@
             // pc_theNo
             // 
             this.pc_theNo.Text = "theNo";
-            this.pc_theNo.Width = 130;
+            this.pc_theNo.Width = 140;
             // 
             // pc_refNo
             // 
             this.pc_refNo.Text = "refNo";
-            this.pc_refNo.Width = 130;
+            this.pc_refNo.Width = 140;
             // 
             // pc_payDate
             // 
@@ -778,6 +783,11 @@
             // pc_payTime
             // 
             this.pc_payTime.Text = "payTime";
+            // 
+            // pc_payType
+            // 
+            this.pc_payType.Text = "payType";
+            this.pc_payType.Width = 80;
             // 
             // pc_tranType
             // 
@@ -791,7 +801,7 @@
             // pc_ticketNo
             // 
             this.pc_ticketNo.Text = "ticketNo";
-            this.pc_ticketNo.Width = 150;
+            this.pc_ticketNo.Width = 160;
             // 
             // pc_paySeq
             // 
@@ -941,12 +951,12 @@
             // pe_theNo
             // 
             this.pe_theNo.Text = "theNo";
-            this.pe_theNo.Width = 130;
+            this.pe_theNo.Width = 140;
             // 
             // pe_refNo
             // 
             this.pe_refNo.Text = "refNo";
-            this.pe_refNo.Width = 130;
+            this.pe_refNo.Width = 140;
             // 
             // pe_payDate
             // 
@@ -955,6 +965,11 @@
             // pe_payTime
             // 
             this.pe_payTime.Text = "payTime";
+            // 
+            // pe_payType
+            // 
+            this.pe_payType.Text = "payType";
+            this.pe_payType.Width = 80;
             // 
             // pe_tranType
             // 
@@ -968,7 +983,7 @@
             // pe_ticketNo
             // 
             this.pe_ticketNo.Text = "ticketNo";
-            this.pe_ticketNo.Width = 150;
+            this.pe_ticketNo.Width = 160;
             // 
             // pe_paySeq
             // 
@@ -1100,12 +1115,12 @@
             // pp_theNo
             // 
             this.pp_theNo.Text = "theNo";
-            this.pp_theNo.Width = 130;
+            this.pp_theNo.Width = 140;
             // 
             // pp_refNo
             // 
             this.pp_refNo.Text = "refNo";
-            this.pp_refNo.Width = 131;
+            this.pp_refNo.Width = 140;
             // 
             // pp_payDate
             // 
@@ -1127,7 +1142,7 @@
             // pp_ticketNo
             // 
             this.pp_ticketNo.Text = "ticketNo";
-            this.pp_ticketNo.Width = 150;
+            this.pp_ticketNo.Width = 160;
             // 
             // pp_usageNo
             // 
@@ -1180,7 +1195,7 @@
             this.lvwTicketFlow.HideSelection = false;
             this.lvwTicketFlow.Location = new System.Drawing.Point(43, 1143);
             this.lvwTicketFlow.Name = "lvwTicketFlow";
-            this.lvwTicketFlow.Size = new System.Drawing.Size(1671, 77);
+            this.lvwTicketFlow.Size = new System.Drawing.Size(1671, 104);
             this.lvwTicketFlow.TabIndex = 16;
             this.lvwTicketFlow.UseCompatibleStateImageBehavior = false;
             this.lvwTicketFlow.View = System.Windows.Forms.View.Details;
@@ -1197,17 +1212,17 @@
             // t_theNo
             // 
             this.t_theNo.Text = "theNo";
-            this.t_theNo.Width = 130;
+            this.t_theNo.Width = 140;
             // 
             // t_refNo
             // 
             this.t_refNo.Text = "refNo";
-            this.t_refNo.Width = 50;
+            this.t_refNo.Width = 140;
             // 
             // t_ticketNo
             // 
             this.t_ticketNo.Text = "ticketNo";
-            this.t_ticketNo.Width = 150;
+            this.t_ticketNo.Width = 160;
             // 
             // t_ticketingDt
             // 
@@ -1280,25 +1295,10 @@
             this.label9.Text = "ticket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pr_payType
-            // 
-            this.pr_payType.Text = "payType";
-            this.pr_payType.Width = 80;
-            // 
-            // pc_payType
-            // 
-            this.pc_payType.Text = "payType";
-            this.pc_payType.Width = 80;
-            // 
-            // pe_payType
-            // 
-            this.pe_payType.Text = "payType";
-            this.pe_payType.Width = 80;
-            // 
             // frmCheckData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1726, 1233);
+            this.ClientSize = new System.Drawing.Size(1726, 1253);
             this.Controls.Add(this.lvwOrder);
             this.Controls.Add(this.lvwTicketFlow);
             this.Controls.Add(this.label9);

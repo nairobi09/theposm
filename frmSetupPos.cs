@@ -242,6 +242,12 @@ namespace thepos
                 }
             }
 
+
+            // 내설정을 변경하면 자체 저장하고, version_basic_db 는 상관없음.
+            //? 
+            // set_local_pos_change();
+
+
             //
             MessageBox.Show("포스정보 저장완료.", "thepos");
             isAdd = false;

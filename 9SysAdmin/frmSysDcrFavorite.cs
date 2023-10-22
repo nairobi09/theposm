@@ -308,6 +308,9 @@ namespace thepos._1Sales
             reload_server();
 
             clear_console();
+
+            //
+            set_version_basic_db_change();
         }
 
         private void btnUp_Click(object sender, EventArgs e)

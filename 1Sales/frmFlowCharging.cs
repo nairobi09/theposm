@@ -159,7 +159,7 @@ namespace thepos
                         item.Tag = ticket_no;
 
                         item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
-                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2));
+                        item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
 
                         String tStr = "";
 
@@ -228,7 +228,7 @@ namespace thepos
                         item.Tag = ticket_no;
 
                         item.SubItems.Add(get_goods_name(arr[0]["itemCode"].ToString()));
-                        item.SubItems.Add(ticket_no.Substring(14, 4) + "-" + ticket_no.Substring(18, 2));
+                        item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
 
                         String tStr = "";
 
@@ -362,7 +362,7 @@ namespace thepos
                 memOrderItem.ticket = "";
                 memOrderItem.pay_class = "CH";
                 memOrderItem.ticket_no = lvwFlow.SelectedItems[0].Tag.ToString();
-
+                memOrderItem.shop_code = "CHARGE";
 
                 ListViewItem item = new ListViewItem();
                 item.Tag = memOrderItem;
