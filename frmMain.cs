@@ -22,6 +22,9 @@ using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Data.SQLite;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
+using System.Net.Sockets;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace thepos
 {
@@ -179,6 +182,23 @@ namespace thepos
             mHttpClient = new HttpClient(handler);
 
 
+            // local DB
+            String cs = "";
+#if DEBUG
+            var enviroment = System.Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
+            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
+
+#else
+            cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
+#endif
+
+
+            mConn = new SQLiteConnection(cs);
+            mConn.Open();
+
+
+
         }
 
 
@@ -300,22 +320,18 @@ namespace thepos
 
 
 
-
-
-
-
             // 다운로드 : 서버버전 로컬버전 비교하여 필요하면 다운...
             if (is_need_download_server_db())
             {
-                download_server_basic_db();
+                
             }
 
+            //? 임시
+            download_server_basic_db();
 
 
             // 로컬DB에서 메모리도 로드
             load_local_basic_db();
-
-
 
 
 
@@ -383,6 +399,9 @@ namespace thepos
         private bool is_need_download_server_db()
         {
             String local_version = "";
+            String server_version = "";
+
+
 
             SQLiteDataReader dr = sql_select_local_db("SELECT * FROM site");
             while (dr.Read())
@@ -392,11 +411,10 @@ namespace thepos
             dr.Close();
 
 
+
             if (local_version == "") local_version = "0";
 
 
-
-            String server_version = "";
 
             String sUrl = "site?siteId=" + mSiteId;
             if (mRequestGet(sUrl))
@@ -429,14 +447,6 @@ namespace thepos
             }
 
 
-
-
-            if (local_version == "") 
-            {
-                return false;
-            }
-
-            // 로컬 0포함
             if (long.Parse(local_version) < long.Parse(server_version))
             {
                 return true;
@@ -452,111 +462,33 @@ namespace thepos
 
         private void download_server_basic_db()
         {
-            String sUrl = "site?siteId=" + mSiteId;
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["sites"].ToString();
-                    JArray arr = JArray.Parse(data);
+                    // Delete
+                    sql_excute_local_db("DELETE FROM goodsGroup");
 
-                    if (arr.Count == 1)
-                    {
-                        mSiteName = arr[0]["siteName"].ToString();
-                        mSiteAlias = arr[0]["siteAlias"].ToString();
-                        mRegistNo = arr[0]["registNo"].ToString();
-                        mCapName = arr[0]["capName"].ToString();
-                        mBizAddr = arr[0]["bizAddr"].ToString();
-                        mBizTelNo = arr[0]["bizTelNo"].ToString();
-                        mTicketType = arr[0]["ticketType"].ToString();
-                        mTicketMedia = arr[0]["ticketMedia"].ToString();
-                        mVanCode = arr[0]["vanCode"].ToString();
-                        mCallCenterNo = arr[0]["callCenterNo"].ToString();
-                        mServerDbVer = arr[0]["basicDbVer"].ToString();
-
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-
-        }
-
-
-
-        private void load_local_basic_db()
-        {
-
-            // 사이트
-            String sUrl = "site?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["sites"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    if (arr.Count == 1)
-                    {
-                        mSiteName = arr[0]["siteName"].ToString();
-                        mSiteAlias = arr[0]["siteAlias"].ToString();
-                        mRegistNo = arr[0]["registNo"].ToString();
-                        mCapName = arr[0]["capName"].ToString();
-                        mBizAddr = arr[0]["bizAddr"].ToString();
-                        mBizTelNo = arr[0]["bizTelNo"].ToString();
-                        mTicketType = arr[0]["ticketType"].ToString();
-                        mTicketMedia = arr[0]["ticketMedia"].ToString();
-                        mVanCode = arr[0]["vanCode"].ToString();
-                        mCallCenterNo = arr[0]["callCenterNo"].ToString();
-
-                        // 기초테이블 버전
-                        mServerDbVer = arr[0]["basicDbVer"].ToString();
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-
-
-            //
-            sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
+                    //
                     String data = mObj["goodsGroups"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    mGoodsGroup = new GoodsGroup[arr.Count];
-
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
-                        mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                        String siteId = arr[i]["siteId"].ToString();
+                        String posNo = arr[i]["posNo"].ToString();
+                        String groupCode = arr[i]["groupCode"].ToString();
+                        String groupName = arr[i]["groupName"].ToString();
+                        int locateX = int.Parse(arr[i]["locateX"].ToString());
+                        int locateY = int.Parse(arr[i]["locateY"].ToString());
+                        int sizeX = int.Parse(arr[i]["sizeX"].ToString());
+                        int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+
+                        // Insert
+                        String sql = "INSERT INTO goodsGroup (siteId, posNo, groupCode, groupName, locateX, locateY, sizeX, sizeY) " +
+                        "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                        sql_excute_local_db(sql);
                     }
                 }
                 else
@@ -567,41 +499,44 @@ namespace thepos
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. goodsGroup\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
-
+            
             //
             sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
+                    // Delete
+                    sql_excute_local_db("DELETE FROM goodsItemAndGoods");
+
+                    //
                     String data = mObj["goodsItems"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    mGoodsItem = new GoodsItem[arr.Count];
-
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
-                        mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
-                        mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
-                        mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
-                        mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
-                        mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
-                        mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
-                        mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                        String siteId = arr[i]["siteId"].ToString();
+                        String posNo = arr[i]["posNo"].ToString();
+                        String groupCode = arr[i]["groupCode"].ToString();
+                        String itemCode = arr[i]["itemCode"].ToString();
+                        String itemName = arr[i]["itemName"].ToString();
+                        String shopCode = arr[i]["shopCode"].ToString();
+                        int amt = int.Parse(arr[i]["amt"].ToString());
+                        String ticketYn = arr[i]["ticketYn"].ToString();
+                        String taxFree = arr[i]["taxFree"].ToString();
+                        String soldout = arr[i]["soldout"].ToString();
+                        int locateX = int.Parse(arr[i]["locateX"].ToString());
+                        int locateY = int.Parse(arr[i]["locateY"].ToString());
+                        int sizeX = int.Parse(arr[i]["sizeX"].ToString());
+                        int sizeY = int.Parse(arr[i]["sizeY"].ToString());
 
-                        // 면세상픔은 상품명앞에 *을 붙인다.
-                        if (mGoodsItem[i].taxfree == "1")
-                        {
-                            mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
-                        }
+                        String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, soldout, locateX, locateY, sizeX, sizeY) " +
+                            "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                        sql_excute_local_db(sql);
                     }
                 }
                 else
@@ -612,13 +547,171 @@ namespace thepos
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. goodsItemAndGoods\n\n" + mErrorMsg, "thepos");
                 return;
             }
 
 
+
+
+
+
+
+
+
+            // site -- 는 제일 마지막에.. 버전때문.
+            sUrl = "site?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["sites"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count == 1)
+                    {
+                        String siteId = arr[0]["siteId"].ToString();
+                        String siteName = arr[0]["siteName"].ToString();
+                        String siteAlias = arr[0]["siteAlias"].ToString();
+                        String registNo = arr[0]["registNo"].ToString();
+                        String capName = arr[0]["capName"].ToString();
+                        String bizAddr = arr[0]["bizAddr"].ToString();
+                        String bizTelNo = arr[0]["bizTelNo"].ToString();
+                        String ticketType = arr[0]["ticketType"].ToString();
+                        String ticketMedia = arr[0]["ticketMedia"].ToString();
+                        String vanCode = arr[0]["vanCode"].ToString();
+                        String callCenterNo = arr[0]["callCenterNo"].ToString();
+                        String basicDbVer = arr[0]["basicDbVer"].ToString();
+
+                        // Delete
+                        sql_excute_local_db("DELETE FROM site");
+
+                        // Insert
+                        String sql = "INSERT INTO site (siteId, siteName, siteAlias, registNo, capName, bizAddr, bizTelNo, ticketType, ticketMedia, vanCode, callCenterNo, basicDbVer) " +
+                                     "values ('" + siteId + "','" + siteName + "','" + siteAlias + "','" + registNo + "','" + capName + "','" + bizAddr + "','" + bizTelNo + "','" + ticketType + "','" + ticketMedia + "','" + vanCode + "','" + callCenterNo + "','" + basicDbVer + "')";
+                        sql_excute_local_db(sql);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. site\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+        }
+
+
+
+        private void load_local_basic_db()
+        {
+
+            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM site");
+            while (dr.Read())
+            {
+                mSiteName = dr["siteName"].ToString();
+                mSiteAlias = dr["siteAlias"].ToString();
+                mRegistNo = dr["registNo"].ToString();
+                mCapName = dr["capName"].ToString();
+                mBizAddr = dr["bizAddr"].ToString();
+                mBizTelNo = dr["bizTelNo"].ToString();
+                mTicketType = dr["ticketType"].ToString();
+                mTicketMedia = dr["ticketMedia"].ToString();
+                mVanCode = dr["vanCode"].ToString();
+                mCallCenterNo = dr["callCenterNo"].ToString();
+            }
+            dr.Close();
+
+
+            //
+            if (true)
+            {
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM goodsGroup");
+                if (dr.Read())
+                {
+                    rowcnt = int.Parse(dr["cnt"].ToString());
+                }
+                dr.Close();
+
+
+                mGoodsGroup = new GoodsGroup[rowcnt];
+
+                dr = sql_select_local_db("SELECT * FROM goodsGroup");
+                int i = 0;
+                while (dr.Read())
+                {
+                    mGoodsGroup[i].group_code = dr["groupCode"].ToString();
+                    mGoodsGroup[i].group_name = dr["groupName"].ToString();
+                    mGoodsGroup[i].column = int.Parse(dr["locateX"].ToString());
+                    mGoodsGroup[i].row = int.Parse(dr["locateY"].ToString());
+                    mGoodsGroup[i].columnspan = int.Parse(dr["sizeX"].ToString());
+                    mGoodsGroup[i].rowspan = int.Parse(dr["sizeY"].ToString());
+                    i++;
+                }
+                dr.Close();
+            }
+
+
+            //
+            if (true)
+            {
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM goodsItemAndGoods");
+                if (dr.Read())
+                {
+                    rowcnt = int.Parse(dr["cnt"].ToString());
+                }
+                dr.Close();
+
+                mGoodsItem = new GoodsItem[rowcnt];
+
+
+                dr = sql_select_local_db("SELECT * FROM goodsItemAndGoods");
+
+                int i = 0;
+                while (dr.Read())
+                {
+                    mGoodsItem[i].group_code = dr["groupCode"].ToString();
+                    mGoodsItem[i].item_code = dr["itemCode"].ToString();
+                    mGoodsItem[i].item_name = dr["itemName"].ToString();
+                    mGoodsItem[i].shop_code = dr["shopCode"].ToString();
+                    mGoodsItem[i].amt = int.Parse(dr["amt"].ToString());
+                    mGoodsItem[i].ticket = dr["ticketYn"].ToString();
+                    mGoodsItem[i].taxfree = dr["taxFree"].ToString();
+                    mGoodsItem[i].soldout = dr["soldout"].ToString();
+                    mGoodsItem[i].column = int.Parse(dr["locateX"].ToString());
+                    mGoodsItem[i].row = int.Parse(dr["locateY"].ToString());
+                    mGoodsItem[i].columnspan = int.Parse(dr["sizeX"].ToString());
+                    mGoodsItem[i].rowspan = int.Parse(dr["sizeY"].ToString());
+
+                    // 면세상픔은 상품명앞에 *을 붙인다.
+                    if (mGoodsItem[i].taxfree == "1")
+                    {
+                        mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
+                    }
+
+                    i++;
+                }
+                dr.Close();
+            }
+
+
+
+
+
+
+
+
+
+
             // setup pos
-            sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+            String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

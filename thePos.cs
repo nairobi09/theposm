@@ -199,6 +199,7 @@ namespace thepos
             public String ticket; // 일반상품 0. 티켓상품 1
             public String taxfree; // 과세품 0, 면세품 1
             public String shop_code;
+            public String soldout;  // Y품절
             public int column;
             public int row;
             public int columnspan;
@@ -509,7 +510,8 @@ namespace thepos
         public static String mPosType = ""; // 기종 : POS PC KIOSK
         public static String mCustomerMonitor = "";  // Y N
 
-
+        //Local DB
+        public static SQLiteConnection mConn;
 
 
         public static String get_MMddHHmm(String d, String t)
@@ -878,52 +880,16 @@ namespace thepos
 
         public static SQLiteDataReader sql_select_local_db(String sql)
         {
-            
-            String cs = "";
-
-#if DEBUG
-            var enviroment = System.Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
-            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
-
-#else
-            cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
-#endif
-
-
-            SQLiteConnection con = new SQLiteConnection(cs);
-            con.Open();
-
-
-            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteCommand cmd = new SQLiteCommand(sql, mConn);
             SQLiteDataReader dr = cmd.ExecuteReader();
-
             return dr;
         }
 
 
-        public static void sql_insert_local_db(String sql)
+        public static void sql_excute_local_db(String sql)
         {
-
-            String cs = "";
-
-#if DEBUG
-            var enviroment = System.Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
-            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
-
-#else
-            cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
-#endif
-
-            SQLiteConnection con = new SQLiteConnection(cs);
-            con.Open();
-
-            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteCommand cmd = new SQLiteCommand(sql, mConn);
             cmd.ExecuteNonQuery();
-
-
-
         }
     }
 }

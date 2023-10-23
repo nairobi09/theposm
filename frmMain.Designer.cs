@@ -131,7 +131,7 @@
             // 
             // btnSetup
             // 
-            this.btnSetup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSetup.BackColor = System.Drawing.Color.DimGray;
             this.btnSetup.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSetup.ForeColor = System.Drawing.Color.White;
             this.btnSetup.Location = new System.Drawing.Point(169, 3);
@@ -214,8 +214,8 @@
             this.panelLogin.Controls.Add(this.panel4);
             this.panelLogin.Controls.Add(this.panelKeyDisplayWhite);
             this.panelLogin.Controls.Add(this.panelNumpad);
-            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelLogin.Location = new System.Drawing.Point(684, 0);
+            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLogin.Location = new System.Drawing.Point(0, 0);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
