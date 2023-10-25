@@ -297,6 +297,24 @@
     <Compile Include="frmLocalModeInfo.Designer.cs">
       <DependentUpon>frmLocalModeInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetup.Designer.cs">
+      <DependentUpon>frmSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="4Setup\frmSetupDbSync.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="4Setup\frmSetupDbSync.Designer.cs">
+      <DependentUpon>frmSetupDbSync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="4Setup\frmSetupLocalMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="4Setup\frmSetupLocalMode.Designer.cs">
+      <DependentUpon>frmSetupLocalMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,10 +423,10 @@
     <Compile Include="9SysAdmin\frmSysAdmin.Designer.cs">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSetupPos.cs">
+    <Compile Include="4Setup\frmSetupPos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSetupPos.Designer.cs">
+    <Compile Include="4Setup\frmSetupPos.Designer.cs">
       <DependentUpon>frmSetupPos.cs</DependentUpon>
     </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
@@ -561,8 +579,17 @@
     <EmbeddedResource Include="9SysAdmin\frmSysAdmin.resx">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSetupPos.resx">
+    <EmbeddedResource Include="4Setup\frmSetupPos.resx">
       <DependentUpon>frmSetupPos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetup.resx">
+      <DependentUpon>frmSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="4Setup\frmSetupDbSync.resx">
+      <DependentUpon>frmSetupDbSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="4Setup\frmSetupLocalMode.resx">
+      <DependentUpon>frmSetupLocalMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSub.resx">
       <DependentUpon>frmSub.cs</DependentUpon>
@@ -584,6 +611,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Font\TossProductSansTTF-Medium.ttf" />
+    <None Include="local_thepos.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -610,6 +638,8 @@
     <Content Include="res\image_add_32x32.png" />
     <Content Include="res\logo1.png" />
     <Content Include="res\lvw32x32.png" />
+    <Content Include="res\net_connect.png" />
+    <Content Include="res\net_disconnect.png" />
     <Content Include="res\photo.png" />
     <Content Include="res\thepos.png" />
     <Content Include="thepos.ico" />
@@ -626,9 +656,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="4Setup\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

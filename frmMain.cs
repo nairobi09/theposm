@@ -25,6 +25,8 @@ using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Reflection.Emit;
+using System.Security.AccessControl;
 
 namespace thepos
 {
@@ -32,6 +34,9 @@ namespace thepos
     {
         public static Panel mPanelDivision;
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
+
+
+        public static PictureBox mPbNetworkConn = null;
 
         String in_patern = "";
 
@@ -70,6 +75,8 @@ namespace thepos
             font24 = new Font(fontCollection.Families[0], 24f);
 
 
+            lblNetworkCheck.Font = font10;
+
             btnClose.Font = font12;
 
 
@@ -82,7 +89,7 @@ namespace thepos
             lblUserNameTitle.Font = font10;
             lblUserName.Font = font9;
 
-
+            lblLocalModeTitle.Font = font10;
 
             btnSales.Font = font14;
             btnBusiness.Font = font14;
@@ -182,6 +189,7 @@ namespace thepos
             mHttpClient = new HttpClient(handler);
 
 
+
             // local DB
             String cs = "";
 #if DEBUG
@@ -193,11 +201,11 @@ namespace thepos
             cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
 #endif
 
-
             mConn = new SQLiteConnection(cs);
             mConn.Open();
 
-
+            // 네트워크 테스트콜 후 램프칼라 표시
+            network_testcall();
 
         }
 
@@ -320,35 +328,31 @@ namespace thepos
 
 
 
-            // 다운로드 : 서버버전 로컬버전 비교하여 필요하면 다운...
-            if (is_need_download_server_db())
-            {
-                
-            }
+            // 서버 -> 메모리
+            sync_data_server_to_memory();
 
-            //? 임시
-            download_server_basic_db();
+            lblLocalModeTitle.Visible = false;
 
 
-            // 로컬DB에서 메모리도 로드
-            load_local_basic_db();
+            // 서버모드 
+            mTheMode = "Server";
+
+            // 일반(서버) 테마 적용
+            btnBusiness.Enabled = true;
+            btnReports.Enabled = true;
+            btnSupport.Enabled = true;
 
 
 
-
-            //////////////////////////////
-            //? 로그인 성공
             panelLogin.Visible = false;
 
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
-
             lblCallCenterNo.Text = mCallCenterNo;
 
             save_registry_info();
-
 
 
             //////////////////////////////////
@@ -391,7 +395,6 @@ namespace thepos
             //f.Show();
 
         }
-
 
 
 
@@ -460,175 +463,692 @@ namespace thepos
 
 
 
-        private void download_server_basic_db()
+        private void sync_data_server_to_memory()
         {
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
-            if (mRequestGet(sUrl))
+            // 1. 사이트
+            if (true)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                String sUrl = "site?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
                 {
-                    // Delete
-                    sql_excute_local_db("DELETE FROM goodsGroup");
-
-                    //
-                    String data = mObj["goodsGroups"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        String siteId = arr[i]["siteId"].ToString();
-                        String posNo = arr[i]["posNo"].ToString();
-                        String groupCode = arr[i]["groupCode"].ToString();
-                        String groupName = arr[i]["groupName"].ToString();
-                        int locateX = int.Parse(arr[i]["locateX"].ToString());
-                        int locateY = int.Parse(arr[i]["locateY"].ToString());
-                        int sizeX = int.Parse(arr[i]["sizeX"].ToString());
-                        int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+                        String data = mObj["sites"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-                        // Insert
-                        String sql = "INSERT INTO goodsGroup (siteId, posNo, groupCode, groupName, locateX, locateY, sizeX, sizeY) " +
-                        "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
-                        sql_excute_local_db(sql);
+                        if (arr.Count == 1)
+                        {
+                            mSiteName = arr[0]["siteName"].ToString();
+                            mSiteAlias = arr[0]["siteAlias"].ToString();
+                            mRegistNo = arr[0]["registNo"].ToString();
+                            mCapName = arr[0]["capName"].ToString();
+                            mBizAddr = arr[0]["bizAddr"].ToString();
+                            mBizTelNo = arr[0]["bizTelNo"].ToString();
+                            mTicketType = arr[0]["ticketType"].ToString();
+                            mTicketMedia = arr[0]["ticketMedia"].ToString();
+                            mVanCode = arr[0]["vanCode"].ToString();
+                            mCallCenterNo = arr[0]["callCenterNo"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
-            else
-            {
-                MessageBox.Show("시스템오류. goodsGroup\n\n" + mErrorMsg, "thepos");
-                return;
-            }
 
-            
-            //
-            sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
-            if (mRequestGet(sUrl))
+            // 2. goodsGroup
+            if (true)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
                 {
-                    // Delete
-                    sql_excute_local_db("DELETE FROM goodsItemAndGoods");
-
-                    //
-                    String data = mObj["goodsItems"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        String siteId = arr[i]["siteId"].ToString();
-                        String posNo = arr[i]["posNo"].ToString();
-                        String groupCode = arr[i]["groupCode"].ToString();
-                        String itemCode = arr[i]["itemCode"].ToString();
-                        String itemName = arr[i]["itemName"].ToString();
-                        String shopCode = arr[i]["shopCode"].ToString();
-                        int amt = int.Parse(arr[i]["amt"].ToString());
-                        String ticketYn = arr[i]["ticketYn"].ToString();
-                        String taxFree = arr[i]["taxFree"].ToString();
-                        String soldout = arr[i]["soldout"].ToString();
-                        int locateX = int.Parse(arr[i]["locateX"].ToString());
-                        int locateY = int.Parse(arr[i]["locateY"].ToString());
-                        int sizeX = int.Parse(arr[i]["sizeX"].ToString());
-                        int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+                        String goods_group = mObj["goodsGroups"].ToString();
+                        JArray arr = JArray.Parse(goods_group);
 
-                        String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, soldout, locateX, locateY, sizeX, sizeY) " +
-                            "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
-                        sql_excute_local_db(sql);
+                        mGoodsGroup = new GoodsGroup[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
+                            mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
+                            mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
-            else
+
+
+            // 3. goodsItemAndGoods
+            if (true)
             {
-                MessageBox.Show("시스템오류. goodsItemAndGoods\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-
-
-
-
-
-
-
-
-            // site -- 는 제일 마지막에.. 버전때문.
-            sUrl = "site?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
+                String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
                 {
-                    String data = mObj["sites"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    if (arr.Count == 1)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        String siteId = arr[0]["siteId"].ToString();
-                        String siteName = arr[0]["siteName"].ToString();
-                        String siteAlias = arr[0]["siteAlias"].ToString();
-                        String registNo = arr[0]["registNo"].ToString();
-                        String capName = arr[0]["capName"].ToString();
-                        String bizAddr = arr[0]["bizAddr"].ToString();
-                        String bizTelNo = arr[0]["bizTelNo"].ToString();
-                        String ticketType = arr[0]["ticketType"].ToString();
-                        String ticketMedia = arr[0]["ticketMedia"].ToString();
-                        String vanCode = arr[0]["vanCode"].ToString();
-                        String callCenterNo = arr[0]["callCenterNo"].ToString();
-                        String basicDbVer = arr[0]["basicDbVer"].ToString();
+                        String goods_item = mObj["goodsItems"].ToString();
+                        JArray arr = JArray.Parse(goods_item);
 
-                        // Delete
-                        sql_excute_local_db("DELETE FROM site");
+                        mGoodsItem = new GoodsItem[arr.Count];
 
-                        // Insert
-                        String sql = "INSERT INTO site (siteId, siteName, siteAlias, registNo, capName, bizAddr, bizTelNo, ticketType, ticketMedia, vanCode, callCenterNo, basicDbVer) " +
-                                     "values ('" + siteId + "','" + siteName + "','" + siteAlias + "','" + registNo + "','" + capName + "','" + bizAddr + "','" + bizTelNo + "','" + ticketType + "','" + ticketMedia + "','" + vanCode + "','" + callCenterNo + "','" + basicDbVer + "')";
-                        sql_excute_local_db(sql);
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                            mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
+                            mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
+                            mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
+                            mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
+                            mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
+                            mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                            mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                            // 면세상픔은 상품명앞에 *을 붙인다.
+                            if (mGoodsItem[i].taxfree == "1")
+                            {
+                                mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
-            else
+
+            // 4. 샵
+            if (true)
             {
-                MessageBox.Show("시스템오류. site\n\n" + mErrorMsg, "thepos");
-                return;
+                String sUrl = "shop?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["shops"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mShop = new Shop[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mShop[i].shop_code = arr[i]["shopCode"].ToString();
+                            mShop[i].shop_name = arr[i]["shopName"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 5. 포스
+            if (true)
+            {
+                String sUrl = "pos?siteId=" + mSiteId + "&posStatus=Y";
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String pos = mObj["pos"].ToString();
+                        JArray arr = JArray.Parse(pos);
+
+                        mPosNoList = new String[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mPosNoList[i] = arr[i]["posNo"].ToString();
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 6. setupPos
+            if (true)
+            {
+                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["setupPos"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "ScannerPort") mScannerPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
+                        }
+                    }
+                }
+            }
+
+
+            // 7. dcrFavorite
+            if (true)
+            {
+                String sUrl = "dcrFavorite?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String pos = mObj["dcr"].ToString();
+                        JArray arr = JArray.Parse(pos);
+
+                        mDCR = new DCR[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mDCR[i].dcr_name = arr[i]["dcrName"].ToString();
+                            mDCR[i].dcr_des = arr[i]["dcrDes"].ToString();
+                            mDCR[i].dcr_type = arr[i]["dcrType"].ToString();
+                            mDCR[i].dcr_value = Int32.Parse(arr[i]["dcrValue"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 8. paymentConsole
+            if (true)
+            {
+                String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentConsoles"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mPayConsol = new PayConsol[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mPayConsol[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            mPayConsol[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            mPayConsol[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            mPayConsol[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                            mPayConsol[i].code = arr[i]["buttonCode"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
             }
 
         }
 
 
 
-        private void load_local_basic_db()
+        private void sync_data_server_to_local()
         {
+            // 1. site -> 마지막에 다운. 에러감안한 버전관리
 
-            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM site");
-            while (dr.Read())
+
+            // 2. goodsGroup
+            if (true)
             {
-                mSiteName = dr["siteName"].ToString();
-                mSiteAlias = dr["siteAlias"].ToString();
-                mRegistNo = dr["registNo"].ToString();
-                mCapName = dr["capName"].ToString();
-                mBizAddr = dr["bizAddr"].ToString();
-                mBizTelNo = dr["bizTelNo"].ToString();
-                mTicketType = dr["ticketType"].ToString();
-                mTicketMedia = dr["ticketMedia"].ToString();
-                mVanCode = dr["vanCode"].ToString();
-                mCallCenterNo = dr["callCenterNo"].ToString();
+                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM goodsGroup");
+
+                        //
+                        String data = mObj["goodsGroups"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            String posNo = arr[i]["posNo"].ToString();
+                            String groupCode = arr[i]["groupCode"].ToString();
+                            String groupName = arr[i]["groupName"].ToString();
+                            int locateX = int.Parse(arr[i]["locateX"].ToString());
+                            int locateY = int.Parse(arr[i]["locateY"].ToString());
+                            int sizeX = int.Parse(arr[i]["sizeX"].ToString());
+                            int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+
+                            // Insert
+                            String sql = "INSERT INTO goodsGroup (siteId, posNo, groupCode, groupName, locateX, locateY, sizeX, sizeY) " +
+                            "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. goodsGroup\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
             }
-            dr.Close();
+
+
+            // 3. goodsItemAndGoods
+            if (true)
+            {
+                String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM goodsItemAndGoods");
+
+                        //
+                        String data = mObj["goodsItems"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            String posNo = arr[i]["posNo"].ToString();
+                            String groupCode = arr[i]["groupCode"].ToString();
+                            String itemCode = arr[i]["itemCode"].ToString();
+                            String itemName = arr[i]["itemName"].ToString();
+                            String shopCode = arr[i]["shopCode"].ToString();
+                            int amt = int.Parse(arr[i]["amt"].ToString());
+                            String ticketYn = arr[i]["ticketYn"].ToString();
+                            String taxFree = arr[i]["taxFree"].ToString();
+                            String soldout = arr[i]["soldout"].ToString();
+                            int locateX = int.Parse(arr[i]["locateX"].ToString());
+                            int locateY = int.Parse(arr[i]["locateY"].ToString());
+                            int sizeX = int.Parse(arr[i]["sizeX"].ToString());
+                            int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+
+                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, soldout, locateX, locateY, sizeX, sizeY) " +
+                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. goodsItemAndGoods\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 4. shop
+            if (true)
+            {
+                String sUrl = "shop?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM shop");
+
+                        //
+                        String data = mObj["shops"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            string shopCode = arr[i]["shopCode"].ToString();
+                            String shopName = arr[i]["shopName"].ToString();
+
+                            String sql = "INSERT INTO shop (siteId, shopCode, shopName) " +
+                                        "values ('" + siteId + "','" + shopCode + "','" + shopName + "')";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 5. pos
+            if (true)
+            {
+                String sUrl = "pos?siteId=" + mSiteId + "&posStatus=Y";
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM pos");
+
+                        //
+                        String data = mObj["pos"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            String posNo = arr[i]["posNo"].ToString();
+                            String macAddr = arr[i]["macAddr"].ToString();
+                            String posStatus = arr[i]["posStatus"].ToString();
+
+                            String sql = "INSERT INTO pos (siteId, posNo, macAddr, posStatus) " +
+                                        "values ('" + siteId + "','" + posNo + "','" + macAddr + "','" + posStatus + "')";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 6. setupPos
+            if (true)
+            {
+                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM setupPos");
+
+                        //
+                        String data = mObj["setupPos"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            String posNo = arr[i]["posNo"].ToString();
+                            String setupCode = arr[i]["setupCode"].ToString();
+                            String setupName = arr[i]["setupName"].ToString();
+                            String setupValue = arr[i]["setupValue"].ToString();
+                            String memo = arr[i]["memo"].ToString();
+
+                            String sql = "INSERT INTO setupPos (siteId, posNo, setupCode, setupName, setupValue, memo) " +
+                                    "values ('" + siteId + "','" + posNo + "','" + setupCode + "','" + setupName + "','" + setupValue + "','" + memo + "')";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 7. dcrFavority
+            if (true)
+            {
+                String sUrl = "dcrFavorite?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM dcrFavorite");
+
+                        //
+                        String data = mObj["dcr"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            int sortNo = int.Parse(arr[i]["sortNo"].ToString());
+                            String dcrName = arr[i]["dcrName"].ToString();
+                            String dcrDes = arr[i]["dcrDes"].ToString();
+                            String dcrType = arr[i]["dcrType"].ToString();
+                            int dcrValue = int.Parse(arr[i]["dcrValue"].ToString());
+
+                            String sql = "INSERT INTO dcrFavorite (siteId, sortNo, dcrName, dcrDes, dcrType, dcrValue) " +
+                                    "values ('" + siteId + "'," + sortNo + ",'" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("정보 오류. dcrFavorite\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. dcrFavorite\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 8. paymentConsole
+            if (true)
+            {
+                String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        sql_excute_local_db("DELETE FROM paymentConsole");
+
+                        String data = mObj["paymentConsoles"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mPayConsol = new PayConsol[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String siteId = arr[i]["siteId"].ToString();
+                            String posNo = arr[i]["posNo"].ToString();
+                            String buttonCode = arr[i]["buttonCode"].ToString();
+                            String buttonName = arr[i]["buttonName"].ToString();
+                            int locateX = int.Parse(arr[i]["locateX"].ToString());
+                            int locateY = int.Parse(arr[i]["locateY"].ToString());
+                            int sizeX = int.Parse(arr[i]["sizeX"].ToString());
+                            int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+                            String usage = arr[i]["usage"].ToString();
+
+                            String sql = "INSERT INTO paymentConsole (siteId, posNo, buttonCode, buttonName, locateX, locateY, sizeX, sizeY, usage) " +
+                                    "values ('" + siteId + "'," + posNo + ",'" + buttonCode + "','" + buttonName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + usage + "')";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("정보 오류. paymentConsole\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentConsole\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+            // 1. site -- 는 제일 마지막에.. 에러감안한 버전관리
+            if (true)
+            {
+                String sUrl = "site?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["sites"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            String siteId = arr[0]["siteId"].ToString();
+                            String siteName = arr[0]["siteName"].ToString();
+                            String siteAlias = arr[0]["siteAlias"].ToString();
+                            String registNo = arr[0]["registNo"].ToString();
+                            String capName = arr[0]["capName"].ToString();
+                            String bizAddr = arr[0]["bizAddr"].ToString();
+                            String bizTelNo = arr[0]["bizTelNo"].ToString();
+                            String ticketType = arr[0]["ticketType"].ToString();
+                            String ticketMedia = arr[0]["ticketMedia"].ToString();
+                            String vanCode = arr[0]["vanCode"].ToString();
+                            String callCenterNo = arr[0]["callCenterNo"].ToString();
+                            String basicDbVer = arr[0]["basicDbVer"].ToString();
+
+                            // Delete
+                            sql_excute_local_db("DELETE FROM site");
+
+                            // Insert
+                            String sql = "INSERT INTO site (siteId, siteName, siteAlias, registNo, capName, bizAddr, bizTelNo, ticketType, ticketMedia, vanCode, callCenterNo, basicDbVer) " +
+                                         "values ('" + siteId + "','" + siteName + "','" + siteAlias + "','" + registNo + "','" + capName + "','" + bizAddr + "','" + bizTelNo + "','" + ticketType + "','" + ticketMedia + "','" + vanCode + "','" + callCenterNo + "','" + basicDbVer + "')";
+                            sql_excute_local_db(sql);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. site\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
 
 
             //
+            MessageBox.Show("다운로드 완료.", "thepos");
+
+        }
+
+
+
+        private void sync_data_local_to_memory ()
+        {
+            SQLiteDataReader dr;
+
+            // 1. site
+            if (true)
+            {
+                dr = sql_select_local_db("SELECT * FROM site");
+                while (dr.Read())
+                {
+                    mSiteName = dr["siteName"].ToString();
+                    mSiteAlias = dr["siteAlias"].ToString();
+                    mRegistNo = dr["registNo"].ToString();
+                    mCapName = dr["capName"].ToString();
+                    mBizAddr = dr["bizAddr"].ToString();
+                    mBizTelNo = dr["bizTelNo"].ToString();
+                    mTicketType = dr["ticketType"].ToString();
+                    mTicketMedia = dr["ticketMedia"].ToString();
+                    mVanCode = dr["vanCode"].ToString();
+                    mCallCenterNo = dr["callCenterNo"].ToString();
+                }
+                dr.Close();
+            }
+
+
+            // 2. goodsGroup
             if (true)
             {
                 int rowcnt = 0;
@@ -658,7 +1178,7 @@ namespace thepos
             }
 
 
-            //
+            // 3. goodsItemAndGoods
             if (true)
             {
                 int rowcnt = 0;
@@ -702,99 +1222,138 @@ namespace thepos
             }
 
 
-
-
-
-
-
-
-
-
-            // setup pos
-            String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
-            if (mRequestGet(sUrl))
+            // 4. shop
+            if (true)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM shop");
+                if (dr.Read())
                 {
-                    String data = mObj["setupPos"].ToString();
-                    JArray arr = JArray.Parse(data);
+                    rowcnt = int.Parse(dr["cnt"].ToString());
+                }
+                dr.Close();
 
-                    for (int i = 0; i < arr.Count; i++)
+                mShop = new Shop[rowcnt];
+
+
+                dr = sql_select_local_db("SELECT * FROM shop");
+                int i = 0;
+                while (dr.Read())
+                {
+                    mShop[i].shop_code = dr["shopCode"].ToString();
+                    mShop[i].shop_name = dr["shopName"].ToString();
+                    i++;
+                }
+                dr.Close();
+            }
+
+
+            // 5. pos
+            if (true)
+            {
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM pos");
+                if (dr.Read())
+                {
+                    rowcnt = int.Parse(dr["cnt"].ToString());
+                }
+                dr.Close();
+
+                mPosNoList = new String[rowcnt];
+
+
+                dr = sql_select_local_db("SELECT * FROM pos");
+                int i = 0;
+                while (dr.Read())
+                {
+                    mPosNoList[i] = dr["posNo"].ToString();
+
+                    // 내 포스번호 구하기
+                    if (mMacAddr == dr["macAddr"].ToString())
                     {
-                        if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
-                        else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
-                        else if (arr[i]["setupCode"].ToString() == "ScannerPort") mScannerPort = arr[i]["setupValue"].ToString();
-                        else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
-                        else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
+                        mPosNo = dr["posNo"].ToString();
                     }
+
+                    i++;
                 }
+                dr.Close();
             }
 
-            // 포스
-            sUrl = "pos?siteId=" + mSiteId + "&posStatus=Y";
-            if (mRequestGet(sUrl))
+
+            // 6. setupPos
+            if (true)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                dr = sql_select_local_db("SELECT * FROM setupPos");
+                int i = 0;
+                while (dr.Read())
                 {
-                    String data = mObj["pos"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    mPosNoList = new String[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mPosNoList[i] = arr[i]["posNo"].ToString();
-
-                    }
+                    if (dr["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "ScannerPort") mScannerPort = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "PosType") mPosType = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = dr["setupValue"].ToString();
+                    i++;
                 }
-                else
-                {
-                    MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return;
-                }
+                dr.Close();
             }
-            else
+
+
+            // 7. dcrFavorite
+            if (true)
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-
-
-            // 샵
-            sUrl = "shop?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM dcrFavorite");
+                if (dr.Read())
                 {
-                    String data = mObj["shops"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    mShop = new Shop[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mShop[i].shop_code = arr[i]["shopCode"].ToString();
-                        mShop[i].shop_name = arr[i]["shopName"].ToString();
-                    }
+                    rowcnt = int.Parse(dr["cnt"].ToString());
                 }
-                else
+                dr.Close();
+
+                mDCR = new DCR[rowcnt];
+
+
+                dr = sql_select_local_db("SELECT * FROM dcrFavorite");
+                int i = 0;
+                while (dr.Read())
                 {
-                    MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return;
+                    mDCR[i].dcr_name = dr["dcrName"].ToString();
+                    mDCR[i].dcr_des = dr["dcrDes"].ToString();
+                    mDCR[i].dcr_type = dr["dcrType"].ToString();
+                    mDCR[i].dcr_value = Int32.Parse(dr["dcrValue"].ToString());
+                    i++;
                 }
+                dr.Close();
             }
-            else
+
+
+            // 8. paymentConsole
+            if (true)
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM paymentConsole");
+                if (dr.Read())
+                {
+                    rowcnt = int.Parse(dr["cnt"].ToString());
+                }
+                dr.Close();
+
+                mPayConsol = new PayConsol[rowcnt];
+
+
+                dr = sql_select_local_db("SELECT * FROM paymentConsole");
+                int i = 0;
+                while (dr.Read())
+                {
+                    mPayConsol[i].column = int.Parse(dr["locateX"].ToString());
+                    mPayConsol[i].row = int.Parse(dr["locateY"].ToString());
+                    mPayConsol[i].columnspan = int.Parse(dr["sizeX"].ToString());
+                    mPayConsol[i].rowspan = int.Parse(dr["sizeY"].ToString());
+                    mPayConsol[i].code = dr["buttonCode"].ToString();
+                    i++;
+                }
+                dr.Close();
             }
-
-
         }
-
-
-
 
 
 
@@ -807,40 +1366,58 @@ namespace thepos
             // 영업마감상태 : 마감이후 개시전
 
 
-            // 1. 영업상태 구함
 
-            String biz_Status = "";
-            String biz_date = "";
-
-            if (get_bizdate_status(ref biz_Status, ref biz_date))
+            if (mTheMode == "Local")  // 긴급사용모드
             {
-                if (biz_Status == "A")   // A영업중 F영업마감
+                //mBizDate = ;
+
+                panelDivision.Visible = true;
+                panelDivision.Controls.Clear();
+
+                frmSales fForm = new frmSales() { TopLevel = false, TopMost = true };
+                panelDivision.Controls.Add(fForm);
+                fForm.Show();
+
+
+            }
+            else if (mTheMode == "Server")
+            {
+                String biz_Status = "";
+                String biz_date = "";
+
+                if (get_bizdate_status(ref biz_Status, ref biz_date))
                 {
-                    // 영업중이면 그대로 판매관리로 진행
-                    mBizDate = biz_date;
+                    if (biz_Status == "A")   // A영업중 F영업마감
+                    {
+                        // 영업중이면 그대로 판매관리로 진행
+                        mBizDate = biz_date;
 
-                    panelDivision.Visible = true;
-                    panelDivision.Controls.Clear();
+                        panelDivision.Visible = true;
+                        panelDivision.Controls.Clear();
 
-                    frmSales fForm = new frmSales() { TopLevel = false, TopMost = true };
-                    panelDivision.Controls.Add(fForm);
-                    fForm.Show();
-
-
+                        frmSales fForm = new frmSales() { TopLevel = false, TopMost = true };
+                        panelDivision.Controls.Add(fForm);
+                        fForm.Show();
+                    }
+                    else if (biz_Status == "F")  // 마감
+                    {
+                        MessageBox.Show("영업개시전입니다. 영업개시 입력바랍니다.", "thepos");
+                        return;
+                    }
                 }
-                else if (biz_Status == "F")  // 마감
+                else
                 {
-                    MessageBox.Show("영업개시전입니다. 영업개시 입력바랍니다.", "thepos");
+                    // 서버루틴에서 에러메시지 기표시...
                     return;
                 }
+
             }
             else
             {
-                // 서버루틴에서 에러메시지 기표시...
-                return;
-            }
-        }
 
+            }
+
+        }
 
         // 영업관리
         private void btnBusiness_Click(object sender, EventArgs e)
@@ -872,12 +1449,11 @@ namespace thepos
             panelDivision.Visible = true;
             panelDivision.Controls.Clear();
 
-            frmSetupPos fForm = new frmSetupPos() { TopLevel = false, TopMost = true };
+            frmSetup fForm = new frmSetup() { TopLevel = false, TopMost = true };
             panelDivision.Controls.Add(fForm);
             fForm.Show();
 
         }
-
 
 
 
@@ -898,9 +1474,6 @@ namespace thepos
                 //? 로그아웃 프로세스 필요
 
 
-
-
-                 
                 clear_login_init();  // 초기화
 
                 panelLogin.Visible = true;
@@ -910,8 +1483,6 @@ namespace thepos
             else if (ret == DialogResult.Retry)
             {
                 //?
-
-
 
 
 
@@ -996,32 +1567,103 @@ namespace thepos
             in_patern += "2";
         }
 
+
+
         private void lblLocalMode_Click(object sender, EventArgs e)
         {
             frmLocalModeInfo frm = new frmLocalModeInfo();
             frm.ShowDialog();
 
-            if (mLocalMode == true)
+            if (mTheMode == "Local")
             {
-                set_local_mode();
+                //?
+
+                //mSiteId = "";
+
+                mUserID = "";
+                mUserName = "";
+                
+                mPosNo = "";
+
+
+
+
+                // 로컬DB -> 메모리 
+                sync_data_local_to_memory();
+
+                lblLocalModeTitle.Visible = true;
+
+
+
+                panelLogin.Visible = false;
+
+                lblSiteAlias.Text = mSiteAlias;
+                lblSiteName.Text = mSiteName;
+                lblPosNo.Text = mPosNo;
+                lblUserName.Text = "";
+
+                lblCallCenterNo.Text = mCallCenterNo;
+
+
+
+                // 긴급사용화면 테마 적용
+                btnBusiness.Enabled = false;
+                btnReports.Enabled = false;
+                btnSupport.Enabled = false;
+
+
+                if (mCustomerMonitor == "Y")
+                {
+                    start_sub_screen();
+                }
 
             }
 
         }
 
 
-        void set_local_mode()
+        private void btnSyncDataServerToLocalAndMemory_Click(object sender, EventArgs e)
         {
-            //?
-            // 사이트 정보
-            // 기초원장
-            // 
 
-
-
-
-
+            // 서버 -> 로걸
+            sync_data_server_to_local();
         }
 
+        private void lblNetworkCheck_Click(object sender, EventArgs e)
+        {
+            network_testcall();
+        }
+
+        private void timerNetwork_Tick(object sender, EventArgs e)
+        {
+            network_testcall();
+        }
+
+        private void network_testcall()
+        {
+            String sUrl = "testCall?siteId=" + mSiteId + "&posNo=" + mPosNo + "&testDt=" + get_today_date() + get_today_time();
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    pbNetworkConn.Visible = true;
+                }
+                else
+                {
+                    pbNetworkConn.Visible = false;
+                }
+            }
+            else
+            {
+                pbNetworkConn.Visible = false;
+            }
+
+            // frmSales의 네트워크상태 세팅
+            if (mPbNetworkConn != null)
+            {
+                mPbNetworkConn.Visible = pbNetworkConn.Visible;
+            }
+
+        }
     }
 }

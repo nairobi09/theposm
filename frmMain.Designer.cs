@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.btnReports = new System.Windows.Forms.Button();
             this.btnSales = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.lblLocalMode = new System.Windows.Forms.Label();
             this.lblReqUser = new System.Windows.Forms.Label();
@@ -74,11 +74,16 @@
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenterNo = new System.Windows.Forms.Label();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.panelDivision = new System.Windows.Forms.Panel();
+            this.btnSyncDataServerToLocalAndMemory = new System.Windows.Forms.Button();
+            this.lblLocalModeTitle = new System.Windows.Forms.Label();
+            this.lblNetworkCheck = new System.Windows.Forms.Label();
+            this.timerNetwork = new System.Windows.Forms.Timer(this.components);
+            this.pbNetworkConn = new System.Windows.Forms.PictureBox();
+            this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLogin.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
@@ -86,7 +91,9 @@
             this.panel3.SuspendLayout();
             this.panel_in_0.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,7 +104,7 @@
             this.panel1.Controls.Add(this.btnBusiness);
             this.panel1.Controls.Add(this.btnReports);
             this.panel1.Controls.Add(this.btnSales);
-            this.panel1.Location = new System.Drawing.Point(702, 318);
+            this.panel1.Location = new System.Drawing.Point(702, 261);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 341);
             this.panel1.TabIndex = 0;
@@ -105,9 +112,11 @@
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Black;
+            this.btnExit.FlatAppearance.BorderSize = 2;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(169, 229);
+            this.btnExit.Location = new System.Drawing.Point(168, 3);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(110, 107);
             this.btnExit.TabIndex = 0;
@@ -119,9 +128,11 @@
             // btnSupport
             // 
             this.btnSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSupport.FlatAppearance.BorderSize = 2;
+            this.btnSupport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupport.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSupport.ForeColor = System.Drawing.Color.White;
-            this.btnSupport.Location = new System.Drawing.Point(169, 116);
+            this.btnSupport.Location = new System.Drawing.Point(168, 229);
             this.btnSupport.Name = "btnSupport";
             this.btnSupport.Size = new System.Drawing.Size(110, 107);
             this.btnSupport.TabIndex = 0;
@@ -131,10 +142,12 @@
             // 
             // btnSetup
             // 
-            this.btnSetup.BackColor = System.Drawing.Color.DimGray;
+            this.btnSetup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSetup.FlatAppearance.BorderSize = 2;
+            this.btnSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetup.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSetup.ForeColor = System.Drawing.Color.White;
-            this.btnSetup.Location = new System.Drawing.Point(169, 3);
+            this.btnSetup.Location = new System.Drawing.Point(168, 116);
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(110, 107);
             this.btnSetup.TabIndex = 0;
@@ -146,6 +159,8 @@
             // btnBusiness
             // 
             this.btnBusiness.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnBusiness.FlatAppearance.BorderSize = 2;
+            this.btnBusiness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBusiness.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBusiness.ForeColor = System.Drawing.Color.White;
             this.btnBusiness.Location = new System.Drawing.Point(3, 116);
@@ -160,6 +175,8 @@
             // btnReports
             // 
             this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReports.FlatAppearance.BorderSize = 2;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Location = new System.Drawing.Point(3, 229);
@@ -174,6 +191,8 @@
             // btnSales
             // 
             this.btnSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
+            this.btnSales.FlatAppearance.BorderSize = 2;
+            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSales.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSales.ForeColor = System.Drawing.Color.White;
             this.btnSales.Location = new System.Drawing.Point(3, 3);
@@ -189,20 +208,10 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.SlateGray;
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(44, 71);
+            this.panel2.Location = new System.Drawing.Point(44, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(620, 613);
+            this.panel2.Size = new System.Drawing.Size(620, 634);
             this.panel2.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::thepos.Properties.Resources.thepos;
-            this.pictureBox1.Location = new System.Drawing.Point(112, 255);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(386, 109);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // panelLogin
             // 
@@ -214,8 +223,8 @@
             this.panelLogin.Controls.Add(this.panel4);
             this.panelLogin.Controls.Add(this.panelKeyDisplayWhite);
             this.panelLogin.Controls.Add(this.panelNumpad);
-            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLogin.Location = new System.Drawing.Point(0, 0);
+            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelLogin.Location = new System.Drawing.Point(684, 0);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
@@ -570,7 +579,7 @@
             this.lblSiteName.ForeColor = System.Drawing.Color.Gold;
             this.lblSiteName.Location = new System.Drawing.Point(7, 49);
             this.lblSiteName.Name = "lblSiteName";
-            this.lblSiteName.Size = new System.Drawing.Size(260, 17);
+            this.lblSiteName.Size = new System.Drawing.Size(260, 20);
             this.lblSiteName.TabIndex = 3;
             this.lblSiteName.Text = "___";
             this.lblSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -603,7 +612,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblUserNameTitle);
             this.panel3.Controls.Add(this.lblUserName);
-            this.panel3.Location = new System.Drawing.Point(705, 203);
+            this.panel3.Location = new System.Drawing.Point(705, 176);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(275, 31);
             this.panel3.TabIndex = 4;
@@ -613,7 +622,7 @@
             this.panel_in_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_in_0.Controls.Add(this.lblSiteAlias);
             this.panel_in_0.Controls.Add(this.lblSiteName);
-            this.panel_in_0.Location = new System.Drawing.Point(705, 71);
+            this.panel_in_0.Location = new System.Drawing.Point(705, 44);
             this.panel_in_0.Name = "panel_in_0";
             this.panel_in_0.Size = new System.Drawing.Size(275, 77);
             this.panel_in_0.TabIndex = 5;
@@ -635,7 +644,7 @@
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.lblPosNoTitle);
             this.panel6.Controls.Add(this.lblPosNo);
-            this.panel6.Location = new System.Drawing.Point(705, 167);
+            this.panel6.Location = new System.Drawing.Point(705, 140);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(275, 31);
             this.panel6.TabIndex = 4;
@@ -666,23 +675,13 @@
             // lblCallCenterNo
             // 
             this.lblCallCenterNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCallCenterNo.ForeColor = System.Drawing.Color.DarkGray;
-            this.lblCallCenterNo.Location = new System.Drawing.Point(152, 705);
+            this.lblCallCenterNo.ForeColor = System.Drawing.Color.LightGray;
+            this.lblCallCenterNo.Location = new System.Drawing.Point(222, 39);
             this.lblCallCenterNo.Name = "lblCallCenterNo";
-            this.lblCallCenterNo.Size = new System.Drawing.Size(512, 14);
+            this.lblCallCenterNo.Size = new System.Drawing.Size(438, 18);
             this.lblCallCenterNo.TabIndex = 8;
             this.lblCallCenterNo.Text = "고객지원 02-1234-5678";
             this.lblCallCenterNo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.Location = new System.Drawing.Point(47, 702);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(65, 18);
-            this.picLogo.TabIndex = 10;
-            this.picLogo.TabStop = false;
-            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
             // 
             // panelDivision
             // 
@@ -691,20 +690,99 @@
             this.panelDivision.Size = new System.Drawing.Size(30, 30);
             this.panelDivision.TabIndex = 11;
             // 
+            // btnSyncDataServerToLocalAndMemory
+            // 
+            this.btnSyncDataServerToLocalAndMemory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSyncDataServerToLocalAndMemory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSyncDataServerToLocalAndMemory.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSyncDataServerToLocalAndMemory.ForeColor = System.Drawing.Color.LightGray;
+            this.btnSyncDataServerToLocalAndMemory.Location = new System.Drawing.Point(917, 639);
+            this.btnSyncDataServerToLocalAndMemory.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSyncDataServerToLocalAndMemory.Name = "btnSyncDataServerToLocalAndMemory";
+            this.btnSyncDataServerToLocalAndMemory.Size = new System.Drawing.Size(88, 49);
+            this.btnSyncDataServerToLocalAndMemory.TabIndex = 12;
+            this.btnSyncDataServerToLocalAndMemory.TabStop = false;
+            this.btnSyncDataServerToLocalAndMemory.Text = "Download";
+            this.btnSyncDataServerToLocalAndMemory.UseVisualStyleBackColor = false;
+            this.btnSyncDataServerToLocalAndMemory.Click += new System.EventHandler(this.btnSyncDataServerToLocalAndMemory_Click);
+            // 
+            // lblLocalModeTitle
+            // 
+            this.lblLocalModeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblLocalModeTitle.Location = new System.Drawing.Point(706, 235);
+            this.lblLocalModeTitle.Name = "lblLocalModeTitle";
+            this.lblLocalModeTitle.Size = new System.Drawing.Size(274, 19);
+            this.lblLocalModeTitle.TabIndex = 15;
+            this.lblLocalModeTitle.Text = "긴급사용모드(로컬DB) 사용중";
+            this.lblLocalModeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLocalModeTitle.Visible = false;
+            // 
+            // lblNetworkCheck
+            // 
+            this.lblNetworkCheck.AutoSize = true;
+            this.lblNetworkCheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNetworkCheck.ForeColor = System.Drawing.Color.LightGray;
+            this.lblNetworkCheck.Location = new System.Drawing.Point(80, 41);
+            this.lblNetworkCheck.Name = "lblNetworkCheck";
+            this.lblNetworkCheck.Size = new System.Drawing.Size(124, 14);
+            this.lblNetworkCheck.TabIndex = 18;
+            this.lblNetworkCheck.Text = "네트워크 상태체크";
+            this.lblNetworkCheck.Click += new System.EventHandler(this.lblNetworkCheck_Click);
+            // 
+            // timerNetwork
+            // 
+            this.timerNetwork.Enabled = true;
+            this.timerNetwork.Interval = 30000;
+            this.timerNetwork.Tick += new System.EventHandler(this.timerNetwork_Tick);
+            // 
+            // pbNetworkConn
+            // 
+            this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect;
+            this.pbNetworkConn.Location = new System.Drawing.Point(49, 41);
+            this.pbNetworkConn.Name = "pbNetworkConn";
+            this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
+            this.pbNetworkConn.TabIndex = 16;
+            this.pbNetworkConn.TabStop = false;
+            this.pbNetworkConn.Visible = false;
+            // 
+            // pbNetworkDisconn
+            // 
+            this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect;
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(49, 40);
+            this.pbNetworkDisconn.Name = "pbNetworkDisconn";
+            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
+            this.pbNetworkDisconn.TabIndex = 17;
+            this.pbNetworkDisconn.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::thepos.Properties.Resources.thepos;
+            this.pictureBox1.Location = new System.Drawing.Point(112, 280);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(386, 109);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelDivision);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.picLogo);
-            this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.lblCallCenterNo);
             this.Controls.Add(this.panel_in_0);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnSyncDataServerToLocalAndMemory);
+            this.Controls.Add(this.lblLocalModeTitle);
+            this.Controls.Add(this.lblNetworkCheck);
+            this.Controls.Add(this.pbNetworkConn);
+            this.Controls.Add(this.pbNetworkDisconn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -714,7 +792,6 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -725,8 +802,11 @@
             this.panel3.ResumeLayout(false);
             this.panel_in_0.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -775,9 +855,14 @@
         private System.Windows.Forms.Label lblPosNo;
         private System.Windows.Forms.Label lblCallCenterNo;
         private System.Windows.Forms.Label lblSiteAlias;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblReqUser;
         private System.Windows.Forms.Panel panelDivision;
         private System.Windows.Forms.Label lblLocalMode;
+        private System.Windows.Forms.Button btnSyncDataServerToLocalAndMemory;
+        private System.Windows.Forms.Label lblLocalModeTitle;
+        private System.Windows.Forms.PictureBox pbNetworkConn;
+        private System.Windows.Forms.PictureBox pbNetworkDisconn;
+        private System.Windows.Forms.Label lblNetworkCheck;
+        private System.Windows.Forms.Timer timerNetwork;
     }
 }

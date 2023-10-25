@@ -40,18 +40,7 @@ namespace thepos
             btnReportChart1.Font = font10;
             btnReportList1.Font = font10;
 
-            btnKey1.Font = font14;
-            btnKey2.Font = font14;
-            btnKey3.Font = font14;
-            btnKey4.Font = font14;
-            btnKey5.Font = font14;
-            btnKey6.Font = font14;
-            btnKey7.Font = font14;
-            btnKey8.Font = font14;
-            btnKey9.Font = font14;
-            btnKey0.Font = font14;
-            btnKeyBS.Font = font14;
-            btnKeyClear.Font = font14;
+
         }
 
 

@@ -340,7 +340,7 @@ namespace thepos
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        String data = mObj["paymentCards"].ToString();
+                        String data = mObj["paymentEasys"].ToString();
                         JArray arr = JArray.Parse(data);
 
                         for (int i = 0; i < arr.Count; i++)

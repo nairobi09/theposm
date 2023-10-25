@@ -68,7 +68,6 @@ namespace thepos
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
@@ -124,12 +123,13 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
+            this.pbNetworkConn = new System.Windows.Forms.PictureBox();
+            this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.panelOrderSumWhile.SuspendLayout();
             this.panelOrderSumBlack.SuspendLayout();
             this.panelFlowConsole.SuspendLayout();
@@ -142,6 +142,8 @@ namespace thepos
             this.panelGoodsGroupWhite2.SuspendLayout();
             this.panelGoodsGroupWhite.SuspendLayout();
             this.tableLayoutPanelPayControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFlowSettlement
@@ -669,7 +671,8 @@ namespace thepos
             // panelTitleConsole
             // 
             this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelTitleConsole.Controls.Add(this.picLogo);
+            this.panelTitleConsole.Controls.Add(this.pbNetworkConn);
+            this.panelTitleConsole.Controls.Add(this.pbNetworkDisconn);
             this.panelTitleConsole.Controls.Add(this.lblPosNoTitle);
             this.panelTitleConsole.Controls.Add(this.btnClose);
             this.panelTitleConsole.Controls.Add(this.lblPosNo);
@@ -685,18 +688,6 @@ namespace thepos
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
-            this.picLogo.Location = new System.Drawing.Point(30, 12);
-            this.picLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(64, 19);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 39;
-            this.picLogo.TabStop = false;
             // 
             // lblPosNoTitle
             // 
@@ -1378,6 +1369,25 @@ namespace thepos
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
             // 
+            // pbNetworkConn
+            // 
+            this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect1;
+            this.pbNetworkConn.Location = new System.Drawing.Point(23, 15);
+            this.pbNetworkConn.Name = "pbNetworkConn";
+            this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
+            this.pbNetworkConn.TabIndex = 39;
+            this.pbNetworkConn.TabStop = false;
+            this.pbNetworkConn.Visible = false;
+            // 
+            // pbNetworkDisconn
+            // 
+            this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect1;
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 14);
+            this.pbNetworkDisconn.Name = "pbNetworkDisconn";
+            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
+            this.pbNetworkDisconn.TabIndex = 40;
+            this.pbNetworkDisconn.TabStop = false;
+            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1415,7 +1425,6 @@ namespace thepos
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
             this.panelTitleConsole.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
@@ -1429,6 +1438,8 @@ namespace thepos
             this.panelGoodsGroupWhite2.ResumeLayout(false);
             this.panelGoodsGroupWhite.ResumeLayout(false);
             this.tableLayoutPanelPayControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1510,7 +1521,6 @@ namespace thepos
         private System.Windows.Forms.ColumnHeader tip;
         private System.Windows.Forms.Button btnPayManager;
         private System.Windows.Forms.Panel panelTitleConsole;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblPosNo;
@@ -1527,6 +1537,8 @@ namespace thepos
         private System.Windows.Forms.Label lblOrderAmountRest;
         private System.Windows.Forms.Label lblOrderAmountRestTitle;
         private System.Windows.Forms.Panel panelCancel;
+        private System.Windows.Forms.PictureBox pbNetworkConn;
+        private System.Windows.Forms.PictureBox pbNetworkDisconn;
     }
 }
 

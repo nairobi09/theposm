@@ -60,7 +60,7 @@ namespace thepos
 
         private void initialize_the()
         {
-            mLocalMode = false;
+            mTheMode = "Local";
 
 
             dtpBizDate.Value = DateTime.Now;
@@ -109,47 +109,23 @@ namespace thepos
         {
             String siteId = "";
 
-            String path = "local_thepos.db";
 
-
-            String cs = "";
-
-
-            // Degugging
-            var enviroment = System.Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
-            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
-
-            // Live
-            cs = @"URI=file:" + Application.StartupPath + "\\local_thepos.db";
-
-
-
-
-
-            SQLiteConnection con;
-            SQLiteCommand cmd;
-            SQLiteDataReader dr;
-
-            con = new SQLiteConnection(cs);
-            con.Open();
-
-            String stm = "SELECT * FROM site";
-            cmd = new SQLiteCommand(stm, con);
-            dr = cmd.ExecuteReader();
-
+            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM site");
             while (dr.Read())
             {
                 siteId = dr.GetString(0);
             }
+            dr.Close();
 
 
 
 
-
-            if (tbPW.Text == mSiteId)
+            if (tbPW.Text == siteId)
             {
-                mLocalMode = true;
+
+                mBizDate = dtpBizDate.Value.ToString("yyyyMMdd");
+
+                mTheMode = "Local";
                 Close();
             }
             else

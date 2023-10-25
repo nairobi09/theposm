@@ -78,16 +78,7 @@ namespace thepos
         //
         // 로컬포스내 관리
         //
-        struct PayConsol
-        {
-            public string code; // CASH, CARD, COMPLEX, CERT, EASY
-                                // 현금  카드   복합결제  인증   간편결제
-            public int column;
-            public int row;
-            public int columnspan;
-            public int rowspan;
-        }
-        PayConsol[] mPayConsol;
+
 
 
         public static Panel mPanelMiddle;
@@ -97,6 +88,8 @@ namespace thepos
         public static Button mBtnOrderWaiting;
 
         public static TableLayoutPanel mTableLayoutPanelPayControl;
+
+
 
 
 
@@ -110,7 +103,7 @@ namespace thepos
             initialize_font();
             initialize_the();
 
-            get_display_payConsol();
+            display_paymentConsol();
 
             display_goodsgroup();
             ClickedGoodsGroup(mGoodsGroup[0].group_code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
@@ -118,7 +111,6 @@ namespace thepos
             // 일련번호(4) 대신 Time(6)으로 변경
             //get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅
 
-            get_pos_setup();
 
 
             // Sub Screen 
@@ -282,6 +274,9 @@ namespace thepos
 
             mTableLayoutPanelPayControl = tableLayoutPanelPayControl;
 
+
+            mPbNetworkConn = pbNetworkConn;
+
         }
 
 
@@ -317,52 +312,9 @@ namespace thepos
         }
 
 
-        private void get_pos_setup()
+
+        private void display_paymentConsol()
         {
-            //?
-
-
-
-        }
-
-
-
-        private void get_display_payConsol()
-        {
-
-            String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["paymentConsoles"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    mPayConsol = new PayConsol[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mPayConsol[i].column = int.Parse(arr[i]["locateX"].ToString());
-                        mPayConsol[i].row = int.Parse(arr[i]["locateY"].ToString());
-                        mPayConsol[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                        mPayConsol[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
-                        mPayConsol[i].code = arr[i]["buttonCode"].ToString();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-            //
             Button btnPayItem;
 
             tableLayoutPanelPayControl.Controls.Clear();
@@ -2260,8 +2212,6 @@ namespace thepos
         }
 
 
-
- 
         // 대기
         private void btnOrderWaiting_Click(object sender, EventArgs e)
         {
@@ -2606,7 +2556,6 @@ namespace thepos
 
     
 
-
         public static void DisplaySubScreen()
         {
             if (fSub != null)
@@ -2881,7 +2830,7 @@ namespace thepos
             mTheNo = mSiteId + mBizDate + mPosNo + get_today_time();
 
 
-            //? 이렇게 하면 안됨. 
+            // 동잀하게 세팅후 -> 이후 필요시 별도세팅
             mRefNo = mTheNo;
             // the_no : 결제단위 - cash card complex point easy 결제버튼을 누른경우 새로운 the_no부여
             // ref_no : 입장단위 - 포인트 충전 정산의 경우 티켓번호 18자리로 세트

@@ -215,12 +215,12 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
             }
         }
 

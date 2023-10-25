@@ -170,6 +170,29 @@ namespace thepos
 
         // //////////////////////////////////////////////////////////////////////////////////////////
         // 로컬 + 서버
+
+        public struct DCR
+        {
+            public string dcr_name;
+            public string dcr_des;
+            public string dcr_type;
+            public int dcr_value;
+        }
+        public static DCR[] mDCR;
+
+
+        public struct PayConsol
+        {
+            public string code; // CASH, CARD, COMPLEX, CERT, EASY
+                                // 현금  카드   복합결제  인증   간편결제
+            public int column;
+            public int row;
+            public int columnspan;
+            public int rowspan;
+        }
+        public static PayConsol[] mPayConsol;
+
+
         public struct Shop
         {
             public string shop_code;
@@ -493,8 +516,7 @@ namespace thepos
 
 
 
-        //
-        public static Boolean mLocalMode = false;
+        public static String mTheMode = "";  // Server Local
 
         public static Boolean mReturn = false;
         public static string mErrorMsg = "";

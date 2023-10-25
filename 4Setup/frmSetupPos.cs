@@ -55,9 +55,7 @@ namespace thepos
             initialize_font();
             initialize_the();
 
-
             Setup setupItem = new Setup();
-
 
             setupItem.code = "BillPrinterPort";     setupItem.name = "영수증프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[0] = setupItem;
             setupItem.code = "TicketPrinterPort";   setupItem.name = "티켓바코드프린터포트";setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
@@ -65,34 +63,33 @@ namespace thepos
             setupItem.code = "PosType";             setupItem.name = "기기유형";            setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
             setupItem.code = "CustomerMonitor";     setupItem.name = "고객용모니터사용";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
 
-
             reload_setup_pos();
         }
 
 
         private void initialize_font()
         {
-            lvwList.Font = font12;
+            lvwList.Font = font10;
 
-            lblSiteNameTitle.Font = font12;
-            lblPosNoTitle.Font = font12;
+            lblSiteNameTitle.Font = font10;
+            lblPosNoTitle.Font = font10;
 
-            lblSiteName.Font = font12;
-            lblPosNo.Font = font12;
+            lblSiteName.Font = font10;
+            lblPosNo.Font = font10;
 
-            lblNameTitle.Font = font12;
-            lblName.Font = font12;
+            lblNameTitle.Font = font10;
+            lblName.Font = font10;
 
-            lblValueTitle.Font = font12;
-            lblValue.Font = font12;
+            lblValueTitle.Font = font10;
+            lblValue.Font = font10;
 
-            lblValueTitle2.Font = font12;
-            cbValue.Font = font12;
+            lblValueTitle2.Font = font10;
+            cbValue.Font = font10;
 
-            btnAdd.Font = font12;
+            btnAdd.Font = font10;
 
-            btnLoad.Font = font12;
-            btnSave.Font = font12;
+            btnLoad.Font = font10;
+            btnSave.Font = font10;
 
         }
 

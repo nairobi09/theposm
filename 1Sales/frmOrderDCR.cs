@@ -28,16 +28,6 @@ namespace thepos
     public partial class frmOrderDCR : Form
     {
 
-        struct DCR
-        {
-            public string dcr_name;
-            public string dcr_des;
-            public string dcr_type;
-            public int dcr_value;
-        }
-
-        DCR[] mDCR;
-
         System.Windows.Forms.Button[] btnDCR;
 
         public frmOrderDCR()
@@ -47,54 +37,10 @@ namespace thepos
             initialize_font();
             initialize_the();
 
-            getDCRule();
-
             displayDCR();
 
         }
 
-
-        // 할인 즐겨찾기 - 서버에서 가져오기
-        private void getDCRule()
-        {
-            // 할인울
-
-            // 할인룰코드 : 
-            // 할인대상 : 선택(S), 전체(E)
-            // 할인형식 : 정액형(A:Amount), 정율형(R:Rate)
-            // 할인값   : 정액 - 금액, 정율 - 할인율(%)
-
-
-            String sUrl = "dcrFavorite?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String pos = mObj["dcr"].ToString();
-                    JArray arr = JArray.Parse(pos);
-
-                    mDCR = new DCR[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        mDCR[i].dcr_name = arr[i]["dcrName"].ToString();
-                        mDCR[i].dcr_des = arr[i]["dcrDes"].ToString();
-                        mDCR[i].dcr_type = arr[i]["dcrType"].ToString();
-                        mDCR[i].dcr_value = Int32.Parse(arr[i]["dcrValue"].ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-        }
 
         void initialize_font()
         {
