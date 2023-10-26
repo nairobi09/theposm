@@ -751,7 +751,7 @@ namespace thepos
 
 
 
-        private void sync_data_server_to_local()
+        public static void sync_data_server_to_local()
         {
             // 1. site -> 마지막에 다운. 에러감안한 버전관리
 
@@ -1622,12 +1622,7 @@ namespace thepos
         }
 
 
-        private void btnSyncDataServerToLocalAndMemory_Click(object sender, EventArgs e)
-        {
 
-            // 서버 -> 로걸
-            sync_data_server_to_local();
-        }
 
         private void lblNetworkCheck_Click(object sender, EventArgs e)
         {
@@ -1664,6 +1659,14 @@ namespace thepos
                 mPbNetworkConn.Visible = pbNetworkConn.Visible;
             }
 
+        }
+
+        private void lblCallCenterNo_Click(object sender, EventArgs e)
+        {
+            frmSysAdmin frmSysAdmin = new frmSysAdmin(in_patern);
+            frmSysAdmin.ShowDialog();
+
+            in_patern = "";
         }
     }
 }

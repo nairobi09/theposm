@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static thepos.thePos;
+using static thepos.frmMain;
 
 namespace thepos
 {
@@ -54,6 +56,12 @@ namespace thepos
             frmSetupLocalMode fSetup = new frmSetupLocalMode() { TopLevel = false, TopMost = true };
             panelSetup.Controls.Add(fSetup);
             fSetup.Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+            mPanelDivision.Visible = false;
         }
     }
 }
