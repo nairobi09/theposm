@@ -30,17 +30,17 @@ namespace thepos._9SysAdmin
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
-            lblInfo.Font = font12;
+            lblTitle.Font = font10bold;
+            lblInfo.Font = font10;
 
 
-            lblSiteIdTitle.Font = font12;
-            tbSiteId.Font = font12;
+            lblSiteIdTitle.Font = font10;
+            tbSiteId.Font = font10;
 
-            lblPosNoTitle.Font = font12;
-            tbPosNo.Font = font12;
+            lblPosNoTitle.Font = font10;
+            tbPosNo.Font = font10;
 
-            btnEnter.Font = font12;
+            btnEnter.Font = font10;
 
 
             btnKey1.Font = font14;
@@ -55,7 +55,6 @@ namespace thepos._9SysAdmin
             btnKey0.Font = font14;
             btnKeyBS.Font = font14;
             btnKeyClear.Font = font14;
-
 
         }
 

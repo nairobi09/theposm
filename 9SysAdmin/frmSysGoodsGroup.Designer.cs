@@ -93,7 +93,7 @@
             this.locY,
             this.szX,
             this.szY});
-            this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -140,104 +140,104 @@
             // lblGroupNameTitle
             // 
             this.lblGroupNameTitle.AutoSize = true;
-            this.lblGroupNameTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGroupNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGroupNameTitle.Location = new System.Drawing.Point(12, 35);
             this.lblGroupNameTitle.Name = "lblGroupNameTitle";
-            this.lblGroupNameTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblGroupNameTitle.Size = new System.Drawing.Size(49, 14);
             this.lblGroupNameTitle.TabIndex = 41;
             this.lblGroupNameTitle.Text = "그룹명";
             // 
             // lblLocXTitle
             // 
             this.lblLocXTitle.AutoSize = true;
-            this.lblLocXTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocXTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocXTitle.Location = new System.Drawing.Point(12, 69);
             this.lblLocXTitle.Name = "lblLocXTitle";
-            this.lblLocXTitle.Size = new System.Drawing.Size(46, 16);
+            this.lblLocXTitle.Size = new System.Drawing.Size(41, 14);
             this.lblLocXTitle.TabIndex = 41;
             this.lblLocXTitle.Text = "LocX";
             // 
             // lblLocYTitle
             // 
             this.lblLocYTitle.AutoSize = true;
-            this.lblLocYTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocYTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocYTitle.Location = new System.Drawing.Point(12, 98);
             this.lblLocYTitle.Name = "lblLocYTitle";
-            this.lblLocYTitle.Size = new System.Drawing.Size(45, 16);
+            this.lblLocYTitle.Size = new System.Drawing.Size(40, 14);
             this.lblLocYTitle.TabIndex = 41;
             this.lblLocYTitle.Text = "LocY";
             // 
             // lblSzXTitle
             // 
             this.lblSzXTitle.AutoSize = true;
-            this.lblSzXTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSzXTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSzXTitle.Location = new System.Drawing.Point(12, 127);
             this.lblSzXTitle.Name = "lblSzXTitle";
-            this.lblSzXTitle.Size = new System.Drawing.Size(49, 16);
+            this.lblSzXTitle.Size = new System.Drawing.Size(45, 14);
             this.lblSzXTitle.TabIndex = 41;
             this.lblSzXTitle.Text = "SizeX";
             // 
             // lblSzYTitle
             // 
             this.lblSzYTitle.AutoSize = true;
-            this.lblSzYTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSzYTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSzYTitle.Location = new System.Drawing.Point(12, 156);
             this.lblSzYTitle.Name = "lblSzYTitle";
-            this.lblSzYTitle.Size = new System.Drawing.Size(48, 16);
+            this.lblSzYTitle.Size = new System.Drawing.Size(44, 14);
             this.lblSzYTitle.TabIndex = 41;
             this.lblSzYTitle.Text = "SizeY";
             // 
             // tbGroupName
             // 
-            this.tbGroupName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGroupName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbGroupName.Location = new System.Drawing.Point(74, 28);
             this.tbGroupName.Name = "tbGroupName";
-            this.tbGroupName.Size = new System.Drawing.Size(113, 26);
+            this.tbGroupName.Size = new System.Drawing.Size(113, 23);
             this.tbGroupName.TabIndex = 40;
             // 
             // tbLocateX
             // 
-            this.tbLocateX.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateX.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbLocateX.Location = new System.Drawing.Point(74, 62);
             this.tbLocateX.MaxLength = 1;
             this.tbLocateX.Name = "tbLocateX";
-            this.tbLocateX.Size = new System.Drawing.Size(113, 26);
+            this.tbLocateX.Size = new System.Drawing.Size(113, 23);
             this.tbLocateX.TabIndex = 40;
             // 
             // tbLocateY
             // 
-            this.tbLocateY.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateY.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbLocateY.Location = new System.Drawing.Point(74, 91);
             this.tbLocateY.MaxLength = 1;
             this.tbLocateY.Name = "tbLocateY";
-            this.tbLocateY.Size = new System.Drawing.Size(113, 26);
+            this.tbLocateY.Size = new System.Drawing.Size(113, 23);
             this.tbLocateY.TabIndex = 40;
             // 
             // tbSizeX
             // 
-            this.tbSizeX.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeX.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSizeX.Location = new System.Drawing.Point(74, 120);
             this.tbSizeX.MaxLength = 1;
             this.tbSizeX.Name = "tbSizeX";
-            this.tbSizeX.Size = new System.Drawing.Size(113, 26);
+            this.tbSizeX.Size = new System.Drawing.Size(113, 23);
             this.tbSizeX.TabIndex = 40;
             // 
             // tbSizeY
             // 
-            this.tbSizeY.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeY.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSizeY.Location = new System.Drawing.Point(74, 149);
             this.tbSizeY.MaxLength = 1;
             this.tbSizeY.Name = "tbSizeY";
-            this.tbSizeY.Size = new System.Drawing.Size(113, 26);
+            this.tbSizeY.Size = new System.Drawing.Size(113, 23);
             this.tbSizeY.TabIndex = 40;
             // 
             // btnInput
             // 
             this.btnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnInput.Location = new System.Drawing.Point(204, 32);
+            this.btnInput.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnInput.Location = new System.Drawing.Point(204, 50);
             this.btnInput.Name = "btnInput";
-            this.btnInput.Size = new System.Drawing.Size(120, 50);
+            this.btnInput.Size = new System.Drawing.Size(120, 40);
             this.btnInput.TabIndex = 39;
             this.btnInput.Text = "입력";
             this.btnInput.UseVisualStyleBackColor = true;
@@ -246,10 +246,10 @@
             // btnUpdate
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(204, 88);
+            this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Location = new System.Drawing.Point(204, 96);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(120, 50);
+            this.btnUpdate.Size = new System.Drawing.Size(120, 40);
             this.btnUpdate.TabIndex = 39;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -258,10 +258,10 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(85, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(136, 19);
+            this.lblTitle.Size = new System.Drawing.Size(103, 14);
             this.lblTitle.TabIndex = 42;
             this.lblTitle.Text = "상품그룹 관리";
             // 
@@ -291,10 +291,10 @@
             // btnApply
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApply.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnApply.Location = new System.Drawing.Point(648, 376);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(120, 50);
+            this.btnApply.Size = new System.Drawing.Size(120, 40);
             this.btnApply.TabIndex = 43;
             this.btnApply.Text = "적용보기";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -315,19 +315,19 @@
             this.groupBox1.Controls.Add(this.tbSizeY);
             this.groupBox1.Controls.Add(this.lblLocXTitle);
             this.groupBox1.Controls.Add(this.lblGroupNameTitle);
-            this.groupBox1.Location = new System.Drawing.Point(444, 119);
+            this.groupBox1.Location = new System.Drawing.Point(443, 134);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(342, 242);
+            this.groupBox1.Size = new System.Drawing.Size(342, 216);
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             // 
             // btnDelete
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.Location = new System.Drawing.Point(204, 142);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(120, 32);
+            this.btnDelete.Size = new System.Drawing.Size(120, 30);
             this.btnDelete.TabIndex = 42;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -335,30 +335,30 @@
             // 
             // comboPosNo
             // 
-            this.comboPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.comboPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.comboPosNo.FormattingEnabled = true;
             this.comboPosNo.Location = new System.Drawing.Point(82, 24);
             this.comboPosNo.Name = "comboPosNo";
-            this.comboPosNo.Size = new System.Drawing.Size(104, 24);
+            this.comboPosNo.Size = new System.Drawing.Size(104, 21);
             this.comboPosNo.TabIndex = 45;
             // 
             // lblPosNo
             // 
             this.lblPosNo.AutoSize = true;
-            this.lblPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.Location = new System.Drawing.Point(5, 28);
             this.lblPosNo.Name = "lblPosNo";
-            this.lblPosNo.Size = new System.Drawing.Size(71, 16);
+            this.lblPosNo.Size = new System.Drawing.Size(63, 14);
             this.lblPosNo.TabIndex = 41;
             this.lblPosNo.Text = "포스번호";
             // 
             // btnViewPosNo
             // 
             this.btnViewPosNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnViewPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnViewPosNo.Location = new System.Drawing.Point(204, 19);
             this.btnViewPosNo.Name = "btnViewPosNo";
-            this.btnViewPosNo.Size = new System.Drawing.Size(120, 32);
+            this.btnViewPosNo.Size = new System.Drawing.Size(120, 40);
             this.btnViewPosNo.TabIndex = 46;
             this.btnViewPosNo.Text = "조회";
             this.btnViewPosNo.UseVisualStyleBackColor = true;
@@ -371,7 +371,7 @@
             this.groupBox2.Controls.Add(this.comboPosNo);
             this.groupBox2.Location = new System.Drawing.Point(444, 50);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(341, 63);
+            this.groupBox2.Size = new System.Drawing.Size(341, 78);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             // 

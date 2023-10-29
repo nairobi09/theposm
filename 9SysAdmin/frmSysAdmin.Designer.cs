@@ -64,6 +64,7 @@
             this.panelAdminConsole.Controls.Add(this.btnSysGoodsLayout);
             this.panelAdminConsole.Controls.Add(this.btnSysGoods);
             this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroup);
+            this.panelAdminConsole.Font = new System.Drawing.Font("굴림", 10F);
             this.panelAdminConsole.Location = new System.Drawing.Point(1, 88);
             this.panelAdminConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelAdminConsole.Name = "panelAdminConsole";
@@ -173,6 +174,7 @@
             // 
             this.btnPos.BackColor = System.Drawing.Color.LightGray;
             this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPos.Font = new System.Drawing.Font("굴림", 10F);
             this.btnPos.Location = new System.Drawing.Point(7, 11);
             this.btnPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPos.Name = "btnPos";
@@ -187,6 +189,7 @@
             // 
             this.panelCertConsole.Controls.Add(this.btnPosMac);
             this.panelCertConsole.Controls.Add(this.btnUser);
+            this.panelCertConsole.Font = new System.Drawing.Font("굴림", 10F);
             this.panelCertConsole.Location = new System.Drawing.Point(1, 535);
             this.panelCertConsole.Name = "panelCertConsole";
             this.panelCertConsole.Size = new System.Drawing.Size(122, 126);
@@ -238,7 +241,7 @@
             this.MinimizeBox = false;
             this.Name = "frmSysAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "thepos Admin";
+            this.Text = "Admin";
             this.panelAdminConsole.ResumeLayout(false);
             this.panelCertConsole.ResumeLayout(false);
             this.ResumeLayout(false);

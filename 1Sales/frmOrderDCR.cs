@@ -44,17 +44,17 @@ namespace thepos
 
         void initialize_font()
         {
-            lblTitle.Font = font12;
-            lblTitle1.Font = font12;
-            lblTitle2.Font = font12;
+            lblTitle.Font = font10bold;
+            lblTitle1.Font = font10;
+            lblTitle2.Font = font10;
 
-            btnSelAmount.Font = font12;
-            btnSelRate.Font = font12;
-            btnAllAmount.Font = font12;
-            btnAllRate.Font = font12;
+            btnSelAmount.Font = font10;
+            btnSelRate.Font = font10;
+            btnAllAmount.Font = font10;
+            btnAllRate.Font = font10;
 
-            btnDCCancel.Font = font12;
-            btnClose.Font = font12;
+            btnDCCancel.Font = font10;
+            btnClose.Font = font10;
 
         }
 
@@ -83,7 +83,7 @@ namespace thepos
                 btnDCR[i].Text = btn_title;
                 btnDCR[i].Height = 50;
                 btnDCR[i].Width = 230;
-                btnDCR[i].Font = font12;
+                btnDCR[i].Font = font10;
 
                 btnDCR[i].FlatStyle = FlatStyle.Flat;
                 btnDCR[i].ForeColor = Color.White;

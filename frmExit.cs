@@ -22,10 +22,10 @@ namespace thepos
 
         private void initialize_font()
         {
-            btnLogout.Font = font14;
-            btnRestart.Font = font14;
-            btnExit.Font = font14;
-            btnCancel.Font = font14;
+            btnLogout.Font = font12;
+            btnRestart.Font = font12;
+            btnExit.Font = font12;
+            btnCancel.Font = font12;
         }
 
 

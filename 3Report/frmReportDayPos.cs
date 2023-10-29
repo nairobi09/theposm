@@ -60,7 +60,7 @@ namespace thepos
             lvwList.Items.Clear();
 
 
-            String sUrl = "reportDayPos?siteId=" + mSiteId + "&bizDt=" + thisBizDt;
+            String sUrl = "reportDayPos?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&runningBizDt=" + mBizDate;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

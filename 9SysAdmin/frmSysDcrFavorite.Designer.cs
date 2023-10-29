@@ -60,7 +60,7 @@
             this.btnDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDn.ForeColor = System.Drawing.Color.Black;
-            this.btnDn.Location = new System.Drawing.Point(541, 397);
+            this.btnDn.Location = new System.Drawing.Point(512, 351);
             this.btnDn.Name = "btnDn";
             this.btnDn.Size = new System.Drawing.Size(50, 40);
             this.btnDn.TabIndex = 46;
@@ -75,7 +75,7 @@
             this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUp.ForeColor = System.Drawing.Color.Black;
-            this.btnUp.Location = new System.Drawing.Point(541, 351);
+            this.btnUp.Location = new System.Drawing.Point(512, 305);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(50, 40);
             this.btnUp.TabIndex = 47;
@@ -95,7 +95,7 @@
             this.value,
             this.des1,
             this.type1});
-            this.lvwList.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -103,7 +103,7 @@
             this.lvwList.Location = new System.Drawing.Point(118, 58);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(414, 379);
+            this.lvwList.Size = new System.Drawing.Size(382, 333);
             this.lvwList.TabIndex = 48;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -123,18 +123,18 @@
             // des
             // 
             this.des.Text = "대상";
-            this.des.Width = 70;
+            this.des.Width = 50;
             // 
             // type
             // 
             this.type.Text = "유형";
-            this.type.Width = 70;
+            this.type.Width = 50;
             // 
             // value
             // 
             this.value.Text = "할인값";
             this.value.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.value.Width = 77;
+            this.value.Width = 80;
             // 
             // des1
             // 
@@ -147,61 +147,61 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(114, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(136, 19);
+            this.lblTitle.Size = new System.Drawing.Size(103, 14);
             this.lblTitle.TabIndex = 49;
             this.lblTitle.Text = "할인 즐겨찾기";
             // 
             // cbDes
             // 
-            this.cbDes.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbDes.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbDes.FormattingEnabled = true;
-            this.cbDes.Location = new System.Drawing.Point(619, 90);
+            this.cbDes.Location = new System.Drawing.Point(583, 90);
             this.cbDes.Name = "cbDes";
-            this.cbDes.Size = new System.Drawing.Size(141, 24);
+            this.cbDes.Size = new System.Drawing.Size(141, 21);
             this.cbDes.TabIndex = 53;
             // 
             // lblNameTitle
             // 
             this.lblNameTitle.AutoSize = true;
-            this.lblNameTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNameTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblNameTitle.Location = new System.Drawing.Point(546, 64);
+            this.lblNameTitle.Location = new System.Drawing.Point(517, 64);
             this.lblNameTitle.Name = "lblNameTitle";
-            this.lblNameTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblNameTitle.Size = new System.Drawing.Size(49, 14);
             this.lblNameTitle.TabIndex = 51;
             this.lblNameTitle.Text = "할인명";
             // 
             // lblDesTitle
             // 
             this.lblDesTitle.AutoSize = true;
-            this.lblDesTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDesTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblDesTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblDesTitle.Location = new System.Drawing.Point(546, 94);
+            this.lblDesTitle.Location = new System.Drawing.Point(517, 94);
             this.lblDesTitle.Name = "lblDesTitle";
-            this.lblDesTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblDesTitle.Size = new System.Drawing.Size(63, 14);
             this.lblDesTitle.TabIndex = 52;
             this.lblDesTitle.Text = "할인대상";
             // 
             // tbName
             // 
-            this.tbName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbName.ForeColor = System.Drawing.Color.Black;
-            this.tbName.Location = new System.Drawing.Point(619, 58);
+            this.tbName.Location = new System.Drawing.Point(583, 58);
             this.tbName.MaxLength = 30;
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(141, 26);
+            this.tbName.Size = new System.Drawing.Size(141, 23);
             this.tbName.TabIndex = 50;
             // 
             // btnDelete
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(619, 328);
+            this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.Location = new System.Drawing.Point(583, 361);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(141, 35);
+            this.btnDelete.Size = new System.Drawing.Size(141, 30);
             this.btnDelete.TabIndex = 56;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";
@@ -211,10 +211,10 @@
             // btnUpdate
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(619, 285);
+            this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Location = new System.Drawing.Point(583, 315);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(141, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(141, 40);
             this.btnUpdate.TabIndex = 54;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -224,10 +224,10 @@
             // btnAdd
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(619, 229);
+            this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.Location = new System.Drawing.Point(583, 269);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(141, 50);
+            this.btnAdd.Size = new System.Drawing.Size(141, 40);
             this.btnAdd.TabIndex = 55;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
@@ -236,50 +236,50 @@
             // 
             // cbType
             // 
-            this.cbType.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbType.FormattingEnabled = true;
-            this.cbType.Location = new System.Drawing.Point(619, 120);
+            this.cbType.Location = new System.Drawing.Point(583, 120);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(141, 24);
+            this.cbType.Size = new System.Drawing.Size(141, 21);
             this.cbType.TabIndex = 58;
             // 
             // lblTypeTitle
             // 
             this.lblTypeTitle.AutoSize = true;
-            this.lblTypeTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTypeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTypeTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTypeTitle.Location = new System.Drawing.Point(546, 124);
+            this.lblTypeTitle.Location = new System.Drawing.Point(517, 124);
             this.lblTypeTitle.Name = "lblTypeTitle";
-            this.lblTypeTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblTypeTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTypeTitle.TabIndex = 57;
             this.lblTypeTitle.Text = "할인유형";
             // 
             // lblValueTitle
             // 
             this.lblValueTitle.AutoSize = true;
-            this.lblValueTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblValueTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblValueTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblValueTitle.Location = new System.Drawing.Point(546, 156);
+            this.lblValueTitle.Location = new System.Drawing.Point(517, 156);
             this.lblValueTitle.Name = "lblValueTitle";
-            this.lblValueTitle.Size = new System.Drawing.Size(55, 16);
+            this.lblValueTitle.Size = new System.Drawing.Size(49, 14);
             this.lblValueTitle.TabIndex = 60;
             this.lblValueTitle.Text = "할인값";
             // 
             // tbValue
             // 
-            this.tbValue.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbValue.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbValue.ForeColor = System.Drawing.Color.Black;
-            this.tbValue.Location = new System.Drawing.Point(619, 150);
+            this.tbValue.Location = new System.Drawing.Point(583, 150);
             this.tbValue.MaxLength = 30;
             this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(141, 26);
+            this.tbValue.Size = new System.Drawing.Size(141, 23);
             this.tbValue.TabIndex = 59;
             // 
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.Location = new System.Drawing.Point(619, 387);
+            this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSave.Location = new System.Drawing.Point(583, 415);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(141, 50);
             this.btnSave.TabIndex = 61;
@@ -293,7 +293,7 @@
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblInfo.ForeColor = System.Drawing.Color.Gray;
-            this.lblInfo.Location = new System.Drawing.Point(220, 451);
+            this.lblInfo.Location = new System.Drawing.Point(231, 404);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(203, 14);
             this.lblInfo.TabIndex = 62;

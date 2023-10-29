@@ -642,7 +642,7 @@
     <Content Include="res\net_disconnect.png" />
     <Content Include="res\photo.png" />
     <Content Include="res\thepos.png" />
-    <Content Include="thepos.ico" />
+    <Content Include="res\thepos_logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

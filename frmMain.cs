@@ -36,6 +36,10 @@ namespace thepos
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
 
 
+        public static bool mNetworkStat = false;
+
+
+
         public static PictureBox mPbNetworkConn = null;
 
         String in_patern = "";
@@ -205,10 +209,12 @@ namespace thepos
             mConn.Open();
 
             // 네트워크 테스트콜 후 램프칼라 표시
-            network_testcall();
+            //network_testcall();
+            network_check();
 
         }
 
+ 
 
         private void start_sub_screen()
         {
@@ -298,6 +304,34 @@ namespace thepos
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
 
+            if (mNetworkStat)
+            {
+                server_login();
+
+            }
+            else
+            {
+                local_mode();
+            }
+
+
+            // sub screen
+            if (mCustomerMonitor == "Y")
+            {
+                start_sub_screen();
+            }
+
+
+            //? 데이터 체크 임시
+            //Form f = new frmCheckData();
+            //f.Show();
+
+        }
+
+
+
+        private void server_login()
+        {
             // 로그인
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["userId"] = tbID.Text;
@@ -326,16 +360,14 @@ namespace thepos
             }
 
 
-
-
             // 서버 -> 메모리
             sync_data_server_to_memory();
-
-            lblLocalModeTitle.Visible = false;
 
 
             // 서버모드 
             mTheMode = "Server";
+            lblLocalModeTitle.Visible = false;
+
 
             // 일반(서버) 테마 적용
             btnBusiness.Enabled = true;
@@ -380,22 +412,41 @@ namespace thepos
                 return;
             }
 
-
-
-            // sub screen
-            if (mCustomerMonitor == "Y")
-            {
-                start_sub_screen();
-            }
-
-
-
-            //? 데이터 체크 임시
-            //Form f = new frmCheckData();
-            //f.Show();
-
         }
 
+
+
+        private void local_mode()
+        {
+            frmLocalModeInfo frm = new frmLocalModeInfo();
+            frm.ShowDialog();
+
+            if (mTheMode == "Local")
+            {
+                mUserID = "";
+                mUserName = "";
+                mPosNo = "";
+
+                // 로컬DB -> 메모리 
+                sync_data_local_to_memory();  // 함수내에서 mPosNo를 구한다.
+
+                lblLocalModeTitle.Visible = true;
+
+                panelLogin.Visible = false;
+
+                lblSiteAlias.Text = mSiteAlias;
+                lblSiteName.Text = mSiteName;
+                lblPosNo.Text = mPosNo;
+                lblUserName.Text = "";
+                lblCallCenterNo.Text = mCallCenterNo;
+
+                // 긴급사용화면 테마 적용
+                btnBusiness.Enabled = false;
+                btnReports.Enabled = false;
+                btnSupport.Enabled = false;
+
+            }
+        }
 
 
 
@@ -1464,8 +1515,6 @@ namespace thepos
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
-
             frmExit fExit = new frmExit();
             DialogResult ret =  fExit.ShowDialog();
 
@@ -1567,61 +1616,19 @@ namespace thepos
             in_patern += "2";
         }
 
+        private void lblCallCenterNo_Click(object sender, EventArgs e)
+        {
+            frmSysAdmin frmSysAdmin = new frmSysAdmin(in_patern);
+            frmSysAdmin.ShowDialog();
+
+            in_patern = "";
+        }
 
 
         private void lblLocalMode_Click(object sender, EventArgs e)
         {
-            frmLocalModeInfo frm = new frmLocalModeInfo();
-            frm.ShowDialog();
-
-            if (mTheMode == "Local")
-            {
-                //?
-
-                //mSiteId = "";
-
-                mUserID = "";
-                mUserName = "";
-                
-                mPosNo = "";
-
-
-
-
-                // 로컬DB -> 메모리 
-                sync_data_local_to_memory();
-
-                lblLocalModeTitle.Visible = true;
-
-
-
-                panelLogin.Visible = false;
-
-                lblSiteAlias.Text = mSiteAlias;
-                lblSiteName.Text = mSiteName;
-                lblPosNo.Text = mPosNo;
-                lblUserName.Text = "";
-
-                lblCallCenterNo.Text = mCallCenterNo;
-
-
-
-                // 긴급사용화면 테마 적용
-                btnBusiness.Enabled = false;
-                btnReports.Enabled = false;
-                btnSupport.Enabled = false;
-
-
-                if (mCustomerMonitor == "Y")
-                {
-                    start_sub_screen();
-                }
-
-            }
-
+            local_mode();
         }
-
-
 
 
         private void lblNetworkCheck_Click(object sender, EventArgs e)
@@ -1631,7 +1638,7 @@ namespace thepos
 
         private void timerNetwork_Tick(object sender, EventArgs e)
         {
-            network_testcall();
+            network_check();
         }
 
         private void network_testcall()
@@ -1652,6 +1659,15 @@ namespace thepos
             {
                 pbNetworkConn.Visible = false;
             }
+        }
+
+        private void network_check()
+        { 
+            bool connected = NetworkInterface.GetIsNetworkAvailable();
+
+            mNetworkStat = connected;
+
+            pbNetworkConn.Visible = connected;
 
             // frmSales의 네트워크상태 세팅
             if (mPbNetworkConn != null)
@@ -1661,12 +1677,6 @@ namespace thepos
 
         }
 
-        private void lblCallCenterNo_Click(object sender, EventArgs e)
-        {
-            frmSysAdmin frmSysAdmin = new frmSysAdmin(in_patern);
-            frmSysAdmin.ShowDialog();
 
-            in_patern = "";
-        }
     }
 }

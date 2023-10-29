@@ -68,6 +68,8 @@ namespace thepos
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
+            this.pbNetworkConn = new System.Windows.Forms.PictureBox();
+            this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
@@ -123,13 +125,13 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
-            this.pbNetworkConn = new System.Windows.Forms.PictureBox();
-            this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
             this.panelOrderSumWhile.SuspendLayout();
             this.panelOrderSumBlack.SuspendLayout();
             this.panelFlowConsole.SuspendLayout();
@@ -142,8 +144,6 @@ namespace thepos
             this.panelGoodsGroupWhite2.SuspendLayout();
             this.panelGoodsGroupWhite.SuspendLayout();
             this.tableLayoutPanelPayControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFlowSettlement
@@ -632,7 +632,7 @@ namespace thepos
             // 
             // btnPay2
             // 
-            this.btnPay2.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnPay2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay2, 2);
             this.btnPay2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -688,6 +688,25 @@ namespace thepos
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
+            // 
+            // pbNetworkConn
+            // 
+            this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect1;
+            this.pbNetworkConn.Location = new System.Drawing.Point(23, 15);
+            this.pbNetworkConn.Name = "pbNetworkConn";
+            this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
+            this.pbNetworkConn.TabIndex = 39;
+            this.pbNetworkConn.TabStop = false;
+            this.pbNetworkConn.Visible = false;
+            // 
+            // pbNetworkDisconn
+            // 
+            this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect1;
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 14);
+            this.pbNetworkDisconn.Name = "pbNetworkDisconn";
+            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
+            this.pbNetworkDisconn.TabIndex = 40;
+            this.pbNetworkDisconn.TabStop = false;
             // 
             // lblPosNoTitle
             // 
@@ -1369,25 +1388,6 @@ namespace thepos
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
             // 
-            // pbNetworkConn
-            // 
-            this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect1;
-            this.pbNetworkConn.Location = new System.Drawing.Point(23, 15);
-            this.pbNetworkConn.Name = "pbNetworkConn";
-            this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
-            this.pbNetworkConn.TabIndex = 39;
-            this.pbNetworkConn.TabStop = false;
-            this.pbNetworkConn.Visible = false;
-            // 
-            // pbNetworkDisconn
-            // 
-            this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect1;
-            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 14);
-            this.pbNetworkDisconn.Name = "pbNetworkDisconn";
-            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
-            this.pbNetworkDisconn.TabIndex = 40;
-            this.pbNetworkDisconn.TabStop = false;
-            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1425,6 +1425,8 @@ namespace thepos
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
             this.panelTitleConsole.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
@@ -1438,8 +1440,6 @@ namespace thepos
             this.panelGoodsGroupWhite2.ResumeLayout(false);
             this.panelGoodsGroupWhite.ResumeLayout(false);
             this.tableLayoutPanelPayControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.ResumeLayout(false);
 
         }

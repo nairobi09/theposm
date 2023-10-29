@@ -23,36 +23,30 @@ namespace thepos._9SysAdmin
             initialize_font();
             initial_the();
 
-
             reload_server();
-
 
         }
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
-            lvwList.Font = font12;
+            lblTitle.Font = font10bold;
+            lvwList.Font = font10;
 
-
-            btnEnter.Font = font12;
-            btnStop.Font = font12;
-
+            btnEnter.Font = font10;
+            btnStop.Font = font10;
 
         }
 
         private void initial_the()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 30);
+            imgList.ImageSize = new Size(1, 28);
             lvwList.SmallImageList = imgList;
-
         }
 
 
         private void reload_server()
         {
-
             lvwList.Items.Clear();
 
             String sUrl = "pos?siteId=" + mSiteId + "&posStatus=0";

@@ -35,38 +35,38 @@ namespace thepos._9SysAdmin
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
+            lblTitle.Font = font10bold;
 
-            lblSiteName.Font = font12;
-            lblSiteAlias.Font = font12;
-            lblRegistNo.Font = font12;
+            lblSiteName.Font = font10;
+            lblSiteAlias.Font = font10;
+            lblRegistNo.Font = font10;
 
-            lblCapName.Font = font12;
-            lblBizAddr.Font = font12;
-            lblBizTelNo.Font = font12;
+            lblCapName.Font = font10;
+            lblBizAddr.Font = font10;
+            lblBizTelNo.Font = font10;
 
-            lblTicketType.Font = font12;
-            lblTicketMedia.Font = font12;
-            lblVanCode.Font = font12;
+            lblTicketType.Font = font10;
+            lblTicketMedia.Font = font10;
+            lblVanCode.Font = font10;
 
-            lblCallCenter.Font = font12;
-
-
-            tbSiteName.Font = font12;
-            tbSiteAlias.Font = font12;
-            tbRegistNo.Font = font12;
-
-            tbCapName.Font = font12;
-            tbBizAddr.Font = font12;
-            tbBizTelNo.Font = font12;
+            lblCallCenter.Font = font10;
 
 
-            cbTicketType.Font = font12;
-            cbTicketMedia.Font = font12;
-            cbVanCode.Font = font12;
-            tbCallCenter.Font = font12;
+            tbSiteName.Font = font10;
+            tbSiteAlias.Font = font10;
+            tbRegistNo.Font = font10;
 
-            btnUpdate.Font = font12;
+            tbCapName.Font = font10;
+            tbBizAddr.Font = font10;
+            tbBizTelNo.Font = font10;
+
+
+            cbTicketType.Font = font10;
+            cbTicketMedia.Font = font10;
+            cbVanCode.Font = font10;
+            tbCallCenter.Font = font10;
+
+            btnUpdate.Font = font10;
 
 
         }

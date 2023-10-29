@@ -32,16 +32,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReportDayDetail = new System.Windows.Forms.Button();
             this.btnReportDayShop = new System.Windows.Forms.Button();
+            this.btnReportList1 = new System.Windows.Forms.Button();
+            this.btnReportChart1 = new System.Windows.Forms.Button();
+            this.btnReportCalendar1 = new System.Windows.Forms.Button();
             this.btnReportDayPos = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelReport = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.btnReportList1 = new System.Windows.Forms.Button();
-            this.btnReportChart1 = new System.Windows.Forms.Button();
-            this.btnReportCalendar1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
@@ -95,6 +95,54 @@
             this.btnReportDayShop.UseVisualStyleBackColor = false;
             this.btnReportDayShop.Click += new System.EventHandler(this.btnReportDayShop_Click);
             // 
+            // btnReportList1
+            // 
+            this.btnReportList1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportList1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportList1.ForeColor = System.Drawing.Color.White;
+            this.btnReportList1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportList1.Image")));
+            this.btnReportList1.Location = new System.Drawing.Point(113, 168);
+            this.btnReportList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportList1.Name = "btnReportList1";
+            this.btnReportList1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportList1.TabIndex = 27;
+            this.btnReportList1.TabStop = false;
+            this.btnReportList1.UseVisualStyleBackColor = false;
+            this.btnReportList1.Click += new System.EventHandler(this.btnReportList1_Click);
+            // 
+            // btnReportChart1
+            // 
+            this.btnReportChart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportChart1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportChart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportChart1.ForeColor = System.Drawing.Color.White;
+            this.btnReportChart1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportChart1.Image")));
+            this.btnReportChart1.Location = new System.Drawing.Point(113, 84);
+            this.btnReportChart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportChart1.Name = "btnReportChart1";
+            this.btnReportChart1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportChart1.TabIndex = 27;
+            this.btnReportChart1.TabStop = false;
+            this.btnReportChart1.UseVisualStyleBackColor = false;
+            this.btnReportChart1.Click += new System.EventHandler(this.btnReportChart1_Click);
+            // 
+            // btnReportCalendar1
+            // 
+            this.btnReportCalendar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportCalendar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportCalendar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportCalendar1.ForeColor = System.Drawing.Color.White;
+            this.btnReportCalendar1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportCalendar1.Image")));
+            this.btnReportCalendar1.Location = new System.Drawing.Point(113, 0);
+            this.btnReportCalendar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportCalendar1.Name = "btnReportCalendar1";
+            this.btnReportCalendar1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportCalendar1.TabIndex = 27;
+            this.btnReportCalendar1.TabStop = false;
+            this.btnReportCalendar1.UseVisualStyleBackColor = false;
+            this.btnReportCalendar1.Click += new System.EventHandler(this.btnReportCalendar1_Click);
+            // 
             // btnReportDayPos
             // 
             this.btnReportDayPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
@@ -146,6 +194,18 @@
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
             // 
+            // picLogo
+            // 
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
+            this.picLogo.Location = new System.Drawing.Point(7, 4);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
+            this.picLogo.Size = new System.Drawing.Size(80, 35);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 39;
+            this.picLogo.TabStop = false;
+            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
@@ -169,66 +229,6 @@
             this.panelReport.Name = "panelReport";
             this.panelReport.Size = new System.Drawing.Size(800, 700);
             this.panelReport.TabIndex = 39;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
-            this.picLogo.Location = new System.Drawing.Point(7, 4);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
-            this.picLogo.Size = new System.Drawing.Size(80, 35);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 39;
-            this.picLogo.TabStop = false;
-            // 
-            // btnReportList1
-            // 
-            this.btnReportList1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReportList1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnReportList1.ForeColor = System.Drawing.Color.White;
-            this.btnReportList1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportList1.Image")));
-            this.btnReportList1.Location = new System.Drawing.Point(113, 168);
-            this.btnReportList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReportList1.Name = "btnReportList1";
-            this.btnReportList1.Size = new System.Drawing.Size(90, 80);
-            this.btnReportList1.TabIndex = 27;
-            this.btnReportList1.TabStop = false;
-            this.btnReportList1.UseVisualStyleBackColor = false;
-            this.btnReportList1.Click += new System.EventHandler(this.btnReportList1_Click);
-            // 
-            // btnReportChart1
-            // 
-            this.btnReportChart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReportChart1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportChart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnReportChart1.ForeColor = System.Drawing.Color.White;
-            this.btnReportChart1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportChart1.Image")));
-            this.btnReportChart1.Location = new System.Drawing.Point(113, 84);
-            this.btnReportChart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReportChart1.Name = "btnReportChart1";
-            this.btnReportChart1.Size = new System.Drawing.Size(90, 80);
-            this.btnReportChart1.TabIndex = 27;
-            this.btnReportChart1.TabStop = false;
-            this.btnReportChart1.UseVisualStyleBackColor = false;
-            this.btnReportChart1.Click += new System.EventHandler(this.btnReportChart1_Click);
-            // 
-            // btnReportCalendar1
-            // 
-            this.btnReportCalendar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReportCalendar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportCalendar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnReportCalendar1.ForeColor = System.Drawing.Color.White;
-            this.btnReportCalendar1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportCalendar1.Image")));
-            this.btnReportCalendar1.Location = new System.Drawing.Point(113, 0);
-            this.btnReportCalendar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReportCalendar1.Name = "btnReportCalendar1";
-            this.btnReportCalendar1.Size = new System.Drawing.Size(90, 80);
-            this.btnReportCalendar1.TabIndex = 27;
-            this.btnReportCalendar1.TabStop = false;
-            this.btnReportCalendar1.UseVisualStyleBackColor = false;
-            this.btnReportCalendar1.Click += new System.EventHandler(this.btnReportCalendar1_Click);
             // 
             // frmReports
             // 

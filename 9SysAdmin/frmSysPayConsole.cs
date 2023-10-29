@@ -53,24 +53,24 @@ namespace thepos._1Sales
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
+            lblTitle.Font = font10bold;
 
-            lblPosNo.Font = font12;
-            comboPosNo.Font = font12;
+            lblPosNo.Font = font10;
+            comboPosNo.Font = font10;
             btnView.Font = font10;
 
-            lvwConsole.Font = font12;
-            lvwConsoleLink.Font = font12;
+            lvwConsole.Font = font10;
+            lvwConsoleLink.Font = font10;
 
             lblT3.Font = font10;
             lblT4.Font = font10;
             lblT5.Font = font10;
             lblT6.Font = font10;
 
-            tbLocateX.Font = font12;
-            tbLocateY.Font = font12;
-            tbSizeX.Font = font12;
-            tbSizeY.Font = font12;
+            tbLocateX.Font = font10;
+            tbLocateY.Font = font10;
+            tbSizeX.Font = font10;
+            tbSizeY.Font = font10;
 
             btnUpdate.Font = font10;
             btnDelete.Font = font10;

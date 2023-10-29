@@ -59,10 +59,10 @@
             // btnUpdate
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(351, 572);
+            this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Location = new System.Drawing.Point(351, 514);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(146, 50);
+            this.btnUpdate.Size = new System.Drawing.Size(146, 40);
             this.btnUpdate.TabIndex = 52;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -72,29 +72,29 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(169, 31);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(116, 19);
+            this.lblTitle.Size = new System.Drawing.Size(88, 14);
             this.lblTitle.TabIndex = 51;
             this.lblTitle.Text = "사업자 정보";
             // 
             // lblSiteName
             // 
             this.lblSiteName.AutoSize = true;
-            this.lblSiteName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.Location = new System.Drawing.Point(48, 33);
             this.lblSiteName.Name = "lblSiteName";
-            this.lblSiteName.Size = new System.Drawing.Size(87, 16);
+            this.lblSiteName.Size = new System.Drawing.Size(77, 14);
             this.lblSiteName.TabIndex = 53;
             this.lblSiteName.Text = "사업자원명";
             // 
             // tbSiteName
             // 
-            this.tbSiteName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteName.Location = new System.Drawing.Point(178, 27);
             this.tbSiteName.Name = "tbSiteName";
-            this.tbSiteName.Size = new System.Drawing.Size(157, 26);
+            this.tbSiteName.Size = new System.Drawing.Size(157, 23);
             this.tbSiteName.TabIndex = 54;
             // 
             // groupBox1
@@ -113,97 +113,97 @@
             this.groupBox1.Controls.Add(this.lblSiteName);
             this.groupBox1.Location = new System.Drawing.Point(173, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(524, 249);
+            this.groupBox1.Size = new System.Drawing.Size(524, 229);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             // 
             // tbBizTelNo
             // 
-            this.tbBizTelNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizTelNo.Location = new System.Drawing.Point(178, 187);
             this.tbBizTelNo.Name = "tbBizTelNo";
-            this.tbBizTelNo.Size = new System.Drawing.Size(157, 26);
+            this.tbBizTelNo.Size = new System.Drawing.Size(157, 23);
             this.tbBizTelNo.TabIndex = 54;
             // 
             // tbBizAddr
             // 
-            this.tbBizAddr.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizAddr.Location = new System.Drawing.Point(178, 155);
             this.tbBizAddr.Name = "tbBizAddr";
-            this.tbBizAddr.Size = new System.Drawing.Size(331, 26);
+            this.tbBizAddr.Size = new System.Drawing.Size(331, 23);
             this.tbBizAddr.TabIndex = 54;
             // 
             // tbCapName
             // 
-            this.tbCapName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCapName.Location = new System.Drawing.Point(178, 123);
             this.tbCapName.Name = "tbCapName";
-            this.tbCapName.Size = new System.Drawing.Size(157, 26);
+            this.tbCapName.Size = new System.Drawing.Size(157, 23);
             this.tbCapName.TabIndex = 54;
             // 
             // tbRegistNo
             // 
-            this.tbRegistNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbRegistNo.Location = new System.Drawing.Point(178, 91);
             this.tbRegistNo.Name = "tbRegistNo";
-            this.tbRegistNo.Size = new System.Drawing.Size(157, 26);
+            this.tbRegistNo.Size = new System.Drawing.Size(157, 23);
             this.tbRegistNo.TabIndex = 54;
             // 
             // tbSiteAlias
             // 
-            this.tbSiteAlias.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteAlias.Location = new System.Drawing.Point(178, 59);
             this.tbSiteAlias.Name = "tbSiteAlias";
-            this.tbSiteAlias.Size = new System.Drawing.Size(157, 26);
+            this.tbSiteAlias.Size = new System.Drawing.Size(157, 23);
             this.tbSiteAlias.TabIndex = 54;
             // 
             // lblBizTelNo
             // 
             this.lblBizTelNo.AutoSize = true;
-            this.lblBizTelNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizTelNo.Location = new System.Drawing.Point(48, 193);
             this.lblBizTelNo.Name = "lblBizTelNo";
-            this.lblBizTelNo.Size = new System.Drawing.Size(71, 16);
+            this.lblBizTelNo.Size = new System.Drawing.Size(63, 14);
             this.lblBizTelNo.TabIndex = 53;
             this.lblBizTelNo.Text = "전화번호";
             // 
             // lblBizAddr
             // 
             this.lblBizAddr.AutoSize = true;
-            this.lblBizAddr.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizAddr.Location = new System.Drawing.Point(48, 161);
             this.lblBizAddr.Name = "lblBizAddr";
-            this.lblBizAddr.Size = new System.Drawing.Size(39, 16);
+            this.lblBizAddr.Size = new System.Drawing.Size(35, 14);
             this.lblBizAddr.TabIndex = 53;
             this.lblBizAddr.Text = "주소";
             // 
             // lblCapName
             // 
             this.lblCapName.AutoSize = true;
-            this.lblCapName.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCapName.Location = new System.Drawing.Point(48, 129);
             this.lblCapName.Name = "lblCapName";
-            this.lblCapName.Size = new System.Drawing.Size(71, 16);
+            this.lblCapName.Size = new System.Drawing.Size(63, 14);
             this.lblCapName.TabIndex = 53;
             this.lblCapName.Text = "대표자명";
             // 
             // lblRegistNo
             // 
             this.lblRegistNo.AutoSize = true;
-            this.lblRegistNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblRegistNo.Location = new System.Drawing.Point(48, 97);
             this.lblRegistNo.Name = "lblRegistNo";
-            this.lblRegistNo.Size = new System.Drawing.Size(87, 16);
+            this.lblRegistNo.Size = new System.Drawing.Size(77, 14);
             this.lblRegistNo.TabIndex = 53;
             this.lblRegistNo.Text = "사업자번호";
             // 
             // lblSiteAlias
             // 
             this.lblSiteAlias.AutoSize = true;
-            this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteAlias.Location = new System.Drawing.Point(48, 65);
             this.lblSiteAlias.Name = "lblSiteAlias";
-            this.lblSiteAlias.Size = new System.Drawing.Size(87, 16);
+            this.lblSiteAlias.Size = new System.Drawing.Size(77, 14);
             this.lblSiteAlias.TabIndex = 53;
             this.lblSiteAlias.Text = "사업자약명";
             // 
@@ -217,84 +217,84 @@
             this.groupBox2.Controls.Add(this.lblVanCode);
             this.groupBox2.Controls.Add(this.lblTicketMedia);
             this.groupBox2.Controls.Add(this.lblTicketType);
-            this.groupBox2.Location = new System.Drawing.Point(173, 323);
+            this.groupBox2.Location = new System.Drawing.Point(173, 307);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(523, 202);
+            this.groupBox2.Size = new System.Drawing.Size(523, 181);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
             // 
             // cbVanCode
             // 
-            this.cbVanCode.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbVanCode.FormattingEnabled = true;
             this.cbVanCode.Location = new System.Drawing.Point(179, 98);
             this.cbVanCode.Name = "cbVanCode";
-            this.cbVanCode.Size = new System.Drawing.Size(156, 24);
+            this.cbVanCode.Size = new System.Drawing.Size(156, 21);
             this.cbVanCode.TabIndex = 58;
             // 
             // cbTicketMedia
             // 
-            this.cbTicketMedia.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTicketMedia.FormattingEnabled = true;
             this.cbTicketMedia.Location = new System.Drawing.Point(179, 64);
             this.cbTicketMedia.Name = "cbTicketMedia";
-            this.cbTicketMedia.Size = new System.Drawing.Size(156, 24);
+            this.cbTicketMedia.Size = new System.Drawing.Size(156, 21);
             this.cbTicketMedia.TabIndex = 57;
             // 
             // cbTicketType
             // 
-            this.cbTicketType.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTicketType.FormattingEnabled = true;
             this.cbTicketType.Location = new System.Drawing.Point(179, 30);
             this.cbTicketType.Name = "cbTicketType";
-            this.cbTicketType.Size = new System.Drawing.Size(156, 24);
+            this.cbTicketType.Size = new System.Drawing.Size(156, 21);
             this.cbTicketType.TabIndex = 56;
             // 
             // tbCallCenter
             // 
-            this.tbCallCenter.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCallCenter.Location = new System.Drawing.Point(178, 135);
             this.tbCallCenter.Name = "tbCallCenter";
-            this.tbCallCenter.Size = new System.Drawing.Size(331, 26);
+            this.tbCallCenter.Size = new System.Drawing.Size(331, 23);
             this.tbCallCenter.TabIndex = 55;
             // 
             // lblCallCenter
             // 
             this.lblCallCenter.AutoSize = true;
-            this.lblCallCenter.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenter.Location = new System.Drawing.Point(48, 142);
             this.lblCallCenter.Name = "lblCallCenter";
-            this.lblCallCenter.Size = new System.Drawing.Size(87, 16);
+            this.lblCallCenter.Size = new System.Drawing.Size(77, 14);
             this.lblCallCenter.TabIndex = 54;
             this.lblCallCenter.Text = "콜센터표시";
             // 
             // lblVanCode
             // 
             this.lblVanCode.AutoSize = true;
-            this.lblVanCode.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVanCode.Location = new System.Drawing.Point(48, 103);
             this.lblVanCode.Name = "lblVanCode";
-            this.lblVanCode.Size = new System.Drawing.Size(71, 16);
+            this.lblVanCode.Size = new System.Drawing.Size(63, 14);
             this.lblVanCode.TabIndex = 54;
             this.lblVanCode.Text = "결제밴사";
             // 
             // lblTicketMedia
             // 
             this.lblTicketMedia.AutoSize = true;
-            this.lblTicketMedia.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketMedia.Location = new System.Drawing.Point(48, 69);
             this.lblTicketMedia.Name = "lblTicketMedia";
-            this.lblTicketMedia.Size = new System.Drawing.Size(71, 16);
+            this.lblTicketMedia.Size = new System.Drawing.Size(63, 14);
             this.lblTicketMedia.TabIndex = 54;
             this.lblTicketMedia.Text = "티켓수단";
             // 
             // lblTicketType
             // 
             this.lblTicketType.AutoSize = true;
-            this.lblTicketType.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketType.Location = new System.Drawing.Point(48, 35);
             this.lblTicketType.Name = "lblTicketType";
-            this.lblTicketType.Size = new System.Drawing.Size(71, 16);
+            this.lblTicketType.Size = new System.Drawing.Size(63, 14);
             this.lblTicketType.TabIndex = 54;
             this.lblTicketType.Text = "티켓유형";
             // 

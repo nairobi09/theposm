@@ -54,11 +54,11 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(153, 33);
+            this.lblTitle.Location = new System.Drawing.Point(204, 33);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(176, 19);
+            this.lblTitle.Size = new System.Drawing.Size(133, 14);
             this.lblTitle.TabIndex = 27;
             this.lblTitle.Text = "포스기기 등록신청";
             // 
@@ -66,7 +66,7 @@
             // 
             this.tbSiteId.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteId.ForeColor = System.Drawing.Color.Black;
-            this.tbSiteId.Location = new System.Drawing.Point(234, 170);
+            this.tbSiteId.Location = new System.Drawing.Point(285, 170);
             this.tbSiteId.MaxLength = 4;
             this.tbSiteId.Name = "tbSiteId";
             this.tbSiteId.Size = new System.Drawing.Size(127, 26);
@@ -77,7 +77,7 @@
             // 
             this.tbPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPosNo.ForeColor = System.Drawing.Color.Black;
-            this.tbPosNo.Location = new System.Drawing.Point(234, 208);
+            this.tbPosNo.Location = new System.Drawing.Point(285, 208);
             this.tbPosNo.MaxLength = 2;
             this.tbPosNo.Name = "tbPosNo";
             this.tbPosNo.Size = new System.Drawing.Size(127, 26);
@@ -87,43 +87,43 @@
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
-            this.lblInfo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblInfo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblInfo.ForeColor = System.Drawing.Color.Black;
-            this.lblInfo.Location = new System.Drawing.Point(153, 99);
+            this.lblInfo.Location = new System.Drawing.Point(204, 99);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(506, 16);
+            this.lblInfo.Size = new System.Drawing.Size(448, 14);
             this.lblInfo.TabIndex = 30;
             this.lblInfo.Text = "본기기를 아래 기관으로 등록신청합니다. 인증심사후 사용가능합니다.";
             // 
             // lblSiteIdTitle
             // 
             this.lblSiteIdTitle.AutoSize = true;
-            this.lblSiteIdTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteIdTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteIdTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblSiteIdTitle.Location = new System.Drawing.Point(153, 177);
+            this.lblSiteIdTitle.Location = new System.Drawing.Point(204, 177);
             this.lblSiteIdTitle.Name = "lblSiteIdTitle";
-            this.lblSiteIdTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblSiteIdTitle.Size = new System.Drawing.Size(63, 14);
             this.lblSiteIdTitle.TabIndex = 31;
             this.lblSiteIdTitle.Text = "고객코드";
             // 
             // lblPosNoTitle
             // 
             this.lblPosNoTitle.AutoSize = true;
-            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblPosNoTitle.Location = new System.Drawing.Point(153, 215);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(204, 215);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
-            this.lblPosNoTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblPosNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblPosNoTitle.TabIndex = 32;
             this.lblPosNoTitle.Text = "포스번호";
             // 
             // btnEnter
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnter.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnEnter.Location = new System.Drawing.Point(234, 319);
+            this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnEnter.Location = new System.Drawing.Point(285, 327);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(127, 50);
+            this.btnEnter.Size = new System.Drawing.Size(127, 40);
             this.btnEnter.TabIndex = 34;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "등록신청";
@@ -144,7 +144,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(436, 160);
+            this.panelNumpad.Location = new System.Drawing.Point(456, 160);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);

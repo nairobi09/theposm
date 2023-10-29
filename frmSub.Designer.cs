@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSub));
             this.lblOrderAmountNet = new System.Windows.Forms.Label();
             this.lblOrderAmountDC = new System.Windows.Forms.Label();
             this.lblOrderAmount = new System.Windows.Forms.Label();
@@ -380,6 +381,7 @@
             this.Controls.Add(this.panelOrderInfo);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSub";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmSub";

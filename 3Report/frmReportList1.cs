@@ -164,8 +164,6 @@ namespace thepos
 
 
 
-
-
             if (prev_mode != viewMode)
             {
                 redraw_column(viewMode);
@@ -209,7 +207,7 @@ namespace thepos
                 }
 
 
-                sUrl = "reportMonthListPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no;
+                sUrl = "reportMonthListPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no + "&runningBizDt=" + mBizDate;
 
                 if (mRequestGet(sUrl))
                 {

@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using thepos._1Sales;
 using thepos._9SysAdmin;
 using static thepos.thePos;
@@ -22,6 +25,9 @@ namespace thepos
         {
             InitializeComponent();
 
+            initialize_font();
+
+
             if (mSiteId != "") // 로그인되었다면 panel보이기
             {
                 panelAdminConsole.Visible = true;
@@ -32,8 +38,28 @@ namespace thepos
                     panelCertConsole.Visible = true;
                 }
             }
+
         }
 
+        void initialize_font()
+        {
+            btnPos.Font = font10;
+
+            btnSysSite.Font = font10;
+
+            btnSysShop.Font = font10;
+            btnSysGoods.Font = font10;
+
+            btnSysGoodsGroup.Font = font10;
+            btnSysGoodsLayout.Font = font10;
+
+            btnSysPayConsole.Font = font10;
+            btnDcrFavorite.Font = font10;
+
+            btnPosMac.Font = font10;
+            btnUser.Font = font10;
+
+        }
 
 
         private void btnPos_Click(object sender, EventArgs e)

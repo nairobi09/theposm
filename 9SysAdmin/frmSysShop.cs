@@ -27,18 +27,18 @@ namespace thepos._9SysAdmin
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
-            lvwList.Font = font12;
+            lblTitle.Font = font10bold;
+            lvwList.Font = font10;
 
             lblGoodsNameTitle.Font = font10;
-            tbShopCode.Font = font12;
+            tbShopCode.Font = font10;
 
             lblGoodsAmtTitle.Font = font10;
-            tbShopName.Font = font12;
+            tbShopName.Font = font10;
 
-            btnAdd.Font = font12;
-            btnUpdate.Font = font12;
-            btnDelete.Font = font12;
+            btnAdd.Font = font10;
+            btnUpdate.Font = font10;
+            btnDelete.Font = font10;
         }
 
         private void initialize_the()

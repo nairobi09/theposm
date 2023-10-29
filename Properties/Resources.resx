@@ -118,46 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="flag_jp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\flag_jp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="net_connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\net_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flag_kr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\flag_kr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="thepos1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\thepos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flag_en" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="flag_en1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\flag_en.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flag_ch2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\flag_ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="net_connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\net_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flag_kr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\flag_kr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="net_disconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\net_disconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="flag_ch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\flag_ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flag_en" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\flag_en.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="thepos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\thepos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flag_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\flag_jp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="flag_en1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\flag_en.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="net_disconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\net_disconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="flag_ch1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\flag_ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="net_connect1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\net_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flag_jp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\flag_jp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flag_jp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\flag_jp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flag_ch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\flag_ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flag_ch2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\flag_ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="net_disconnect1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\net_disconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="net_connect1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\net_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\logo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

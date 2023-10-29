@@ -46,13 +46,13 @@
             this.ID,
             this.name,
             this.req_date});
-            this.lvwList.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(157, 77);
+            this.lvwList.Location = new System.Drawing.Point(190, 77);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(451, 290);
+            this.lvwList.Size = new System.Drawing.Size(472, 290);
             this.lvwList.TabIndex = 33;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -84,11 +84,11 @@
             // btnEnter
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnter.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnter.ForeColor = System.Drawing.Color.Red;
-            this.btnEnter.Location = new System.Drawing.Point(330, 408);
+            this.btnEnter.Location = new System.Drawing.Point(364, 408);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(130, 50);
+            this.btnEnter.Size = new System.Drawing.Size(130, 40);
             this.btnEnter.TabIndex = 31;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "인증등록";
@@ -98,11 +98,11 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(153, 33);
+            this.lblTitle.Location = new System.Drawing.Point(186, 33);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(156, 19);
+            this.lblTitle.Size = new System.Drawing.Size(118, 14);
             this.lblTitle.TabIndex = 29;
             this.lblTitle.Text = "사용자계정 인증";
             // 

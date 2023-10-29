@@ -56,7 +56,7 @@ namespace thepos._9SysAdmin
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
+            lblTitle.Font = font10bold;
             lvwList.Font = font10;
 
             lblGoodsNameTitle.Font = font9;
@@ -70,21 +70,21 @@ namespace thepos._9SysAdmin
             cbActive.Font = font10;
             cbSoldout.Font = font10;
 
-            lblGoodsAmtTitle.Font = font9;
+            lblGoodsAmtTitle.Font = font10;
             tbGoodsAmt.Font = font10;
 
             lblShopTitle.Font = font10;
             cbShop.Font = font10;
 
-            lblMemoTitle.Font = font9;
+            lblMemoTitle.Font = font10;
             tbMemo.Font = font10;
 
             lblImageTitle.Font = font9;
-            btnX.Font = font9;
+            btnX.Font = font10;
 
-            btnAdd.Font = font12;
-            btnUpdate.Font = font12;
-            btnDelete.Font = font12;
+            btnAdd.Font = font10;
+            btnUpdate.Font = font10;
+            btnDelete.Font = font10;
         }
 
         private void initialize_the()

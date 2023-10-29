@@ -79,6 +79,18 @@ namespace thepos
             }
 
 
+            //
+            if (mTheMode == "Local")
+            {
+                gbCashReceipt.Visible = false;
+            }
+            else
+            {
+                gbCashReceipt.Visible = true;
+            }
+
+
+
         }
 
         private void initialize_font()
@@ -105,12 +117,9 @@ namespace thepos
             lbl5.Font = font10;
             lbl6.Font = font10;
 
-
             rbTypeIndividual.Font = font12;
             rbTypeBusiness.Font = font12;
             rbTypeSelf.Font = font12;
-
-
             
             rb고객식별번호.Font = font12;
             rbKeyin.Font = font12;
@@ -118,12 +127,8 @@ namespace thepos
             
             tbIssuedMethodNo.Font = font12;
 
-
             lblAuthNo.Font = font12;
-
-
             btnCashRecept.Font = font12;
-
 
             btnClose.Font = font12;
         }
@@ -150,21 +155,50 @@ namespace thepos
                 }
 
 
-
-                // 주문 저장 1
-                order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
-                if (order_cnt == -1)
+                // orders, orderItem 
+                if (mTheMode == "Local")
                 {
-                    return; // 재로그인 요구
+                    order_cnt = SaveOrder_Local(ticketNo, out dcAmount);  // order. orderitem
+                    if (order_cnt == -1)
+                    {
+                        return; // 재로그인 요구
+                    }
+                }
+                else
+                {
+                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);  // order. orderitem
+                    if (order_cnt == -1)
+                    {
+                        return; // 재로그인 요구
+                    }
+                }
+
+
+            }
+
+
+
+            //  payment
+
+
+            if (mTheMode == "Local")
+            {
+                if (!SavePayment_Local(paySeq, "Cash", netAmount, dcAmount))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (!SavePayment_Server(paySeq, "Cash", netAmount, dcAmount))
+                {
+                    return;
                 }
             }
 
 
-            // 서버저장 payment
-            if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
-            {
-                return;
-            }
+
+
 
 
             // 결제 항목 저장

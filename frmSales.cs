@@ -18,6 +18,9 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 using System.IO;
 using System.Web.UI.WebControls.Expressions;
+using System.Reflection.Emit;
+using System.Security.Policy;
+using System.Diagnostics.Eventing.Reader;
 
 
 
@@ -42,22 +45,18 @@ namespace thepos
 {
     public partial class frmSales : Form
     {
-
         public static int mBillTheNo = 0;
         int mWaitingNoCounter = 0;
         public static int mSelectedWaitingNo = 0;
 
         String last_groupcode = "";  // 상품그룹을 클릭했을 경우 눌려진버튼을 또 눌렀는지 비교하기 위함.
 
-
         public static String mRightFace = "";
 
         public static String mPayClass = "OR"; // order
 
-
         public static TextBox mTbKeyDisplaySales;            // Sales화면의 key display
         public static TextBox mTbKeyDisplayController;  // 공용컨트롤러
-
 
         public static Panel mPanelTitleConsole;
         public static Panel mPanelOrderConsole;
@@ -78,7 +77,6 @@ namespace thepos
         //
         // 로컬포스내 관리
         //
-
 
 
         public static Panel mPanelMiddle;
@@ -119,6 +117,43 @@ namespace thepos
                 mPanelOrderInfo.Visible = true;
             }
 
+
+            if (mTheMode == "Local")
+            {
+                btnFlowCert.Enabled = false;
+                btnFlowCharging.Enabled = false;
+                btnFlowSettlement.Enabled = false;
+                btnFlowTicketing.Enabled = false;
+                btnFlowLocker.Enabled = false;
+
+                for (int i = 0; i < tableLayoutPanelPayControl.Controls.Count; i++)
+                {
+                    if (tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsolePoint" |
+                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleComplex" |
+                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleEasy")
+                    {
+                        tableLayoutPanelPayControl.Controls[i].Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                btnFlowCert.Enabled = true;
+                btnFlowCharging.Enabled = true;
+                btnFlowSettlement.Enabled = true;
+                btnFlowTicketing.Enabled = true;
+                btnFlowLocker.Enabled = true;
+
+                for (int i = 0; i < tableLayoutPanelPayControl.Controls.Count; i++)
+                {
+                    if (tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsolePoint" |
+                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleComplex" |
+                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleEasy")
+                    {
+                        tableLayoutPanelPayControl.Controls[i].Enabled = true;
+                    }
+                }
+            }
 
         }
 
@@ -337,27 +372,32 @@ namespace thepos
 
                 if (mPayConsol[i].code == "CASH")
                 {
+                    btnPayItem.Name = "btnPayConsoleCash";
                     btnPayItem.Text = "현금\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayCash();
                 }
                 else if (mPayConsol[i].code == "CARD")
                 {
+                    btnPayItem.Name = "btnPayConsoleCard";
                     btnPayItem.Text = "카드\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayCard();
                 }
                 else if (mPayConsol[i].code == "POINT")
                 {
-                    btnPayItem.BackColor = Color.SaddleBrown;
+                    //btnPayItem.BackColor = Color.SaddleBrown;
+                    btnPayItem.Name = "btnPayConsolePoint";
                     btnPayItem.Text = "포인트\r사용";
                     btnPayItem.Click += (sender, args) => ClickedPayPoint();
                 }
                 else if (mPayConsol[i].code == "COMPLEX")
                 {
+                    btnPayItem.Name = "btnPayConsoleComplex";
                     btnPayItem.Text = "복합\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayComplex();
                 }
                 else if (mPayConsol[i].code == "EASY")
                 {
+                    btnPayItem.Name = "btnPayConsoleEasy";
                     btnPayItem.Text = "간편\r결제";
                     btnPayItem.Click += (sender, args) => ClickedPayEasy();
                 }
@@ -367,8 +407,6 @@ namespace thepos
                 tableLayoutPanelPayControl.SetColumnSpan(btnPayItem, mPayConsol[i].columnspan);
                 tableLayoutPanelPayControl.SetRowSpan(btnPayItem, mPayConsol[i].rowspan);
             }
-
-
 
         }
 
@@ -1014,13 +1052,40 @@ namespace thepos
 
 
 
-
-        public static int SaveOrder(String ticket_no, out int return_dc_amount)
+        public static int SaveOrder_Local(String ticket_no, out int return_dc_amount)
         {
-
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
             return_dc_amount = 0;
 
+            //
+            String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel) " +
+                            "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A'," + get_today_date() + ",'" + get_today_time() + "'," + mLvwOrderItem.Items.Count + ")";
+            sql_excute_local_db(sql);
+
+
+            //
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            {
+                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel) " +
+                            "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A'," + get_today_date() + ",'" + get_today_time() + "','" + memOrderItem.code + "','" + memOrderItem.name + "'," + memOrderItem.cnt + "," + memOrderItem.amt + "," +
+                            "'" + memOrderItem.shop_code + "','" + memOrderItem.ticket + "','" + memOrderItem.taxfree + "'," + memOrderItem.dc_amount + ",'" + memOrderItem.dcr_type + "','" + memOrderItem.dcr_des + "'," + memOrderItem.dcr_value + ",'" + mPayClass + "','" + ticket_no + "')";
+                sql_excute_local_db(sql);
+
+                // 이후 payment테이블에 적용하기 위해서..
+                return_dc_amount += memOrderItem.dc_amount;
+            }
+ 
+
+            return mLvwOrderItem.Items.Count;
+
+        }
+
+        public static int SaveOrder_Server(String ticket_no, out int return_dc_amount)
+        {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
+            return_dc_amount = 0;
+
 
             parameters.Clear();
             parameters["siteId"] = mSiteId;
@@ -1033,12 +1098,10 @@ namespace thepos
             parameters["orderTime"] = get_today_time();
             parameters["cnt"] = mLvwOrderItem.Items.Count + "";
             parameters["isCancel"] = "";
-
             if (mRequestPost("orders", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-
                 }
                 else
                 {
@@ -1053,8 +1116,7 @@ namespace thepos
             }
 
 
-
-
+            //
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
                 MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
@@ -1085,12 +1147,10 @@ namespace thepos
                 // 이후 payment테이블에 적용하기 위해서..
                 return_dc_amount += memOrderItem.dc_amount;
 
-
                 if (mRequestPost("orderItem", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        
                     }
                     else
                     {
@@ -1104,12 +1164,123 @@ namespace thepos
                     return -1;
                 }
             }
+            
 
             return mLvwOrderItem.Items.Count;
 
         }
 
-        public static bool SavePayment(int paySeq, String payType, int amount, int dcAmount)
+
+        public static bool SavePayment_Local(int paySeq, String payType, int amount, int dcAmount)
+        {
+            //!
+
+            if (paySeq == 1)
+            {
+                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0;
+
+                if (payType == "Cash") amount_cash = amount;
+                else if (payType == "Card") amount_card = amount;
+                else if (payType == "Easy") amount_easy = amount;
+                else if (payType == "Point") amount_point = amount;
+
+                String sql = "INSERT INTO payment (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, tranType, payClass, billNo, netAmount, amountCash, amountCard, amountEasy, amountPoint, dcAmount, isCancel) " +
+                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + get_today_date() + ",'" + get_today_time() + "','A','" + mPayClass + "','" + mTheNo.Substring(14, 6) + "'," + amount + "," + amount_cash + "," + amount_card + "," + amount_easy + "," + amount_point + "," + dcAmount + ",'')";
+                sql_excute_local_db(sql);
+
+            }
+            else
+            {
+                int amount_net = 0;
+                int amount_cash = 0;
+                int amount_card = 0;
+                int amount_easy = 0;
+                int amount_point = 0;
+
+                jdsflkjasflksjdflksdfs
+
+                // GET
+                String sUrl = "payment?theNo=" + mTheNo;
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["payments"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count != 1)
+                        {
+                            MessageBox.Show("결제데이터 오류 \n Cnt=" + arr.Count, "thepos");
+                            return false;
+                        }
+
+                        amount_net = convert_number(arr[0]["netAmount"].ToString());
+                        amount_cash = convert_number(arr[0]["amountCash"].ToString());
+                        amount_card = convert_number(arr[0]["amountCard"].ToString());
+                        amount_easy = convert_number(arr[0]["amountEasy"].ToString());
+                        amount_point = convert_number(arr[0]["amountPoint"].ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+                }
+
+
+
+                amount_net += amount;
+
+                if (payType == "Cash") amount_cash += amount;
+                else if (payType == "Card") amount_card += amount;
+                else if (payType == "Easy") amount_easy += amount;
+                else if (payType == "Point") amount_point += amount;
+
+
+
+                //
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["siteId"] = mSiteId;
+                parameters["bizDt"] = mBizDate;
+                parameters["theNo"] = mTheNo;
+                parameters["tranType"] = "A";
+
+                parameters["netAmount"] = amount_net + "";
+                parameters["amountCash"] = amount_cash + "";
+                parameters["amountCard"] = amount_card + "";
+                parameters["amountEasy"] = amount_easy + "";
+                parameters["amountPoint"] = amount_point + "";
+
+                if (mRequestPatch("payment", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+
+
+
+        public static bool SavePayment_Server(int paySeq, String payType, int amount, int dcAmount)
         {
             //!
             if (paySeq == 1)
@@ -1154,7 +1325,7 @@ namespace thepos
                     else
                     {
                         MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                        return false ;
+                        return false;
                     }
                 }
                 else
@@ -1250,7 +1421,6 @@ namespace thepos
             return true;
 
         }
-
 
         public static int SaveTicketFlow(String ticket_no, String pay_class, String settle_class, int settle_amt)  
         {

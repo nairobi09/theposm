@@ -33,31 +33,31 @@ namespace thepos
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
-            lvwList.Font = font12;
+            lblTitle.Font = font10bold;
+            lvwList.Font = font10;
 
-            lblPosNo.Font = font12;
-            comboPosNo.Font = font12;
-            btnViewPosNo.Font = font12;
+            lblPosNo.Font = font10;
+            comboPosNo.Font = font10;
+            btnViewPosNo.Font = font10;
 
-            lblGroupNameTitle.Font = font12;
-            tbGroupName.Font = font12;
+            lblGroupNameTitle.Font = font10;
+            tbGroupName.Font = font10;
 
-            lblLocXTitle.Font = font12;
-            lblLocYTitle.Font = font12;
-            lblSzXTitle.Font = font12;
-            lblSzYTitle.Font = font12;
+            lblLocXTitle.Font = font10;
+            lblLocYTitle.Font = font10;
+            lblSzXTitle.Font = font10;
+            lblSzYTitle.Font = font10;
 
-            tbLocateX.Font = font12;
-            tbLocateY.Font = font12;
-            tbSizeX.Font = font12;
-            tbSizeY.Font = font12;
+            tbLocateX.Font = font10;
+            tbLocateY.Font = font10;
+            tbSizeX.Font = font10;
+            tbSizeY.Font = font10;
 
-            btnApply.Font = font12;
+            btnApply.Font = font10;
 
-            btnInput.Font = font12;
-            btnUpdate.Font = font12;
-            btnDelete.Font = font12;
+            btnInput.Font = font10;
+            btnUpdate.Font = font10;
+            btnDelete.Font = font10;
             
 
         }

@@ -43,7 +43,7 @@ namespace thepos
 
         private void initialize_font()
         {
-            lblTitle.Font = font14;
+            lblTitle.Font = font10bold;
 
             lblPosNoTitle.Font = font10;
             cbPosNo.Font = font10;

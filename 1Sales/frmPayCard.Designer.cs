@@ -99,9 +99,9 @@
             this.gbCardTemp.Controls.Add(this.rbCard2);
             this.gbCardTemp.Controls.Add(this.rbCard1);
             this.gbCardTemp.Controls.Add(this.rbCard0);
-            this.gbCardTemp.Location = new System.Drawing.Point(23, 407);
+            this.gbCardTemp.Location = new System.Drawing.Point(23, 135);
             this.gbCardTemp.Name = "gbCardTemp";
-            this.gbCardTemp.Size = new System.Drawing.Size(479, 248);
+            this.gbCardTemp.Size = new System.Drawing.Size(479, 249);
             this.gbCardTemp.TabIndex = 57;
             this.gbCardTemp.TabStop = false;
             // 
@@ -309,9 +309,9 @@
             this.gbCardAuth.Controls.Add(this.btnKeyInputInstall);
             this.gbCardAuth.Controls.Add(this.btnInstall06);
             this.gbCardAuth.Controls.Add(this.btnInstall12);
-            this.gbCardAuth.Location = new System.Drawing.Point(23, 153);
+            this.gbCardAuth.Location = new System.Drawing.Point(22, 390);
             this.gbCardAuth.Name = "gbCardAuth";
-            this.gbCardAuth.Size = new System.Drawing.Size(480, 226);
+            this.gbCardAuth.Size = new System.Drawing.Size(480, 284);
             this.gbCardAuth.TabIndex = 56;
             this.gbCardAuth.TabStop = false;
             // 
@@ -319,7 +319,7 @@
             // 
             this.chkCUP.AutoSize = true;
             this.chkCUP.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkCUP.Location = new System.Drawing.Point(196, 170);
+            this.chkCUP.Location = new System.Drawing.Point(196, 183);
             this.chkCUP.Name = "chkCUP";
             this.chkCUP.Size = new System.Drawing.Size(90, 20);
             this.chkCUP.TabIndex = 57;
@@ -331,7 +331,7 @@
             this.tbInstall.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbInstall.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInstall.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbInstall.Location = new System.Drawing.Point(121, 43);
+            this.tbInstall.Location = new System.Drawing.Point(121, 56);
             this.tbInstall.MaxLength = 2;
             this.tbInstall.Name = "tbInstall";
             this.tbInstall.Size = new System.Drawing.Size(95, 26);
@@ -341,7 +341,7 @@
             // 
             // btnInstall00
             // 
-            this.btnInstall00.Location = new System.Drawing.Point(55, 100);
+            this.btnInstall00.Location = new System.Drawing.Point(55, 113);
             this.btnInstall00.Name = "btnInstall00";
             this.btnInstall00.Size = new System.Drawing.Size(71, 46);
             this.btnInstall00.TabIndex = 52;
@@ -354,7 +354,7 @@
             this.btnCardRequest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardRequest.ForeColor = System.Drawing.Color.White;
-            this.btnCardRequest.Location = new System.Drawing.Point(330, 131);
+            this.btnCardRequest.Location = new System.Drawing.Point(330, 144);
             this.btnCardRequest.Name = "btnCardRequest";
             this.btnCardRequest.Size = new System.Drawing.Size(130, 57);
             this.btnCardRequest.TabIndex = 47;
@@ -365,7 +365,7 @@
             // lblT2
             // 
             this.lblT2.AutoSize = true;
-            this.lblT2.Location = new System.Drawing.Point(26, 49);
+            this.lblT2.Location = new System.Drawing.Point(26, 62);
             this.lblT2.Name = "lblT2";
             this.lblT2.Size = new System.Drawing.Size(63, 14);
             this.lblT2.TabIndex = 48;
@@ -373,7 +373,7 @@
             // 
             // btnInstall03
             // 
-            this.btnInstall03.Location = new System.Drawing.Point(132, 100);
+            this.btnInstall03.Location = new System.Drawing.Point(132, 113);
             this.btnInstall03.Name = "btnInstall03";
             this.btnInstall03.Size = new System.Drawing.Size(46, 46);
             this.btnInstall03.TabIndex = 53;
@@ -386,7 +386,7 @@
             this.btnKeyInputInstall.BackColor = System.Drawing.Color.Gray;
             this.btnKeyInputInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputInstall.ForeColor = System.Drawing.Color.White;
-            this.btnKeyInputInstall.Location = new System.Drawing.Point(238, 35);
+            this.btnKeyInputInstall.Location = new System.Drawing.Point(238, 48);
             this.btnKeyInputInstall.Name = "btnKeyInputInstall";
             this.btnKeyInputInstall.Size = new System.Drawing.Size(40, 40);
             this.btnKeyInputInstall.TabIndex = 51;
@@ -396,7 +396,7 @@
             // 
             // btnInstall06
             // 
-            this.btnInstall06.Location = new System.Drawing.Point(182, 100);
+            this.btnInstall06.Location = new System.Drawing.Point(182, 113);
             this.btnInstall06.Name = "btnInstall06";
             this.btnInstall06.Size = new System.Drawing.Size(46, 46);
             this.btnInstall06.TabIndex = 54;
@@ -406,7 +406,7 @@
             // 
             // btnInstall12
             // 
-            this.btnInstall12.Location = new System.Drawing.Point(232, 100);
+            this.btnInstall12.Location = new System.Drawing.Point(232, 113);
             this.btnInstall12.Name = "btnInstall12";
             this.btnInstall12.Size = new System.Drawing.Size(46, 46);
             this.btnInstall12.TabIndex = 55;
@@ -417,7 +417,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(144, 99);
+            this.lblNetAmount.Location = new System.Drawing.Point(144, 90);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
@@ -430,7 +430,7 @@
             // lblT1
             // 
             this.lblT1.AutoSize = true;
-            this.lblT1.Location = new System.Drawing.Point(50, 109);
+            this.lblT1.Location = new System.Drawing.Point(50, 100);
             this.lblT1.Name = "lblT1";
             this.lblT1.Size = new System.Drawing.Size(91, 14);
             this.lblT1.TabIndex = 48;

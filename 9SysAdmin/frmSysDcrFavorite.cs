@@ -29,27 +29,27 @@ namespace thepos._1Sales
 
         void initialize_font()
         {
-            lblTitle.Font = font14;
+            lblTitle.Font = font10bold;
 
-            lvwList.Font = font12;
+            lvwList.Font = font10;
 
-            lblNameTitle.Font = font12;
-            tbName.Font = font12;
+            lblNameTitle.Font = font10;
+            tbName.Font = font10;
 
-            lblDesTitle.Font = font12;
-            cbDes.Font = font12;
+            lblDesTitle.Font = font10;
+            cbDes.Font = font10;
 
-            lblTypeTitle.Font = font12;
-            cbType.Font = font12;
+            lblTypeTitle.Font = font10;
+            cbType.Font = font10;
 
-            lblValueTitle.Font = font12;
-            tbValue.Font = font12;
+            lblValueTitle.Font = font10;
+            tbValue.Font = font10;
 
-            btnAdd.Font = font12;
-            btnUpdate.Font = font12;
-            btnDelete.Font = font12;
+            btnAdd.Font = font10;
+            btnUpdate.Font = font10;
+            btnDelete.Font = font10;
 
-            btnSave.Font = font12;
+            btnSave.Font = font10;
 
             lblInfo.Font = font10;
         }
@@ -57,7 +57,7 @@ namespace thepos._1Sales
         private void initialize_the()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 32);
+            imgList.ImageSize = new Size(1, 28);
 
             lvwList.SmallImageList = imgList;
             lvwList.HideSelection = true;

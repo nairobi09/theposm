@@ -69,6 +69,16 @@ namespace thepos
                 ticketNo = orderItem.ticket_no;
             }
 
+
+            if (mTheMode == "Local")
+            {
+                gbCardAuth.Visible = false;
+            }
+            else
+            {
+                gbCardAuth.Visible = true;
+            }
+
         }
 
         void initialize_font()
