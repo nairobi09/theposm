@@ -169,33 +169,54 @@ namespace thepos
 
 
             int order_cnt = 0;
-
             int dcAmount = 0;
 
 
-            if (mPayClass == "ST")
+            if (paySeq == 1)
             {
-                // 정산- 포인트 사용분의 재승인인 경우
-                //  - order, orderItem 은 그대로 유지.
-                //  - 결제는 새로 받고, 기존 payment, paymentPoint 결제는 취소마킹
-            }
-            else
-            {
-                if (paySeq == 1)
+                if (mPayClass == "ST")
                 {
-                    order_cnt = SaveOrder(ticketNo, out dcAmount);
+                    //
+                    CancelOrderSettle(ticketNo);
+                }
+
+
+
+                // orders, orderItem 
+                if (mTheMode == "Local")
+                {
+                    order_cnt = SaveOrder_Local(ticketNo, out dcAmount);  // order. orderitem
+                    if (order_cnt == -1)
+                    {
+                        return; // 재로그인 요구
+                    }
+                }
+                else
+                {
+                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);
                     if (order_cnt == -1)
                     {
                         return; // 심각한 에러.. 재로그인 요구
                     }
                 }
+
             }
 
 
-            // 서버저장 payment
-            if (!SavePayment(paySeq, "Card", netAmount, dcAmount))
+            //  payment
+            if (mTheMode == "Local")
             {
-                return;
+                if (!SavePayment_Local(paySeq, "Card", netAmount, dcAmount))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (!SavePayment_Server(paySeq, "Card", netAmount, dcAmount))
+                {
+                    return;
+                }
             }
 
 
@@ -228,7 +249,23 @@ namespace thepos
             mPaymentCard.sign_path = "";
             mPaymentCard.is_cancel = "";        // 취소여부
             mPaymentCard.van_code = "";
-            SavePaymentCard(mPaymentCard);
+
+
+            // 결제 항목 저장
+            if (mTheMode == "Local")
+            {
+                if (!SavePaymentCard_Local(mPaymentCard))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (!SavePaymentCard_Server(mPaymentCard))
+                {
+                    return;
+                }
+            }
 
 
 
@@ -276,41 +313,56 @@ namespace thepos
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
-                int settel_amt = netAmount;
-                if (isComplex)
+                if (mTheMode == "Local")
                 {
-                    settel_amt = mComplexRcvAmount;
+                    // 로컬모드에서는 티켓플로우 관리하지 않습니다.
+
                 }
-
-                // 티켓 저장
-                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
-
-
-                if (ticket_cnt > 0)
+                else
                 {
-                    if (mPayClass == "OR")
+                    int settel_amt = netAmount;
+                    if (isComplex)
                     {
-                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
-
-                        // 티켓출력은 SaveTicketFlow() 내에서 한다.
-                    }
-                    else if (mPayClass == "CH")
-                    {
-                        strAlarm += " 티켓충전 완료.";
-
-                        // 충전화면 리스트뷰 갱신
-                        frmFlowCharging.review_flow(ticketNo, selectIdx);
-
-                    }
-                    else if (mPayClass == "ST")
-                    {
-                        strAlarm += " 티켓정산 등록.";
-
-                        // 정산화면 리스트뷰 갱신
-                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
+                        settel_amt = mComplexRcvAmount;
                     }
 
-                    SetDisplayAlarm("I", strAlarm);
+                    // 티켓 저장
+                    int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
+                    if (ticket_cnt > 0)
+                    {
+                        if (mPayClass == "OR")
+                        {
+                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                            // 티켓출력은 SaveTicketFlow() 내에서 한다.
+                        }
+                        else if (mPayClass == "CH")
+                        {
+                            strAlarm += " 티켓충전 완료.";
+
+                            // 충전화면 리스트뷰 갱신
+                            frmFlowCharging.review_flow(ticketNo, selectIdx);
+
+                        }
+                        else if (mPayClass == "ST")
+                        {
+                            strAlarm += " 티켓정산 등록.";
+
+                            // 정산화면 리스트뷰 갱신
+                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
+                        }
+
+                        SetDisplayAlarm("I", strAlarm);
+                    }
+
+
+                    // 정산-포인트사용분에 대해 취소마킹
+                    if (mPayClass == "ST")
+                    {
+                        cancel_point_payment(ticketNo);
+                    }
+
                 }
 
 
@@ -319,13 +371,6 @@ namespace thepos
                     print_bill(mTheNo, "A", "", "0100"); // card
                 else
                     print_bill(mTheNo, "A", "", "1101"); // cash card point easy
-
-
-                // 정산-포인트사용분에 대해 취소마킹
-                if (mPayClass == "ST")
-                {
-                    cancel_point_payment(ticketNo);
-                }
 
 
                 mClearSaleForm();
@@ -376,7 +421,14 @@ namespace thepos
 
                 if (paySeq == 1)
                 {
-                    order_cnt = SaveOrder(ticketNo, out dcAmount);// 주문 저장 1
+                    if (mPayClass == "ST")
+                    {
+                        //
+                        CancelOrderSettle(ticketNo);
+                    }
+
+
+                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);// 주문 저장 1
                     if (order_cnt == -1)
                     {
                         return; // 심각한 에러..
@@ -384,7 +436,7 @@ namespace thepos
                 }
 
                 // 서버저장 payment
-                if (!SavePayment(paySeq, "Card", netAmount, dcAmount))
+                if (!SavePayment_Server(paySeq, "Card", netAmount, dcAmount))
                 {
                     return;
                 }
@@ -409,7 +461,7 @@ namespace thepos
                 mPaymentCard.van_code = mVanCode;
                 // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
 
-                if (!SavePaymentCard(mPaymentCard))
+                if (!SavePaymentCard_Server(mPaymentCard))
                 {
                     return;
                 }
@@ -523,8 +575,25 @@ namespace thepos
         }
 
 
+        private bool SavePaymentCard_Local(PaymentCard mPaymentCard)
+        {
 
-        private bool SavePaymentCard(PaymentCard mPaymentCard)
+            String sql = "INSERT INTO paymentCard (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, taxAmount, freeAmount, serviceAmt, tax, install, authNo, cardNo, cardName, isuCode, acqCode, merchantNo, tranSerial, signPath, giftChange, isCancel, vanCode) " +
+                "values ('" + mPaymentCard.site_id + "','" + mPaymentCard.pos_no + "','" + mPaymentCard.biz_dt + "','" + mPaymentCard.the_no + "','" + mPaymentCard.ref_no + "'," + 
+                        "'" + mPaymentCard.pay_date + "','" + mPaymentCard.pay_time + "','" + mPaymentCard.pay_type + "','" + mPaymentCard.tran_type + "','" + mPaymentCard.pay_class + "'," +
+                        "'" + mPaymentCard.ticket_no + "'," + mPaymentCard.pay_seq + ",'" + mPaymentCard.tran_date + "'," + mPaymentCard.amount + ",'" + mPaymentCard.tax_amount + "," +
+                        "" + mPaymentCard.tfree_amount + "," +  mPaymentCard.service_amount + "," + mPaymentCard.tax + ",'" + mPaymentCard.install + "','" + mPaymentCard.auth_no + "'," +
+                        "'" + mPaymentCard.card_no + "','" + mPaymentCard.card_name + "'," + mPaymentCard.isu_code + "','" + mPaymentCard.acq_code + "','" + mPaymentCard.merchant_no + "'," +
+                        "'" + mPaymentCard.tran_serial + "','" + mPaymentCard.sign_path + "','" + mPaymentCard.gift_change + "','" + mPaymentCard.is_cancel + "','" + mPaymentCard.van_code + "')";
+            int ret = sql_excute_local_db(sql);
+
+
+            return true;
+
+        }
+
+
+        private bool SavePaymentCard_Server(PaymentCard mPaymentCard)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Clear();
@@ -550,14 +619,14 @@ namespace thepos
             parameters["serviceAmt"] = mPaymentCard.service_amount + "";
             parameters["tax"] = mPaymentCard.tax + "";
             parameters["install"] = mPaymentCard.install;
-
             parameters["authNo"] = mPaymentCard.auth_no;
+
             parameters["cardNo"] = mPaymentCard.card_no;
             parameters["cardName"] = mPaymentCard.card_name;
             parameters["isuCode"] = mPaymentCard.isu_code;
             parameters["acqCode"] = mPaymentCard.acq_code;
-
             parameters["merchantNo"] = mPaymentCard.merchant_no;
+
             parameters["tranSerial"] = mPaymentCard.tran_serial;
             parameters["signPath"] = mPaymentCard.sign_path;
             parameters["giftChange"] = mPaymentCard.gift_change + "";

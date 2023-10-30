@@ -149,9 +149,7 @@ namespace thepos
                     // 1. 기사용분 취소마킹
                     // 2. 취소건 추가
                     // 3. 신규 승인추가
-
                     CancelOrderSettle(ticketNo);
-
                 }
 
 
@@ -173,14 +171,11 @@ namespace thepos
                     }
                 }
 
-
             }
 
 
 
             //  payment
-
-
             if (mTheMode == "Local")
             {
                 if (!SavePayment_Local(paySeq, "Cash", netAmount, dcAmount))
@@ -198,10 +193,6 @@ namespace thepos
 
 
 
-
-
-
-            // 결제 항목 저장
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.site_id = mSiteId;
             mPaymentCash.biz_dt = mBizDate;
@@ -226,9 +217,21 @@ namespace thepos
             mPaymentCash.is_cancel = "";        // 취소여부
             mPaymentCash.van_code = "";
 
-            if (!SavePaymentCash(mPaymentCash))
+
+            // 결제 항목 저장
+            if (mTheMode == "Local")
             {
-                return;
+                if (!SavePaymentCash_Local(mPaymentCash))
+                {
+                    return;
+                }
+            }
+            else
+            { 
+                if (!SavePaymentCash_Server(mPaymentCash))
+                {
+                    return;
+                }
             }
 
 
@@ -249,16 +252,17 @@ namespace thepos
                 lvItem.Tag = "";
                 lvItem.Text = paySeq.ToString();
                 lvItem.SubItems.Add(get_MMddHHmm(mPaymentCash.pay_date, mPaymentCash.pay_time));
-                lvItem.SubItems.Add(thePos.get_pay_type_name(mPaymentCash.pay_type));  
-                lvItem.SubItems.Add(thePos.get_tran_type_name(mPaymentCash.tran_type));  
-                lvItem.SubItems.Add(mPaymentCash.issued_method_no);   
-                lvItem.SubItems.Add(mPaymentCash.amount.ToString("N0")); 
-                lvItem.SubItems.Add(mPaymentCash.auth_no); 
+                lvItem.SubItems.Add(thePos.get_pay_type_name(mPaymentCash.pay_type));
+                lvItem.SubItems.Add(thePos.get_tran_type_name(mPaymentCash.tran_type));
+                lvItem.SubItems.Add(mPaymentCash.issued_method_no);
+                lvItem.SubItems.Add(mPaymentCash.amount.ToString("N0"));
+                lvItem.SubItems.Add(mPaymentCash.auth_no);
                 mComplexLvwPay.Items.Add(lvItem);
 
                 // 복합결제인 경우 seq 관리
                 mPaySeq++;
             }
+
 
 
 
@@ -279,41 +283,56 @@ namespace thepos
 
             if (isLast)     // 복합결제 마지막이거나 단독결제라면...
             {
-                int settel_amt = netAmount;
-                if (isComplex)
+                if (mTheMode == "Local")
                 {
-                    settel_amt = mComplexRcvAmount;
+                    // 로컬모드에서는 티켓플로우 관리하지 않습니다.
+
+                }
+                else
+                {
+                    int settel_amt = netAmount;
+                    if (isComplex)
+                    {
+                        settel_amt = mComplexRcvAmount;
+                    }
+
+                    // 티켓 저장
+                    int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
+                    if (ticket_cnt > 0)
+                    {
+                        if (mPayClass == "OR") // 주문(접수-발권)
+                        {
+                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
+
+                            // 티켓출력은 SaveTicketFlow() 내에서 한다.
+                        }
+                        else if (mPayClass == "CH") // 충전
+                        {
+                            strAlarm += " 티켓충전 완료.";
+
+                            // 충전화면 리스트뷰
+                            frmFlowCharging.review_flow(ticketNo, selectIdx);
+                        }
+                        else if (mPayClass == "ST") // 정산
+                        {
+                            strAlarm += " 티켓정산 등록.";
+
+                            // 정산화면 리스트뷰 갱신
+                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
+                        }
+
+                        SetDisplayAlarm("I", strAlarm);
+                    }
+
+
+                    // 정산-포인트사용분에 대해 취소마킹
+                    if (mPayClass == "ST")
+                    {
+                        cancel_point_payment(ticketNo);
+                    }
                 }
 
-                // 티켓 저장
-                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
-
-                if (ticket_cnt > 0)
-                {
-                    if (mPayClass == "OR") // 주문(접수-발권)
-                    {
-                        strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
-
-                        // 티켓출력은 SaveTicketFlow() 내에서 한다.
-                    }
-                    else if (mPayClass == "CH") // 충전
-                    {
-                        strAlarm += " 티켓충전 완료.";
-
-                        // 충전화면 리스트뷰
-                        frmFlowCharging.review_flow(ticketNo, selectIdx);
-
-                    }
-                    else if (mPayClass == "ST") // 정산
-                    {
-                        strAlarm += " 티켓정산 등록.";
-
-                        // 정산화면 리스트뷰 갱신
-                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
-                    }
-   
-                    SetDisplayAlarm("I", strAlarm);
-                }
 
 
                 // 영수증 출력
@@ -321,13 +340,6 @@ namespace thepos
                     print_bill(mTheNo, "A", "", "1000"); // cash
                 else
                     print_bill(mTheNo, "A", "", "1101"); // cash card point easy
-
-
-                // 정산-포인트사용분에 대해 취소마킹
-                if (mPayClass == "ST")
-                {
-                    cancel_point_payment(ticketNo);
-                }
 
 
                 mClearSaleForm();
@@ -383,15 +395,22 @@ namespace thepos
 
                 if (paySeq == 1)
                 {
+                    if (mPayClass == "ST")
+                    {
+                        //
+                        CancelOrderSettle(ticketNo);
+                    }
+
+
                     // 주문 저장 1
-                    order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
+                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);  // order. orderitem
                     if (order_cnt == -1)
                     {
                         return; // 재로그인 요구
                     }
                 }
 
-                SavePayment(paySeq, "Cash", netAmount, dcAmount);  // payment
+                SavePayment_Server(paySeq, "Cash", netAmount, dcAmount);  // payment
 
 
                 paymentCash.site_id = mSiteId;
@@ -412,7 +431,12 @@ namespace thepos
                 paymentCash.is_cancel = "";        // 취소여부
                 paymentCash.van_code = mVanCode;
 
-                SavePaymentCash(paymentCash);
+                
+                if (!SavePaymentCash_Server(paymentCash))
+                {
+                    return;
+                }
+
 
 
                 if (isComplex)
@@ -525,7 +549,21 @@ namespace thepos
 
 
 
-        private bool SavePaymentCash(PaymentCash mPaymentCash)
+        private bool SavePaymentCash_Local(PaymentCash mPaymentCash)
+        {
+
+            String sql = "INSERT INTO paymentCash (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, receiptType, issuedMethodNo, authNo, tranSerial, isCancel, vanCode) " +
+                "values ('" + mPaymentCash.site_id + "','" + mPaymentCash.pos_no + "','" + mPaymentCash.biz_dt + "','" + mPaymentCash.the_no + "','" + mPaymentCash.ref_no + ",'" + mPaymentCash.pay_date + "'," + mPaymentCash.pay_time + "'," + mPaymentCash.pay_type + "'," + mPaymentCash.tran_type + "'," + mPaymentCash.pay_class + "','" +
+                              mPaymentCash.ticket_no + "'," + mPaymentCash.pay_seq + ",'" + mPaymentCash.tran_date + "'," + mPaymentCash.amount + ",'" + mPaymentCash.receipt_type + ",'" + mPaymentCash.issued_method_no + "'," + mPaymentCash.auth_no + "'," + mPaymentCash.tran_serial + "'," + mPaymentCash.is_cancel + "'," + mPaymentCash.van_code + ")";
+            int ret = sql_excute_local_db(sql);
+
+
+            return true;
+
+        }
+
+
+        private bool SavePaymentCash_Server(PaymentCash mPaymentCash)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Clear();

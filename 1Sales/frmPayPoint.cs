@@ -148,9 +148,9 @@ namespace thepos
             int paySeq = 1;
 
             // 주문 저장 1
-            order_cnt = SaveOrder(ticketNo, out dcAmount);  // order. orderitem
+            order_cnt = SaveOrder_Server(ticketNo, out dcAmount);  // order. orderitem
 
-            SavePayment(paySeq, "Point", netAmount, dcAmount);  // payment - 신규, 수정 포함
+            SavePayment_Server(paySeq, "Point", netAmount, dcAmount);  // payment - 신규, 수정 포함
 
 
 

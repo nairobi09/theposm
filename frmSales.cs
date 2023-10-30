@@ -18,9 +18,10 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 using System.IO;
 using System.Web.UI.WebControls.Expressions;
-using System.Reflection.Emit;
+
 using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
+using System.Data.SQLite;
 
 
 
@@ -1197,39 +1198,25 @@ namespace thepos
                 int amount_easy = 0;
                 int amount_point = 0;
 
-                jdsflkjasflksjdflksdfs
 
-                // GET
-                String sUrl = "payment?theNo=" + mTheNo;
 
-                if (mRequestGet(sUrl))
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM payment WHERE theNo='" + mTheNo + "'");
+                if (dr.Read())
                 {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["payments"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        if (arr.Count != 1)
-                        {
-                            MessageBox.Show("결제데이터 오류 \n Cnt=" + arr.Count, "thepos");
-                            return false;
-                        }
-
-                        amount_net = convert_number(arr[0]["netAmount"].ToString());
-                        amount_cash = convert_number(arr[0]["amountCash"].ToString());
-                        amount_card = convert_number(arr[0]["amountCard"].ToString());
-                        amount_easy = convert_number(arr[0]["amountEasy"].ToString());
-                        amount_point = convert_number(arr[0]["amountPoint"].ToString());
-                    }
-                    else
-                    {
-                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    }
+                    amount_net = convert_number(dr["netAmount"].ToString());
+                    amount_cash = convert_number(dr["amountCash"].ToString());
+                    amount_card = convert_number(dr["amountCard"].ToString());
+                    amount_easy = convert_number(dr["amountEasy"].ToString());
+                    amount_point = convert_number(dr["amountPoint"].ToString());
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("결제데이터 오류. payment", "thepos");
+                    return false;
                 }
+
+                dr.Close();
+
 
 
 
@@ -1242,36 +1229,12 @@ namespace thepos
 
 
 
-                //
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = mBizDate;
-                parameters["theNo"] = mTheNo;
-                parameters["tranType"] = "A";
 
-                parameters["netAmount"] = amount_net + "";
-                parameters["amountCash"] = amount_cash + "";
-                parameters["amountCard"] = amount_card + "";
-                parameters["amountEasy"] = amount_easy + "";
-                parameters["amountPoint"] = amount_point + "";
+                String sql = "UPDATE payment SET netAmount = " + amount_net + ", amountCash = " + amount_cash + ", amountCard = " + amount_card + ", amountEasy = " + amount_easy + ", amountPoint = " + amount_point +
+                            " WHERE theNo=" + mTheNo + " AND tranType = 'A' ";
+                int ret = sql_excute_local_db(sql);
 
-                if (mRequestPatch("payment", parameters))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
-                    return false;
-                }
             }
 
             return true;

@@ -883,7 +883,6 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-
                 }
                 else
                 {
@@ -908,10 +907,10 @@ namespace thepos
         }
 
 
-        public static void sql_excute_local_db(String sql)
+        public static int sql_excute_local_db(String sql)
         {
             SQLiteCommand cmd = new SQLiteCommand(sql, mConn);
-            cmd.ExecuteNonQuery();
+            return cmd.ExecuteNonQuery();
         }
     }
 }

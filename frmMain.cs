@@ -816,7 +816,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM goodsGroup");
+                        int ret = sql_excute_local_db("DELETE FROM goodsGroup");
 
                         //
                         String data = mObj["goodsGroups"].ToString();
@@ -836,7 +836,7 @@ namespace thepos
                             // Insert
                             String sql = "INSERT INTO goodsGroup (siteId, posNo, groupCode, groupName, locateX, locateY, sizeX, sizeY) " +
                             "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -862,7 +862,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM goodsItemAndGoods");
+                        int ret = sql_excute_local_db("DELETE FROM goodsItemAndGoods");
 
                         //
                         String data = mObj["goodsItems"].ToString();
@@ -887,7 +887,7 @@ namespace thepos
 
                             String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, soldout, locateX, locateY, sizeX, sizeY) " +
                                 "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -913,7 +913,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM shop");
+                        int ret = sql_excute_local_db("DELETE FROM shop");
 
                         //
                         String data = mObj["shops"].ToString();
@@ -927,7 +927,7 @@ namespace thepos
 
                             String sql = "INSERT INTO shop (siteId, shopCode, shopName) " +
                                         "values ('" + siteId + "','" + shopCode + "','" + shopName + "')";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -953,7 +953,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM pos");
+                        int ret = sql_excute_local_db("DELETE FROM pos");
 
                         //
                         String data = mObj["pos"].ToString();
@@ -968,7 +968,7 @@ namespace thepos
 
                             String sql = "INSERT INTO pos (siteId, posNo, macAddr, posStatus) " +
                                         "values ('" + siteId + "','" + posNo + "','" + macAddr + "','" + posStatus + "')";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -994,7 +994,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM setupPos");
+                        int ret = sql_excute_local_db("DELETE FROM setupPos");
 
                         //
                         String data = mObj["setupPos"].ToString();
@@ -1011,7 +1011,7 @@ namespace thepos
 
                             String sql = "INSERT INTO setupPos (siteId, posNo, setupCode, setupName, setupValue, memo) " +
                                     "values ('" + siteId + "','" + posNo + "','" + setupCode + "','" + setupName + "','" + setupValue + "','" + memo + "')";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -1037,7 +1037,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM dcrFavorite");
+                        int ret = sql_excute_local_db("DELETE FROM dcrFavorite");
 
                         //
                         String data = mObj["dcr"].ToString();
@@ -1054,7 +1054,7 @@ namespace thepos
 
                             String sql = "INSERT INTO dcrFavorite (siteId, sortNo, dcrName, dcrDes, dcrType, dcrValue) " +
                                     "values ('" + siteId + "'," + sortNo + ",'" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -1080,7 +1080,7 @@ namespace thepos
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        sql_excute_local_db("DELETE FROM paymentConsole");
+                        int ret = sql_excute_local_db("DELETE FROM paymentConsole");
 
                         String data = mObj["paymentConsoles"].ToString();
                         JArray arr = JArray.Parse(data);
@@ -1101,7 +1101,7 @@ namespace thepos
 
                             String sql = "INSERT INTO paymentConsole (siteId, posNo, buttonCode, buttonName, locateX, locateY, sizeX, sizeY, usage) " +
                                     "values ('" + siteId + "'," + posNo + ",'" + buttonCode + "','" + buttonName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + usage + "')";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else
@@ -1145,12 +1145,12 @@ namespace thepos
                             String basicDbVer = arr[0]["basicDbVer"].ToString();
 
                             // Delete
-                            sql_excute_local_db("DELETE FROM site");
+                            int ret = sql_excute_local_db("DELETE FROM site");
 
                             // Insert
                             String sql = "INSERT INTO site (siteId, siteName, siteAlias, registNo, capName, bizAddr, bizTelNo, ticketType, ticketMedia, vanCode, callCenterNo, basicDbVer) " +
                                          "values ('" + siteId + "','" + siteName + "','" + siteAlias + "','" + registNo + "','" + capName + "','" + bizAddr + "','" + bizTelNo + "','" + ticketType + "','" + ticketMedia + "','" + vanCode + "','" + callCenterNo + "','" + basicDbVer + "')";
-                            sql_excute_local_db(sql);
+                            ret = sql_excute_local_db(sql);
                         }
                     }
                     else

@@ -128,7 +128,7 @@ namespace thepos
 
                 if (paySeq == 1)
                 {
-                    order_cnt = SaveOrder(ticketNo, out dcAmount);// 주문 저장 1
+                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);// 주문 저장 1
                     if (order_cnt == -1)
                     {
                         return; // 심각한 에러..
@@ -136,7 +136,7 @@ namespace thepos
                 }
 
                 // 서버저장 payment
-                if (!SavePayment(paySeq, "Easy", netAmount, dcAmount))
+                if (!SavePayment_Server(paySeq, "Easy", netAmount, dcAmount))
                 {
                     return;
                 }
