@@ -518,6 +518,8 @@ namespace thepos
 
         public static String mTheMode = "";  // Server Local
 
+        public static String mPayClass = "OR"; // order
+
         public static Boolean mReturn = false;
         public static string mErrorMsg = "";
 

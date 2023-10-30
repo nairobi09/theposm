@@ -427,6 +427,10 @@ namespace thepos
                 mUserName = "";
                 mPosNo = "";
 
+                mPayClass = "OR";
+
+
+
                 // 로컬DB -> 메모리 
                 sync_data_local_to_memory();  // 함수내에서 mPosNo를 구한다.
 

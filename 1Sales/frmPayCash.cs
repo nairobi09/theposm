@@ -553,8 +553,8 @@ namespace thepos
         {
 
             String sql = "INSERT INTO paymentCash (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, receiptType, issuedMethodNo, authNo, tranSerial, isCancel, vanCode) " +
-                "values ('" + mPaymentCash.site_id + "','" + mPaymentCash.pos_no + "','" + mPaymentCash.biz_dt + "','" + mPaymentCash.the_no + "','" + mPaymentCash.ref_no + ",'" + mPaymentCash.pay_date + "'," + mPaymentCash.pay_time + "'," + mPaymentCash.pay_type + "'," + mPaymentCash.tran_type + "'," + mPaymentCash.pay_class + "','" +
-                              mPaymentCash.ticket_no + "'," + mPaymentCash.pay_seq + ",'" + mPaymentCash.tran_date + "'," + mPaymentCash.amount + ",'" + mPaymentCash.receipt_type + ",'" + mPaymentCash.issued_method_no + "'," + mPaymentCash.auth_no + "'," + mPaymentCash.tran_serial + "'," + mPaymentCash.is_cancel + "'," + mPaymentCash.van_code + ")";
+                "values ('" + mPaymentCash.site_id + "','" + mPaymentCash.pos_no + "','" + mPaymentCash.biz_dt + "','" + mPaymentCash.the_no + "','" + mPaymentCash.ref_no + "','" + mPaymentCash.pay_date + "','" + mPaymentCash.pay_time + "','" + mPaymentCash.pay_type + "','" + mPaymentCash.tran_type + "','" + mPaymentCash.pay_class + "','" +
+                              mPaymentCash.ticket_no + "'," + mPaymentCash.pay_seq + ",'" + mPaymentCash.tran_date + "'," + mPaymentCash.amount + ",'" + mPaymentCash.receipt_type + "','" + mPaymentCash.issued_method_no + "','" + mPaymentCash.auth_no + "','" + mPaymentCash.tran_serial + "','" + mPaymentCash.is_cancel + "','" + mPaymentCash.van_code + "')";
             int ret = sql_excute_local_db(sql);
 
 

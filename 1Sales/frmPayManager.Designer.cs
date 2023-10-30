@@ -325,12 +325,13 @@
             // 
             this.dc.Text = "할인";
             this.dc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.dc.Width = 0;
+            this.dc.Width = 40;
             // 
             // cancel
             // 
             this.cancel.Text = "취소";
             this.cancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cancel.Width = 50;
             // 
             // paykeep
             // 

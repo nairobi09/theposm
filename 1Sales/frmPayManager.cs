@@ -16,6 +16,8 @@ using static thepos.thePos;
 using static thepos.frmSales;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ComponentModel.Composition.Primitives;
+using System.Data.SQLite;
+using System.Web.UI.WebControls.Expressions;
 
 
 namespace thepos
@@ -126,193 +128,306 @@ namespace thepos
         }
 
 
+
+        private void add_viewList(String t_theNo, String t_billNo, String t_payClass, int t_amountCash, int t_amountCard, int t_amountPoint, int t_amountEasy, String t_payDate, String t_payTime, String t_posNo, int t_netAmount, int t_dcAmount, String t_isCancel)
+        {
+            ListViewItem lvItem = new ListViewItem();
+
+            lvItem.Tag = t_theNo;
+            lvItem.Text = t_billNo;
+            lvItem.SubItems.Add(get_pay_class_name(t_payClass));
+
+            String is_cash = "0";
+            String is_card = "0";
+            String is_point = "0";
+            String is_easy = "0";
+            String pay_keep = "";
+
+            if (t_amountCash > 0) is_cash = "1";
+            if (t_amountCard > 0) is_card = "1";
+            if (t_amountPoint > 0) is_point = "1";
+            if (t_amountEasy > 0) is_easy = "1";
+
+            pay_keep = is_cash + is_card + is_point + is_easy;
+
+
+            lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
+
+
+            lvItem.SubItems.Add(get_MMddHHmm(t_payDate, t_payTime));
+            lvItem.SubItems.Add(t_posNo);
+            lvItem.SubItems.Add(t_netAmount.ToString("N0"));
+
+
+            if (t_dcAmount > 0)
+            {
+                lvItem.SubItems.Add("Y");
+            }
+            else
+            {
+                lvItem.SubItems.Add("");
+            }
+
+            if (t_isCancel == "Y")
+                lvItem.SubItems.Add("취소됨");
+            else if (t_isCancel == "0")
+                lvItem.SubItems.Add("취소중");
+            else
+                lvItem.SubItems.Add("");
+
+
+            lvItem.SubItems.Add(pay_keep);
+
+
+            if (t_isCancel == "Y")
+            {
+                lvItem.ForeColor = Color.Gray;
+                lvItem.SubItems[1].ForeColor = Color.Gray;
+                lvItem.SubItems[2].ForeColor = Color.Gray;
+                lvItem.SubItems[3].ForeColor = Color.Gray;
+                lvItem.SubItems[4].ForeColor = Color.Gray;
+                lvItem.SubItems[5].ForeColor = Color.Gray;
+                lvItem.SubItems[6].ForeColor = Color.Gray;
+                lvItem.SubItems[7].ForeColor = Color.Gray;
+                lvItem.SubItems[8].ForeColor = Color.Gray;
+            }
+
+            lvwPayManager.Items.Add(lvItem);
+
+        }
+
+
+
         private void viewList(String biz_date, String pos_no, String the_no)
         { 
             lvwPayManager.Items.Clear();
 
-
             //!
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
-            if (mRequestGet(sUrl))
+            if (mTheMode == "Local")
             {
-                if (mObj["resultCode"].ToString() == "200")
+
+                String sql = "SELECT * FROM payment WHERE bizDt= '" + biz_date + "' AND posNo='" + pos_no + "' AND tranType='A'";
+
+                if (the_no == "")
                 {
-                    String data = mObj["payments"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        ListViewItem lvItem = new ListViewItem();
-
-                        lvItem.Tag = arr[i]["theNo"].ToString();
-                        lvItem.Text = arr[i]["billNo"].ToString();
-                        lvItem.SubItems.Add(get_pay_class_name(arr[i]["payClass"].ToString()));
-
-                        String is_cash = "0";
-                        String is_card = "0";
-                        String is_point = "0";
-                        String is_easy = "0";
-                        String pay_keep = "";
-
-                        if (convert_number(arr[i]["amountCash"].ToString()) > 0) is_cash = "1";
-                        if (convert_number(arr[i]["amountCard"].ToString()) > 0) is_card = "1";
-                        if (convert_number(arr[i]["amountPoint"].ToString()) > 0) is_point = "1";
-                        if (convert_number(arr[i]["amountEasy"].ToString()) > 0) is_easy = "1";
-
-                        pay_keep = is_cash + is_card + is_point + is_easy;
-
-
-                        lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
-
-
-                        lvItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
-                        //lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
-                        lvItem.SubItems.Add(arr[i]["posNo"].ToString());
-
-                        lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
-
-                        //? 할인내용 적용 필요
-
-                        if (convert_number(arr[i]["dcAmount"].ToString()) > 0)
-                        {
-                            lvItem.SubItems.Add("Y");
-                        }
-                        else
-                        {
-                            lvItem.SubItems.Add("");
-                        }
-
-                        if (arr[i]["isCancel"].ToString() == "Y")
-                            lvItem.SubItems.Add("취소됨");
-                        else if (arr[i]["isCancel"].ToString() == "0")
-                            lvItem.SubItems.Add("취소중");
-                        else
-                            lvItem.SubItems.Add("");
-
-
-                        //lvItem.SubItems.Add(arr[i]["tranType"].ToString());
-
-
-                        lvItem.SubItems.Add(pay_keep);
-
-
-                        if (arr[i]["isCancel"].ToString() == "Y")
-                        {
-                            lvItem.ForeColor = Color.Gray;
-                            lvItem.SubItems[1].ForeColor = Color.Gray;
-                            lvItem.SubItems[2].ForeColor = Color.Gray;
-                            lvItem.SubItems[3].ForeColor = Color.Gray;
-                            lvItem.SubItems[4].ForeColor = Color.Gray;
-                            lvItem.SubItems[5].ForeColor = Color.Gray;
-                            lvItem.SubItems[6].ForeColor = Color.Gray;
-                            lvItem.SubItems[7].ForeColor = Color.Gray;
-                            lvItem.SubItems[8].ForeColor = Color.Gray;
-                        }
-
-                        lvwPayManager.Items.Add(lvItem);
-                    }
 
                 }
                 else
                 {
-                    MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    sql += " AND theNo = '" + the_no + "'";
                 }
+                
+
+                SQLiteDataReader dr = sql_select_local_db(sql);
+                while (dr.Read())
+                {
+                    String t_theNo = dr["theNo"].ToString();
+                    String t_billNo = dr["billNo"].ToString();
+                    String t_payClass = dr["payClass"].ToString();
+                    int t_amountCash = convert_number(dr["amountCash"].ToString());
+                    int t_amountCard = convert_number(dr["amountCard"].ToString());
+                    int t_amountPoint = convert_number(dr["amountPoint"].ToString());
+                    int t_amountEasy = convert_number(dr["amountEasy"].ToString());
+                    String t_payDate = dr["payDate"].ToString();
+                    String t_payTime = dr["payTime"].ToString();
+                    String t_posNo = dr["posNo"].ToString();
+                    int t_netAmount = convert_number(dr["netAmount"].ToString());
+                    int t_dcAmount = convert_number(dr["dcAmount"].ToString());
+                    String t_isCancel = dr["isCancel"].ToString();
+
+                    add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
+                }
+                dr.Close();
+
             }
             else
             {
-                MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
+                String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["payments"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String t_theNo = arr[i]["theNo"].ToString();
+                            String t_billNo = arr[i]["billNo"].ToString();
+                            String t_payClass = arr[i]["payClass"].ToString();
+                            int t_amountCash = convert_number(arr[i]["amountCash"].ToString());
+                            int t_amountCard = convert_number(arr[i]["amountCard"].ToString());
+                            int t_amountPoint = convert_number(arr[i]["amountPoint"].ToString());
+                            int t_amountEasy = convert_number(arr[i]["amountEasy"].ToString());
+                            String t_payDate = arr[i]["payDate"].ToString();
+                            String t_payTime = arr[i]["payTime"].ToString();
+                            String t_posNo = arr[i]["posNo"].ToString();
+                            int t_netAmount = convert_number(arr[i]["netAmount"].ToString());
+                            int t_dcAmount = convert_number(arr[i]["dcAmount"].ToString());
+                            String t_isCancel = arr[i]["isCancel"].ToString();
+
+                            add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
+                }
             }
+
+
         }
 
 
         public static void reviewList(String biz_date, String pos_no, String the_no, int select_index)
         {
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
-            if (mRequestGet(sUrl))
+            String t_theNo = "";
+            String t_billNo = "";
+            String t_payClass = "";
+            int t_amountCash = 0;
+            int t_amountCard = 0;
+            int t_amountPoint = 0;
+            int t_amountEasy = 0;
+            String t_payDate = "";
+            String t_payTime = "";
+            String t_posNo = "";
+            int t_netAmount = 0;
+            int t_dcAmount = 0;
+            String t_isCancel = "";
+
+
+            if (mTheMode == "Local")
             {
-                if (mObj["resultCode"].ToString() == "200")
+                String sql = "SELECT * FROM payment WHERE bizDt= '" + biz_date + "' AND posNo='" + pos_no + "' AND tranType='A' AND theNo = '" + the_no + "'";
+                SQLiteDataReader dr = sql_select_local_db(sql);
+                if (dr.Read())
                 {
-                    String data = mObj["payments"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    if (arr.Count > 0)
-                    {
-                        ListViewItem lvItem = new ListViewItem();
-
-                        lvItem.Tag = arr[0]["theNo"].ToString();
-                        lvItem.Text = arr[0]["billNo"].ToString();
-                        lvItem.SubItems.Add(get_pay_class_name(arr[0]["payClass"].ToString()));
-
-                        String is_cash = "0";
-                        String is_card = "0";
-                        String is_point = "0";
-                        String is_easy = "0";
-                        String pay_keep = "";
-
-                        if (convert_number(arr[0]["amountCash"].ToString()) > 0) is_cash = "1";
-                        if (convert_number(arr[0]["amountCard"].ToString()) > 0) is_card = "1";
-                        if (convert_number(arr[0]["amountPoint"].ToString()) > 0) is_point = "1";
-                        if (convert_number(arr[0]["amountEasy"].ToString()) > 0) is_easy = "1";
-
-                        pay_keep = is_cash + is_card + is_point + is_easy;
-
-
-                        lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
-
-
-                        lvItem.SubItems.Add(get_MMddHHmm(arr[0]["payDate"].ToString(), arr[0]["payTime"].ToString()));
-                        lvItem.SubItems.Add(arr[0]["posNo"].ToString());
-                        lvItem.SubItems.Add((convert_number(arr[0]["netAmount"].ToString())).ToString("N0"));
-
-
-                        // 할인내용 적용 필요
-                        //? 아래 할인금액이 0보다 크면 할인 Y
-                        //lvItem.SubItems.Add(arr[0]["dcAmount"].ToString());
-                        lvItem.SubItems.Add("");
-                        //? 이후 검토요망 - 할인 Y 로 하는것은 없음.
-
-
-                        if (arr[0]["isCancel"].ToString() == "Y")
-                            lvItem.SubItems.Add("취소됨");
-                        else if (arr[0]["isCancel"].ToString() == "0")
-                            lvItem.SubItems.Add("취소중");
-                        else
-                            lvItem.SubItems.Add("");
-
-
-                        lvItem.SubItems.Add(pay_keep);
-
-
-                        if (arr[0]["isCancel"].ToString() == "Y")
-                        {
-                            lvItem.ForeColor = Color.Gray;
-                            lvItem.SubItems[1].ForeColor = Color.Gray;
-                            lvItem.SubItems[2].ForeColor = Color.Gray;
-                            lvItem.SubItems[3].ForeColor = Color.Gray;
-                            lvItem.SubItems[4].ForeColor = Color.Gray;
-                            lvItem.SubItems[5].ForeColor = Color.Gray;
-                            lvItem.SubItems[6].ForeColor = Color.Gray;
-                            lvItem.SubItems[7].ForeColor = Color.Gray;
-                            lvItem.SubItems[8].ForeColor = Color.Gray;
-                        }
-
-                        mLvwPayManager.Items[select_index] = lvItem;
-                        lvItem.Selected = true;
-                        mLvwPayManager.Select();
-                        mLvwPayManager.EnsureVisible(select_index);
-
-                    }
-
+                    t_theNo = dr["theNo"].ToString();
+                    t_billNo = dr["billNo"].ToString();
+                    t_payClass = dr["payClass"].ToString();
+                    t_amountCash = convert_number(dr["amountCash"].ToString());
+                    t_amountCard = convert_number(dr["amountCard"].ToString());
+                    t_amountPoint = convert_number(dr["amountPoint"].ToString());
+                    t_amountEasy = convert_number(dr["amountEasy"].ToString());
+                    t_payDate = dr["payDate"].ToString();
+                    t_payTime = dr["payTime"].ToString();
+                    t_posNo = dr["posNo"].ToString();
+                    t_netAmount = convert_number(dr["netAmount"].ToString());
+                    t_dcAmount = convert_number(dr["dcAmount"].ToString());
+                    t_isCancel = dr["isCancel"].ToString();
                 }
-                else
-                {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                }
+                dr.Close();
+
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["payments"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count > 0)
+                        {
+                            t_theNo = arr[0]["theNo"].ToString();
+                            t_billNo = arr[0]["billNo"].ToString();
+                            t_payClass = arr[0]["payClass"].ToString();
+                            t_amountCash = convert_number(arr[0]["amountCash"].ToString());
+                            t_amountCard = convert_number(arr[0]["amountCard"].ToString());
+                            t_amountPoint = convert_number(arr[0]["amountPoint"].ToString());
+                            t_amountEasy = convert_number(arr[0]["amountEasy"].ToString());
+                            t_payDate = arr[0]["payDate"].ToString();
+                            t_payTime = arr[0]["payTime"].ToString();
+                            t_posNo = arr[0]["posNo"].ToString();
+                            t_netAmount = convert_number(arr[0]["netAmount"].ToString());
+                            t_dcAmount = convert_number(arr[0]["dcAmount"].ToString());
+                            t_isCancel = arr[0]["isCancel"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                }
             }
+
+
+
+            ListViewItem lvItem = new ListViewItem();
+
+            lvItem.Tag = t_theNo;
+            lvItem.Text = t_billNo;
+            lvItem.SubItems.Add(get_pay_class_name(t_payClass));
+
+            String is_cash = "0";
+            String is_card = "0";
+            String is_point = "0";
+            String is_easy = "0";
+            String pay_keep = "";
+
+            if (t_amountCash > 0) is_cash = "1";
+            if (t_amountCard > 0) is_card = "1";
+            if (t_amountPoint > 0) is_point = "1";
+            if (t_amountEasy > 0) is_easy = "1";
+
+            pay_keep = is_cash + is_card + is_point + is_easy;
+
+
+            lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
+
+
+            lvItem.SubItems.Add(get_MMddHHmm(t_payDate, t_payTime));
+            lvItem.SubItems.Add(t_posNo);
+            lvItem.SubItems.Add(t_netAmount.ToString("N0"));
+
+
+            //
+            if (t_dcAmount > 0)
+                lvItem.SubItems.Add("Y");
+            else
+                lvItem.SubItems.Add("");
+
+            //
+            if (t_isCancel == "Y")
+                lvItem.SubItems.Add("취소됨");
+            else if (t_isCancel == "0")
+                lvItem.SubItems.Add("취소중");
+            else
+                lvItem.SubItems.Add("");
+
+
+            lvItem.SubItems.Add(pay_keep);
+
+
+            if (t_isCancel == "Y")
+            {
+                lvItem.ForeColor = Color.Gray;
+                lvItem.SubItems[1].ForeColor = Color.Gray;
+                lvItem.SubItems[2].ForeColor = Color.Gray;
+                lvItem.SubItems[3].ForeColor = Color.Gray;
+                lvItem.SubItems[4].ForeColor = Color.Gray;
+                lvItem.SubItems[5].ForeColor = Color.Gray;
+                lvItem.SubItems[6].ForeColor = Color.Gray;
+                lvItem.SubItems[7].ForeColor = Color.Gray;
+                lvItem.SubItems[8].ForeColor = Color.Gray;
+            }
+
+            mLvwPayManager.Items[select_index] = lvItem;
+            lvItem.Selected = true;
+            mLvwPayManager.Select();
+            mLvwPayManager.EnsureVisible(select_index);
+
         }
 
 
