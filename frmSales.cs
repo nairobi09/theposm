@@ -105,7 +105,13 @@ namespace thepos
             display_paymentConsol();
 
             display_goodsgroup();
-            ClickedGoodsGroup(mGoodsGroup[0].group_code);   // 최초실행후 첮 그룹을 선택한 화면을 보여주자...
+
+
+            if (mGoodsGroup.Length > 0)
+            {
+                ClickedGoodsGroup(mGoodsGroup[0].group_code);   //? 디폴트로 설정된 그룹으로 보여주자.-> 수정요망
+            }
+
                         
             // 일련번호(4) 대신 Time(6)으로 변경
             //get_last_theno();  // 서버에서 최종 theno를 구한다. -> mBillTheNo 세팅

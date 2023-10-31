@@ -27,6 +27,7 @@ using System.Net.Sockets;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Reflection.Emit;
 using System.Security.AccessControl;
+using System.Management;
 
 namespace thepos
 {
@@ -181,9 +182,10 @@ namespace thepos
             }
 
             // 기동시 MAC값 구하기 및 보관
-            mMacAddr = NetworkInterface.GetAllNetworkInterfaces()
-                      .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
-                      .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+            var nics = NetworkInterface.GetAllNetworkInterfaces();
+            var selectedNic = nics.First();
+            mMacAddr = selectedNic.GetPhysicalAddress().ToString();
+
 
 
 
