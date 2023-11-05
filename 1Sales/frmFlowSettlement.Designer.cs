@@ -81,13 +81,13 @@
             // 
             // btnSettleBill
             // 
-            this.btnSettleBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSettleBill.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnSettleBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettleBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSettleBill.ForeColor = System.Drawing.Color.White;
-            this.btnSettleBill.Location = new System.Drawing.Point(398, 483);
+            this.btnSettleBill.Location = new System.Drawing.Point(382, 483);
             this.btnSettleBill.Name = "btnSettleBill";
-            this.btnSettleBill.Size = new System.Drawing.Size(104, 42);
+            this.btnSettleBill.Size = new System.Drawing.Size(120, 40);
             this.btnSettleBill.TabIndex = 78;
             this.btnSettleBill.TabStop = false;
             this.btnSettleBill.Text = "정산영수증";
@@ -106,13 +106,13 @@
             // 
             // btnCancelReq
             // 
-            this.btnCancelReq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnCancelReq.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnCancelReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancelReq.ForeColor = System.Drawing.Color.White;
-            this.btnCancelReq.Location = new System.Drawing.Point(289, 483);
+            this.btnCancelReq.Location = new System.Drawing.Point(256, 483);
             this.btnCancelReq.Name = "btnCancelReq";
-            this.btnCancelReq.Size = new System.Drawing.Size(104, 42);
+            this.btnCancelReq.Size = new System.Drawing.Size(120, 40);
             this.btnCancelReq.TabIndex = 77;
             this.btnCancelReq.TabStop = false;
             this.btnCancelReq.Text = "충전취소";
@@ -148,10 +148,11 @@
             // btnScanner
             // 
             this.btnScanner.BackColor = System.Drawing.Color.White;
+            this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
-            this.btnScanner.Location = new System.Drawing.Point(382, 16);
+            this.btnScanner.Location = new System.Drawing.Point(382, 14);
             this.btnScanner.Name = "btnScanner";
-            this.btnScanner.Size = new System.Drawing.Size(85, 37);
+            this.btnScanner.Size = new System.Drawing.Size(85, 40);
             this.btnScanner.TabIndex = 75;
             this.btnScanner.TabStop = false;
             this.btnScanner.UseVisualStyleBackColor = false;
@@ -214,12 +215,12 @@
             // 
             // btnView
             // 
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(287, 16);
+            this.btnView.Location = new System.Drawing.Point(287, 14);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(85, 37);
+            this.btnView.Size = new System.Drawing.Size(85, 40);
             this.btnView.TabIndex = 72;
             this.btnView.TabStop = false;
             this.btnView.Text = "조회";

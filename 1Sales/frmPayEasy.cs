@@ -329,6 +329,7 @@ namespace thepos
             parameters["isCancel"] = mPaymentEasy.is_cancel;
             parameters["vanCode"] = mPaymentEasy.van_code;
             parameters["payType2"] = mPaymentEasy.pay_type2;
+            parameters["barcodeNo"] = mPaymentEasy.barcode_no;
 
             if (mRequestPost("paymentEasy", parameters))
             {

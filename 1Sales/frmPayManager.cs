@@ -44,18 +44,16 @@ namespace thepos
 
         private void initialize_font()
         {
-            lblTitle.Font = font12;
+            lblTitle.Font = font10;
             btnClose.Font = font12;
-
-            dtBusiness.Font = font10;
 
             lbl1.Font = font9;
             lbl2.Font = font9;
             lbl3.Font = font9;
 
-            dtBusiness.Font = font10;
+            //dtBizDt.Font = font10;
             cbPosNo.Font = font10;
-            tbBillNo.Font = font12;
+            tbBillNo.Font = font10;
 
             btnView.Font = font10;
             lvwPayManager.Font = font10;
@@ -63,15 +61,15 @@ namespace thepos
             // 폰트적용 제외
             //lblLayoutBill.Font = font12;
 
-            cbGoodsExcept.Font = font9;
+            cbGoodsExcept.Font = font10;
             btnPrint.Font = font10;
-
+            btnCancel.Font = font10;
 
         }
         private void initialize_the()
         {
             //dtBusiness.Value = DateTime.Now;
-            dtBusiness.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+            dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
 
             ImageList imgList = new ImageList();
@@ -111,7 +109,7 @@ namespace thepos
         {
             String billNo = tbBillNo.Text;
 
-            selected_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
+            selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
             selected_pos_no = cbPosNo.Text;
 
             if (billNo.Length == 6)
@@ -562,7 +560,7 @@ namespace thepos
                     int mm = int.Parse(dt.Substring(4, 2));
                     int dd = int.Parse(dt.Substring(6, 2));
 
-                    dtBusiness.Value = new DateTime(yyyy, mm, dd);
+                    dtBizDt.Value = new DateTime(yyyy, mm, dd);
 
                     for (int i = 0; i < cbPosNo.Items.Count; i++)
                     {

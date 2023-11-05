@@ -45,8 +45,12 @@ namespace thepos
         [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int GetDecSignData(int signtype, byte[] bDir, byte[] bOutdata);
 
+
         [DllImport("C:\\NICEVCAT\\NVCAT.dll", CharSet = CharSet.Unicode)]
         public static extern int NICEVCATB(byte[] SendBuf, byte[] RecvBuf);
+
+
+
 
         public struct NiceResponse
         {
@@ -418,6 +422,8 @@ namespace thepos
             // 정상 응답
             if (ResCd == "0000")
             {
+                //
+                paymentEasy.barcode_no = tBarcodeNo;
                 // 마스킹 카드번호
                 paymentEasy.card_no = mNiceResponse.t카드BIN;
                 // 거래번호
@@ -429,7 +435,7 @@ namespace thepos
                 // 거래일시
                 paymentEasy.tran_date = mNiceResponse.t승인일시;
                 // 승인번호
-                paymentEasy.auth_no = mNiceResponse.t승인번호;
+                paymentEasy.auth_no = mNiceResponse.t승인번호.Trim();
 
 
                 //? 발급사,매입사 코드 -> 공통관리코드로 변환 필요
@@ -471,12 +477,11 @@ namespace thepos
             string FS = ((char)28).ToString();
 
             string SendData = "";
-            SendData = "0520" + FS + "10" + FS + "L" + FS + pEasyAuth.amount + FS + pEasyAuth.tax + FS + pEasyAuth.service_amount + FS + "00" +  FS + pEasyAuth.auth_no + FS + pEasyAuth.tran_date + FS + "" + FS + FS + FS + "" + FS + FS + FS + FS + pEasyAuth.tran_serial + FS + "" + FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
-            //SendData = "0420" + FS + "10" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용취소" + FS;
+            SendData = "0520" + FS + "10" + FS + "L" + FS + pEasyAuth.amount + FS + pEasyAuth.tax + FS + pEasyAuth.service_amount + FS + "00" + FS + pEasyAuth.auth_no.Trim() + FS + pEasyAuth.tran_date.Substring(0, 6) + FS + "" + FS + FS + FS + pEasyAuth.barcode_no.Trim() + FS + FS + FS + FS + pEasyAuth.tran_serial.Trim() + FS + "" + FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
             byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
             byte[] mRecv = new byte[2048];
 
-            int ret = NICEVCAT(mSend, mRecv);
+            int ret = NICEVCATB(mSend, mRecv);
 
             if (ret != 1)
             {
@@ -555,6 +560,7 @@ namespace thepos
                             break;
                         case 8:
                             mNiceResponse.t승인번호 = recvdata.Substring(k, i - k);  // 승인번호
+                            mNiceResponse.t승인번호.Trim();
                             break;
                         case 9:
                             mNiceResponse.t승인일시 = recvdata.Substring(k, i - k);  // 승인일시

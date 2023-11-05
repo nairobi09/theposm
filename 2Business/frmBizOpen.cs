@@ -25,27 +25,26 @@ namespace thepos
 
         private void initialize_font()
         {
-            lblTitle.Font = font12;
+            lblTitle.Font = font10;
 
             lblT11.Font = font10;
-            lblT12.Font = font10;
-            lblT13.Font = font10;
-            lblT14.Font = font10;
-
-            lblT21.Font = font10;
-            lblT22.Font = font10;
-            lblT23.Font = font10;
-            lblT24.Font = font10;
+            lblLastBizCloseDateTitle.Font = font10;
+            lblLastBizDtInputTitle.Font = font10;
+            lblBizCloseUserTitle.Font = font10;
 
             lblLastBizCloseDate.Font = font10;
             lblLastBizDtInput.Font = font10;
             lblBizCloseUser.Font = font10;
 
-            dtpBizDate.Font = font12;
-            tbBizOpenAmount.Font = font12;
-            lblBizOpenUser.Font = font12;
+            lblBizDateTitle.Font = font10;
+            lblBizOpenAmountTitle.Font = font10;
+            lblBizOpenUserTitle.Font = font10;
 
-            btnBizOpenInput.Font = font12;
+            //dtpBizDate.Font = font12;
+            tbBizOpenAmount.Font = font12;
+            lblBizOpenUser.Font = font10;
+
+            btnBizOpenInput.Font = font10;
         }
 
         private void initialize_the()

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmMain;
+using System.Data.SQLite;
 
 
 
@@ -42,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[5];
+        Setup[] listSetup = new Setup[6];
 
 
         bool isAdd = false;
@@ -59,9 +60,10 @@ namespace thepos
 
             setupItem.code = "BillPrinterPort";     setupItem.name = "영수증프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[0] = setupItem;
             setupItem.code = "TicketPrinterPort";   setupItem.name = "티켓바코드프린터포트";setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
-            setupItem.code = "ScannerPort";         setupItem.name = "스캐너포트";          setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
-            setupItem.code = "PosType";             setupItem.name = "기기유형";            setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
-            setupItem.code = "CustomerMonitor";     setupItem.name = "고객용모니터사용";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
+            setupItem.code = "OrderPrinterPort";    setupItem.name = "주문서프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
+            setupItem.code = "ScannerPort";         setupItem.name = "스캐너포트";          setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
+            setupItem.code = "PosType";             setupItem.name = "기기유형";            setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
+            setupItem.code = "CustomerMonitor";     setupItem.name = "고객용모니터사용";    setupItem.value = "";   setupItem.memo = "";    listSetup[5] = setupItem;
 
             reload_setup_pos();
         }
@@ -110,28 +112,63 @@ namespace thepos
         private void reload_setup_pos()
         {
 
-            String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
-
-            if (mRequestGet(sUrl))
+            if (mTheMode == "Local")
             {
-                if (mObj["resultCode"].ToString() == "200")
+                lblLocalMode.Visible = true;
+
+
+                String sql = "SELECT * FROM setupPos";
+                SQLiteDataReader dr = sql_select_local_db(sql);
+                while (dr.Read())
                 {
-                    String data = mObj["setupPos"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
+                    for (int j = 0; j < listSetup.Length; j++)
                     {
-                        for (int j = 0; j < listSetup.Length; j++)
+                        if (listSetup[j].code == dr["setupCode"].ToString())
                         {
-                            if (listSetup[j].code == arr[i]["setupCode"].ToString())
-                            {
-                                listSetup[j].value = arr[i]["setupValue"].ToString();
-                            }
+                            listSetup[j].value = dr["setupValue"].ToString();
                         }
-
                     }
                 }
+                dr.Close();
             }
+            else
+            {
+                lblLocalMode.Visible = false;
+
+
+                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["setupPos"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            for (int j = 0; j < listSetup.Length; j++)
+                            {
+                                if (listSetup[j].code == arr[i]["setupCode"].ToString())
+                                {
+                                    listSetup[j].value = arr[i]["setupValue"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("설정정보 오류. setupPos\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
 
 
             lvwList.Items.Clear();
@@ -206,47 +243,100 @@ namespace thepos
         {
             if (isAdd == false) return;
 
-            //
-            for (int i = 0; i < lvwList.Items.Count; i++)
-            {
-                if (lvwList.Items[i].SubItems[2].Text != "")
-                {
-                    Dictionary<string, string> parameters = new Dictionary<string, string>();
-                    parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mPosNo;
-                    parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
-                    parameters["setupName"] = lvwList.Items[i].Text;
-                    parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
-                    parameters["memo"] = "";
 
-                    if (mRequestPost("setupPos", parameters))
+            if (mTheMode == "Local")
+            {
+                DialogResult ret = MessageBox.Show("로컬사용모드. \r\n로컬DB에만 저장됩니다.", "thepos", MessageBoxButtons.OKCancel);
+
+                if (ret == DialogResult.OK)
+                {
+                    int result = sql_excute_local_db("DELETE FROM setupPos");
+
+
+                    for (int i = 0; i < lvwList.Items.Count; i++)
                     {
-                        if (mObj["resultCode"].ToString() == "200")
+                        String t_value = "";
+
+                        if (lvwList.Items[i].SubItems[2].Text != "")
                         {
-                            
+                            t_value = lvwList.Items[i].SubItems[2].Text;
                         }
                         else
                         {
-                            MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                            return;
+                            t_value = lvwList.Items[i].SubItems[1].Text;
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
-                        return;
+
+                        
+                        String sql = "INSERT INTO setupPos (siteId, posNo, setupCode, setupName, setupValue, memo) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + lvwList.Items[i].Tag.ToString() + "','" + lvwList.Items[i].Text + "','" + t_value + "','')";
+                        result = sql_excute_local_db(sql);
+
+
+                        //
+                        if (lvwList.Items[i].Tag.ToString() == "mBillPrinterPort") mBillPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "mTicketPrinterPort") mTicketPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "mOrderPrinterPort") mOrderPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "mScannerPort") mScannerPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "mPosType") mPosType = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "mCustomerMonitor") mCustomerMonitor = t_value;
+
                     }
                 }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                //
+                for (int i = 0; i < lvwList.Items.Count; i++)
+                {
+                    if (lvwList.Items[i].SubItems[2].Text != "")
+                    {
+                        Dictionary<string, string> parameters = new Dictionary<string, string>();
+                        parameters["siteId"] = mSiteId;
+                        parameters["posNo"] = mPosNo;
+                        parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
+                        parameters["setupName"] = lvwList.Items[i].Text;
+                        parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
+                        parameters["memo"] = "";
+
+                        if (mRequestPost("setupPos", parameters))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+                            
+                            }
+                            else
+                            {
+                                MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                            return;
+                        }
+
+
+                        // 바뀐거만 여기로 온다.
+                        if (lvwList.Items[i].Tag.ToString() == "mBillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "mTicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "mOrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "mScannerPort") mScannerPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "mPosType") mPosType = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "mCustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[2].Text;
+
+                    }
+                }
+
+                //
+                MessageBox.Show("포스정보 저장완료.", "thepos");
             }
 
 
-            // 내설정을 변경하면 자체 저장하고, version_basic_db 는 상관없음.
-            //? 
-            // set_local_pos_change();
-
-
-            //
-            MessageBox.Show("포스정보 저장완료.", "thepos");
             isAdd = false;
         }
 

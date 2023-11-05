@@ -151,10 +151,10 @@
             // 
             this.tbIssuedMethodNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbIssuedMethodNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbIssuedMethodNo.Location = new System.Drawing.Point(257, 22);
+            this.tbIssuedMethodNo.Location = new System.Drawing.Point(251, 22);
             this.tbIssuedMethodNo.MaxLength = 20;
             this.tbIssuedMethodNo.Name = "tbIssuedMethodNo";
-            this.tbIssuedMethodNo.Size = new System.Drawing.Size(161, 23);
+            this.tbIssuedMethodNo.Size = new System.Drawing.Size(181, 23);
             this.tbIssuedMethodNo.TabIndex = 49;
             // 
             // groupBox3
@@ -222,7 +222,7 @@
             // lbl6
             // 
             this.lbl6.AutoSize = true;
-            this.lbl6.Location = new System.Drawing.Point(43, 235);
+            this.lbl6.Location = new System.Drawing.Point(37, 235);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(63, 14);
             this.lbl6.TabIndex = 45;
@@ -233,9 +233,9 @@
             this.btnCashRecept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashRecept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
-            this.btnCashRecept.Location = new System.Drawing.Point(314, 234);
+            this.btnCashRecept.Location = new System.Drawing.Point(307, 235);
             this.btnCashRecept.Name = "btnCashRecept";
-            this.btnCashRecept.Size = new System.Drawing.Size(133, 63);
+            this.btnCashRecept.Size = new System.Drawing.Size(140, 50);
             this.btnCashRecept.TabIndex = 44;
             this.btnCashRecept.Text = "승인요청";
             this.btnCashRecept.UseVisualStyleBackColor = false;
@@ -268,7 +268,7 @@
             this.btnReset.ForeColor = System.Drawing.Color.White;
             this.btnReset.Location = new System.Drawing.Point(228, 149);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(59, 46);
+            this.btnReset.Size = new System.Drawing.Size(59, 50);
             this.btnReset.TabIndex = 51;
             this.btnReset.Text = "초기화";
             this.btnReset.UseVisualStyleBackColor = false;
@@ -277,10 +277,11 @@
             // btnCashSimple
             // 
             this.btnCashSimple.BackColor = System.Drawing.Color.White;
-            this.btnCashSimple.ForeColor = System.Drawing.Color.Black;
-            this.btnCashSimple.Location = new System.Drawing.Point(311, 131);
+            this.btnCashSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCashSimple.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnCashSimple.Location = new System.Drawing.Point(307, 149);
             this.btnCashSimple.Name = "btnCashSimple";
-            this.btnCashSimple.Size = new System.Drawing.Size(136, 64);
+            this.btnCashSimple.Size = new System.Drawing.Size(140, 50);
             this.btnCashSimple.TabIndex = 44;
             this.btnCashSimple.Text = "단순현금";
             this.btnCashSimple.UseVisualStyleBackColor = false;
@@ -327,7 +328,7 @@
             // 
             this.btn1t.Location = new System.Drawing.Point(16, 149);
             this.btn1t.Name = "btn1t";
-            this.btn1t.Size = new System.Drawing.Size(50, 46);
+            this.btn1t.Size = new System.Drawing.Size(50, 50);
             this.btn1t.TabIndex = 44;
             this.btn1t.Text = "천";
             this.btn1t.UseVisualStyleBackColor = true;
@@ -346,7 +347,7 @@
             // 
             this.btn5t.Location = new System.Drawing.Point(69, 149);
             this.btn5t.Name = "btn5t";
-            this.btn5t.Size = new System.Drawing.Size(50, 46);
+            this.btn5t.Size = new System.Drawing.Size(50, 50);
             this.btn5t.TabIndex = 44;
             this.btn5t.Text = "오천";
             this.btn5t.UseVisualStyleBackColor = true;
@@ -374,7 +375,7 @@
             // 
             this.btn10t.Location = new System.Drawing.Point(122, 149);
             this.btn10t.Name = "btn10t";
-            this.btn10t.Size = new System.Drawing.Size(50, 46);
+            this.btn10t.Size = new System.Drawing.Size(50, 50);
             this.btn10t.TabIndex = 44;
             this.btn10t.Text = "만";
             this.btn10t.UseVisualStyleBackColor = true;
@@ -384,7 +385,7 @@
             // 
             this.btn50t.Location = new System.Drawing.Point(175, 149);
             this.btn50t.Name = "btn50t";
-            this.btn50t.Size = new System.Drawing.Size(50, 46);
+            this.btn50t.Size = new System.Drawing.Size(50, 50);
             this.btn50t.TabIndex = 44;
             this.btn50t.Text = "오만";
             this.btn50t.UseVisualStyleBackColor = true;

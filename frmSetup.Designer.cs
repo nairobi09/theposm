@@ -31,16 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetup));
             this.panelSetup = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lblReportTitle = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.btnSetupPos = new System.Windows.Forms.Button();
-            this.btnSetupLocalMode = new System.Windows.Forms.Button();
-            this.btnSetupDbSync = new System.Windows.Forms.Button();
+            this.btnLocalDbUp = new System.Windows.Forms.Button();
+            this.btnBasicDbDown = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelTitleConsole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.panelTitleWhite.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,25 +54,12 @@
             // panelTitleConsole
             // 
             this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelTitleConsole.Controls.Add(this.picLogo);
             this.panelTitleConsole.Controls.Add(this.btnClose);
-            this.panelTitleConsole.Controls.Add(this.lblReportTitle);
+            this.panelTitleConsole.Controls.Add(this.lblTitle);
             this.panelTitleConsole.Location = new System.Drawing.Point(0, 0);
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
-            this.picLogo.Location = new System.Drawing.Point(7, 4);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
-            this.picLogo.Size = new System.Drawing.Size(80, 35);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 39;
-            this.picLogo.TabStop = false;
             // 
             // btnClose
             // 
@@ -92,16 +77,16 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblReportTitle
+            // lblTitle
             // 
-            this.lblReportTitle.AutoSize = true;
-            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblReportTitle.ForeColor = System.Drawing.Color.White;
-            this.lblReportTitle.Location = new System.Drawing.Point(456, 11);
-            this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(49, 19);
-            this.lblReportTitle.TabIndex = 26;
-            this.lblReportTitle.Text = "설정";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(456, 11);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(49, 19);
+            this.lblTitle.TabIndex = 26;
+            this.lblTitle.Text = "설정";
             // 
             // panelTitleWhite
             // 
@@ -128,47 +113,47 @@
             this.btnSetupPos.Size = new System.Drawing.Size(150, 80);
             this.btnSetupPos.TabIndex = 27;
             this.btnSetupPos.TabStop = false;
-            this.btnSetupPos.Text = "포스기기";
+            this.btnSetupPos.Text = "내기기설정";
             this.btnSetupPos.UseVisualStyleBackColor = false;
             this.btnSetupPos.Click += new System.EventHandler(this.btnSetupPos_Click);
             // 
-            // btnSetupLocalMode
+            // btnLocalDbUp
             // 
-            this.btnSetupLocalMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSetupLocalMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetupLocalMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSetupLocalMode.ForeColor = System.Drawing.Color.White;
-            this.btnSetupLocalMode.Location = new System.Drawing.Point(0, 168);
-            this.btnSetupLocalMode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSetupLocalMode.Name = "btnSetupLocalMode";
-            this.btnSetupLocalMode.Size = new System.Drawing.Size(150, 80);
-            this.btnSetupLocalMode.TabIndex = 27;
-            this.btnSetupLocalMode.TabStop = false;
-            this.btnSetupLocalMode.Text = "긴급사용\r\n대이터";
-            this.btnSetupLocalMode.UseVisualStyleBackColor = false;
-            this.btnSetupLocalMode.Click += new System.EventHandler(this.btnSetupLocalMode_Click);
+            this.btnLocalDbUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnLocalDbUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLocalDbUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLocalDbUp.ForeColor = System.Drawing.Color.White;
+            this.btnLocalDbUp.Location = new System.Drawing.Point(0, 168);
+            this.btnLocalDbUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLocalDbUp.Name = "btnLocalDbUp";
+            this.btnLocalDbUp.Size = new System.Drawing.Size(150, 80);
+            this.btnLocalDbUp.TabIndex = 27;
+            this.btnLocalDbUp.TabStop = false;
+            this.btnLocalDbUp.Text = "긴급사용\r\n대이터";
+            this.btnLocalDbUp.UseVisualStyleBackColor = false;
+            this.btnLocalDbUp.Click += new System.EventHandler(this.btnSetupLocalMode_Click);
             // 
-            // btnSetupDbSync
+            // btnBasicDbDown
             // 
-            this.btnSetupDbSync.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSetupDbSync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetupDbSync.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSetupDbSync.ForeColor = System.Drawing.Color.White;
-            this.btnSetupDbSync.Location = new System.Drawing.Point(0, 84);
-            this.btnSetupDbSync.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSetupDbSync.Name = "btnSetupDbSync";
-            this.btnSetupDbSync.Size = new System.Drawing.Size(150, 80);
-            this.btnSetupDbSync.TabIndex = 27;
-            this.btnSetupDbSync.TabStop = false;
-            this.btnSetupDbSync.Text = "기초원장";
-            this.btnSetupDbSync.UseVisualStyleBackColor = false;
-            this.btnSetupDbSync.Click += new System.EventHandler(this.btnSetupDbSync_Click);
+            this.btnBasicDbDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBasicDbDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBasicDbDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBasicDbDown.ForeColor = System.Drawing.Color.White;
+            this.btnBasicDbDown.Location = new System.Drawing.Point(0, 84);
+            this.btnBasicDbDown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBasicDbDown.Name = "btnBasicDbDown";
+            this.btnBasicDbDown.Size = new System.Drawing.Size(150, 80);
+            this.btnBasicDbDown.TabIndex = 27;
+            this.btnBasicDbDown.TabStop = false;
+            this.btnBasicDbDown.Text = "기초원장";
+            this.btnBasicDbDown.UseVisualStyleBackColor = false;
+            this.btnBasicDbDown.Click += new System.EventHandler(this.btnSetupDbSync_Click);
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnSetupLocalMode);
-            this.panel1.Controls.Add(this.btnSetupDbSync);
+            this.panel1.Controls.Add(this.btnLocalDbUp);
+            this.panel1.Controls.Add(this.btnBasicDbDown);
             this.panel1.Controls.Add(this.btnSetupPos);
             this.panel1.Location = new System.Drawing.Point(864, 61);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -192,7 +177,6 @@
             this.Text = "frmSetup";
             this.panelTitleConsole.ResumeLayout(false);
             this.panelTitleConsole.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.panelTitleWhite.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -202,14 +186,13 @@
         #endregion
 
         private System.Windows.Forms.Panel panelSetup;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Label lblReportTitle;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnSetupPos;
-        private System.Windows.Forms.Button btnSetupLocalMode;
-        private System.Windows.Forms.Button btnSetupDbSync;
+        private System.Windows.Forms.Button btnLocalDbUp;
+        private System.Windows.Forms.Button btnBasicDbDown;
         private System.Windows.Forms.Panel panel1;
     }
 }

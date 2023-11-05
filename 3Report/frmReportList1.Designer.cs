@@ -34,13 +34,13 @@
             this.lblYYYYMM = new System.Windows.Forms.Label();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.lvwList = new System.Windows.Forms.ListView();
+            this.biz_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.c1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.c2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.c3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.c4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tvwList = new System.Windows.Forms.TreeView();
             this.lblListPath = new System.Windows.Forms.Label();
-            this.c4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.c3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.c2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.c1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.biz_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnNext
@@ -75,10 +75,11 @@
             // 
             // btnView
             // 
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.Location = new System.Drawing.Point(484, 27);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(80, 27);
+            this.btnView.Size = new System.Drawing.Size(100, 25);
             this.btnView.TabIndex = 80;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = true;
@@ -127,6 +128,35 @@
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
             // 
+            // biz_dt
+            // 
+            this.biz_dt.Text = "일자";
+            this.biz_dt.Width = 90;
+            // 
+            // c1
+            // 
+            this.c1.Text = "수량";
+            this.c1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.c1.Width = 90;
+            // 
+            // c2
+            // 
+            this.c2.Text = "상품금액";
+            this.c2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.c2.Width = 90;
+            // 
+            // c3
+            // 
+            this.c3.Text = "할인금액";
+            this.c3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.c3.Width = 90;
+            // 
+            // c4
+            // 
+            this.c4.Text = "매출금액";
+            this.c4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.c4.Width = 90;
+            // 
             // tvwList
             // 
             this.tvwList.Location = new System.Drawing.Point(20, 102);
@@ -143,35 +173,6 @@
             this.lblListPath.Size = new System.Drawing.Size(38, 12);
             this.lblListPath.TabIndex = 91;
             this.lblListPath.Text = "label1";
-            // 
-            // c4
-            // 
-            this.c4.Text = "매출금액";
-            this.c4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.c4.Width = 90;
-            // 
-            // c3
-            // 
-            this.c3.Text = "할인금액";
-            this.c3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.c3.Width = 90;
-            // 
-            // c2
-            // 
-            this.c2.Text = "상품금액";
-            this.c2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.c2.Width = 90;
-            // 
-            // c1
-            // 
-            this.c1.Text = "수량";
-            this.c1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.c1.Width = 90;
-            // 
-            // biz_dt
-            // 
-            this.biz_dt.Text = "일자";
-            this.biz_dt.Width = 90;
             // 
             // frmReportList1
             // 

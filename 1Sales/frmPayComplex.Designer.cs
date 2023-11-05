@@ -83,7 +83,7 @@
             this.tbReqAmount.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbReqAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbReqAmount.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbReqAmount.Location = new System.Drawing.Point(130, 221);
+            this.tbReqAmount.Location = new System.Drawing.Point(130, 201);
             this.tbReqAmount.Margin = new System.Windows.Forms.Padding(2);
             this.tbReqAmount.Name = "tbReqAmount";
             this.tbReqAmount.Size = new System.Drawing.Size(141, 26);
@@ -95,9 +95,9 @@
             this.btnRequestEasy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnRequestEasy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestEasy.ForeColor = System.Drawing.Color.White;
-            this.btnRequestEasy.Location = new System.Drawing.Point(358, 279);
+            this.btnRequestEasy.Location = new System.Drawing.Point(366, 276);
             this.btnRequestEasy.Name = "btnRequestEasy";
-            this.btnRequestEasy.Size = new System.Drawing.Size(108, 57);
+            this.btnRequestEasy.Size = new System.Drawing.Size(120, 50);
             this.btnRequestEasy.TabIndex = 54;
             this.btnRequestEasy.Text = "간편결제";
             this.btnRequestEasy.UseVisualStyleBackColor = false;
@@ -108,9 +108,9 @@
             this.btnRequestCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnRequestCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestCard.ForeColor = System.Drawing.Color.White;
-            this.btnRequestCard.Location = new System.Drawing.Point(244, 279);
+            this.btnRequestCard.Location = new System.Drawing.Point(240, 276);
             this.btnRequestCard.Name = "btnRequestCard";
-            this.btnRequestCard.Size = new System.Drawing.Size(108, 57);
+            this.btnRequestCard.Size = new System.Drawing.Size(120, 50);
             this.btnRequestCard.TabIndex = 54;
             this.btnRequestCard.Text = "카드";
             this.btnRequestCard.UseVisualStyleBackColor = false;
@@ -121,9 +121,9 @@
             this.btnRequestCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnRequestCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestCash.ForeColor = System.Drawing.Color.White;
-            this.btnRequestCash.Location = new System.Drawing.Point(130, 279);
+            this.btnRequestCash.Location = new System.Drawing.Point(113, 276);
             this.btnRequestCash.Name = "btnRequestCash";
-            this.btnRequestCash.Size = new System.Drawing.Size(108, 57);
+            this.btnRequestCash.Size = new System.Drawing.Size(120, 50);
             this.btnRequestCash.TabIndex = 54;
             this.btnRequestCash.Text = "현금";
             this.btnRequestCash.UseVisualStyleBackColor = false;
@@ -161,12 +161,12 @@
             // pay_dt
             // 
             this.pay_dt.Text = "결제시간";
-            this.pay_dt.Width = 90;
+            this.pay_dt.Width = 87;
             // 
             // pay_type
             // 
             this.pay_type.Text = "결제";
-            this.pay_type.Width = 80;
+            this.pay_type.Width = 71;
             // 
             // tran
             // 
@@ -240,7 +240,7 @@
             // lblT4
             // 
             this.lblT4.AutoSize = true;
-            this.lblT4.Location = new System.Drawing.Point(36, 226);
+            this.lblT4.Location = new System.Drawing.Point(36, 206);
             this.lblT4.Name = "lblT4";
             this.lblT4.Size = new System.Drawing.Size(91, 14);
             this.lblT4.TabIndex = 50;

@@ -30,24 +30,24 @@ namespace thepos
 
         private void initialize_font()
         {
-            lblTitle.Font = font12;
+            lblTitle.Font = font10;
             btnClose.Font = font12;
 
             lblBizDtTitle.Font = font9;
             dtBizDt.Font = font10;
 
-            lblPosNoTitle.Font = font10;
+            lblPosNoTitle.Font = font9;
             cbPosNo.Font = font10;
 
             lblTicketNoTitle.Font = font9;
-            tbTicketNo.Font = font10bold;
+            tbTicketNo.Font = font10;
 
 
             btnView.Font = font10;
             lvwFlow.Font = font10;
 
-
-            tbChargeAmt.Font = font14;
+            lblChargeAmtTitle.Font = font10;
+            tbChargeAmt.Font = font12;
             btnCharge.Font = font10;
             btn1t.Font = font10;
             btn5t.Font = font10;

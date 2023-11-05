@@ -88,6 +88,8 @@ namespace thepos._1Sales
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
+
+                        lvItem.Tag = arr[i]["dcrCode"].ToString();
                         lvItem.Text = arr[i]["sortNo"].ToString();
                         lvItem.SubItems.Add(arr[i]["dcrName"].ToString());
 
@@ -148,6 +150,7 @@ namespace thepos._1Sales
 
             ListViewItem lvItem = new ListViewItem();
             lvItem.Text = "";
+            lvItem.Tag = get_new_code();
             lvItem.SubItems.Add(tbName.Text);
 
             String dcr_des = "";
@@ -279,6 +282,7 @@ namespace thepos._1Sales
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
                 parameters["sortNo"] = lvwList.Items[i].Text;
+                parameters["dcrCode"] = lvwList.Items[i].Tag.ToString();
                 parameters["dcrName"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(name)].Text;
                 parameters["dcrDes"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(des1)].Text;
                 parameters["dcrType"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(type1)].Text;
@@ -333,7 +337,6 @@ namespace thepos._1Sales
 
             resort_listview_no();
 
-
         }
 
         private void btnDn_Click(object sender, EventArgs e)
@@ -356,5 +359,23 @@ namespace thepos._1Sales
 
             resort_listview_no();
         }
+
+        private String get_new_code()
+        {
+            int new_no = 1000;
+
+            for (int i = 0; i < lvwList.Items.Count; i++)
+            {
+                int tag_no = convert_number(lvwList.Items[i].Tag.ToString());
+
+                if (new_no < tag_no)
+                {
+                    new_no = tag_no;
+                }
+            }
+
+            return (new_no + 1).ToString();
+        }
+
     }
 }

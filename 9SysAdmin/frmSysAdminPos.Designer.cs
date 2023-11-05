@@ -66,10 +66,10 @@
             // 
             this.tbSiteId.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteId.ForeColor = System.Drawing.Color.Black;
-            this.tbSiteId.Location = new System.Drawing.Point(285, 170);
+            this.tbSiteId.Location = new System.Drawing.Point(285, 171);
             this.tbSiteId.MaxLength = 4;
             this.tbSiteId.Name = "tbSiteId";
-            this.tbSiteId.Size = new System.Drawing.Size(127, 26);
+            this.tbSiteId.Size = new System.Drawing.Size(140, 26);
             this.tbSiteId.TabIndex = 0;
             this.tbSiteId.Click += new System.EventHandler(this.tbSiteId_Click);
             // 
@@ -77,10 +77,10 @@
             // 
             this.tbPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPosNo.ForeColor = System.Drawing.Color.Black;
-            this.tbPosNo.Location = new System.Drawing.Point(285, 208);
+            this.tbPosNo.Location = new System.Drawing.Point(285, 209);
             this.tbPosNo.MaxLength = 2;
             this.tbPosNo.Name = "tbPosNo";
-            this.tbPosNo.Size = new System.Drawing.Size(127, 26);
+            this.tbPosNo.Size = new System.Drawing.Size(140, 26);
             this.tbPosNo.TabIndex = 1;
             this.tbPosNo.Click += new System.EventHandler(this.tbPosNo_Click);
             // 
@@ -121,9 +121,9 @@
             // 
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnEnter.Location = new System.Drawing.Point(285, 327);
+            this.btnEnter.Location = new System.Drawing.Point(285, 317);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(127, 40);
+            this.btnEnter.Size = new System.Drawing.Size(140, 50);
             this.btnEnter.TabIndex = 34;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "등록신청";
@@ -144,7 +144,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(456, 160);
+            this.panelNumpad.Location = new System.Drawing.Point(489, 160);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);

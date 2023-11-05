@@ -42,9 +42,9 @@
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnStop.ForeColor = System.Drawing.Color.Red;
-            this.btnStop.Location = new System.Drawing.Point(394, 408);
+            this.btnStop.Location = new System.Drawing.Point(404, 408);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(100, 40);
+            this.btnStop.Size = new System.Drawing.Size(100, 50);
             this.btnStop.TabIndex = 26;
             this.btnStop.TabStop = false;
             this.btnStop.Text = "정지";
@@ -58,7 +58,7 @@
             this.btnEnter.ForeColor = System.Drawing.Color.Red;
             this.btnEnter.Location = new System.Drawing.Point(258, 408);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(130, 40);
+            this.btnEnter.Size = new System.Drawing.Size(140, 50);
             this.btnEnter.TabIndex = 25;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "인증등록";

@@ -74,9 +74,9 @@
             this.btnTicketReact.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTicketReact.ForeColor = System.Drawing.Color.White;
-            this.btnTicketReact.Location = new System.Drawing.Point(368, 625);
+            this.btnTicketReact.Location = new System.Drawing.Point(362, 626);
             this.btnTicketReact.Name = "btnTicketReact";
-            this.btnTicketReact.Size = new System.Drawing.Size(134, 48);
+            this.btnTicketReact.Size = new System.Drawing.Size(140, 50);
             this.btnTicketReact.TabIndex = 78;
             this.btnTicketReact.Text = "띠지출력";
             this.btnTicketReact.UseVisualStyleBackColor = false;
@@ -107,9 +107,9 @@
             this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(382, 13);
+            this.btnView.Location = new System.Drawing.Point(365, 13);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(85, 39);
+            this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 72;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;

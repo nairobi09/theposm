@@ -168,9 +168,9 @@
             // 
             this.cbGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(7, 79);
+            this.cbGroup.Location = new System.Drawing.Point(6, 79);
             this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(96, 21);
+            this.cbGroup.Size = new System.Drawing.Size(100, 21);
             this.cbGroup.TabIndex = 61;
             // 
             // lblTitle
@@ -308,9 +308,9 @@
             // 
             this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Location = new System.Drawing.Point(8, 32);
+            this.cbPosNo.Location = new System.Drawing.Point(6, 32);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(95, 21);
+            this.cbPosNo.Size = new System.Drawing.Size(100, 21);
             this.cbPosNo.TabIndex = 82;
             this.cbPosNo.SelectedIndexChanged += new System.EventHandler(this.comboPosNo_SelectedIndexChanged);
             // 
@@ -347,9 +347,9 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(7, 142);
+            this.btnDelete.Location = new System.Drawing.Point(6, 142);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(96, 30);
+            this.btnDelete.Size = new System.Drawing.Size(100, 30);
             this.btnDelete.TabIndex = 88;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -359,9 +359,9 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(8, 96);
+            this.btnUpdate.Location = new System.Drawing.Point(7, 96);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(96, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(100, 40);
             this.btnUpdate.TabIndex = 89;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -373,7 +373,7 @@
             this.btnLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLink.Location = new System.Drawing.Point(755, 454);
             this.btnLink.Name = "btnLink";
-            this.btnLink.Size = new System.Drawing.Size(96, 40);
+            this.btnLink.Size = new System.Drawing.Size(100, 40);
             this.btnLink.TabIndex = 90;
             this.btnLink.Text = "상품연결";
             this.btnLink.UseVisualStyleBackColor = true;
@@ -414,7 +414,7 @@
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnApply.Location = new System.Drawing.Point(755, 399);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(96, 40);
+            this.btnApply.Size = new System.Drawing.Size(100, 40);
             this.btnApply.TabIndex = 95;
             this.btnApply.Text = "적용보기";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -458,9 +458,9 @@
             // 
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.Location = new System.Drawing.Point(8, 112);
+            this.btnView.Location = new System.Drawing.Point(6, 112);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(96, 40);
+            this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 99;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = true;
@@ -484,9 +484,9 @@
             // 
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCopy.Location = new System.Drawing.Point(10, 114);
+            this.btnCopy.Location = new System.Drawing.Point(6, 114);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(96, 30);
+            this.btnCopy.Size = new System.Drawing.Size(100, 30);
             this.btnCopy.TabIndex = 99;
             this.btnCopy.Text = "그룹복사";
             this.btnCopy.UseVisualStyleBackColor = true;
@@ -496,9 +496,9 @@
             // 
             this.cbSourceGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbSourceGroup.FormattingEnabled = true;
-            this.cbSourceGroup.Location = new System.Drawing.Point(10, 82);
+            this.cbSourceGroup.Location = new System.Drawing.Point(6, 82);
             this.cbSourceGroup.Name = "cbSourceGroup";
-            this.cbSourceGroup.Size = new System.Drawing.Size(94, 21);
+            this.cbSourceGroup.Size = new System.Drawing.Size(100, 21);
             this.cbSourceGroup.TabIndex = 61;
             // 
             // lblCopyGroupTitle
@@ -515,9 +515,9 @@
             // 
             this.cbSourcePosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbSourcePosNo.FormattingEnabled = true;
-            this.cbSourcePosNo.Location = new System.Drawing.Point(8, 36);
+            this.cbSourcePosNo.Location = new System.Drawing.Point(6, 36);
             this.cbSourcePosNo.Name = "cbSourcePosNo";
-            this.cbSourcePosNo.Size = new System.Drawing.Size(96, 21);
+            this.cbSourcePosNo.Size = new System.Drawing.Size(100, 21);
             this.cbSourcePosNo.TabIndex = 82;
             this.cbSourcePosNo.SelectedIndexChanged += new System.EventHandler(this.cbSourcePosNo_SelectedIndexChanged);
             // 

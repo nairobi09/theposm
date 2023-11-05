@@ -70,9 +70,9 @@
             // tbTicketNo
             // 
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicketNo.Location = new System.Drawing.Point(121, 38);
+            this.tbTicketNo.Location = new System.Drawing.Point(106, 40);
             this.tbTicketNo.Name = "tbTicketNo";
-            this.tbTicketNo.Size = new System.Drawing.Size(220, 23);
+            this.tbTicketNo.Size = new System.Drawing.Size(341, 23);
             this.tbTicketNo.TabIndex = 0;
             // 
             // btnRequestAuth
@@ -80,9 +80,9 @@
             this.btnRequestAuth.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnRequestAuth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestAuth.ForeColor = System.Drawing.Color.White;
-            this.btnRequestAuth.Location = new System.Drawing.Point(273, 79);
+            this.btnRequestAuth.Location = new System.Drawing.Point(307, 97);
             this.btnRequestAuth.Name = "btnRequestAuth";
-            this.btnRequestAuth.Size = new System.Drawing.Size(102, 54);
+            this.btnRequestAuth.Size = new System.Drawing.Size(140, 50);
             this.btnRequestAuth.TabIndex = 58;
             this.btnRequestAuth.Text = "승인요청";
             this.btnRequestAuth.UseVisualStyleBackColor = false;
@@ -91,7 +91,7 @@
             // lblTicketNoTitle
             // 
             this.lblTicketNoTitle.AutoSize = true;
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(28, 43);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(37, 44);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTicketNoTitle.TabIndex = 48;
@@ -100,7 +100,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(144, 118);
+            this.lblNetAmount.Location = new System.Drawing.Point(129, 118);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
@@ -113,7 +113,7 @@
             // lblNetAmountTitle
             // 
             this.lblNetAmountTitle.AutoSize = true;
-            this.lblNetAmountTitle.Location = new System.Drawing.Point(50, 128);
+            this.lblNetAmountTitle.Location = new System.Drawing.Point(35, 128);
             this.lblNetAmountTitle.Name = "lblNetAmountTitle";
             this.lblNetAmountTitle.Size = new System.Drawing.Size(91, 14);
             this.lblNetAmountTitle.TabIndex = 48;

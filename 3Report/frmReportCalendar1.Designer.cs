@@ -2280,10 +2280,11 @@
             // 
             // btnView
             // 
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.Location = new System.Drawing.Point(672, 26);
+            this.btnView.Location = new System.Drawing.Point(669, 27);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(80, 27);
+            this.btnView.Size = new System.Drawing.Size(100, 25);
             this.btnView.TabIndex = 4;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = true;

@@ -20,7 +20,35 @@ namespace thepos
         public frmSetup()
         {
             InitializeComponent();
+
+            initialize_font();
+
+
+            if (mTheMode == "Local")
+            {
+                btnBasicDbDown.Enabled = false;
+                btnLocalDbUp.Enabled = false;
+            }
+            else
+            {
+                btnBasicDbDown.Enabled = true;
+                btnLocalDbUp.Enabled = true;
+            }
+
         }
+
+        private void initialize_font()
+        {
+            lblTitle.Font = font14;
+            btnClose.Font = font12;
+
+            btnSetupPos.Font = font10;
+            btnBasicDbDown.Font = font10;
+            btnLocalDbUp.Font = font10;
+
+        }
+
+
 
         private void btnSetupPos_Click(object sender, EventArgs e)
         {

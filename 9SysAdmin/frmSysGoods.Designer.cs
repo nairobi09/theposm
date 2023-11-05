@@ -176,9 +176,9 @@
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(698, 557);
+            this.btnAdd.Location = new System.Drawing.Point(702, 557);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(144, 40);
+            this.btnAdd.Size = new System.Drawing.Size(140, 40);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
@@ -189,9 +189,9 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(698, 603);
+            this.btnUpdate.Location = new System.Drawing.Point(702, 603);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(144, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(140, 40);
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -391,9 +391,9 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(698, 649);
+            this.btnDelete.Location = new System.Drawing.Point(702, 649);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(144, 30);
+            this.btnDelete.Size = new System.Drawing.Size(140, 30);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";

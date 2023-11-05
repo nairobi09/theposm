@@ -48,6 +48,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblLocalMode = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -92,10 +93,10 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnLoad.BackColor = System.Drawing.Color.White;
             this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoad.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLoad.ForeColor = System.Drawing.Color.White;
+            this.btnLoad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLoad.Location = new System.Drawing.Point(666, 181);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLoad.Name = "btnLoad";
@@ -115,7 +116,7 @@
             this.btnSave.Location = new System.Drawing.Point(667, 594);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(138, 40);
+            this.btnSave.Size = new System.Drawing.Size(138, 50);
             this.btnSave.TabIndex = 39;
             this.btnSave.TabStop = false;
             this.btnSave.Text = "설정저장";
@@ -272,14 +273,14 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdd.Location = new System.Drawing.Point(83, 164);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(139, 35);
+            this.btnAdd.Size = new System.Drawing.Size(139, 40);
             this.btnAdd.TabIndex = 46;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "변경";
@@ -291,15 +292,27 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Location = new System.Drawing.Point(25, 34);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(81, 12);
+            this.lblTitle.Size = new System.Drawing.Size(69, 12);
             this.lblTitle.TabIndex = 47;
-            this.lblTitle.Text = "포스기기 설정";
+            this.lblTitle.Text = "내기기 설정";
+            // 
+            // lblLocalMode
+            // 
+            this.lblLocalMode.AutoSize = true;
+            this.lblLocalMode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocalMode.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblLocalMode.Location = new System.Drawing.Point(658, 41);
+            this.lblLocalMode.Name = "lblLocalMode";
+            this.lblLocalMode.Size = new System.Drawing.Size(97, 14);
+            this.lblLocalMode.TabIndex = 48;
+            this.lblLocalMode.Text = "로컬사용모드";
             // 
             // frmSetupPos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(850, 700);
+            this.Controls.Add(this.lblLocalMode);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -342,5 +355,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblLocalMode;
     }
 }

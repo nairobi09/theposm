@@ -88,7 +88,7 @@
             this.btnEnter.ForeColor = System.Drawing.Color.Red;
             this.btnEnter.Location = new System.Drawing.Point(364, 408);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(130, 40);
+            this.btnEnter.Size = new System.Drawing.Size(140, 50);
             this.btnEnter.TabIndex = 31;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "인증등록";

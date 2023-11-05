@@ -28,7 +28,7 @@ using System.Data.SQLite;
 
 "userId": "1111",
 "userPw": "ARyUXzDOLLr8RS85hA8CVpMznEI=",
-"macAddr": "023006617873"
+"macAddr": "D85ED3776002"
 
  
  
@@ -173,6 +173,7 @@ namespace thepos
 
         public struct DCR
         {
+            public string dcr_code;
             public string dcr_name;
             public string dcr_des;
             public string dcr_type;
@@ -252,6 +253,7 @@ namespace thepos
             public String taxfree;
             public String shop_code;
             public int dc_amount;       // 실할인금액
+            public String dcr_code;     // 
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"
             public int dcr_value;       // 할인금액 or 할인율
@@ -427,6 +429,10 @@ namespace thepos
             public String van_code;
 
             public String pay_type2;  // KKP
+
+            public String barcode_no;
+
+
         }
         public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
 
@@ -530,6 +536,7 @@ namespace thepos
         // 포스별 설정
         public static String mBillPrinterPort = "";
         public static String mTicketPrinterPort = "";
+        public static String mOrderPrinterPort = "";
         public static String mScannerPort = "";
         public static String mPosType = ""; // 기종 : POS PC KIOSK
         public static String mCustomerMonitor = "";  // Y N
@@ -581,7 +588,7 @@ namespace thepos
             else if (group == "0100") return "카드";
             else if (group == "0010") return "포인트";
             else if (group == "0001") return "간편";
-            else if (group == "0000") return group;
+            else if (group == "0000") return "";
             else return "복합";
         }
 

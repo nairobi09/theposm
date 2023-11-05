@@ -178,7 +178,7 @@
             this.btnPos.Location = new System.Drawing.Point(7, 11);
             this.btnPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPos.Name = "btnPos";
-            this.btnPos.Size = new System.Drawing.Size(112, 62);
+            this.btnPos.Size = new System.Drawing.Size(112, 54);
             this.btnPos.TabIndex = 0;
             this.btnPos.TabStop = false;
             this.btnPos.Text = "포스기기\r\n등록신청";

@@ -19,6 +19,8 @@ namespace thepos
 
         int netAmount = 0;
 
+
+
         bool isComplex = false;
         int paySeq = 1;
         bool isLast = false;
@@ -86,34 +88,43 @@ namespace thepos
             lblTitle.Font = font12;
             btnClose.Font = font12;
 
-            lblT1.Font = font10;
-            lblT2.Font = font10;
-
+            lblNetAmountTitle.Font = font10;
             lblNetAmount.Font = font12;
-            tbInstall.Font = font12;
 
+            //
+            lblCardNoTitle.Font = font10;
+            tbCardNo.Font = font12;
+            btnKeyInputCardNo.Font = font10;
+
+            lblAuthNoTitle.Font = font10;
+            tbAuthNo.Font = font12;
+            btnKeyInputAuthNo.Font = font10;
+
+            rbCard0.Font = font10;
+            rbCard1.Font = font10;
+            rbCard2.Font = font10;
+            rbCard3.Font = font10;
+            rbCard4.Font = font10;
+            rbCard5.Font = font10;
+            rbCard6.Font = font10;
+            rbCard7.Font = font10;
+            rbCard8.Font = font10;
+
+            btnCardTemp.Font = font10;
+
+            //
+            lblInstallTitle.Font = font10;
+            tbInstall.Font = font10;
             btnKeyInputInstall.Font = font10;
 
             btnInstall00.Font = font10;
             btnInstall03.Font = font10;
             btnInstall06.Font = font10;
             btnInstall12.Font = font10;
-            
-            chkCUP.Font = font12;
+
+            chkCUP.Font = font10;
 
             btnCardRequest.Font = font10;
-
-            lblT3.Font = font10;
-            lblT4.Font = font10;
-
-            tbCardNo.Font = font12;
-            tbAuthNo.Font = font12;
-
-            btnKeyInputCardNo.Font = font10;
-            btnKeyInputAuthNo.Font = font10;
-
-            btnCardTemp.Font = font10;
-
 
         }
 
@@ -401,10 +412,12 @@ namespace thepos
 
             //? 결제시 금액 세팅 - 면세금액 세금 봉사료
 
-            int tAmount = netAmount;
-            int tFreeAmount = 0;
-            int tTaxAmount = 0;
-            int tTax = 0;
+
+
+            int tAmount = netAmount;    // 결제금액
+            int tFreeAmount = 0;        // 면세금액
+            int tTaxAmount = 0;         // 과세금액
+            int tTax = 0;               // 세금
             int tServiceAmt = 0;
             int install = int.Parse(tbInstall.Text);
             PaymentCard mPaymentCard = new PaymentCard();
@@ -578,13 +591,13 @@ namespace thepos
         private bool SavePaymentCard_Local(PaymentCard mPaymentCard)
         {
 
-            String sql = "INSERT INTO paymentCard (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, taxAmount, freeAmount, serviceAmt, tax, install, authNo, cardNo, cardName, isuCode, acqCode, merchantNo, tranSerial, signPath, giftChange, isCancel, vanCode) " +
+            String sql = "INSERT INTO paymentCard (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, taxAmount, freeAmount, serviceAmt, tax, install, authNo, cardNo, cardName, isuCode, acqCode, merchantNo, tranSerial, signPath, giftChange, isCancel, vanCode, send_YN) " +
                 "values ('" + mPaymentCard.site_id + "','" + mPaymentCard.pos_no + "','" + mPaymentCard.biz_dt + "','" + mPaymentCard.the_no + "','" + mPaymentCard.ref_no + "'," + 
                         "'" + mPaymentCard.pay_date + "','" + mPaymentCard.pay_time + "','" + mPaymentCard.pay_type + "','" + mPaymentCard.tran_type + "','" + mPaymentCard.pay_class + "'," +
-                        "'" + mPaymentCard.ticket_no + "'," + mPaymentCard.pay_seq + ",'" + mPaymentCard.tran_date + "'," + mPaymentCard.amount + ",'" + mPaymentCard.tax_amount + "," +
+                        "'" + mPaymentCard.ticket_no + "'," + mPaymentCard.pay_seq + ",'" + mPaymentCard.tran_date + "'," + mPaymentCard.amount + "," + mPaymentCard.tax_amount + "," +
                         "" + mPaymentCard.tfree_amount + "," +  mPaymentCard.service_amount + "," + mPaymentCard.tax + ",'" + mPaymentCard.install + "','" + mPaymentCard.auth_no + "'," +
-                        "'" + mPaymentCard.card_no + "','" + mPaymentCard.card_name + "'," + mPaymentCard.isu_code + "','" + mPaymentCard.acq_code + "','" + mPaymentCard.merchant_no + "'," +
-                        "'" + mPaymentCard.tran_serial + "','" + mPaymentCard.sign_path + "','" + mPaymentCard.gift_change + "','" + mPaymentCard.is_cancel + "','" + mPaymentCard.van_code + "')";
+                        "'" + mPaymentCard.card_no + "','" + mPaymentCard.card_name + "','" + mPaymentCard.isu_code + "','" + mPaymentCard.acq_code + "','" + mPaymentCard.merchant_no + "'," +
+                        "'" + mPaymentCard.tran_serial + "','" + mPaymentCard.sign_path + "','" + mPaymentCard.gift_change + "','" + mPaymentCard.is_cancel + "','" + mPaymentCard.van_code + "','')";
             int ret = sql_excute_local_db(sql);
 
 

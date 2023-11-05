@@ -104,12 +104,12 @@ namespace thepos
 
             display_paymentConsol();
 
-            display_goodsgroup();
+            int default_click_no = display_goodsgroup();
 
 
             if (mGoodsGroup.Length > 0)
             {
-                ClickedGoodsGroup(mGoodsGroup[0].group_code);   //? 디폴트로 설정된 그룹으로 보여주자.-> 수정요망
+                ClickedGoodsGroup(mGoodsGroup[default_click_no].group_code);   //? 디폴트로 설정된 그룹으로 보여주자.-> 수정요망
             }
 
                         
@@ -127,6 +127,8 @@ namespace thepos
 
             if (mTheMode == "Local")
             {
+                lblLocalModeTitle.Visible = true;
+
                 btnFlowCert.Enabled = false;
                 btnFlowCharging.Enabled = false;
                 btnFlowSettlement.Enabled = false;
@@ -136,7 +138,6 @@ namespace thepos
                 for (int i = 0; i < tableLayoutPanelPayControl.Controls.Count; i++)
                 {
                     if (tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsolePoint" |
-                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleComplex" |
                         tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleEasy")
                     {
                         tableLayoutPanelPayControl.Controls[i].Enabled = false;
@@ -145,6 +146,8 @@ namespace thepos
             }
             else
             {
+                lblLocalModeTitle.Visible = false;
+
                 btnFlowCert.Enabled = true;
                 btnFlowCharging.Enabled = true;
                 btnFlowSettlement.Enabled = true;
@@ -154,7 +157,6 @@ namespace thepos
                 for (int i = 0; i < tableLayoutPanelPayControl.Controls.Count; i++)
                 {
                     if (tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsolePoint" |
-                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleComplex" |
                         tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleEasy")
                     {
                         tableLayoutPanelPayControl.Controls[i].Enabled = true;
@@ -167,6 +169,8 @@ namespace thepos
 
         private void initialize_font()
         {
+
+            lblLocalModeTitle.Font = font10;
 
             lblSiteNameTitle.Font = font10;
             lblSiteName.Font = font10;
@@ -319,6 +323,9 @@ namespace thepos
 
             mPbNetworkConn = pbNetworkConn;
 
+
+
+
         }
 
 
@@ -418,8 +425,11 @@ namespace thepos
         }
 
 
-        private void display_goodsgroup()
+        private int display_goodsgroup()
         {
+            int sum_colunm_row = 8;
+            int default_click_no = 0;
+
             tableLayoutPanelGoodsGroup.Controls.Clear();
             tableLayoutPanelGoodsGroup.PerformLayout();
 
@@ -459,7 +469,19 @@ namespace thepos
                 tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, mGoodsGroup[i].rowspan);
 
                 tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
+
+
+                if (sum_colunm_row > mGoodsGroup[i].column + mGoodsGroup[i].row)
+                {
+                    sum_colunm_row = mGoodsGroup[i].column + mGoodsGroup[i].row;
+                    default_click_no = i;
+                }
+
+
             }
+
+            //
+            return default_click_no;
 
         }
 
@@ -671,7 +693,17 @@ namespace thepos
         //
         private void ClickedPayCash()
         {
-            if (mNetAmount == 0) return;
+            if (mLvwOrderItem.Items.Count == 0)
+            {
+                return;
+            }
+
+
+            if (mNetAmount < 0)
+            {
+                SetDisplayAlarm("W", "유효한 결제금액인지 확인요망.");
+                return;
+            }
 
             countup_the_no();
             ConsoleDisable();
@@ -700,7 +732,17 @@ namespace thepos
 
         private void ClickedPayCard()
         {
-            if (mNetAmount == 0) return;
+            if (mLvwOrderItem.Items.Count == 0)
+            {
+                return;
+            }
+
+
+            if (mNetAmount < 0)
+            {
+                SetDisplayAlarm("W", "유효한 결제금액인지 확인요망.");
+                return;
+            }
 
             countup_the_no();
             ConsoleDisable();
@@ -729,6 +771,12 @@ namespace thepos
 
         private void ClickedPayPoint()
         {
+            if (mLvwOrderItem.Items.Count == 0)
+            {
+                return;
+            }
+
+
             // 
             if (mPayClass != "OR")
             {
@@ -755,7 +803,17 @@ namespace thepos
 
         private void ClickedPayComplex()
         {
-            if (mNetAmount == 0) return;
+            if (mLvwOrderItem.Items.Count == 0)
+            {
+                return;
+            }
+
+
+            if (mNetAmount < 0)
+            {
+                SetDisplayAlarm("W", "유효한 결제금액인지 확인요망.");
+                return;
+            }
 
             countup_the_no();
             ConsoleDisable();
@@ -785,7 +843,17 @@ namespace thepos
 
         private void ClickedPayEasy()
         {
-            if (mNetAmount == 0) return;
+            if (mLvwOrderItem.Items.Count == 0)
+            {
+                return;
+            }
+
+
+            if (mNetAmount < 0)
+            {
+                SetDisplayAlarm("W", "유효한 결제금액인지 확인요망.");
+                return;
+            }
 
             countup_the_no();
             ConsoleDisable();
@@ -1065,8 +1133,8 @@ namespace thepos
             return_dc_amount = 0;
 
             //
-            String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel) " +
-                            "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + mLvwOrderItem.Items.Count + ", '')";
+            String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel, send_YN) " +
+                            "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + mLvwOrderItem.Items.Count + ", '', '')";
             sql_excute_local_db(sql);
 
 
@@ -1074,9 +1142,9 @@ namespace thepos
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
                 MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel) " +
+                sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, send_YN) " +
                             "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItem.code + "','" + memOrderItem.name + "'," + memOrderItem.cnt + "," + memOrderItem.amt + "," +
-                            "'" + memOrderItem.shop_code + "','" + memOrderItem.ticket + "','" + memOrderItem.taxfree + "'," + memOrderItem.dc_amount + ",'" + memOrderItem.dcr_type + "','" + memOrderItem.dcr_des + "'," + memOrderItem.dcr_value + ",'" + mPayClass + "','" + ticket_no + "','')";
+                            "'" + memOrderItem.shop_code + "','" + memOrderItem.ticket + "','" + memOrderItem.taxfree + "'," + memOrderItem.dc_amount + ",'" + memOrderItem.dcr_type + "','" + memOrderItem.dcr_des + "'," + memOrderItem.dcr_value + ",'" + mPayClass + "','" + ticket_no + "','', '')";
                 sql_excute_local_db(sql);
 
                 // 이후 payment테이블에 적용하기 위해서..
@@ -1150,6 +1218,7 @@ namespace thepos
                 parameters["payClass"] = mPayClass;  //
                 parameters["ticketNo"] = ticket_no;  //
                 parameters["isCancel"] = "";
+                parameters["shopCode"] = memOrderItem.shop_code;
 
                 // 이후 payment테이블에 적용하기 위해서..
                 return_dc_amount += memOrderItem.dc_amount;
@@ -1191,8 +1260,8 @@ namespace thepos
                 else if (payType == "Easy") amount_easy = amount;
                 else if (payType == "Point") amount_point = amount;
 
-                String sql = "INSERT INTO payment (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, tranType, payClass, billNo, netAmount, amountCash, amountCard, amountEasy, amountPoint, dcAmount, isCancel) " +
-                             "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + get_today_date() + "','" + get_today_time() + "','A','" + mPayClass + "','" + mTheNo.Substring(14, 6) + "'," + amount + "," + amount_cash + "," + amount_card + "," + amount_easy + "," + amount_point + "," + dcAmount + ",'')";
+                String sql = "INSERT INTO payment (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, tranType, payClass, billNo, netAmount, amountCash, amountCard, amountEasy, amountPoint, dcAmount, isCancel, send_YN) " +
+                             "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + get_today_date() + "','" + get_today_time() + "','A','" + mPayClass + "','" + mTheNo.Substring(14, 6) + "'," + amount + "," + amount_cash + "," + amount_card + "," + amount_easy + "," + amount_point + "," + dcAmount + ",'', '')";
                 sql_excute_local_db(sql);
 
             }
@@ -1237,7 +1306,7 @@ namespace thepos
 
 
                 String sql = "UPDATE payment SET netAmount = " + amount_net + ", amountCash = " + amount_cash + ", amountCard = " + amount_card + ", amountEasy = " + amount_easy + ", amountPoint = " + amount_point +
-                            " WHERE theNo=" + mTheNo + " AND tranType = 'A' ";
+                            " WHERE theNo='" + mTheNo + "' AND tranType = 'A' ";
                 int ret = sql_excute_local_db(sql);
 
 
@@ -3102,7 +3171,7 @@ namespace thepos
                 {
                     if (dcr_type == "A")
                     {
-                        tStr = "전체할인";
+                        tStr = dr["itemName"].ToString();
                         strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                         tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3110,7 +3179,7 @@ namespace thepos
                     }
                     else if (dcr_type == "R")
                     {
-                        tStr = "전체할인-" + dcr_value + "%";
+                        tStr = dr["itemName"].ToString() + "-" + dcr_value + "%";
                         strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                         tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3194,7 +3263,7 @@ namespace thepos
                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                 strPrintPayment += "\r\n";
 
-                tStr = "부 가 세 액";
+                tStr = "부가세액";
                 strPrintPayment += tStr + Space(21 - encodelen(tStr));
                 tStr = (t_tax).ToString("N0");
                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
@@ -3486,7 +3555,7 @@ namespace thepos
                         {
                             if (dcr_type == "A")
                             {
-                                tStr = "전체할인";
+                                tStr = arr[i]["itemName"].ToString();
                                 strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                                 tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3494,7 +3563,7 @@ namespace thepos
                             }
                             else if (dcr_type == "R")
                             {
-                                tStr = "전체할인-" + dcr_value + "%";
+                                tStr = arr[i]["itemName"].ToString() + "-" + dcr_value + "%";
                                 strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                                 tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3542,11 +3611,16 @@ namespace thepos
 
                                 strPrintOrder += "\r\n";
                             }
+
+                            // [여기]
                         }
 
+                        
+                        //?  전체할인인 경우 과세가액 계산.. 아래로직을 [여기]로 옮겨야하나??
                         if (arr[i]["taxFree"].ToString() == "Y") t면세가액 += ((cnt * amt) - dc_amt);
                         else t과세가액 += ((cnt * amt) - dc_amt);
 
+                        //
                         t할인금액 += dc_amt;
                     }
                 }
@@ -3586,7 +3660,7 @@ namespace thepos
                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                 strPrintPayment += "\r\n";
 
-                tStr = "부 가 세 액";
+                tStr = "부가세액";
                 strPrintPayment += tStr + Space(21 - encodelen(tStr));
                 tStr = (t_tax).ToString("N0");
                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
@@ -4036,6 +4110,7 @@ namespace thepos
 
         public static void PrintBill(String headerBill, String bodyBill, String trailerBill, String theNo)
         {
+            /*
             try
             {
                 SerialPort port = new SerialPort();
@@ -4057,7 +4132,7 @@ namespace thepos
                 MessageBox.Show("영수증프린터 에러.\r\n" + ex.Message);
                 return;
             }
-
+            */
 
             try
             {

@@ -52,9 +52,10 @@
             // btnOK
             // 
             this.btnOK.BackColor = System.Drawing.SystemColors.Window;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Location = new System.Drawing.Point(250, 36);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(54, 30);
+            this.btnOK.Size = new System.Drawing.Size(100, 30);
             this.btnOK.TabIndex = 1;
             this.btnOK.TabStop = false;
             this.btnOK.Text = "OK";
@@ -63,7 +64,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(310, 36);
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Location = new System.Drawing.Point(354, 36);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(58, 30);
             this.btnCancel.TabIndex = 2;
@@ -83,7 +85,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkOrange;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.tbScanning);
             this.panel1.Controls.Add(this.btnCancel);

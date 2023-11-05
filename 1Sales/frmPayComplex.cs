@@ -126,6 +126,13 @@ namespace thepos
             mPanelHigh.Height = this.Height;
 
 
+
+            if (mTheMode == "Local")
+                btnRequestEasy.Enabled = false;
+            else
+                btnRequestEasy.Enabled = true;
+
+
         }
 
 

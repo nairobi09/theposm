@@ -61,9 +61,9 @@ namespace thepos
 
         private void initialize_font()
         {
-            //fontCollection.AddFontFile("Font\\Pretendard-Regular.ttf");
-            fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
-            //fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
+            //fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
+            fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
+
 
 
             font5 = new Font(fontCollection.Families[0], 5f);
@@ -749,6 +749,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
+                            mDCR[i].dcr_code = arr[i]["dcrCode"].ToString();
                             mDCR[i].dcr_name = arr[i]["dcrName"].ToString();
                             mDCR[i].dcr_des = arr[i]["dcrDes"].ToString();
                             mDCR[i].dcr_type = arr[i]["dcrType"].ToString();
@@ -1053,13 +1054,14 @@ namespace thepos
                         {
                             String siteId = arr[i]["siteId"].ToString();
                             int sortNo = int.Parse(arr[i]["sortNo"].ToString());
+                            String dcrCode = arr[i]["dcrCode"].ToString();
                             String dcrName = arr[i]["dcrName"].ToString();
                             String dcrDes = arr[i]["dcrDes"].ToString();
                             String dcrType = arr[i]["dcrType"].ToString();
                             int dcrValue = int.Parse(arr[i]["dcrValue"].ToString());
 
-                            String sql = "INSERT INTO dcrFavorite (siteId, sortNo, dcrName, dcrDes, dcrType, dcrValue) " +
-                                    "values ('" + siteId + "'," + sortNo + ",'" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
+                            String sql = "INSERT INTO dcrFavorite (siteId, sortNo, dcrCode, dcrName, dcrDes, dcrType, dcrValue) " +
+                                    "values ('" + siteId + "'," + sortNo + ",'" + dcrCode + "','" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
                             ret = sql_excute_local_db(sql);
                         }
                     }
@@ -1090,8 +1092,6 @@ namespace thepos
 
                         String data = mObj["paymentConsoles"].ToString();
                         JArray arr = JArray.Parse(data);
-
-                        mPayConsol = new PayConsol[arr.Count];
 
                         for (int i = 0; i < arr.Count; i++)
                         {
@@ -1373,6 +1373,7 @@ namespace thepos
                 int i = 0;
                 while (dr.Read())
                 {
+                    mDCR[i].dcr_code = dr["dcrCode"].ToString();
                     mDCR[i].dcr_name = dr["dcrName"].ToString();
                     mDCR[i].dcr_des = dr["dcrDes"].ToString();
                     mDCR[i].dcr_type = dr["dcrType"].ToString();
@@ -1655,15 +1656,19 @@ namespace thepos
                 if (mObj["resultCode"].ToString() == "200")
                 {
                     pbNetworkConn.Visible = true;
+
+                    MessageBox.Show("서버연결 정상");
                 }
                 else
                 {
                     pbNetworkConn.Visible = false;
+                    MessageBox.Show("서버연결 오류");
                 }
             }
             else
             {
                 pbNetworkConn.Visible = false;
+                MessageBox.Show("서버연결 오류");
             }
         }
 

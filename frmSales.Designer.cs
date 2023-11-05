@@ -68,6 +68,7 @@ namespace thepos
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
+            this.lblLocalModeTitle = new System.Windows.Forms.Label();
             this.pbNetworkConn = new System.Windows.Forms.PictureBox();
             this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
@@ -671,6 +672,7 @@ namespace thepos
             // panelTitleConsole
             // 
             this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.panelTitleConsole.Controls.Add(this.lblLocalModeTitle);
             this.panelTitleConsole.Controls.Add(this.pbNetworkConn);
             this.panelTitleConsole.Controls.Add(this.pbNetworkDisconn);
             this.panelTitleConsole.Controls.Add(this.lblPosNoTitle);
@@ -688,6 +690,19 @@ namespace thepos
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
+            // 
+            // lblLocalModeTitle
+            // 
+            this.lblLocalModeTitle.AutoSize = true;
+            this.lblLocalModeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblLocalModeTitle.Location = new System.Drawing.Point(57, 13);
+            this.lblLocalModeTitle.Name = "lblLocalModeTitle";
+            this.lblLocalModeTitle.Size = new System.Drawing.Size(56, 17);
+            this.lblLocalModeTitle.TabIndex = 41;
+            this.lblLocalModeTitle.Text = "로컬모드";
+            this.lblLocalModeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLocalModeTitle.Visible = false;
             // 
             // pbNetworkConn
             // 
@@ -714,7 +729,7 @@ namespace thepos
             this.lblPosNoTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblPosNoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.White;
-            this.lblPosNoTitle.Location = new System.Drawing.Point(292, 13);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(329, 13);
             this.lblPosNoTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(56, 17);
@@ -744,7 +759,7 @@ namespace thepos
             this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
             this.lblPosNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosNo.Location = new System.Drawing.Point(348, 13);
+            this.lblPosNo.Location = new System.Drawing.Point(385, 13);
             this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
             this.lblPosNo.Name = "lblPosNo";
             this.lblPosNo.Size = new System.Drawing.Size(24, 17);
@@ -758,7 +773,7 @@ namespace thepos
             this.lblSiteName.BackColor = System.Drawing.Color.Transparent;
             this.lblSiteName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.ForeColor = System.Drawing.Color.Gold;
-            this.lblSiteName.Location = new System.Drawing.Point(174, 13);
+            this.lblSiteName.Location = new System.Drawing.Point(224, 13);
             this.lblSiteName.Margin = new System.Windows.Forms.Padding(0);
             this.lblSiteName.Name = "lblSiteName";
             this.lblSiteName.Size = new System.Drawing.Size(16, 17);
@@ -772,7 +787,7 @@ namespace thepos
             this.lblSiteNameTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblSiteNameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteNameTitle.ForeColor = System.Drawing.Color.White;
-            this.lblSiteNameTitle.Location = new System.Drawing.Point(118, 13);
+            this.lblSiteNameTitle.Location = new System.Drawing.Point(168, 13);
             this.lblSiteNameTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblSiteNameTitle.Name = "lblSiteNameTitle";
             this.lblSiteNameTitle.Size = new System.Drawing.Size(56, 17);
@@ -786,7 +801,7 @@ namespace thepos
             this.lblUserNameTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblUserNameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUserNameTitle.ForeColor = System.Drawing.Color.White;
-            this.lblUserNameTitle.Location = new System.Drawing.Point(408, 13);
+            this.lblUserNameTitle.Location = new System.Drawing.Point(434, 13);
             this.lblUserNameTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblUserNameTitle.Name = "lblUserNameTitle";
             this.lblUserNameTitle.Size = new System.Drawing.Size(56, 17);
@@ -800,7 +815,7 @@ namespace thepos
             this.lblUserName.BackColor = System.Drawing.Color.Transparent;
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUserName.ForeColor = System.Drawing.Color.Gold;
-            this.lblUserName.Location = new System.Drawing.Point(464, 13);
+            this.lblUserName.Location = new System.Drawing.Point(490, 13);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(0);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(16, 17);
@@ -907,12 +922,11 @@ namespace thepos
             // 
             // lblOrderAmountRestTitle
             // 
-            this.lblOrderAmountRestTitle.AutoSize = true;
             this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 249);
+            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 248);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
-            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(53, 13);
             this.lblOrderAmountRestTitle.TabIndex = 2;
             this.lblOrderAmountRestTitle.Text = "반환금액";
             // 
@@ -959,42 +973,38 @@ namespace thepos
             // 
             // lblOrderAmountReceiveTitle
             // 
-            this.lblOrderAmountReceiveTitle.AutoSize = true;
             this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 201);
+            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 200);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
-            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 13);
             this.lblOrderAmountReceiveTitle.TabIndex = 0;
             this.lblOrderAmountReceiveTitle.Text = "받은금액";
             // 
             // lblOrderAmountChargeTitle
             // 
-            this.lblOrderAmountChargeTitle.AutoSize = true;
             this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 149);
+            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 148);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
-            this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(53, 13);
             this.lblOrderAmountChargeTitle.TabIndex = 0;
             this.lblOrderAmountChargeTitle.Text = "받을금액";
             // 
             // lblOrderAmountDCTitle
             // 
-            this.lblOrderAmountDCTitle.AutoSize = true;
             this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 92);
+            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 91);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
-            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 13);
             this.lblOrderAmountDCTitle.TabIndex = 0;
             this.lblOrderAmountDCTitle.Text = "할인금액";
             // 
             // lblOrderAmountSumTitle
             // 
-            this.lblOrderAmountSumTitle.AutoSize = true;
             this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 33);
+            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 32);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
-            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 13);
             this.lblOrderAmountSumTitle.TabIndex = 0;
             this.lblOrderAmountSumTitle.Text = "합계금액";
             // 
@@ -1429,7 +1439,6 @@ namespace thepos
             ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
-            this.panelOrderSumBlack.PerformLayout();
             this.panelFlowConsole.ResumeLayout(false);
             this.panelDisplayAlarmWhite.ResumeLayout(false);
             this.panelOrderLvw.ResumeLayout(false);
@@ -1539,6 +1548,7 @@ namespace thepos
         private System.Windows.Forms.Panel panelCancel;
         private System.Windows.Forms.PictureBox pbNetworkConn;
         private System.Windows.Forms.PictureBox pbNetworkDisconn;
+        private System.Windows.Forms.Label lblLocalModeTitle;
     }
 }
 

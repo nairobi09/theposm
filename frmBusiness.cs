@@ -60,7 +60,6 @@ namespace thepos
 
             btnBizOpen.Font = font12;
             btnBizClose.Font = font12;
-            btnBizCloseCancel.Font = font12;
 
             btnKey1.Font = font14;
             btnKey2.Font = font14;
@@ -159,19 +158,6 @@ namespace thepos
             panelBiz.Controls.Clear();
 
             frmBizClose fBiz = new frmBizClose() { TopLevel = false, TopMost = true };
-            panelBiz.Controls.Add(fBiz);
-            fBiz.Show();
-        }
-
-        // 마감취소
-        private void btnBizCloseCancel_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "BizCloseCancel") return;
-
-            mThisButtonClick = "BizCloseCancel";
-            panelBiz.Controls.Clear();
-
-            frmBizCloseCancel fBiz = new frmBizCloseCancel() { TopLevel = false, TopMost = true };
             panelBiz.Controls.Add(fBiz);
             fBiz.Show();
         }

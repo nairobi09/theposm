@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusiness));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBizClose = new System.Windows.Forms.Button();
-            this.btnBizCloseCancel = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
             this.lblBusinessTitle = new System.Windows.Forms.Label();
             this.panelNumpad = new System.Windows.Forms.Panel();
@@ -73,7 +72,6 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnBizClose);
-            this.panel1.Controls.Add(this.btnBizCloseCancel);
             this.panel1.Controls.Add(this.btnBizOpen);
             this.panel1.Controls.Add(this.lblBusinessTitle);
             this.panel1.Controls.Add(this.panelNumpad);
@@ -86,41 +84,26 @@
             // 
             this.btnBizClose.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBizClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizClose.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizClose.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizClose.ForeColor = System.Drawing.Color.White;
-            this.btnBizClose.Location = new System.Drawing.Point(15, 217);
+            this.btnBizClose.Location = new System.Drawing.Point(32, 186);
             this.btnBizClose.Name = "btnBizClose";
-            this.btnBizClose.Size = new System.Drawing.Size(130, 80);
+            this.btnBizClose.Size = new System.Drawing.Size(188, 80);
             this.btnBizClose.TabIndex = 27;
             this.btnBizClose.TabStop = false;
             this.btnBizClose.Text = "영업마감";
             this.btnBizClose.UseVisualStyleBackColor = false;
             this.btnBizClose.Click += new System.EventHandler(this.btnBizClose_Click);
             // 
-            // btnBizCloseCancel
-            // 
-            this.btnBizCloseCancel.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnBizCloseCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizCloseCancel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnBizCloseCancel.ForeColor = System.Drawing.Color.White;
-            this.btnBizCloseCancel.Location = new System.Drawing.Point(151, 217);
-            this.btnBizCloseCancel.Name = "btnBizCloseCancel";
-            this.btnBizCloseCancel.Size = new System.Drawing.Size(80, 80);
-            this.btnBizCloseCancel.TabIndex = 27;
-            this.btnBizCloseCancel.TabStop = false;
-            this.btnBizCloseCancel.Text = "마감취소";
-            this.btnBizCloseCancel.UseVisualStyleBackColor = false;
-            this.btnBizCloseCancel.Click += new System.EventHandler(this.btnBizCloseCancel_Click);
-            // 
             // btnBizOpen
             // 
             this.btnBizOpen.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBizOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizOpen.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizOpen.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpen.ForeColor = System.Drawing.Color.White;
-            this.btnBizOpen.Location = new System.Drawing.Point(15, 131);
+            this.btnBizOpen.Location = new System.Drawing.Point(32, 100);
             this.btnBizOpen.Name = "btnBizOpen";
-            this.btnBizOpen.Size = new System.Drawing.Size(130, 80);
+            this.btnBizOpen.Size = new System.Drawing.Size(188, 80);
             this.btnBizOpen.TabIndex = 27;
             this.btnBizOpen.TabStop = false;
             this.btnBizOpen.Text = "영업개시";
@@ -129,14 +112,14 @@
             // 
             // lblBusinessTitle
             // 
-            this.lblBusinessTitle.AutoSize = true;
             this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBusinessTitle.ForeColor = System.Drawing.Color.White;
-            this.lblBusinessTitle.Location = new System.Drawing.Point(66, 36);
+            this.lblBusinessTitle.Location = new System.Drawing.Point(32, 39);
             this.lblBusinessTitle.Name = "lblBusinessTitle";
-            this.lblBusinessTitle.Size = new System.Drawing.Size(102, 22);
+            this.lblBusinessTitle.Size = new System.Drawing.Size(188, 22);
             this.lblBusinessTitle.TabIndex = 26;
             this.lblBusinessTitle.Text = "영업관리";
+            this.lblBusinessTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelNumpad
             // 
@@ -152,7 +135,7 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(25, 461);
+            this.panelNumpad.Location = new System.Drawing.Point(30, 461);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
@@ -550,7 +533,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmBusiness";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panelNumpad.ResumeLayout(false);
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
@@ -580,7 +562,6 @@
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnBizOpen;
         private System.Windows.Forms.Button btnBizClose;
-        private System.Windows.Forms.Button btnBizCloseCancel;
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblPosNoTitle;

@@ -48,9 +48,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.DarkOrange;
             this.lblTitle.Location = new System.Drawing.Point(232, 17);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(97, 14);
+            this.lblTitle.Size = new System.Drawing.Size(67, 14);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "로컬사용모드";
+            this.lblTitle.Text = "로컬모드";
             // 
             // lblInfo
             // 
@@ -63,7 +63,7 @@
             this.lblInfo.TabIndex = 1;
             this.lblInfo.Text = "인터넷 네트워크 장애로 서버와 통신이 불가능할 경우\r\n\r\n- 거래데이터를 로컬에 임시 보관 \r\n- 네트워크가 정상화 된 이후 데이터를 서버로 업로" +
     "드\r\n\r\n긴급사용모드에서 기능은 최소한으로 제한됨.\r\n\r\n- 상품주문 및 단순현금결제, 카드임의등록(가능)\r\n- 원장관리, 밴사를 통한 결제승인" +
-    " (불가.)\r\n- 원장관리, 영업관리, 매출관리 (불가.)";
+    " (불가.)\r\n- 원장관리, 영업관리, 매출관리 (불가)";
             // 
             // panelFront
             // 
@@ -88,7 +88,7 @@
             this.dtpBizDate.CalendarTrailingForeColor = System.Drawing.Color.DarkOrange;
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(246, 226);
+            this.dtpBizDate.Location = new System.Drawing.Point(246, 252);
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(133, 23);
             this.dtpBizDate.TabIndex = 44;
@@ -97,11 +97,11 @@
             // lblBizDtTitle
             // 
             this.lblBizDtTitle.AutoSize = true;
-            this.lblBizDtTitle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDtTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizDtTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblBizDtTitle.Location = new System.Drawing.Point(169, 229);
+            this.lblBizDtTitle.Location = new System.Drawing.Point(179, 257);
             this.lblBizDtTitle.Name = "lblBizDtTitle";
-            this.lblBizDtTitle.Size = new System.Drawing.Size(71, 16);
+            this.lblBizDtTitle.Size = new System.Drawing.Size(63, 14);
             this.lblBizDtTitle.TabIndex = 43;
             this.lblBizDtTitle.Text = "영업일자";
             // 
@@ -111,7 +111,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(279, 274);
+            this.btnCancel.Location = new System.Drawing.Point(279, 300);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 40);
             this.btnCancel.TabIndex = 2;
@@ -126,7 +126,7 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(153, 274);
+            this.btnOK.Location = new System.Drawing.Point(153, 300);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(120, 40);
             this.btnOK.TabIndex = 3;

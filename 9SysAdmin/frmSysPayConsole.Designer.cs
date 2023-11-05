@@ -81,7 +81,7 @@
             this.tableLayoutPanelPayControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelPayControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelPayControl.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(190, 535);
+            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(192, 535);
             this.tableLayoutPanelPayControl.Name = "tableLayoutPanelPayControl";
             this.tableLayoutPanelPayControl.RowCount = 4;
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -121,7 +121,7 @@
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.Location = new System.Drawing.Point(144, 19);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(96, 32);
+            this.btnView.Size = new System.Drawing.Size(100, 30);
             this.btnView.TabIndex = 46;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = true;
@@ -237,9 +237,9 @@
             // 
             this.btnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLink.Location = new System.Drawing.Point(624, 90);
+            this.btnLink.Location = new System.Drawing.Point(622, 90);
             this.btnLink.Name = "btnLink";
-            this.btnLink.Size = new System.Drawing.Size(96, 35);
+            this.btnLink.Size = new System.Drawing.Size(100, 30);
             this.btnLink.TabIndex = 99;
             this.btnLink.Text = "항목연결";
             this.btnLink.UseVisualStyleBackColor = true;
@@ -249,9 +249,9 @@
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnApply.Location = new System.Drawing.Point(624, 313);
+            this.btnApply.Location = new System.Drawing.Point(622, 313);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(96, 40);
+            this.btnApply.Size = new System.Drawing.Size(100, 40);
             this.btnApply.TabIndex = 101;
             this.btnApply.Text = "적용보기";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -308,9 +308,9 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(13, 141);
+            this.btnDelete.Location = new System.Drawing.Point(11, 141);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(96, 30);
+            this.btnDelete.Size = new System.Drawing.Size(100, 30);
             this.btnDelete.TabIndex = 88;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -330,9 +330,9 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(13, 96);
+            this.btnUpdate.Location = new System.Drawing.Point(11, 96);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(96, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(100, 40);
             this.btnUpdate.TabIndex = 89;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -391,7 +391,7 @@
             this.tableLayoutPanelPayControlSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelPayControlSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelPayControlSelected.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelPayControlSelected.Location = new System.Drawing.Point(190, 366);
+            this.tableLayoutPanelPayControlSelected.Location = new System.Drawing.Point(192, 366);
             this.tableLayoutPanelPayControlSelected.Name = "tableLayoutPanelPayControlSelected";
             this.tableLayoutPanelPayControlSelected.RowCount = 4;
             this.tableLayoutPanelPayControlSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));

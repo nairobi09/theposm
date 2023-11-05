@@ -46,10 +46,11 @@
             // 
             // btnView
             // 
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.Location = new System.Drawing.Point(686, 25);
+            this.btnView.Location = new System.Drawing.Point(666, 25);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(80, 26);
+            this.btnView.Size = new System.Drawing.Size(100, 25);
             this.btnView.TabIndex = 78;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = true;
@@ -90,7 +91,7 @@
             // 
             this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbShop.FormattingEnabled = true;
-            this.cbShop.Location = new System.Drawing.Point(579, 27);
+            this.cbShop.Location = new System.Drawing.Point(568, 27);
             this.cbShop.Name = "cbShop";
             this.cbShop.Size = new System.Drawing.Size(92, 21);
             this.cbShop.TabIndex = 90;
@@ -101,7 +102,7 @@
             // 
             this.lblShopTitle.AutoSize = true;
             this.lblShopTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblShopTitle.Location = new System.Drawing.Point(544, 31);
+            this.lblShopTitle.Location = new System.Drawing.Point(533, 31);
             this.lblShopTitle.Name = "lblShopTitle";
             this.lblShopTitle.Size = new System.Drawing.Size(35, 14);
             this.lblShopTitle.TabIndex = 89;
@@ -111,7 +112,7 @@
             // 
             this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Location = new System.Drawing.Point(475, 27);
+            this.cbPosNo.Location = new System.Drawing.Point(464, 27);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(57, 21);
             this.cbPosNo.TabIndex = 88;
@@ -122,7 +123,7 @@
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNoTitle.Location = new System.Drawing.Point(416, 31);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(405, 31);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblPosNoTitle.TabIndex = 87;
@@ -134,7 +135,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnNext.Location = new System.Drawing.Point(362, 27);
+            this.btnNext.Location = new System.Drawing.Point(351, 27);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(41, 25);
             this.btnNext.TabIndex = 86;
@@ -149,7 +150,7 @@
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrev.Location = new System.Drawing.Point(153, 27);
+            this.btnPrev.Location = new System.Drawing.Point(142, 27);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(41, 25);
             this.btnPrev.TabIndex = 85;
@@ -163,7 +164,7 @@
             this.lblYYYYMM.BackColor = System.Drawing.Color.White;
             this.lblYYYYMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblYYYYMM.Location = new System.Drawing.Point(200, 27);
+            this.lblYYYYMM.Location = new System.Drawing.Point(189, 27);
             this.lblYYYYMM.Name = "lblYYYYMM";
             this.lblYYYYMM.Size = new System.Drawing.Size(156, 25);
             this.lblYYYYMM.TabIndex = 84;

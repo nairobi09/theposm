@@ -178,12 +178,6 @@
     <Compile Include="2Business\frmBizClose.Designer.cs">
       <DependentUpon>frmBizClose.cs</DependentUpon>
     </Compile>
-    <Compile Include="2Business\frmBizCloseCancel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2Business\frmBizCloseCancel.Designer.cs">
-      <DependentUpon>frmBizCloseCancel.cs</DependentUpon>
-    </Compile>
     <Compile Include="2Business\frmBizOpen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -477,9 +471,6 @@
     <EmbeddedResource Include="2Business\frmBizClose.resx">
       <DependentUpon>frmBizClose.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2Business\frmBizCloseCancel.resx">
-      <DependentUpon>frmBizCloseCancel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizOpen.resx">
       <DependentUpon>frmBizOpen.cs</DependentUpon>
     </EmbeddedResource>
@@ -608,10 +599,9 @@
     <None Include="Font\Pretendard-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\Pretendard-Regular.ttf">
+    <None Include="Font\TossProductSansTTF-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Font\TossProductSansTTF-Medium.ttf" />
     <None Include="local_thepos.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

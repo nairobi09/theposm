@@ -52,6 +52,8 @@
             this.tbValue = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDn
@@ -60,9 +62,9 @@
             this.btnDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDn.ForeColor = System.Drawing.Color.Black;
-            this.btnDn.Location = new System.Drawing.Point(512, 351);
+            this.btnDn.Location = new System.Drawing.Point(10, 101);
             this.btnDn.Name = "btnDn";
-            this.btnDn.Size = new System.Drawing.Size(50, 40);
+            this.btnDn.Size = new System.Drawing.Size(50, 50);
             this.btnDn.TabIndex = 46;
             this.btnDn.TabStop = false;
             this.btnDn.Text = "▼";
@@ -75,9 +77,9 @@
             this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUp.ForeColor = System.Drawing.Color.Black;
-            this.btnUp.Location = new System.Drawing.Point(512, 305);
+            this.btnUp.Location = new System.Drawing.Point(10, 45);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(50, 40);
+            this.btnUp.Size = new System.Drawing.Size(50, 50);
             this.btnUp.TabIndex = 47;
             this.btnUp.TabStop = false;
             this.btnUp.Text = "▲";
@@ -199,9 +201,9 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(583, 361);
+            this.btnDelete.Location = new System.Drawing.Point(71, 121);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(141, 30);
+            this.btnDelete.Size = new System.Drawing.Size(138, 30);
             this.btnDelete.TabIndex = 56;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";
@@ -212,9 +214,9 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(583, 315);
+            this.btnUpdate.Location = new System.Drawing.Point(71, 75);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(141, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(138, 40);
             this.btnUpdate.TabIndex = 54;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -225,9 +227,9 @@
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(583, 269);
+            this.btnAdd.Location = new System.Drawing.Point(71, 29);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(141, 40);
+            this.btnAdd.Size = new System.Drawing.Size(138, 40);
             this.btnAdd.TabIndex = 55;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
@@ -279,9 +281,9 @@
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.Location = new System.Drawing.Point(583, 415);
+            this.btnSave.Location = new System.Drawing.Point(525, 410);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(141, 50);
+            this.btnSave.Size = new System.Drawing.Size(199, 50);
             this.btnSave.TabIndex = 61;
             this.btnSave.TabStop = false;
             this.btnSave.Text = "저장";
@@ -299,30 +301,40 @@
             this.lblInfo.TabIndex = 62;
             this.lblInfo.Text = "최대 8개 까지 등록가능합니다.";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnAdd);
+            this.groupBox1.Controls.Add(this.btnUp);
+            this.groupBox1.Controls.Add(this.btnDn);
+            this.groupBox1.Controls.Add(this.btnUpdate);
+            this.groupBox1.Controls.Add(this.btnDelete);
+            this.groupBox1.Location = new System.Drawing.Point(515, 219);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(219, 172);
+            this.groupBox1.TabIndex = 63;
+            this.groupBox1.TabStop = false;
+            // 
             // frmSysDcrFavorite
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblValueTitle);
             this.Controls.Add(this.tbValue);
             this.Controls.Add(this.cbType);
             this.Controls.Add(this.lblTypeTitle);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cbDes);
             this.Controls.Add(this.lblNameTitle);
             this.Controls.Add(this.lblDesTitle);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.btnDn);
-            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.lvwList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSysDcrFavorite";
             this.Text = "frmOrderDcrFavorite";
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +365,6 @@
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.ColumnHeader des1;
         private System.Windows.Forms.ColumnHeader type1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
