@@ -589,7 +589,7 @@ namespace thepos
                     source_groupList.Clear();
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        source_groupList.Add(new { Text = arr[i]["goodsGroupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
+                        source_groupList.Add(new { Text = arr[i]["groupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
                     }
 
                     cbSourceGroup.DataSource = source_groupList;

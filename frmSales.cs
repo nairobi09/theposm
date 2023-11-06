@@ -723,6 +723,7 @@ namespace thepos
             mPanelPayment.Visible = true;
             mPanelPayment.Controls.Clear();
 
+
             frmPayCash fForm = new frmPayCash(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
             mPanelPayment.Height = fForm.Height;
             mPanelPayment.Controls.Add(fForm);
@@ -2747,9 +2748,24 @@ namespace thepos
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
                 orderItemInfo = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                Amount += (orderItemInfo.cnt * orderItemInfo.amt);
-                dcAmount += orderItemInfo.dc_amount;
-                mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
+                Amount += (orderItemInfo.cnt * orderItemInfo.amt);      // 주문금액
+                dcAmount += orderItemInfo.dc_amount;                    // 할인금액
+                mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);      // 결제금액
+
+
+                // 주문금액 과세금액 부가세액 면세금액
+                //?
+
+                if (orderItemInfo.taxfree == "Y")
+                {
+                    jslkfjs
+                }
+
+
+
+
+
+
             }
 
             mLblOrderAmount.Text = Amount.ToString("N0");
