@@ -89,9 +89,6 @@ namespace thepos
         public static TableLayoutPanel mTableLayoutPanelPayControl;
 
 
-
-
-
         public frmSales()
         {
             InitializeComponent();
@@ -2751,21 +2748,6 @@ namespace thepos
                 Amount += (orderItemInfo.cnt * orderItemInfo.amt);      // 주문금액
                 dcAmount += orderItemInfo.dc_amount;                    // 할인금액
                 mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);      // 결제금액
-
-
-                // 주문금액 과세금액 부가세액 면세금액
-                //?
-
-                if (orderItemInfo.taxfree == "Y")
-                {
-                    jslkfjs
-                }
-
-
-
-
-
-
             }
 
             mLblOrderAmount.Text = Amount.ToString("N0");
@@ -2776,6 +2758,69 @@ namespace thepos
 
             // Sub Screen 표시
             DisplaySubScreen();
+
+
+        }
+
+
+
+
+
+        private bool get_amounts()
+        { 
+
+            // 결제진행시 과세 면세 부가세 계산을 위해서..
+            // 주문금액 과세금액 부가세액 면세금액
+
+            int t과세금액 = 0;// 부가세 포함 금액
+            int t면세금액 = 0;
+            int t전체할인금액 = 0;
+
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            {
+                MemOrderItem orderItemInfo = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+
+
+                if (orderItemInfo.dcr_des == "E") // 전체할인
+                {
+                    t전체할인금액 = orderItemInfo.dc_amount;
+                }
+                else
+                {
+                    if (orderItemInfo.taxfree == "Y")
+                    {
+                        t면세금액 += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
+                    }
+                    else
+                    {
+                        t과세금액 += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
+                    }
+                }
+            }
+
+
+            if (t전체할인금액 > 0)
+            {
+                if (t전체할인금액 < t과세금액)
+                {
+                    t과세금액 -= t전체할인금액;
+                }
+                else
+                {
+                    t과세금액 = 0;
+                    t면세금액 -= (t전체할인금액 - t과세금액);
+
+                    fdsfefefefeesfgevvsbgsrvfcdsfgnbfdsff
+                }
+
+
+            }
+
+
+
+
+            return true;
+
         }
 
     
