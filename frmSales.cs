@@ -702,6 +702,21 @@ namespace thepos
                 return;
             }
 
+
+
+            int t과세금액 = 0;
+            int t면세금액 = 0;
+
+            if (get_amounts(out t과세금액, out t면세금액))
+            {
+                MessageBox.Show("과세금액, 면세금액 계산오류");
+                return;
+            }
+
+
+
+
+
             countup_the_no();
             ConsoleDisable();
 
@@ -721,7 +736,7 @@ namespace thepos
             mPanelPayment.Controls.Clear();
 
 
-            frmPayCash fForm = new frmPayCash(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
+            frmPayCash fForm = new frmPayCash(mNetAmount, t과세금액, t면세금액, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
             mPanelPayment.Height = fForm.Height;
             mPanelPayment.Controls.Add(fForm);
             fForm.Show();
@@ -2766,14 +2781,14 @@ namespace thepos
 
 
 
-        private bool get_amounts()
+        private bool get_amounts(out int t과세금액, out int t면세금액)
         { 
 
             // 결제진행시 과세 면세 부가세 계산을 위해서..
             // 주문금액 과세금액 부가세액 면세금액
 
-            int t과세금액 = 0;// 부가세 포함 금액
-            int t면세금액 = 0;
+            t과세금액 = 0;// 부가세 포함 금액
+            t면세금액 = 0;
             int t전체할인금액 = 0;
 
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
@@ -2807,13 +2822,9 @@ namespace thepos
                 }
                 else
                 {
-                    t과세금액 = 0;
                     t면세금액 -= (t전체할인금액 - t과세금액);
-
-                    fdsfefefefeesfgevvsbgsrvfcdsfgnbfdsff
+                    t과세금액 = 0;
                 }
-
-
             }
 
 

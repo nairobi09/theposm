@@ -37,7 +37,7 @@ namespace thepos
 
         String ticketNo = "";
 
-        public frmPayCash(int net_amount, bool is_complex, int seq, bool is_last, int select_index)
+        public frmPayCash(int net_amount, int t과세금액, int t면세금액, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
             initialize_font();
