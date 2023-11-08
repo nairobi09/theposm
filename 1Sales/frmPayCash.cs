@@ -25,6 +25,11 @@ namespace thepos
         int rcvAmount = 0;
         int restAmount = 0;
 
+
+        int t과세금액 = 0;
+        int t면세금액 = 0;
+
+
         bool isReset = true;
 
 
@@ -37,7 +42,7 @@ namespace thepos
 
         String ticketNo = "";
 
-        public frmPayCash(int net_amount, int t과세금액, int t면세금액, bool is_complex, int seq, bool is_last, int select_index)
+        public frmPayCash(int net_amount, int r과세금액, int r면세금액, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
             initialize_font();
@@ -50,6 +55,10 @@ namespace thepos
             netAmount = net_amount;
             rcvAmount = 0;
             restAmount = netAmount;
+
+            t과세금액 = r과세금액;
+            t면세금액 = r면세금액;
+
 
             reset_amount();
 
@@ -362,8 +371,11 @@ namespace thepos
             int tTaxAmount = 0;
             int tTax = 0;
             int tServiceAmt = 0;
-
             int dcAmount = 0;
+
+            tTax = t과세금액 / 11;
+            tTaxAmount = t과세금액 - tTax;
+            tFreeAmount = t면세금액;
 
 
             if (rbTypeIndividual.Checked == true) receipt_type = "1";

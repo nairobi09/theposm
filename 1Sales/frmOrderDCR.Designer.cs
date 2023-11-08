@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.lblTitle2 = new System.Windows.Forms.Label();
+            this.btnAllRate = new System.Windows.Forms.Button();
+            this.btnAllAmount = new System.Windows.Forms.Button();
+            this.btnSelRate = new System.Windows.Forms.Button();
+            this.btnSelAmount = new System.Windows.Forms.Button();
             this.flowLayoutPanelDCR = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -38,11 +43,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDCCancel = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnAllRate = new System.Windows.Forms.Button();
-            this.btnAllAmount = new System.Windows.Forms.Button();
-            this.btnSelRate = new System.Windows.Forms.Button();
-            this.btnSelAmount = new System.Windows.Forms.Button();
-            this.lblTitle2 = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.flowLayoutPanelDCR.SuspendLayout();
             this.SuspendLayout();
@@ -61,11 +61,77 @@
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.btnDCCancel);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 3;
+            // 
+            // lblTitle2
+            // 
+            this.lblTitle2.AutoSize = true;
+            this.lblTitle2.Location = new System.Drawing.Point(105, 91);
+            this.lblTitle2.Name = "lblTitle2";
+            this.lblTitle2.Size = new System.Drawing.Size(115, 14);
+            this.lblTitle2.TabIndex = 51;
+            this.lblTitle2.Text = "★ 할인 즐겨찾기";
+            this.lblTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAllRate
+            // 
+            this.btnAllRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllRate.ForeColor = System.Drawing.Color.White;
+            this.btnAllRate.Location = new System.Drawing.Point(354, 445);
+            this.btnAllRate.Name = "btnAllRate";
+            this.btnAllRate.Size = new System.Drawing.Size(120, 80);
+            this.btnAllRate.TabIndex = 47;
+            this.btnAllRate.TabStop = false;
+            this.btnAllRate.Text = "전체 % 적용";
+            this.btnAllRate.UseVisualStyleBackColor = false;
+            this.btnAllRate.Click += new System.EventHandler(this.btnAllRate_Click);
+            // 
+            // btnAllAmount
+            // 
+            this.btnAllAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllAmount.ForeColor = System.Drawing.Color.White;
+            this.btnAllAmount.Location = new System.Drawing.Point(354, 349);
+            this.btnAllAmount.Name = "btnAllAmount";
+            this.btnAllAmount.Size = new System.Drawing.Size(120, 80);
+            this.btnAllAmount.TabIndex = 48;
+            this.btnAllAmount.TabStop = false;
+            this.btnAllAmount.Text = "전체 ₩ 적용";
+            this.btnAllAmount.UseVisualStyleBackColor = false;
+            this.btnAllAmount.Click += new System.EventHandler(this.btnAllAmount_Click);
+            // 
+            // btnSelRate
+            // 
+            this.btnSelRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelRate.ForeColor = System.Drawing.Color.White;
+            this.btnSelRate.Location = new System.Drawing.Point(354, 245);
+            this.btnSelRate.Name = "btnSelRate";
+            this.btnSelRate.Size = new System.Drawing.Size(120, 80);
+            this.btnSelRate.TabIndex = 49;
+            this.btnSelRate.TabStop = false;
+            this.btnSelRate.Text = "선택 % 적용";
+            this.btnSelRate.UseVisualStyleBackColor = false;
+            this.btnSelRate.Click += new System.EventHandler(this.btnSelRate_Click);
+            // 
+            // btnSelAmount
+            // 
+            this.btnSelAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelAmount.ForeColor = System.Drawing.Color.White;
+            this.btnSelAmount.Location = new System.Drawing.Point(354, 146);
+            this.btnSelAmount.Name = "btnSelAmount";
+            this.btnSelAmount.Size = new System.Drawing.Size(120, 80);
+            this.btnSelAmount.TabIndex = 50;
+            this.btnSelAmount.TabStop = false;
+            this.btnSelAmount.Text = "선택 ₩ 적용";
+            this.btnSelAmount.UseVisualStyleBackColor = false;
+            this.btnSelAmount.Click += new System.EventHandler(this.btnSelAmount_Click);
             // 
             // flowLayoutPanelDCR
             // 
@@ -195,68 +261,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "할인";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnAllRate
-            // 
-            this.btnAllRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllRate.ForeColor = System.Drawing.Color.White;
-            this.btnAllRate.Location = new System.Drawing.Point(354, 445);
-            this.btnAllRate.Name = "btnAllRate";
-            this.btnAllRate.Size = new System.Drawing.Size(120, 80);
-            this.btnAllRate.TabIndex = 47;
-            this.btnAllRate.TabStop = false;
-            this.btnAllRate.Text = "전체 % 적용";
-            this.btnAllRate.UseVisualStyleBackColor = false;
-            // 
-            // btnAllAmount
-            // 
-            this.btnAllAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllAmount.ForeColor = System.Drawing.Color.White;
-            this.btnAllAmount.Location = new System.Drawing.Point(354, 349);
-            this.btnAllAmount.Name = "btnAllAmount";
-            this.btnAllAmount.Size = new System.Drawing.Size(120, 80);
-            this.btnAllAmount.TabIndex = 48;
-            this.btnAllAmount.TabStop = false;
-            this.btnAllAmount.Text = "전체 ₩ 적용";
-            this.btnAllAmount.UseVisualStyleBackColor = false;
-            // 
-            // btnSelRate
-            // 
-            this.btnSelRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelRate.ForeColor = System.Drawing.Color.White;
-            this.btnSelRate.Location = new System.Drawing.Point(354, 245);
-            this.btnSelRate.Name = "btnSelRate";
-            this.btnSelRate.Size = new System.Drawing.Size(120, 80);
-            this.btnSelRate.TabIndex = 49;
-            this.btnSelRate.TabStop = false;
-            this.btnSelRate.Text = "선택 % 적용";
-            this.btnSelRate.UseVisualStyleBackColor = false;
-            // 
-            // btnSelAmount
-            // 
-            this.btnSelAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelAmount.ForeColor = System.Drawing.Color.White;
-            this.btnSelAmount.Location = new System.Drawing.Point(354, 146);
-            this.btnSelAmount.Name = "btnSelAmount";
-            this.btnSelAmount.Size = new System.Drawing.Size(120, 80);
-            this.btnSelAmount.TabIndex = 50;
-            this.btnSelAmount.TabStop = false;
-            this.btnSelAmount.Text = "선택 ₩ 적용";
-            this.btnSelAmount.UseVisualStyleBackColor = false;
-            // 
-            // lblTitle2
-            // 
-            this.lblTitle2.AutoSize = true;
-            this.lblTitle2.Location = new System.Drawing.Point(105, 91);
-            this.lblTitle2.Name = "lblTitle2";
-            this.lblTitle2.Size = new System.Drawing.Size(115, 14);
-            this.lblTitle2.TabIndex = 51;
-            this.lblTitle2.Text = "★ 할인 즐겨찾기";
-            this.lblTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmOrderDCR
             // 

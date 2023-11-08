@@ -317,5 +317,6 @@ namespace thepos
             mPanelMiddle.Controls.Clear();
         }
 
+
     }
 }

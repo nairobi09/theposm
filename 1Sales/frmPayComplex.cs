@@ -185,7 +185,7 @@ namespace thepos
             if (pay_type == "CARD")
                 fForm = new frmPayCard(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true }; // int amount, bool is_complex, int pay_seq, bool is_last, int select_idx
             else if (pay_type == "CASH")
-                fForm = new frmPayCash(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
+                fForm = new frmPayCash(reqAmount, 0,0,true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
             else if (pay_type == "EASY")
                 fForm = new frmPayEasy(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
             else return;

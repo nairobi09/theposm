@@ -703,17 +703,11 @@ namespace thepos
             }
 
 
-
-            int t과세금액 = 0;
-            int t면세금액 = 0;
-
-            if (get_amounts(out t과세금액, out t면세금액))
+            if (!get_amounts(out int t과세금액, out int t면세금액))
             {
                 MessageBox.Show("과세금액, 면세금액 계산오류");
                 return;
             }
-
-
 
 
 
@@ -2774,16 +2768,11 @@ namespace thepos
             // Sub Screen 표시
             DisplaySubScreen();
 
-
         }
-
-
-
 
 
         private bool get_amounts(out int t과세금액, out int t면세금액)
         { 
-
             // 결제진행시 과세 면세 부가세 계산을 위해서..
             // 주문금액 과세금액 부가세액 면세금액
 
@@ -2794,7 +2783,6 @@ namespace thepos
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
                 MemOrderItem orderItemInfo = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-
 
                 if (orderItemInfo.dcr_des == "E") // 전체할인
                 {
@@ -2813,7 +2801,6 @@ namespace thepos
                 }
             }
 
-
             if (t전체할인금액 > 0)
             {
                 if (t전체할인금액 < t과세금액)
@@ -2827,13 +2814,8 @@ namespace thepos
                 }
             }
 
-
-
-
             return true;
-
         }
-
     
 
         public static void DisplaySubScreen()
