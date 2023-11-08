@@ -716,7 +716,7 @@ namespace thepos
 
 
                 // 영수증인쇄
-                print_bill(mTheNo, "A", "", "0100");
+                print_bill(mTheNo, "C", "", "0100");
 
             }
             else if (pay_type == "R0" | pay_type == "R1")

@@ -37,8 +37,11 @@ namespace thepos
 
         int selectIdx = -1;
 
+        int t과세금액 = 0;
+        int t면세금액 = 0;
 
-        public frmPayComplex(int select_index)
+
+        public frmPayComplex(int r과세금액, int r면세금액, int select_index)
         {
             InitializeComponent();
 
@@ -55,6 +58,10 @@ namespace thepos
             mComplexLblNetAmount.Text = mComplexNetAmount.ToString("N0");
             mComplexLblRcvAmount.Text = mComplexRcvAmount.ToString("N0");
             mComplexLblNestAmount.Text = mComplexNestAmount.ToString("N0");
+
+
+            t과세금액 = r과세금액;
+            t면세금액 = r면세금액;
 
 
 
@@ -170,11 +177,45 @@ namespace thepos
                 return;
             }
 
+            if (mComplexNestAmount == 0)
+            {
+                SetDisplayAlarm("W", "결제요청금액이 없습니다..");
+                return;
+            }
+
+
+
+
             Boolean is_last = false;
             if (mComplexNestAmount == reqAmount)
             {
                 is_last = true;
             }
+
+
+            int req과세금액 = 0;
+            int req면세금액 = 0;
+
+
+
+
+            if (t면세금액 == 0)
+            {
+                req과세금액 = reqAmount;
+                req면세금액 = 0;
+            }
+            else if (t과세금액 == 0)
+            {
+                req과세금액 = 0;
+                req면세금액 = reqAmount;
+            }
+            else
+            {
+                req과세금액 = reqAmount * ((t과세금액 * 1000) / (t과세금액 + t면세금액)) / 1000;
+                req면세금액 = reqAmount - req과세금액;
+            }
+
+
 
 
             //#
@@ -183,11 +224,11 @@ namespace thepos
             panelHigh.Visible = true;
 
             if (pay_type == "CARD")
-                fForm = new frmPayCard(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true }; // int amount, bool is_complex, int pay_seq, bool is_last, int select_idx
+                fForm = new frmPayCard(reqAmount, req과세금액, req면세금액, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true }; // int amount, bool is_complex, int pay_seq, bool is_last, int select_idx
             else if (pay_type == "CASH")
-                fForm = new frmPayCash(reqAmount, 0,0,true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
+                fForm = new frmPayCash(reqAmount, req과세금액, req면세금액, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
             else if (pay_type == "EASY")
-                fForm = new frmPayEasy(reqAmount, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
+                fForm = new frmPayEasy(reqAmount, req과세금액, req면세금액, true, mPaySeq, is_last, selectIdx) { TopLevel = false, TopMost = true };
             else return;
 
             panelHigh.Controls.Add(fForm);

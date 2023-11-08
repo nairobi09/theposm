@@ -19,7 +19,8 @@ namespace thepos
 
         int netAmount = 0;
 
-
+        int t과세금액 = 0;
+        int t면세금액 = 0;
 
         bool isComplex = false;
         int paySeq = 1;
@@ -31,7 +32,7 @@ namespace thepos
         String ticketNo = "";
 
 
-        public frmPayCard(int net_amount, bool is_complex, int seq, bool is_last, int select_index)
+        public frmPayCard(int net_amount, int r과세금액, int r면세금액, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
 
@@ -44,6 +45,11 @@ namespace thepos
             selectIdx = select_index;
 
             netAmount = net_amount;
+
+            t과세금액 = r과세금액;
+            t면세금액 = r면세금액;
+
+
             lblNetAmount.Text = netAmount.ToString("N0");
 
             saveKeyDisplay = mTbKeyDisplayController;
@@ -421,6 +427,12 @@ namespace thepos
             int tServiceAmt = 0;
             int install = int.Parse(tbInstall.Text);
             PaymentCard mPaymentCard = new PaymentCard();
+
+
+            tTax = t과세금액 / 11;
+            tTaxAmount = t과세금액 - tTax;
+            tFreeAmount = t면세금액;
+
 
 
             if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)

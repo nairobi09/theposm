@@ -25,7 +25,6 @@ namespace thepos
         int rcvAmount = 0;
         int restAmount = 0;
 
-
         int t과세금액 = 0;
         int t면세금액 = 0;
 

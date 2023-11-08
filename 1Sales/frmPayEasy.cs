@@ -23,6 +23,9 @@ namespace thepos
 
         int netAmount = 0;
 
+        int t과세금액 = 0;
+        int t면세금액 = 0;
+
         bool isComplex = false;
         int paySeq = 1;
         bool isLast = false;
@@ -31,7 +34,7 @@ namespace thepos
         String ticketNo = "";
 
 
-        public frmPayEasy(int net_amount, bool is_complex, int seq, bool is_last, int select_index)
+        public frmPayEasy(int net_amount, int r과세금액, int r면세금액, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
 
@@ -45,6 +48,11 @@ namespace thepos
             selectIdx = select_index;
 
             netAmount = net_amount;
+
+            t과세금액 = r과세금액;
+            t면세금액 = r면세금액;
+
+
             lblNetAmount.Text = netAmount.ToString("N0");
 
             saveKeyDisplay = mTbKeyDisplayController;
@@ -115,6 +123,10 @@ namespace thepos
 
 
             if (chkKakao.Checked == true) is_kakaopay = "1";
+
+            tTax = t과세금액 / 11;
+            tTaxAmount = t과세금액 - tTax;
+            tFreeAmount = t면세금액;
 
 
             if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)

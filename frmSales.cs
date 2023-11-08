@@ -751,6 +751,14 @@ namespace thepos
                 return;
             }
 
+
+            if (!get_amounts(out int t과세금액, out int t면세금액))
+            {
+                MessageBox.Show("과세금액, 면세금액 계산오류");
+                return;
+            }
+
+
             countup_the_no();
             ConsoleDisable();
 
@@ -769,7 +777,7 @@ namespace thepos
             mPanelPayment.Visible = true;
             mPanelPayment.Controls.Clear();
 
-            frmPayCard fForm = new frmPayCard(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
+            frmPayCard fForm = new frmPayCard(mNetAmount, t과세금액, t면세금액, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
             mPanelPayment.Height = fForm.Height;
             mPanelPayment.Controls.Add(fForm);
             fForm.Show();
@@ -822,6 +830,15 @@ namespace thepos
                 return;
             }
 
+
+            if (!get_amounts(out int t과세금액, out int t면세금액))
+            {
+                MessageBox.Show("과세금액, 면세금액 계산오류");
+                return;
+            }
+
+
+
             countup_the_no();
             ConsoleDisable();
 
@@ -837,10 +854,12 @@ namespace thepos
 
             }
 
+
+
             mPanelPayment.Visible = true;
             mPanelPayment.Controls.Clear();
 
-            frmPayComplex fForm = new frmPayComplex(select_idx) { TopLevel = false, TopMost = true };
+            frmPayComplex fForm = new frmPayComplex(t과세금액, t면세금액, select_idx) { TopLevel = false, TopMost = true };
             mPanelPayment.Height = fForm.Height;
             mPanelPayment.Controls.Add(fForm);
             fForm.Show();
@@ -862,6 +881,13 @@ namespace thepos
                 return;
             }
 
+            if (!get_amounts(out int t과세금액, out int t면세금액))
+            {
+                MessageBox.Show("과세금액, 면세금액 계산오류");
+                return;
+            }
+
+
             countup_the_no();
             ConsoleDisable();
 
@@ -880,7 +906,7 @@ namespace thepos
             mPanelPayment.Visible = true;
             mPanelPayment.Controls.Clear();
 
-            frmPayEasy fForm = new frmPayEasy(mNetAmount, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
+            frmPayEasy fForm = new frmPayEasy(mNetAmount, t과세금액, t면세금액, false, 1, true, select_idx) { TopLevel = false, TopMost = true };
             mPanelPayment.Height = fForm.Height;
             mPanelPayment.Controls.Add(fForm);
             fForm.Show();
