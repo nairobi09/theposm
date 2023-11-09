@@ -3110,12 +3110,19 @@ namespace thepos
 
         public static void countup_the_no()
         {
-            //! 재기동시 초기화된 이후의 연속성. -> 서버에 물어본다.  last_the_no();
-            //mTheNo = mSiteId + mBizDate + mPosNo + (++mBillTheNo).ToString("0000");
+            //! 재기동시 초기화된 이후의 연속성. -> 서버에 물어본다.  last_the_no(); xxxxx
+            //mTheNo = mSiteId + mBizDate + mPosNo + (++mBillTheNo).ToString("0000"); XXXX
+            //mTheNo = mSiteId + mBizDate + mPosNo + get_today_time();  xxxx
 
-            
             // 일련번호 -> Time(6) 변경
-            mTheNo = mSiteId + mBizDate + mPosNo + get_today_time();
+            // 일련번호 -> 일초누적(5) + 1/10초(1)
+   
+
+            var timeSpan = (DateTime.Now - new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0, 0));
+            String seconddiff = ((long)timeSpan.TotalMilliseconds).ToString("00000000").Substring(0, 6);
+
+
+            mTheNo = mSiteId + mBizDate + mPosNo + seconddiff;
 
 
             // 동잀하게 세팅후 -> 이후 필요시 별도세팅
