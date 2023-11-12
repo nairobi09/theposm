@@ -350,8 +350,6 @@ namespace thepos
                     {
                         if (mPayClass == "OR")
                         {
-                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
-
                             // 티켓출력은 SaveTicketFlow() 내에서 한다.
                         }
                         else if (mPayClass == "CH")
@@ -385,9 +383,9 @@ namespace thepos
 
                 // 영수증 출력
                 if (mPaySeq == 1)
-                    print_bill(mTheNo, "A", "", "0100"); // card
+                    print_bill(mTheNo, "A", "", "0100", true); // card
                 else
-                    print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+                    print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
 
 
                 mClearSaleForm();
@@ -552,9 +550,7 @@ namespace thepos
                     {
                         if (mPayClass == "OR")
                         {
-                            strAlarm += " 티켓발권 " + ticket_cnt + "건 출력.";
-
-                            //? 티켓 출력 필요
+                            // 티켓 출력은 SaveTicketFlow()내에서 함.
                         }
                         else if (mPayClass == "CH")
                         {
@@ -578,9 +574,9 @@ namespace thepos
 
                     // 영수증 출력
                     if (mPaySeq == 1)
-                        print_bill(mTheNo, "A", "", "0100"); // card
+                        print_bill(mTheNo, "A", "", "0100", true); // card
                     else
-                        print_bill(mTheNo, "A", "", "1101"); // cash card point easy
+                        print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
 
                     
                     // 정산-포인트사용분에 대해 취소마킹

@@ -36,12 +36,14 @@
             this.lblVersionTitle = new System.Windows.Forms.Label();
             this.lblServerTitle = new System.Windows.Forms.Label();
             this.lblLocalTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(37, 34);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(110, 14);
@@ -110,9 +112,9 @@
             // 
             // lblVersionTitle
             // 
-            this.lblVersionTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblVersionTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblVersionTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblVersionTitle.ForeColor = System.Drawing.Color.White;
+            this.lblVersionTitle.ForeColor = System.Drawing.Color.Black;
             this.lblVersionTitle.Location = new System.Drawing.Point(247, 200);
             this.lblVersionTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblVersionTitle.Name = "lblVersionTitle";
@@ -124,9 +126,9 @@
             // 
             // lblServerTitle
             // 
-            this.lblServerTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblServerTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblServerTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblServerTitle.ForeColor = System.Drawing.Color.White;
+            this.lblServerTitle.ForeColor = System.Drawing.Color.Black;
             this.lblServerTitle.Location = new System.Drawing.Point(118, 244);
             this.lblServerTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblServerTitle.Name = "lblServerTitle";
@@ -138,9 +140,9 @@
             // 
             // lblLocalTitle
             // 
-            this.lblLocalTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblLocalTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblLocalTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLocalTitle.ForeColor = System.Drawing.Color.White;
+            this.lblLocalTitle.ForeColor = System.Drawing.Color.Black;
             this.lblLocalTitle.Location = new System.Drawing.Point(118, 288);
             this.lblLocalTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblLocalTitle.Name = "lblLocalTitle";
@@ -150,6 +152,19 @@
             this.lblLocalTitle.Text = "로컬DB";
             this.lblLocalTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.DarkGray;
+            this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(118, 200);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(5);
+            this.label1.Size = new System.Drawing.Size(125, 40);
+            this.label1.TabIndex = 69;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmSetupDbSync
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -158,6 +173,7 @@
             this.Controls.Add(this.lblServerVersion);
             this.Controls.Add(this.lblLocalVersion);
             this.Controls.Add(this.lblVersionTitle);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblServerTitle);
             this.Controls.Add(this.lblLocalTitle);
             this.Controls.Add(this.btnDownload);
@@ -181,5 +197,6 @@
         private System.Windows.Forms.Label lblVersionTitle;
         private System.Windows.Forms.Label lblServerTitle;
         private System.Windows.Forms.Label lblLocalTitle;
+        private System.Windows.Forms.Label label1;
     }
 }

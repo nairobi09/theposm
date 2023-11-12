@@ -58,24 +58,26 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.DimGray;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(351, 514);
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(352, 514);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(140, 50);
+            this.btnUpdate.Size = new System.Drawing.Size(156, 50);
             this.btnUpdate.TabIndex = 52;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(169, 31);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(88, 14);
+            this.lblTitle.Size = new System.Drawing.Size(82, 14);
             this.lblTitle.TabIndex = 51;
             this.lblTitle.Text = "사업자 정보";
             // 
@@ -253,9 +255,9 @@
             // tbCallCenter
             // 
             this.tbCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbCallCenter.Location = new System.Drawing.Point(178, 135);
+            this.tbCallCenter.Location = new System.Drawing.Point(179, 135);
             this.tbCallCenter.Name = "tbCallCenter";
-            this.tbCallCenter.Size = new System.Drawing.Size(331, 23);
+            this.tbCallCenter.Size = new System.Drawing.Size(330, 23);
             this.tbCallCenter.TabIndex = 55;
             // 
             // lblCallCenter

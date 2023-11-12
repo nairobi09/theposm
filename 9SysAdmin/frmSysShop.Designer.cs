@@ -45,15 +45,17 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.DimGray;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.Location = new System.Drawing.Point(508, 314);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(514, 314);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 30);
             this.btnDelete.TabIndex = 55;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // groupBox1
@@ -73,7 +75,7 @@
             // 
             this.tbShopName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbShopName.ForeColor = System.Drawing.Color.Black;
-            this.tbShopName.Location = new System.Drawing.Point(78, 70);
+            this.tbShopName.Location = new System.Drawing.Point(84, 70);
             this.tbShopName.MaxLength = 16;
             this.tbShopName.Name = "tbShopName";
             this.tbShopName.Size = new System.Drawing.Size(105, 23);
@@ -84,7 +86,7 @@
             this.lblGoodsAmtTitle.AutoSize = true;
             this.lblGoodsAmtTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsAmtTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(12, 77);
+            this.lblGoodsAmtTitle.Location = new System.Drawing.Point(18, 77);
             this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
             this.lblGoodsAmtTitle.Size = new System.Drawing.Size(46, 13);
             this.lblGoodsAmtTitle.TabIndex = 44;
@@ -95,7 +97,7 @@
             this.lblGoodsNameTitle.AutoSize = true;
             this.lblGoodsNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblGoodsNameTitle.Location = new System.Drawing.Point(12, 39);
+            this.lblGoodsNameTitle.Location = new System.Drawing.Point(18, 39);
             this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
             this.lblGoodsNameTitle.Size = new System.Drawing.Size(63, 14);
             this.lblGoodsNameTitle.TabIndex = 43;
@@ -105,7 +107,7 @@
             // 
             this.tbShopCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbShopCode.ForeColor = System.Drawing.Color.Black;
-            this.tbShopCode.Location = new System.Drawing.Point(78, 32);
+            this.tbShopCode.Location = new System.Drawing.Point(84, 32);
             this.tbShopCode.MaxLength = 2;
             this.tbShopCode.Name = "tbShopCode";
             this.tbShopCode.Size = new System.Drawing.Size(105, 23);
@@ -113,37 +115,41 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.DimGray;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.Location = new System.Drawing.Point(508, 268);
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(514, 268);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(140, 40);
             this.btnUpdate.TabIndex = 52;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.BackColor = System.Drawing.Color.DimGray;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.Location = new System.Drawing.Point(508, 222);
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(514, 222);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(140, 40);
             this.btnAdd.TabIndex = 53;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(206, 31);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(67, 14);
+            this.lblTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTitle.TabIndex = 51;
             this.lblTitle.Text = "업장관리";
             // 
@@ -153,7 +159,7 @@
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.shop_code,
             this.shop_name});
-            this.lvwList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
             this.lvwList.HideSelection = false;
@@ -170,11 +176,12 @@
             // shop_code
             // 
             this.shop_code.Text = "업장코드";
+            this.shop_code.Width = 80;
             // 
             // shop_name
             // 
             this.shop_name.Text = "업장명";
-            this.shop_name.Width = 100;
+            this.shop_name.Width = 120;
             // 
             // frmSysShop
             // 

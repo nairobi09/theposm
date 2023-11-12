@@ -46,16 +46,15 @@ namespace thepos
             initialize_font();
             initialize_the();
 
-
         }
 
 
         private void initialize_font()
         {
             lblReportTitle.Font = font10;
-            btnPrev.Font = font10;
+            btnPrev.Font = font8;
             lblYYYYMM.Font = font10;
-            btnNext.Font = font10;
+            btnNext.Font = font8;
 
             lblListPath.Font = font10;
 

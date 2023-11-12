@@ -97,10 +97,10 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.Location = new System.Drawing.Point(155, 23);
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Location = new System.Drawing.Point(159, 29);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(97, 14);
+            this.lblTitle.Size = new System.Drawing.Size(91, 14);
             this.lblTitle.TabIndex = 64;
             this.lblTitle.Text = "결제버튼배치";
             // 
@@ -117,14 +117,16 @@
             // 
             // btnView
             // 
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.Black;
             this.btnView.Location = new System.Drawing.Point(144, 19);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 30);
             this.btnView.TabIndex = 46;
             this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblPosNo
@@ -151,7 +153,7 @@
             this.lvwConsole.BackColor = System.Drawing.SystemColors.Window;
             this.lvwConsole.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.item_name});
-            this.lvwConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwConsole.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwConsole.FullRowSelect = true;
             this.lvwConsole.GridLines = true;
             this.lvwConsole.HideSelection = false;
@@ -235,23 +237,25 @@
             // 
             // btnLink
             // 
+            this.btnLink.BackColor = System.Drawing.Color.DimGray;
             this.btnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLink.Location = new System.Drawing.Point(622, 90);
+            this.btnLink.ForeColor = System.Drawing.Color.White;
+            this.btnLink.Location = new System.Drawing.Point(622, 91);
             this.btnLink.Name = "btnLink";
-            this.btnLink.Size = new System.Drawing.Size(100, 30);
+            this.btnLink.Size = new System.Drawing.Size(100, 40);
             this.btnLink.TabIndex = 99;
             this.btnLink.Text = "항목연결";
-            this.btnLink.UseVisualStyleBackColor = true;
+            this.btnLink.UseVisualStyleBackColor = false;
             this.btnLink.Click += new System.EventHandler(this.btnLink_Click);
             // 
             // btnApply
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnApply.Location = new System.Drawing.Point(622, 313);
+            this.btnApply.Location = new System.Drawing.Point(622, 323);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(100, 40);
+            this.btnApply.Size = new System.Drawing.Size(100, 30);
             this.btnApply.TabIndex = 101;
             this.btnApply.Text = "적용보기";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -269,7 +273,7 @@
             this.groupBox1.Controls.Add(this.tbSizeY);
             this.groupBox1.Controls.Add(this.tbSizeX);
             this.groupBox1.Controls.Add(this.tbLocateY);
-            this.groupBox1.Location = new System.Drawing.Point(611, 125);
+            this.groupBox1.Location = new System.Drawing.Point(611, 135);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(123, 182);
             this.groupBox1.TabIndex = 100;
@@ -306,14 +310,16 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.DimGray;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(11, 141);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 30);
             this.btnDelete.TabIndex = 88;
             this.btnDelete.Text = "삭제";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblT3
@@ -328,14 +334,16 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.DimGray;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Location = new System.Drawing.Point(11, 96);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(100, 40);
             this.btnUpdate.TabIndex = 89;
             this.btnUpdate.Text = "수정";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblT4

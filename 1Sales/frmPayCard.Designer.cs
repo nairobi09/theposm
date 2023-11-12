@@ -131,6 +131,7 @@
             // 
             this.rbCard7.AutoSize = true;
             this.rbCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard7.Location = new System.Drawing.Point(138, 180);
             this.rbCard7.Name = "rbCard7";
             this.rbCard7.Size = new System.Drawing.Size(52, 18);
@@ -179,6 +180,7 @@
             // 
             this.rbCard8.AutoSize = true;
             this.rbCard8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard8.Location = new System.Drawing.Point(222, 180);
             this.rbCard8.Name = "rbCard8";
             this.rbCard8.Size = new System.Drawing.Size(52, 18);
@@ -214,6 +216,7 @@
             // 
             this.rbCard5.AutoSize = true;
             this.rbCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard5.Location = new System.Drawing.Point(222, 152);
             this.rbCard5.Name = "rbCard5";
             this.rbCard5.Size = new System.Drawing.Size(52, 18);
@@ -227,6 +230,7 @@
             // 
             this.rbCard6.AutoSize = true;
             this.rbCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard6.Location = new System.Drawing.Point(56, 180);
             this.rbCard6.Name = "rbCard6";
             this.rbCard6.Size = new System.Drawing.Size(52, 18);
@@ -240,6 +244,7 @@
             // 
             this.rbCard3.AutoSize = true;
             this.rbCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard3.Location = new System.Drawing.Point(56, 152);
             this.rbCard3.Name = "rbCard3";
             this.rbCard3.Size = new System.Drawing.Size(52, 18);
@@ -253,6 +258,7 @@
             // 
             this.rbCard4.AutoSize = true;
             this.rbCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard4.Location = new System.Drawing.Point(138, 152);
             this.rbCard4.Name = "rbCard4";
             this.rbCard4.Size = new System.Drawing.Size(52, 18);
@@ -266,6 +272,7 @@
             // 
             this.rbCard2.AutoSize = true;
             this.rbCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard2.Location = new System.Drawing.Point(222, 124);
             this.rbCard2.Name = "rbCard2";
             this.rbCard2.Size = new System.Drawing.Size(52, 18);
@@ -279,6 +286,7 @@
             // 
             this.rbCard1.AutoSize = true;
             this.rbCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard1.Location = new System.Drawing.Point(138, 124);
             this.rbCard1.Name = "rbCard1";
             this.rbCard1.Size = new System.Drawing.Size(52, 18);
@@ -292,6 +300,7 @@
             // 
             this.rbCard0.AutoSize = true;
             this.rbCard0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbCard0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.rbCard0.Location = new System.Drawing.Point(57, 124);
             this.rbCard0.Name = "rbCard0";
             this.rbCard0.Size = new System.Drawing.Size(52, 18);
@@ -344,6 +353,8 @@
             // 
             // btnInstall00
             // 
+            this.btnInstall00.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstall00.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnInstall00.Location = new System.Drawing.Point(55, 113);
             this.btnInstall00.Name = "btnInstall00";
             this.btnInstall00.Size = new System.Drawing.Size(71, 46);
@@ -376,6 +387,8 @@
             // 
             // btnInstall03
             // 
+            this.btnInstall03.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstall03.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnInstall03.Location = new System.Drawing.Point(132, 113);
             this.btnInstall03.Name = "btnInstall03";
             this.btnInstall03.Size = new System.Drawing.Size(46, 46);
@@ -399,6 +412,8 @@
             // 
             // btnInstall06
             // 
+            this.btnInstall06.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstall06.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnInstall06.Location = new System.Drawing.Point(182, 113);
             this.btnInstall06.Name = "btnInstall06";
             this.btnInstall06.Size = new System.Drawing.Size(46, 46);
@@ -409,6 +424,8 @@
             // 
             // btnInstall12
             // 
+            this.btnInstall12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstall12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnInstall12.Location = new System.Drawing.Point(232, 113);
             this.btnInstall12.Name = "btnInstall12";
             this.btnInstall12.Size = new System.Drawing.Size(46, 46);

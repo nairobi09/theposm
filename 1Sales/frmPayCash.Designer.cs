@@ -263,15 +263,15 @@
             // 
             // btnReset
             // 
-            this.btnReset.BackColor = System.Drawing.Color.Gray;
+            this.btnReset.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReset.Location = new System.Drawing.Point(228, 149);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(59, 50);
             this.btnReset.TabIndex = 51;
             this.btnReset.Text = "초기화";
-            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnCashSimple
@@ -326,6 +326,8 @@
             // 
             // btn1t
             // 
+            this.btn1t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn1t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btn1t.Location = new System.Drawing.Point(16, 149);
             this.btn1t.Name = "btn1t";
             this.btn1t.Size = new System.Drawing.Size(50, 50);
@@ -345,6 +347,8 @@
             // 
             // btn5t
             // 
+            this.btn5t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn5t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btn5t.Location = new System.Drawing.Point(69, 149);
             this.btn5t.Name = "btn5t";
             this.btn5t.Size = new System.Drawing.Size(50, 50);
@@ -373,6 +377,8 @@
             // 
             // btn10t
             // 
+            this.btn10t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn10t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btn10t.Location = new System.Drawing.Point(122, 149);
             this.btn10t.Name = "btn10t";
             this.btn10t.Size = new System.Drawing.Size(50, 50);
@@ -383,6 +389,8 @@
             // 
             // btn50t
             // 
+            this.btn50t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn50t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btn50t.Location = new System.Drawing.Point(175, 149);
             this.btn50t.Name = "btn50t";
             this.btn50t.Size = new System.Drawing.Size(50, 50);

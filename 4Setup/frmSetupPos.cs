@@ -43,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[6];
+        Setup[] listSetup = new Setup[5];
 
 
         bool isAdd = false;
@@ -58,12 +58,11 @@ namespace thepos
 
             Setup setupItem = new Setup();
 
-            setupItem.code = "BillPrinterPort";     setupItem.name = "영수증프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[0] = setupItem;
-            setupItem.code = "TicketPrinterPort";   setupItem.name = "티켓바코드프린터포트";setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
-            setupItem.code = "OrderPrinterPort";    setupItem.name = "주문서프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
-            setupItem.code = "ScannerPort";         setupItem.name = "스캐너포트";          setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
-            setupItem.code = "PosType";             setupItem.name = "기기유형";            setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
-            setupItem.code = "CustomerMonitor";     setupItem.name = "고객용모니터사용";    setupItem.value = "";   setupItem.memo = "";    listSetup[5] = setupItem;
+            setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[0] = setupItem;
+            setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";      setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
+            setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
+            setupItem.code = "PosType";               setupItem.name = "기기유형";            setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
+            setupItem.code = "CustomerMonitor";       setupItem.name = "고객용모니터사용";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
 
             reload_setup_pos();
         }
@@ -273,12 +272,11 @@ namespace thepos
 
 
                         //
-                        if (lvwList.Items[i].Tag.ToString() == "mBillPrinterPort") mBillPrinterPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "mTicketPrinterPort") mTicketPrinterPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "mOrderPrinterPort") mOrderPrinterPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "mScannerPort") mScannerPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "mPosType") mPosType = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "mCustomerMonitor") mCustomerMonitor = t_value;
+                        if (lvwList.Items[i].Tag.ToString() ==      "BillPrinterPort") mBillPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "PosType") mPosType = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = t_value;
 
                     }
                 }
@@ -322,12 +320,11 @@ namespace thepos
 
 
                         // 바뀐거만 여기로 온다.
-                        if (lvwList.Items[i].Tag.ToString() == "mBillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "mTicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "mOrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "mScannerPort") mScannerPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "mPosType") mPosType = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "mCustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[2].Text;
+                        if (lvwList.Items[i].Tag.ToString() ==      "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "PosType") mPosType = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[2].Text;
 
                     }
                 }

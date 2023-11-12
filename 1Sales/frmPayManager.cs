@@ -498,13 +498,12 @@ namespace thepos
             String except_order = "";
             if (cbGoodsExcept.Checked) except_order = "Y";
 
-            String headerBill = make_bill_header();
-            String bodyBill = make_bill_body(tTheNo, tran_type, except_order, pay_keep);
-            String trailerBill = make_bill_trailer();
 
-            PrintBill(headerBill, bodyBill, trailerBill, tTheNo);
+            print_bill(tTheNo, tran_type, except_order, pay_keep, false);
 
         }
+
+
 
 
         private void btnCancel_Click(object sender, EventArgs e)

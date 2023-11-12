@@ -61,8 +61,8 @@ namespace thepos
 
         private void initialize_font()
         {
-            //fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
-            fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
+            fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
+            //fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
 
 
 
@@ -619,6 +619,7 @@ namespace thepos
                             mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
                             mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
                             mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                            mGoodsItem[i].soldout = arr[i]["soldout"].ToString();
                             mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
                             mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
                             mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
@@ -725,7 +726,7 @@ namespace thepos
                         {
                             if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "ScannerPort") mScannerPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
                         }
@@ -1346,7 +1347,7 @@ namespace thepos
                 {
                     if (dr["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = dr["setupValue"].ToString();
-                    else if (dr["setupCode"].ToString() == "ScannerPort") mScannerPort = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "PosType") mPosType = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = dr["setupValue"].ToString();
                     i++;

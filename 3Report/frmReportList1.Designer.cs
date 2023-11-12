@@ -47,11 +47,11 @@
             // 
             this.btnNext.BackColor = System.Drawing.Color.White;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnNext.Location = new System.Drawing.Point(431, 28);
+            this.btnNext.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnNext.Location = new System.Drawing.Point(395, 27);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(41, 24);
+            this.btnNext.Size = new System.Drawing.Size(40, 27);
             this.btnNext.TabIndex = 82;
             this.btnNext.TabStop = false;
             this.btnNext.Text = "▶";
@@ -62,11 +62,11 @@
             // 
             this.btnPrev.BackColor = System.Drawing.Color.White;
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrev.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrev.Location = new System.Drawing.Point(222, 28);
+            this.btnPrev.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnPrev.Location = new System.Drawing.Point(222, 27);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(41, 24);
+            this.btnPrev.Size = new System.Drawing.Size(40, 27);
             this.btnPrev.TabIndex = 81;
             this.btnPrev.TabStop = false;
             this.btnPrev.Text = "◀";
@@ -75,14 +75,16 @@
             // 
             // btnView
             // 
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.Location = new System.Drawing.Point(484, 27);
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnView.Location = new System.Drawing.Point(460, 26);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 25);
+            this.btnView.Size = new System.Drawing.Size(100, 29);
             this.btnView.TabIndex = 80;
             this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblYYYYMM
@@ -90,9 +92,9 @@
             this.lblYYYYMM.BackColor = System.Drawing.Color.White;
             this.lblYYYYMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblYYYYMM.Location = new System.Drawing.Point(269, 28);
+            this.lblYYYYMM.Location = new System.Drawing.Point(269, 27);
             this.lblYYYYMM.Name = "lblYYYYMM";
-            this.lblYYYYMM.Size = new System.Drawing.Size(156, 24);
+            this.lblYYYYMM.Size = new System.Drawing.Size(120, 27);
             this.lblYYYYMM.TabIndex = 79;
             this.lblYYYYMM.Text = "2023-10";
             this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,11 +103,13 @@
             // 
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblReportTitle.Location = new System.Drawing.Point(25, 34);
+            this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
             this.lblReportTitle.Name = "lblReportTitle";
             this.lblReportTitle.Size = new System.Drawing.Size(91, 14);
             this.lblReportTitle.TabIndex = 78;
             this.lblReportTitle.Text = "월별매출목록";
+            this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lvwList
             // 
@@ -130,7 +134,7 @@
             // 
             // biz_dt
             // 
-            this.biz_dt.Text = "일자";
+            this.biz_dt.Text = "영업일자";
             this.biz_dt.Width = 90;
             // 
             // c1
@@ -170,9 +174,9 @@
             this.lblListPath.AutoSize = true;
             this.lblListPath.Location = new System.Drawing.Point(225, 73);
             this.lblListPath.Name = "lblListPath";
-            this.lblListPath.Size = new System.Drawing.Size(38, 12);
+            this.lblListPath.Size = new System.Drawing.Size(13, 12);
             this.lblListPath.TabIndex = 91;
-            this.lblListPath.Text = "label1";
+            this.lblListPath.Text = ">";
             // 
             // frmReportList1
             // 
@@ -202,11 +206,11 @@
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.TreeView tvwList;
-        private System.Windows.Forms.Label lblListPath;
         private System.Windows.Forms.ColumnHeader biz_dt;
         private System.Windows.Forms.ColumnHeader c1;
         private System.Windows.Forms.ColumnHeader c2;
         private System.Windows.Forms.ColumnHeader c3;
         private System.Windows.Forms.ColumnHeader c4;
+        private System.Windows.Forms.Label lblListPath;
     }
 }

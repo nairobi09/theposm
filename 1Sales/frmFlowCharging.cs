@@ -34,7 +34,7 @@ namespace thepos
             btnClose.Font = font12;
 
             lblBizDtTitle.Font = font9;
-            dtBizDt.Font = font10;
+            //dtBizDt.Font = font10;
 
             lblPosNoTitle.Font = font9;
             cbPosNo.Font = font10;

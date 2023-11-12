@@ -30,6 +30,27 @@
         {
             this.btnBizCloseInput = new System.Windows.Forms.Button();
             this.panelBizOpen = new System.Windows.Forms.Panel();
+            this.lblPosAmount9 = new System.Windows.Forms.Label();
+            this.lblPosTitle9 = new System.Windows.Forms.Label();
+            this.lblPosAmount8 = new System.Windows.Forms.Label();
+            this.lblPosTitle8 = new System.Windows.Forms.Label();
+            this.lblPosAmount7 = new System.Windows.Forms.Label();
+            this.lblPosTitle7 = new System.Windows.Forms.Label();
+            this.lblPosAmount6 = new System.Windows.Forms.Label();
+            this.lblPosTitle6 = new System.Windows.Forms.Label();
+            this.lblPosAmount5 = new System.Windows.Forms.Label();
+            this.lblPosTitle5 = new System.Windows.Forms.Label();
+            this.lblPosAmount4 = new System.Windows.Forms.Label();
+            this.lblPosTitle4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblBizDateTitle = new System.Windows.Forms.Label();
+            this.lblLastBizCloseDtInputTitle = new System.Windows.Forms.Label();
+            this.lblBizDate = new System.Windows.Forms.Label();
+            this.lblLastBizCloseDtInput = new System.Windows.Forms.Label();
+            this.lblLastBizOpenDtInputTitle = new System.Windows.Forms.Label();
+            this.lblLastBizOpenDtInput = new System.Windows.Forms.Label();
+            this.lblBizStatusTitle = new System.Windows.Forms.Label();
+            this.lblBizStatus = new System.Windows.Forms.Label();
             this.lblPosTitle = new System.Windows.Forms.Label();
             this.lblAmountPaymentTitle = new System.Windows.Forms.Label();
             this.lblAmountNet = new System.Windows.Forms.Label();
@@ -51,27 +72,6 @@
             this.lblAmountCash = new System.Windows.Forms.Label();
             this.lblAmountCashTitle = new System.Windows.Forms.Label();
             this.lblAmountTitle = new System.Windows.Forms.Label();
-            this.lblBizStatus = new System.Windows.Forms.Label();
-            this.lblLastBizOpenDtInput = new System.Windows.Forms.Label();
-            this.lblBizDate = new System.Windows.Forms.Label();
-            this.lblBizDateTitle = new System.Windows.Forms.Label();
-            this.lblBizStatusTitle = new System.Windows.Forms.Label();
-            this.lblLastBizOpenDtInputTitle = new System.Windows.Forms.Label();
-            this.lblLastBizCloseDtInputTitle = new System.Windows.Forms.Label();
-            this.lblLastBizCloseDtInput = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblPosAmount7 = new System.Windows.Forms.Label();
-            this.lblPosTitle7 = new System.Windows.Forms.Label();
-            this.lblPosAmount6 = new System.Windows.Forms.Label();
-            this.lblPosTitle6 = new System.Windows.Forms.Label();
-            this.lblPosAmount5 = new System.Windows.Forms.Label();
-            this.lblPosTitle5 = new System.Windows.Forms.Label();
-            this.lblPosAmount4 = new System.Windows.Forms.Label();
-            this.lblPosTitle4 = new System.Windows.Forms.Label();
-            this.lblPosAmount9 = new System.Windows.Forms.Label();
-            this.lblPosTitle9 = new System.Windows.Forms.Label();
-            this.lblPosAmount8 = new System.Windows.Forms.Label();
-            this.lblPosTitle8 = new System.Windows.Forms.Label();
             this.panelBizOpen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -132,6 +132,311 @@
             this.panelBizOpen.Name = "panelBizOpen";
             this.panelBizOpen.Size = new System.Drawing.Size(750, 700);
             this.panelBizOpen.TabIndex = 12;
+            // 
+            // lblPosAmount9
+            // 
+            this.lblPosAmount9.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosAmount9.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosAmount9.ForeColor = System.Drawing.Color.Black;
+            this.lblPosAmount9.Location = new System.Drawing.Point(144, 645);
+            this.lblPosAmount9.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosAmount9.Name = "lblPosAmount9";
+            this.lblPosAmount9.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosAmount9.Size = new System.Drawing.Size(141, 30);
+            this.lblPosAmount9.TabIndex = 111;
+            this.lblPosAmount9.Text = "0";
+            this.lblPosAmount9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPosAmount9.Visible = false;
+            // 
+            // lblPosTitle9
+            // 
+            this.lblPosTitle9.BackColor = System.Drawing.Color.Peru;
+            this.lblPosTitle9.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosTitle9.ForeColor = System.Drawing.Color.White;
+            this.lblPosTitle9.Location = new System.Drawing.Point(55, 645);
+            this.lblPosTitle9.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosTitle9.Name = "lblPosTitle9";
+            this.lblPosTitle9.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosTitle9.Size = new System.Drawing.Size(85, 30);
+            this.lblPosTitle9.TabIndex = 110;
+            this.lblPosTitle9.Text = "10";
+            this.lblPosTitle9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosTitle9.Visible = false;
+            // 
+            // lblPosAmount8
+            // 
+            this.lblPosAmount8.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosAmount8.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosAmount8.ForeColor = System.Drawing.Color.Black;
+            this.lblPosAmount8.Location = new System.Drawing.Point(144, 612);
+            this.lblPosAmount8.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosAmount8.Name = "lblPosAmount8";
+            this.lblPosAmount8.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosAmount8.Size = new System.Drawing.Size(141, 30);
+            this.lblPosAmount8.TabIndex = 109;
+            this.lblPosAmount8.Text = "0";
+            this.lblPosAmount8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPosAmount8.Visible = false;
+            // 
+            // lblPosTitle8
+            // 
+            this.lblPosTitle8.BackColor = System.Drawing.Color.Peru;
+            this.lblPosTitle8.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosTitle8.ForeColor = System.Drawing.Color.White;
+            this.lblPosTitle8.Location = new System.Drawing.Point(55, 612);
+            this.lblPosTitle8.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosTitle8.Name = "lblPosTitle8";
+            this.lblPosTitle8.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosTitle8.Size = new System.Drawing.Size(85, 30);
+            this.lblPosTitle8.TabIndex = 108;
+            this.lblPosTitle8.Text = "09";
+            this.lblPosTitle8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosTitle8.Visible = false;
+            // 
+            // lblPosAmount7
+            // 
+            this.lblPosAmount7.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosAmount7.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosAmount7.ForeColor = System.Drawing.Color.Black;
+            this.lblPosAmount7.Location = new System.Drawing.Point(144, 579);
+            this.lblPosAmount7.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosAmount7.Name = "lblPosAmount7";
+            this.lblPosAmount7.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosAmount7.Size = new System.Drawing.Size(141, 30);
+            this.lblPosAmount7.TabIndex = 107;
+            this.lblPosAmount7.Text = "0";
+            this.lblPosAmount7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPosAmount7.Visible = false;
+            // 
+            // lblPosTitle7
+            // 
+            this.lblPosTitle7.BackColor = System.Drawing.Color.Peru;
+            this.lblPosTitle7.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosTitle7.ForeColor = System.Drawing.Color.White;
+            this.lblPosTitle7.Location = new System.Drawing.Point(55, 579);
+            this.lblPosTitle7.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosTitle7.Name = "lblPosTitle7";
+            this.lblPosTitle7.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosTitle7.Size = new System.Drawing.Size(85, 30);
+            this.lblPosTitle7.TabIndex = 106;
+            this.lblPosTitle7.Text = "08";
+            this.lblPosTitle7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosTitle7.Visible = false;
+            // 
+            // lblPosAmount6
+            // 
+            this.lblPosAmount6.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosAmount6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosAmount6.ForeColor = System.Drawing.Color.Black;
+            this.lblPosAmount6.Location = new System.Drawing.Point(144, 546);
+            this.lblPosAmount6.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosAmount6.Name = "lblPosAmount6";
+            this.lblPosAmount6.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosAmount6.Size = new System.Drawing.Size(141, 30);
+            this.lblPosAmount6.TabIndex = 105;
+            this.lblPosAmount6.Text = "0";
+            this.lblPosAmount6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPosAmount6.Visible = false;
+            // 
+            // lblPosTitle6
+            // 
+            this.lblPosTitle6.BackColor = System.Drawing.Color.Peru;
+            this.lblPosTitle6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosTitle6.ForeColor = System.Drawing.Color.White;
+            this.lblPosTitle6.Location = new System.Drawing.Point(55, 546);
+            this.lblPosTitle6.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosTitle6.Name = "lblPosTitle6";
+            this.lblPosTitle6.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosTitle6.Size = new System.Drawing.Size(85, 30);
+            this.lblPosTitle6.TabIndex = 104;
+            this.lblPosTitle6.Text = "07";
+            this.lblPosTitle6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosTitle6.Visible = false;
+            // 
+            // lblPosAmount5
+            // 
+            this.lblPosAmount5.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosAmount5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosAmount5.ForeColor = System.Drawing.Color.Black;
+            this.lblPosAmount5.Location = new System.Drawing.Point(144, 513);
+            this.lblPosAmount5.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosAmount5.Name = "lblPosAmount5";
+            this.lblPosAmount5.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosAmount5.Size = new System.Drawing.Size(141, 30);
+            this.lblPosAmount5.TabIndex = 103;
+            this.lblPosAmount5.Text = "0";
+            this.lblPosAmount5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPosAmount5.Visible = false;
+            // 
+            // lblPosTitle5
+            // 
+            this.lblPosTitle5.BackColor = System.Drawing.Color.Peru;
+            this.lblPosTitle5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosTitle5.ForeColor = System.Drawing.Color.White;
+            this.lblPosTitle5.Location = new System.Drawing.Point(55, 513);
+            this.lblPosTitle5.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosTitle5.Name = "lblPosTitle5";
+            this.lblPosTitle5.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosTitle5.Size = new System.Drawing.Size(85, 30);
+            this.lblPosTitle5.TabIndex = 102;
+            this.lblPosTitle5.Text = "06";
+            this.lblPosTitle5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosTitle5.Visible = false;
+            // 
+            // lblPosAmount4
+            // 
+            this.lblPosAmount4.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosAmount4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosAmount4.ForeColor = System.Drawing.Color.Black;
+            this.lblPosAmount4.Location = new System.Drawing.Point(144, 479);
+            this.lblPosAmount4.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosAmount4.Name = "lblPosAmount4";
+            this.lblPosAmount4.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosAmount4.Size = new System.Drawing.Size(141, 30);
+            this.lblPosAmount4.TabIndex = 101;
+            this.lblPosAmount4.Text = "0";
+            this.lblPosAmount4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPosAmount4.Visible = false;
+            // 
+            // lblPosTitle4
+            // 
+            this.lblPosTitle4.BackColor = System.Drawing.Color.Peru;
+            this.lblPosTitle4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosTitle4.ForeColor = System.Drawing.Color.White;
+            this.lblPosTitle4.Location = new System.Drawing.Point(55, 479);
+            this.lblPosTitle4.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosTitle4.Name = "lblPosTitle4";
+            this.lblPosTitle4.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosTitle4.Size = new System.Drawing.Size(85, 30);
+            this.lblPosTitle4.TabIndex = 100;
+            this.lblPosTitle4.Text = "05";
+            this.lblPosTitle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPosTitle4.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblBizDateTitle);
+            this.groupBox1.Controls.Add(this.lblLastBizCloseDtInputTitle);
+            this.groupBox1.Controls.Add(this.lblBizDate);
+            this.groupBox1.Controls.Add(this.lblLastBizCloseDtInput);
+            this.groupBox1.Controls.Add(this.btnBizCloseInput);
+            this.groupBox1.Controls.Add(this.lblLastBizOpenDtInputTitle);
+            this.groupBox1.Controls.Add(this.lblLastBizOpenDtInput);
+            this.groupBox1.Controls.Add(this.lblBizStatusTitle);
+            this.groupBox1.Controls.Add(this.lblBizStatus);
+            this.groupBox1.Location = new System.Drawing.Point(354, 105);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(327, 345);
+            this.groupBox1.TabIndex = 99;
+            this.groupBox1.TabStop = false;
+            // 
+            // lblBizDateTitle
+            // 
+            this.lblBizDateTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizDateTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDateTitle.ForeColor = System.Drawing.Color.White;
+            this.lblBizDateTitle.Location = new System.Drawing.Point(34, 27);
+            this.lblBizDateTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblBizDateTitle.Name = "lblBizDateTitle";
+            this.lblBizDateTitle.Padding = new System.Windows.Forms.Padding(5);
+            this.lblBizDateTitle.Size = new System.Drawing.Size(80, 30);
+            this.lblBizDateTitle.TabIndex = 94;
+            this.lblBizDateTitle.Text = "영업일자";
+            this.lblBizDateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLastBizCloseDtInputTitle
+            // 
+            this.lblLastBizCloseDtInputTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblLastBizCloseDtInputTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLastBizCloseDtInputTitle.ForeColor = System.Drawing.Color.White;
+            this.lblLastBizCloseDtInputTitle.Location = new System.Drawing.Point(34, 141);
+            this.lblLastBizCloseDtInputTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLastBizCloseDtInputTitle.Name = "lblLastBizCloseDtInputTitle";
+            this.lblLastBizCloseDtInputTitle.Size = new System.Drawing.Size(80, 30);
+            this.lblLastBizCloseDtInputTitle.TabIndex = 98;
+            this.lblLastBizCloseDtInputTitle.Text = "마감입력";
+            this.lblLastBizCloseDtInputTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBizDate
+            // 
+            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBizDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDate.ForeColor = System.Drawing.Color.Black;
+            this.lblBizDate.Location = new System.Drawing.Point(121, 26);
+            this.lblBizDate.Name = "lblBizDate";
+            this.lblBizDate.Size = new System.Drawing.Size(170, 30);
+            this.lblBizDate.TabIndex = 5;
+            this.lblBizDate.Text = "_";
+            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblLastBizCloseDtInput
+            // 
+            this.lblLastBizCloseDtInput.BackColor = System.Drawing.Color.Transparent;
+            this.lblLastBizCloseDtInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblLastBizCloseDtInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastBizCloseDtInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLastBizCloseDtInput.ForeColor = System.Drawing.Color.Black;
+            this.lblLastBizCloseDtInput.Location = new System.Drawing.Point(121, 141);
+            this.lblLastBizCloseDtInput.Name = "lblLastBizCloseDtInput";
+            this.lblLastBizCloseDtInput.Size = new System.Drawing.Size(170, 30);
+            this.lblLastBizCloseDtInput.TabIndex = 97;
+            this.lblLastBizCloseDtInput.Text = "_";
+            this.lblLastBizCloseDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblLastBizOpenDtInputTitle
+            // 
+            this.lblLastBizOpenDtInputTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblLastBizOpenDtInputTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLastBizOpenDtInputTitle.ForeColor = System.Drawing.Color.White;
+            this.lblLastBizOpenDtInputTitle.Location = new System.Drawing.Point(34, 103);
+            this.lblLastBizOpenDtInputTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLastBizOpenDtInputTitle.Name = "lblLastBizOpenDtInputTitle";
+            this.lblLastBizOpenDtInputTitle.Size = new System.Drawing.Size(80, 30);
+            this.lblLastBizOpenDtInputTitle.TabIndex = 96;
+            this.lblLastBizOpenDtInputTitle.Text = "개시입력";
+            this.lblLastBizOpenDtInputTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLastBizOpenDtInput
+            // 
+            this.lblLastBizOpenDtInput.BackColor = System.Drawing.Color.Transparent;
+            this.lblLastBizOpenDtInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblLastBizOpenDtInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastBizOpenDtInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLastBizOpenDtInput.ForeColor = System.Drawing.Color.Black;
+            this.lblLastBizOpenDtInput.Location = new System.Drawing.Point(121, 103);
+            this.lblLastBizOpenDtInput.Name = "lblLastBizOpenDtInput";
+            this.lblLastBizOpenDtInput.Size = new System.Drawing.Size(170, 30);
+            this.lblLastBizOpenDtInput.TabIndex = 6;
+            this.lblLastBizOpenDtInput.Text = "_";
+            this.lblLastBizOpenDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblBizStatusTitle
+            // 
+            this.lblBizStatusTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizStatusTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizStatusTitle.ForeColor = System.Drawing.Color.White;
+            this.lblBizStatusTitle.Location = new System.Drawing.Point(34, 65);
+            this.lblBizStatusTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblBizStatusTitle.Name = "lblBizStatusTitle";
+            this.lblBizStatusTitle.Padding = new System.Windows.Forms.Padding(5);
+            this.lblBizStatusTitle.Size = new System.Drawing.Size(80, 30);
+            this.lblBizStatusTitle.TabIndex = 95;
+            this.lblBizStatusTitle.Text = "영업상태";
+            this.lblBizStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBizStatus
+            // 
+            this.lblBizStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblBizStatus.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizStatus.ForeColor = System.Drawing.Color.Black;
+            this.lblBizStatus.Location = new System.Drawing.Point(121, 65);
+            this.lblBizStatus.Name = "lblBizStatus";
+            this.lblBizStatus.Size = new System.Drawing.Size(170, 30);
+            this.lblBizStatus.TabIndex = 15;
+            this.lblBizStatus.Text = "_";
+            this.lblBizStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPosTitle
             // 
@@ -198,7 +503,7 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(5);
-            this.lblTitle.Size = new System.Drawing.Size(640, 30);
+            this.lblTitle.Size = new System.Drawing.Size(640, 40);
             this.lblTitle.TabIndex = 88;
             this.lblTitle.Text = "영업마감";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -434,311 +739,6 @@
             this.lblAmountTitle.TabIndex = 60;
             this.lblAmountTitle.Text = "금액";
             this.lblAmountTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblBizStatus
-            // 
-            this.lblBizStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblBizStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblBizStatus.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizStatus.ForeColor = System.Drawing.Color.Black;
-            this.lblBizStatus.Location = new System.Drawing.Point(121, 65);
-            this.lblBizStatus.Name = "lblBizStatus";
-            this.lblBizStatus.Size = new System.Drawing.Size(170, 30);
-            this.lblBizStatus.TabIndex = 15;
-            this.lblBizStatus.Text = "_";
-            this.lblBizStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblLastBizOpenDtInput
-            // 
-            this.lblLastBizOpenDtInput.BackColor = System.Drawing.Color.Transparent;
-            this.lblLastBizOpenDtInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblLastBizOpenDtInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblLastBizOpenDtInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizOpenDtInput.ForeColor = System.Drawing.Color.Black;
-            this.lblLastBizOpenDtInput.Location = new System.Drawing.Point(121, 103);
-            this.lblLastBizOpenDtInput.Name = "lblLastBizOpenDtInput";
-            this.lblLastBizOpenDtInput.Size = new System.Drawing.Size(170, 30);
-            this.lblLastBizOpenDtInput.TabIndex = 6;
-            this.lblLastBizOpenDtInput.Text = "_";
-            this.lblLastBizOpenDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBizDate
-            // 
-            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblBizDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblBizDate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizDate.ForeColor = System.Drawing.Color.Black;
-            this.lblBizDate.Location = new System.Drawing.Point(121, 26);
-            this.lblBizDate.Name = "lblBizDate";
-            this.lblBizDate.Size = new System.Drawing.Size(170, 30);
-            this.lblBizDate.TabIndex = 5;
-            this.lblBizDate.Text = "_";
-            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBizDateTitle
-            // 
-            this.lblBizDateTitle.BackColor = System.Drawing.Color.SaddleBrown;
-            this.lblBizDateTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizDateTitle.ForeColor = System.Drawing.Color.White;
-            this.lblBizDateTitle.Location = new System.Drawing.Point(34, 27);
-            this.lblBizDateTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblBizDateTitle.Name = "lblBizDateTitle";
-            this.lblBizDateTitle.Padding = new System.Windows.Forms.Padding(5);
-            this.lblBizDateTitle.Size = new System.Drawing.Size(80, 30);
-            this.lblBizDateTitle.TabIndex = 94;
-            this.lblBizDateTitle.Text = "영업일자";
-            this.lblBizDateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblBizStatusTitle
-            // 
-            this.lblBizStatusTitle.BackColor = System.Drawing.Color.SaddleBrown;
-            this.lblBizStatusTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBizStatusTitle.ForeColor = System.Drawing.Color.White;
-            this.lblBizStatusTitle.Location = new System.Drawing.Point(34, 65);
-            this.lblBizStatusTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblBizStatusTitle.Name = "lblBizStatusTitle";
-            this.lblBizStatusTitle.Padding = new System.Windows.Forms.Padding(5);
-            this.lblBizStatusTitle.Size = new System.Drawing.Size(80, 30);
-            this.lblBizStatusTitle.TabIndex = 95;
-            this.lblBizStatusTitle.Text = "영업상태";
-            this.lblBizStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblLastBizOpenDtInputTitle
-            // 
-            this.lblLastBizOpenDtInputTitle.BackColor = System.Drawing.Color.SaddleBrown;
-            this.lblLastBizOpenDtInputTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizOpenDtInputTitle.ForeColor = System.Drawing.Color.White;
-            this.lblLastBizOpenDtInputTitle.Location = new System.Drawing.Point(34, 103);
-            this.lblLastBizOpenDtInputTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblLastBizOpenDtInputTitle.Name = "lblLastBizOpenDtInputTitle";
-            this.lblLastBizOpenDtInputTitle.Size = new System.Drawing.Size(80, 30);
-            this.lblLastBizOpenDtInputTitle.TabIndex = 96;
-            this.lblLastBizOpenDtInputTitle.Text = "개시입력";
-            this.lblLastBizOpenDtInputTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblLastBizCloseDtInputTitle
-            // 
-            this.lblLastBizCloseDtInputTitle.BackColor = System.Drawing.Color.SaddleBrown;
-            this.lblLastBizCloseDtInputTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizCloseDtInputTitle.ForeColor = System.Drawing.Color.White;
-            this.lblLastBizCloseDtInputTitle.Location = new System.Drawing.Point(34, 141);
-            this.lblLastBizCloseDtInputTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblLastBizCloseDtInputTitle.Name = "lblLastBizCloseDtInputTitle";
-            this.lblLastBizCloseDtInputTitle.Size = new System.Drawing.Size(80, 30);
-            this.lblLastBizCloseDtInputTitle.TabIndex = 98;
-            this.lblLastBizCloseDtInputTitle.Text = "마감입력";
-            this.lblLastBizCloseDtInputTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblLastBizCloseDtInput
-            // 
-            this.lblLastBizCloseDtInput.BackColor = System.Drawing.Color.Transparent;
-            this.lblLastBizCloseDtInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblLastBizCloseDtInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblLastBizCloseDtInput.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLastBizCloseDtInput.ForeColor = System.Drawing.Color.Black;
-            this.lblLastBizCloseDtInput.Location = new System.Drawing.Point(121, 141);
-            this.lblLastBizCloseDtInput.Name = "lblLastBizCloseDtInput";
-            this.lblLastBizCloseDtInput.Size = new System.Drawing.Size(170, 30);
-            this.lblLastBizCloseDtInput.TabIndex = 97;
-            this.lblLastBizCloseDtInput.Text = "_";
-            this.lblLastBizCloseDtInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblBizDateTitle);
-            this.groupBox1.Controls.Add(this.lblLastBizCloseDtInputTitle);
-            this.groupBox1.Controls.Add(this.lblBizDate);
-            this.groupBox1.Controls.Add(this.lblLastBizCloseDtInput);
-            this.groupBox1.Controls.Add(this.btnBizCloseInput);
-            this.groupBox1.Controls.Add(this.lblLastBizOpenDtInputTitle);
-            this.groupBox1.Controls.Add(this.lblLastBizOpenDtInput);
-            this.groupBox1.Controls.Add(this.lblBizStatusTitle);
-            this.groupBox1.Controls.Add(this.lblBizStatus);
-            this.groupBox1.Location = new System.Drawing.Point(354, 90);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(327, 345);
-            this.groupBox1.TabIndex = 99;
-            this.groupBox1.TabStop = false;
-            // 
-            // lblPosAmount7
-            // 
-            this.lblPosAmount7.BackColor = System.Drawing.Color.LightGray;
-            this.lblPosAmount7.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosAmount7.ForeColor = System.Drawing.Color.Black;
-            this.lblPosAmount7.Location = new System.Drawing.Point(144, 579);
-            this.lblPosAmount7.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosAmount7.Name = "lblPosAmount7";
-            this.lblPosAmount7.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosAmount7.Size = new System.Drawing.Size(141, 30);
-            this.lblPosAmount7.TabIndex = 107;
-            this.lblPosAmount7.Text = "0";
-            this.lblPosAmount7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPosAmount7.Visible = false;
-            // 
-            // lblPosTitle7
-            // 
-            this.lblPosTitle7.BackColor = System.Drawing.Color.Peru;
-            this.lblPosTitle7.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosTitle7.ForeColor = System.Drawing.Color.White;
-            this.lblPosTitle7.Location = new System.Drawing.Point(55, 579);
-            this.lblPosTitle7.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosTitle7.Name = "lblPosTitle7";
-            this.lblPosTitle7.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosTitle7.Size = new System.Drawing.Size(85, 30);
-            this.lblPosTitle7.TabIndex = 106;
-            this.lblPosTitle7.Text = "08";
-            this.lblPosTitle7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPosTitle7.Visible = false;
-            // 
-            // lblPosAmount6
-            // 
-            this.lblPosAmount6.BackColor = System.Drawing.Color.LightGray;
-            this.lblPosAmount6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosAmount6.ForeColor = System.Drawing.Color.Black;
-            this.lblPosAmount6.Location = new System.Drawing.Point(144, 546);
-            this.lblPosAmount6.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosAmount6.Name = "lblPosAmount6";
-            this.lblPosAmount6.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosAmount6.Size = new System.Drawing.Size(141, 30);
-            this.lblPosAmount6.TabIndex = 105;
-            this.lblPosAmount6.Text = "0";
-            this.lblPosAmount6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPosAmount6.Visible = false;
-            // 
-            // lblPosTitle6
-            // 
-            this.lblPosTitle6.BackColor = System.Drawing.Color.Peru;
-            this.lblPosTitle6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosTitle6.ForeColor = System.Drawing.Color.White;
-            this.lblPosTitle6.Location = new System.Drawing.Point(55, 546);
-            this.lblPosTitle6.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosTitle6.Name = "lblPosTitle6";
-            this.lblPosTitle6.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosTitle6.Size = new System.Drawing.Size(85, 30);
-            this.lblPosTitle6.TabIndex = 104;
-            this.lblPosTitle6.Text = "07";
-            this.lblPosTitle6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPosTitle6.Visible = false;
-            // 
-            // lblPosAmount5
-            // 
-            this.lblPosAmount5.BackColor = System.Drawing.Color.LightGray;
-            this.lblPosAmount5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosAmount5.ForeColor = System.Drawing.Color.Black;
-            this.lblPosAmount5.Location = new System.Drawing.Point(144, 513);
-            this.lblPosAmount5.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosAmount5.Name = "lblPosAmount5";
-            this.lblPosAmount5.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosAmount5.Size = new System.Drawing.Size(141, 30);
-            this.lblPosAmount5.TabIndex = 103;
-            this.lblPosAmount5.Text = "0";
-            this.lblPosAmount5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPosAmount5.Visible = false;
-            // 
-            // lblPosTitle5
-            // 
-            this.lblPosTitle5.BackColor = System.Drawing.Color.Peru;
-            this.lblPosTitle5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosTitle5.ForeColor = System.Drawing.Color.White;
-            this.lblPosTitle5.Location = new System.Drawing.Point(55, 513);
-            this.lblPosTitle5.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosTitle5.Name = "lblPosTitle5";
-            this.lblPosTitle5.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosTitle5.Size = new System.Drawing.Size(85, 30);
-            this.lblPosTitle5.TabIndex = 102;
-            this.lblPosTitle5.Text = "06";
-            this.lblPosTitle5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPosTitle5.Visible = false;
-            // 
-            // lblPosAmount4
-            // 
-            this.lblPosAmount4.BackColor = System.Drawing.Color.LightGray;
-            this.lblPosAmount4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosAmount4.ForeColor = System.Drawing.Color.Black;
-            this.lblPosAmount4.Location = new System.Drawing.Point(144, 479);
-            this.lblPosAmount4.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosAmount4.Name = "lblPosAmount4";
-            this.lblPosAmount4.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosAmount4.Size = new System.Drawing.Size(141, 30);
-            this.lblPosAmount4.TabIndex = 101;
-            this.lblPosAmount4.Text = "0";
-            this.lblPosAmount4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPosAmount4.Visible = false;
-            // 
-            // lblPosTitle4
-            // 
-            this.lblPosTitle4.BackColor = System.Drawing.Color.Peru;
-            this.lblPosTitle4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosTitle4.ForeColor = System.Drawing.Color.White;
-            this.lblPosTitle4.Location = new System.Drawing.Point(55, 479);
-            this.lblPosTitle4.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosTitle4.Name = "lblPosTitle4";
-            this.lblPosTitle4.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosTitle4.Size = new System.Drawing.Size(85, 30);
-            this.lblPosTitle4.TabIndex = 100;
-            this.lblPosTitle4.Text = "05";
-            this.lblPosTitle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPosTitle4.Visible = false;
-            // 
-            // lblPosAmount9
-            // 
-            this.lblPosAmount9.BackColor = System.Drawing.Color.LightGray;
-            this.lblPosAmount9.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosAmount9.ForeColor = System.Drawing.Color.Black;
-            this.lblPosAmount9.Location = new System.Drawing.Point(144, 645);
-            this.lblPosAmount9.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosAmount9.Name = "lblPosAmount9";
-            this.lblPosAmount9.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosAmount9.Size = new System.Drawing.Size(141, 30);
-            this.lblPosAmount9.TabIndex = 111;
-            this.lblPosAmount9.Text = "0";
-            this.lblPosAmount9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPosAmount9.Visible = false;
-            // 
-            // lblPosTitle9
-            // 
-            this.lblPosTitle9.BackColor = System.Drawing.Color.Peru;
-            this.lblPosTitle9.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosTitle9.ForeColor = System.Drawing.Color.White;
-            this.lblPosTitle9.Location = new System.Drawing.Point(55, 645);
-            this.lblPosTitle9.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosTitle9.Name = "lblPosTitle9";
-            this.lblPosTitle9.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosTitle9.Size = new System.Drawing.Size(85, 30);
-            this.lblPosTitle9.TabIndex = 110;
-            this.lblPosTitle9.Text = "10";
-            this.lblPosTitle9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPosTitle9.Visible = false;
-            // 
-            // lblPosAmount8
-            // 
-            this.lblPosAmount8.BackColor = System.Drawing.Color.LightGray;
-            this.lblPosAmount8.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosAmount8.ForeColor = System.Drawing.Color.Black;
-            this.lblPosAmount8.Location = new System.Drawing.Point(144, 612);
-            this.lblPosAmount8.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosAmount8.Name = "lblPosAmount8";
-            this.lblPosAmount8.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosAmount8.Size = new System.Drawing.Size(141, 30);
-            this.lblPosAmount8.TabIndex = 109;
-            this.lblPosAmount8.Text = "0";
-            this.lblPosAmount8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPosAmount8.Visible = false;
-            // 
-            // lblPosTitle8
-            // 
-            this.lblPosTitle8.BackColor = System.Drawing.Color.Peru;
-            this.lblPosTitle8.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosTitle8.ForeColor = System.Drawing.Color.White;
-            this.lblPosTitle8.Location = new System.Drawing.Point(55, 612);
-            this.lblPosTitle8.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosTitle8.Name = "lblPosTitle8";
-            this.lblPosTitle8.Padding = new System.Windows.Forms.Padding(5);
-            this.lblPosTitle8.Size = new System.Drawing.Size(85, 30);
-            this.lblPosTitle8.TabIndex = 108;
-            this.lblPosTitle8.Text = "09";
-            this.lblPosTitle8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPosTitle8.Visible = false;
             // 
             // frmBizClose
             // 

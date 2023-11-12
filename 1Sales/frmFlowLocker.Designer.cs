@@ -47,10 +47,11 @@
             // 
             // dtBusiness
             // 
+            this.dtBusiness.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(68, 20);
+            this.dtBusiness.Location = new System.Drawing.Point(83, 22);
             this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(112, 22);
+            this.dtBusiness.Size = new System.Drawing.Size(112, 23);
             this.dtBusiness.TabIndex = 68;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
@@ -78,7 +79,7 @@
             this.btnTicketReact.Name = "btnTicketReact";
             this.btnTicketReact.Size = new System.Drawing.Size(140, 50);
             this.btnTicketReact.TabIndex = 78;
-            this.btnTicketReact.Text = "띠지출력";
+            this.btnTicketReact.Text = "락커개방";
             this.btnTicketReact.UseVisualStyleBackColor = false;
             // 
             // panel1
@@ -95,18 +96,20 @@
             // lblBusinessTitle
             // 
             this.lblBusinessTitle.AutoSize = true;
-            this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBusinessTitle.ForeColor = System.Drawing.Color.SaddleBrown;
             this.lblBusinessTitle.Location = new System.Drawing.Point(12, 26);
             this.lblBusinessTitle.Name = "lblBusinessTitle";
-            this.lblBusinessTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblBusinessTitle.Size = new System.Drawing.Size(63, 14);
             this.lblBusinessTitle.TabIndex = 71;
             this.lblBusinessTitle.Text = "영업일자";
             // 
             // btnView
             // 
-            this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnView.Location = new System.Drawing.Point(365, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);

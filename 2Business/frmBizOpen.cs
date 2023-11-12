@@ -208,7 +208,8 @@ namespace thepos
                 {
                     MessageBox.Show("정상 개시입력 완료.", "thepos");
 
-
+                    // 정상 영업개시 -> 영업일자 세팅
+                    mBizDate = input_biz_date;
                 }
                 else
                 {

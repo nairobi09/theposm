@@ -342,9 +342,9 @@ namespace thepos
 
             // 최종 마지막 취소건인지 
 
-            String is_cancel = "1";
+            String is_cancel_stat = "1";
 
-            if (nestAmount == cancel_amt) is_cancel = "Y";
+            if (nestAmount == cancel_amt) is_cancel_stat = "Y";
 
 
             //
@@ -468,7 +468,6 @@ namespace thepos
 
 
 
-
                 // 티켓 확인 및 취소
                 if (mTheMode == "Local")
                 {
@@ -498,7 +497,7 @@ namespace thepos
                     {
                         cancel_orders(pay_seq, pCardAuth.amount);
 
-                        cancel_payment(pay_seq, pCardAuth.amount, pay_type, is_cancel);
+                        cancel_payment(pay_seq, pCardAuth.amount, pay_type, is_cancel_stat);
 
 
                         parameters["siteId"] = mSiteId;
@@ -586,7 +585,7 @@ namespace thepos
                 {
                     cancel_orders(pay_seq, pCardAuth.amount);
 
-                    cancel_payment(pay_seq, pCardAuth.amount, pay_type, is_cancel);
+                    cancel_payment(pay_seq, pCardAuth.amount, pay_type, is_cancel_stat);
 
 
                     //# 취소건 추가
@@ -716,7 +715,10 @@ namespace thepos
 
 
                 // 영수증인쇄
-                print_bill(mTheNo, "C", "", "0100");
+                if (is_cancel_stat == "Y")
+                {
+                    print_bill(mTheNo, "C", "", "1101", true);
+                }
 
             }
             else if (pay_type == "R0" | pay_type == "R1")
@@ -850,7 +852,7 @@ namespace thepos
                         //
                         cancel_orders(pay_seq, pCashAuth.amount);
 
-                        cancel_payment(pay_seq, pCashAuth.amount, pay_type, is_cancel);
+                        cancel_payment(pay_seq, pCashAuth.amount, pay_type, is_cancel_stat);
 
 
                         //! 취소건 추가
@@ -936,7 +938,7 @@ namespace thepos
 
                     cancel_orders(pay_seq, pCashAuth.amount);
 
-                    cancel_payment(pay_seq, pCashAuth.amount, pay_type, is_cancel);
+                    cancel_payment(pay_seq, pCashAuth.amount, pay_type, is_cancel_stat);
 
 
                     //# 취소건 추가
@@ -1051,7 +1053,10 @@ namespace thepos
 
 
                 // 영수증인쇄
-                print_bill(pCashAuth.the_no, "C", "", "1000"); // cash
+                if (is_cancel_stat == "Y")
+                {
+                    print_bill(pCashAuth.the_no, "C", "", "1101", true);
+                }
 
             }
             else if (pay_type == "E1")
@@ -1153,7 +1158,7 @@ namespace thepos
                     {
                         cancel_orders(pay_seq, pEasyAuth.amount);
 
-                        cancel_payment(pay_seq, pEasyAuth.amount, pay_type, is_cancel);
+                        cancel_payment(pay_seq, pEasyAuth.amount, pay_type, is_cancel_stat);
 
 
                         parameters["siteId"] = mSiteId;
@@ -1249,7 +1254,10 @@ namespace thepos
                         }
 
                         // 영수증인쇄
-                        print_bill(pEasyAuth.the_no, "C", "", "0001");
+                        if (is_cancel_stat == "Y")
+                        {
+                            print_bill(pEasyAuth.the_no, "C", "", "1101", true);
+                        }
 
                     }
                 }
@@ -1318,7 +1326,7 @@ namespace thepos
                     // 자동취소
                     cancel_orders(pay_seq, pPointAuth.amount);
 
-                    cancel_payment(pay_seq, pPointAuth.amount, pay_type, is_cancel);
+                    cancel_payment(pay_seq, pPointAuth.amount, pay_type, is_cancel_stat);
 
 
                     //? 포인트취소는 paymentPoint테이블에 취소건을 추가하지 않는다. 20231004
@@ -1393,7 +1401,10 @@ namespace thepos
 
 
                     // 영수증인쇄
-                    print_bill(pPointAuth.the_no, "C", "", "0010"); // 
+                    if (is_cancel_stat == "Y")
+                    {
+                        print_bill(pPointAuth.the_no, "C", "", "0010", true); // 
+                    }
 
                 }
 

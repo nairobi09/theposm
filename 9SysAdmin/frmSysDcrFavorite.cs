@@ -29,7 +29,7 @@ namespace thepos._1Sales
 
         void initialize_font()
         {
-            lblTitle.Font = font10bold;
+            lblTitle.Font = font10;
 
             lvwList.Font = font10;
 

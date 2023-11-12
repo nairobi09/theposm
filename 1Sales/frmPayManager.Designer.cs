@@ -99,6 +99,7 @@
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lbl1.Location = new System.Drawing.Point(14, 14);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
@@ -109,6 +110,7 @@
             // 
             this.btnScanner.BackColor = System.Drawing.Color.White;
             this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScanner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
             this.btnScanner.Location = new System.Drawing.Point(382, 13);
             this.btnScanner.Name = "btnScanner";
@@ -124,7 +126,7 @@
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBizDt.Location = new System.Drawing.Point(14, 30);
             this.dtBizDt.Name = "dtBizDt";
-            this.dtBizDt.Size = new System.Drawing.Size(106, 23);
+            this.dtBizDt.Size = new System.Drawing.Size(110, 23);
             this.dtBizDt.TabIndex = 68;
             this.dtBizDt.Value = new System.DateTime(2023, 5, 19, 0, 0, 0, 0);
             // 
@@ -144,6 +146,7 @@
             // 
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lbl3.Location = new System.Drawing.Point(199, 14);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(41, 12);
@@ -170,6 +173,7 @@
             // 
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lbl2.Location = new System.Drawing.Point(130, 14);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(53, 12);
@@ -178,9 +182,9 @@
             // 
             // btnView
             // 
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnView.Location = new System.Drawing.Point(276, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
@@ -246,8 +250,9 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(392, 518);
+            this.btnCancel.Location = new System.Drawing.Point(392, 510);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 50);
             this.btnCancel.TabIndex = 48;
@@ -257,12 +262,13 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnPrint.BackColor = System.Drawing.Color.White;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnPrint.Location = new System.Drawing.Point(392, 464);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(110, 50);
+            this.btnPrint.Size = new System.Drawing.Size(110, 40);
             this.btnPrint.TabIndex = 48;
             this.btnPrint.Text = "재출력";
             this.btnPrint.UseVisualStyleBackColor = false;

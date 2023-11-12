@@ -49,12 +49,14 @@
             this.lblPaymentTitle = new System.Windows.Forms.Label();
             this.lblPaymentCashTitle = new System.Windows.Forms.Label();
             this.lblPaymentCardTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(37, 34);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(110, 14);
@@ -67,7 +69,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnView.Location = new System.Drawing.Point(581, 233);
+            this.btnView.Location = new System.Drawing.Point(581, 231);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(140, 40);
@@ -125,9 +127,9 @@
             // 
             // lblCnt0Title
             // 
-            this.lblCnt0Title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCnt0Title.BackColor = System.Drawing.Color.DarkGray;
             this.lblCnt0Title.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCnt0Title.ForeColor = System.Drawing.Color.White;
+            this.lblCnt0Title.ForeColor = System.Drawing.Color.Black;
             this.lblCnt0Title.Location = new System.Drawing.Point(406, 101);
             this.lblCnt0Title.Margin = new System.Windows.Forms.Padding(0);
             this.lblCnt0Title.Name = "lblCnt0Title";
@@ -139,9 +141,9 @@
             // 
             // lblCntTitle
             // 
-            this.lblCntTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCntTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblCntTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCntTitle.ForeColor = System.Drawing.Color.White;
+            this.lblCntTitle.ForeColor = System.Drawing.Color.Black;
             this.lblCntTitle.Location = new System.Drawing.Point(268, 101);
             this.lblCntTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblCntTitle.Name = "lblCntTitle";
@@ -279,9 +281,9 @@
             // 
             // lblOrdersTitle
             // 
-            this.lblOrdersTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblOrdersTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrdersTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrdersTitle.ForeColor = System.Drawing.Color.White;
+            this.lblOrdersTitle.ForeColor = System.Drawing.Color.Black;
             this.lblOrdersTitle.Location = new System.Drawing.Point(131, 145);
             this.lblOrdersTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrdersTitle.Name = "lblOrdersTitle";
@@ -293,9 +295,9 @@
             // 
             // lblOrderItemTitle
             // 
-            this.lblOrderItemTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblOrderItemTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrderItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderItemTitle.ForeColor = System.Drawing.Color.White;
+            this.lblOrderItemTitle.ForeColor = System.Drawing.Color.Black;
             this.lblOrderItemTitle.Location = new System.Drawing.Point(131, 189);
             this.lblOrderItemTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderItemTitle.Name = "lblOrderItemTitle";
@@ -307,9 +309,9 @@
             // 
             // lblPaymentTitle
             // 
-            this.lblPaymentTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPaymentTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblPaymentTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPaymentTitle.ForeColor = System.Drawing.Color.White;
+            this.lblPaymentTitle.ForeColor = System.Drawing.Color.Black;
             this.lblPaymentTitle.Location = new System.Drawing.Point(131, 233);
             this.lblPaymentTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentTitle.Name = "lblPaymentTitle";
@@ -321,9 +323,9 @@
             // 
             // lblPaymentCashTitle
             // 
-            this.lblPaymentCashTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPaymentCashTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblPaymentCashTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPaymentCashTitle.ForeColor = System.Drawing.Color.White;
+            this.lblPaymentCashTitle.ForeColor = System.Drawing.Color.Black;
             this.lblPaymentCashTitle.Location = new System.Drawing.Point(131, 277);
             this.lblPaymentCashTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCashTitle.Name = "lblPaymentCashTitle";
@@ -335,9 +337,9 @@
             // 
             // lblPaymentCardTitle
             // 
-            this.lblPaymentCardTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPaymentCardTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblPaymentCardTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPaymentCardTitle.ForeColor = System.Drawing.Color.White;
+            this.lblPaymentCardTitle.ForeColor = System.Drawing.Color.Black;
             this.lblPaymentCardTitle.Location = new System.Drawing.Point(131, 321);
             this.lblPaymentCardTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCardTitle.Name = "lblPaymentCardTitle";
@@ -346,6 +348,19 @@
             this.lblPaymentCardTitle.TabIndex = 57;
             this.lblPaymentCardTitle.Text = "카드결제";
             this.lblPaymentCardTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.DarkGray;
+            this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(131, 101);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(5);
+            this.label1.Size = new System.Drawing.Size(134, 40);
+            this.label1.TabIndex = 57;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmSetupLocalMode
             // 
@@ -364,6 +379,7 @@
             this.Controls.Add(this.lblPaymentCashTitle);
             this.Controls.Add(this.lblPaymentTitle);
             this.Controls.Add(this.lblOrderItemTitle);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblOrdersTitle);
             this.Controls.Add(this.lblCntTitle);
             this.Controls.Add(this.lblPaymentCnt);
@@ -373,6 +389,7 @@
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lblTitle);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSetupLocalMode";
             this.Text = "frmSetupLocalMode";
@@ -404,5 +421,6 @@
         private System.Windows.Forms.Label lblPaymentTitle;
         private System.Windows.Forms.Label lblPaymentCashTitle;
         private System.Windows.Forms.Label lblPaymentCardTitle;
+        private System.Windows.Forms.Label label1;
     }
 }

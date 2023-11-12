@@ -63,7 +63,7 @@
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.lvwList);
-            this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -103,7 +103,7 @@
             this.lblT3.AutoSize = true;
             this.lblT3.Location = new System.Drawing.Point(28, 140);
             this.lblT3.Name = "lblT3";
-            this.lblT3.Size = new System.Drawing.Size(77, 13);
+            this.lblT3.Size = new System.Drawing.Size(77, 14);
             this.lblT3.TabIndex = 52;
             this.lblT3.Text = "미취소금액";
             this.lblT3.Click += new System.EventHandler(this.lblT3_Click);
@@ -127,7 +127,7 @@
             this.lblT2.AutoSize = true;
             this.lblT2.Location = new System.Drawing.Point(28, 112);
             this.lblT2.Name = "lblT2";
-            this.lblT2.Size = new System.Drawing.Size(63, 13);
+            this.lblT2.Size = new System.Drawing.Size(63, 14);
             this.lblT2.TabIndex = 52;
             this.lblT2.Text = "취소금액";
             this.lblT2.Click += new System.EventHandler(this.lblT2_Click);
@@ -137,7 +137,7 @@
             this.lblT1.AutoSize = true;
             this.lblT1.Location = new System.Drawing.Point(28, 82);
             this.lblT1.Name = "lblT1";
-            this.lblT1.Size = new System.Drawing.Size(91, 13);
+            this.lblT1.Size = new System.Drawing.Size(91, 14);
             this.lblT1.TabIndex = 53;
             this.lblT1.Text = "취소대상금액";
             this.lblT1.Click += new System.EventHandler(this.lblT1_Click);
@@ -147,6 +147,7 @@
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(460, 20);
             this.btnClose.Name = "btnClose";

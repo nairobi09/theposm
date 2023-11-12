@@ -61,7 +61,7 @@
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.btnDCCancel);
             this.panelback.Controls.Add(this.lblTitle);
-            this.panelback.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -79,9 +79,9 @@
             // 
             // btnAllRate
             // 
-            this.btnAllRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnAllRate.BackColor = System.Drawing.Color.White;
             this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllRate.ForeColor = System.Drawing.Color.White;
+            this.btnAllRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnAllRate.Location = new System.Drawing.Point(354, 445);
             this.btnAllRate.Name = "btnAllRate";
             this.btnAllRate.Size = new System.Drawing.Size(120, 80);
@@ -93,9 +93,9 @@
             // 
             // btnAllAmount
             // 
-            this.btnAllAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnAllAmount.BackColor = System.Drawing.Color.White;
             this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllAmount.ForeColor = System.Drawing.Color.White;
+            this.btnAllAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnAllAmount.Location = new System.Drawing.Point(354, 349);
             this.btnAllAmount.Name = "btnAllAmount";
             this.btnAllAmount.Size = new System.Drawing.Size(120, 80);
@@ -107,9 +107,9 @@
             // 
             // btnSelRate
             // 
-            this.btnSelRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSelRate.BackColor = System.Drawing.Color.White;
             this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelRate.ForeColor = System.Drawing.Color.White;
+            this.btnSelRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnSelRate.Location = new System.Drawing.Point(354, 245);
             this.btnSelRate.Name = "btnSelRate";
             this.btnSelRate.Size = new System.Drawing.Size(120, 80);
@@ -121,9 +121,9 @@
             // 
             // btnSelAmount
             // 
-            this.btnSelAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnSelAmount.BackColor = System.Drawing.Color.White;
             this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelAmount.ForeColor = System.Drawing.Color.White;
+            this.btnSelAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnSelAmount.Location = new System.Drawing.Point(354, 146);
             this.btnSelAmount.Name = "btnSelAmount";
             this.btnSelAmount.Size = new System.Drawing.Size(120, 80);

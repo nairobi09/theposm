@@ -41,25 +41,29 @@
             // 
             // btnView
             // 
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.Location = new System.Drawing.Point(459, 22);
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnView.Location = new System.Drawing.Point(410, 27);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 25);
+            this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 78;
             this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblReportTitle
             // 
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblReportTitle.Location = new System.Drawing.Point(24, 32);
+            this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
             this.lblReportTitle.Name = "lblReportTitle";
             this.lblReportTitle.Size = new System.Drawing.Size(102, 13);
             this.lblReportTitle.TabIndex = 76;
             this.lblReportTitle.Text = "업장별 매출현황";
+            this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lvwList
             // 
@@ -112,11 +116,11 @@
             // dtpBizDate
             // 
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(332, 24);
+            this.dtpBizDate.Location = new System.Drawing.Point(284, 29);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(121, 22);
+            this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 84;
             // 
             // frmReportDayShop

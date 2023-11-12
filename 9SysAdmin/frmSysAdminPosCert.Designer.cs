@@ -39,40 +39,42 @@
             // 
             // btnStop
             // 
+            this.btnStop.BackColor = System.Drawing.Color.Red;
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStop.ForeColor = System.Drawing.Color.Red;
+            this.btnStop.ForeColor = System.Drawing.Color.White;
             this.btnStop.Location = new System.Drawing.Point(404, 408);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(100, 50);
             this.btnStop.TabIndex = 26;
             this.btnStop.TabStop = false;
             this.btnStop.Text = "정지";
-            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnEnter
             // 
+            this.btnEnter.BackColor = System.Drawing.Color.Red;
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnEnter.ForeColor = System.Drawing.Color.Red;
+            this.btnEnter.ForeColor = System.Drawing.Color.White;
             this.btnEnter.Location = new System.Drawing.Point(258, 408);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(140, 50);
             this.btnEnter.TabIndex = 25;
             this.btnEnter.TabStop = false;
             this.btnEnter.Text = "인증등록";
-            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
             this.lblTitle.Location = new System.Drawing.Point(153, 33);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(103, 14);
+            this.lblTitle.Size = new System.Drawing.Size(96, 14);
             this.lblTitle.TabIndex = 19;
             this.lblTitle.Text = "포스기기 인증";
             // 
@@ -117,6 +119,7 @@
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.lblTitle);
+            this.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSysAdminPosCert";
             this.Text = "frmSysAdminMac";

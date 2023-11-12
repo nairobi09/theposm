@@ -528,6 +528,11 @@ namespace thepos
                         btnGoodsItem.Font = font20;
                     }
                     
+                    
+                    //?
+                    // 상품 품절 처리
+
+
                     btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
 
 
@@ -1582,10 +1587,7 @@ namespace thepos
                             // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
                             if (mTicketMedia == "BC")  // 띠지
                             {
-                                //? 띠지 출력 필요
-                                //? 임시로 띠지대신 티켓을 출력합니다...
                                 print_ticket(t_ticket_no);
-
                             }
                         } 
 
@@ -3804,6 +3806,12 @@ namespace thepos
                                 {
 
                                     tStr = "현금";
+
+                                    if (tranType == "C")
+                                    {
+                                        tStr += "취소";
+                                    }
+
                                     strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
                                     if (tranType == "C")
@@ -3817,6 +3825,12 @@ namespace thepos
                                 else if (arr[i]["payType"].ToString() == "R1") // 현금영수증
                                 {
                                     tStr = "현금영수증";
+
+                                    if (tranType == "C")
+                                    {
+                                        tStr += "취소";
+                                    }
+
                                     strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
                                     if (tranType == "C")
@@ -3978,6 +3992,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
+
                             //? 포인트 취소인 경우 잘되는지 다시 확인바람
                             int amount = convert_number(arr[i]["amount"].ToString());
 
@@ -3988,6 +4003,11 @@ namespace thepos
                             else if (arr[i]["payType"].ToString() == "PD") // 후불 포인트
                             {
                                 tStr = "포인트";
+                            }
+
+                            if (arr[i]["isCancel"].ToString() == "Y")
+                            {
+                                tStr += "취소";
                             }
 
                             strPrintPayment += tStr + Space(21 - encodelen(tStr));
@@ -4001,7 +4021,7 @@ namespace thepos
 
                             strPrintPayment += "\r\n";
                             strPrintPayment += "\r\n";
-
+                            
                         }
                     }
                 }
@@ -4117,25 +4137,9 @@ namespace thepos
 
         public static void print_ticket(String t_ticket_no)
         {
-            try
+            if (mTicketPrinterPort + "" == "")
             {
-                SerialPort port = new SerialPort();
-
-                if (port.IsOpen)
-                    port.Close();
-
-                port.PortName = mBillPrinterPort;
-                port.BaudRate = (int)9600; //고정
-                port.DataBits = (int)8;
-                port.Parity = Parity.None;
-                port.StopBits = StopBits.One;
-
-                port.Open();
-                port.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("영수증프린터 에러.\r\n" + ex.Message);
+                SetDisplayAlarm("W", "티켓프린터 미설정으로 티켓출력불가..");
                 return;
             }
 
@@ -4182,7 +4186,7 @@ namespace thepos
 
 
                 //? 영수증출력
-                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+                PrintExtensions.Print(BytesValue, mTicketPrinterPort);
 
 
             }
@@ -4299,21 +4303,37 @@ namespace thepos
         }
 
 
-        public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep)
+        public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep, bool isQuestion)
         {
-            frmYesNo fYesNo = new frmYesNo();
-            var result = fYesNo.ShowDialog();
-            if (result == DialogResult.Yes)
+
+            if (mBillPrinterPort == "")
             {
-                String headerBill = make_bill_header();
-                String bodyBill = make_bill_body(the_no, tran_type, except_order, pay_keep);
-                String trailerBill = make_bill_trailer();
-
-                PrintBill(headerBill, bodyBill, trailerBill, the_no);
+                SetDisplayAlarm("W", "영수증프린터 미설정으로 영수증출력불가..");
+                return;
             }
+
+
+            if (isQuestion == true)
+            {
+                frmYesNo fYesNo = new frmYesNo();
+                var result = fYesNo.ShowDialog();
+                if (result == DialogResult.Yes)
+                {
+
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+
+            String headerBill = make_bill_header();
+            String bodyBill = make_bill_body(the_no, tran_type, except_order, pay_keep);
+            String trailerBill = make_bill_trailer();
+
+            PrintBill(headerBill, bodyBill, trailerBill, the_no);
         }
-
-
 
 
 

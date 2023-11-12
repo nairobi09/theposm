@@ -149,10 +149,10 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(114, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(103, 14);
+            this.lblTitle.Size = new System.Drawing.Size(96, 14);
             this.lblTitle.TabIndex = 49;
             this.lblTitle.Text = "할인 즐겨찾기";
             // 
@@ -279,15 +279,17 @@
             // 
             // btnSave
             // 
+            this.btnSave.BackColor = System.Drawing.Color.DimGray;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.Location = new System.Drawing.Point(525, 410);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(586, 410);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(199, 50);
+            this.btnSave.Size = new System.Drawing.Size(138, 50);
             this.btnSave.TabIndex = 61;
             this.btnSave.TabStop = false;
             this.btnSave.Text = "저장";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblInfo

@@ -96,7 +96,7 @@
             this.btnSysSite.Size = new System.Drawing.Size(112, 54);
             this.btnSysSite.TabIndex = 2;
             this.btnSysSite.TabStop = false;
-            this.btnSysSite.Text = "사업장\r\n관리";
+            this.btnSysSite.Text = "내사업장\r\n";
             this.btnSysSite.UseVisualStyleBackColor = false;
             this.btnSysSite.Click += new System.EventHandler(this.btnSysSite_Click);
             // 
@@ -110,7 +110,7 @@
             this.btnSysShop.Size = new System.Drawing.Size(112, 54);
             this.btnSysShop.TabIndex = 1;
             this.btnSysShop.TabStop = false;
-            this.btnSysShop.Text = "샵관리";
+            this.btnSysShop.Text = "업장관리";
             this.btnSysShop.UseVisualStyleBackColor = false;
             this.btnSysShop.Click += new System.EventHandler(this.btnSysShop_Click);
             // 
@@ -152,7 +152,7 @@
             this.btnSysGoods.Size = new System.Drawing.Size(112, 54);
             this.btnSysGoods.TabIndex = 0;
             this.btnSysGoods.TabStop = false;
-            this.btnSysGoods.Text = "기초상품\r\n관리";
+            this.btnSysGoods.Text = "기초상품";
             this.btnSysGoods.UseVisualStyleBackColor = false;
             this.btnSysGoods.Click += new System.EventHandler(this.btnSysGoods_Click);
             // 

@@ -105,7 +105,7 @@
             // 
             this.btnSetupPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnSetupPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetupPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSetupPos.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold);
             this.btnSetupPos.ForeColor = System.Drawing.Color.White;
             this.btnSetupPos.Location = new System.Drawing.Point(0, 0);
             this.btnSetupPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -121,7 +121,7 @@
             // 
             this.btnLocalDbUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLocalDbUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLocalDbUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLocalDbUp.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold);
             this.btnLocalDbUp.ForeColor = System.Drawing.Color.White;
             this.btnLocalDbUp.Location = new System.Drawing.Point(0, 168);
             this.btnLocalDbUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -137,7 +137,7 @@
             // 
             this.btnBasicDbDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnBasicDbDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBasicDbDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBasicDbDown.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold);
             this.btnBasicDbDown.ForeColor = System.Drawing.Color.White;
             this.btnBasicDbDown.Location = new System.Drawing.Point(0, 84);
             this.btnBasicDbDown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

@@ -61,6 +61,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(457, 20);
@@ -74,10 +75,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnDelete.BackColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(318, 471);
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnDelete.Location = new System.Drawing.Point(296, 471);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 50);
             this.btnDelete.TabIndex = 43;
@@ -87,13 +88,13 @@
             // 
             // btnOK
             // 
-            this.btnOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOK.BackColor = System.Drawing.Color.White;
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(110, 471);
+            this.btnOK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOK.Location = new System.Drawing.Point(136, 471);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(200, 50);
+            this.btnOK.Size = new System.Drawing.Size(150, 50);
             this.btnOK.TabIndex = 42;
             this.btnOK.Text = "선택";
             this.btnOK.UseVisualStyleBackColor = false;

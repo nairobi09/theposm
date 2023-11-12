@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowSettlement));
             this.panelback = new System.Windows.Forms.Panel();
             this.btnSettleBill = new System.Windows.Forms.Button();
-            this.lbl4 = new System.Windows.Forms.Label();
+            this.lblTicketSettleTitle = new System.Windows.Forms.Label();
             this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBizDtTitle = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelback.Controls.Add(this.btnSettleBill);
-            this.panelback.Controls.Add(this.lbl4);
+            this.panelback.Controls.Add(this.lblTicketSettleTitle);
             this.panelback.Controls.Add(this.btnCancelReq);
             this.panelback.Controls.Add(this.panel1);
             this.panelback.Controls.Add(this.lvwTicketSettle);
@@ -81,34 +81,34 @@
             // 
             // btnSettleBill
             // 
-            this.btnSettleBill.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnSettleBill.BackColor = System.Drawing.Color.White;
             this.btnSettleBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettleBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSettleBill.ForeColor = System.Drawing.Color.White;
+            this.btnSettleBill.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSettleBill.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnSettleBill.Location = new System.Drawing.Point(382, 483);
             this.btnSettleBill.Name = "btnSettleBill";
             this.btnSettleBill.Size = new System.Drawing.Size(120, 40);
             this.btnSettleBill.TabIndex = 78;
             this.btnSettleBill.TabStop = false;
-            this.btnSettleBill.Text = "정산영수증";
+            this.btnSettleBill.Text = "영수증";
             this.btnSettleBill.UseVisualStyleBackColor = false;
             this.btnSettleBill.Click += new System.EventHandler(this.btnSettleBill_Click);
             // 
-            // lbl4
+            // lblTicketSettleTitle
             // 
-            this.lbl4.AutoSize = true;
-            this.lbl4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl4.Location = new System.Drawing.Point(21, 358);
-            this.lbl4.Name = "lbl4";
-            this.lbl4.Size = new System.Drawing.Size(53, 12);
-            this.lbl4.TabIndex = 71;
-            this.lbl4.Text = "정산대상";
+            this.lblTicketSettleTitle.AutoSize = true;
+            this.lblTicketSettleTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketSettleTitle.Location = new System.Drawing.Point(21, 358);
+            this.lblTicketSettleTitle.Name = "lblTicketSettleTitle";
+            this.lblTicketSettleTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblTicketSettleTitle.TabIndex = 71;
+            this.lblTicketSettleTitle.Text = "정산대상";
             // 
             // btnCancelReq
             // 
             this.btnCancelReq.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnCancelReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancelReq.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancelReq.ForeColor = System.Drawing.Color.White;
             this.btnCancelReq.Location = new System.Drawing.Point(256, 483);
             this.btnCancelReq.Name = "btnCancelReq";
@@ -139,6 +139,7 @@
             // 
             this.lblBizDtTitle.AutoSize = true;
             this.lblBizDtTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizDtTitle.ForeColor = System.Drawing.Color.SaddleBrown;
             this.lblBizDtTitle.Location = new System.Drawing.Point(12, 16);
             this.lblBizDtTitle.Name = "lblBizDtTitle";
             this.lblBizDtTitle.Size = new System.Drawing.Size(53, 12);
@@ -149,6 +150,7 @@
             // 
             this.btnScanner.BackColor = System.Drawing.Color.White;
             this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScanner.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
             this.btnScanner.Location = new System.Drawing.Point(382, 14);
             this.btnScanner.Name = "btnScanner";
@@ -160,7 +162,7 @@
             // 
             // dtBizDt
             // 
-            this.dtBizDt.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtBizDt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBizDt.Location = new System.Drawing.Point(14, 30);
             this.dtBizDt.Name = "dtBizDt";
@@ -171,9 +173,9 @@
             // 
             // tbTicketNo
             // 
-            this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbTicketNo.BackColor = System.Drawing.SystemColors.Window;
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTicketNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbTicketNo.Location = new System.Drawing.Point(185, 30);
             this.tbTicketNo.MaxLength = 8;
             this.tbTicketNo.Name = "tbTicketNo";
@@ -186,6 +188,7 @@
             // 
             this.lblTicketNoTitle.AutoSize = true;
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketNoTitle.ForeColor = System.Drawing.Color.SaddleBrown;
             this.lblTicketNoTitle.Location = new System.Drawing.Point(187, 15);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(59, 12);
@@ -207,6 +210,7 @@
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.ForeColor = System.Drawing.Color.SaddleBrown;
             this.lblPosNoTitle.Location = new System.Drawing.Point(121, 16);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(53, 12);
@@ -215,9 +219,10 @@
             // 
             // btnView
             // 
-            this.btnView.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnView.Location = new System.Drawing.Point(287, 14);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(85, 40);
@@ -235,6 +240,7 @@
             this.cnt,
             this.amt,
             this.result});
+            this.lvwTicketSettle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwTicketSettle.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwTicketSettle.FullRowSelect = true;
             this.lvwTicketSettle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -284,6 +290,7 @@
             this.stat,
             this.settle_charge_amt,
             this.settle_usage_amt});
+            this.lvwTicketFlow.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwTicketFlow.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwTicketFlow.FullRowSelect = true;
             this.lvwTicketFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -349,6 +356,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -364,6 +372,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(529, 545);
             this.Controls.Add(this.panelback);
+            this.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFlowSettlement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -400,7 +409,7 @@
         private System.Windows.Forms.ListView lvwTicketSettle;
         private System.Windows.Forms.ColumnHeader amt;
         private System.Windows.Forms.ColumnHeader result;
-        private System.Windows.Forms.Label lbl4;
+        private System.Windows.Forms.Label lblTicketSettleTitle;
         private System.Windows.Forms.Button btnCancelReq;
         private System.Windows.Forms.ColumnHeader payclass;
         private System.Windows.Forms.ColumnHeader no;

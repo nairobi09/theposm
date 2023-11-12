@@ -25,11 +25,11 @@ namespace thepos
 
         private void initialize_font()
         {
-            lblTitle.Font = font12;
+            lblTitle.Font = font10;
             btnClose.Font = font12;
 
-            lblBusinessTitle.Font = font9;
-            dtBusiness.Font = font10;
+            lblBusinessTitle.Font = font10;
+            //dtBusiness.Font = font10;
 
             btnView.Font = font10;
             lvwList.Font = font10;

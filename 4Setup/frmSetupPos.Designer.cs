@@ -97,7 +97,7 @@
             this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoad.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLoad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnLoad.Location = new System.Drawing.Point(666, 181);
+            this.btnLoad.Location = new System.Drawing.Point(84, 110);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(139, 40);
@@ -242,9 +242,10 @@
             this.panel1.Controls.Add(this.lblSiteNameTitle);
             this.panel1.Controls.Add(this.lblSiteName);
             this.panel1.Controls.Add(this.lblPosNo);
+            this.panel1.Controls.Add(this.btnLoad);
             this.panel1.Location = new System.Drawing.Point(581, 70);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(252, 97);
+            this.panel1.Size = new System.Drawing.Size(252, 200);
             this.panel1.TabIndex = 44;
             // 
             // cbValue
@@ -266,9 +267,9 @@
             this.panel2.Controls.Add(this.lblValueTitle2);
             this.panel2.Controls.Add(this.lblName);
             this.panel2.Controls.Add(this.lblValue);
-            this.panel2.Location = new System.Drawing.Point(582, 256);
+            this.panel2.Location = new System.Drawing.Point(582, 293);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(251, 298);
+            this.panel2.Size = new System.Drawing.Size(251, 252);
             this.panel2.TabIndex = 46;
             // 
             // btnAdd
@@ -290,6 +291,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(25, 34);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(69, 12);
@@ -317,7 +319,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.lvwList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

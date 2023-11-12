@@ -208,7 +208,7 @@ namespace thepos
                         String data = mObj["dayPos"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        int[] pos_amount = new int[arr.Count];
+                        int[] pos_amount = new int[mPosNoList.Length];
 
 
                         for (int i = 0; i < arr.Count; i++)
@@ -241,12 +241,14 @@ namespace thepos
 
                         for (int pos_idx = 0; pos_idx < mPosNoList.Length; pos_idx++)
                         {
-                            lbl_pos_no[pos_idx].Visible = true;
-                            lbl_pos_amount[pos_idx].Visible = true;
+                            if (pos_idx < 10)
+                            {
+                                lbl_pos_no[pos_idx].Visible = true;
+                                lbl_pos_amount[pos_idx].Visible = true;
 
-                            lbl_pos_no[pos_idx].Text = mPosNoList[pos_idx];
-                            lbl_pos_amount[pos_idx].Text = pos_amount[pos_idx].ToString("N0");
-
+                                lbl_pos_no[pos_idx].Text = mPosNoList[pos_idx];
+                                lbl_pos_amount[pos_idx].Text = pos_amount[pos_idx].ToString("N0");
+                            }
                         }
 
                     }

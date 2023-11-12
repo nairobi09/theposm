@@ -32,6 +32,15 @@ using System.Data.SQLite;
 
  
  
+
+## 영수증 프린터 에러
+
+" 파일이 이미 있으므로 만들수 없습니다."
+
+- USB포트 문제 -> 특정포트는 잘 됨. 무슨 드라이버를 갈았더니 되는것 같았음.
+- NVCAT 에이전트의 프린터포트 설정과는 상관없음.
+
+
  */
 
 
@@ -537,7 +546,6 @@ namespace thepos
         public static String mBillPrinterPort = "";
         public static String mTicketPrinterPort = "";
         public static String mOrderPrinterPort = "";
-        public static String mScannerPort = "";
         public static String mPosType = ""; // 기종 : POS PC KIOSK
         public static String mCustomerMonitor = "";  // Y N
 

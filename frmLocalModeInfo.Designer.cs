@@ -90,7 +90,7 @@
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBizDate.Location = new System.Drawing.Point(246, 252);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(133, 23);
+            this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 44;
             this.dtpBizDate.TabStop = false;
             // 

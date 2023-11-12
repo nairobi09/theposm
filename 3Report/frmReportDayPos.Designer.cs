@@ -52,7 +52,7 @@
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(20, 69);
+            this.lvwList.Location = new System.Drawing.Point(20, 70);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
             this.lvwList.Size = new System.Drawing.Size(760, 610);
@@ -91,34 +91,38 @@
             // 
             // btnView
             // 
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.Location = new System.Drawing.Point(459, 21);
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnView.Location = new System.Drawing.Point(410, 27);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 25);
+            this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 86;
             this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblReportTitle
             // 
             this.lblReportTitle.AutoSize = true;
-            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblReportTitle.Location = new System.Drawing.Point(24, 31);
+            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(102, 13);
+            this.lblReportTitle.Size = new System.Drawing.Size(110, 14);
             this.lblReportTitle.TabIndex = 85;
             this.lblReportTitle.Text = "포스별 매출현황";
+            this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dtpBizDate
             // 
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(332, 23);
+            this.dtpBizDate.Location = new System.Drawing.Point(284, 29);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(121, 22);
+            this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 88;
             // 
             // frmReportDayPos

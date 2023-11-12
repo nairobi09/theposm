@@ -56,7 +56,7 @@ namespace thepos._9SysAdmin
 
         private void initialize_font()
         {
-            lblTitle.Font = font10bold;
+            lblTitle.Font = font10;
             lvwList.Font = font10;
 
             lblGoodsNameTitle.Font = font9;

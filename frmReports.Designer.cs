@@ -65,7 +65,7 @@
             // 
             this.btnReportDayDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportDayDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportDayDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportDayDetail.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportDayDetail.ForeColor = System.Drawing.Color.White;
             this.btnReportDayDetail.Location = new System.Drawing.Point(0, 168);
             this.btnReportDayDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -81,7 +81,7 @@
             // 
             this.btnReportDayShop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportDayShop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportDayShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportDayShop.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportDayShop.ForeColor = System.Drawing.Color.White;
             this.btnReportDayShop.Location = new System.Drawing.Point(0, 84);
             this.btnReportDayShop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -145,7 +145,7 @@
             // 
             this.btnReportDayPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportDayPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportDayPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReportDayPos.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportDayPos.ForeColor = System.Drawing.Color.White;
             this.btnReportDayPos.Location = new System.Drawing.Point(0, 0);
             this.btnReportDayPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

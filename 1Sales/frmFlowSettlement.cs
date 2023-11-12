@@ -44,7 +44,7 @@ namespace thepos
             btnClose.Font = font12;
 
             lblBizDtTitle.Font = font9;
-            dtBizDt.Font = font10;
+            //dtBizDt.Font = font10;
 
             lblPosNoTitle.Font = font9;
             cbPosNo.Font = font10;
@@ -54,8 +54,12 @@ namespace thepos
 
             btnView.Font = font10;
             lvwTicketFlow.Font = font10;
+
+            lblTicketSettleTitle.Font = font9;
             lvwTicketSettle.Font = font10;
 
+            btnCancelReq.Font = font10;
+            btnSettleBill.Font = font10;
         }
 
         private void initialize_the()
@@ -839,7 +843,141 @@ namespace thepos
 
         private void btnSettleBill_Click(object sender, EventArgs e)
         {
+            if (lvwTicketSettle.SelectedItems.Count < 1) { return; }
+
+            point_back bpoint = (point_back)lvwTicketSettle.SelectedItems[0].Tag;
+
+            if (bpoint.result_code != "1") return;
+
+
+            List<String> theNoList = new List<String>();
+
+
+            //
+            if (bpoint.pay_class == "CH") // 충전 취소영수증
+            {
+
+                theNoList.Clear();
+
+                // 찾아라 the_no 목록
+                get_the_no("C", "CH");
+
+                // 출력
+                for (int j = 0; j < theNoList.Count; j++)
+                {
+                    print_bill(theNoList[j], "C", "", "1101", false);
+                }
+
+            }
+            else if (bpoint.pay_class == "US") // 포인트사용분 승인영수증
+            {
+                theNoList.Clear();
+
+                // 찾아라 the_no 목록
+                get_the_no("A", "ST");
+
+                // 출력
+                for (int j = 0; j < theNoList.Count; j++)
+                {
+                    print_bill(theNoList[j], "A", "", "1101", false);
+                }
+
+            }
+
+
+
+
+            //
+            void get_the_no(String tran_type, String pay_class)
+            {
+                //#
+                String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&tranType=" + tran_type + "&payClass=" + pay_class;
+                if (mRequestGet(url))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCashs"].ToString();
+                        add_the_no_list(data);
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제 데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
+                }
+
+                //#
+                url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&&tranType=" + tran_type + "&payClass=" + pay_class;
+                if (mRequestGet(url))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCards"].ToString();
+                        add_the_no_list(data);
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제 데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
+                }
+
+                //#
+                url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&&tranType=" + tran_type + "&payClass=" + pay_class;
+                if (mRequestGet(url))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentEasys"].ToString();
+                        add_the_no_list(data);
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제 데이터 오류. paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentEasy\n\n" + mErrorMsg, "thepos");
+                }
+            }
+
+
+            //
+            void add_the_no_list(String data)
+            {
+                JArray arr = JArray.Parse(data);
+
+                for (int i = 0; i < arr.Count; i++)
+                {
+                    ListViewItem lvItem = new ListViewItem();
+                    String t_the_no = arr[i]["theNo"].ToString();
+
+                    bool is_find_no = false;
+
+                    for (int j = 0; j < theNoList.Count; j++)
+                    {
+                        if (theNoList[j] == t_the_no)
+                        {
+                            is_find_no = true;
+                        }
+                    }
+
+                    if (is_find_no == false)
+                    {
+                        theNoList.Add(t_the_no);
+                    }
+                }
+            }
+
 
         }
+
     }
 }

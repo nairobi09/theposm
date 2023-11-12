@@ -53,7 +53,7 @@ namespace thepos._1Sales
 
         private void initialize_font()
         {
-            lblTitle.Font = font10bold;
+            lblTitle.Font = font10;
 
             lblPosNo.Font = font10;
             comboPosNo.Font = font10;
