@@ -61,9 +61,9 @@ namespace thepos
 
         private void initialize_font()
         {
-            fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
+            //fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
             //fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
-
+            fontCollection.AddFontFile("Font\\SpoqaHanSansNeo-Medium.ttf");
 
 
             font5 = new Font(fontCollection.Families[0], 5f);
