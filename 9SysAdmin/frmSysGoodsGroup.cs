@@ -320,7 +320,6 @@ namespace thepos
             }
 
 
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
@@ -331,8 +330,6 @@ namespace thepos
             parameters["locateY"] = locY.ToString();
             parameters["sizeX"] = SzX.ToString();
             parameters["sizeY"] = SzY.ToString();
-
-
 
             if (mRequestPatch("goodsGroup", parameters))
             {

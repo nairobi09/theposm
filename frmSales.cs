@@ -1256,7 +1256,7 @@ namespace thepos
                 parameters["payClass"] = mPayClass;  //
                 parameters["ticketNo"] = ticket_no;  //
                 parameters["isCancel"] = "";
-                parameters["shopCode"] = memOrderItem.shop_code;
+                //parameters["shopCode"] = memOrderItem.shop_code;
 
                 // 이후 payment테이블에 적용하기 위해서..
                 return_dc_amount += memOrderItem.dc_amount;
@@ -4335,6 +4335,154 @@ namespace thepos
             PrintBill(headerBill, bodyBill, trailerBill, the_no);
         }
 
+
+
+        public static void print_order()
+        {
+            String[] shop_code = new string[mLvwOrderItem.Items.Count + 1];  // +1의 의미  ==> 
+            String[] goods_code = new string[mLvwOrderItem.Items.Count];
+            String[] goods_name = new string[mLvwOrderItem.Items.Count];
+            int[] goods_cnt = new int[mLvwOrderItem.Items.Count];
+            String[] ticket = new string[mLvwOrderItem.Items.Count];
+
+            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            {
+                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                goods_code[i] = memOrderItem.code;
+                goods_name[i] = memOrderItem.name;
+                goods_cnt[i] = memOrderItem.cnt;
+                shop_code[i] = memOrderItem.shop_code;
+                ticket[i] = memOrderItem.ticket;
+            }
+
+            shop_code[mLvwOrderItem.Items.Count] = "=";
+
+
+
+
+            // 샵코드로 정렬
+            bool sort_complete = false;
+            int temp_int = 0;
+            String temp_str = "";
+
+            while (!sort_complete)
+            {
+                sort_complete = true;
+                for (int i = 0; i < shop_code.Length - 1; i++)
+                {
+                    if (string.Compare(shop_code[i], shop_code[i + 1]) == 1)  // ascending
+                    {
+                        temp_str = shop_code[i];
+                        shop_code[i] = shop_code[i + 1];
+                        shop_code[i + 1] = temp_str;
+
+                        temp_str = goods_code[i];
+                        goods_code[i] = goods_code[i + 1];
+                        goods_code[i + 1] = temp_str;
+
+                        temp_str = goods_name[i];
+                        goods_name[i] = goods_name[i + 1];
+                        goods_name[i + 1] = temp_str;
+
+                        temp_int = goods_cnt[i];
+                        goods_cnt[i] = goods_cnt[i + 1];
+                        goods_cnt[i + 1] = temp_int;
+
+                        temp_str = ticket[i];
+                        ticket[i] = ticket[i + 1];
+                        ticket[i + 1] = temp_str;
+
+                        sort_complete = false;
+                    }
+
+                }
+            }
+
+
+
+            //
+            String t_shop_code = "";
+            List<String> t_good_code = new List<String>();
+            List<String> t_good_name = new List<String>();
+            List<int> t_good_cnt = new List<int>();
+
+            t_shop_code = shop_code[0];
+            t_good_name.Add(goods_name[0]);
+            t_good_cnt.Add(goods_cnt[0]);
+
+
+            for (int i = 0; i < shop_code.Length - 1; i++)
+            {
+                if (string.Compare(shop_code[i], shop_code[i + 1]) == 0)
+                {
+                    t_good_name.Add(goods_name[i + 1]);
+                    t_good_cnt.Add(goods_cnt[i + 1]);
+                }
+                else
+                {
+                    // 주문서 출력
+                    String order_doc = create_order_doc(t_shop_code, t_good_name, t_good_cnt);
+
+                    print_order_doc(t_shop_code, order_doc);
+
+
+                    //
+                    t_good_name.Clear();
+                    t_good_cnt.Clear();
+
+                    t_shop_code = shop_code[i + 1];
+                    t_good_name.Add(goods_name[i + 1]);
+                    t_good_cnt.Add(goods_cnt[i + 1]);
+
+                }
+            }
+
+
+        }
+
+
+        private static String create_order_doc(String shop, List<String> name, List<int> cnt)
+        {
+            
+
+
+
+            return "";
+        }
+
+
+        private static void print_order_doc(String shop, String order_doc)
+        {
+            String printer_name = "";
+
+            for (int i = 0; i < mShop.Length; i++ )
+            {
+                if (mShop[i].shop_code == shop)
+                {
+                    if (mShop[i].printer_type == "N")
+                    {
+                        printer_name = mShop[i].network_printer_name;
+                    }
+                    else if (mShop[i].printer_type == "L")
+                    {
+                        printer_name = mOrderPrinterPort;
+                    }
+                    else if (mShop[i].printer_type == "R")
+                    {
+                        printer_name = mBillPrinterPort;
+                    }
+                }
+            }
+
+            //
+            출력
+
+
+
+
+
+
+        }
 
 
         public static int requestCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)

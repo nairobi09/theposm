@@ -209,9 +209,9 @@
             this.lblNetAmountTitle.AutoSize = true;
             this.lblNetAmountTitle.Location = new System.Drawing.Point(50, 128);
             this.lblNetAmountTitle.Name = "lblNetAmountTitle";
-            this.lblNetAmountTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblNetAmountTitle.Size = new System.Drawing.Size(63, 14);
             this.lblNetAmountTitle.TabIndex = 48;
-            this.lblNetAmountTitle.Text = "결제대상금액";
+            this.lblNetAmountTitle.Text = "결제금액";
             // 
             // btnClose
             // 

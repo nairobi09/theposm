@@ -207,6 +207,8 @@ namespace thepos
         {
             public string shop_code;
             public string shop_name;
+            public string printer_type;
+            public string network_printer_name;
         }
         public static Shop[] mShop;
 
@@ -714,6 +716,8 @@ namespace thepos
 
             return shop_code;
         }
+
+
 
         public static bool is_number(String str)
         {

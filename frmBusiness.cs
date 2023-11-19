@@ -38,25 +38,8 @@ namespace thepos
         private void initialize_font()
         {
 
-            lblSiteNameTitle.Font = font10;
-            lblSiteName.Font = font10;
-
-            lblPosNoTitle.Font = font10;
-            lblPosNo.Font = font10;
-
-            lblUserNameTitle.Font = font10;
-            lblUserName.Font = font10;
-
-            lblBusinessDateTitle.Font = font10;
-            lblBizDate.Font = font12bold;
-
-            lblDate.Font = font10;
-            lblTime.Font = font12bold;
-
+            lblTitle.Font = font14;
             btnClose.Font = font12;
-
-
-            lblBusinessTitle.Font = font14;
 
             btnBizOpen.Font = font12;
             btnBizClose.Font = font12;
@@ -78,21 +61,6 @@ namespace thepos
 
         private void initialize_the()
         {
-
-            lblSiteName.Text = mSiteName;
-            lblPosNo.Text = mPosNo;
-
-
-            if (mBizDate.Length == 8)
-            {
-                lblBizDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
-            }
-            else
-            {
-                lblBizDate.Text = "";
-            }
-            
-            lblUserName.Text = mUserName;
 
             btnKey1.Click += (sender, args) => ClickedKey("1");
             btnKey2.Click += (sender, args) => ClickedKey("2");

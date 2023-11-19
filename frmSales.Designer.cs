@@ -922,11 +922,12 @@ namespace thepos
             // 
             // lblOrderAmountRestTitle
             // 
+            this.lblOrderAmountRestTitle.AutoSize = true;
             this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 248);
+            this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 246);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
-            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(53, 13);
+            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountRestTitle.TabIndex = 2;
             this.lblOrderAmountRestTitle.Text = "반환금액";
             // 
@@ -973,38 +974,42 @@ namespace thepos
             // 
             // lblOrderAmountReceiveTitle
             // 
+            this.lblOrderAmountReceiveTitle.AutoSize = true;
             this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 200);
+            this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 198);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
-            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 13);
+            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountReceiveTitle.TabIndex = 0;
             this.lblOrderAmountReceiveTitle.Text = "받은금액";
             // 
             // lblOrderAmountChargeTitle
             // 
+            this.lblOrderAmountChargeTitle.AutoSize = true;
             this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
-            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 148);
+            this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 146);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
-            this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(53, 13);
+            this.lblOrderAmountChargeTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountChargeTitle.TabIndex = 0;
             this.lblOrderAmountChargeTitle.Text = "받을금액";
             // 
             // lblOrderAmountDCTitle
             // 
+            this.lblOrderAmountDCTitle.AutoSize = true;
             this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 91);
+            this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 89);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
-            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 13);
+            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountDCTitle.TabIndex = 0;
             this.lblOrderAmountDCTitle.Text = "할인금액";
             // 
             // lblOrderAmountSumTitle
             // 
+            this.lblOrderAmountSumTitle.AutoSize = true;
             this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 32);
+            this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 30);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
-            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 13);
+            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 12);
             this.lblOrderAmountSumTitle.TabIndex = 0;
             this.lblOrderAmountSumTitle.Text = "합계금액";
             // 
@@ -1439,6 +1444,7 @@ namespace thepos
             ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
+            this.panelOrderSumBlack.PerformLayout();
             this.panelFlowConsole.ResumeLayout(false);
             this.panelDisplayAlarmWhite.ResumeLayout(false);
             this.panelOrderLvw.ResumeLayout(false);

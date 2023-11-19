@@ -222,7 +222,7 @@
             this.lblBizDtTitle.AutoSize = true;
             this.lblBizDtTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizDtTitle.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblBizDtTitle.Location = new System.Drawing.Point(12, 16);
+            this.lblBizDtTitle.Location = new System.Drawing.Point(12, 14);
             this.lblBizDtTitle.Name = "lblBizDtTitle";
             this.lblBizDtTitle.Size = new System.Drawing.Size(53, 12);
             this.lblBizDtTitle.TabIndex = 71;
@@ -268,7 +268,7 @@
             this.lblTicketNoTitle.AutoSize = true;
             this.lblTicketNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketNoTitle.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(192, 16);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(192, 14);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(59, 12);
             this.lblTicketNoTitle.TabIndex = 70;
@@ -295,7 +295,7 @@
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblPosNoTitle.Location = new System.Drawing.Point(121, 16);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(121, 14);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(53, 12);
             this.lblPosNoTitle.TabIndex = 69;

@@ -662,6 +662,8 @@ namespace thepos
                         {
                             mShop[i].shop_code = arr[i]["shopCode"].ToString();
                             mShop[i].shop_name = arr[i]["shopName"].ToString();
+                            mShop[i].printer_type = arr[i]["printerType"].ToString();
+                            mShop[i].network_printer_name = arr[i]["networkPrinterName"].ToString();
                         }
                     }
                     else
@@ -725,7 +727,6 @@ namespace thepos
                         for (int i = 0; i < arr.Count; i++)
                         {
                             if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
@@ -932,9 +933,11 @@ namespace thepos
                             String siteId = arr[i]["siteId"].ToString();
                             string shopCode = arr[i]["shopCode"].ToString();
                             String shopName = arr[i]["shopName"].ToString();
+                            String printerType = arr[i]["printerType"].ToString();
+                            String networkPrinterName = arr[i]["networkPrinterName"].ToString();
 
-                            String sql = "INSERT INTO shop (siteId, shopCode, shopName) " +
-                                        "values ('" + siteId + "','" + shopCode + "','" + shopName + "')";
+                            String sql = "INSERT INTO shop (siteId, shopCode, shopName, printerType, networkPrinterName) " +
+                                         "values ('" + siteId + "','" + shopCode + "','" + shopName + "','" + printerType + "','" + networkPrinterName + "')";
                             ret = sql_excute_local_db(sql);
                         }
                     }
@@ -1300,7 +1303,11 @@ namespace thepos
                 {
                     mShop[i].shop_code = dr["shopCode"].ToString();
                     mShop[i].shop_name = dr["shopName"].ToString();
+                    mShop[i].printer_type = dr["printerType"].ToString();
+                    mShop[i].network_printer_name = dr["networkPrinterName"].ToString();
+
                     i++;
+
                 }
                 dr.Close();
             }

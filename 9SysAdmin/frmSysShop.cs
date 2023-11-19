@@ -14,6 +14,11 @@ namespace thepos._9SysAdmin
 {
     public partial class frmSysShop : Form
     {
+
+        String[] mPrinterTypeCode = new string[4];
+        String[] mPrinterTypeName = new string[4];
+
+
         public frmSysShop()
         {
             InitializeComponent();
@@ -36,6 +41,12 @@ namespace thepos._9SysAdmin
             lblGoodsAmtTitle.Font = font10;
             tbShopName.Font = font10;
 
+            lblPrinterTypeTitle.Font = font10;
+            cbPrinterType.Font = font10;
+            lblNetworkPrinterName.Font = font10;
+            tbNetworkPrinterName.Font = font10;
+
+
             btnAdd.Font = font10;
             btnUpdate.Font = font10;
             btnDelete.Font = font10;
@@ -49,6 +60,24 @@ namespace thepos._9SysAdmin
             lvwList.SmallImageList = imgList;
             lvwList.HideSelection = true;
 
+            mPrinterTypeCode[0] = "";
+            mPrinterTypeCode[1] = "N";
+            mPrinterTypeCode[2] = "L";
+            mPrinterTypeCode[3] = "R";
+
+            mPrinterTypeName[0] = "";
+            mPrinterTypeName[1] = "네트워크프린터";
+            mPrinterTypeName[2] = "로컬전용프린터";
+            mPrinterTypeName[3] = "영수증프린터";
+
+
+            cbPrinterType.Items.Clear();
+            for (int i = 0; i < mPrinterTypeCode.Length; i++) 
+            {
+                cbPrinterType.Items.Add(mPrinterTypeName[i]);
+            }
+
+            cbPrinterType.SelectedIndex = 0;
 
         }
 
@@ -59,6 +88,8 @@ namespace thepos._9SysAdmin
 
             tbShopCode.Text = "";
             tbShopName.Text = "";
+            cbPrinterType.SelectedIndex = 0;
+            tbNetworkPrinterName.Text = "";
 
 
             String sUrl = "shop?siteId=" + mSiteId;
@@ -75,6 +106,9 @@ namespace thepos._9SysAdmin
                         ListViewItem lvItem = new ListViewItem();
                         lvItem.Text = arr[i]["shopCode"].ToString();
                         lvItem.SubItems.Add(arr[i]["shopName"].ToString());
+                        lvItem.SubItems.Add(arr[i]["printerType"].ToString());
+                        lvItem.SubItems.Add(get_printer_type_name(arr[i]["printerType"].ToString()));
+                        lvItem.SubItems.Add(arr[i]["networkPrinterName"].ToString());
 
                         lvwList.Items.Add(lvItem);
                     }
@@ -111,12 +145,20 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+            if (cbPrinterType.SelectedIndex < 0)
+            {
+                MessageBox.Show("주문서출력 오류.", "thepos");
+                return;
+            }
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["shopCode"] = tbShopCode.Text.Trim();
             parameters["shopName"] = tbShopName.Text.Trim();
+            parameters["printerType"] = mPrinterTypeCode[cbPrinterType.SelectedIndex];
+            parameters["networkPrinterName"] = tbNetworkPrinterName.Text;
+
 
             if (mRequestPost("shop", parameters))
             {
@@ -159,12 +201,19 @@ namespace thepos._9SysAdmin
                 return;
             }
 
+            if (cbPrinterType.SelectedIndex < 0)
+            {
+                MessageBox.Show("주문서출력 오류.", "thepos");
+                return;
+            }
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["shopCode"] = tbShopCode.Text.Trim();
             parameters["shopName"] = tbShopName.Text.Trim();
+            parameters["printerType"] = mPrinterTypeCode[cbPrinterType.SelectedIndex];
+            parameters["networkPrinterName"] = tbNetworkPrinterName.Text;
 
             if (mRequestPatch("shop", parameters))
             {
@@ -198,6 +247,19 @@ namespace thepos._9SysAdmin
             tbShopCode.Text = lvwList.SelectedItems[0].Text;
             tbShopName.Text = lvwList.SelectedItems[0].SubItems[1].Text;
 
+
+            String code = lvwList.SelectedItems[0].SubItems[2].Text;
+
+            for (int i = 0; i < cbPrinterType.Items.Count; i++)
+            {
+                if (code == mPrinterTypeCode[i])
+                {
+                    cbPrinterType.SelectedIndex = i;
+                }
+            }
+
+            tbNetworkPrinterName.Text = lvwList.SelectedItems[0].SubItems[4].Text;
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -230,6 +292,19 @@ namespace thepos._9SysAdmin
             reload_server();
 
 
+        }
+
+        String get_printer_type_name(String code)
+        {
+            for (int i = 0; i < mPrinterTypeCode.Length; i++)
+            {
+                if (mPrinterTypeCode[i] == code)
+                {
+                    return mPrinterTypeName[i];
+                }
+            }
+
+            return code;
         }
     }
 }

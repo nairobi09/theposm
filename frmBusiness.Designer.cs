@@ -32,7 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBizClose = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
-            this.lblBusinessTitle = new System.Windows.Forms.Label();
             this.panelNumpad = new System.Windows.Forms.Panel();
             this.btnKey1 = new System.Windows.Forms.Button();
             this.btnKey2 = new System.Windows.Forms.Button();
@@ -49,23 +48,12 @@
             this.panelBiz = new System.Windows.Forms.Panel();
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lblPosNo = new System.Windows.Forms.Label();
-            this.lblSiteName = new System.Windows.Forms.Label();
-            this.lblSiteNameTitle = new System.Windows.Forms.Label();
-            this.lblUserNameTitle = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.lblBizDate = new System.Windows.Forms.Label();
-            this.lblBusinessDateTitle = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.lblTime = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelNumpad.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -73,7 +61,6 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnBizClose);
             this.panel1.Controls.Add(this.btnBizOpen);
-            this.panel1.Controls.Add(this.lblBusinessTitle);
             this.panel1.Controls.Add(this.panelNumpad);
             this.panel1.Location = new System.Drawing.Point(767, 58);
             this.panel1.Name = "panel1";
@@ -86,7 +73,7 @@
             this.btnBizClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizClose.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizClose.ForeColor = System.Drawing.Color.White;
-            this.btnBizClose.Location = new System.Drawing.Point(32, 186);
+            this.btnBizClose.Location = new System.Drawing.Point(32, 121);
             this.btnBizClose.Name = "btnBizClose";
             this.btnBizClose.Size = new System.Drawing.Size(188, 80);
             this.btnBizClose.TabIndex = 27;
@@ -101,7 +88,7 @@
             this.btnBizOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizOpen.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpen.ForeColor = System.Drawing.Color.White;
-            this.btnBizOpen.Location = new System.Drawing.Point(32, 100);
+            this.btnBizOpen.Location = new System.Drawing.Point(32, 35);
             this.btnBizOpen.Name = "btnBizOpen";
             this.btnBizOpen.Size = new System.Drawing.Size(188, 80);
             this.btnBizOpen.TabIndex = 27;
@@ -109,17 +96,6 @@
             this.btnBizOpen.Text = "영업개시";
             this.btnBizOpen.UseVisualStyleBackColor = false;
             this.btnBizOpen.Click += new System.EventHandler(this.btnBizOpen_Click);
-            // 
-            // lblBusinessTitle
-            // 
-            this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBusinessTitle.ForeColor = System.Drawing.Color.White;
-            this.lblBusinessTitle.Location = new System.Drawing.Point(32, 39);
-            this.lblBusinessTitle.Name = "lblBusinessTitle";
-            this.lblBusinessTitle.Size = new System.Drawing.Size(188, 22);
-            this.lblBusinessTitle.TabIndex = 26;
-            this.lblBusinessTitle.Text = "영업관리";
-            this.lblBusinessTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelNumpad
             // 
@@ -334,48 +310,12 @@
             // panelTitleConsole
             // 
             this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelTitleConsole.Controls.Add(this.picLogo);
-            this.panelTitleConsole.Controls.Add(this.lblPosNoTitle);
+            this.panelTitleConsole.Controls.Add(this.lblTitle);
             this.panelTitleConsole.Controls.Add(this.btnClose);
-            this.panelTitleConsole.Controls.Add(this.lblPosNo);
-            this.panelTitleConsole.Controls.Add(this.lblSiteName);
-            this.panelTitleConsole.Controls.Add(this.lblSiteNameTitle);
-            this.panelTitleConsole.Controls.Add(this.lblUserNameTitle);
-            this.panelTitleConsole.Controls.Add(this.lblUserName);
-            this.panelTitleConsole.Controls.Add(this.lblBizDate);
-            this.panelTitleConsole.Controls.Add(this.lblBusinessDateTitle);
-            this.panelTitleConsole.Controls.Add(this.lblDate);
-            this.panelTitleConsole.Controls.Add(this.lblTime);
             this.panelTitleConsole.Location = new System.Drawing.Point(0, 0);
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 33;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.InitialImage = ((System.Drawing.Image)(resources.GetObject("picLogo.InitialImage")));
-            this.picLogo.Location = new System.Drawing.Point(7, 4);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Padding = new System.Windows.Forms.Padding(8);
-            this.picLogo.Size = new System.Drawing.Size(80, 35);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 39;
-            this.picLogo.TabStop = false;
-            // 
-            // lblPosNoTitle
-            // 
-            this.lblPosNoTitle.AutoSize = true;
-            this.lblPosNoTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblPosNoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblPosNoTitle.ForeColor = System.Drawing.Color.White;
-            this.lblPosNoTitle.Location = new System.Drawing.Point(292, 13);
-            this.lblPosNoTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosNoTitle.Name = "lblPosNoTitle";
-            this.lblPosNoTitle.Size = new System.Drawing.Size(56, 17);
-            this.lblPosNoTitle.TabIndex = 31;
-            this.lblPosNoTitle.Text = "포스번호";
-            this.lblPosNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnClose
             // 
@@ -393,131 +333,16 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblPosNo
+            // lblTitle
             // 
-            this.lblPosNo.AutoSize = true;
-            this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
-            this.lblPosNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosNo.Location = new System.Drawing.Point(348, 13);
-            this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPosNo.Name = "lblPosNo";
-            this.lblPosNo.Size = new System.Drawing.Size(24, 17);
-            this.lblPosNo.TabIndex = 31;
-            this.lblPosNo.Text = "01";
-            this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblSiteName
-            // 
-            this.lblSiteName.AutoSize = true;
-            this.lblSiteName.BackColor = System.Drawing.Color.Transparent;
-            this.lblSiteName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSiteName.ForeColor = System.Drawing.Color.Gold;
-            this.lblSiteName.Location = new System.Drawing.Point(174, 13);
-            this.lblSiteName.Margin = new System.Windows.Forms.Padding(0);
-            this.lblSiteName.Name = "lblSiteName";
-            this.lblSiteName.Size = new System.Drawing.Size(16, 17);
-            this.lblSiteName.TabIndex = 31;
-            this.lblSiteName.Text = "_";
-            this.lblSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblSiteNameTitle
-            // 
-            this.lblSiteNameTitle.AutoSize = true;
-            this.lblSiteNameTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblSiteNameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSiteNameTitle.ForeColor = System.Drawing.Color.White;
-            this.lblSiteNameTitle.Location = new System.Drawing.Point(118, 13);
-            this.lblSiteNameTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblSiteNameTitle.Name = "lblSiteNameTitle";
-            this.lblSiteNameTitle.Size = new System.Drawing.Size(56, 17);
-            this.lblSiteNameTitle.TabIndex = 31;
-            this.lblSiteNameTitle.Text = "사업장명";
-            this.lblSiteNameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblUserNameTitle
-            // 
-            this.lblUserNameTitle.AutoSize = true;
-            this.lblUserNameTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserNameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblUserNameTitle.ForeColor = System.Drawing.Color.White;
-            this.lblUserNameTitle.Location = new System.Drawing.Point(408, 13);
-            this.lblUserNameTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblUserNameTitle.Name = "lblUserNameTitle";
-            this.lblUserNameTitle.Size = new System.Drawing.Size(56, 17);
-            this.lblUserNameTitle.TabIndex = 31;
-            this.lblUserNameTitle.Text = "담당자명";
-            this.lblUserNameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblUserName.ForeColor = System.Drawing.Color.Gold;
-            this.lblUserName.Location = new System.Drawing.Point(464, 13);
-            this.lblUserName.Margin = new System.Windows.Forms.Padding(0);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(16, 17);
-            this.lblUserName.TabIndex = 31;
-            this.lblUserName.Text = "_";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBizDate
-            // 
-            this.lblBizDate.AutoSize = true;
-            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblBizDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.lblBizDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBizDate.Location = new System.Drawing.Point(624, 12);
-            this.lblBizDate.Margin = new System.Windows.Forms.Padding(0);
-            this.lblBizDate.Name = "lblBizDate";
-            this.lblBizDate.Size = new System.Drawing.Size(101, 20);
-            this.lblBizDate.TabIndex = 31;
-            this.lblBizDate.Text = "2023-08-25";
-            this.lblBizDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBusinessDateTitle
-            // 
-            this.lblBusinessDateTitle.AutoSize = true;
-            this.lblBusinessDateTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblBusinessDateTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblBusinessDateTitle.ForeColor = System.Drawing.Color.White;
-            this.lblBusinessDateTitle.Location = new System.Drawing.Point(568, 13);
-            this.lblBusinessDateTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblBusinessDateTitle.Name = "lblBusinessDateTitle";
-            this.lblBusinessDateTitle.Size = new System.Drawing.Size(56, 17);
-            this.lblBusinessDateTitle.TabIndex = 31;
-            this.lblBusinessDateTitle.Text = "영업일자";
-            this.lblBusinessDateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblDate.ForeColor = System.Drawing.Color.White;
-            this.lblDate.Location = new System.Drawing.Point(782, 13);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(0);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(104, 17);
-            this.lblDate.TabIndex = 31;
-            this.lblDate.Text = "2020.00.00 [일]";
-            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTime
-            // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTime.ForeColor = System.Drawing.Color.Gold;
-            this.lblTime.Location = new System.Drawing.Point(893, 12);
-            this.lblTime.Margin = new System.Windows.Forms.Padding(0);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(54, 20);
-            this.lblTime.TabIndex = 31;
-            this.lblTime.Text = "00:00";
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(456, 11);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(89, 19);
+            this.lblTitle.TabIndex = 39;
+            this.lblTitle.Text = "영업관리";
             // 
             // frmBusiness
             // 
@@ -537,7 +362,6 @@
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
             this.panelTitleConsole.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -558,22 +382,11 @@
         private System.Windows.Forms.Button btnKey8;
         private System.Windows.Forms.Button btnKey7;
         private System.Windows.Forms.Button btnKeyClear;
-        private System.Windows.Forms.Label lblBusinessTitle;
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnBizOpen;
         private System.Windows.Forms.Button btnBizClose;
         private System.Windows.Forms.Panel panelTitleConsole;
-        private System.Windows.Forms.PictureBox picLogo;
-        private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Label lblPosNo;
-        private System.Windows.Forms.Label lblSiteName;
-        private System.Windows.Forms.Label lblSiteNameTitle;
-        private System.Windows.Forms.Label lblUserNameTitle;
-        private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label lblBizDate;
-        private System.Windows.Forms.Label lblBusinessDateTitle;
-        private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

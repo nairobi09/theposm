@@ -5,16 +5,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 
 
-namespace thepos
+namespace thepos._9SysAdmin
 {
-    public partial class frmSysGoodsItem : Form
+    public partial class frmSysGoodsItem2 : Form
     {
         String mSelectedPosNo = "";
         String mSelectedGroupCode = "";
@@ -23,9 +22,10 @@ namespace thepos
         private BindingList<object> source_groupList = new BindingList<object>();
 
 
-        public frmSysGoodsItem()
+        public frmSysGoodsItem2()
         {
             InitializeComponent();
+
             initialize_font();
             initialize_the();
 
@@ -37,9 +37,9 @@ namespace thepos
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
             }
-            
 
         }
+
 
         private void initialize_font()
         {
@@ -55,22 +55,10 @@ namespace thepos
 
             lvwGoods.Font = font10;
             lvwGoodsLink.Font = font10;
-
-            lblT3.Font = font10;
-            lblT4.Font = font10;
-            lblT5.Font = font10;
-            lblT6.Font = font10;
-
-            tbLocateX.Font = font10;
-            tbLocateY.Font = font10;
-            tbSizeX.Font = font10;
-            tbSizeY.Font = font10;
-
-            btnUpdate.Font = font10;
             btnDelete.Font = font10;
             btnLink.Font = font10;
-            btnApply.Font = font10;
 
+            btnSave.Font = font10;
 
             lblCopyPosNoTitle.Font = font10;
             cbSourcePosNo.Font = font10;
@@ -79,7 +67,6 @@ namespace thepos
             cbSourceGroup.Font = font10;
 
             btnView.Font = font10;
-
 
         }
 
@@ -91,7 +78,6 @@ namespace thepos
 
             lvwGoodsLink.SmallImageList = imgList;
             lvwGoodsLink.HideSelection = true;
-
 
         }
 
@@ -144,11 +130,9 @@ namespace thepos
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
-
         }
 
-
-        private void comboPosNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbPosNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             mSelectedPosNo = cbPosNo.SelectedItem.ToString();
 
@@ -186,29 +170,23 @@ namespace thepos
             }
         }
 
-
-
         private void btnView_Click(object sender, EventArgs e)
         {
             mSelectedPosNo = cbPosNo.SelectedItem.ToString();
             mSelectedGroupCode = cbGroup.SelectedValue.ToString();
 
             reload_server();
-
-            display_all_console();
-
         }
+
 
         private void reload_server()
         {
             lvwGoodsLink.Items.Clear();
 
-            tbLocateX.Text = "";
-            tbLocateY.Text = "";
-            tbSizeX.Text = "";
-            tbSizeY.Text = "";
-
-            tableLayoutPanelItemSelected.Controls.Clear();
+            int[] item_seq;
+            String[] item_code;
+            String[] item_name;
+            int[] item_amt;
 
 
             String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo + "&groupCode=" + mSelectedGroupCode;
@@ -220,19 +198,17 @@ namespace thepos
                     String data = mObj["goodsItems"].ToString();
                     JArray arr = JArray.Parse(data);
 
+                    item_seq = new int[arr.Count];
+                    item_code = new String[arr.Count];
+                    item_name = new String[arr.Count];
+                    item_amt = new int[arr.Count];
+
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = arr[i]["itemName"].ToString();
-                        lvItem.SubItems.Add(arr[i]["amt"].ToString());
-                        lvItem.SubItems.Add(arr[i]["locateX"].ToString());
-                        lvItem.SubItems.Add(arr[i]["locateY"].ToString());
-                        lvItem.SubItems.Add(arr[i]["sizeX"].ToString());
-                        lvItem.SubItems.Add(arr[i]["sizeY"].ToString());
-                        lvItem.Tag = arr[i]["itemCode"].ToString();
-
-                        lvwGoodsLink.Items.Add(lvItem);
-
+                        item_seq[i] = convert_number(arr[i]["locateX"].ToString());
+                        item_code[i] = arr[i]["itemCode"].ToString();
+                        item_name[i] = arr[i]["itemName"].ToString();
+                        item_amt[i] = convert_number(arr[i]["amt"].ToString());
                     }
                 }
                 else
@@ -248,128 +224,96 @@ namespace thepos
             }
 
 
+
+
+            bool sort_complete = false;
+
+            int temp_int = 0;
+            String temp_str = "";
+
+
+            while (!sort_complete)
+            {
+                sort_complete = true;
+                for (int i = 0; i < item_seq.Length - 1; i++)
+                {
+                    if (item_seq[i] > item_seq[i + 1])
+                    {
+                        temp_int = item_seq[i];
+                        item_seq[i] = item_seq[i + 1];
+                        item_seq[i + 1] = temp_int;
+
+                        temp_str = item_code[i];
+                        item_code[i] = item_code[i + 1];
+                        item_code[i + 1] = temp_str;
+
+                        temp_str = item_name[i];
+                        item_name[i] = item_name[i + 1];
+                        item_name[i + 1] = temp_str;
+
+                        temp_int = item_amt[i];
+                        item_amt[i] = item_amt[i + 1];
+                        item_amt[i + 1] = temp_int;
+
+                        sort_complete = false;
+                    }
+                }
+            }
+
+
+
+            for (int i = 0; i < item_seq.Length; i++)
+            {
+                ListViewItem lvItem = new ListViewItem();
+                lvItem.Text = (i + 1).ToString();
+                lvItem.SubItems.Add(item_name[i]);
+                lvItem.SubItems.Add(item_amt[i] + "");
+                lvItem.Tag = item_code[i];
+
+                lvwGoodsLink.Items.Add(lvItem);
+            }
+
+
         }
 
-        private void display_all_console()
+
+        private void btnLink_Click(object sender, EventArgs e)
         {
-            tableLayoutPanelItem.Controls.Clear();
+            if (lvwGoods.SelectedItems.Count == 0) { return; }
+
+
+            if (mSelectedGroupCode == "")
+            {
+                MessageBox.Show("포스 그룹 조회 해주세요.", "thepos");
+                return;
+            }
+
 
             for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
             {
-                try
+                if (lvwGoods.SelectedItems[0].Tag.ToString() == lvwGoodsLink.Items[i].Tag.ToString())
                 {
-                    Button btnItem = new Button();
-                    btnItem.FlatStyle = FlatStyle.Flat;
-                    btnItem.ForeColor = Color.White;
-                    btnItem.BackColor = Color.Gray;
-                    btnItem.TabStop = false;
-                    btnItem.Margin = new Padding(2, 2, 2, 2);
-                    btnItem.Padding = new Padding(0, 0, 0, 0);
-                    btnItem.Text = lvwGoodsLink.Items[i].Text + "\n" + lvwGoodsLink.Items[i].SubItems[1].Text;
-                    btnItem.Dock = DockStyle.Fill;
-
-                    int loc_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(locX)].Text);
-                    int loc_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(locY)].Text);
-                    int sz_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text);
-                    int sz_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text);
-
-                    if (sz_x == 1 | sz_y == 1) { btnItem.Font = font8; }
-                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = font16; }
-                    else { btnItem.Font = font10; }
-
-                    tableLayoutPanelItem.Controls.Add(btnItem, loc_x, loc_y);
-                    tableLayoutPanelItem.SetColumnSpan(btnItem, sz_x);
-                    tableLayoutPanelItem.SetRowSpan(btnItem, sz_y);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("오류. display all console()\n\n" + ex.Message, "thepos");
+                    MessageBox.Show("이미 등록된 상품입니다.", "thepos");
                     return;
                 }
             }
-        }
-
-        private void lvwGoodsLink_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvwGoodsLink.SelectedItems.Count == 0)
-            {
-                tbLocateX.Text = "";
-                tbLocateY.Text = "";
-                tbSizeX.Text = "";
-                tbSizeY.Text = "";
-
-                tableLayoutPanelItemSelected.Controls.Clear();
-            }
-            else
-            {
-                tbLocateX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(locX)].Text;
-                tbLocateY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(locY)].Text;
-                tbSizeX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text;
-                tbSizeY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text;
-
-                display_selected_console();
-            }
-        }
 
 
-        private void display_selected_console()
-        {
-            tableLayoutPanelItemSelected.Controls.Clear();
+            String mSelecteditemCode = lvwGoods.SelectedItems[0].Tag.ToString();
 
-            try
-            {
-                int locX = convert_number(tbLocateX.Text);
-                int locY = convert_number(tbLocateY.Text);
-                int szX = convert_number(tbSizeX.Text);
-                int szY = convert_number(tbSizeY.Text);
-
-                Button btnGroupBlue = new Button();
-
-                btnGroupBlue.FlatStyle = FlatStyle.Flat;
-                btnGroupBlue.ForeColor = Color.White;
-                btnGroupBlue.BackColor = SystemColors.Highlight;
-                btnGroupBlue.TabStop = false;
-                btnGroupBlue.Margin = new Padding(2, 2, 2, 2);
-                btnGroupBlue.Padding = new Padding(0, 0, 0, 0);
-                btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(amt)].Text;
-                btnGroupBlue.Dock = DockStyle.Fill;
-
-                if (szX == 1 | szY == 1) { btnGroupBlue.Font = font8; }
-                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = font16; }
-                else { btnGroupBlue.Font = font10; }
-
-                tableLayoutPanelItemSelected.Controls.Add(btnGroupBlue, locX, locY);
-                tableLayoutPanelItemSelected.SetColumnSpan(btnGroupBlue, szX);
-                tableLayoutPanelItemSelected.SetRowSpan(btnGroupBlue, szY);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("오류. display selected console()\n\n" + ex.Message, "thepos");
-                return;
-
-            }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
-
-            if (!check_data())
-            {
-                return;
-            }
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = mSelectedGroupCode;
-            parameters["itemCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
-            parameters["locateX"] = tbLocateX.Text;
-            parameters["locateY"] = tbLocateY.Text;
-            parameters["sizeX"] = tbSizeX.Text;
-            parameters["sizeY"] = tbSizeY.Text;
+            parameters["itemCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
+            parameters["locateX"] = (lvwGoodsLink.Items.Count + 1).ToString();
+            parameters["locateY"] = "0";
+            parameters["sizeX"] = "0";
+            parameters["sizeY"] = "0";
 
-            if (mRequestPatch("goodsItem", parameters))
+
+            if (mRequestPost("goodsItem", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -387,33 +331,28 @@ namespace thepos
                 return;
             }
 
-            //
-            set_version_basic_db_change();
-
 
             reload_server();
 
-            display_all_console();
 
+
+            //
+            for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
+            {
+                if (lvwGoodsLink.Items[i].Tag.ToString() == mSelecteditemCode)
+                {
+                    lvwGoodsLink.Items[i].Selected = true; //
+                    return;
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
 
-            if (MessageBox.Show("선택 상품연결정보를 삭제합니다.", "thwpos", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-
-            }
-            else
-            {
-                return;
-            }
-
-
 
             String mSelecteditemCode = lvwGoodsLink.SelectedItems[0].Tag.ToString();
-
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
@@ -445,132 +384,101 @@ namespace thepos
 
 
             reload_server();
-
-            display_all_console();
-
         }
 
-        private void btnLink_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            if (lvwGoods.SelectedItems.Count == 0) { return; }
-
-
-            if (mSelectedGroupCode == "") 
-            {
-                MessageBox.Show("포스 그룹 조회 해주세요.", "thepos");
-                return; 
-            }
+            resort_listview_no();
 
 
             for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
             {
-                if (lvwGoods.SelectedItems[0].Tag.ToString() == lvwGoodsLink.Items[i].Tag.ToString())
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["siteId"] = mSiteId;
+                parameters["posNo"] = mSelectedPosNo;
+                parameters["groupCode"] = mSelectedGroupCode;
+                parameters["itemCode"] = lvwGoodsLink.Items[i].Tag.ToString();
+
+                parameters["locateX"] = lvwGoodsLink.Items[i].Text;
+                parameters["locateY"] = "0";
+                parameters["sizeX"] = "0";
+                parameters["sizeY"] = "0";
+
+                if (mRequestPatch("goodsItem", parameters))
                 {
-                    MessageBox.Show("이미 등록된 상품입니다.", "thepos");
-                    return;
-                }
-            }
-
-
-            String mSelecteditemCode = lvwGoods.SelectedItems[0].Tag.ToString();
-
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
-            parameters["groupCode"] = mSelectedGroupCode;
-            parameters["itemCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
-            parameters["locateX"] = "7";
-            parameters["locateY"] = "7";
-            parameters["sizeX"] = "1";
-            parameters["sizeY"] = "1";
-
-
-            if (mRequestPost("goodsItem", parameters))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-            
-            reload_server();
-
-            display_all_console();
 
 
             //
+            set_version_basic_db_change();
+
+
+            MessageBox.Show("저장완료", "thepos");
+
+        }
+
+        private void resort_listview_no()
+        {
             for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
             {
-                if (lvwGoodsLink.Items[i].Tag.ToString() == mSelecteditemCode)
-                {
-                    lvwGoodsLink.Items[i].Selected = true; //
-                    return;
-                }
+                lvwGoodsLink.Items[i].Text = (i + 1).ToString();
             }
-
-
-
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        private void btnUp_Click(object sender, EventArgs e)
         {
-            apply_console();
+            if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
+
+            if (lvwGoodsLink.SelectedItems[0].Index == 0) { return; }
+
+
+            ListViewItem items = new ListViewItem();
+
+            items = lvwGoodsLink.SelectedItems[0];
+            int idx = lvwGoodsLink.SelectedItems[0].Index;
+
+            lvwGoodsLink.Items[idx].Remove();
+            lvwGoodsLink.Items.Insert(idx - 1, items);
+
+            lvwGoodsLink.Items[idx - 1].Selected = true;
+            lvwGoodsLink.Select();
         }
 
-        private void apply_console()
-        { 
-            if (!check_data())
-            {
-                return;
-            }
-
-            display_selected_console();
-        }
-
-
-        private bool check_data()
+        private void btnDn_Click(object sender, EventArgs e)
         {
-            int tNum = 0;
-            int locX, locY, szX, szY;
+            if (lvwGoodsLink.SelectedItems.Count == 0) { return; }
 
-            if (!get_number(tbLocateX.Text, ref tNum)) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
-            if (tNum > 7) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
-            locX = tNum;
-
-            if (!get_number(tbLocateY.Text, ref tNum)) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
-            if (tNum > 7) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
-            locY = tNum;
-
-            if (!get_number(tbSizeX.Text, ref tNum)) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
-            if (tNum > 8) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
-            szX = tNum;
-
-            if (!get_number(tbSizeY.Text, ref tNum)) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
-            if (tNum > 8) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
-            szY = tNum;
+            if (lvwGoodsLink.SelectedItems[0].Index == lvwGoodsLink.Items.Count - 1) { return; }
 
 
-            if (locX + szX > 8) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
-            if (locY + szY > 8) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
+            ListViewItem items = new ListViewItem();
 
-            return true;
+            items = lvwGoodsLink.SelectedItems[0];
+            int idx = lvwGoodsLink.SelectedItems[0].Index;
+
+            lvwGoodsLink.Items[idx].Remove();
+            lvwGoodsLink.Items.Insert(idx + 1, items);
+
+            lvwGoodsLink.Items[idx + 1].Selected = true;
+            lvwGoodsLink.Select();
         }
 
         private void cbSourcePosNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             String copyPosNo = cbSourcePosNo.SelectedItem.ToString();
 
 
@@ -607,7 +515,6 @@ namespace thepos
                 return;
             }
         }
-
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
@@ -685,7 +592,7 @@ namespace thepos
                         parameters["locateY"] = arr[i]["locateY"].ToString();
                         parameters["sizeX"] = arr[i]["sizeX"].ToString();
                         parameters["sizeY"] = arr[i]["sizeY"].ToString();
-                        
+
                         if (mRequestPost("goodsItem", parameters))
                         {
                             if (mObj["resultCode"].ToString() == "200")
@@ -722,10 +629,6 @@ namespace thepos
             MessageBox.Show("복사완료", "thepos");
 
             reload_server();
-
-            display_all_console();
-
-
         }
     }
 }

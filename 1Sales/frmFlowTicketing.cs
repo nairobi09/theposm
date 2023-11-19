@@ -29,7 +29,7 @@ namespace thepos
             btnClose.Font = font12;
 
             lblBusinessTitle.Font = font10;
-            //dtBusiness.Font = font10;
+            dtBusiness.Font = font10;
 
             btnView.Font = font10;
             lvwList.Font = font10;

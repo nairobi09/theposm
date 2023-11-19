@@ -51,7 +51,10 @@ namespace thepos
             btnSysGoods.Font = font10;
 
             btnSysGoodsGroup.Font = font10;
-            btnSysGoodsLayout.Font = font10;
+            btnSysGoodsGroup2.Font = font10;
+
+            btnSysGoodsItem.Font = font10;
+            btnSysGoodsItem2.Font = font10;
 
             btnSysPayConsole.Font = font10;
             btnDcrFavorite.Font = font10;
@@ -122,7 +125,9 @@ namespace thepos
             fSysAdmin.Show();
         }
 
-        private void btnSysGoodsGroup_Click(object sender, EventArgs e)
+
+
+        private void btnSysGoodsGroup_Click(object sender, EventArgs e)  // POS
         {
             if (mThisButtonClick == "GoodsGroup") return;
 
@@ -134,7 +139,21 @@ namespace thepos
             fSysAdmin.Show();
         }
 
-        private void btnSysGoodsItem_Click(object sender, EventArgs e)
+        private void btnSysGoodsGroup2_Click(object sender, EventArgs e)  // KIOSK
+        {
+            if (mThisButtonClick == "GoodsGroup2") return;
+
+            mThisButtonClick = "GoodsGroup2";
+            panelView.Controls.Clear();
+
+            frmSysGoodsGroup2 fSysAdmin = new frmSysGoodsGroup2() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+
+
+        private void btnSysGoodsItem_Click(object sender, EventArgs e)  // POS
         {
             if (mThisButtonClick == "GoodsItem") return;
 
@@ -145,6 +164,19 @@ namespace thepos
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
+
+        private void btnSysGoodsItem2_Click(object sender, EventArgs e)   // KIOSK
+        {
+            if (mThisButtonClick == "GoodsItem2") return;
+
+            mThisButtonClick = "GoodsItem2";
+            panelView.Controls.Clear();
+
+            frmSysGoodsItem2 fSysAdmin = new frmSysGoodsItem2() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
 
         private void btnSysPayConsole_Click(object sender, EventArgs e)
         {
@@ -181,5 +213,9 @@ namespace thepos
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
+
+
+
+
     }
 }

@@ -51,7 +51,7 @@ namespace thepos
             lbl2.Font = font9;
             lbl3.Font = font9;
 
-            //dtBizDt.Font = font10;
+            dtBizDt.Font = font10;
             cbPosNo.Font = font10;
             tbBillNo.Font = font10;
 

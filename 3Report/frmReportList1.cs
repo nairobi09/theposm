@@ -206,7 +206,7 @@ namespace thepos
                 }
 
 
-                sUrl = "reportMonthListPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no + "&runningBizDt=" + mBizDate;
+                sUrl = "reportMonthListPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no;
 
                 if (mRequestGet(sUrl))
                 {

@@ -74,6 +74,8 @@
             this.panelback.Controls.Add(this.gbCashSimple);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
+            this.panelback.Controls.Add(this.lblNetAmount);
+            this.panelback.Controls.Add(this.lbl1);
             this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
@@ -149,7 +151,7 @@
             // 
             // tbIssuedMethodNo
             // 
-            this.tbIssuedMethodNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbIssuedMethodNo.BackColor = System.Drawing.Color.White;
             this.tbIssuedMethodNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbIssuedMethodNo.Location = new System.Drawing.Point(251, 22);
             this.tbIssuedMethodNo.MaxLength = 20;
@@ -247,17 +249,15 @@
             this.gbCashSimple.Controls.Add(this.btnCashSimple);
             this.gbCashSimple.Controls.Add(this.lblRestAmount);
             this.gbCashSimple.Controls.Add(this.lblRcvAmount);
-            this.gbCashSimple.Controls.Add(this.lblNetAmount);
             this.gbCashSimple.Controls.Add(this.btn1t);
             this.gbCashSimple.Controls.Add(this.lbl3);
             this.gbCashSimple.Controls.Add(this.btn5t);
             this.gbCashSimple.Controls.Add(this.lbl2);
-            this.gbCashSimple.Controls.Add(this.lbl1);
             this.gbCashSimple.Controls.Add(this.btn10t);
             this.gbCashSimple.Controls.Add(this.btn50t);
-            this.gbCashSimple.Location = new System.Drawing.Point(22, 66);
+            this.gbCashSimple.Location = new System.Drawing.Point(22, 152);
             this.gbCashSimple.Name = "gbCashSimple";
-            this.gbCashSimple.Size = new System.Drawing.Size(478, 257);
+            this.gbCashSimple.Size = new System.Drawing.Size(478, 171);
             this.gbCashSimple.TabIndex = 47;
             this.gbCashSimple.TabStop = false;
             // 
@@ -266,9 +266,9 @@
             this.btnReset.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReset.Location = new System.Drawing.Point(228, 149);
+            this.btnReset.Location = new System.Drawing.Point(228, 106);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(59, 50);
+            this.btnReset.Size = new System.Drawing.Size(59, 40);
             this.btnReset.TabIndex = 51;
             this.btnReset.Text = "초기화";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -276,12 +276,12 @@
             // 
             // btnCashSimple
             // 
-            this.btnCashSimple.BackColor = System.Drawing.Color.White;
+            this.btnCashSimple.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCashSimple.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnCashSimple.Location = new System.Drawing.Point(307, 149);
+            this.btnCashSimple.ForeColor = System.Drawing.Color.White;
+            this.btnCashSimple.Location = new System.Drawing.Point(307, 106);
             this.btnCashSimple.Name = "btnCashSimple";
-            this.btnCashSimple.Size = new System.Drawing.Size(140, 50);
+            this.btnCashSimple.Size = new System.Drawing.Size(140, 40);
             this.btnCashSimple.TabIndex = 44;
             this.btnCashSimple.Text = "단순현금";
             this.btnCashSimple.UseVisualStyleBackColor = false;
@@ -290,7 +290,7 @@
             // lblRestAmount
             // 
             this.lblRestAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRestAmount.Location = new System.Drawing.Point(116, 98);
+            this.lblRestAmount.Location = new System.Drawing.Point(116, 57);
             this.lblRestAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblRestAmount.Name = "lblRestAmount";
             this.lblRestAmount.Size = new System.Drawing.Size(162, 26);
@@ -303,7 +303,7 @@
             // 
             this.lblRcvAmount.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblRcvAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRcvAmount.Location = new System.Drawing.Point(116, 68);
+            this.lblRcvAmount.Location = new System.Drawing.Point(116, 27);
             this.lblRcvAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblRcvAmount.Name = "lblRcvAmount";
             this.lblRcvAmount.Size = new System.Drawing.Size(162, 26);
@@ -315,7 +315,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(116, 38);
+            this.lblNetAmount.Location = new System.Drawing.Point(138, 91);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Size = new System.Drawing.Size(162, 26);
@@ -328,9 +328,9 @@
             // 
             this.btn1t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn1t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btn1t.Location = new System.Drawing.Point(16, 149);
+            this.btn1t.Location = new System.Drawing.Point(16, 106);
             this.btn1t.Name = "btn1t";
-            this.btn1t.Size = new System.Drawing.Size(50, 50);
+            this.btn1t.Size = new System.Drawing.Size(50, 40);
             this.btn1t.TabIndex = 44;
             this.btn1t.Text = "천";
             this.btn1t.UseVisualStyleBackColor = true;
@@ -339,7 +339,7 @@
             // lbl3
             // 
             this.lbl3.AutoSize = true;
-            this.lbl3.Location = new System.Drawing.Point(27, 105);
+            this.lbl3.Location = new System.Drawing.Point(27, 64);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(63, 14);
             this.lbl3.TabIndex = 45;
@@ -349,9 +349,9 @@
             // 
             this.btn5t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn5t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btn5t.Location = new System.Drawing.Point(69, 149);
+            this.btn5t.Location = new System.Drawing.Point(69, 106);
             this.btn5t.Name = "btn5t";
-            this.btn5t.Size = new System.Drawing.Size(50, 50);
+            this.btn5t.Size = new System.Drawing.Size(50, 40);
             this.btn5t.TabIndex = 44;
             this.btn5t.Text = "오천";
             this.btn5t.UseVisualStyleBackColor = true;
@@ -360,7 +360,7 @@
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(27, 76);
+            this.lbl2.Location = new System.Drawing.Point(27, 35);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(63, 14);
             this.lbl2.TabIndex = 45;
@@ -369,19 +369,19 @@
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(27, 44);
+            this.lbl1.Location = new System.Drawing.Point(49, 97);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(63, 14);
             this.lbl1.TabIndex = 45;
-            this.lbl1.Text = "받을금액";
+            this.lbl1.Text = "결제금액";
             // 
             // btn10t
             // 
             this.btn10t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn10t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btn10t.Location = new System.Drawing.Point(122, 149);
+            this.btn10t.Location = new System.Drawing.Point(122, 106);
             this.btn10t.Name = "btn10t";
-            this.btn10t.Size = new System.Drawing.Size(50, 50);
+            this.btn10t.Size = new System.Drawing.Size(50, 40);
             this.btn10t.TabIndex = 44;
             this.btn10t.Text = "만";
             this.btn10t.UseVisualStyleBackColor = true;
@@ -391,9 +391,9 @@
             // 
             this.btn50t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn50t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btn50t.Location = new System.Drawing.Point(175, 149);
+            this.btn50t.Location = new System.Drawing.Point(175, 106);
             this.btn50t.Name = "btn50t";
-            this.btn50t.Size = new System.Drawing.Size(50, 50);
+            this.btn50t.Size = new System.Drawing.Size(50, 40);
             this.btn50t.TabIndex = 44;
             this.btn50t.Text = "오만";
             this.btn50t.UseVisualStyleBackColor = true;
@@ -440,6 +440,7 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayCash_FormClosed);
             this.panelback.ResumeLayout(false);
+            this.panelback.PerformLayout();
             this.gbCashReceipt.ResumeLayout(false);
             this.gbCashReceipt.PerformLayout();
             this.groupBox4.ResumeLayout(false);

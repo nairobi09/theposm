@@ -260,6 +260,13 @@ namespace thepos
                     }
 
 
+
+                    // 주문서 출력
+                    print_order();
+
+
+
+
                     // 영수증 출력
                     // 안에서 여부를 물어보고 출력한다. 
                     print_bill(mTheNo, "A", "", "1101", true); // cash card point easy

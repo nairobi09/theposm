@@ -201,12 +201,12 @@
             // 
             // btnCardTemp
             // 
-            this.btnCardTemp.BackColor = System.Drawing.Color.White;
+            this.btnCardTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCardTemp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnCardTemp.Location = new System.Drawing.Point(330, 144);
+            this.btnCardTemp.ForeColor = System.Drawing.Color.White;
+            this.btnCardTemp.Location = new System.Drawing.Point(330, 155);
             this.btnCardTemp.Name = "btnCardTemp";
-            this.btnCardTemp.Size = new System.Drawing.Size(130, 54);
+            this.btnCardTemp.Size = new System.Drawing.Size(130, 40);
             this.btnCardTemp.TabIndex = 50;
             this.btnCardTemp.Text = "임의등록";
             this.btnCardTemp.UseVisualStyleBackColor = false;
@@ -370,7 +370,7 @@
             this.btnCardRequest.ForeColor = System.Drawing.Color.White;
             this.btnCardRequest.Location = new System.Drawing.Point(331, 113);
             this.btnCardRequest.Name = "btnCardRequest";
-            this.btnCardRequest.Size = new System.Drawing.Size(130, 57);
+            this.btnCardRequest.Size = new System.Drawing.Size(130, 50);
             this.btnCardRequest.TabIndex = 47;
             this.btnCardRequest.Text = "승인요청";
             this.btnCardRequest.UseVisualStyleBackColor = false;

@@ -85,7 +85,8 @@
             this.locY,
             this.szX,
             this.szY});
-            this.lvwGoodsLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwGoodsLink.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwGoodsLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwGoodsLink.FullRowSelect = true;
             this.lvwGoodsLink.GridLines = true;
             this.lvwGoodsLink.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -167,6 +168,7 @@
             // cbGroup
             // 
             this.cbGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbGroup.FormattingEnabled = true;
             this.cbGroup.Location = new System.Drawing.Point(6, 79);
             this.cbGroup.Name = "cbGroup";
@@ -177,16 +179,18 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(17, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(68, 14);
+            this.lblTitle.Size = new System.Drawing.Size(107, 14);
             this.lblTitle.TabIndex = 62;
-            this.lblTitle.Text = "상품 관리";
+            this.lblTitle.Text = "상품관리(POS)";
             // 
             // lblT4
             // 
             this.lblT4.AutoSize = true;
             this.lblT4.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblT4.Location = new System.Drawing.Point(2, 68);
             this.lblT4.Name = "lblT4";
             this.lblT4.Size = new System.Drawing.Size(33, 13);
@@ -197,6 +201,7 @@
             // 
             this.lblT3.AutoSize = true;
             this.lblT3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblT3.Location = new System.Drawing.Point(4, 40);
             this.lblT3.Name = "lblT3";
             this.lblT3.Size = new System.Drawing.Size(26, 13);
@@ -207,6 +212,7 @@
             // 
             this.lblT5.AutoSize = true;
             this.lblT5.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblT5.Location = new System.Drawing.Point(40, 15);
             this.lblT5.Name = "lblT5";
             this.lblT5.Size = new System.Drawing.Size(15, 13);
@@ -216,6 +222,7 @@
             // tbLocateX
             // 
             this.tbLocateX.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbLocateX.Location = new System.Drawing.Point(36, 33);
             this.tbLocateX.MaxLength = 1;
             this.tbLocateX.Name = "tbLocateX";
@@ -225,6 +232,7 @@
             // tbLocateY
             // 
             this.tbLocateY.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLocateY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbLocateY.Location = new System.Drawing.Point(73, 33);
             this.tbLocateY.MaxLength = 1;
             this.tbLocateY.Name = "tbLocateY";
@@ -234,6 +242,7 @@
             // tbSizeX
             // 
             this.tbSizeX.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSizeX.Location = new System.Drawing.Point(36, 62);
             this.tbSizeX.MaxLength = 1;
             this.tbSizeX.Name = "tbSizeX";
@@ -243,6 +252,7 @@
             // tbSizeY
             // 
             this.tbSizeY.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSizeY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSizeY.Location = new System.Drawing.Point(73, 62);
             this.tbSizeY.MaxLength = 1;
             this.tbSizeY.Name = "tbSizeY";
@@ -259,7 +269,7 @@
             this.ticket,
             this.taxfree,
             this.memo});
-            this.lvwGoods.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwGoods.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwGoods.FullRowSelect = true;
             this.lvwGoods.GridLines = true;
             this.lvwGoods.HideSelection = false;
@@ -307,6 +317,7 @@
             // cbPosNo
             // 
             this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Location = new System.Drawing.Point(6, 32);
             this.cbPosNo.Name = "cbPosNo";
@@ -345,7 +356,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.DimGray;
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
@@ -359,7 +370,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.DimGray;
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
@@ -373,7 +384,7 @@
             // 
             // btnLink
             // 
-            this.btnLink.BackColor = System.Drawing.Color.DimGray;
+            this.btnLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLink.ForeColor = System.Drawing.Color.White;
@@ -408,6 +419,7 @@
             // 
             this.lblT6.AutoSize = true;
             this.lblT6.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblT6.Location = new System.Drawing.Point(77, 13);
             this.lblT6.Name = "lblT6";
             this.lblT6.Size = new System.Drawing.Size(15, 13);
@@ -418,6 +430,7 @@
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnApply.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnApply.Location = new System.Drawing.Point(755, 464);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(100, 40);
@@ -430,6 +443,7 @@
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblPosNoTitle.Location = new System.Drawing.Point(7, 16);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(35, 14);
@@ -440,6 +454,7 @@
             // 
             this.lblGroupTitle.AutoSize = true;
             this.lblGroupTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGroupTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblGroupTitle.Location = new System.Drawing.Point(8, 63);
             this.lblGroupTitle.Name = "lblGroupTitle";
             this.lblGroupTitle.Size = new System.Drawing.Size(35, 14);
@@ -462,14 +477,16 @@
             // 
             // btnView
             // 
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnView.Location = new System.Drawing.Point(6, 112);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 99;
             this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // groupBox3
@@ -488,7 +505,7 @@
             // 
             // btnCopy
             // 
-            this.btnCopy.BackColor = System.Drawing.Color.DimGray;
+            this.btnCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCopy.ForeColor = System.Drawing.Color.White;
@@ -502,7 +519,9 @@
             // 
             // cbSourceGroup
             // 
+            this.cbSourceGroup.BackColor = System.Drawing.Color.White;
             this.cbSourceGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbSourceGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbSourceGroup.FormattingEnabled = true;
             this.cbSourceGroup.Location = new System.Drawing.Point(6, 82);
             this.cbSourceGroup.Name = "cbSourceGroup";
@@ -513,7 +532,8 @@
             // 
             this.lblCopyGroupTitle.AutoSize = true;
             this.lblCopyGroupTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCopyGroupTitle.Location = new System.Drawing.Point(8, 67);
+            this.lblCopyGroupTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCopyGroupTitle.Location = new System.Drawing.Point(8, 64);
             this.lblCopyGroupTitle.Name = "lblCopyGroupTitle";
             this.lblCopyGroupTitle.Size = new System.Drawing.Size(59, 13);
             this.lblCopyGroupTitle.TabIndex = 97;
@@ -521,7 +541,9 @@
             // 
             // cbSourcePosNo
             // 
+            this.cbSourcePosNo.BackColor = System.Drawing.Color.White;
             this.cbSourcePosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbSourcePosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbSourcePosNo.FormattingEnabled = true;
             this.cbSourcePosNo.Location = new System.Drawing.Point(6, 36);
             this.cbSourcePosNo.Name = "cbSourcePosNo";
@@ -533,7 +555,8 @@
             // 
             this.lblCopyPosNoTitle.AutoSize = true;
             this.lblCopyPosNoTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCopyPosNoTitle.Location = new System.Drawing.Point(8, 19);
+            this.lblCopyPosNoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCopyPosNoTitle.Location = new System.Drawing.Point(8, 18);
             this.lblCopyPosNoTitle.Name = "lblCopyPosNoTitle";
             this.lblCopyPosNoTitle.Size = new System.Drawing.Size(59, 13);
             this.lblCopyPosNoTitle.TabIndex = 97;

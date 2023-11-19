@@ -100,7 +100,7 @@
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl1.Location = new System.Drawing.Point(14, 14);
+            this.lbl1.Location = new System.Drawing.Point(14, 13);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
             this.lbl1.TabIndex = 71;
@@ -116,6 +116,7 @@
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(85, 40);
             this.btnScanner.TabIndex = 75;
+            this.btnScanner.TabStop = false;
             this.btnScanner.UseVisualStyleBackColor = false;
             this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
@@ -128,6 +129,7 @@
             this.dtBizDt.Name = "dtBizDt";
             this.dtBizDt.Size = new System.Drawing.Size(110, 23);
             this.dtBizDt.TabIndex = 68;
+            this.dtBizDt.TabStop = false;
             this.dtBizDt.Value = new System.DateTime(2023, 5, 19, 0, 0, 0, 0);
             // 
             // tbBillNo
@@ -140,6 +142,7 @@
             this.tbBillNo.Name = "tbBillNo";
             this.tbBillNo.Size = new System.Drawing.Size(54, 23);
             this.tbBillNo.TabIndex = 74;
+            this.tbBillNo.TabStop = false;
             this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl3
@@ -147,7 +150,7 @@
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl3.Location = new System.Drawing.Point(199, 14);
+            this.lbl3.Location = new System.Drawing.Point(199, 13);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(41, 12);
             this.lbl3.TabIndex = 70;
@@ -168,13 +171,14 @@
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(51, 21);
             this.cbPosNo.TabIndex = 73;
+            this.cbPosNo.TabStop = false;
             // 
             // lbl2
             // 
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl2.Location = new System.Drawing.Point(130, 14);
+            this.lbl2.Location = new System.Drawing.Point(130, 13);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(53, 12);
             this.lbl2.TabIndex = 69;
@@ -189,6 +193,7 @@
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 72;
+            this.btnView.TabStop = false;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -203,6 +208,7 @@
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.lblLayoutBill.Size = new System.Drawing.Size(358, 245);
             this.lblLayoutBill.TabIndex = 55;
+            this.lblLayoutBill.TabStop = false;
             // 
             // btnClose
             // 
@@ -242,6 +248,7 @@
             this.cbGoodsExcept.Name = "cbGoodsExcept";
             this.cbGoodsExcept.Size = new System.Drawing.Size(116, 15);
             this.cbGoodsExcept.TabIndex = 49;
+            this.cbGoodsExcept.TabStop = false;
             this.cbGoodsExcept.Text = "상품내역 인쇄제외";
             this.cbGoodsExcept.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbGoodsExcept.UseVisualStyleBackColor = true;
@@ -256,6 +263,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 50);
             this.btnCancel.TabIndex = 48;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "결제취소";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -270,6 +278,7 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(110, 40);
             this.btnPrint.TabIndex = 48;
+            this.btnPrint.TabStop = false;
             this.btnPrint.Text = "재출력";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -295,6 +304,7 @@
             this.lvwPayManager.Name = "lvwPayManager";
             this.lvwPayManager.Size = new System.Drawing.Size(483, 284);
             this.lvwPayManager.TabIndex = 44;
+            this.lvwPayManager.TabStop = false;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;
             this.lvwPayManager.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwPayManager_ColumnWidthChanging);

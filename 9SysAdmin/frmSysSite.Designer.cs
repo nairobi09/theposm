@@ -58,7 +58,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.DimGray;
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
@@ -75,6 +75,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(169, 31);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(82, 14);
@@ -85,6 +86,7 @@
             // 
             this.lblSiteName.AutoSize = true;
             this.lblSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblSiteName.Location = new System.Drawing.Point(48, 33);
             this.lblSiteName.Name = "lblSiteName";
             this.lblSiteName.Size = new System.Drawing.Size(77, 14);
@@ -94,6 +96,7 @@
             // tbSiteName
             // 
             this.tbSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSiteName.Location = new System.Drawing.Point(178, 27);
             this.tbSiteName.Name = "tbSiteName";
             this.tbSiteName.Size = new System.Drawing.Size(157, 23);
@@ -122,6 +125,7 @@
             // tbBizTelNo
             // 
             this.tbBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizTelNo.Location = new System.Drawing.Point(178, 187);
             this.tbBizTelNo.Name = "tbBizTelNo";
             this.tbBizTelNo.Size = new System.Drawing.Size(157, 23);
@@ -130,6 +134,7 @@
             // tbBizAddr
             // 
             this.tbBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizAddr.Location = new System.Drawing.Point(178, 155);
             this.tbBizAddr.Name = "tbBizAddr";
             this.tbBizAddr.Size = new System.Drawing.Size(331, 23);
@@ -138,6 +143,7 @@
             // tbCapName
             // 
             this.tbCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCapName.Location = new System.Drawing.Point(178, 123);
             this.tbCapName.Name = "tbCapName";
             this.tbCapName.Size = new System.Drawing.Size(157, 23);
@@ -146,6 +152,7 @@
             // tbRegistNo
             // 
             this.tbRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbRegistNo.Location = new System.Drawing.Point(178, 91);
             this.tbRegistNo.Name = "tbRegistNo";
             this.tbRegistNo.Size = new System.Drawing.Size(157, 23);
@@ -154,6 +161,7 @@
             // tbSiteAlias
             // 
             this.tbSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSiteAlias.Location = new System.Drawing.Point(178, 59);
             this.tbSiteAlias.Name = "tbSiteAlias";
             this.tbSiteAlias.Size = new System.Drawing.Size(157, 23);
@@ -163,6 +171,7 @@
             // 
             this.lblBizTelNo.AutoSize = true;
             this.lblBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizTelNo.Location = new System.Drawing.Point(48, 193);
             this.lblBizTelNo.Name = "lblBizTelNo";
             this.lblBizTelNo.Size = new System.Drawing.Size(63, 14);
@@ -173,6 +182,7 @@
             // 
             this.lblBizAddr.AutoSize = true;
             this.lblBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizAddr.Location = new System.Drawing.Point(48, 161);
             this.lblBizAddr.Name = "lblBizAddr";
             this.lblBizAddr.Size = new System.Drawing.Size(35, 14);
@@ -183,6 +193,7 @@
             // 
             this.lblCapName.AutoSize = true;
             this.lblCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCapName.Location = new System.Drawing.Point(48, 129);
             this.lblCapName.Name = "lblCapName";
             this.lblCapName.Size = new System.Drawing.Size(63, 14);
@@ -193,6 +204,7 @@
             // 
             this.lblRegistNo.AutoSize = true;
             this.lblRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRegistNo.Location = new System.Drawing.Point(48, 97);
             this.lblRegistNo.Name = "lblRegistNo";
             this.lblRegistNo.Size = new System.Drawing.Size(77, 14);
@@ -203,6 +215,7 @@
             // 
             this.lblSiteAlias.AutoSize = true;
             this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblSiteAlias.Location = new System.Drawing.Point(48, 65);
             this.lblSiteAlias.Name = "lblSiteAlias";
             this.lblSiteAlias.Size = new System.Drawing.Size(77, 14);
@@ -228,6 +241,7 @@
             // cbVanCode
             // 
             this.cbVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbVanCode.FormattingEnabled = true;
             this.cbVanCode.Location = new System.Drawing.Point(179, 98);
             this.cbVanCode.Name = "cbVanCode";
@@ -237,6 +251,7 @@
             // cbTicketMedia
             // 
             this.cbTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicketMedia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbTicketMedia.FormattingEnabled = true;
             this.cbTicketMedia.Location = new System.Drawing.Point(179, 64);
             this.cbTicketMedia.Name = "cbTicketMedia";
@@ -246,6 +261,7 @@
             // cbTicketType
             // 
             this.cbTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicketType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbTicketType.FormattingEnabled = true;
             this.cbTicketType.Location = new System.Drawing.Point(179, 30);
             this.cbTicketType.Name = "cbTicketType";
@@ -255,6 +271,7 @@
             // tbCallCenter
             // 
             this.tbCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCallCenter.Location = new System.Drawing.Point(179, 135);
             this.tbCallCenter.Name = "tbCallCenter";
             this.tbCallCenter.Size = new System.Drawing.Size(330, 23);
@@ -264,6 +281,7 @@
             // 
             this.lblCallCenter.AutoSize = true;
             this.lblCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCallCenter.Location = new System.Drawing.Point(48, 142);
             this.lblCallCenter.Name = "lblCallCenter";
             this.lblCallCenter.Size = new System.Drawing.Size(77, 14);
@@ -274,6 +292,7 @@
             // 
             this.lblVanCode.AutoSize = true;
             this.lblVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblVanCode.Location = new System.Drawing.Point(48, 103);
             this.lblVanCode.Name = "lblVanCode";
             this.lblVanCode.Size = new System.Drawing.Size(63, 14);
@@ -284,6 +303,7 @@
             // 
             this.lblTicketMedia.AutoSize = true;
             this.lblTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketMedia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTicketMedia.Location = new System.Drawing.Point(48, 69);
             this.lblTicketMedia.Name = "lblTicketMedia";
             this.lblTicketMedia.Size = new System.Drawing.Size(63, 14);
@@ -294,6 +314,7 @@
             // 
             this.lblTicketType.AutoSize = true;
             this.lblTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTicketType.Location = new System.Drawing.Point(48, 35);
             this.lblTicketType.Name = "lblTicketType";
             this.lblTicketType.Size = new System.Drawing.Size(63, 14);

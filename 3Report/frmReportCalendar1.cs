@@ -228,9 +228,9 @@ namespace thepos
             String sUrl = "";
 
             if (shop_code != "")
-                sUrl = "reportMonthShop?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&shopCode=" + shop_code + "&runningBizDt=" + mBizDate;
+                sUrl = "reportMonthShop?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&shopCode=" + shop_code;
             else
-                sUrl = "reportMonthPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no + "&runningBizDt=" + mBizDate;
+                sUrl = "reportMonthPos?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&posNo=" + pos_no;
 
 
 

@@ -61,10 +61,10 @@
             this.btnDn.BackColor = System.Drawing.SystemColors.Control;
             this.btnDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDn.ForeColor = System.Drawing.Color.Black;
+            this.btnDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDn.Location = new System.Drawing.Point(10, 101);
             this.btnDn.Name = "btnDn";
-            this.btnDn.Size = new System.Drawing.Size(50, 50);
+            this.btnDn.Size = new System.Drawing.Size(40, 50);
             this.btnDn.TabIndex = 46;
             this.btnDn.TabStop = false;
             this.btnDn.Text = "▼";
@@ -76,10 +76,10 @@
             this.btnUp.BackColor = System.Drawing.SystemColors.Control;
             this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUp.ForeColor = System.Drawing.Color.Black;
+            this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUp.Location = new System.Drawing.Point(10, 45);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(50, 50);
+            this.btnUp.Size = new System.Drawing.Size(40, 50);
             this.btnUp.TabIndex = 47;
             this.btnUp.TabStop = false;
             this.btnUp.Text = "▲";
@@ -98,6 +98,7 @@
             this.des1,
             this.type1});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -150,6 +151,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(114, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(96, 14);
@@ -159,6 +161,7 @@
             // cbDes
             // 
             this.cbDes.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbDes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbDes.FormattingEnabled = true;
             this.cbDes.Location = new System.Drawing.Point(583, 90);
             this.cbDes.Name = "cbDes";
@@ -169,7 +172,7 @@
             // 
             this.lblNameTitle.AutoSize = true;
             this.lblNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblNameTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblNameTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblNameTitle.Location = new System.Drawing.Point(517, 64);
             this.lblNameTitle.Name = "lblNameTitle";
             this.lblNameTitle.Size = new System.Drawing.Size(49, 14);
@@ -180,7 +183,7 @@
             // 
             this.lblDesTitle.AutoSize = true;
             this.lblDesTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDesTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblDesTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDesTitle.Location = new System.Drawing.Point(517, 94);
             this.lblDesTitle.Name = "lblDesTitle";
             this.lblDesTitle.Size = new System.Drawing.Size(63, 14);
@@ -190,7 +193,7 @@
             // tbName
             // 
             this.tbName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbName.ForeColor = System.Drawing.Color.Black;
+            this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbName.Location = new System.Drawing.Point(583, 58);
             this.tbName.MaxLength = 30;
             this.tbName.Name = "tbName";
@@ -201,6 +204,7 @@
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDelete.Location = new System.Drawing.Point(71, 121);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(138, 30);
@@ -214,6 +218,7 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUpdate.Location = new System.Drawing.Point(71, 75);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(138, 40);
@@ -227,6 +232,7 @@
             // 
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdd.Location = new System.Drawing.Point(71, 29);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(138, 40);
@@ -239,6 +245,7 @@
             // cbType
             // 
             this.cbType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbType.FormattingEnabled = true;
             this.cbType.Location = new System.Drawing.Point(583, 120);
             this.cbType.Name = "cbType";
@@ -249,7 +256,7 @@
             // 
             this.lblTypeTitle.AutoSize = true;
             this.lblTypeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTypeTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTypeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTypeTitle.Location = new System.Drawing.Point(517, 124);
             this.lblTypeTitle.Name = "lblTypeTitle";
             this.lblTypeTitle.Size = new System.Drawing.Size(63, 14);
@@ -260,7 +267,7 @@
             // 
             this.lblValueTitle.AutoSize = true;
             this.lblValueTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblValueTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblValueTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblValueTitle.Location = new System.Drawing.Point(517, 156);
             this.lblValueTitle.Name = "lblValueTitle";
             this.lblValueTitle.Size = new System.Drawing.Size(49, 14);
@@ -270,7 +277,7 @@
             // tbValue
             // 
             this.tbValue.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbValue.ForeColor = System.Drawing.Color.Black;
+            this.tbValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbValue.Location = new System.Drawing.Point(583, 150);
             this.tbValue.MaxLength = 30;
             this.tbValue.Name = "tbValue";
@@ -279,7 +286,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.DimGray;
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave.ForeColor = System.Drawing.Color.White;

@@ -52,7 +52,7 @@ namespace thepos
             lvwPayment.Items.Clear();
 
 
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&runningBizDt=" + mBizDate;
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + thisBizDt;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
