@@ -4449,9 +4449,6 @@ namespace thepos
             }
 
             //
-            출력
-
-
 
 
 

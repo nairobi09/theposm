@@ -49,16 +49,16 @@
             this.btnCashSimple = new System.Windows.Forms.Button();
             this.lblRestAmount = new System.Windows.Forms.Label();
             this.lblRcvAmount = new System.Windows.Forms.Label();
-            this.lblNetAmount = new System.Windows.Forms.Label();
             this.btn1t = new System.Windows.Forms.Button();
             this.lbl3 = new System.Windows.Forms.Label();
             this.btn5t = new System.Windows.Forms.Button();
             this.lbl2 = new System.Windows.Forms.Label();
-            this.lbl1 = new System.Windows.Forms.Label();
             this.btn10t = new System.Windows.Forms.Button();
             this.btn50t = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblNetAmount = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.gbCashReceipt.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -124,7 +124,7 @@
             this.rb카드거래.Name = "rb카드거래";
             this.rb카드거래.Size = new System.Drawing.Size(81, 18);
             this.rb카드거래.TabIndex = 50;
-            this.rb카드거래.Text = "카드거래";
+            this.rb카드거래.Text = "카드리더";
             this.rb카드거래.UseVisualStyleBackColor = true;
             // 
             // rbKeyin
@@ -133,10 +133,10 @@
             this.rbKeyin.Checked = true;
             this.rbKeyin.Location = new System.Drawing.Point(136, 56);
             this.rbKeyin.Name = "rbKeyin";
-            this.rbKeyin.Size = new System.Drawing.Size(60, 18);
+            this.rbKeyin.Size = new System.Drawing.Size(95, 18);
             this.rbKeyin.TabIndex = 50;
             this.rbKeyin.TabStop = true;
-            this.rbKeyin.Text = "Keyin";
+            this.rbKeyin.Text = "키패드입력";
             this.rbKeyin.UseVisualStyleBackColor = true;
             // 
             // rb고객식별번호
@@ -144,16 +144,16 @@
             this.rb고객식별번호.AutoSize = true;
             this.rb고객식별번호.Location = new System.Drawing.Point(136, 27);
             this.rb고객식별번호.Name = "rb고객식별번호";
-            this.rb고객식별번호.Size = new System.Drawing.Size(109, 18);
+            this.rb고객식별번호.Size = new System.Drawing.Size(81, 18);
             this.rb고객식별번호.TabIndex = 50;
-            this.rb고객식별번호.Text = "고객식별번호";
+            this.rb고객식별번호.Text = "식별번호";
             this.rb고객식별번호.UseVisualStyleBackColor = true;
             // 
             // tbIssuedMethodNo
             // 
             this.tbIssuedMethodNo.BackColor = System.Drawing.Color.White;
             this.tbIssuedMethodNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbIssuedMethodNo.Location = new System.Drawing.Point(251, 22);
+            this.tbIssuedMethodNo.Location = new System.Drawing.Point(228, 22);
             this.tbIssuedMethodNo.MaxLength = 20;
             this.tbIssuedMethodNo.Name = "tbIssuedMethodNo";
             this.tbIssuedMethodNo.Size = new System.Drawing.Size(181, 23);
@@ -279,9 +279,9 @@
             this.btnCashSimple.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashSimple.ForeColor = System.Drawing.Color.White;
-            this.btnCashSimple.Location = new System.Drawing.Point(307, 106);
+            this.btnCashSimple.Location = new System.Drawing.Point(307, 105);
             this.btnCashSimple.Name = "btnCashSimple";
-            this.btnCashSimple.Size = new System.Drawing.Size(140, 40);
+            this.btnCashSimple.Size = new System.Drawing.Size(140, 42);
             this.btnCashSimple.TabIndex = 44;
             this.btnCashSimple.Text = "단순현금";
             this.btnCashSimple.UseVisualStyleBackColor = false;
@@ -311,18 +311,6 @@
             this.lblRcvAmount.Tag = "0";
             this.lblRcvAmount.Text = "0";
             this.lblRcvAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblNetAmount
-            // 
-            this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(138, 91);
-            this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
-            this.lblNetAmount.Name = "lblNetAmount";
-            this.lblNetAmount.Size = new System.Drawing.Size(162, 26);
-            this.lblNetAmount.TabIndex = 46;
-            this.lblNetAmount.Tag = "0";
-            this.lblNetAmount.Text = "0";
-            this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn1t
             // 
@@ -365,15 +353,6 @@
             this.lbl2.Size = new System.Drawing.Size(63, 14);
             this.lbl2.TabIndex = 45;
             this.lbl2.Text = "받은금액";
-            // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(49, 97);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(63, 14);
-            this.lbl1.TabIndex = 45;
-            this.lbl1.Text = "결제금액";
             // 
             // btn10t
             // 
@@ -427,6 +406,27 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "현금결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblNetAmount
+            // 
+            this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNetAmount.Location = new System.Drawing.Point(138, 91);
+            this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
+            this.lblNetAmount.Name = "lblNetAmount";
+            this.lblNetAmount.Size = new System.Drawing.Size(162, 26);
+            this.lblNetAmount.TabIndex = 46;
+            this.lblNetAmount.Tag = "0";
+            this.lblNetAmount.Text = "0";
+            this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(49, 97);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(63, 14);
+            this.lbl1.TabIndex = 45;
+            this.lbl1.Text = "결제금액";
             // 
             // frmPayCash
             // 

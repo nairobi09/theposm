@@ -113,7 +113,7 @@ namespace thepos
             lblRcvAmount.Font = font10;
             lblRestAmount.Font = font10;
 
-            btnCashSimple.Font = font12;
+            btnCashSimple.Font = font10;
 
             btn1t.Font = font10;
             btn5t.Font = font10;
@@ -125,18 +125,18 @@ namespace thepos
             lbl5.Font = font10;
             lbl6.Font = font10;
 
-            rbTypeIndividual.Font = font12;
-            rbTypeBusiness.Font = font12;
-            rbTypeSelf.Font = font12;
+            rbTypeIndividual.Font = font10;
+            rbTypeBusiness.Font = font10;
+            rbTypeSelf.Font = font10;
             
-            rb고객식별번호.Font = font12;
-            rbKeyin.Font = font12;
-            rb카드거래.Font = font12;
+            rb고객식별번호.Font = font10;
+            rbKeyin.Font = font10;
+            rb카드거래.Font = font10;
             
-            tbIssuedMethodNo.Font = font12;
+            tbIssuedMethodNo.Font = font10;
 
-            lblAuthNo.Font = font12;
-            btnCashRecept.Font = font12;
+            lblAuthNo.Font = font10;
+            btnCashRecept.Font = font10;
 
             btnClose.Font = font12;
         }
