@@ -4199,90 +4199,6 @@ namespace thepos
         }
 
 
-        public static void PrintBill(String headerBill, String bodyBill, String trailerBill, String theNo)
-        {
-            /*
-            try
-            {
-                SerialPort port = new SerialPort();
-
-                if (port.IsOpen)
-                    port.Close();
-
-                port.PortName = mBillPrinterPort;
-                port.BaudRate = (int)9600; //고정
-                port.DataBits = (int)8;
-                port.Parity = Parity.None;
-                port.StopBits = StopBits.One;
-
-                port.Open();
-                port.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("영수증프린터 에러.\r\n" + ex.Message);
-                return;
-            }
-            */
-
-            try
-            {
-                const string ESC = "\u001B";
-                const string InitializePrinter = ESC + "@";
-
-                PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
-
-                byte[] BytesValue = new byte[100];
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
-
-                //
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(headerBill));
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
-
-                //              
-                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(bodyBill));
-
-                //
-                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(trailerBill));
-
-
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
-
-                // 바코드
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(theNo));
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
-
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
-
-
-                //? 영수증출력
-                PrintExtensions.Print(BytesValue, mBillPrinterPort);
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
-                return;
-            }
-
-        }
 
 
         private static string strPosTitle(string title)
@@ -4332,9 +4248,64 @@ namespace thepos
             String bodyBill = make_bill_body(the_no, tran_type, except_order, pay_keep);
             String trailerBill = make_bill_trailer();
 
-            PrintBill(headerBill, bodyBill, trailerBill, the_no);
-        }
 
+
+            try
+            {
+                const string ESC = "\u001B";
+                const string InitializePrinter = ESC + "@";
+
+                PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+                byte[] BytesValue = new byte[100];
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(headerBill));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+                //              
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(bodyBill));
+
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(trailerBill));
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                // 바코드
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(the_no));
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
+
+
+                //? 영수증출력
+                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
+                return;
+            }
+
+        }
 
 
         public static void print_order()
@@ -4394,7 +4365,6 @@ namespace thepos
 
                         sort_complete = false;
                     }
-
                 }
             }
 
@@ -4421,9 +4391,9 @@ namespace thepos
                 else
                 {
                     // 주문서 출력
-                    String order_doc = create_order_doc(t_shop_code, t_good_name, t_good_cnt);
+                    byte[] BytesValue = create_order_doc(t_shop_code, t_good_name, t_good_cnt);
 
-                    print_order_doc(t_shop_code, order_doc);
+                    print_order_doc(t_shop_code, BytesValue);
 
 
                     //
@@ -4437,21 +4407,25 @@ namespace thepos
                 }
             }
 
-
         }
 
 
-        private static String create_order_doc(String shop, List<String> name, List<int> cnt)
+        private static byte[] create_order_doc(String shop, List<String> name, List<int> cnt)
         {
-            
+            byte[] BytesValue = new byte[100];
 
 
 
-            return "";
+
+
+
+
+
+            return BytesValue;
         }
 
 
-        private static void print_order_doc(String shop, String order_doc)
+        private static void print_order_doc(String shop, byte[] order_doc)
         {
             String printer_name = "";
 
