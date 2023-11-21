@@ -134,7 +134,7 @@
             // 
             // tbBillNo
             // 
-            this.tbBillNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbBillNo.BackColor = System.Drawing.Color.White;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBillNo.Location = new System.Drawing.Point(198, 30);
@@ -159,6 +159,7 @@
             // 
             // cbPosNo
             // 
+            this.cbPosNo.BackColor = System.Drawing.Color.White;
             this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.ItemHeight = 13;
@@ -243,13 +244,14 @@
             // cbGoodsExcept
             // 
             this.cbGoodsExcept.AutoSize = true;
-            this.cbGoodsExcept.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGoodsExcept.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGoodsExcept.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.cbGoodsExcept.Location = new System.Drawing.Point(392, 439);
             this.cbGoodsExcept.Name = "cbGoodsExcept";
-            this.cbGoodsExcept.Size = new System.Drawing.Size(116, 15);
+            this.cbGoodsExcept.Size = new System.Drawing.Size(110, 18);
             this.cbGoodsExcept.TabIndex = 49;
             this.cbGoodsExcept.TabStop = false;
-            this.cbGoodsExcept.Text = "상품내역 인쇄제외";
+            this.cbGoodsExcept.Text = "상품내역제외";
             this.cbGoodsExcept.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbGoodsExcept.UseVisualStyleBackColor = true;
             // 
@@ -259,7 +261,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(392, 510);
+            this.btnCancel.Location = new System.Drawing.Point(392, 512);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 50);
             this.btnCancel.TabIndex = 48;
@@ -274,7 +276,7 @@
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrint.Location = new System.Drawing.Point(392, 464);
+            this.btnPrint.Location = new System.Drawing.Point(392, 466);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(110, 40);
             this.btnPrint.TabIndex = 48;
