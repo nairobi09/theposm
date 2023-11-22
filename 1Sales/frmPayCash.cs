@@ -530,6 +530,11 @@ namespace thepos
                     }
 
 
+                    // 주문서 출력- 티켓은 주문서가 아니다.
+                    print_order();
+
+
+
                     // 영수증 출력
                     if (mPaySeq == 1)
                         print_bill(mTheNo, "A", "", "1000", true); // cash

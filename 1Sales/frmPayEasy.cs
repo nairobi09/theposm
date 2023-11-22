@@ -261,9 +261,6 @@ namespace thepos
 
 
 
-                    // 주문서 출력
-                    print_order();
-
 
 
 
