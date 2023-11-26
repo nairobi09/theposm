@@ -42,6 +42,7 @@
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bangle_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.item_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +81,7 @@
             this.panel1.Controls.Add(this.lblBusinessTitle);
             this.panel1.Controls.Add(this.dtBusiness);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(20, 66);
+            this.panel1.Location = new System.Drawing.Point(20, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(482, 67);
             this.panel1.TabIndex = 77;
@@ -103,7 +104,7 @@
             this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBusiness.Location = new System.Drawing.Point(84, 22);
             this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(112, 23);
+            this.dtBusiness.Size = new System.Drawing.Size(100, 23);
             this.dtBusiness.TabIndex = 68;
             this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
@@ -139,7 +140,7 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
@@ -156,12 +157,13 @@
             this.goods,
             this.ticket_dt,
             this.ticket_no,
-            this.bangle_no});
+            this.bangle_no,
+            this.item_code});
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(20, 139);
+            this.lvwList.Location = new System.Drawing.Point(20, 140);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
             this.lvwList.Size = new System.Drawing.Size(483, 468);
@@ -192,6 +194,11 @@
             // 
             this.bangle_no.Text = "팔찌번호";
             this.bangle_no.Width = 90;
+            // 
+            // item_code
+            // 
+            this.item_code.Text = "itemCode";
+            this.item_code.Width = 0;
             // 
             // frmFlowTicketing
             // 
@@ -227,5 +234,6 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnTicketReact;
         private System.Windows.Forms.ColumnHeader bangle_no;
+        private System.Windows.Forms.ColumnHeader item_code;
     }
 }

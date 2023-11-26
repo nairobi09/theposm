@@ -37,7 +37,7 @@ namespace thepos._9SysAdmin
         String sv_shopCode = "";
         String sv_ticketYn = "";
         String sv_taxFree = "";
-        String sv_active = "";
+        String sv_cutout = "";
         String sv_soldout = "";
         String sv_memo = "";
         String ch_imagePath = "";
@@ -60,6 +60,12 @@ namespace thepos._9SysAdmin
             lvwList.Font = font10;
 
             lblGoodsNameTitle.Font = font9;
+
+            lblKR.Font = font9;
+            lblEN.Font = font9;
+            lblCH.Font = font9;
+            lblJP.Font = font9;
+
             tbGoodsName.Font = font10;
             tbGoodsNameEN.Font = font10;
             tbGoodsNameCH.Font = font10;
@@ -67,7 +73,7 @@ namespace thepos._9SysAdmin
 
             cbTicket.Font = font10;
             cbTaxFree.Font = font10;
-            cbActive.Font = font10;
+            cbCutout.Font = font10;
             cbSoldout.Font = font10;
 
             lblGoodsAmtTitle.Font = font10;
@@ -79,7 +85,6 @@ namespace thepos._9SysAdmin
             lblMemoTitle.Font = font10;
             tbMemo.Font = font10;
 
-            lblImageTitle.Font = font9;
             btnX.Font = font10;
 
             btnAdd.Font = font10;
@@ -111,7 +116,7 @@ namespace thepos._9SysAdmin
             cbShop.SelectedIndex = -1;
             cbTicket.Checked = false;
             cbTaxFree.Checked = false;
-            cbActive.Checked = false;
+            cbCutout.Checked = false;
             tbMemo.Text = "";
             pbImage.Image = null;
         }
@@ -125,7 +130,7 @@ namespace thepos._9SysAdmin
 
 
 
-            String tTicket, tTaxFree, tActive, tSoldout = "";
+            String tTicket, tTaxFree, tCutout, tSoldout = "";
 
             String sUrl = "goods?siteId=" + mSiteId;
             if (mRequestGet(sUrl))
@@ -156,28 +161,46 @@ namespace thepos._9SysAdmin
 
                         tTicket = "";
                         tTaxFree = "";
-                        tActive = "";
+                        tCutout = "";
                         tSoldout = "";
 
                         if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
-                        if (arr[i]["active"].ToString() == "Y") tActive = "Y";
+                        if (arr[i]["cutout"].ToString() == "Y") tCutout = "Y";
                         if (arr[i]["soldout"].ToString() == "Y") tSoldout = "Y";
 
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
-                        lvItem.SubItems.Add(tActive);
+                        lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
-                        if (tActive != "Y")
+                        if (tCutout == "Y")  // 중지
                         {
-                            lvItem.ForeColor = Color.Gray;
-                            lvItem.SubItems[1].ForeColor = Color.Gray;
-                            lvItem.SubItems[2].ForeColor = Color.Gray;
-                            lvItem.SubItems[3].ForeColor = Color.Gray;
-                            lvItem.SubItems[4].ForeColor = Color.Gray;
-                            lvItem.SubItems[5].ForeColor = Color.Gray;
+                            lvItem.ForeColor = Color.LightGray;
+                            lvItem.SubItems[1].ForeColor = Color.LightGray;
+                            lvItem.SubItems[2].ForeColor = Color.LightGray;
+                            lvItem.SubItems[3].ForeColor = Color.LightGray;
+                            lvItem.SubItems[4].ForeColor = Color.LightGray;
+                            lvItem.SubItems[5].ForeColor = Color.LightGray;
+                        }
+                        else if (tSoldout == "Y")  // 품절
+                        {
+                            lvItem.ForeColor = Color.Red;
+                            lvItem.SubItems[1].ForeColor = Color.Red;
+                            lvItem.SubItems[2].ForeColor = Color.Red;
+                            lvItem.SubItems[3].ForeColor = Color.Red;
+                            lvItem.SubItems[4].ForeColor = Color.Red;
+                            lvItem.SubItems[5].ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            lvItem.ForeColor = Color.Black;
+                            lvItem.SubItems[1].ForeColor = Color.Black;
+                            lvItem.SubItems[2].ForeColor = Color.Black;
+                            lvItem.SubItems[3].ForeColor = Color.Black;
+                            lvItem.SubItems[4].ForeColor = Color.Black;
+                            lvItem.SubItems[5].ForeColor = Color.Black;
                         }
 
 
@@ -215,7 +238,7 @@ namespace thepos._9SysAdmin
 
         private ListViewItem reload_select(string code)
         {
-            String tTicket, tTaxFree, tActive, tSoldout = "";
+            String tTicket, tTaxFree, tCutout, tSoldout = "";
 
             String sUrl = "goods?siteId=" + mSiteId + "&itemCode=" + code;
             if (mRequestGet(sUrl))
@@ -246,28 +269,46 @@ namespace thepos._9SysAdmin
 
                         tTicket = "";
                         tTaxFree = "";
-                        tActive = "";
+                        tCutout = "";
                         tSoldout = "";
 
                         if (arr[0]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         if (arr[0]["taxFree"].ToString() == "Y") tTaxFree = "Y";
-                        if (arr[0]["active"].ToString() == "Y") tActive = "Y";
+                        if (arr[0]["cutout"].ToString() == "Y") tCutout = "Y";
                         if (arr[0]["soldout"].ToString() == "Y") tSoldout = "Y";
 
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
-                        lvItem.SubItems.Add(tActive);
+                        lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
 
-                        if (tActive != "Y")
+                        if (tCutout == "Y")  // 중지
                         {
-                            lvItem.ForeColor = Color.Gray;
-                            lvItem.SubItems[1].ForeColor = Color.Gray;
-                            lvItem.SubItems[2].ForeColor = Color.Gray;
-                            lvItem.SubItems[3].ForeColor = Color.Gray;
-                            lvItem.SubItems[4].ForeColor = Color.Gray;
-                            lvItem.SubItems[5].ForeColor = Color.Gray;
+                            lvItem.ForeColor = Color.LightGray;
+                            lvItem.SubItems[1].ForeColor = Color.LightGray;
+                            lvItem.SubItems[2].ForeColor = Color.LightGray;
+                            lvItem.SubItems[3].ForeColor = Color.LightGray;
+                            lvItem.SubItems[4].ForeColor = Color.LightGray;
+                            lvItem.SubItems[5].ForeColor = Color.LightGray;
+                        }
+                        else if (tSoldout == "Y")  // 품절
+                        {
+                            lvItem.ForeColor = Color.Red;
+                            lvItem.SubItems[1].ForeColor = Color.Red;
+                            lvItem.SubItems[2].ForeColor = Color.Red;
+                            lvItem.SubItems[3].ForeColor = Color.Red;
+                            lvItem.SubItems[4].ForeColor = Color.Red;
+                            lvItem.SubItems[5].ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            lvItem.ForeColor = Color.Black;
+                            lvItem.SubItems[1].ForeColor = Color.Black;
+                            lvItem.SubItems[2].ForeColor = Color.Black;
+                            lvItem.SubItems[3].ForeColor = Color.Black;
+                            lvItem.SubItems[4].ForeColor = Color.Black;
+                            lvItem.SubItems[5].ForeColor = Color.Black;
                         }
 
                         lvItem.Tag = arr[0]["imagePath"].ToString();
@@ -340,9 +381,9 @@ namespace thepos._9SysAdmin
                 cbTaxFree.Checked = false;
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(active)].Text == "Y")
-                cbActive.Checked = true;
+                cbCutout.Checked = true;
             else
-                cbActive.Checked = false;
+                cbCutout.Checked = false;
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(soldout)].Text == "Y")
                 cbSoldout.Checked = true;
@@ -382,7 +423,7 @@ namespace thepos._9SysAdmin
             sv_shopCode = cbShop.SelectedIndex + "";
             sv_ticketYn = cbTicket.Checked + "";
             sv_taxFree = cbTaxFree.Checked + "";
-            sv_active = cbActive.Checked + "";
+            sv_cutout = cbCutout.Checked + "";
             sv_soldout = cbSoldout.Checked + "";
             sv_memo = tbMemo.Text;
             ch_imagePath = "0";
@@ -451,7 +492,7 @@ namespace thepos._9SysAdmin
                 if (cbTicket.Checked)
                     parameters["ticketYn"] = "Y";
                 else
-                    parameters["ticketYn"] = "N";
+                    parameters["ticketYn"] = "";
             }
 
             //
@@ -460,16 +501,16 @@ namespace thepos._9SysAdmin
                 if (cbTaxFree.Checked)
                     parameters["taxFree"] = "Y";
                 else
-                    parameters["taxFree"] = "N";
+                    parameters["taxFree"] = "";
             }
 
             //
-            if (sv_active != cbActive.Checked + "")
+            if (sv_cutout != cbCutout.Checked + "")
             {
-                if (cbActive.Checked)
-                    parameters["active"] = "Y";
+                if (cbCutout.Checked)
+                    parameters["cutout"] = "Y";
                 else
-                    parameters["active"] = "N";
+                    parameters["cutout"] = "";
             }
 
             //
@@ -478,7 +519,7 @@ namespace thepos._9SysAdmin
                 if (cbSoldout.Checked)
                     parameters["soldout"] = "Y";
                 else
-                    parameters["soldout"] = "N";
+                    parameters["soldout"] = "";
             }
 
             //
@@ -536,7 +577,7 @@ namespace thepos._9SysAdmin
             set_version_basic_db_change();
 
 
-            MessageBox.Show("정상 수정 완료.", "thepos");
+            //MessageBox.Show("정상 수정 완료.", "thepos");
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -584,7 +625,7 @@ namespace thepos._9SysAdmin
             else
                 parameters["taxFree"] = "N";
 
-            if (cbActive.Checked)
+            if (cbCutout.Checked)
                 parameters["active"] = "Y";
             else
                 parameters["active"] = "N";
@@ -614,7 +655,7 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 등록 완료.", "thepos");
+                    //MessageBox.Show("정상 등록 완료.", "thepos");
                 }
                 else
                 {
@@ -674,7 +715,7 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 삭제 완료.", "thepos");
+                    //MessageBox.Show("정상 삭제 완료.", "thepos");
                 }
                 else
                 {
@@ -726,31 +767,20 @@ namespace thepos._9SysAdmin
         }
 
         class MyListViewComparer : IComparer
-
         {
-
             private int col; private SortOrder order; public MyListViewComparer() { col = 0; order = SortOrder.Ascending; }
 
             public MyListViewComparer(int column, SortOrder order) { col = column; this.order = order; }
 
             public int Compare(object x, object y)
-
             {
-
                 int returnVal = -1; returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
 
                 // Determine whether the sort order is descending. 
-
-                if (order == SortOrder.Descending)
-
-                    returnVal *= -1; // Invert the value returned by String.Compare. 
+                if (order == SortOrder.Descending) returnVal *= -1; // Invert the value returned by String.Compare. 
 
                 return returnVal;
-
-
-
             }
-
         }
 
 

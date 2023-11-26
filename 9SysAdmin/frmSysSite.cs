@@ -83,7 +83,7 @@ namespace thepos._9SysAdmin
             tmTicketMedia = new String[2] { "BC", "RF" };
             tmTicketMediaText = new String[2] { "띠지", "팔찌" };
 
-            tmVanCode = new String[2] { "KCP", "NICE" };
+            tmVanCode = new String[2] { "NICE", "KCP" };
 
 
 

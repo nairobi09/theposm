@@ -133,7 +133,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
-            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";

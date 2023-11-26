@@ -112,6 +112,8 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
 
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["shopOrderNo"].ToString());
+
                         lvwOrderItem.Items.Add(lvItem);
                     }
                 }

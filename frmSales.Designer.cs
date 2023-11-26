@@ -43,8 +43,6 @@ namespace thepos
             this.btnKey0 = new System.Windows.Forms.Button();
             this.btnKey3 = new System.Windows.Forms.Button();
             this.btnKey4 = new System.Windows.Forms.Button();
-            this.btnKey00 = new System.Windows.Forms.Button();
-            this.btnKeyEnter = new System.Windows.Forms.Button();
             this.btnKeyBS = new System.Windows.Forms.Button();
             this.btnKey5 = new System.Windows.Forms.Button();
             this.btnKey9 = new System.Windows.Forms.Button();
@@ -153,7 +151,7 @@ namespace thepos
             this.btnFlowSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowSettlement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnFlowSettlement.Location = new System.Drawing.Point(0, 156);
+            this.btnFlowSettlement.Location = new System.Drawing.Point(0, 157);
             this.btnFlowSettlement.Name = "btnFlowSettlement";
             this.btnFlowSettlement.Size = new System.Drawing.Size(124, 48);
             this.btnFlowSettlement.TabIndex = 0;
@@ -168,7 +166,7 @@ namespace thepos
             this.btnFlowCharging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowCharging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowCharging.ForeColor = System.Drawing.Color.White;
-            this.btnFlowCharging.Location = new System.Drawing.Point(0, 104);
+            this.btnFlowCharging.Location = new System.Drawing.Point(0, 105);
             this.btnFlowCharging.Name = "btnFlowCharging";
             this.btnFlowCharging.Size = new System.Drawing.Size(124, 48);
             this.btnFlowCharging.TabIndex = 0;
@@ -183,9 +181,9 @@ namespace thepos
             this.btnFlowTicketing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowTicketing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowTicketing.ForeColor = System.Drawing.Color.White;
-            this.btnFlowTicketing.Location = new System.Drawing.Point(0, 208);
+            this.btnFlowTicketing.Location = new System.Drawing.Point(0, 209);
             this.btnFlowTicketing.Name = "btnFlowTicketing";
-            this.btnFlowTicketing.Size = new System.Drawing.Size(60, 48);
+            this.btnFlowTicketing.Size = new System.Drawing.Size(124, 48);
             this.btnFlowTicketing.TabIndex = 0;
             this.btnFlowTicketing.TabStop = false;
             this.btnFlowTicketing.Text = "티켓";
@@ -200,8 +198,6 @@ namespace thepos
             this.panelNumpad.Controls.Add(this.btnKey0);
             this.panelNumpad.Controls.Add(this.btnKey3);
             this.panelNumpad.Controls.Add(this.btnKey4);
-            this.panelNumpad.Controls.Add(this.btnKey00);
-            this.panelNumpad.Controls.Add(this.btnKeyEnter);
             this.panelNumpad.Controls.Add(this.btnKeyBS);
             this.panelNumpad.Controls.Add(this.btnKey5);
             this.panelNumpad.Controls.Add(this.btnKey9);
@@ -209,11 +205,11 @@ namespace thepos
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(159, 450);
+            this.panelNumpad.Location = new System.Drawing.Point(159, 502);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(190, 315);
+            this.panelNumpad.Size = new System.Drawing.Size(190, 260);
             this.panelNumpad.TabIndex = 23;
             // 
             // panelKeyDisplayWhite
@@ -223,7 +219,7 @@ namespace thepos
             this.panelKeyDisplayWhite.Controls.Add(this.lblKeyDisplayXX);
             this.panelKeyDisplayWhite.Location = new System.Drawing.Point(0, 0);
             this.panelKeyDisplayWhite.Name = "panelKeyDisplayWhite";
-            this.panelKeyDisplayWhite.Size = new System.Drawing.Size(189, 48);
+            this.panelKeyDisplayWhite.Size = new System.Drawing.Size(188, 48);
             this.panelKeyDisplayWhite.TabIndex = 37;
             // 
             // tbKeyDisplay
@@ -233,7 +229,7 @@ namespace thepos
             this.tbKeyDisplay.ForeColor = System.Drawing.Color.White;
             this.tbKeyDisplay.Location = new System.Drawing.Point(2, 14);
             this.tbKeyDisplay.Name = "tbKeyDisplay";
-            this.tbKeyDisplay.Size = new System.Drawing.Size(180, 23);
+            this.tbKeyDisplay.Size = new System.Drawing.Size(179, 23);
             this.tbKeyDisplay.TabIndex = 0;
             this.tbKeyDisplay.TabStop = false;
             this.tbKeyDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -247,7 +243,7 @@ namespace thepos
             this.lblKeyDisplayXX.Location = new System.Drawing.Point(1, 1);
             this.lblKeyDisplayXX.Name = "lblKeyDisplayXX";
             this.lblKeyDisplayXX.Padding = new System.Windows.Forms.Padding(0, 5, 5, 5);
-            this.lblKeyDisplayXX.Size = new System.Drawing.Size(187, 46);
+            this.lblKeyDisplayXX.Size = new System.Drawing.Size(186, 46);
             this.lblKeyDisplayXX.TabIndex = 3;
             this.lblKeyDisplayXX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -257,7 +253,7 @@ namespace thepos
             this.btnKey1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey1.ForeColor = System.Drawing.Color.White;
-            this.btnKey1.Location = new System.Drawing.Point(0, 53);
+            this.btnKey1.Location = new System.Drawing.Point(0, 52);
             this.btnKey1.Margin = new System.Windows.Forms.Padding(0);
             this.btnKey1.Name = "btnKey1";
             this.btnKey1.Size = new System.Drawing.Size(60, 48);
@@ -272,7 +268,7 @@ namespace thepos
             this.btnKey2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey2.ForeColor = System.Drawing.Color.White;
-            this.btnKey2.Location = new System.Drawing.Point(64, 53);
+            this.btnKey2.Location = new System.Drawing.Point(64, 52);
             this.btnKey2.Name = "btnKey2";
             this.btnKey2.Size = new System.Drawing.Size(60, 48);
             this.btnKey2.TabIndex = 1;
@@ -286,7 +282,7 @@ namespace thepos
             this.btnKey0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey0.ForeColor = System.Drawing.Color.White;
-            this.btnKey0.Location = new System.Drawing.Point(128, 209);
+            this.btnKey0.Location = new System.Drawing.Point(128, 208);
             this.btnKey0.Name = "btnKey0";
             this.btnKey0.Size = new System.Drawing.Size(60, 48);
             this.btnKey0.TabIndex = 1;
@@ -300,7 +296,7 @@ namespace thepos
             this.btnKey3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey3.ForeColor = System.Drawing.Color.White;
-            this.btnKey3.Location = new System.Drawing.Point(128, 53);
+            this.btnKey3.Location = new System.Drawing.Point(128, 52);
             this.btnKey3.Name = "btnKey3";
             this.btnKey3.Size = new System.Drawing.Size(60, 48);
             this.btnKey3.TabIndex = 1;
@@ -314,7 +310,7 @@ namespace thepos
             this.btnKey4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey4.ForeColor = System.Drawing.Color.White;
-            this.btnKey4.Location = new System.Drawing.Point(0, 105);
+            this.btnKey4.Location = new System.Drawing.Point(0, 104);
             this.btnKey4.Name = "btnKey4";
             this.btnKey4.Size = new System.Drawing.Size(60, 48);
             this.btnKey4.TabIndex = 1;
@@ -322,42 +318,13 @@ namespace thepos
             this.btnKey4.Text = "4";
             this.btnKey4.UseVisualStyleBackColor = false;
             // 
-            // btnKey00
-            // 
-            this.btnKey00.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
-            this.btnKey00.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKey00.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey00.ForeColor = System.Drawing.Color.White;
-            this.btnKey00.Location = new System.Drawing.Point(64, 209);
-            this.btnKey00.Name = "btnKey00";
-            this.btnKey00.Size = new System.Drawing.Size(60, 48);
-            this.btnKey00.TabIndex = 1;
-            this.btnKey00.TabStop = false;
-            this.btnKey00.Text = "00";
-            this.btnKey00.UseVisualStyleBackColor = false;
-            // 
-            // btnKeyEnter
-            // 
-            this.btnKeyEnter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
-            this.btnKeyEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKeyEnter.ForeColor = System.Drawing.Color.White;
-            this.btnKeyEnter.Location = new System.Drawing.Point(64, 261);
-            this.btnKeyEnter.Name = "btnKeyEnter";
-            this.btnKeyEnter.Size = new System.Drawing.Size(124, 48);
-            this.btnKeyEnter.TabIndex = 1;
-            this.btnKeyEnter.TabStop = false;
-            this.btnKeyEnter.Text = "Enter";
-            this.btnKeyEnter.UseVisualStyleBackColor = false;
-            this.btnKeyEnter.Click += new System.EventHandler(this.btnKeyEnter_Click);
-            // 
             // btnKeyBS
             // 
             this.btnKeyBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.btnKeyBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyBS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyBS.ForeColor = System.Drawing.Color.White;
-            this.btnKeyBS.Location = new System.Drawing.Point(0, 209);
+            this.btnKeyBS.Location = new System.Drawing.Point(64, 208);
             this.btnKeyBS.Name = "btnKeyBS";
             this.btnKeyBS.Size = new System.Drawing.Size(60, 48);
             this.btnKeyBS.TabIndex = 1;
@@ -371,7 +338,7 @@ namespace thepos
             this.btnKey5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey5.ForeColor = System.Drawing.Color.White;
-            this.btnKey5.Location = new System.Drawing.Point(64, 105);
+            this.btnKey5.Location = new System.Drawing.Point(64, 104);
             this.btnKey5.Name = "btnKey5";
             this.btnKey5.Size = new System.Drawing.Size(60, 48);
             this.btnKey5.TabIndex = 1;
@@ -385,7 +352,7 @@ namespace thepos
             this.btnKey9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey9.ForeColor = System.Drawing.Color.White;
-            this.btnKey9.Location = new System.Drawing.Point(128, 157);
+            this.btnKey9.Location = new System.Drawing.Point(128, 156);
             this.btnKey9.Name = "btnKey9";
             this.btnKey9.Size = new System.Drawing.Size(60, 48);
             this.btnKey9.TabIndex = 1;
@@ -399,7 +366,7 @@ namespace thepos
             this.btnKey6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey6.ForeColor = System.Drawing.Color.White;
-            this.btnKey6.Location = new System.Drawing.Point(128, 105);
+            this.btnKey6.Location = new System.Drawing.Point(128, 104);
             this.btnKey6.Name = "btnKey6";
             this.btnKey6.Size = new System.Drawing.Size(60, 48);
             this.btnKey6.TabIndex = 1;
@@ -413,7 +380,7 @@ namespace thepos
             this.btnKey8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey8.ForeColor = System.Drawing.Color.White;
-            this.btnKey8.Location = new System.Drawing.Point(64, 157);
+            this.btnKey8.Location = new System.Drawing.Point(64, 156);
             this.btnKey8.Name = "btnKey8";
             this.btnKey8.Size = new System.Drawing.Size(60, 48);
             this.btnKey8.TabIndex = 1;
@@ -427,7 +394,7 @@ namespace thepos
             this.btnKey7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey7.ForeColor = System.Drawing.Color.White;
-            this.btnKey7.Location = new System.Drawing.Point(0, 157);
+            this.btnKey7.Location = new System.Drawing.Point(0, 156);
             this.btnKey7.Name = "btnKey7";
             this.btnKey7.Size = new System.Drawing.Size(60, 48);
             this.btnKey7.TabIndex = 1;
@@ -441,7 +408,7 @@ namespace thepos
             this.btnKeyClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyClear.ForeColor = System.Drawing.Color.White;
-            this.btnKeyClear.Location = new System.Drawing.Point(0, 261);
+            this.btnKeyClear.Location = new System.Drawing.Point(0, 208);
             this.btnKeyClear.Name = "btnKeyClear";
             this.btnKeyClear.Size = new System.Drawing.Size(60, 48);
             this.btnKeyClear.TabIndex = 1;
@@ -456,11 +423,11 @@ namespace thepos
             this.panelOrderConsole.Controls.Add(this.btnOrderCntChange);
             this.panelOrderConsole.Controls.Add(this.btnOrderAmtChange);
             this.panelOrderConsole.Controls.Add(this.btnOrderCancelSelect);
-            this.panelOrderConsole.Controls.Add(this.btnOrderWaiting);
+            this.panelOrderConsole.Controls.Add(this.btnOrderAmountDC);
             this.panelOrderConsole.Controls.Add(this.btnOrderCancelAll);
             this.panelOrderConsole.Location = new System.Drawing.Point(6, 397);
             this.panelOrderConsole.Name = "panelOrderConsole";
-            this.panelOrderConsole.Size = new System.Drawing.Size(475, 48);
+            this.panelOrderConsole.Size = new System.Drawing.Size(474, 102);
             this.panelOrderConsole.TabIndex = 25;
             // 
             // btnOrderCntUp
@@ -514,9 +481,9 @@ namespace thepos
             this.btnOrderAmtChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderAmtChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderAmtChange.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAmtChange.Location = new System.Drawing.Point(350, 0);
+            this.btnOrderAmtChange.Location = new System.Drawing.Point(153, 53);
             this.btnOrderAmtChange.Name = "btnOrderAmtChange";
-            this.btnOrderAmtChange.Size = new System.Drawing.Size(47, 48);
+            this.btnOrderAmtChange.Size = new System.Drawing.Size(60, 48);
             this.btnOrderAmtChange.TabIndex = 0;
             this.btnOrderAmtChange.TabStop = false;
             this.btnOrderAmtChange.Text = "단가\r\n변경";
@@ -544,9 +511,9 @@ namespace thepos
             this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
-            this.btnOrderWaiting.Location = new System.Drawing.Point(401, 0);
+            this.btnOrderWaiting.Location = new System.Drawing.Point(0, 0);
             this.btnOrderWaiting.Name = "btnOrderWaiting";
-            this.btnOrderWaiting.Size = new System.Drawing.Size(73, 48);
+            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 48);
             this.btnOrderWaiting.TabIndex = 0;
             this.btnOrderWaiting.TabStop = false;
             this.btnOrderWaiting.Text = "대기\r\n";
@@ -574,9 +541,9 @@ namespace thepos
             this.btnOrderItemScrollDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderItemScrollDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderItemScrollDn.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(445, 353);
+            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(420, 353);
             this.btnOrderItemScrollDn.Name = "btnOrderItemScrollDn";
-            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(35, 39);
+            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(60, 39);
             this.btnOrderItemScrollDn.TabIndex = 0;
             this.btnOrderItemScrollDn.TabStop = false;
             this.btnOrderItemScrollDn.Text = "▼";
@@ -589,9 +556,9 @@ namespace thepos
             this.btnOrderItemScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderItemScrollUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderItemScrollUp.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(407, 353);
+            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(356, 353);
             this.btnOrderItemScrollUp.Name = "btnOrderItemScrollUp";
-            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(35, 39);
+            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(60, 39);
             this.btnOrderItemScrollUp.TabIndex = 0;
             this.btnOrderItemScrollUp.TabStop = false;
             this.btnOrderItemScrollUp.Text = "▲";
@@ -604,7 +571,7 @@ namespace thepos
             this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAmountDC.Location = new System.Drawing.Point(0, 0);
+            this.btnOrderAmountDC.Location = new System.Drawing.Point(217, 53);
             this.btnOrderAmountDC.Name = "btnOrderAmountDC";
             this.btnOrderAmountDC.Size = new System.Drawing.Size(124, 48);
             this.btnOrderAmountDC.TabIndex = 0;
@@ -617,7 +584,6 @@ namespace thepos
             // 
             this.btnPay1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay1, 3);
-            this.btnPay1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay1.ForeColor = System.Drawing.Color.White;
@@ -829,7 +795,7 @@ namespace thepos
             this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
             this.lblBizDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lblBizDate.ForeColor = System.Drawing.Color.Gold;
-            this.lblBizDate.Location = new System.Drawing.Point(624, 12);
+            this.lblBizDate.Location = new System.Drawing.Point(624, 11);
             this.lblBizDate.Margin = new System.Windows.Forms.Padding(0);
             this.lblBizDate.Name = "lblBizDate";
             this.lblBizDate.Size = new System.Drawing.Size(101, 20);
@@ -1020,11 +986,11 @@ namespace thepos
             this.panelFlowConsole.Controls.Add(this.btnFlowSettlement);
             this.panelFlowConsole.Controls.Add(this.btnFlowCharging);
             this.panelFlowConsole.Controls.Add(this.btnFlowCert);
+            this.panelFlowConsole.Controls.Add(this.btnOrderWaiting);
             this.panelFlowConsole.Controls.Add(this.btnFlowTicketing);
-            this.panelFlowConsole.Controls.Add(this.btnOrderAmountDC);
-            this.panelFlowConsole.Location = new System.Drawing.Point(356, 451);
+            this.panelFlowConsole.Location = new System.Drawing.Point(356, 397);
             this.panelFlowConsole.Name = "panelFlowConsole";
-            this.panelFlowConsole.Size = new System.Drawing.Size(131, 312);
+            this.panelFlowConsole.Size = new System.Drawing.Size(131, 365);
             this.panelFlowConsole.TabIndex = 27;
             // 
             // btnFlowLocker
@@ -1033,9 +999,9 @@ namespace thepos
             this.btnFlowLocker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowLocker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowLocker.ForeColor = System.Drawing.Color.White;
-            this.btnFlowLocker.Location = new System.Drawing.Point(64, 208);
+            this.btnFlowLocker.Location = new System.Drawing.Point(0, 261);
             this.btnFlowLocker.Name = "btnFlowLocker";
-            this.btnFlowLocker.Size = new System.Drawing.Size(60, 48);
+            this.btnFlowLocker.Size = new System.Drawing.Size(124, 48);
             this.btnFlowLocker.TabIndex = 0;
             this.btnFlowLocker.TabStop = false;
             this.btnFlowLocker.Text = "락커";
@@ -1048,7 +1014,7 @@ namespace thepos
             this.btnPayManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPayManager.ForeColor = System.Drawing.Color.White;
-            this.btnPayManager.Location = new System.Drawing.Point(0, 260);
+            this.btnPayManager.Location = new System.Drawing.Point(0, 313);
             this.btnPayManager.Name = "btnPayManager";
             this.btnPayManager.Size = new System.Drawing.Size(124, 48);
             this.btnPayManager.TabIndex = 0;
@@ -1063,7 +1029,7 @@ namespace thepos
             this.btnFlowCert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowCert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowCert.ForeColor = System.Drawing.Color.White;
-            this.btnFlowCert.Location = new System.Drawing.Point(0, 52);
+            this.btnFlowCert.Location = new System.Drawing.Point(0, 53);
             this.btnFlowCert.Name = "btnFlowCert";
             this.btnFlowCert.Size = new System.Drawing.Size(124, 48);
             this.btnFlowCert.TabIndex = 0;
@@ -1078,7 +1044,7 @@ namespace thepos
             this.panelDisplayAlarmWhite.Controls.Add(this.lblDisplayAlarm);
             this.panelDisplayAlarmWhite.Location = new System.Drawing.Point(6, 353);
             this.panelDisplayAlarmWhite.Name = "panelDisplayAlarmWhite";
-            this.panelDisplayAlarmWhite.Size = new System.Drawing.Size(398, 39);
+            this.panelDisplayAlarmWhite.Size = new System.Drawing.Size(342, 39);
             this.panelDisplayAlarmWhite.TabIndex = 36;
             // 
             // lblDisplayAlarm
@@ -1090,7 +1056,7 @@ namespace thepos
             this.lblDisplayAlarm.Location = new System.Drawing.Point(1, 1);
             this.lblDisplayAlarm.Name = "lblDisplayAlarm";
             this.lblDisplayAlarm.Padding = new System.Windows.Forms.Padding(5);
-            this.lblDisplayAlarm.Size = new System.Drawing.Size(396, 37);
+            this.lblDisplayAlarm.Size = new System.Drawing.Size(340, 37);
             this.lblDisplayAlarm.TabIndex = 3;
             this.lblDisplayAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1528,8 +1494,6 @@ namespace thepos
         private System.Windows.Forms.Button btnPay4;
         private System.Windows.Forms.Timer timerAlarmDisplay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGoodsGroup;
-        private System.Windows.Forms.Button btnKey00;
-        private System.Windows.Forms.Button btnKeyEnter;
         private System.Windows.Forms.Button btnFlowCert;
         private System.Windows.Forms.TextBox tbKeyDisplay;
         private System.Windows.Forms.Button button1;

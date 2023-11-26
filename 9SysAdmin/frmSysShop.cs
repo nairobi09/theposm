@@ -15,8 +15,8 @@ namespace thepos._9SysAdmin
     public partial class frmSysShop : Form
     {
 
-        String[] mPrinterTypeCode = new string[4];
-        String[] mPrinterTypeName = new string[4];
+        String[] mPrinterTypeCode = new string[5];
+        String[] mPrinterTypeName = new string[5];
 
 
         public frmSysShop()
@@ -64,11 +64,13 @@ namespace thepos._9SysAdmin
             mPrinterTypeCode[1] = "N";
             mPrinterTypeCode[2] = "L";
             mPrinterTypeCode[3] = "R";
+            mPrinterTypeCode[4] = "D"; // TEST DISPLAY
 
             mPrinterTypeName[0] = "";
             mPrinterTypeName[1] = "네트워크프린터";
             mPrinterTypeName[2] = "로컬전용프린터";
             mPrinterTypeName[3] = "영수증프린터";
+            mPrinterTypeName[4] = "화면출력(테스트)";
 
 
             cbPrinterType.Items.Clear();
@@ -164,7 +166,7 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 등록 완료.", "thepos");
+                    //MessageBox.Show("정상 등록 완료.", "thepos");
                 }
                 else
                 {
@@ -219,7 +221,7 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 수정 완료.", "thepos");
+                    //MessageBox.Show("정상 수정 완료.", "thepos");
                 }
                 else
                 {
@@ -275,7 +277,7 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 삭제 완료.", "thepos");
+                    //MessageBox.Show("정상 삭제 완료.", "thepos");
                 }
                 else
                 {

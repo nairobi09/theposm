@@ -125,5 +125,17 @@ namespace thepos
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
+        private void btnReportShopOreder_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "ShopOrder") return;
+
+            mThisButtonClick = "ShopOrder";
+            panelReport.Controls.Clear();
+
+            frmReportShopOrder fBiz = new frmReportShopOrder() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
     }
 }

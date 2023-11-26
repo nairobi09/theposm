@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScanner));
             this.tbScanning = new System.Windows.Forms.TextBox();
-            this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,32 +41,19 @@
             // tbScanning
             // 
             this.tbScanning.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbScanning.Location = new System.Drawing.Point(85, 38);
+            this.tbScanning.Location = new System.Drawing.Point(69, 38);
             this.tbScanning.MaxLength = 25;
             this.tbScanning.Name = "tbScanning";
-            this.tbScanning.Size = new System.Drawing.Size(159, 21);
+            this.tbScanning.Size = new System.Drawing.Size(214, 21);
             this.tbScanning.TabIndex = 0;
             this.tbScanning.TextChanged += new System.EventHandler(this.tbScanning_TextChanged);
-            // 
-            // btnOK
-            // 
-            this.btnOK.BackColor = System.Drawing.SystemColors.Window;
-            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOK.Location = new System.Drawing.Point(250, 36);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(100, 30);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.TabStop = false;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(354, 36);
+            this.btnCancel.Location = new System.Drawing.Point(291, 36);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(58, 30);
+            this.btnCancel.Size = new System.Drawing.Size(107, 30);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Cancel";
@@ -77,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 21);
+            this.label1.Location = new System.Drawing.Point(67, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 12);
             this.label1.TabIndex = 3;
@@ -89,7 +75,6 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.tbScanning);
             this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnOK);
             this.panel1.Location = new System.Drawing.Point(2, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(462, 93);
@@ -127,7 +112,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbScanning;
-        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;

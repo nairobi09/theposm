@@ -151,7 +151,7 @@
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblReportTitle.Size = new System.Drawing.Size(110, 17);
             this.lblReportTitle.TabIndex = 1;
             this.lblReportTitle.Text = "일별매출상세";
             this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -295,7 +295,7 @@
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBizDate.Location = new System.Drawing.Point(284, 29);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
+            this.dtpBizDate.Size = new System.Drawing.Size(110, 27);
             this.dtpBizDate.TabIndex = 4;
             // 
             // btnView
@@ -322,7 +322,7 @@
             this.Controls.Add(this.lvwOrder);
             this.Controls.Add(this.lblReportTitle);
             this.Controls.Add(this.lvwList);
-            this.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReportDayDetail";
             this.Text = "frmReportDayDetail";

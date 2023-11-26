@@ -150,6 +150,12 @@
     <Compile Include="3Report\frmReportDayPos.Designer.cs">
       <DependentUpon>frmReportDayPos.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysSoldout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysSoldout.Designer.cs">
+      <DependentUpon>frmSysSoldout.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysDcrFavorite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +311,12 @@
     </Compile>
     <Compile Include="frmLocalModeInfo.Designer.cs">
       <DependentUpon>frmLocalModeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportShopOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportShopOrder.Designer.cs">
+      <DependentUpon>frmReportShopOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSetup.cs">
       <SubType>Form</SubType>
@@ -469,6 +481,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportChart1.resx">
       <DependentUpon>frmReportChart1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportShopOrder.resx">
+      <DependentUpon>frmReportShopOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysSoldout.resx">
+      <DependentUpon>frmSysSoldout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysDcrFavorite.resx">
       <DependentUpon>frmSysDcrFavorite.cs</DependentUpon>
@@ -654,6 +672,8 @@
     <Content Include="res\net_connect.png" />
     <Content Include="res\net_disconnect.png" />
     <Content Include="res\photo.png" />
+    <None Include="res\scanbar2.png" />
+    <None Include="res\scanbar3.png" />
     <Content Include="res\thepos.png" />
     <Content Include="res\thepos_logo.ico" />
   </ItemGroup>

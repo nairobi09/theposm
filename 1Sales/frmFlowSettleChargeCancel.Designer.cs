@@ -63,7 +63,7 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
             this.lblTitle.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(17, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";

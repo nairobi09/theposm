@@ -43,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[4];
+        Setup[] listSetup = new Setup[5];
 
 
         bool isAdd = false;
@@ -62,6 +62,7 @@ namespace thepos
             setupItem.code = "CustomerMonitor";       setupItem.name = "고객용모니터사용";  setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
             setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
             setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
+            setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
 
             reload_setup_pos();
         }
@@ -216,7 +217,7 @@ namespace thepos
                 cbValue.Items.Add("N");
             }
 
-            else if (code == listSetup[2].code | code == listSetup[3].code) // BillPrinterPort TicketPrinterPort ScannerPort
+            else if (code == listSetup[2].code | code == listSetup[3].code | code == listSetup[4].code) // BillPrinterPort TicketPrinterPort ScannerPort
             {
                 cbValue.Enabled = true;
 
@@ -274,6 +275,7 @@ namespace thepos
                         else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = t_value;
                         else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = t_value;
                         else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = t_value;
 
                     }
                 }
@@ -321,6 +323,7 @@ namespace thepos
                         else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[2].Text;
                         else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[2].Text;
                         else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[2].Text;
 
                     }
                 }

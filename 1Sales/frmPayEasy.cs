@@ -138,24 +138,30 @@ namespace thepos
                 //정상승인
                 int order_cnt = 0;
 
+
+                // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
+                MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+
+
                 if (paySeq == 1)
                 {
-                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);// 주문 저장 1
+                    // orders, orderItem 
+                    order_cnt = SaveOrder(ticketNo, memOrderItemArr);  // order. orderitem  ->  업장주문서 출력은 제외
                     if (order_cnt == -1)
                     {
-                        return; // 심각한 에러..
+                        return; // 재로그인 요구
                     }
                 }
 
-                // 서버저장 payment
-                if (!SavePayment_Server(paySeq, "Easy", netAmount, dcAmount))
+
+                //  payment
+                if (!SavePayment(paySeq, "Easy", netAmount, dcAmount))
                 {
                     return;
                 }
 
 
-
-                // 서버저장 paymentCard
+                // 서버저장 paymentEasy
                 mPaymentEasy.site_id = mSiteId;
                 mPaymentEasy.biz_dt = mBizDate;
                 mPaymentEasy.pos_no = mPosNo;
@@ -262,7 +268,11 @@ namespace thepos
 
 
 
-
+                    // 주문서 출력
+                    if (mPayClass == "OR")
+                    {
+                        print_order(memOrderItemArr);
+                    }
 
                     // 영수증 출력
                     // 안에서 여부를 물어보고 출력한다. 

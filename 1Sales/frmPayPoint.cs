@@ -38,18 +38,20 @@ namespace thepos
 
         void initialize_font()
         {
-            lblTitle.Font = font12;
+            lblTitle.Font = font10;
+            btnClose.Font = font10;
+
+
+            lblNetAmountTitle.Font = font10;
+            lblNetAmount.Font = font10;
+
+
+            lblTicketNoTitle.Font = font10;
+            tbTicketNo.Font = font10;
+
+            btnRequestAuth.Font = font10;
+
             btnClose.Font = font12;
-
-
-            lblNetAmountTitle.Font = font12;
-            lblNetAmount.Font = font12;
-
-
-            lblTicketNoTitle.Font = font12;
-            tbTicketNo.Font = font12;
-
-            btnRequestAuth.Font = font12;
 
         }
 
@@ -147,10 +149,24 @@ namespace thepos
             int order_cnt = 0;
             int paySeq = 1;
 
-            // 주문 저장 1
-            order_cnt = SaveOrder_Server(ticketNo, out dcAmount);  // order. orderitem
 
-            SavePayment_Server(paySeq, "Point", netAmount, dcAmount);  // payment - 신규, 수정 포함
+            // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
+            MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+
+
+            // 주문 저장 1
+            order_cnt = SaveOrder(ticketNo, memOrderItemArr);  // order. orderitem  ->  업장주문서 출력은 제외
+            if (order_cnt == -1)
+            {
+                return; // 재로그인 요구
+            }
+
+
+            //  payment
+            if (!SavePayment(paySeq, "Point", netAmount, dcAmount))
+            {
+                return;
+            }
 
 
 
@@ -185,6 +201,12 @@ namespace thepos
             {
                 SetDisplayAlarm("I", " 포인트 사용등록 완료.");
             }
+
+
+            // 주문서 출력
+            print_order(memOrderItemArr);
+
+
 
             // 영수증 출력
             // 안에서 여부를 물어보고 출력한다. 

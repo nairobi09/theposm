@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayManager));
             this.panelback = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl1 = new System.Windows.Forms.Label();
@@ -90,7 +89,7 @@
             this.panel1.Controls.Add(this.cbPosNo);
             this.panel1.Controls.Add(this.lbl2);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(20, 66);
+            this.panel1.Location = new System.Drawing.Point(20, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(482, 67);
             this.panel1.TabIndex = 77;
@@ -100,7 +99,7 @@
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl1.Location = new System.Drawing.Point(14, 13);
+            this.lbl1.Location = new System.Drawing.Point(12, 13);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
             this.lbl1.TabIndex = 71;
@@ -111,10 +110,10 @@
             this.btnScanner.BackColor = System.Drawing.Color.White;
             this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnScanner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnScanner.Image = ((System.Drawing.Image)(resources.GetObject("btnScanner.Image")));
-            this.btnScanner.Location = new System.Drawing.Point(382, 13);
+            this.btnScanner.Image = global::thepos.Properties.Resources.scanbar2;
+            this.btnScanner.Location = new System.Drawing.Point(386, 13);
             this.btnScanner.Name = "btnScanner";
-            this.btnScanner.Size = new System.Drawing.Size(85, 40);
+            this.btnScanner.Size = new System.Drawing.Size(80, 40);
             this.btnScanner.TabIndex = 75;
             this.btnScanner.TabStop = false;
             this.btnScanner.UseVisualStyleBackColor = false;
@@ -127,7 +126,7 @@
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBizDt.Location = new System.Drawing.Point(14, 30);
             this.dtBizDt.Name = "dtBizDt";
-            this.dtBizDt.Size = new System.Drawing.Size(110, 23);
+            this.dtBizDt.Size = new System.Drawing.Size(100, 23);
             this.dtBizDt.TabIndex = 68;
             this.dtBizDt.TabStop = false;
             this.dtBizDt.Value = new System.DateTime(2023, 5, 19, 0, 0, 0, 0);
@@ -137,10 +136,10 @@
             this.tbBillNo.BackColor = System.Drawing.Color.White;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbBillNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(198, 30);
+            this.tbBillNo.Location = new System.Drawing.Point(190, 30);
             this.tbBillNo.MaxLength = 6;
             this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(54, 23);
+            this.tbBillNo.Size = new System.Drawing.Size(60, 23);
             this.tbBillNo.TabIndex = 74;
             this.tbBillNo.TabStop = false;
             this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -150,7 +149,7 @@
             this.lbl3.AutoSize = true;
             this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl3.Location = new System.Drawing.Point(199, 13);
+            this.lbl3.Location = new System.Drawing.Point(190, 13);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(41, 12);
             this.lbl3.TabIndex = 70;
@@ -168,9 +167,9 @@
             "01",
             "02",
             "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(133, 30);
+            this.cbPosNo.Location = new System.Drawing.Point(125, 32);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(51, 21);
+            this.cbPosNo.Size = new System.Drawing.Size(50, 21);
             this.cbPosNo.TabIndex = 73;
             this.cbPosNo.TabStop = false;
             // 
@@ -179,7 +178,7 @@
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl2.Location = new System.Drawing.Point(130, 13);
+            this.lbl2.Location = new System.Drawing.Point(121, 13);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(53, 12);
             this.lbl2.TabIndex = 69;
@@ -190,7 +189,7 @@
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnView.Location = new System.Drawing.Point(276, 13);
+            this.btnView.Location = new System.Drawing.Point(280, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 72;
@@ -203,11 +202,11 @@
             // 
             this.lblLayoutBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblLayoutBill.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLayoutBill.Location = new System.Drawing.Point(20, 429);
+            this.lblLayoutBill.Location = new System.Drawing.Point(20, 430);
             this.lblLayoutBill.Multiline = true;
             this.lblLayoutBill.Name = "lblLayoutBill";
             this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.lblLayoutBill.Size = new System.Drawing.Size(358, 245);
+            this.lblLayoutBill.Size = new System.Drawing.Size(358, 244);
             this.lblLayoutBill.TabIndex = 55;
             this.lblLayoutBill.TabStop = false;
             // 
@@ -231,7 +230,7 @@
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
@@ -301,7 +300,7 @@
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayManager.HideSelection = false;
-            this.lvwPayManager.Location = new System.Drawing.Point(20, 139);
+            this.lvwPayManager.Location = new System.Drawing.Point(20, 140);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
             this.lvwPayManager.Size = new System.Drawing.Size(483, 284);

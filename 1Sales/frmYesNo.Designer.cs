@@ -65,17 +65,18 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.Location = new System.Drawing.Point(99, 42);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(156, 36);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(226, 22);
+            this.lblTitle.Size = new System.Drawing.Size(149, 22);
             this.lblTitle.TabIndex = 43;
-            this.lblTitle.Text = "영수증을 출력할까요?";
+            this.lblTitle.Text = "영수증을 출력";
             // 
             // frmYesNo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(461, 245);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnNo);

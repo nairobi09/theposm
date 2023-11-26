@@ -208,6 +208,7 @@
             this.t_lockerNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_openLocker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
+            this.ol_shopOrderNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -355,7 +356,8 @@
             this.oi_payClass,
             this.oi_ticketNo,
             this.oi_isCancel,
-            this.oi_shopCode});
+            this.oi_shopCode,
+            this.ol_shopOrderNo});
             this.lvwOrderItem.FullRowSelect = true;
             this.lvwOrderItem.GridLines = true;
             this.lvwOrderItem.HideSelection = false;
@@ -1295,6 +1297,10 @@
             this.label9.Text = "ticket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // ol_shopOrderNo
+            // 
+            this.ol_shopOrderNo.Text = "shopOrderNo";
+            // 
             // frmCheckData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1507,5 +1513,6 @@
         private System.Windows.Forms.ColumnHeader pr_payType;
         private System.Windows.Forms.ColumnHeader pc_payType;
         private System.Windows.Forms.ColumnHeader pe_payType;
+        private System.Windows.Forms.ColumnHeader ol_shopOrderNo;
     }
 }

@@ -149,6 +149,11 @@ namespace thepos
             int order_cnt = 0;
             int dcAmount = 0;
 
+
+            // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
+            MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+
+
             if (paySeq == 1)
             {
                 if (mPayClass == "ST")
@@ -162,43 +167,19 @@ namespace thepos
 
 
                 // orders, orderItem 
-                if (mTheMode == "Local")
+                order_cnt = SaveOrder(ticketNo, memOrderItemArr);  // order. orderitem  ->  업장주문서 출력은 제외
+                if (order_cnt == -1)
                 {
-                    order_cnt = SaveOrder_Local(ticketNo, out dcAmount);  // order. orderitem
-                    if (order_cnt == -1)
-                    {
-                        return; // 재로그인 요구
-                    }
+                    return; // 재로그인 요구
                 }
-                else
-                {
-                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);  // order. orderitem
-                    if (order_cnt == -1)
-                    {
-                        return; // 재로그인 요구
-                    }
-                }
-
             }
-
 
 
             //  payment
-            if (mTheMode == "Local")
+            if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
             {
-                if (!SavePayment_Local(paySeq, "Cash", netAmount, dcAmount))
-                {
-                    return;
-                }
+                return;
             }
-            else
-            {
-                if (!SavePayment_Server(paySeq, "Cash", netAmount, dcAmount))
-                {
-                    return;
-                }
-            }
-
 
 
             PaymentCash mPaymentCash = new PaymentCash();
@@ -312,6 +293,7 @@ namespace thepos
                         if (mPayClass == "OR") // 주문(접수-발권)
                         {
                             // 티켓 출력은 SaveTicketFlow()내에서 함.
+
                         }
                         else if (mPayClass == "CH") // 충전
                         {
@@ -332,13 +314,20 @@ namespace thepos
                     }
 
 
-                    // 정산-포인트사용분에 대해 취소마킹
+                    // 정산-포인트사용분에 대해 취소
                     if (mPayClass == "ST")
                     {
                         cancel_point_payment(ticketNo);
                     }
                 }
 
+
+
+                // 주문서 출력
+                if (mPayClass == "OR")
+                {
+                    print_order(memOrderItemArr);
+                }
 
 
                 // 영수증 출력
@@ -402,6 +391,10 @@ namespace thepos
                 //정상승인
                 int order_cnt = 0;
 
+                // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
+                MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+
+
                 if (paySeq == 1)
                 {
                     if (mPayClass == "ST")
@@ -411,15 +404,19 @@ namespace thepos
                     }
 
 
-                    // 주문 저장 1
-                    order_cnt = SaveOrder_Server(ticketNo, out dcAmount);  // order. orderitem
+                    // orders, orderItem 
+                    order_cnt = SaveOrder(ticketNo, memOrderItemArr);  // order. orderitem  ->  업장주문서 출력은 제외
                     if (order_cnt == -1)
                     {
                         return; // 재로그인 요구
                     }
                 }
 
-                SavePayment_Server(paySeq, "Cash", netAmount, dcAmount);  // payment
+                //  payment
+                if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
+                {
+                    return;
+                }
 
 
                 paymentCash.site_id = mSiteId;
@@ -433,6 +430,7 @@ namespace thepos
                 paymentCash.pay_type = "R1";
                 paymentCash.tran_type = "A";       // 승인 A 취소 C
                 paymentCash.pay_class = mPayClass;
+
                 paymentCash.ticket_no = ticketNo;
                 paymentCash.pay_seq = paySeq; // 
                 paymentCash.amount = netAmount;
@@ -530,9 +528,11 @@ namespace thepos
                     }
 
 
-                    // 주문서 출력- 티켓은 주문서가 아니다.
-                    print_order();
-
+                    // 주문서 출력
+                    if (mPayClass == "OR")
+                    {
+                        print_order(memOrderItemArr);
+                    }
 
 
                     // 영수증 출력

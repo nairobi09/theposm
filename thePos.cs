@@ -217,6 +217,7 @@ namespace thepos
         {
             public string group_code;
             public string group_name;
+            public string soldout;
             public int column;
             public int row;
             public int columnspan;
@@ -234,6 +235,7 @@ namespace thepos
             public String ticket; // 일반상품 0. 티켓상품 1
             public String taxfree; // 과세품 0, 면세품 1
             public String shop_code;
+            public String cutout;   // 중지
             public String soldout;  // Y품절
             public int column;
             public int row;
@@ -270,6 +272,7 @@ namespace thepos
             public int dcr_value;       // 할인금액 or 할인율
             public String pay_class;
             public String ticket_no;     // 충전, 사용인경우
+            public String shop_order_no;
         }
         public static List<MemOrderItem> listWaitingItem = new List<MemOrderItem>();
 
@@ -314,7 +317,7 @@ namespace thepos
             public String ticket_no;
             public String is_cancel;    // Y
             public String shop_code;
-
+            public String shop_order_no;
         }
         public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
 

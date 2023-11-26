@@ -91,7 +91,7 @@
             // lblTicketNoTitle
             // 
             this.lblTicketNoTitle.AutoSize = true;
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(37, 44);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(37, 45);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTicketNoTitle.TabIndex = 48;
@@ -100,11 +100,11 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNetAmount.Location = new System.Drawing.Point(129, 118);
+            this.lblNetAmount.Location = new System.Drawing.Point(129, 121);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
-            this.lblNetAmount.Size = new System.Drawing.Size(131, 33);
+            this.lblNetAmount.Size = new System.Drawing.Size(131, 29);
             this.lblNetAmount.TabIndex = 49;
             this.lblNetAmount.Tag = "0";
             this.lblNetAmount.Text = "0";
@@ -138,7 +138,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
-            this.lblTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";

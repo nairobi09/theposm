@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysGoods));
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
             this.tbGoodsName = new System.Windows.Forms.TextBox();
             this.tbGoodsAmt = new System.Windows.Forms.TextBox();
@@ -38,14 +35,14 @@
             this.lblGoodsAmtTitle = new System.Windows.Forms.Label();
             this.cbTicket = new System.Windows.Forms.CheckBox();
             this.cbTaxFree = new System.Windows.Forms.CheckBox();
-            this.cbActive = new System.Windows.Forms.CheckBox();
+            this.cbCutout = new System.Windows.Forms.CheckBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblJP = new System.Windows.Forms.Label();
+            this.lblCH = new System.Windows.Forms.Label();
+            this.lblEN = new System.Windows.Forms.Label();
+            this.lblKR = new System.Windows.Forms.Label();
             this.tbGoodsNameJP = new System.Windows.Forms.TextBox();
             this.tbGoodsNameCH = new System.Windows.Forms.TextBox();
             this.tbGoodsNameEN = new System.Windows.Forms.TextBox();
@@ -54,7 +51,6 @@
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.cbShop = new System.Windows.Forms.ComboBox();
             this.tbMemo = new System.Windows.Forms.TextBox();
-            this.lblImageTitle = new System.Windows.Forms.Label();
             this.lblMemoTitle = new System.Windows.Forms.Label();
             this.lblShopTitle = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -74,18 +70,8 @@
             this.goodsnameJP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.soldout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "photo.png");
             // 
             // lblTitle
             // 
@@ -164,17 +150,17 @@
             this.cbTaxFree.Text = "면세";
             this.cbTaxFree.UseVisualStyleBackColor = true;
             // 
-            // cbActive
+            // cbCutout
             // 
-            this.cbActive.AutoSize = true;
-            this.cbActive.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbActive.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbActive.Location = new System.Drawing.Point(313, 28);
-            this.cbActive.Name = "cbActive";
-            this.cbActive.Size = new System.Drawing.Size(54, 18);
-            this.cbActive.TabIndex = 8;
-            this.cbActive.Text = "사용";
-            this.cbActive.UseVisualStyleBackColor = true;
+            this.cbCutout.AutoSize = true;
+            this.cbCutout.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbCutout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbCutout.Location = new System.Drawing.Point(313, 28);
+            this.cbCutout.Name = "cbCutout";
+            this.cbCutout.Size = new System.Drawing.Size(54, 18);
+            this.cbCutout.TabIndex = 8;
+            this.cbCutout.Text = "중지";
+            this.cbCutout.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
@@ -208,10 +194,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox4);
-            this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.pictureBox2);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.lblJP);
+            this.groupBox1.Controls.Add(this.lblCH);
+            this.groupBox1.Controls.Add(this.lblEN);
+            this.groupBox1.Controls.Add(this.lblKR);
             this.groupBox1.Controls.Add(this.tbGoodsNameJP);
             this.groupBox1.Controls.Add(this.tbGoodsNameCH);
             this.groupBox1.Controls.Add(this.tbGoodsNameEN);
@@ -220,11 +206,10 @@
             this.groupBox1.Controls.Add(this.pbImage);
             this.groupBox1.Controls.Add(this.cbShop);
             this.groupBox1.Controls.Add(this.tbMemo);
-            this.groupBox1.Controls.Add(this.lblImageTitle);
             this.groupBox1.Controls.Add(this.lblMemoTitle);
             this.groupBox1.Controls.Add(this.tbGoodsAmt);
             this.groupBox1.Controls.Add(this.lblGoodsAmtTitle);
-            this.groupBox1.Controls.Add(this.cbActive);
+            this.groupBox1.Controls.Add(this.cbCutout);
             this.groupBox1.Controls.Add(this.lblGoodsNameTitle);
             this.groupBox1.Controls.Add(this.cbTaxFree);
             this.groupBox1.Controls.Add(this.lblShopTitle);
@@ -237,46 +222,49 @@
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             // 
-            // pictureBox4
+            // lblJP
             // 
-            this.pictureBox4.Image = global::thepos.Properties.Resources.flag_jp1;
-            this.pictureBox4.Location = new System.Drawing.Point(10, 129);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(24, 16);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox4.TabIndex = 55;
-            this.pictureBox4.TabStop = false;
+            this.lblJP.AutoSize = true;
+            this.lblJP.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblJP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblJP.Location = new System.Drawing.Point(7, 130);
+            this.lblJP.Name = "lblJP";
+            this.lblJP.Size = new System.Drawing.Size(29, 12);
+            this.lblJP.TabIndex = 59;
+            this.lblJP.Text = "일문";
             // 
-            // pictureBox3
+            // lblCH
             // 
-            this.pictureBox3.Image = global::thepos.Properties.Resources.flag_ch2;
-            this.pictureBox3.Location = new System.Drawing.Point(10, 100);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 15);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 54;
-            this.pictureBox3.TabStop = false;
+            this.lblCH.AutoSize = true;
+            this.lblCH.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCH.Location = new System.Drawing.Point(7, 102);
+            this.lblCH.Name = "lblCH";
+            this.lblCH.Size = new System.Drawing.Size(29, 12);
+            this.lblCH.TabIndex = 58;
+            this.lblCH.Text = "중문";
             // 
-            // pictureBox2
+            // lblEN
             // 
-            this.pictureBox2.Image = global::thepos.Properties.Resources.flag_en1;
-            this.pictureBox2.Location = new System.Drawing.Point(10, 71);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 16);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 53;
-            this.pictureBox2.TabStop = false;
+            this.lblEN.AutoSize = true;
+            this.lblEN.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblEN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblEN.Location = new System.Drawing.Point(7, 73);
+            this.lblEN.Name = "lblEN";
+            this.lblEN.Size = new System.Drawing.Size(29, 12);
+            this.lblEN.TabIndex = 57;
+            this.lblEN.Text = "영문";
             // 
-            // pictureBox1
+            // lblKR
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::thepos.Properties.Resources.flag_kr;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 16);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 52;
-            this.pictureBox1.TabStop = false;
+            this.lblKR.AutoSize = true;
+            this.lblKR.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblKR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblKR.Location = new System.Drawing.Point(7, 44);
+            this.lblKR.Name = "lblKR";
+            this.lblKR.Size = new System.Drawing.Size(29, 12);
+            this.lblKR.TabIndex = 56;
+            this.lblKR.Text = "국문";
             // 
             // tbGoodsNameJP
             // 
@@ -325,7 +313,7 @@
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnX.ForeColor = System.Drawing.Color.DimGray;
-            this.btnX.Location = new System.Drawing.Point(582, 128);
+            this.btnX.Location = new System.Drawing.Point(589, 117);
             this.btnX.Name = "btnX";
             this.btnX.Size = new System.Drawing.Size(33, 30);
             this.btnX.TabIndex = 12;
@@ -337,7 +325,7 @@
             // pbImage
             // 
             this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbImage.Location = new System.Drawing.Point(456, 38);
+            this.pbImage.Location = new System.Drawing.Point(463, 27);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(120, 120);
             this.pbImage.TabIndex = 48;
@@ -363,17 +351,6 @@
             this.tbMemo.Name = "tbMemo";
             this.tbMemo.Size = new System.Drawing.Size(169, 23);
             this.tbMemo.TabIndex = 11;
-            // 
-            // lblImageTitle
-            // 
-            this.lblImageTitle.AutoSize = true;
-            this.lblImageTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblImageTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblImageTitle.Location = new System.Drawing.Point(455, 22);
-            this.lblImageTitle.Name = "lblImageTitle";
-            this.lblImageTitle.Size = new System.Drawing.Size(41, 12);
-            this.lblImageTitle.TabIndex = 44;
-            this.lblImageTitle.Text = "이미지";
             // 
             // lblMemoTitle
             // 
@@ -451,7 +428,7 @@
             // 
             // active
             // 
-            this.active.Text = "사용";
+            this.active.Text = "중지";
             this.active.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.active.Width = 40;
             // 
@@ -491,7 +468,6 @@
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
             this.lvwList.Size = new System.Drawing.Size(814, 457);
-            this.lvwList.SmallImageList = this.imageList;
             this.lvwList.TabIndex = 39;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -534,10 +510,6 @@
             this.Text = "frmSysGoods";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -552,7 +524,7 @@
         private System.Windows.Forms.Label lblGoodsAmtTitle;
         private System.Windows.Forms.CheckBox cbTicket;
         private System.Windows.Forms.CheckBox cbTaxFree;
-        private System.Windows.Forms.CheckBox cbActive;
+        private System.Windows.Forms.CheckBox cbCutout;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -561,11 +533,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.Label lblShopTitle;
-        private System.Windows.Forms.Label lblImageTitle;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.Button btnX;
-        private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.CheckBox cbSoldout;
         private System.Windows.Forms.ColumnHeader goodsname;
         private System.Windows.Forms.ColumnHeader amt;
@@ -581,12 +551,12 @@
         private System.Windows.Forms.TextBox tbGoodsNameEN;
         private System.Windows.Forms.TextBox tbGoodsNameJP;
         private System.Windows.Forms.TextBox tbGoodsNameCH;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.ColumnHeader goodsnameEN;
         private System.Windows.Forms.ColumnHeader goodsnameCH;
         private System.Windows.Forms.ColumnHeader goodsnameJP;
+        private System.Windows.Forms.Label lblJP;
+        private System.Windows.Forms.Label lblCH;
+        private System.Windows.Forms.Label lblEN;
+        private System.Windows.Forms.Label lblKR;
     }
 }

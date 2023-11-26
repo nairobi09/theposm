@@ -127,7 +127,7 @@ namespace thepos
                         MessageBox.Show("영업개시 상태입니다. 마감입력후 개시입력할 수 있습니다.", "thepos");
                         return;
                     }
-                    else if (biz_status == "F")
+                    else if (biz_status == "F" | biz_status == "Y")
                     {
                         input_biz_date = dtpBizDate.Value.ToString("yyyyMMdd");
 

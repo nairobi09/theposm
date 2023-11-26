@@ -56,8 +56,11 @@ namespace thepos
             btnSysGoodsItem.Font = font10;
             btnSysGoodsItem2.Font = font10;
 
-            btnSysPayConsole.Font = font10;
+            btnSysSoldout.Font = font10;
+
             btnDcrFavorite.Font = font10;
+
+            btnSysPayConsole.Font = font10;
 
             btnPosMac.Font = font10;
             btnUser.Font = font10;
@@ -214,8 +217,16 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnSoldout_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Soldout") return;
 
+            mThisButtonClick = "Soldout";
+            panelView.Controls.Clear();
 
-
+            frmSysSoldout fSysAdmin = new frmSysSoldout() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
     }
 }

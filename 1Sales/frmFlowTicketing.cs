@@ -108,12 +108,14 @@ namespace thepos
 
                         item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
                         item.SubItems.Add(ticketing_dt.Substring(4, 2) + "-" +
-                        ticketing_dt.Substring(6, 2) + " " +
-                        ticketing_dt.Substring(8, 2) + ":" +
-                        ticketing_dt.Substring(10, 2));
+                                          ticketing_dt.Substring(6, 2) + " " +
+                                          ticketing_dt.Substring(8, 2) + ":" +
+                                          ticketing_dt.Substring(10, 2));
 
                         item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
-                        //item.SubItems.Add(bangle_no);
+                        
+                        item.SubItems.Add("");  // bangle_no 들어갈 자리
+                        item.SubItems.Add(arr[i]["itemCode"].ToString());
 
                         item.Tag = ticket_no;
 
@@ -158,8 +160,9 @@ namespace thepos
                 // 티켓출력
 
                 String ticket_no = lvwList.SelectedItems[0].Tag.ToString();
+                String goods_code = lvwList.SelectedItems[0].SubItems[5].Text.ToString();
 
-                print_ticket(ticket_no);
+                print_ticket(ticket_no, goods_code);
 
             }
         }

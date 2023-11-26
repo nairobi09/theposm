@@ -577,6 +577,7 @@ namespace thepos
                         {
                             mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
                             mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
+                            mGoodsGroup[i].soldout = arr[i]["soldout"].ToString();
                             mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
                             mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
                             mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
@@ -619,6 +620,7 @@ namespace thepos
                             mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
                             mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
                             mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                            mGoodsItem[i].cutout = arr[i]["cutout"].ToString();
                             mGoodsItem[i].soldout = arr[i]["soldout"].ToString();
                             mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
                             mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
@@ -728,6 +730,7 @@ namespace thepos
                         {
                             if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
                         }
@@ -841,10 +844,11 @@ namespace thepos
                             int locateY = int.Parse(arr[i]["locateY"].ToString());
                             int sizeX = int.Parse(arr[i]["sizeX"].ToString());
                             int sizeY = int.Parse(arr[i]["sizeY"].ToString());
+                            String soldout = arr[i]["soldout"].ToString();
 
                             // Insert
-                            String sql = "INSERT INTO goodsGroup (siteId, posNo, groupCode, groupName, locateX, locateY, sizeX, sizeY) " +
-                            "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                            String sql = "INSERT INTO goodsGroup (siteId, posNo, groupCode, groupName, locateX, locateY, sizeX, sizeY, soldout) " +
+                            "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + soldout + "')";
                             ret = sql_excute_local_db(sql);
                         }
                     }
@@ -888,14 +892,15 @@ namespace thepos
                             int amt = int.Parse(arr[i]["amt"].ToString());
                             String ticketYn = arr[i]["ticketYn"].ToString();
                             String taxFree = arr[i]["taxFree"].ToString();
+                            String cutout = arr[i]["cutout"].ToString();
                             String soldout = arr[i]["soldout"].ToString();
                             int locateX = int.Parse(arr[i]["locateX"].ToString());
                             int locateY = int.Parse(arr[i]["locateY"].ToString());
                             int sizeX = int.Parse(arr[i]["sizeX"].ToString());
                             int sizeY = int.Parse(arr[i]["sizeY"].ToString());
 
-                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, soldout, locateX, locateY, sizeX, sizeY) " +
-                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, cutout, soldout, locateX, locateY, sizeX, sizeY) " +
+                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + cutout + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
                             ret = sql_excute_local_db(sql);
                         }
                     }
@@ -1233,6 +1238,7 @@ namespace thepos
                     mGoodsGroup[i].row = int.Parse(dr["locateY"].ToString());
                     mGoodsGroup[i].columnspan = int.Parse(dr["sizeX"].ToString());
                     mGoodsGroup[i].rowspan = int.Parse(dr["sizeY"].ToString());
+                    mGoodsGroup[i].soldout = dr["soldout"].ToString();
                     i++;
                 }
                 dr.Close();
@@ -1265,6 +1271,7 @@ namespace thepos
                     mGoodsItem[i].amt = int.Parse(dr["amt"].ToString());
                     mGoodsItem[i].ticket = dr["ticketYn"].ToString();
                     mGoodsItem[i].taxfree = dr["taxFree"].ToString();
+                    mGoodsItem[i].cutout = dr["cutout"].ToString();
                     mGoodsItem[i].soldout = dr["soldout"].ToString();
                     mGoodsItem[i].column = int.Parse(dr["locateX"].ToString());
                     mGoodsItem[i].row = int.Parse(dr["locateY"].ToString());
@@ -1307,7 +1314,6 @@ namespace thepos
                     mShop[i].network_printer_name = dr["networkPrinterName"].ToString();
 
                     i++;
-
                 }
                 dr.Close();
             }

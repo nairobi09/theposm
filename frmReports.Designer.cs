@@ -41,6 +41,10 @@
             this.panelTitleConsole = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelReport = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnReportShopOreder = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
@@ -49,6 +53,10 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnReportShopOreder);
             this.panel1.Controls.Add(this.btnReportDayDetail);
             this.panel1.Controls.Add(this.btnReportDayShop);
             this.panel1.Controls.Add(this.btnReportList1);
@@ -70,7 +78,7 @@
             this.btnReportDayDetail.Location = new System.Drawing.Point(0, 168);
             this.btnReportDayDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportDayDetail.Name = "btnReportDayDetail";
-            this.btnReportDayDetail.Size = new System.Drawing.Size(110, 80);
+            this.btnReportDayDetail.Size = new System.Drawing.Size(120, 80);
             this.btnReportDayDetail.TabIndex = 27;
             this.btnReportDayDetail.TabStop = false;
             this.btnReportDayDetail.Text = "일별매출상세";
@@ -86,7 +94,7 @@
             this.btnReportDayShop.Location = new System.Drawing.Point(0, 84);
             this.btnReportDayShop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportDayShop.Name = "btnReportDayShop";
-            this.btnReportDayShop.Size = new System.Drawing.Size(110, 80);
+            this.btnReportDayShop.Size = new System.Drawing.Size(120, 80);
             this.btnReportDayShop.TabIndex = 27;
             this.btnReportDayShop.TabStop = false;
             this.btnReportDayShop.Text = "업장별 매출";
@@ -100,10 +108,10 @@
             this.btnReportList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnReportList1.ForeColor = System.Drawing.Color.White;
             this.btnReportList1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportList1.Image")));
-            this.btnReportList1.Location = new System.Drawing.Point(113, 168);
+            this.btnReportList1.Location = new System.Drawing.Point(123, 168);
             this.btnReportList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportList1.Name = "btnReportList1";
-            this.btnReportList1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportList1.Size = new System.Drawing.Size(80, 80);
             this.btnReportList1.TabIndex = 27;
             this.btnReportList1.TabStop = false;
             this.btnReportList1.UseVisualStyleBackColor = false;
@@ -116,10 +124,10 @@
             this.btnReportChart1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnReportChart1.ForeColor = System.Drawing.Color.White;
             this.btnReportChart1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportChart1.Image")));
-            this.btnReportChart1.Location = new System.Drawing.Point(113, 84);
+            this.btnReportChart1.Location = new System.Drawing.Point(123, 84);
             this.btnReportChart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportChart1.Name = "btnReportChart1";
-            this.btnReportChart1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportChart1.Size = new System.Drawing.Size(80, 80);
             this.btnReportChart1.TabIndex = 27;
             this.btnReportChart1.TabStop = false;
             this.btnReportChart1.UseVisualStyleBackColor = false;
@@ -132,10 +140,10 @@
             this.btnReportCalendar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnReportCalendar1.ForeColor = System.Drawing.Color.White;
             this.btnReportCalendar1.Image = ((System.Drawing.Image)(resources.GetObject("btnReportCalendar1.Image")));
-            this.btnReportCalendar1.Location = new System.Drawing.Point(113, 0);
+            this.btnReportCalendar1.Location = new System.Drawing.Point(123, 0);
             this.btnReportCalendar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportCalendar1.Name = "btnReportCalendar1";
-            this.btnReportCalendar1.Size = new System.Drawing.Size(90, 80);
+            this.btnReportCalendar1.Size = new System.Drawing.Size(80, 80);
             this.btnReportCalendar1.TabIndex = 27;
             this.btnReportCalendar1.TabStop = false;
             this.btnReportCalendar1.UseVisualStyleBackColor = false;
@@ -150,7 +158,7 @@
             this.btnReportDayPos.Location = new System.Drawing.Point(0, 0);
             this.btnReportDayPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportDayPos.Name = "btnReportDayPos";
-            this.btnReportDayPos.Size = new System.Drawing.Size(110, 80);
+            this.btnReportDayPos.Size = new System.Drawing.Size(120, 80);
             this.btnReportDayPos.TabIndex = 27;
             this.btnReportDayPos.TabStop = false;
             this.btnReportDayPos.Text = "포스별 매출";
@@ -215,6 +223,64 @@
             this.panelReport.Size = new System.Drawing.Size(800, 700);
             this.panelReport.TabIndex = 39;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 343);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 80);
+            this.button1.TabIndex = 29;
+            this.button1.TabStop = false;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(123, 259);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 80);
+            this.button2.TabIndex = 30;
+            this.button2.TabStop = false;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // btnReportShopOreder
+            // 
+            this.btnReportShopOreder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportShopOreder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportShopOreder.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportShopOreder.ForeColor = System.Drawing.Color.White;
+            this.btnReportShopOreder.Location = new System.Drawing.Point(0, 259);
+            this.btnReportShopOreder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportShopOreder.Name = "btnReportShopOreder";
+            this.btnReportShopOreder.Size = new System.Drawing.Size(120, 80);
+            this.btnReportShopOreder.TabIndex = 28;
+            this.btnReportShopOreder.TabStop = false;
+            this.btnReportShopOreder.Text = "업장주문내역";
+            this.btnReportShopOreder.UseVisualStyleBackColor = false;
+            this.btnReportShopOreder.Click += new System.EventHandler(this.btnReportShopOreder_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(123, 343);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(79, 80);
+            this.button3.TabIndex = 31;
+            this.button3.TabStop = false;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // frmReports
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -250,5 +316,9 @@
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelReport;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReportShopOreder;
     }
 }

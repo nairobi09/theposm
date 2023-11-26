@@ -30,6 +30,10 @@
         {
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbNetworkPrinterName = new System.Windows.Forms.TextBox();
+            this.lblNetworkPrinterName = new System.Windows.Forms.Label();
+            this.cbPrinterType = new System.Windows.Forms.ComboBox();
+            this.lblPrinterTypeTitle = new System.Windows.Forms.Label();
             this.tbShopName = new System.Windows.Forms.TextBox();
             this.lblGoodsAmtTitle = new System.Windows.Forms.Label();
             this.lblGoodsNameTitle = new System.Windows.Forms.Label();
@@ -40,13 +44,9 @@
             this.lvwList = new System.Windows.Forms.ListView();
             this.shop_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.shop_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.printer_type_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.printer_type_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.network_printer_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblPrinterTypeTitle = new System.Windows.Forms.Label();
-            this.cbPrinterType = new System.Windows.Forms.ComboBox();
-            this.tbNetworkPrinterName = new System.Windows.Forms.TextBox();
-            this.lblNetworkPrinterName = new System.Windows.Forms.Label();
-            this.printer_type_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(568, 499);
+            this.btnDelete.Location = new System.Drawing.Point(568, 511);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 30);
             this.btnDelete.TabIndex = 55;
@@ -82,6 +82,48 @@
             this.groupBox1.TabIndex = 54;
             this.groupBox1.TabStop = false;
             // 
+            // tbNetworkPrinterName
+            // 
+            this.tbNetworkPrinterName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbNetworkPrinterName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbNetworkPrinterName.Location = new System.Drawing.Point(99, 134);
+            this.tbNetworkPrinterName.MaxLength = 16;
+            this.tbNetworkPrinterName.Name = "tbNetworkPrinterName";
+            this.tbNetworkPrinterName.Size = new System.Drawing.Size(270, 23);
+            this.tbNetworkPrinterName.TabIndex = 47;
+            // 
+            // lblNetworkPrinterName
+            // 
+            this.lblNetworkPrinterName.AutoSize = true;
+            this.lblNetworkPrinterName.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNetworkPrinterName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblNetworkPrinterName.Location = new System.Drawing.Point(18, 134);
+            this.lblNetworkPrinterName.Name = "lblNetworkPrinterName";
+            this.lblNetworkPrinterName.Size = new System.Drawing.Size(59, 26);
+            this.lblNetworkPrinterName.TabIndex = 48;
+            this.lblNetworkPrinterName.Text = "네트워크\r\n프린터명";
+            // 
+            // cbPrinterType
+            // 
+            this.cbPrinterType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPrinterType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbPrinterType.FormattingEnabled = true;
+            this.cbPrinterType.Location = new System.Drawing.Point(99, 97);
+            this.cbPrinterType.Name = "cbPrinterType";
+            this.cbPrinterType.Size = new System.Drawing.Size(150, 21);
+            this.cbPrinterType.TabIndex = 46;
+            // 
+            // lblPrinterTypeTitle
+            // 
+            this.lblPrinterTypeTitle.AutoSize = true;
+            this.lblPrinterTypeTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPrinterTypeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPrinterTypeTitle.Location = new System.Drawing.Point(18, 101);
+            this.lblPrinterTypeTitle.Name = "lblPrinterTypeTitle";
+            this.lblPrinterTypeTitle.Size = new System.Drawing.Size(72, 13);
+            this.lblPrinterTypeTitle.TabIndex = 45;
+            this.lblPrinterTypeTitle.Text = "주문서출력";
+            // 
             // tbShopName
             // 
             this.tbShopName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -89,7 +131,7 @@
             this.tbShopName.Location = new System.Drawing.Point(99, 59);
             this.tbShopName.MaxLength = 16;
             this.tbShopName.Name = "tbShopName";
-            this.tbShopName.Size = new System.Drawing.Size(105, 23);
+            this.tbShopName.Size = new System.Drawing.Size(150, 23);
             this.tbShopName.TabIndex = 42;
             // 
             // lblGoodsAmtTitle
@@ -121,7 +163,7 @@
             this.tbShopCode.Location = new System.Drawing.Point(99, 25);
             this.tbShopCode.MaxLength = 2;
             this.tbShopCode.Name = "tbShopCode";
-            this.tbShopCode.Size = new System.Drawing.Size(105, 23);
+            this.tbShopCode.Size = new System.Drawing.Size(150, 23);
             this.tbShopCode.TabIndex = 41;
             // 
             // btnUpdate
@@ -130,7 +172,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(568, 453);
+            this.btnUpdate.Location = new System.Drawing.Point(568, 465);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(140, 40);
             this.btnUpdate.TabIndex = 52;
@@ -145,7 +187,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(568, 407);
+            this.btnAdd.Location = new System.Drawing.Point(568, 419);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(140, 40);
             this.btnAdd.TabIndex = 53;
@@ -199,62 +241,20 @@
             this.shop_name.Text = "업장명";
             this.shop_name.Width = 100;
             // 
-            // printer_type_name
-            // 
-            this.printer_type_name.Text = "주문서출력";
-            this.printer_type_name.Width = 100;
-            // 
-            // network_printer_name
-            // 
-            this.network_printer_name.Text = "네트워크프린터명";
-            this.network_printer_name.Width = 250;
-            // 
-            // lblPrinterTypeTitle
-            // 
-            this.lblPrinterTypeTitle.AutoSize = true;
-            this.lblPrinterTypeTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPrinterTypeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblPrinterTypeTitle.Location = new System.Drawing.Point(18, 101);
-            this.lblPrinterTypeTitle.Name = "lblPrinterTypeTitle";
-            this.lblPrinterTypeTitle.Size = new System.Drawing.Size(72, 13);
-            this.lblPrinterTypeTitle.TabIndex = 45;
-            this.lblPrinterTypeTitle.Text = "주문서출력";
-            // 
-            // cbPrinterType
-            // 
-            this.cbPrinterType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbPrinterType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbPrinterType.FormattingEnabled = true;
-            this.cbPrinterType.Location = new System.Drawing.Point(99, 97);
-            this.cbPrinterType.Name = "cbPrinterType";
-            this.cbPrinterType.Size = new System.Drawing.Size(105, 21);
-            this.cbPrinterType.TabIndex = 46;
-            // 
-            // tbNetworkPrinterName
-            // 
-            this.tbNetworkPrinterName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbNetworkPrinterName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbNetworkPrinterName.Location = new System.Drawing.Point(99, 134);
-            this.tbNetworkPrinterName.MaxLength = 16;
-            this.tbNetworkPrinterName.Name = "tbNetworkPrinterName";
-            this.tbNetworkPrinterName.Size = new System.Drawing.Size(270, 23);
-            this.tbNetworkPrinterName.TabIndex = 47;
-            // 
-            // lblNetworkPrinterName
-            // 
-            this.lblNetworkPrinterName.AutoSize = true;
-            this.lblNetworkPrinterName.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblNetworkPrinterName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblNetworkPrinterName.Location = new System.Drawing.Point(18, 134);
-            this.lblNetworkPrinterName.Name = "lblNetworkPrinterName";
-            this.lblNetworkPrinterName.Size = new System.Drawing.Size(59, 26);
-            this.lblNetworkPrinterName.TabIndex = 48;
-            this.lblNetworkPrinterName.Text = "네트워크\r\n프린터명";
-            // 
             // printer_type_code
             // 
             this.printer_type_code.Text = "printer_type_code";
             this.printer_type_code.Width = 0;
+            // 
+            // printer_type_name
+            // 
+            this.printer_type_name.Text = "주문서출력";
+            this.printer_type_name.Width = 120;
+            // 
+            // network_printer_name
+            // 
+            this.network_printer_name.Text = "네트워크프린터명";
+            this.network_printer_name.Width = 230;
             // 
             // frmSysShop
             // 

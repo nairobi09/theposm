@@ -1593,9 +1593,9 @@ namespace thepos
                 SQLiteDataReader dr = sql_select_local_db(sql);
                 while (dr.Read())
                 {
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel) " +
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo) " +
                                 "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + the_no + "','" + dr["refNo"].ToString() + "','C','" + get_today_date() + "','" + get_today_time() + "','" + dr["itemCode"].ToString() + "','" + dr["itemName"].ToString() + "'," + dr["cnt"].ToString() + "," + dr["amt"].ToString() + "," +
-                                "'" + dr["shopCode"].ToString() + "','" + dr["ticketNo"].ToString() + "','" + dr["taxFree"].ToString() + "'," + dr["dcAmount"].ToString() + ",'" + dr["dcrType"].ToString() + "','" + dr["dcrDes"].ToString() + "'," + dr["dcrValue"].ToString() + ",'" + dr["payClass"].ToString() + "','" + dr["ticketNo"].ToString() + "','Y')";
+                                "'" + dr["shopCode"].ToString() + "','" + dr["ticketNo"].ToString() + "','" + dr["taxFree"].ToString() + "'," + dr["dcAmount"].ToString() + ",'" + dr["dcrType"].ToString() + "','" + dr["dcrDes"].ToString() + "'," + dr["dcrValue"].ToString() + ",'" + dr["payClass"].ToString() + "','" + dr["ticketNo"].ToString() + "','Y', '" + dr["shopCode"].ToString() + "','" + dr["shopOrderNo"].ToString() + "')";
                     sql_excute_local_db(sql);
                 }
             }
@@ -1641,6 +1641,7 @@ namespace thepos
 
                             parameters["isCancel"] = "Y";
                             parameters["shopCode"] = arr[i]["shopCode"].ToString();
+                            parameters["shopOrderNo"] = arr[i]["shopOrderNo"].ToString();
 
                             if (mRequestPost("orderItem", parameters))
                             {

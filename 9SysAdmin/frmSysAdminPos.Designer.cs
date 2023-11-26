@@ -55,7 +55,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblTitle.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblTitle.Location = new System.Drawing.Point(204, 33);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(124, 14);
@@ -88,7 +88,7 @@
             // 
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblInfo.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblInfo.Location = new System.Drawing.Point(204, 99);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(448, 14);
@@ -99,7 +99,7 @@
             // 
             this.lblSiteIdTitle.AutoSize = true;
             this.lblSiteIdTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSiteIdTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblSiteIdTitle.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblSiteIdTitle.Location = new System.Drawing.Point(204, 177);
             this.lblSiteIdTitle.Name = "lblSiteIdTitle";
             this.lblSiteIdTitle.Size = new System.Drawing.Size(63, 14);
@@ -110,7 +110,7 @@
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPosNoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPosNoTitle.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblPosNoTitle.Location = new System.Drawing.Point(204, 215);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(63, 14);
@@ -119,7 +119,7 @@
             // 
             // btnEnter
             // 
-            this.btnEnter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEnter.BackColor = System.Drawing.Color.MidnightBlue;
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnter.ForeColor = System.Drawing.Color.White;

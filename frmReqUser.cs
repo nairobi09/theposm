@@ -27,7 +27,7 @@ namespace thepos
         private void initialize_font()
         {
 
-            lblTitle.Font = font14;
+            lblTitle.Font = font10;
 
             lblID.Font = font10;
             lblPW.Font = font10;

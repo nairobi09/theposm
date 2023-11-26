@@ -103,7 +103,7 @@
             this.panel1.Controls.Add(this.btnBusiness);
             this.panel1.Controls.Add(this.btnReports);
             this.panel1.Controls.Add(this.btnSales);
-            this.panel1.Location = new System.Drawing.Point(702, 261);
+            this.panel1.Location = new System.Drawing.Point(702, 294);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 341);
             this.panel1.TabIndex = 0;
@@ -602,7 +602,7 @@
             this.lblUserNameTitle.ForeColor = System.Drawing.Color.White;
             this.lblUserNameTitle.Location = new System.Drawing.Point(-1, 5);
             this.lblUserNameTitle.Name = "lblUserNameTitle";
-            this.lblUserNameTitle.Size = new System.Drawing.Size(135, 20);
+            this.lblUserNameTitle.Size = new System.Drawing.Size(135, 28);
             this.lblUserNameTitle.TabIndex = 3;
             this.lblUserNameTitle.Text = "담당자";
             this.lblUserNameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -614,7 +614,7 @@
             this.lblUserName.ForeColor = System.Drawing.Color.Gold;
             this.lblUserName.Location = new System.Drawing.Point(137, 5);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(138, 20);
+            this.lblUserName.Size = new System.Drawing.Size(138, 28);
             this.lblUserName.TabIndex = 3;
             this.lblUserName.Text = "_";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -624,9 +624,9 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblUserNameTitle);
             this.panel3.Controls.Add(this.lblUserName);
-            this.panel3.Location = new System.Drawing.Point(705, 176);
+            this.panel3.Location = new System.Drawing.Point(705, 206);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(275, 31);
+            this.panel3.Size = new System.Drawing.Size(275, 39);
             this.panel3.TabIndex = 4;
             // 
             // panel_in_0
@@ -634,7 +634,7 @@
             this.panel_in_0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_in_0.Controls.Add(this.lblSiteAlias);
             this.panel_in_0.Controls.Add(this.lblSiteName);
-            this.panel_in_0.Location = new System.Drawing.Point(705, 44);
+            this.panel_in_0.Location = new System.Drawing.Point(705, 66);
             this.panel_in_0.Name = "panel_in_0";
             this.panel_in_0.Size = new System.Drawing.Size(275, 77);
             this.panel_in_0.TabIndex = 5;
@@ -656,9 +656,9 @@
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.lblPosNoTitle);
             this.panel6.Controls.Add(this.lblPosNo);
-            this.panel6.Location = new System.Drawing.Point(705, 140);
+            this.panel6.Location = new System.Drawing.Point(705, 158);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(275, 31);
+            this.panel6.Size = new System.Drawing.Size(275, 39);
             this.panel6.TabIndex = 4;
             // 
             // lblPosNoTitle
@@ -667,7 +667,7 @@
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.White;
             this.lblPosNoTitle.Location = new System.Drawing.Point(-1, 5);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
-            this.lblPosNoTitle.Size = new System.Drawing.Size(135, 20);
+            this.lblPosNoTitle.Size = new System.Drawing.Size(135, 28);
             this.lblPosNoTitle.TabIndex = 3;
             this.lblPosNoTitle.Text = "포스번호";
             this.lblPosNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -679,7 +679,7 @@
             this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
             this.lblPosNo.Location = new System.Drawing.Point(137, 5);
             this.lblPosNo.Name = "lblPosNo";
-            this.lblPosNo.Size = new System.Drawing.Size(138, 20);
+            this.lblPosNo.Size = new System.Drawing.Size(138, 28);
             this.lblPosNo.TabIndex = 3;
             this.lblPosNo.Text = "_";
             this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -707,7 +707,7 @@
             // 
             this.lblLocalModeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblLocalModeTitle.Location = new System.Drawing.Point(706, 235);
+            this.lblLocalModeTitle.Location = new System.Drawing.Point(706, 268);
             this.lblLocalModeTitle.Name = "lblLocalModeTitle";
             this.lblLocalModeTitle.Size = new System.Drawing.Size(274, 19);
             this.lblLocalModeTitle.TabIndex = 15;

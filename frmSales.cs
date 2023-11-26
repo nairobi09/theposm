@@ -222,10 +222,8 @@ namespace thepos
             btnKey8.Font = font14;
             btnKey9.Font = font14;
             btnKey0.Font = font14;
-            btnKey00.Font = font14;
             btnKeyBS.Font = font14;
             btnKeyClear.Font = font14;
-            btnKeyEnter.Font = font14;
 
             btnOrderAmountDC.Font = font10;
             btnOrderWaiting.Font = font10;
@@ -271,7 +269,6 @@ namespace thepos
             btnKey8.Click += (sender, args) => ClickedKey("8");
             btnKey9.Click += (sender, args) => ClickedKey("9");
             btnKey0.Click += (sender, args) => ClickedKey("0");
-            btnKey00.Click += (sender, args) => ClickedKey("00");
             btnKeyBS.Click += (sender, args) => ClickedKey("BS");
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
 
@@ -319,9 +316,6 @@ namespace thepos
 
 
             mPbNetworkConn = pbNetworkConn;
-
-
-
 
         }
 
@@ -459,7 +453,17 @@ namespace thepos
                     btnGoodsGroup.Font = font14;
                 }
 
-                btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
+
+                // 품절처리
+                if (mGoodsGroup[i].soldout == "Y")
+                {
+                    btnGoodsGroup.ForeColor = Color.Gray;
+                }
+                else
+                {
+                    btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
+                }
+
 
                 tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, mGoodsGroup[i].column, mGoodsGroup[i].row);
                 tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, mGoodsGroup[i].columnspan);
@@ -504,16 +508,17 @@ namespace thepos
                 {
                     int idx = i;
                     btnGoodsItem = new Button();
-
+                    btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + mGoodsItem[i].amt.ToString("N0");
                     btnGoodsItem.Tag = mGoodsItem[i].item_code;
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
+
                     btnGoodsItem.ForeColor = Color.White;
                     btnGoodsItem.BackColor = SystemColors.Highlight;
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
                     btnGoodsItem.Padding = new Padding(0, 0, 0, 0);
-                    btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + mGoodsItem[i].amt.ToString("N0");
                     btnGoodsItem.Dock = DockStyle.Fill;
+
 
                     if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
@@ -527,13 +532,29 @@ namespace thepos
                     {
                         btnGoodsItem.Font = font20;
                     }
-                    
-                    
-                    //?
-                    // 상품 품절 처리
 
 
-                    btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
+
+                    
+                    if (mGoodsItem[i].cutout == "Y")  // 중지
+                    {
+                        btnGoodsItem.ForeColor = Color.White;
+                        btnGoodsItem.BackColor = Color.White;
+
+                        btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + "[절판]";
+                    }
+                    else if (mGoodsItem[i].soldout == "Y")  // 품절
+                    {
+                        btnGoodsItem.ForeColor = Color.Gray;
+                        btnGoodsItem.BackColor = Color.White;
+
+                        btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + "[품절]";
+                    }
+                    else
+                    {
+                        btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
+                    }
+                    
 
 
                     tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, mGoodsItem[i].column, mGoodsItem[i].row);
@@ -922,7 +943,7 @@ namespace thepos
 
         public static bool CancelOrderSettle( String ticket_no)
         {
-            String[] the_no_arr;
+            List<String> list_the_no = new List<String>();
             int the_no_cnt = 0;
             
 
@@ -935,83 +956,117 @@ namespace thepos
                     String data = mObj["orderItems"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    the_no_arr = new String[arr.Count];
-
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        dbOrderItem orderItem = new dbOrderItem();
 
-                        orderItem.site_id = arr[i]["siteId"].ToString();
-                        orderItem.pos_no = arr[i]["posNo"].ToString();
-                        orderItem.biz_dt = arr[i]["bizDt"].ToString();
-                        orderItem.the_no = arr[i]["theNo"].ToString();
-                        orderItem.ref_no = arr[i]["refNo"].ToString();
-                        orderItem.tran_type = arr[i]["tranType"].ToString();
-                        orderItem.order_date = arr[i]["orderDate"].ToString();
-                        orderItem.order_time = arr[i]["orderTime"].ToString();
-                        orderItem.code = arr[i]["itemCode"].ToString();
-                        orderItem.name = arr[i]["itemName"].ToString();
-                        orderItem.amt = convert_number(arr[i]["amt"].ToString());
-                        orderItem.cnt = convert_number(arr[i]["cnt"].ToString());
-                        orderItem.ticket = arr[i]["ticketYn"].ToString();
-                        orderItem.taxfree = arr[i]["taxFree"].ToString();
-                        orderItem.dc_amount = convert_number(arr[i]["dcAmount"].ToString());
-                        orderItem.dcr_type = arr[i]["dcrType"].ToString();
-                        orderItem.dcr_des = arr[i]["dcrDes"].ToString();
-                        orderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
-                        orderItem.pay_class = arr[i]["payClass"].ToString();
-                        orderItem.ticket_no = arr[i]["ticketNo"].ToString();
-                        orderItem.is_cancel = arr[i]["isCancel"].ToString();
-                        orderItem.shop_code = arr[i]["shopCode"].ToString();
-
-
-
-                        // 취소추가
-                        Dictionary<string, string> parameters = new Dictionary<string, string>();
-                        parameters.Clear();
-                        parameters["siteId"] = mSiteId;
-                        parameters["posNo"] = orderItem.pos_no;
-                        parameters["bizDt"] = mBizDate;
-                        parameters["theNo"] = orderItem.the_no;
-                        parameters["refNo"] = orderItem.ref_no;
-                        parameters["tranType"] = "C";
-                        parameters["orderDate"] = get_today_date();
-                        parameters["orderTime"] = get_today_time();
-                        parameters["itemCode"] = orderItem.code;
-                        parameters["itemName"] = orderItem.name;
-                        parameters["cnt"] = orderItem.cnt + "";
-                        parameters["amt"] = orderItem.amt + "";
-                        parameters["ticketYn"] = orderItem.ticket;
-                        parameters["taxFree"] = orderItem.taxfree;
-                        parameters["dcAmount"] = orderItem.dc_amount + "";
-                        parameters["dcrType"] = orderItem.dcr_type;
-                        parameters["dcrDes"] = orderItem.dcr_des;
-                        parameters["dcrValue"] = orderItem.dcr_value + "";
-                        parameters["payClass"] = orderItem.pay_class;
-                        parameters["ticketNo"] = orderItem.ticket_no;
-                        parameters["isCancel"] = "Y";
-                        parameters["shopCode"] = orderItem.shop_code;
-
-                        if (mRequestPost("orderItem", parameters))
+                        if (arr[i]["isCancel"].ToString() != "Y")   // 이미 취소된 포인트 사용은 제외.
                         {
-                            if (mObj["resultCode"].ToString() == "200")
+                            dbOrderItem orderItem = new dbOrderItem();
+
+                            orderItem.site_id = arr[i]["siteId"].ToString();
+                            orderItem.pos_no = arr[i]["posNo"].ToString();
+                            orderItem.biz_dt = arr[i]["bizDt"].ToString();
+                            orderItem.the_no = arr[i]["theNo"].ToString();
+                            orderItem.ref_no = arr[i]["refNo"].ToString();
+                            orderItem.tran_type = arr[i]["tranType"].ToString();
+                            orderItem.order_date = arr[i]["orderDate"].ToString();
+                            orderItem.order_time = arr[i]["orderTime"].ToString();
+                            orderItem.code = arr[i]["itemCode"].ToString();
+                            orderItem.name = arr[i]["itemName"].ToString();
+                            orderItem.amt = convert_number(arr[i]["amt"].ToString());
+                            orderItem.cnt = convert_number(arr[i]["cnt"].ToString());
+                            orderItem.ticket = arr[i]["ticketYn"].ToString();
+                            orderItem.taxfree = arr[i]["taxFree"].ToString();
+                            orderItem.dc_amount = convert_number(arr[i]["dcAmount"].ToString());
+                            orderItem.dcr_type = arr[i]["dcrType"].ToString();
+                            orderItem.dcr_des = arr[i]["dcrDes"].ToString();
+                            orderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
+                            orderItem.pay_class = arr[i]["payClass"].ToString();
+                            orderItem.ticket_no = arr[i]["ticketNo"].ToString();
+                            orderItem.is_cancel = arr[i]["isCancel"].ToString();
+                            orderItem.shop_code = arr[i]["shopCode"].ToString();
+                            orderItem.shop_order_no = arr[i]["shopOrderNo"].ToString();
+
+                            // 취소추가
+                            Dictionary<string, string> parameters = new Dictionary<string, string>();
+                            parameters.Clear();
+                            parameters["siteId"] = mSiteId;
+                            parameters["posNo"] = orderItem.pos_no;
+                            parameters["bizDt"] = mBizDate;
+                            parameters["theNo"] = orderItem.the_no;
+                            parameters["refNo"] = orderItem.ref_no;
+                            parameters["tranType"] = "C";
+                            parameters["orderDate"] = get_today_date();
+                            parameters["orderTime"] = get_today_time();
+                            parameters["itemCode"] = orderItem.code;
+                            parameters["itemName"] = orderItem.name;
+                            parameters["cnt"] = orderItem.cnt + "";
+                            parameters["amt"] = orderItem.amt + "";
+                            parameters["ticketYn"] = orderItem.ticket;
+                            parameters["taxFree"] = orderItem.taxfree;
+                            parameters["dcAmount"] = orderItem.dc_amount + "";
+                            parameters["dcrType"] = orderItem.dcr_type;
+                            parameters["dcrDes"] = orderItem.dcr_des;
+                            parameters["dcrValue"] = orderItem.dcr_value + "";
+                            parameters["payClass"] = orderItem.pay_class;
+                            parameters["ticketNo"] = orderItem.ticket_no;
+                            //
+                            parameters["isCancel"] = "y";                       // y 정산취소 Y 일반취소
+                            parameters["shopCode"] = orderItem.shop_code;
+                            parameters["shopOrderNo"] = ""; // orderItem.shop_order_no;
+
+                            if (mRequestPost("orderItem", parameters))
                             {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {
+                                }
+                                else
+                                {
+                                    MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    return false;
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                                 return false;
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                            return false;
-                        }
 
-                        the_no_arr[i] = orderItem.the_no;
 
+                            //
+                            //  한번에 orderItem 취소 마킹 -> 이러면 안됨.. 일반취소건이 있을경우 덮어쓰게됨. 개별로 전환...
+                            Dictionary<string, string> param = new Dictionary<string, string>();
+                            param.Clear();
+                            param["siteId"] = mSiteId;
+                            param["bizDt"] = ticket_no.Substring(4, 8);
+                            param["ticketNo"] = ticket_no;
+                            param["theNo"] = orderItem.the_no;
+                            param["tranType"] = "A";
+                            param["payClass"] = "US";
+                            param["isCancel"] = "y";   // y 정산취소
+
+                            if (mRequestPatch("orderItem", param))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {
+                                }
+                                else
+                                {
+                                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                                return false;
+                            }
+
+
+
+                            list_the_no.Add(orderItem.the_no);
+                        }
 
                     }
                 }
@@ -1028,41 +1083,15 @@ namespace thepos
             }
 
 
-            //  한번에 orderItem 취소 마킹
-            Dictionary<string, string> param = new Dictionary<string, string>();
-            param.Clear();
-            param["siteId"] = mSiteId;
-            param["bizDt"] = ticket_no.Substring(4,8);
-            param["ticketNo"] = ticket_no;
-            param["tranType"] = "A";
-            param["payClass"] = "US";
-            param["isCancel"] = "Y";
-
-            if (mRequestPatch("orderItem", param))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                }
-                else
-                {
-                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return false;
-            }
 
 
 
             // order
-            String[] dist_the_no_arr = the_no_arr.Distinct().ToArray();
+            list_the_no.Distinct().ToList();
 
-            for (int i = 0; i < dist_the_no_arr.Length; i++)
+            for (int i = 0; i < list_the_no.Count; i++)
             {
-                sUrl = "orders?theNo=" + dist_the_no_arr[i] + "&tranType=A";
+                sUrl = "orders?theNo=" + list_the_no[i] + "&tranType=A";
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1164,41 +1193,127 @@ namespace thepos
         }
 
 
-
-        public static int SaveOrder_Local(String ticket_no, out int return_dc_amount)
+        public static MemOrderItem[] getMemOrderItemArr(out int dcAmount)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            return_dc_amount = 0;
-
-            //
-            String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel, send_YN) " +
-                            "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + mLvwOrderItem.Items.Count + ", '', '')";
-            sql_excute_local_db(sql);
+            dcAmount = 0;
 
 
-            //
+            // OrderItem 테이블
+            // 주문 리스트뷰를 배열로 변환
+            MemOrderItem[] memOrderItemArr = new MemOrderItem[mLvwOrderItem.Items.Count];
+
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
-                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, send_YN) " +
-                            "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItem.code + "','" + memOrderItem.name + "'," + memOrderItem.cnt + "," + memOrderItem.amt + "," +
-                            "'" + memOrderItem.shop_code + "','" + memOrderItem.ticket + "','" + memOrderItem.taxfree + "'," + memOrderItem.dc_amount + ",'" + memOrderItem.dcr_type + "','" + memOrderItem.dcr_des + "'," + memOrderItem.dcr_value + ",'" + mPayClass + "','" + ticket_no + "','', '')";
+                memOrderItemArr[i] = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+
+                dcAmount += memOrderItemArr[i].dc_amount;
+            }
+
+
+            // 업장코드별로 정렬
+            bool order_sort_complete = false;
+            MemOrderItem memOrderItemTemp;
+
+            while (!order_sort_complete)
+            {
+                order_sort_complete = true;
+                for (int i = 0; i < memOrderItemArr.Length - 1; i++)
+                {
+                    if (string.Compare(memOrderItemArr[i].shop_code, memOrderItemArr[i + 1].shop_code) == 1)  // ascending
+                    {
+                        memOrderItemTemp = memOrderItemArr[i];
+                        memOrderItemArr[i] = memOrderItemArr[i + 1];
+                        memOrderItemArr[i + 1] = memOrderItemTemp;
+
+                        order_sort_complete = false;
+                    }
+                }
+            }
+
+
+            // 업장주문번호 부여
+            //? 업장코드가 입력되지 않은 상품이 포함된 경우는?
+
+            //? 
+
+
+            if (mPayClass == "OR" | mPayClass == "US")
+            {
+                memOrderItemArr[0].shop_order_no = get_server_new_order_no();
+
+                for (int i = 0; i < mLvwOrderItem.Items.Count - 1; i++)
+                {
+                    if (string.Compare(memOrderItemArr[i].shop_code, memOrderItemArr[i + 1].shop_code) == 0)
+                    {
+                        memOrderItemArr[i + 1].shop_order_no = memOrderItemArr[i].shop_order_no;
+                    }
+                    else
+                    {
+                        memOrderItemArr[i + 1].shop_order_no = get_server_new_order_no();
+                    }
+                }
+
+            }
+
+
+            return memOrderItemArr;
+        }
+
+
+
+        public static int SaveOrder(String ticket_no, MemOrderItem[] memOrderItemArr)
+        {
+
+            int return_cnt = 0;
+
+            if (mTheMode == "Local")
+            {
+                return_cnt = SaveOrder_Local(ticket_no, memOrderItemArr);  // order. orderitem
+            }
+            else
+            {
+                return_cnt = SaveOrder_Server(ticket_no, memOrderItemArr);  // order. orderitem
+            }
+
+
+            return return_cnt;  // 주문항목수
+        }
+
+        public static int SaveOrder_Local(String ticket_no, MemOrderItem[] memOrderItemArr)
+        {
+            try
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+                String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel, send_YN) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + memOrderItemArr.Length + ", '', '')";
                 sql_excute_local_db(sql);
 
-                // 이후 payment테이블에 적용하기 위해서..
-                return_dc_amount += memOrderItem.dc_amount;
-            }
- 
 
-            return mLvwOrderItem.Items.Count;
+                //
+                for (int i = 0; i < memOrderItemArr.Length; i++)
+                {
+                    MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, shopOrderNo, isCancel, send_YN) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItemArr[i].code + "','" + memOrderItemArr[i].name + "'," + memOrderItemArr[i].cnt + "," + memOrderItemArr[i].amt + "," +
+                                "'" + memOrderItemArr[i].shop_code + "','" + memOrderItemArr[i].ticket + "','" + memOrderItemArr[i].taxfree + "'," + memOrderItemArr[i].dc_amount + ",'" + memOrderItemArr[i].dcr_type + "','" + memOrderItemArr[i].dcr_des + "'," + memOrderItemArr[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + memOrderItemArr[i].shop_order_no + "','', '')";
+                    sql_excute_local_db(sql);
+                }
+            }
+            catch (Exception e) 
+            {
+                MessageBox.Show("로컬데이터 오류. " + e.Message);
+                return -1;
+            }
+
+            return memOrderItemArr.Length;
 
         }
 
-        public static int SaveOrder_Server(String ticket_no, out int return_dc_amount)
+        public static int SaveOrder_Server(String ticket_no, MemOrderItem[] memOrderItemArr)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            return_dc_amount = 0;
 
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             parameters.Clear();
             parameters["siteId"] = mSiteId;
@@ -1209,7 +1324,7 @@ namespace thepos
             parameters["tranType"] = "A";
             parameters["orderDate"] = get_today_date();
             parameters["orderTime"] = get_today_time();
-            parameters["cnt"] = mLvwOrderItem.Items.Count + "";
+            parameters["cnt"] = memOrderItemArr.Length + "";
             parameters["isCancel"] = "";
             if (mRequestPost("orders", parameters))
             {
@@ -1229,10 +1344,10 @@ namespace thepos
             }
 
 
-            //
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+
+            // 서버저장
+            for (int i = 0; i < memOrderItemArr.Length; i++)
             {
-                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
                 parameters["posNo"] = mPosNo;
@@ -1242,24 +1357,21 @@ namespace thepos
                 parameters["tranType"] = "A";
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
-                parameters["itemCode"] = memOrderItem.code;
-                parameters["itemName"] = memOrderItem.name;
-                parameters["cnt"] = memOrderItem.cnt + "";
-                parameters["amt"] = memOrderItem.amt + "";
-                parameters["shopCode"] = memOrderItem.shop_code;
-                parameters["ticketYn"] = memOrderItem.ticket;
-                parameters["taxFree"] = memOrderItem.taxfree;
-                parameters["dcAmount"] = memOrderItem.dc_amount + "";
-                parameters["dcrType"] = memOrderItem.dcr_type;
-                parameters["dcrDes"] = memOrderItem.dcr_des;
-                parameters["dcrValue"] = memOrderItem.dcr_value + "";
+                parameters["itemCode"] = memOrderItemArr[i].code;
+                parameters["itemName"] = memOrderItemArr[i].name;
+                parameters["cnt"] = memOrderItemArr[i].cnt + "";
+                parameters["amt"] = memOrderItemArr[i].amt + "";
+                parameters["ticketYn"] = memOrderItemArr[i].ticket;
+                parameters["taxFree"] = memOrderItemArr[i].taxfree;
+                parameters["dcAmount"] = memOrderItemArr[i].dc_amount + "";
+                parameters["dcrType"] = memOrderItemArr[i].dcr_type;
+                parameters["dcrDes"] = memOrderItemArr[i].dcr_des;
+                parameters["dcrValue"] = memOrderItemArr[i].dcr_value + "";
                 parameters["payClass"] = mPayClass;  //
                 parameters["ticketNo"] = ticket_no;  //
                 parameters["isCancel"] = "";
-                //parameters["shopCode"] = memOrderItem.shop_code;
-
-                // 이후 payment테이블에 적용하기 위해서..
-                return_dc_amount += memOrderItem.dc_amount;
+                parameters["shopCode"] = memOrderItemArr[i].shop_code;
+                parameters["shopOrderNo"] = memOrderItemArr[i].shop_order_no;  // 업장주문번호
 
                 if (mRequestPost("orderItem", parameters))
                 {
@@ -1278,10 +1390,30 @@ namespace thepos
                     return -1;
                 }
             }
-            
 
-            return mLvwOrderItem.Items.Count;
+            return memOrderItemArr.Length;
 
+        }
+
+
+        public static bool SavePayment(int paySeq, String payType, int netAmount, int dcAmount)
+        {
+            if (mTheMode == "Local")
+            {
+                if (!SavePayment_Local(paySeq, payType, netAmount, dcAmount))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!SavePayment_Server(paySeq, payType, netAmount, dcAmount))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
 
@@ -1353,8 +1485,6 @@ namespace thepos
             return true;
 
         }
-
-
 
         public static bool SavePayment_Server(int paySeq, String payType, int amount, int dcAmount)
         {
@@ -1587,7 +1717,7 @@ namespace thepos
                             // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
                             if (mTicketMedia == "BC")  // 띠지
                             {
-                                print_ticket(t_ticket_no);
+                                print_ticket(t_ticket_no, orderItem.code);
                             }
                         } 
 
@@ -4135,7 +4265,7 @@ namespace thepos
         }
 
 
-        public static void print_ticket(String t_ticket_no)
+        public static void print_ticket(String t_ticket_no, String t_goods_code)
         {
             if (mTicketPrinterPort + "" == "")
             {
@@ -4160,27 +4290,47 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
-                String strPrint = ("티켓번호: " + t_ticket_no);
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+
+
+                String strPrint = mSiteName;
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+                strPrint = get_goods_name(t_goods_code);
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+                strPrint = mBizDate.Substring(0,4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
-                // 바코드
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+                // 티켓번호 :  바코드, str
+
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(t_ticket_no));
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+                //BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(t_ticket_no));
+                //BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
 
 
-
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
@@ -4307,125 +4457,118 @@ namespace thepos
 
         }
 
-
-        public static void print_order()
+        private static String get_server_new_order_no() 
         {
-            String[] shop_code = new string[mLvwOrderItem.Items.Count + 1];  // +1의 의미  ==> 
-            String[] goods_code = new string[mLvwOrderItem.Items.Count];
-            String[] goods_name = new string[mLvwOrderItem.Items.Count];
-            int[] goods_cnt = new int[mLvwOrderItem.Items.Count];
-            String[] ticket = new string[mLvwOrderItem.Items.Count];
-
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            String order_no = "";
+            String sUrl = "orderNo?siteId=" + mSiteId + "&bizDt=" + mBizDate;
+            if (mRequestGet(sUrl))
             {
-                MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                goods_code[i] = memOrderItem.code;
-                goods_name[i] = memOrderItem.name;
-                goods_cnt[i] = memOrderItem.cnt;
-                shop_code[i] = memOrderItem.shop_code;
-                ticket[i] = memOrderItem.ticket;
-            }
-
-            shop_code[mLvwOrderItem.Items.Count] = "=";
-
-
-
-
-            // 샵코드로 정렬
-            bool sort_complete = false;
-            int temp_int = 0;
-            String temp_str = "";
-
-            while (!sort_complete)
-            {
-                sort_complete = true;
-                for (int i = 0; i < shop_code.Length - 1; i++)
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    if (string.Compare(shop_code[i], shop_code[i + 1]) == 1)  // ascending
-                    {
-                        temp_str = shop_code[i];
-                        shop_code[i] = shop_code[i + 1];
-                        shop_code[i + 1] = temp_str;
-
-                        temp_str = goods_code[i];
-                        goods_code[i] = goods_code[i + 1];
-                        goods_code[i + 1] = temp_str;
-
-                        temp_str = goods_name[i];
-                        goods_name[i] = goods_name[i + 1];
-                        goods_name[i + 1] = temp_str;
-
-                        temp_int = goods_cnt[i];
-                        goods_cnt[i] = goods_cnt[i + 1];
-                        goods_cnt[i + 1] = temp_int;
-
-                        temp_str = ticket[i];
-                        ticket[i] = ticket[i + 1];
-                        ticket[i + 1] = temp_str;
-
-                        sort_complete = false;
-                    }
+                    String data = mObj["orderNo"].ToString();
+                    JArray arr = JArray.Parse(data);
+                    order_no = convert_number(arr[0]["orderNo"].ToString()).ToString("0000");
+                }
+                else
+                {
+                    MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류. orderNo\n\n" + mErrorMsg, "thepos");
+            }
 
+            return order_no;
+        }
+
+
+        public static void print_order(MemOrderItem[] memOrderItemArr)
+        {
+            
 
 
             //
             String t_shop_code = "";
-            List<String> t_good_code = new List<String>();
+            String t_order_no = "";
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
 
-            t_shop_code = shop_code[0];
-            t_good_name.Add(goods_name[0]);
-            t_good_cnt.Add(goods_cnt[0]);
+            t_shop_code = memOrderItemArr[0].shop_code;
+            t_order_no = memOrderItemArr[0].shop_order_no;
+            t_good_name.Add(memOrderItemArr[0].name);
+            t_good_cnt.Add(memOrderItemArr[0].cnt);
 
 
-            for (int i = 0; i < shop_code.Length - 1; i++)
+            for (int i = 0; i < memOrderItemArr.Length - 1; i++)
             {
-                if (string.Compare(shop_code[i], shop_code[i + 1]) == 0)
+                if (string.Compare(memOrderItemArr[i].shop_code, memOrderItemArr[i + 1].shop_code) == 0)
                 {
-                    t_good_name.Add(goods_name[i + 1]);
-                    t_good_cnt.Add(goods_cnt[i + 1]);
+                    t_good_name.Add(memOrderItemArr[i + 1].name );
+                    t_good_cnt.Add(memOrderItemArr[i + 1].cnt);
                 }
                 else
                 {
                     // 주문서 출력
-                    byte[] BytesValue = create_order_doc(t_shop_code, t_good_name, t_good_cnt);
+                    String strPrint1 = make_printer_order_str(t_shop_code, t_good_name, t_good_cnt, t_order_no);
+                    print_order_str(t_shop_code, strPrint1);
 
-                    print_order_doc(t_shop_code, BytesValue);
 
-
-                    //
                     t_good_name.Clear();
                     t_good_cnt.Clear();
-
-                    t_shop_code = shop_code[i + 1];
-                    t_good_name.Add(goods_name[i + 1]);
-                    t_good_cnt.Add(goods_cnt[i + 1]);
-
+                    t_shop_code = memOrderItemArr[i + 1].shop_code;
+                    t_order_no = memOrderItemArr[i + 1].shop_order_no;
+                    t_good_name.Add(memOrderItemArr[i + 1].name);
+                    t_good_cnt.Add(memOrderItemArr[i + 1].cnt);
                 }
             }
 
+            // 주문서 출력
+            String strPrint2 = make_printer_order_str(t_shop_code, t_good_name, t_good_cnt, t_order_no);
+            print_order_str(t_shop_code, strPrint2);
+
+
+
         }
 
 
-        private static byte[] create_order_doc(String shop, List<String> name, List<int> cnt)
+        private static String make_printer_order_str(String shop, List<String> name, List<int> cnt, String order_no)
         {
-            byte[] BytesValue = new byte[100];
+            String tStr = "";
+            String strPrint = "";
+
+            tStr = "주문서";
+
+            strPrint = Space(21 - encodelen(tStr)) + tStr + Space(21 - encodelen(tStr)) + "\r\n\r\n";
+            strPrint += "------------------------------------------\r\n";  // 42
+
+
+            for (int i = 0; i < name.Count; i++)
+            {
+                strPrint += name[i] + Space(32 - encodelen(name[i]));
+
+                String strCnt = cnt[i].ToString("N0");     // 수량
+                strPrint += Space(10 - encodelen(strCnt)) + strCnt;
+
+                strPrint += "\r\n";
+            }
+
+            strPrint += "------------------------------------------\r\n\r\n";  // 42
+
+            strPrint += "주문업장 : " + get_shop_name(shop) + "\r\n";
+            strPrint += "주문번호 : " + order_no + "\r\n";
 
 
 
 
-
-
-
-
-            return BytesValue;
+            return strPrint;
         }
 
 
-        private static void print_order_doc(String shop, byte[] order_doc)
+
+
+
+        private static void print_order_str(String shop, String print_str)
         {
             String printer_name = "";
 
@@ -4445,11 +4588,54 @@ namespace thepos
                     {
                         printer_name = mBillPrinterPort;
                     }
+                    else if (mShop[i].printer_type == "D")  // test display 
+                    {
+                        MessageBox.Show(print_str, "thepos");
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
 
-            //
 
+            // 프린터를 못핮으면 패스
+            if (printer_name == "")
+            {
+                return;
+            }
+
+
+            //
+            const string ESC = "\u001B";
+            const string InitializePrinter = ESC + "@";
+
+            PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+            byte[] BytesValue = new byte[100];
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(print_str));
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
+
+
+            PrintExtensions.Print(BytesValue, printer_name);
 
 
 

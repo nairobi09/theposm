@@ -54,6 +54,7 @@ namespace thepos
             btn10t.Font = font10;
             btn50t.Font = font10;
             btn100t.Font = font10;
+            btnReset.Font = font10;
         }
 
         private void initialize_the()
@@ -268,7 +269,7 @@ namespace thepos
             btnScanner.Enabled = false;
 
             Form fFlow;
-            fFlow = new frmScanner(20);  // ticket_no
+            fFlow = new frmScanner(22);  // ticket_no
             fFlow.ShowDialog();
 
 
@@ -278,7 +279,7 @@ namespace thepos
                 {
                     String dt = mScanString.Substring(4, 8);
                     String posno = mScanString.Substring(12, 2);
-                    String t6no = mScanString.Substring(14, 6);
+                    String t6no = mScanString.Substring(14, 8);
 
                     int yyyy = int.Parse(dt.Substring(0, 4));
                     int mm = int.Parse(dt.Substring(4, 2));

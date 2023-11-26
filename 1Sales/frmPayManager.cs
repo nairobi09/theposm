@@ -105,25 +105,6 @@ namespace thepos
         }
 
 
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            String billNo = tbBillNo.Text;
-
-            selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
-            selected_pos_no = cbPosNo.Text;
-
-            if (billNo.Length == 6)
-            {
-                selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
-            }
-            else
-            {
-                selected_the_no = "";
-            }
-            
-            viewList(selected_biz_date, selected_pos_no, selected_the_no);
-            lblLayoutBill.Text = "";
-        }
 
 
 
@@ -539,9 +520,8 @@ namespace thepos
             btnScanner.Enabled = false;
 
 
-            Form fFlow;
-            fFlow = new frmScanner(20);  // ticket_no
-            fFlow.ShowDialog();
+            Form f = new frmScanner(20);
+            f.ShowDialog();
 
 
             if (mIsScanOK)
@@ -571,17 +551,62 @@ namespace thepos
 
                     tbBillNo.Text = billno;
 
-                    viewList(dt, posno, mScanString);
+
+
+
+                    //
+                    String billNo = tbBillNo.Text;
+
+                    selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
+                    selected_pos_no = cbPosNo.Text;
+
+                    if (billNo.Length == 6)
+                    {
+                        selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
+                    }
+                    else
+                    {
+                        selected_the_no = "";
+                    }
+
+                    viewList(selected_biz_date, selected_pos_no, selected_the_no);
+                    lblLayoutBill.Text = "";
 
                 }
                 catch
                 {
                     SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    return;
+                    //return;
                 }
             }
 
             btnScanner.Enabled = true;
         }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+
+            //
+            String billNo = tbBillNo.Text;
+
+            selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
+            selected_pos_no = cbPosNo.Text;
+
+            if (billNo.Length == 6)
+            {
+                selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
+            }
+            else
+            {
+                selected_the_no = "";
+            }
+
+            viewList(selected_biz_date, selected_pos_no, selected_the_no);
+            lblLayoutBill.Text = "";
+        }
+
+
+
+
     }
 }

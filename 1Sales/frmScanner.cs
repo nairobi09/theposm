@@ -32,12 +32,7 @@ namespace thepos
 
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            mScanString = tbScanning.Text;
-            mIsScanOK = true;
-            Close();
-        }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
