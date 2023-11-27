@@ -165,7 +165,7 @@
             this.btnEasyAuth.ForeColor = System.Drawing.Color.White;
             this.btnEasyAuth.Location = new System.Drawing.Point(299, 127);
             this.btnEasyAuth.Name = "btnEasyAuth";
-            this.btnEasyAuth.Size = new System.Drawing.Size(140, 50);
+            this.btnEasyAuth.Size = new System.Drawing.Size(140, 60);
             this.btnEasyAuth.TabIndex = 58;
             this.btnEasyAuth.Text = "승인요청";
             this.btnEasyAuth.UseVisualStyleBackColor = false;

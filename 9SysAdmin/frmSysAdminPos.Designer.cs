@@ -155,10 +155,10 @@
             // 
             // btnKey1
             // 
-            this.btnKey1.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey1.BackColor = System.Drawing.Color.White;
             this.btnKey1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey1.ForeColor = System.Drawing.Color.White;
+            this.btnKey1.ForeColor = System.Drawing.Color.Gray;
             this.btnKey1.Location = new System.Drawing.Point(0, 3);
             this.btnKey1.Margin = new System.Windows.Forms.Padding(0);
             this.btnKey1.Name = "btnKey1";
@@ -170,10 +170,10 @@
             // 
             // btnKey2
             // 
-            this.btnKey2.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey2.BackColor = System.Drawing.Color.White;
             this.btnKey2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey2.ForeColor = System.Drawing.Color.White;
+            this.btnKey2.ForeColor = System.Drawing.Color.Gray;
             this.btnKey2.Location = new System.Drawing.Point(64, 3);
             this.btnKey2.Name = "btnKey2";
             this.btnKey2.Size = new System.Drawing.Size(60, 48);
@@ -184,10 +184,10 @@
             // 
             // btnKey0
             // 
-            this.btnKey0.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey0.BackColor = System.Drawing.Color.White;
             this.btnKey0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey0.ForeColor = System.Drawing.Color.White;
+            this.btnKey0.ForeColor = System.Drawing.Color.Gray;
             this.btnKey0.Location = new System.Drawing.Point(128, 159);
             this.btnKey0.Name = "btnKey0";
             this.btnKey0.Size = new System.Drawing.Size(60, 48);
@@ -198,10 +198,10 @@
             // 
             // btnKey3
             // 
-            this.btnKey3.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey3.BackColor = System.Drawing.Color.White;
             this.btnKey3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey3.ForeColor = System.Drawing.Color.White;
+            this.btnKey3.ForeColor = System.Drawing.Color.Gray;
             this.btnKey3.Location = new System.Drawing.Point(128, 3);
             this.btnKey3.Name = "btnKey3";
             this.btnKey3.Size = new System.Drawing.Size(60, 48);
@@ -212,10 +212,10 @@
             // 
             // btnKey4
             // 
-            this.btnKey4.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey4.BackColor = System.Drawing.Color.White;
             this.btnKey4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey4.ForeColor = System.Drawing.Color.White;
+            this.btnKey4.ForeColor = System.Drawing.Color.Gray;
             this.btnKey4.Location = new System.Drawing.Point(0, 55);
             this.btnKey4.Name = "btnKey4";
             this.btnKey4.Size = new System.Drawing.Size(60, 48);
@@ -226,10 +226,10 @@
             // 
             // btnKeyBS
             // 
-            this.btnKeyBS.BackColor = System.Drawing.Color.DimGray;
+            this.btnKeyBS.BackColor = System.Drawing.Color.White;
             this.btnKeyBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyBS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKeyBS.ForeColor = System.Drawing.Color.White;
+            this.btnKeyBS.ForeColor = System.Drawing.Color.Gray;
             this.btnKeyBS.Location = new System.Drawing.Point(64, 159);
             this.btnKeyBS.Name = "btnKeyBS";
             this.btnKeyBS.Size = new System.Drawing.Size(60, 48);
@@ -240,10 +240,10 @@
             // 
             // btnKey5
             // 
-            this.btnKey5.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey5.BackColor = System.Drawing.Color.White;
             this.btnKey5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey5.ForeColor = System.Drawing.Color.White;
+            this.btnKey5.ForeColor = System.Drawing.Color.Gray;
             this.btnKey5.Location = new System.Drawing.Point(64, 55);
             this.btnKey5.Name = "btnKey5";
             this.btnKey5.Size = new System.Drawing.Size(60, 48);
@@ -254,10 +254,10 @@
             // 
             // btnKey9
             // 
-            this.btnKey9.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey9.BackColor = System.Drawing.Color.White;
             this.btnKey9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey9.ForeColor = System.Drawing.Color.White;
+            this.btnKey9.ForeColor = System.Drawing.Color.Gray;
             this.btnKey9.Location = new System.Drawing.Point(128, 107);
             this.btnKey9.Name = "btnKey9";
             this.btnKey9.Size = new System.Drawing.Size(60, 48);
@@ -268,10 +268,10 @@
             // 
             // btnKey6
             // 
-            this.btnKey6.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey6.BackColor = System.Drawing.Color.White;
             this.btnKey6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey6.ForeColor = System.Drawing.Color.White;
+            this.btnKey6.ForeColor = System.Drawing.Color.Gray;
             this.btnKey6.Location = new System.Drawing.Point(128, 55);
             this.btnKey6.Name = "btnKey6";
             this.btnKey6.Size = new System.Drawing.Size(60, 48);
@@ -282,10 +282,10 @@
             // 
             // btnKey8
             // 
-            this.btnKey8.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey8.BackColor = System.Drawing.Color.White;
             this.btnKey8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey8.ForeColor = System.Drawing.Color.White;
+            this.btnKey8.ForeColor = System.Drawing.Color.Gray;
             this.btnKey8.Location = new System.Drawing.Point(64, 107);
             this.btnKey8.Name = "btnKey8";
             this.btnKey8.Size = new System.Drawing.Size(60, 48);
@@ -296,10 +296,10 @@
             // 
             // btnKey7
             // 
-            this.btnKey7.BackColor = System.Drawing.Color.DimGray;
+            this.btnKey7.BackColor = System.Drawing.Color.White;
             this.btnKey7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKey7.ForeColor = System.Drawing.Color.White;
+            this.btnKey7.ForeColor = System.Drawing.Color.Gray;
             this.btnKey7.Location = new System.Drawing.Point(0, 107);
             this.btnKey7.Name = "btnKey7";
             this.btnKey7.Size = new System.Drawing.Size(60, 48);
@@ -310,10 +310,10 @@
             // 
             // btnKeyClear
             // 
-            this.btnKeyClear.BackColor = System.Drawing.Color.DimGray;
+            this.btnKeyClear.BackColor = System.Drawing.Color.White;
             this.btnKeyClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnKeyClear.ForeColor = System.Drawing.Color.White;
+            this.btnKeyClear.ForeColor = System.Drawing.Color.Gray;
             this.btnKeyClear.Location = new System.Drawing.Point(0, 159);
             this.btnKeyClear.Name = "btnKeyClear";
             this.btnKeyClear.Size = new System.Drawing.Size(60, 48);

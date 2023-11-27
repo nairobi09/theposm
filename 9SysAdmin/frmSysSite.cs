@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static thepos.thePos;
 
 namespace thepos._9SysAdmin
 {
     public partial class frmSysSite : Form
     {
+        String ch_image = "";
 
         String[] tmTicketType;
         String[] tmTicketTypeText;
@@ -65,6 +68,9 @@ namespace thepos._9SysAdmin
             cbTicketMedia.Font = font10;
             cbVanCode.Font = font10;
             tbCallCenter.Font = font10;
+
+            lblBillImage.Font = font10;
+            btnX.Font = font10;
 
             btnUpdate.Font = font10;
 
@@ -212,6 +218,23 @@ namespace thepos._9SysAdmin
 
             parameters["callCenterNo"] = tbCallCenter.Text;
 
+            //
+            if (ch_image == "1")
+            {
+                if (pbBillImage.Image == null)
+                {
+//?                    parameters["imagePath"] = "";
+                }
+                else
+                {
+                    var ms = new MemoryStream();
+                    pbBillImage.Image.Save(ms, pbBillImage.Image.RawFormat);
+//?                    parameters["imagePath"] = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+
+
+
             // 
             parameters["basicDbVer"] = get_today_date() + get_today_time();
 
@@ -250,5 +273,26 @@ namespace thepos._9SysAdmin
 
         }
 
+        private void pbBillImage_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = openFileDialog.ShowDialog();
+
+            //OK버튼 클릭시
+            if (dr == DialogResult.OK)
+            {
+                string fileFullName = openFileDialog.FileName;
+
+                System.Drawing.Image image = System.Drawing.Image.FromFile(fileFullName);
+                this.pbBillImage.Image = image;
+
+                ch_image = "1";
+            }
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            pbBillImage.Image = null;
+            ch_image = "1";
+        }
     }
 }

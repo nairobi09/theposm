@@ -323,7 +323,7 @@ namespace thepos
 
 
 
-                // 주문서 출력
+                // 주문서 출력 : 업장용 + 고객용
                 if (mPayClass == "OR")
                 {
                     print_order(memOrderItemArr);

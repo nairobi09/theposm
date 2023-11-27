@@ -237,7 +237,7 @@
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
             this.btnCashRecept.Location = new System.Drawing.Point(307, 235);
             this.btnCashRecept.Name = "btnCashRecept";
-            this.btnCashRecept.Size = new System.Drawing.Size(140, 50);
+            this.btnCashRecept.Size = new System.Drawing.Size(140, 60);
             this.btnCashRecept.TabIndex = 44;
             this.btnCashRecept.Text = "승인요청";
             this.btnCashRecept.UseVisualStyleBackColor = false;

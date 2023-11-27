@@ -109,10 +109,10 @@
             // 
             // btnCharge
             // 
-            this.btnCharge.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnCharge.BackColor = System.Drawing.Color.White;
             this.btnCharge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCharge.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCharge.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCharge.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnCharge.Location = new System.Drawing.Point(108, 464);
             this.btnCharge.Name = "btnCharge";
             this.btnCharge.Size = new System.Drawing.Size(140, 50);
@@ -240,7 +240,7 @@
             this.btnScanner.BackColor = System.Drawing.Color.White;
             this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnScanner.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnScanner.Image = global::thepos.Properties.Resources.scanbar3;
+            this.btnScanner.Image = global::thepos.Properties.Resources.scanbar5;
             this.btnScanner.Location = new System.Drawing.Point(386, 13);
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(80, 40);

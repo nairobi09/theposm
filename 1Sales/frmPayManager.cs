@@ -61,8 +61,8 @@ namespace thepos
             // 폰트적용 제외
             //lblLayoutBill.Font = font12;
 
-            cbGoodsExcept.Font = font10;
-            btnPrint.Font = font10;
+            btnPrintBillex.Font = font9;
+            btnPrintBill.Font = font10;
             btnCancel.Font = font10;
 
         }
@@ -458,7 +458,7 @@ namespace thepos
         }
 
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void btnPrintBill_Click(object sender, EventArgs e)
         {
             if (lvwPayManager.SelectedItems.Count < 1)
             {
@@ -478,15 +478,34 @@ namespace thepos
                 tran_type = "C";
             }
 
-            String except_order = "";
-            if (cbGoodsExcept.Checked) except_order = "Y";
-
-
-            print_bill(tTheNo, tran_type, except_order, pay_keep, false);
+            print_bill(tTheNo, tran_type, "", pay_keep, false);
 
         }
 
+        private void btnPrintBillex_Click(object sender, EventArgs e)
+        {
+            if (lvwPayManager.SelectedItems.Count < 1)
+            {
+                return;
+            }
 
+            String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
+            String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
+
+
+            // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
+            String cancel_name = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel)].Text;
+
+            String tran_type = "A";
+            if (cancel_name == "Y" | cancel_name == "취소됨")
+            {
+                tran_type = "C";
+            }
+
+            print_bill(tTheNo, tran_type, "Y", pay_keep, false);  // Y 상품정보제외
+
+
+        }
 
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -606,8 +625,6 @@ namespace thepos
             viewList(selected_biz_date, selected_pos_no, selected_the_no);
             lblLayoutBill.Text = "";
         }
-
-
 
 
     }

@@ -370,7 +370,7 @@
             this.btnCardRequest.ForeColor = System.Drawing.Color.White;
             this.btnCardRequest.Location = new System.Drawing.Point(331, 113);
             this.btnCardRequest.Name = "btnCardRequest";
-            this.btnCardRequest.Size = new System.Drawing.Size(130, 50);
+            this.btnCardRequest.Size = new System.Drawing.Size(130, 60);
             this.btnCardRequest.TabIndex = 47;
             this.btnCardRequest.Text = "승인요청";
             this.btnCardRequest.UseVisualStyleBackColor = false;

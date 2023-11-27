@@ -133,6 +133,9 @@
   <data name="net_connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\net_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="scanbar3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\scanbar3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="thepos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\thepos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,6 +154,9 @@
   <data name="logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\logo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="scanbar4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\scanbar4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="flag_ch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\flag_ch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -166,7 +172,7 @@
   <data name="net_connect1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\net_connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="scanbar3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\scanbar3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="scanbar5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\scanbar5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

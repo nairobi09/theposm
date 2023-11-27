@@ -674,6 +674,8 @@
     <Content Include="res\photo.png" />
     <None Include="res\scanbar2.png" />
     <None Include="res\scanbar3.png" />
+    <None Include="res\scanbar4.png" />
+    <None Include="res\scanbar5.png" />
     <Content Include="res\thepos.png" />
     <Content Include="res\thepos_logo.ico" />
   </ItemGroup>

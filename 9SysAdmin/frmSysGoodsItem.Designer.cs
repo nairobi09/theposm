@@ -428,6 +428,7 @@
             // 
             // btnApply
             // 
+            this.btnApply.BackColor = System.Drawing.Color.White;
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnApply.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -436,7 +437,7 @@
             this.btnApply.Size = new System.Drawing.Size(100, 40);
             this.btnApply.TabIndex = 95;
             this.btnApply.Text = "적용보기";
-            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.UseVisualStyleBackColor = false;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // lblPosNoTitle

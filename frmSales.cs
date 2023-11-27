@@ -22,6 +22,7 @@ using System.Web.UI.WebControls.Expressions;
 using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
 using System.Data.SQLite;
+using System.Collections;
 
 
 
@@ -1231,17 +1232,18 @@ namespace thepos
             }
 
 
+
             // 업장주문번호 부여
-            //? 업장코드가 입력되지 않은 상품이 포함된 경우는?
-
-            //? 
-
-
+            // - 조건에 맞는 건만 부여함.
             if (mPayClass == "OR" | mPayClass == "US")
             {
-                memOrderItemArr[0].shop_order_no = get_server_new_order_no();
+                if (isExistOrderPrinter(memOrderItemArr[0].shop_code) & memOrderItemArr[0].ticket != "Y")
+                    memOrderItemArr[0].shop_order_no = get_server_new_order_no();
+                else
+                    memOrderItemArr[0].shop_order_no = "";
 
-                for (int i = 0; i < mLvwOrderItem.Items.Count - 1; i++)
+
+                for (int i = 0; i < memOrderItemArr.Length - 1; i++)
                 {
                     if (string.Compare(memOrderItemArr[i].shop_code, memOrderItemArr[i + 1].shop_code) == 0)
                     {
@@ -1249,14 +1251,40 @@ namespace thepos
                     }
                     else
                     {
-                        memOrderItemArr[i + 1].shop_order_no = get_server_new_order_no();
+                        if (isExistOrderPrinter(memOrderItemArr[i+ 1].shop_code) & memOrderItemArr[i + 1].ticket != "Y")
+                            memOrderItemArr[i + 1].shop_order_no = get_server_new_order_no();
+                        else
+                            memOrderItemArr[i + 1].shop_order_no = "";
                     }
                 }
-
             }
 
-
             return memOrderItemArr;
+        }
+
+
+
+
+        public static bool isExistOrderPrinter(String shop_code)
+        {
+            if (shop_code == "")
+            {
+                return false;
+            }
+
+            //
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                if (mShop[i].shop_code == shop_code)
+                {
+                    if (mShop[i].printer_type == "")
+                        return false;
+                    else
+                        return true;
+                }
+            }
+
+            return false;
         }
 
 
@@ -4407,12 +4435,17 @@ namespace thepos
 
                 PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
 
-                byte[] BytesValue = new byte[100];
 
+                byte[] BytesValue = new byte[100];
                 BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
 
-                //
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+
+                //? 로고이미지 서버등록 이미지로 교체
+                BytesValue = PrintExtensions.AddBytes(BytesValue, GetLogo(@"D:\thepos_bill_logo.bmp", 500));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                //
+
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(headerBill));
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
 
@@ -4439,7 +4472,12 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
@@ -4454,8 +4492,119 @@ namespace thepos
                 MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;
             }
-
         }
+
+
+        public static byte[] GetLogo(string LogoPath, int printWidth)
+        {
+            List<byte> byteList = new List<byte>();
+            if (!File.Exists(LogoPath))
+                return null;
+            BitmapData data = GetBitmapData(LogoPath, printWidth);
+            BitArray dots = data.Dots;
+            byte[] width = BitConverter.GetBytes(data.Width);
+
+            int offset = 0;
+            //byteList.Add(Convert.ToByte(Convert.ToChar(0x1B)));
+            //byteList.Add(Convert.ToByte('@'));
+            byteList.Add(Convert.ToByte(Convert.ToChar(0x1B)));
+            byteList.Add(Convert.ToByte('3'));
+            byteList.Add((byte)24);
+            while (offset < data.Height)
+            {
+                byteList.Add(Convert.ToByte(Convert.ToChar(0x1B)));
+                byteList.Add(Convert.ToByte('*'));
+                byteList.Add((byte)33);
+                byteList.Add(width[0]);
+                byteList.Add(width[1]);
+
+                for (int x = 0; x < data.Width; ++x)
+                {
+                    for (int k = 0; k < 3; ++k)
+                    {
+                        byte slice = 0;
+                        for (int b = 0; b < 8; ++b)
+                        {
+                            int y = (((offset / 8) + k) * 8) + b;
+                            int i = (y * data.Width) + x;
+
+                            bool v = false;
+                            if (i < dots.Length)
+                                v = dots[i];
+
+                            slice |= (byte)((v ? 1 : 0) << (7 - b));
+                        }
+                        byteList.Add(slice);
+                    }
+                }
+                offset += 24;
+                byteList.Add(Convert.ToByte(0x0A));
+            }
+            byteList.Add(Convert.ToByte(0x1B));
+            byteList.Add(Convert.ToByte('3'));
+            byteList.Add((byte)30);
+            return byteList.ToArray();
+        }
+
+        private static BitmapData GetBitmapData(string bmpFileName, int width)
+        {
+            using (var bitmap = (Bitmap)Bitmap.FromFile(bmpFileName))
+            {
+                var threshold = 127;
+                var index = 0;
+                double multiplier = width; // 이미지 width조정
+                double scale = (double)(multiplier / (double)bitmap.Width);
+                int xheight = (int)(bitmap.Height * scale);
+                int xwidth = (int)(bitmap.Width * scale);
+                var dimensions = xwidth * xheight;
+                var dots = new BitArray(dimensions);
+
+                for (var y = 0; y < xheight; y++)
+                {
+                    for (var x = 0; x < xwidth; x++)
+                    {
+                        var _x = (int)(x / scale);
+                        var _y = (int)(y / scale);
+                        var color = bitmap.GetPixel(_x, _y);
+                        var luminance = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11);
+                        dots[index] = (luminance < threshold);
+                        index++;
+                    }
+                }
+
+                return new BitmapData()
+                {
+                    Dots = dots,
+                    Height = (int)(bitmap.Height * scale),
+                    Width = (int)(bitmap.Width * scale)
+                };
+            }
+        }
+
+        private class BitmapData
+        {
+            public BitArray Dots
+            {
+                get;
+                set;
+            }
+
+            public int Height
+            {
+                get;
+                set;
+            }
+
+            public int Width
+            {
+                get;
+                set;
+            }
+        }
+    
+
+
+
 
         private static String get_server_new_order_no() 
         {
@@ -4486,6 +4635,17 @@ namespace thepos
         public static void print_order(MemOrderItem[] memOrderItemArr)
         {
             
+            List<MemOrderItem> MemOrderItemList = new List<MemOrderItem>();
+
+
+            for (int i = 0; i < memOrderItemArr.Length; i++)
+            {
+                if (memOrderItemArr[i].shop_order_no != "")
+                {
+                    MemOrderItemList.Add(memOrderItemArr[i]);
+                }
+            }
+
 
 
             //
@@ -4494,42 +4654,87 @@ namespace thepos
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
 
-            t_shop_code = memOrderItemArr[0].shop_code;
-            t_order_no = memOrderItemArr[0].shop_order_no;
-            t_good_name.Add(memOrderItemArr[0].name);
-            t_good_cnt.Add(memOrderItemArr[0].cnt);
+            t_shop_code = MemOrderItemList[0].shop_code;
+            t_order_no = MemOrderItemList[0].shop_order_no;
+            t_good_name.Add(MemOrderItemList[0].name);
+            t_good_cnt.Add(MemOrderItemList[0].cnt);
 
 
-            for (int i = 0; i < memOrderItemArr.Length - 1; i++)
+            for (int i = 0; i < MemOrderItemList.Count - 1; i++)
             {
-                if (string.Compare(memOrderItemArr[i].shop_code, memOrderItemArr[i + 1].shop_code) == 0)
+                if (string.Compare(MemOrderItemList[i].shop_code, MemOrderItemList[i + 1].shop_code) == 0)
                 {
-                    t_good_name.Add(memOrderItemArr[i + 1].name );
-                    t_good_cnt.Add(memOrderItemArr[i + 1].cnt);
+                    t_good_name.Add(MemOrderItemList[i + 1].name );
+                    t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
                 }
                 else
                 {
-                    // 주문서 출력
+                    // 업장주문서 출력 -> shop 등록정보 프린터
                     String strPrint1 = make_printer_order_str(t_shop_code, t_good_name, t_good_cnt, t_order_no);
                     print_order_str(t_shop_code, strPrint1);
 
 
+                    // 주문교환권 출력 -> 영수증프린터
+                    print_order_to_bill_printer("교환권" + strPrint1);
+
+
                     t_good_name.Clear();
                     t_good_cnt.Clear();
-                    t_shop_code = memOrderItemArr[i + 1].shop_code;
-                    t_order_no = memOrderItemArr[i + 1].shop_order_no;
-                    t_good_name.Add(memOrderItemArr[i + 1].name);
-                    t_good_cnt.Add(memOrderItemArr[i + 1].cnt);
+                    t_shop_code = MemOrderItemList[i + 1].shop_code;
+                    t_order_no = MemOrderItemList[i + 1].shop_order_no;
+                    t_good_name.Add(MemOrderItemList[i + 1].name);
+                    t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
                 }
             }
 
-            // 주문서 출력
+            // 업장주문서 출력
             String strPrint2 = make_printer_order_str(t_shop_code, t_good_name, t_good_cnt, t_order_no);
             print_order_str(t_shop_code, strPrint2);
 
 
+            // 주문교환권 출력 -> 영수증프린터
+            print_order_to_bill_printer("교환권" + strPrint2);
+
 
         }
+
+
+        private static void print_order_to_bill_printer(String print_str)
+        {
+
+            //
+            const string ESC = "\u001B";
+            const string InitializePrinter = ESC + "@";
+
+            PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+            byte[] BytesValue = new byte[100];
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(print_str));
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
+
+
+            PrintExtensions.Print(BytesValue, mBillPrinterPort);
+
+
+        }
+
+
 
 
         private static String make_printer_order_str(String shop, List<String> name, List<int> cnt, String order_no)
