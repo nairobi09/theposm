@@ -4635,6 +4635,9 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
 
+
+
+
             PrintExtensions.Print(BytesValue, printer_name);
 
 

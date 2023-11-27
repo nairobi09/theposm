@@ -147,8 +147,10 @@ namespace thepos
                 lvItem.SubItems.Add("");
             }
 
+            if (t_isCancel == "y")
+                lvItem.SubItems.Add("취소1");
             if (t_isCancel == "Y")
-                lvItem.SubItems.Add("취소됨");
+                lvItem.SubItems.Add("취소");
             else if (t_isCancel == "0")
                 lvItem.SubItems.Add("취소중");
             else
@@ -158,7 +160,7 @@ namespace thepos
             lvItem.SubItems.Add(pay_keep);
 
 
-            if (t_isCancel == "Y")
+            if (t_isCancel == "Y" | t_isCancel == "y")
             {
                 lvItem.ForeColor = Color.Gray;
                 lvItem.SubItems[1].ForeColor = Color.Gray;

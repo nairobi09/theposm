@@ -380,7 +380,7 @@ namespace thepos._9SysAdmin
             else
                 cbTaxFree.Checked = false;
 
-            if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(active)].Text == "Y")
+            if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(cutout)].Text == "Y")
                 cbCutout.Checked = true;
             else
                 cbCutout.Checked = false;
@@ -626,9 +626,9 @@ namespace thepos._9SysAdmin
                 parameters["taxFree"] = "N";
 
             if (cbCutout.Checked)
-                parameters["active"] = "Y";
+                parameters["cutout"] = "Y";
             else
-                parameters["active"] = "N";
+                parameters["cutout"] = "N";
 
             if (cbSoldout.Checked)
                 parameters["soldout"] = "Y";

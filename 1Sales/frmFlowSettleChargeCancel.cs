@@ -182,7 +182,7 @@ namespace thepos
 
 
 
-                    if (arr[i]["isCancel"].ToString() == "Y")
+                    if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                     {
                         lvItem.ForeColor = Color.Gray;
                         lvItem.SubItems[1].ForeColor = Color.Gray;
@@ -340,7 +340,7 @@ namespace thepos
                         parameters["tranSerial"] = pCardCancel.tran_serial;     // tran_serial -> 취소시 tid입력
                         parameters["signPath"] = "";
                         parameters["giftChange"] = "";
-                        parameters["isCancel"] = "Y";
+                        parameters["isCancel"] = "y";
                         parameters["vanCode"] = mVanCode;
 
                         if (mRequestPost("paymentCard", parameters))
@@ -371,7 +371,7 @@ namespace thepos
                         parameters["payType"] = "C1";
                         parameters["tranType"] = "A";
                         parameters["paySeq"] = pCardAuth.pay_seq + "";
-                        parameters["isCancel"] = "Y";
+                        parameters["isCancel"] = "y";
 
                         if (mRequestPatch("paymentCard", parameters))
                         {
@@ -425,7 +425,7 @@ namespace thepos
                     parameters["tranSerial"] = pCardAuth.tran_serial;     // tran_serial -> 취소시 tid입력
                     parameters["signPath"] = "";
                     parameters["giftChange"] = "";
-                    parameters["isCancel"] = "Y";
+                    parameters["isCancel"] = "y";
                     parameters["vanCode"] = "";
 
                     if (mRequestPost("paymentCard", parameters))
@@ -455,7 +455,7 @@ namespace thepos
                     parameters["payType"] = "C0";
                     parameters["tranType"] = "A";
                     parameters["paySeq"] = pCardAuth.pay_seq + "";
-                    parameters["isCancel"] = "Y";
+                    parameters["isCancel"] = "y";
 
                     if (mRequestPatch("paymentCard", parameters))
                     {
@@ -581,7 +581,7 @@ namespace thepos
                         parameters["issuedMethodNo"] = pCashCancel.issued_method_no;
                         parameters["authNo"] = pCashCancel.auth_no;
                         parameters["tranSerial"] = pCashCancel.tran_serial;
-                        parameters["isCancel"] = "Y";
+                        parameters["isCancel"] = "y";
                         parameters["vanCode"] = mVanCode;
 
                         if (mRequestPost("paymentCash", parameters))
@@ -611,7 +611,7 @@ namespace thepos
                         parameters["payType"] = "R1";
                         parameters["tranType"] = "A";
                         parameters["paySeq"] = pCashAuth.pay_seq + "";
-                        parameters["isCancel"] = "Y";
+                        parameters["isCancel"] = "y";
 
                         if (mRequestPatch("paymentCash", parameters))
                         {
@@ -675,7 +675,7 @@ namespace thepos
                     parameters["issuedMethodNo"] = pCashAuth.issued_method_no;
                     parameters["authNo"] = pCashAuth.auth_no;
                     parameters["tranSerial"] = pCashAuth.tran_serial;
-                    parameters["isCancel"] = "Y";
+                    parameters["isCancel"] = "y";
                     parameters["vanCode"] = "";
 
                     if (mRequestPost("paymentCash", parameters))
@@ -704,7 +704,7 @@ namespace thepos
                     parameters["payType"] = "R0";
                     parameters["tranType"] = "A";
                     parameters["paySeq"] = pCashAuth.pay_seq + "";
-                    parameters["isCancel"] = "Y";
+                    parameters["isCancel"] = "y";
 
                     if (mRequestPatch("paymentCash", parameters))
                     {
@@ -841,7 +841,7 @@ namespace thepos
                         parameters["tranSerial"] = pEasyCancel.tran_serial;     // tran_serial -> 취소시 tid입력
                         parameters["signPath"] = "";
                         parameters["giftChange"] = "";
-                        parameters["isCancel"] = "Y";
+                        parameters["isCancel"] = "y";
                         parameters["vanCode"] = mVanCode;
                         parameters["PatTypr2"] = pEasyCancel.pay_type2;
 
@@ -872,7 +872,7 @@ namespace thepos
                         parameters["payType"] = "E1";
                         parameters["tranType"] = "A";
                         parameters["paySeq"] = pEasyAuth.pay_seq + "";
-                        parameters["isCancel"] = "Y";
+                        parameters["isCancel"] = "y";
 
                         if (mRequestPatch("paymentEasy", parameters))
                         {
@@ -987,7 +987,7 @@ namespace thepos
                         param["orderDate"] = get_today_date();
                         param["orderTime"] = get_today_time();
                         param["cnt"] = arr[0]["cnt"].ToString();
-                        param["isCancel"] = "Y";
+                        param["isCancel"] = "y";
                         if (mRequestPost("orders", param))
                         {
                             if (mObj["resultCode"].ToString() == "200")
@@ -1032,7 +1032,7 @@ namespace thepos
             parameters["bizDt"] = mBizDate;
             parameters["theNo"] = the_no;
             parameters["tranType"] = "A";
-            parameters["isCancel"] = "Y";
+            parameters["isCancel"] = "y";
 
             if (mRequestPatch("orders", parameters))
             {
@@ -1088,7 +1088,7 @@ namespace thepos
                         param["dcrValue"] = arr[0]["dcrValue"].ToString();
                         param["payClass"] = arr[0]["payClass"].ToString();
                         param["ticketNo"] = arr[0]["ticketNo"].ToString();
-                        param["isCancel"] = "Y";
+                        param["isCancel"] = "y";
                         param["shopCode"] = arr[0]["shopCode"].ToString();
 
                         if (mRequestPost("orderItem", param))
@@ -1135,7 +1135,7 @@ namespace thepos
             parameters["bizDt"] = mBizDate;
             parameters["theNo"] = the_no;
             parameters["tranType"] = "A";
-            parameters["isCancel"] = "Y";
+            parameters["isCancel"] = "y";
 
             if (mRequestPatch("orderItem", parameters))
             {
@@ -1224,7 +1224,7 @@ namespace thepos
                 param["amountPoint"] = amt_point + "";
 
                 param["dcAmount"] = paymentAuth.dc_amount + "";
-                param["isCancel"] = "Y";
+                param["isCancel"] = "y";
 
                 if (!post_payment(param))
                 {
@@ -1245,7 +1245,7 @@ namespace thepos
             parameters["bizDt"] = thisBizDt;
             parameters["theNo"] = the_no;
             parameters["tranType"] = "A";
-            parameters["isCancel"] = "Y";
+            parameters["isCancel"] = "y";
 
             if (patch_payment(parameters))
             {
