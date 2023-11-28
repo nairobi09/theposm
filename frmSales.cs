@@ -105,7 +105,7 @@ namespace thepos
             int default_click_no = display_goodsgroup();
 
 
-            if (mGoodsGroup.Length > 0)
+            if (default_click_no > -1)
             {
                 ClickedGoodsGroup(mGoodsGroup[default_click_no].group_code);   //? 디폴트로 설정된 그룹으로 보여주자.-> 수정요망
             }
@@ -420,7 +420,7 @@ namespace thepos
         private int display_goodsgroup()
         {
             int sum_colunm_row = 8;
-            int default_click_no = 0;
+            int default_click_no = -1;  // 일단 클릭없음
 
             tableLayoutPanelGoodsGroup.Controls.Clear();
             tableLayoutPanelGoodsGroup.PerformLayout();
@@ -463,6 +463,13 @@ namespace thepos
                 else
                 {
                     btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
+
+                    // 디폴트로 클릭될 그룹을 찾는다.
+                    if (sum_colunm_row > mGoodsGroup[i].column + mGoodsGroup[i].row)
+                    {
+                        sum_colunm_row = mGoodsGroup[i].column + mGoodsGroup[i].row;
+                        default_click_no = i;
+                    }
                 }
 
 
@@ -473,11 +480,7 @@ namespace thepos
                 tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
 
 
-                if (sum_colunm_row > mGoodsGroup[i].column + mGoodsGroup[i].row)
-                {
-                    sum_colunm_row = mGoodsGroup[i].column + mGoodsGroup[i].row;
-                    default_click_no = i;
-                }
+
 
 
             }

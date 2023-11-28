@@ -61,8 +61,12 @@ namespace thepos
             // 폰트적용 제외
             //lblLayoutBill.Font = font12;
 
-            btnPrintBillex.Font = font9;
+
             btnPrintBill.Font = font10;
+            btnPrintBillex.Font = font9;
+
+            btnPrintOrder.Font = font10;
+
             btnCancel.Font = font10;
 
         }
@@ -389,6 +393,8 @@ namespace thepos
 
 
             lvItem.SubItems.Add(pay_keep);
+            lvItem.SubItems.Add(t_payClass);
+            lvItem.SubItems.Add(t_isCancel);
 
 
             if (t_isCancel == "Y")
@@ -470,10 +476,10 @@ namespace thepos
 
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
-            String cancel_name = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel)].Text;
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(is_cancel)].Text;
 
             String tran_type = "A";
-            if (cancel_name == "Y" | cancel_name == "취소됨")
+            if (isCancel == "Y" | isCancel == "y")
             {
                 tran_type = "C";
             }
@@ -494,10 +500,10 @@ namespace thepos
 
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
-            String cancel_name = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel)].Text;
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(is_cancel)].Text;
 
             String tran_type = "A";
-            if (cancel_name == "Y" | cancel_name == "취소됨")
+            if (isCancel == "Y" | isCancel == "y")
             {
                 tran_type = "C";
             }
@@ -626,6 +632,39 @@ namespace thepos
             lblLayoutBill.Text = "";
         }
 
+        private void btnPrintOrder_Click(object sender, EventArgs e)
+        {
+            if (lvwPayManager.SelectedItems.Count < 1)
+            {
+                return;
+            }
 
+            String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
+            String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
+
+
+            // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(is_cancel)].Text;
+
+
+            if (isCancel == "Y" | isCancel == "y")
+            {
+                SetDisplayAlarm("W", "취소건 주문서 출력불가.");
+                return;
+            }
+
+
+
+
+
+
+
+
+            //print_bill(tTheNo, tran_type, "", pay_keep, false);
+
+
+
+
+        }
     }
 }

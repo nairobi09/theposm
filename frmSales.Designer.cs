@@ -56,11 +56,11 @@ namespace thepos
             this.btnOrderCntChange = new System.Windows.Forms.Button();
             this.btnOrderAmtChange = new System.Windows.Forms.Button();
             this.btnOrderCancelSelect = new System.Windows.Forms.Button();
-            this.btnOrderWaiting = new System.Windows.Forms.Button();
+            this.btnOrderAmountDC = new System.Windows.Forms.Button();
             this.btnOrderCancelAll = new System.Windows.Forms.Button();
+            this.btnOrderWaiting = new System.Windows.Forms.Button();
             this.btnOrderItemScrollDn = new System.Windows.Forms.Button();
             this.btnOrderItemScrollUp = new System.Windows.Forms.Button();
-            this.btnOrderAmountDC = new System.Windows.Forms.Button();
             this.btnPay1 = new System.Windows.Forms.Button();
             this.btnPay2 = new System.Windows.Forms.Button();
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
@@ -183,7 +183,7 @@ namespace thepos
             this.btnFlowTicketing.ForeColor = System.Drawing.Color.White;
             this.btnFlowTicketing.Location = new System.Drawing.Point(0, 209);
             this.btnFlowTicketing.Name = "btnFlowTicketing";
-            this.btnFlowTicketing.Size = new System.Drawing.Size(124, 48);
+            this.btnFlowTicketing.Size = new System.Drawing.Size(60, 48);
             this.btnFlowTicketing.TabIndex = 0;
             this.btnFlowTicketing.TabStop = false;
             this.btnFlowTicketing.Text = "티켓";
@@ -505,20 +505,20 @@ namespace thepos
             this.btnOrderCancelSelect.UseVisualStyleBackColor = false;
             this.btnOrderCancelSelect.Click += new System.EventHandler(this.btnOrderCancelSelect_Click);
             // 
-            // btnOrderWaiting
+            // btnOrderAmountDC
             // 
-            this.btnOrderWaiting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
-            this.btnOrderWaiting.Location = new System.Drawing.Point(0, 0);
-            this.btnOrderWaiting.Name = "btnOrderWaiting";
-            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 48);
-            this.btnOrderWaiting.TabIndex = 0;
-            this.btnOrderWaiting.TabStop = false;
-            this.btnOrderWaiting.Text = "대기\r\n";
-            this.btnOrderWaiting.UseVisualStyleBackColor = false;
-            this.btnOrderWaiting.Click += new System.EventHandler(this.btnOrderWaiting_Click);
+            this.btnOrderAmountDC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
+            this.btnOrderAmountDC.Location = new System.Drawing.Point(217, 53);
+            this.btnOrderAmountDC.Name = "btnOrderAmountDC";
+            this.btnOrderAmountDC.Size = new System.Drawing.Size(124, 48);
+            this.btnOrderAmountDC.TabIndex = 0;
+            this.btnOrderAmountDC.TabStop = false;
+            this.btnOrderAmountDC.Text = "할인";
+            this.btnOrderAmountDC.UseVisualStyleBackColor = false;
+            this.btnOrderAmountDC.Click += new System.EventHandler(this.btnOrderAmountDC_Click);
             // 
             // btnOrderCancelAll
             // 
@@ -534,6 +534,21 @@ namespace thepos
             this.btnOrderCancelAll.Text = "전체\r\n취소";
             this.btnOrderCancelAll.UseVisualStyleBackColor = false;
             this.btnOrderCancelAll.Click += new System.EventHandler(this.btnOrderCancelAll_Click);
+            // 
+            // btnOrderWaiting
+            // 
+            this.btnOrderWaiting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
+            this.btnOrderWaiting.Location = new System.Drawing.Point(0, 0);
+            this.btnOrderWaiting.Name = "btnOrderWaiting";
+            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 48);
+            this.btnOrderWaiting.TabIndex = 0;
+            this.btnOrderWaiting.TabStop = false;
+            this.btnOrderWaiting.Text = "대기\r\n";
+            this.btnOrderWaiting.UseVisualStyleBackColor = false;
+            this.btnOrderWaiting.Click += new System.EventHandler(this.btnOrderWaiting_Click);
             // 
             // btnOrderItemScrollDn
             // 
@@ -565,27 +580,12 @@ namespace thepos
             this.btnOrderItemScrollUp.UseVisualStyleBackColor = false;
             this.btnOrderItemScrollUp.Click += new System.EventHandler(this.btnOrderItemScrollUp_Click);
             // 
-            // btnOrderAmountDC
-            // 
-            this.btnOrderAmountDC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAmountDC.Location = new System.Drawing.Point(217, 53);
-            this.btnOrderAmountDC.Name = "btnOrderAmountDC";
-            this.btnOrderAmountDC.Size = new System.Drawing.Size(124, 48);
-            this.btnOrderAmountDC.TabIndex = 0;
-            this.btnOrderAmountDC.TabStop = false;
-            this.btnOrderAmountDC.Text = "할인";
-            this.btnOrderAmountDC.UseVisualStyleBackColor = false;
-            this.btnOrderAmountDC.Click += new System.EventHandler(this.btnOrderAmountDC_Click);
-            // 
             // btnPay1
             // 
             this.btnPay1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay1, 3);
             this.btnPay1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPay1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay1.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay1.ForeColor = System.Drawing.Color.White;
             this.btnPay1.Location = new System.Drawing.Point(2, 2);
             this.btnPay1.Margin = new System.Windows.Forms.Padding(2);
@@ -603,7 +603,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay2, 2);
             this.btnPay2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPay2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay2.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay2.ForeColor = System.Drawing.Color.White;
             this.btnPay2.Location = new System.Drawing.Point(320, 2);
             this.btnPay2.Margin = new System.Windows.Forms.Padding(2);
@@ -708,7 +708,7 @@ namespace thepos
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.LightGray;
             this.btnClose.Location = new System.Drawing.Point(968, 2);
             this.btnClose.Name = "btnClose";
@@ -877,7 +877,7 @@ namespace thepos
             // 
             // lblOrderAmountRest
             // 
-            this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRest.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRest.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRest.Location = new System.Drawing.Point(34, 261);
             this.lblOrderAmountRest.Name = "lblOrderAmountRest";
@@ -889,7 +889,7 @@ namespace thepos
             // lblOrderAmountRestTitle
             // 
             this.lblOrderAmountRestTitle.AutoSize = true;
-            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(5, 246);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
@@ -899,7 +899,7 @@ namespace thepos
             // 
             // lblOrderAmountReceive
             // 
-            this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceive.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceive.Location = new System.Drawing.Point(34, 213);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
             this.lblOrderAmountReceive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -909,7 +909,7 @@ namespace thepos
             // 
             // lblOrderAmountNet
             // 
-            this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountNet.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountNet.Location = new System.Drawing.Point(34, 161);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
@@ -920,7 +920,7 @@ namespace thepos
             // 
             // lblOrderAmountDC
             // 
-            this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDC.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDC.Location = new System.Drawing.Point(34, 104);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
             this.lblOrderAmountDC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -930,7 +930,7 @@ namespace thepos
             // 
             // lblOrderAmount
             // 
-            this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmount.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmount.Location = new System.Drawing.Point(34, 45);
             this.lblOrderAmount.Name = "lblOrderAmount";
             this.lblOrderAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -941,7 +941,7 @@ namespace thepos
             // lblOrderAmountReceiveTitle
             // 
             this.lblOrderAmountReceiveTitle.AutoSize = true;
-            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(5, 198);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
             this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(53, 12);
@@ -951,7 +951,7 @@ namespace thepos
             // lblOrderAmountChargeTitle
             // 
             this.lblOrderAmountChargeTitle.AutoSize = true;
-            this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountChargeTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountChargeTitle.ForeColor = System.Drawing.Color.Gold;
             this.lblOrderAmountChargeTitle.Location = new System.Drawing.Point(5, 146);
             this.lblOrderAmountChargeTitle.Name = "lblOrderAmountChargeTitle";
@@ -962,7 +962,7 @@ namespace thepos
             // lblOrderAmountDCTitle
             // 
             this.lblOrderAmountDCTitle.AutoSize = true;
-            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(5, 89);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
             this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(53, 12);
@@ -972,7 +972,7 @@ namespace thepos
             // lblOrderAmountSumTitle
             // 
             this.lblOrderAmountSumTitle.AutoSize = true;
-            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(5, 30);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
             this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(53, 12);
@@ -999,9 +999,9 @@ namespace thepos
             this.btnFlowLocker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowLocker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowLocker.ForeColor = System.Drawing.Color.White;
-            this.btnFlowLocker.Location = new System.Drawing.Point(0, 261);
+            this.btnFlowLocker.Location = new System.Drawing.Point(64, 209);
             this.btnFlowLocker.Name = "btnFlowLocker";
-            this.btnFlowLocker.Size = new System.Drawing.Size(124, 48);
+            this.btnFlowLocker.Size = new System.Drawing.Size(60, 48);
             this.btnFlowLocker.TabIndex = 0;
             this.btnFlowLocker.TabStop = false;
             this.btnFlowLocker.Text = "락커";
@@ -1014,9 +1014,9 @@ namespace thepos
             this.btnPayManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPayManager.ForeColor = System.Drawing.Color.White;
-            this.btnPayManager.Location = new System.Drawing.Point(0, 313);
+            this.btnPayManager.Location = new System.Drawing.Point(0, 261);
             this.btnPayManager.Name = "btnPayManager";
-            this.btnPayManager.Size = new System.Drawing.Size(124, 48);
+            this.btnPayManager.Size = new System.Drawing.Size(124, 100);
             this.btnPayManager.TabIndex = 0;
             this.btnPayManager.TabStop = false;
             this.btnPayManager.Text = "결제내역관리";
@@ -1289,7 +1289,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.SetColumnSpan(this.button1, 3);
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(161, 2);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
@@ -1307,7 +1307,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay4, 2);
             this.btnPay4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPay4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay4.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay4.ForeColor = System.Drawing.Color.White;
             this.btnPay4.Location = new System.Drawing.Point(426, 80);
             this.btnPay4.Margin = new System.Windows.Forms.Padding(2);
@@ -1325,7 +1325,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.SetColumnSpan(this.btnPay3, 2);
             this.btnPay3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPay3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPay3.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay3.ForeColor = System.Drawing.Color.White;
             this.btnPay3.Location = new System.Drawing.Point(426, 2);
             this.btnPay3.Margin = new System.Windows.Forms.Padding(2);
@@ -1390,7 +1390,7 @@ namespace thepos
             this.Controls.Add(this.panelFlowConsole);
             this.Controls.Add(this.panelNumpad);
             this.Controls.Add(this.panelOrderConsole);
-            this.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("Gulim", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
