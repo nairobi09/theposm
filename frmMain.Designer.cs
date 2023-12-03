@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
@@ -40,7 +39,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
-            this.lblLocalMode = new System.Windows.Forms.Label();
             this.lblReqUser = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPW = new System.Windows.Forms.Label();
@@ -77,8 +75,6 @@
             this.lblCallCenterNo = new System.Windows.Forms.Label();
             this.panelDivision = new System.Windows.Forms.Panel();
             this.lblLocalModeTitle = new System.Windows.Forms.Label();
-            this.lblNetworkCheck = new System.Windows.Forms.Label();
-            this.timerNetwork = new System.Windows.Forms.Timer(this.components);
             this.pbNetworkConn = new System.Windows.Forms.PictureBox();
             this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
@@ -224,7 +220,6 @@
             // 
             // panelLogin
             // 
-            this.panelLogin.Controls.Add(this.lblLocalMode);
             this.panelLogin.Controls.Add(this.lblReqUser);
             this.panelLogin.Controls.Add(this.btnClose);
             this.panelLogin.Controls.Add(this.lblPW);
@@ -239,24 +234,12 @@
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
             // 
-            // lblLocalMode
-            // 
-            this.lblLocalMode.AutoSize = true;
-            this.lblLocalMode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLocalMode.ForeColor = System.Drawing.Color.LightGray;
-            this.lblLocalMode.Location = new System.Drawing.Point(177, 642);
-            this.lblLocalMode.Name = "lblLocalMode";
-            this.lblLocalMode.Size = new System.Drawing.Size(91, 14);
-            this.lblLocalMode.TabIndex = 42;
-            this.lblLocalMode.Text = "긴급사용모드";
-            this.lblLocalMode.Click += new System.EventHandler(this.lblLocalMode_Click);
-            // 
             // lblReqUser
             // 
             this.lblReqUser.AutoSize = true;
             this.lblReqUser.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReqUser.ForeColor = System.Drawing.Color.LightGray;
-            this.lblReqUser.Location = new System.Drawing.Point(165, 684);
+            this.lblReqUser.Location = new System.Drawing.Point(158, 684);
             this.lblReqUser.Name = "lblReqUser";
             this.lblReqUser.Size = new System.Drawing.Size(105, 14);
             this.lblReqUser.TabIndex = 41;
@@ -707,36 +690,18 @@
             // 
             this.lblLocalModeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblLocalModeTitle.Location = new System.Drawing.Point(706, 268);
+            this.lblLocalModeTitle.Location = new System.Drawing.Point(84, 38);
             this.lblLocalModeTitle.Name = "lblLocalModeTitle";
-            this.lblLocalModeTitle.Size = new System.Drawing.Size(274, 19);
+            this.lblLocalModeTitle.Size = new System.Drawing.Size(88, 22);
             this.lblLocalModeTitle.TabIndex = 15;
             this.lblLocalModeTitle.Text = "로컬모드";
-            this.lblLocalModeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLocalModeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblLocalModeTitle.Visible = false;
-            // 
-            // lblNetworkCheck
-            // 
-            this.lblNetworkCheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblNetworkCheck.ForeColor = System.Drawing.Color.LightGray;
-            this.lblNetworkCheck.Location = new System.Drawing.Point(80, 38);
-            this.lblNetworkCheck.Name = "lblNetworkCheck";
-            this.lblNetworkCheck.Size = new System.Drawing.Size(91, 22);
-            this.lblNetworkCheck.TabIndex = 18;
-            this.lblNetworkCheck.Text = "서버연결체크";
-            this.lblNetworkCheck.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblNetworkCheck.Click += new System.EventHandler(this.lblNetworkCheck_Click);
-            // 
-            // timerNetwork
-            // 
-            this.timerNetwork.Enabled = true;
-            this.timerNetwork.Interval = 5000;
-            this.timerNetwork.Tick += new System.EventHandler(this.timerNetwork_Tick);
             // 
             // pbNetworkConn
             // 
             this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect;
-            this.pbNetworkConn.Location = new System.Drawing.Point(49, 41);
+            this.pbNetworkConn.Location = new System.Drawing.Point(49, 42);
             this.pbNetworkConn.Name = "pbNetworkConn";
             this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
             this.pbNetworkConn.TabIndex = 16;
@@ -746,7 +711,7 @@
             // pbNetworkDisconn
             // 
             this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect;
-            this.pbNetworkDisconn.Location = new System.Drawing.Point(49, 40);
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(49, 41);
             this.pbNetworkDisconn.Name = "pbNetworkDisconn";
             this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
             this.pbNetworkDisconn.TabIndex = 17;
@@ -766,7 +731,6 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblLocalModeTitle);
-            this.Controls.Add(this.lblNetworkCheck);
             this.Controls.Add(this.pbNetworkConn);
             this.Controls.Add(this.pbNetworkDisconn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -775,6 +739,8 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "thepos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
+            this.Shown += new System.EventHandler(this.frmMain_Shown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -842,11 +808,8 @@
         private System.Windows.Forms.Label lblSiteAlias;
         private System.Windows.Forms.Label lblReqUser;
         private System.Windows.Forms.Panel panelDivision;
-        private System.Windows.Forms.Label lblLocalMode;
         private System.Windows.Forms.Label lblLocalModeTitle;
         private System.Windows.Forms.PictureBox pbNetworkConn;
         private System.Windows.Forms.PictureBox pbNetworkDisconn;
-        private System.Windows.Forms.Label lblNetworkCheck;
-        private System.Windows.Forms.Timer timerNetwork;
     }
 }

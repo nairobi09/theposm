@@ -120,11 +120,11 @@ namespace thepos
             mThisPosNo = cbPosNo.Text;
 
             mThisTicketNo = "";
-            String t7No = tbTicketNo.Text;
+            String t8No = tbTicketNo.Text;
 
-            if (t7No.Length == 6 & mThisPosNo.Length == 2)
+            if (t8No.Length == 8 & mThisPosNo.Length == 2)
             {
-                mThisTicketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + mThisPosNo + t7No;
+                mThisTicketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + mThisPosNo + t8No;
             }
 
             view_ticket_flow(mThisBizDt, mThisPosNo, mThisTicketNo);
@@ -459,7 +459,7 @@ namespace thepos
 
                             for (int i = 0; i < arr.Count; i++)
                             {
-                                if (arr[i]["payClass"].ToString() == "US" & arr[i]["isCancel"].ToString() != "Y")
+                                if (arr[i]["payClass"].ToString() == "US" & (arr[i]["isCancel"].ToString() != "Y" & arr[i]["isCancel"].ToString() != "y"))
                                 {
                                     MemOrderItem memOrderItem = new MemOrderItem();
 
@@ -532,7 +532,7 @@ namespace thepos
 
                             for (int i = 0; i < arr.Count; i++)
                             {
-                                if (arr[i]["payClass"].ToString() == "CH" & arr[i]["isCancel"].ToString() != "Y")
+                                if (arr[i]["payClass"].ToString() == "CH" & (arr[i]["isCancel"].ToString() != "Y" & arr[i]["isCancel"].ToString() != "y"))
                                 {
                                     MemOrderItem memOrderItem = new MemOrderItem();
 
@@ -736,7 +736,7 @@ namespace thepos
                         String data = mObj["payments"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        if (arr[0]["isCancel"].ToString() != "Y")
+                        if (arr[0]["isCancel"].ToString() != "Y" & arr[0]["isCancel"].ToString() != "y")
                         {
                             // Payment 취소건 추가
                             Dictionary<string, string> param = new Dictionary<string, string>();

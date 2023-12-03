@@ -29,18 +29,23 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnPrintBilldisp = new System.Windows.Forms.Button();
+            this.lvwPayOrder = new System.Windows.Forms.ListView();
+            this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pay_goods = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amount_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dc_shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnPrintBillex = new System.Windows.Forms.Button();
             this.btnPrintOrder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl1 = new System.Windows.Forms.Label();
             this.btnScanner = new System.Windows.Forms.Button();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.dtBizDt = new System.Windows.Forms.DateTimePicker();
             this.tbBillNo = new System.Windows.Forms.TextBox();
             this.lbl3 = new System.Windows.Forms.Label();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.lblLayoutBill = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -53,12 +58,12 @@
             this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cancel_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paykeep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pay_calss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cancel_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pay_calss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.is_cancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -67,30 +72,91 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.btnPrintBilldisp);
+            this.panelback.Controls.Add(this.lvwPayOrder);
             this.panelback.Controls.Add(this.btnPrintBillex);
             this.panelback.Controls.Add(this.btnPrintOrder);
             this.panelback.Controls.Add(this.panel1);
-            this.panelback.Controls.Add(this.lblLayoutBill);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnPrintBill);
             this.panelback.Controls.Add(this.lvwPayManager);
-            this.panelback.Font = new System.Drawing.Font("GulimChe", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 3;
             // 
+            // btnPrintBilldisp
+            // 
+            this.btnPrintBilldisp.BackColor = System.Drawing.Color.White;
+            this.btnPrintBilldisp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintBilldisp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrintBilldisp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnPrintBilldisp.Location = new System.Drawing.Point(382, 534);
+            this.btnPrintBilldisp.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrintBilldisp.Name = "btnPrintBilldisp";
+            this.btnPrintBilldisp.Size = new System.Drawing.Size(119, 45);
+            this.btnPrintBilldisp.TabIndex = 81;
+            this.btnPrintBilldisp.TabStop = false;
+            this.btnPrintBilldisp.Text = "영수증\r\n(화면보기)";
+            this.btnPrintBilldisp.UseVisualStyleBackColor = false;
+            this.btnPrintBilldisp.Click += new System.EventHandler(this.btnPrintBilldisp_Click);
+            // 
+            // lvwPayOrder
+            // 
+            this.lvwPayOrder.BackColor = System.Drawing.Color.White;
+            this.lvwPayOrder.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.no,
+            this.pay_goods,
+            this.amount_cnt,
+            this.dc_shop});
+            this.lvwPayOrder.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwPayOrder.ForeColor = System.Drawing.Color.Black;
+            this.lvwPayOrder.FullRowSelect = true;
+            this.lvwPayOrder.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwPayOrder.HideSelection = false;
+            this.lvwPayOrder.Location = new System.Drawing.Point(20, 433);
+            this.lvwPayOrder.MultiSelect = false;
+            this.lvwPayOrder.Name = "lvwPayOrder";
+            this.lvwPayOrder.Size = new System.Drawing.Size(352, 252);
+            this.lvwPayOrder.TabIndex = 80;
+            this.lvwPayOrder.TabStop = false;
+            this.lvwPayOrder.UseCompatibleStateImageBehavior = false;
+            this.lvwPayOrder.View = System.Windows.Forms.View.Details;
+            // 
+            // no
+            // 
+            this.no.Text = "#주문";
+            this.no.Width = 70;
+            // 
+            // pay_goods
+            // 
+            this.pay_goods.Text = "상품/결제";
+            this.pay_goods.Width = 100;
+            // 
+            // amount_cnt
+            // 
+            this.amount_cnt.Text = "수량/금액";
+            this.amount_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amount_cnt.Width = 80;
+            // 
+            // dc_shop
+            // 
+            this.dc_shop.Text = "업장";
+            this.dc_shop.Width = 80;
+            // 
             // btnPrintBillex
             // 
             this.btnPrintBillex.BackColor = System.Drawing.Color.White;
             this.btnPrintBillex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintBillex.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrintBillex.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBillex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintBillex.Location = new System.Drawing.Point(393, 495);
+            this.btnPrintBillex.Location = new System.Drawing.Point(382, 486);
+            this.btnPrintBillex.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrintBillex.Name = "btnPrintBillex";
-            this.btnPrintBillex.Size = new System.Drawing.Size(110, 45);
+            this.btnPrintBillex.Size = new System.Drawing.Size(119, 45);
             this.btnPrintBillex.TabIndex = 79;
             this.btnPrintBillex.TabStop = false;
             this.btnPrintBillex.Text = "영수증\r\n(상품제외)";
@@ -101,22 +167,22 @@
             // 
             this.btnPrintOrder.BackColor = System.Drawing.Color.White;
             this.btnPrintOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintOrder.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrintOrder.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintOrder.Location = new System.Drawing.Point(393, 555);
+            this.btnPrintOrder.Location = new System.Drawing.Point(382, 587);
             this.btnPrintOrder.Name = "btnPrintOrder";
-            this.btnPrintOrder.Size = new System.Drawing.Size(110, 40);
+            this.btnPrintOrder.Size = new System.Drawing.Size(119, 50);
             this.btnPrintOrder.TabIndex = 78;
             this.btnPrintOrder.TabStop = false;
-            this.btnPrintOrder.Text = "주문서";
+            this.btnPrintOrder.Text = "#주문서";
             this.btnPrintOrder.UseVisualStyleBackColor = false;
             this.btnPrintOrder.Click += new System.EventHandler(this.btnPrintOrder_Click);
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.btnScanner);
+            this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.dtBizDt);
             this.panel1.Controls.Add(this.tbBillNo);
             this.panel1.Controls.Add(this.lbl3);
@@ -128,17 +194,6 @@
             this.panel1.Size = new System.Drawing.Size(482, 67);
             this.panel1.TabIndex = 77;
             // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl1.Location = new System.Drawing.Point(12, 13);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(53, 12);
-            this.lbl1.TabIndex = 71;
-            this.lbl1.Text = "영업일자";
-            // 
             // btnScanner
             // 
             this.btnScanner.BackColor = System.Drawing.Color.White;
@@ -148,15 +203,26 @@
             this.btnScanner.Location = new System.Drawing.Point(386, 13);
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(80, 40);
-            this.btnScanner.TabIndex = 75;
+            this.btnScanner.TabIndex = 76;
             this.btnScanner.TabStop = false;
             this.btnScanner.UseVisualStyleBackColor = false;
             this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.lbl1.Location = new System.Drawing.Point(12, 13);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(53, 12);
+            this.lbl1.TabIndex = 71;
+            this.lbl1.Text = "영업일자";
+            // 
             // dtBizDt
             // 
-            this.dtBizDt.CalendarFont = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtBizDt.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtBizDt.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtBizDt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBizDt.Location = new System.Drawing.Point(14, 30);
             this.dtBizDt.Name = "dtBizDt";
@@ -169,7 +235,7 @@
             // 
             this.tbBillNo.BackColor = System.Drawing.Color.White;
             this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBillNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBillNo.Location = new System.Drawing.Point(190, 30);
             this.tbBillNo.MaxLength = 6;
             this.tbBillNo.Name = "tbBillNo";
@@ -181,7 +247,7 @@
             // lbl3
             // 
             this.lbl3.AutoSize = true;
-            this.lbl3.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lbl3.Location = new System.Drawing.Point(190, 13);
             this.lbl3.Name = "lbl3";
@@ -193,7 +259,7 @@
             // cbPosNo
             // 
             this.cbPosNo.BackColor = System.Drawing.Color.White;
-            this.cbPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.ItemHeight = 13;
             this.cbPosNo.Items.AddRange(new object[] {
@@ -201,7 +267,7 @@
             "01",
             "02",
             "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(125, 32);
+            this.cbPosNo.Location = new System.Drawing.Point(124, 30);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(50, 21);
             this.cbPosNo.TabIndex = 73;
@@ -210,7 +276,7 @@
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lbl2.Location = new System.Drawing.Point(121, 13);
             this.lbl2.Name = "lbl2";
@@ -232,24 +298,12 @@
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // lblLayoutBill
-            // 
-            this.lblLayoutBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblLayoutBill.Font = new System.Drawing.Font("GulimChe", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLayoutBill.Location = new System.Drawing.Point(20, 433);
-            this.lblLayoutBill.Multiline = true;
-            this.lblLayoutBill.Name = "lblLayoutBill";
-            this.lblLayoutBill.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.lblLayoutBill.Size = new System.Drawing.Size(358, 244);
-            this.lblLayoutBill.TabIndex = 55;
-            this.lblLayoutBill.TabStop = false;
-            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("GulimChe", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
@@ -263,7 +317,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lblTitle.Font = new System.Drawing.Font("GulimChe", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -278,11 +332,11 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(393, 637);
+            this.btnCancel.Location = new System.Drawing.Point(382, 645);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 40);
+            this.btnCancel.Size = new System.Drawing.Size(119, 40);
             this.btnCancel.TabIndex = 48;
             this.btnCancel.TabStop = false;
             this.btnCancel.Text = "결제취소";
@@ -293,11 +347,11 @@
             // 
             this.btnPrintBill.BackColor = System.Drawing.Color.White;
             this.btnPrintBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintBill.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrintBill.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintBill.Location = new System.Drawing.Point(393, 433);
+            this.btnPrintBill.Location = new System.Drawing.Point(382, 433);
             this.btnPrintBill.Name = "btnPrintBill";
-            this.btnPrintBill.Size = new System.Drawing.Size(110, 60);
+            this.btnPrintBill.Size = new System.Drawing.Size(120, 50);
             this.btnPrintBill.TabIndex = 48;
             this.btnPrintBill.TabStop = false;
             this.btnPrintBill.Text = "영수증";
@@ -306,6 +360,7 @@
             // 
             // lvwPayManager
             // 
+            this.lvwPayManager.BackColor = System.Drawing.Color.White;
             this.lvwPayManager.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.bill_no,
             this.pay_class,
@@ -314,20 +369,20 @@
             this.pos_no,
             this.amount,
             this.dc,
-            this.cancel,
+            this.cancel_name,
             this.paykeep,
             this.pay_calss,
-            this.is_cancel});
-            this.lvwPayManager.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cancel_code});
+            this.lvwPayManager.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwPayManager.ForeColor = System.Drawing.Color.Black;
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayManager.HideSelection = false;
             this.lvwPayManager.Location = new System.Drawing.Point(20, 140);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
-            this.lvwPayManager.Size = new System.Drawing.Size(483, 284);
+            this.lvwPayManager.Size = new System.Drawing.Size(482, 284);
             this.lvwPayManager.TabIndex = 44;
-            this.lvwPayManager.TabStop = false;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;
             this.lvwPayManager.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwPayManager_ColumnWidthChanging);
@@ -335,7 +390,7 @@
             // 
             // bill_no
             // 
-            this.bill_no.Text = "######";
+            this.bill_no.Text = "영수증";
             this.bill_no.Width = 67;
             // 
             // pay_class
@@ -370,16 +425,25 @@
             this.dc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.dc.Width = 40;
             // 
-            // cancel
+            // cancel_name
             // 
-            this.cancel.Text = "취소";
-            this.cancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cancel.Width = 50;
+            this.cancel_name.Text = "취소";
+            this.cancel_name.Width = 50;
             // 
             // paykeep
             // 
             this.paykeep.Text = "";
             this.paykeep.Width = 0;
+            // 
+            // pay_calss
+            // 
+            this.pay_calss.Text = "";
+            this.pay_calss.Width = 0;
+            // 
+            // cancel_code
+            // 
+            this.cancel_code.Text = "";
+            this.cancel_code.Width = 0;
             // 
             // amount_etc
             // 
@@ -392,16 +456,6 @@
             this.amount_card.Text = "금액";
             this.amount_card.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amount_card.Width = 80;
-            // 
-            // pay_calss
-            // 
-            this.pay_calss.Text = "";
-            this.pay_calss.Width = 0;
-            // 
-            // is_cancel
-            // 
-            this.is_cancel.Text = "";
-            this.is_cancel.Width = 0;
             // 
             // frmPayManager
             // 
@@ -416,7 +470,6 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayManager_FormClosed);
             this.panelback.ResumeLayout(false);
-            this.panelback.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -437,12 +490,10 @@
         private System.Windows.Forms.ColumnHeader amount;
         private System.Windows.Forms.ColumnHeader amount_card;
         private System.Windows.Forms.ColumnHeader dc;
-        private System.Windows.Forms.ColumnHeader cancel;
+        private System.Windows.Forms.ColumnHeader cancel_name;
         private System.Windows.Forms.ColumnHeader order_dt;
-        private System.Windows.Forms.TextBox lblLayoutBill;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Button btnScanner;
         private System.Windows.Forms.DateTimePicker dtBizDt;
         private System.Windows.Forms.TextBox tbBillNo;
         private System.Windows.Forms.Label lbl3;
@@ -454,6 +505,13 @@
         private System.Windows.Forms.Button btnPrintBillex;
         private System.Windows.Forms.Button btnPrintOrder;
         private System.Windows.Forms.ColumnHeader pay_calss;
-        private System.Windows.Forms.ColumnHeader is_cancel;
+        private System.Windows.Forms.ColumnHeader cancel_code;
+        private System.Windows.Forms.ListView lvwPayOrder;
+        private System.Windows.Forms.ColumnHeader no;
+        private System.Windows.Forms.ColumnHeader pay_goods;
+        private System.Windows.Forms.ColumnHeader amount_cnt;
+        private System.Windows.Forms.ColumnHeader dc_shop;
+        private System.Windows.Forms.Button btnPrintBilldisp;
+        private System.Windows.Forms.Button btnScanner;
     }
 }

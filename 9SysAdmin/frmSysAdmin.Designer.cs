@@ -71,10 +71,10 @@
             this.panelAdminConsole.Controls.Add(this.btnSysGoods);
             this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroup);
             this.panelAdminConsole.Font = new System.Drawing.Font("굴림", 10F);
-            this.panelAdminConsole.Location = new System.Drawing.Point(0, 60);
+            this.panelAdminConsole.Location = new System.Drawing.Point(0, 70);
             this.panelAdminConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelAdminConsole.Name = "panelAdminConsole";
-            this.panelAdminConsole.Size = new System.Drawing.Size(123, 548);
+            this.panelAdminConsole.Size = new System.Drawing.Size(123, 568);
             this.panelAdminConsole.TabIndex = 2;
             this.panelAdminConsole.Visible = false;
             // 
@@ -85,7 +85,7 @@
             this.btnSysSoldout.Location = new System.Drawing.Point(7, 409);
             this.btnSysSoldout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysSoldout.Name = "btnSysSoldout";
-            this.btnSysSoldout.Size = new System.Drawing.Size(112, 40);
+            this.btnSysSoldout.Size = new System.Drawing.Size(112, 60);
             this.btnSysSoldout.TabIndex = 6;
             this.btnSysSoldout.TabStop = false;
             this.btnSysSoldout.Text = "품절";
@@ -124,7 +124,7 @@
             // 
             this.btnDcrFavorite.BackColor = System.Drawing.Color.White;
             this.btnDcrFavorite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDcrFavorite.Location = new System.Drawing.Point(7, 460);
+            this.btnDcrFavorite.Location = new System.Drawing.Point(7, 480);
             this.btnDcrFavorite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDcrFavorite.Name = "btnDcrFavorite";
             this.btnDcrFavorite.Size = new System.Drawing.Size(112, 40);
@@ -144,7 +144,7 @@
             this.btnSysSite.Size = new System.Drawing.Size(112, 30);
             this.btnSysSite.TabIndex = 2;
             this.btnSysSite.TabStop = false;
-            this.btnSysSite.Text = "내사업장\r\n";
+            this.btnSysSite.Text = "사업장\r\n";
             this.btnSysSite.UseVisualStyleBackColor = false;
             this.btnSysSite.Click += new System.EventHandler(this.btnSysSite_Click);
             // 
@@ -166,7 +166,7 @@
             // 
             this.btnSysPayConsole.BackColor = System.Drawing.Color.White;
             this.btnSysPayConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysPayConsole.Location = new System.Drawing.Point(7, 510);
+            this.btnSysPayConsole.Location = new System.Drawing.Point(7, 530);
             this.btnSysPayConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysPayConsole.Name = "btnSysPayConsole";
             this.btnSysPayConsole.Size = new System.Drawing.Size(112, 30);
@@ -227,7 +227,7 @@
             this.btnPos.Location = new System.Drawing.Point(7, 10);
             this.btnPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPos.Name = "btnPos";
-            this.btnPos.Size = new System.Drawing.Size(112, 40);
+            this.btnPos.Size = new System.Drawing.Size(112, 50);
             this.btnPos.TabIndex = 0;
             this.btnPos.TabStop = false;
             this.btnPos.Text = "포스등록신청";
@@ -239,9 +239,9 @@
             this.panelCertConsole.Controls.Add(this.btnPosMac);
             this.panelCertConsole.Controls.Add(this.btnUser);
             this.panelCertConsole.Font = new System.Drawing.Font("굴림", 10F);
-            this.panelCertConsole.Location = new System.Drawing.Point(0, 616);
+            this.panelCertConsole.Location = new System.Drawing.Point(0, 646);
             this.panelCertConsole.Name = "panelCertConsole";
-            this.panelCertConsole.Size = new System.Drawing.Size(122, 94);
+            this.panelCertConsole.Size = new System.Drawing.Size(122, 68);
             this.panelCertConsole.TabIndex = 3;
             this.panelCertConsole.Visible = false;
             // 
@@ -253,7 +253,7 @@
             this.btnPosMac.Location = new System.Drawing.Point(7, 0);
             this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPosMac.Name = "btnPosMac";
-            this.btnPosMac.Size = new System.Drawing.Size(112, 40);
+            this.btnPosMac.Size = new System.Drawing.Size(112, 30);
             this.btnPosMac.TabIndex = 1;
             this.btnPosMac.TabStop = false;
             this.btnPosMac.Text = "포스기기인증";
@@ -265,10 +265,10 @@
             this.btnUser.BackColor = System.Drawing.Color.White;
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUser.ForeColor = System.Drawing.Color.Red;
-            this.btnUser.Location = new System.Drawing.Point(7, 43);
+            this.btnUser.Location = new System.Drawing.Point(7, 33);
             this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(112, 40);
+            this.btnUser.Size = new System.Drawing.Size(112, 30);
             this.btnUser.TabIndex = 2;
             this.btnUser.TabStop = false;
             this.btnUser.Text = "사용자인증";

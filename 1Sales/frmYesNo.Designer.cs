@@ -63,14 +63,14 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(156, 36);
+            this.lblTitle.Location = new System.Drawing.Point(153, 36);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(149, 22);
+            this.lblTitle.Size = new System.Drawing.Size(149, 26);
             this.lblTitle.TabIndex = 43;
-            this.lblTitle.Text = "영수증을 출력";
+            this.lblTitle.Text = "영수증 출력";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmYesNo
             // 
@@ -87,7 +87,6 @@
             this.Text = "frmYesNo";
             this.TopMost = true;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

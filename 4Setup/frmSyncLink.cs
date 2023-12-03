@@ -1,0 +1,139 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static thepos.thePos;
+using static thepos.frmMain;
+using System.Data.SQLite;
+
+namespace thepos
+{
+    public partial class frmSyncLink : Form
+    {
+        public frmSyncLink()
+        {
+            InitializeComponent();
+            initialize_font();
+        }
+
+
+        private void initialize_font()
+        {
+
+            lblTitle.Font = font10;
+
+
+            //
+            lblDetail.Font = font10;
+            btnSuncLinkStory.Font = font10;
+
+            //
+            lblTitle2.Font = font10;
+            lblVersionTitle.Font = font10;
+            lblServerTitle.Font = font10;
+            lblServerVersion.Font = font10;
+            lblLocalTitle.Font = font10;
+            lblLocalVersion.Font = font10;
+            btnViewVer.Font = font10;
+            btnDownload.Font = font10;
+
+            //
+            lblTitle3.Font = font10;
+            lblCntTitle.Font = font10;
+            lblOrdersTitle.Font = font10;
+            lblOrdersCnt.Font = font10;
+            lblOrderItemTitle.Font = font10;
+            lblOrderItemCnt.Font = font10;
+            lblPaymentTitle.Font = font10;
+            lblPaymentCnt.Font = font10;
+            lblPaymentCashTitle.Font = font10;
+            lblPaymentCashCnt.Font = font10;
+            lblPaymentCardTitle.Font = font10;
+            lblPaymentCardCnt.Font = font10;
+            btnViewRecord.Font = font10;
+            btnUpload.Font = font10;
+
+        }
+
+        private void btnViewVer_Click(object sender, EventArgs e)
+        {
+            // 1.서버원장 다운로드
+            String dt = get_version_server();
+            if (dt.Length == 14)
+            {
+                lblServerVersion.Text = dt.Substring(0, 4) + "-" + dt.Substring(4, 2) + "-" + dt.Substring(6, 2) + "  " + dt.Substring(8, 2) + ":" + dt.Substring(10, 2) + ":" + dt.Substring(12, 2);
+            }
+            else
+            {
+                lblServerVersion.Text = dt;
+            }
+            
+
+            dt = get_version_local();
+            if (dt.Length == 14)
+            {
+                lblLocalVersion.Text = dt.Substring(0, 4) + "-" + dt.Substring(4, 2) + "-" + dt.Substring(6, 2) + "  " + dt.Substring(8, 2) + ":" + dt.Substring(10, 2) + ":" + dt.Substring(12, 2);
+            }
+            else
+            {
+                lblLocalVersion.Text = dt;
+            }
+
+        }
+
+        private void btnViewRecord_Click(object sender, EventArgs e)
+        {
+            String sql = "SELECT count(*) as cnt FROM orders";
+            SQLiteDataReader dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblOrdersCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
+
+
+            sql = "SELECT count(*) as cnt FROM orderItem";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblOrderItemCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
+
+
+            //
+            sql = "SELECT count(*) as cnt FROM payment";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblPaymentCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
+
+
+            //
+            sql = "SELECT count(*) as cnt FROM paymentCash";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblPaymentCashCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
+
+
+            //
+            sql = "SELECT count(*) as cnt FROM paymentCard";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblPaymentCardCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
+        }
+    }
+}

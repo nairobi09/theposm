@@ -77,27 +77,12 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM orders WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                lblOrdersCnt0.Text = dr["cnt"].ToString();
-            }
-            dr.Close();
 
             sql = "SELECT count(*) as cnt FROM orderItem";
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
                 lblOrderItemCnt.Text = dr["cnt"].ToString();
-            }
-            dr.Close();
-
-            sql = "SELECT count(*) as cnt FROM orderItem WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                lblOrderItemCnt0.Text = dr["cnt"].ToString();
             }
             dr.Close();
 
@@ -111,13 +96,6 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM payment WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                lblPaymentCnt0.Text = dr["cnt"].ToString();
-            }
-            dr.Close();
 
             //
             sql = "SELECT count(*) as cnt FROM paymentCash";
@@ -128,13 +106,6 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM paymentCash WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                lblPaymentCashCnt0.Text = dr["cnt"].ToString();
-            }
-            dr.Close();
 
             //
             sql = "SELECT count(*) as cnt FROM paymentCard";
@@ -145,13 +116,6 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM paymentCard WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                lblPaymentCardCnt0.Text = dr["cnt"].ToString();
-            }
-            dr.Close();
 
         }
 
@@ -258,8 +222,10 @@ namespace thepos
                     parameters["dcrValue"] = dr["dcrValue"].ToString();
                     parameters["payClass"] = dr["payClass"].ToString();
                     parameters["ticketNo"] = dr["ticketNo"].ToString();
+
                     parameters["isCancel"] = dr["isCancel"].ToString();
                     parameters["shopCode"] = dr["shopCode"].ToString();
+                    parameters["shopOrderNo"] = dr["shopOrderNo"].ToString();
 
                     if (mRequestPost("orderItem", parameters))
                     {

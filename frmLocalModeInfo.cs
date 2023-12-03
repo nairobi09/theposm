@@ -44,25 +44,24 @@ namespace thepos
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            mReturn = false;
             Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            String siteId = "";
-
-
             SQLiteDataReader dr = sql_select_local_db("SELECT * FROM site");
             if (dr.Read())
             {
                 mSiteId = dr.GetString(0);
                 mBizDate = dtpBizDate.Value.ToString("yyyyMMdd");
-                mTheMode = "Local";
+
+                mReturn = true;
             }
             else
             {
+                mReturn = false;
                 MessageBox.Show("로컬 데이터 오류.\r\n로컬모드 사용을 할 수 없습니다.", "thepos");
-                return;
             }
             dr.Close();
 

@@ -53,9 +53,9 @@
             this.lblTicketMedia = new System.Windows.Forms.Label();
             this.lblTicketType = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblBillImage = new System.Windows.Forms.Label();
             this.btnX = new System.Windows.Forms.Button();
             this.pbBillImage = new System.Windows.Forms.PictureBox();
+            this.lblBillImage = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -339,17 +339,6 @@
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
             // 
-            // lblBillImage
-            // 
-            this.lblBillImage.AutoSize = true;
-            this.lblBillImage.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBillImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBillImage.Location = new System.Drawing.Point(13, 34);
-            this.lblBillImage.Name = "lblBillImage";
-            this.lblBillImage.Size = new System.Drawing.Size(49, 28);
-            this.lblBillImage.TabIndex = 54;
-            this.lblBillImage.Text = "영수증\r\n이미지";
-            // 
             // btnX
             // 
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -370,9 +359,21 @@
             this.pbBillImage.Location = new System.Drawing.Point(98, 34);
             this.pbBillImage.Name = "pbBillImage";
             this.pbBillImage.Size = new System.Drawing.Size(259, 71);
+            this.pbBillImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbBillImage.TabIndex = 56;
             this.pbBillImage.TabStop = false;
             this.pbBillImage.Click += new System.EventHandler(this.pbBillImage_Click);
+            // 
+            // lblBillImage
+            // 
+            this.lblBillImage.AutoSize = true;
+            this.lblBillImage.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBillImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblBillImage.Location = new System.Drawing.Point(13, 34);
+            this.lblBillImage.Name = "lblBillImage";
+            this.lblBillImage.Size = new System.Drawing.Size(49, 28);
+            this.lblBillImage.TabIndex = 54;
+            this.lblBillImage.Text = "영수증\r\n이미지";
             // 
             // openFileDialog
             // 

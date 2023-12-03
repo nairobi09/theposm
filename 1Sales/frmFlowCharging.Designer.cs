@@ -90,6 +90,7 @@
             this.tbChargeAmt.Name = "tbChargeAmt";
             this.tbChargeAmt.Size = new System.Drawing.Size(140, 26);
             this.tbChargeAmt.TabIndex = 84;
+            this.tbChargeAmt.TabStop = false;
             this.tbChargeAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnReset
@@ -245,6 +246,7 @@
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(80, 40);
             this.btnScanner.TabIndex = 75;
+            this.btnScanner.TabStop = false;
             this.btnScanner.UseVisualStyleBackColor = false;
             this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
@@ -256,6 +258,7 @@
             this.dtBizDt.Name = "dtBizDt";
             this.dtBizDt.Size = new System.Drawing.Size(100, 23);
             this.dtBizDt.TabIndex = 68;
+            this.dtBizDt.TabStop = false;
             this.dtBizDt.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
             // 
             // tbTicketNo
@@ -268,6 +271,7 @@
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(80, 23);
             this.tbTicketNo.TabIndex = 74;
+            this.tbTicketNo.TabStop = false;
             this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTicketNoTitle
@@ -296,6 +300,7 @@
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(50, 21);
             this.cbPosNo.TabIndex = 73;
+            this.cbPosNo.TabStop = false;
             // 
             // lblPosNoTitle
             // 
@@ -318,6 +323,7 @@
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 72;
+            this.btnView.TabStop = false;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -330,6 +336,7 @@
             this.ticket_no,
             this.charege_dt,
             this.amt});
+            this.lvwFlow.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwFlow.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwFlow.FullRowSelect = true;
             this.lvwFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;

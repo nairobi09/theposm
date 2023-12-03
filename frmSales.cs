@@ -23,6 +23,7 @@ using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
 using System.Data.SQLite;
 using System.Collections;
+using System.Net.NetworkInformation;
 
 
 
@@ -90,6 +91,10 @@ namespace thepos
         public static TableLayoutPanel mTableLayoutPanelPayControl;
 
 
+
+
+
+
         public frmSales()
         {
             InitializeComponent();
@@ -123,46 +128,15 @@ namespace thepos
             }
 
 
-            if (mTheMode == "Local")
-            {
-                lblLocalModeTitle.Visible = true;
+        }
 
-                btnFlowCert.Enabled = false;
-                btnFlowCharging.Enabled = false;
-                btnFlowSettlement.Enabled = false;
-                btnFlowTicketing.Enabled = false;
-                btnFlowLocker.Enabled = false;
-
-                for (int i = 0; i < tableLayoutPanelPayControl.Controls.Count; i++)
-                {
-                    if (tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsolePoint" |
-                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleEasy")
-                    {
-                        tableLayoutPanelPayControl.Controls[i].Enabled = false;
-                    }
-                }
-            }
-            else
-            {
-                lblLocalModeTitle.Visible = false;
-
-                btnFlowCert.Enabled = true;
-                btnFlowCharging.Enabled = true;
-                btnFlowSettlement.Enabled = true;
-                btnFlowTicketing.Enabled = true;
-                btnFlowLocker.Enabled = true;
-
-                for (int i = 0; i < tableLayoutPanelPayControl.Controls.Count; i++)
-                {
-                    if (tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsolePoint" |
-                        tableLayoutPanelPayControl.Controls[i].Name == "btnPayConsoleEasy")
-                    {
-                        tableLayoutPanelPayControl.Controls[i].Enabled = true;
-                    }
-                }
-            }
+        private void frmSales_Shown(object sender, EventArgs e)
+        {
+            ChangeTheMode();
 
         }
+
+
 
 
         private void initialize_font()
@@ -316,9 +290,34 @@ namespace thepos
             mTableLayoutPanelPayControl = tableLayoutPanelPayControl;
 
 
-            mPbNetworkConn = pbNetworkConn;
+
+            // 
+            mLblTheModeStatus.VisibleChanged += (sender, args) => ChangeTheMode();
 
         }
+
+        public void ChangeTheMode()
+        {
+            // 네트워크 상태 : 정상이미지를 보이기/숨기기
+            //pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable()));
+            pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable();
+            pbNetworkDisconn.Visible = !pbNetworkConn.Visible;
+
+            if (mTheMode == "Server")
+            {
+                lblLocalModeTitle.Visible = false;
+
+                SetDisplayAlarm("W", "모드변경 : 로컬 -> 서버");
+            }
+            else
+            {
+                lblLocalModeTitle.Visible = true;
+                SetDisplayAlarm("W", "모드변경 : 서버 -> 로걸");
+            }
+
+
+        }
+
 
 
         private void get_last_theno()
@@ -1131,7 +1130,7 @@ namespace thepos
                             parameters["orderDate"] = get_today_date();
                             parameters["orderTime"] = get_today_time();
                             parameters["cnt"] = order.cnt + "";
-                            parameters["isCancel"] = "Y";
+                            parameters["isCancel"] = "y";
 
                             if (mRequestPost("orders", parameters))
                             {
@@ -1157,7 +1156,7 @@ namespace thepos
                             parameters["bizDt"] = mBizDate;
                             parameters["theNo"] = order.the_no;
                             parameters["tranType"] = "A";
-                            parameters["isCancel"] = "Y";
+                            parameters["isCancel"] = "y";
 
                             if (mRequestPatch("orders", parameters))
                             {
@@ -1241,7 +1240,7 @@ namespace thepos
             if (mPayClass == "OR" | mPayClass == "US")
             {
                 if (isExistOrderPrinter(memOrderItemArr[0].shop_code) & memOrderItemArr[0].ticket != "Y")
-                    memOrderItemArr[0].shop_order_no = get_server_new_order_no();
+                    memOrderItemArr[0].shop_order_no = get_new_order_no();
                 else
                     memOrderItemArr[0].shop_order_no = "";
 
@@ -1255,7 +1254,7 @@ namespace thepos
                     else
                     {
                         if (isExistOrderPrinter(memOrderItemArr[i+ 1].shop_code) & memOrderItemArr[i + 1].ticket != "Y")
-                            memOrderItemArr[i + 1].shop_order_no = get_server_new_order_no();
+                            memOrderItemArr[i + 1].shop_order_no = get_new_order_no();
                         else
                             memOrderItemArr[i + 1].shop_order_no = "";
                     }
@@ -1316,8 +1315,8 @@ namespace thepos
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-                String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel, send_YN) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + memOrderItemArr.Length + ", '', '')";
+                String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + memOrderItemArr.Length + ", '')";
                 sql_excute_local_db(sql);
 
 
@@ -1325,9 +1324,9 @@ namespace thepos
                 for (int i = 0; i < memOrderItemArr.Length; i++)
                 {
                     MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, shopOrderNo, isCancel, send_YN) " +
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, shopOrderNo, isCancel) " +
                                 "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItemArr[i].code + "','" + memOrderItemArr[i].name + "'," + memOrderItemArr[i].cnt + "," + memOrderItemArr[i].amt + "," +
-                                "'" + memOrderItemArr[i].shop_code + "','" + memOrderItemArr[i].ticket + "','" + memOrderItemArr[i].taxfree + "'," + memOrderItemArr[i].dc_amount + ",'" + memOrderItemArr[i].dcr_type + "','" + memOrderItemArr[i].dcr_des + "'," + memOrderItemArr[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + memOrderItemArr[i].shop_order_no + "','', '')";
+                                "'" + memOrderItemArr[i].shop_code + "','" + memOrderItemArr[i].ticket + "','" + memOrderItemArr[i].taxfree + "'," + memOrderItemArr[i].dc_amount + ",'" + memOrderItemArr[i].dcr_type + "','" + memOrderItemArr[i].dcr_des + "'," + memOrderItemArr[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + memOrderItemArr[i].shop_order_no + "','')";
                     sql_excute_local_db(sql);
                 }
             }
@@ -4296,6 +4295,36 @@ namespace thepos
         }
 
 
+
+
+
+
+
+        public static byte[] CutPage()
+        {
+            byte[] partial_cut = new byte[3] { 0x1D, 0x56, 0x00 };
+            return partial_cut;
+        }
+
+        public static byte[] sizeLine()
+        {
+            byte[] charSize = new byte[3] { 0x1B, Convert.ToByte('3'), 0x30 };
+            return charSize;
+        }
+
+        public static byte[] sizeCharLarge()
+        {
+            byte[] charSize = new byte[3] { 0x1D, Convert.ToByte('!'), 0x33 };
+            return charSize;
+        }
+
+        public static byte[] sizeCharMedium()
+        {
+            byte[] charSize = new byte[3] { 0x1D, Convert.ToByte('!'), 0x11 };
+            return charSize;
+        }
+
+
         public static void print_ticket(String t_ticket_no, String t_goods_code)
         {
             if (mTicketPrinterPort + "" == "")
@@ -4380,26 +4409,6 @@ namespace thepos
         }
 
 
-
-
-        private static string strPosTitle(string title)
-        {
-            int blen = Encoding.Default.GetBytes(title).Length;
-            int slen = title.Length;
-            int len = 16 - (blen - slen);
-
-            return string.Format("{0,-" + len + "}{1,3}", title, 1) + " : ";
-        }
-
-        public static byte[] CutPage()
-        {
-            byte[] partial_cut = new byte[3] { 0x1D, 0x56, 0x00 };
-
-            return partial_cut;
-
-        }
-
-
         public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep, bool isQuestion)
         {
 
@@ -4422,7 +4431,6 @@ namespace thepos
                 {
                     return;
                 }
-
             }
 
             String headerBill = make_bill_header();
@@ -4439,13 +4447,25 @@ namespace thepos
                 PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
 
 
-                byte[] BytesValue = new byte[100];
+                byte[] BytesValue = new byte[0];
                 BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, sizeLine());
+                
 
-                //? 로고이미지 서버등록 이미지로 교체
-                BytesValue = PrintExtensions.AddBytes(BytesValue, GetLogo(@"D:\thepos_bill_logo.bmp", 500));
+                // 로고이미지 서버등록 이미지로 교체
+                if (mByteLogoImage == null)
+                {
+
+                }
+                else
+                {
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, mByteLogoImage);
+                }
+
+
+
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 //
 
@@ -4466,13 +4486,6 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(the_no));
 
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
-
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -4492,18 +4505,18 @@ namespace thepos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
+                MessageBox.Show("영수증 출력 오류.\r\n헬프데스크로 문의바랍니다.");  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;
             }
         }
 
 
-        public static byte[] GetLogo(string LogoPath, int printWidth)
+        public static byte[] GetImage(Bitmap bill_image, int printWidth)
         {
             List<byte> byteList = new List<byte>();
-            if (!File.Exists(LogoPath))
-                return null;
-            BitmapData data = GetBitmapData(LogoPath, printWidth);
+
+            BitmapData data = GetBitmapData(bill_image, printWidth);
+
             BitArray dots = data.Dots;
             byte[] width = BitConverter.GetBytes(data.Width);
 
@@ -4549,9 +4562,9 @@ namespace thepos
             return byteList.ToArray();
         }
 
-        private static BitmapData GetBitmapData(string bmpFileName, int width)
+        private static BitmapData GetBitmapData(Bitmap bill_image, int width)
         {
-            using (var bitmap = (Bitmap)Bitmap.FromFile(bmpFileName))
+            using (var bitmap = bill_image)
             {
                 var threshold = 127;
                 var index = 0;
@@ -4584,6 +4597,7 @@ namespace thepos
             }
         }
 
+
         private class BitmapData
         {
             public BitArray Dots
@@ -4607,30 +4621,48 @@ namespace thepos
     
 
 
-
-
-        private static String get_server_new_order_no() 
+        private static String get_new_order_no() 
         {
             String order_no = "";
-            String sUrl = "orderNo?siteId=" + mSiteId + "&bizDt=" + mBizDate;
-            if (mRequestGet(sUrl))
+
+            if (mTheMode == "Local")
             {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["orderNo"].ToString();
-                    JArray arr = JArray.Parse(data);
-                    order_no = convert_number(arr[0]["orderNo"].ToString()).ToString("0000");
-                }
-                else
-                {
-                    MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                }
+                //? 로컬모드에서 주문번호를 어떻게 부여할까?? 자리수 늘리기?
+
+
+
+                0000
+
+
+
+
+
+
+
             }
             else
             {
-                MessageBox.Show("시스템오류. orderNo\n\n" + mErrorMsg, "thepos");
+                String sUrl = "orderNo?siteId=" + mSiteId + "&bizDt=" + mBizDate;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["orderNo"].ToString();
+                        JArray arr = JArray.Parse(data);
+                        order_no = convert_number(arr[0]["orderNo"].ToString()).ToString("0000");
+                    }
+                    else
+                    {
+                        MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. orderNo\n\n" + mErrorMsg, "thepos");
+                }
             }
 
+            //
             return order_no;
         }
 
@@ -4650,10 +4682,15 @@ namespace thepos
             }
 
 
+            if (MemOrderItemList.Count == 0)
+                return;
+
+
 
             //
             String t_shop_code = "";
             String t_order_no = "";
+            String t_order_dt = get_today_date() + get_today_time();
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
 
@@ -4673,12 +4710,10 @@ namespace thepos
                 else
                 {
                     // 업장주문서 출력 -> shop 등록정보 프린터
-                    String strPrint1 = make_printer_order_str(t_shop_code, t_good_name, t_good_cnt, t_order_no);
-                    print_order_str(t_shop_code, strPrint1);
-
+                    print_order_str("to_shop", t_shop_code, "주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
 
                     // 주문교환권 출력 -> 영수증프린터
-                    print_order_to_bill_printer("교환권" + strPrint1);
+                    print_order_str("to_local", t_shop_code, "교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
 
 
                     t_good_name.Clear();
@@ -4690,66 +4725,18 @@ namespace thepos
                 }
             }
 
-            // 업장주문서 출력
-            String strPrint2 = make_printer_order_str(t_shop_code, t_good_name, t_good_cnt, t_order_no);
-            print_order_str(t_shop_code, strPrint2);
-
+            // 업장주문서 출력 -> shop 등록정보 프린터
+            print_order_str("to_shop", t_shop_code, "주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
 
             // 주문교환권 출력 -> 영수증프린터
-            print_order_to_bill_printer("교환권" + strPrint2);
-
-
-        }
-
-
-        private static void print_order_to_bill_printer(String print_str)
-        {
-
-            //
-            const string ESC = "\u001B";
-            const string InitializePrinter = ESC + "@";
-
-            PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
-
-            byte[] BytesValue = new byte[100];
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(print_str));
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
-
-
-            PrintExtensions.Print(BytesValue, mBillPrinterPort);
-
+            print_order_str("to_local", t_shop_code, "교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
 
         }
 
 
-
-
-        private static String make_printer_order_str(String shop, List<String> name, List<int> cnt, String order_no)
+        public static String __make_printer_order_str(String shop, List<String> name, List<int> cnt, String order_no, String order_dt)
         {
-            String tStr = "";
-            String strPrint = "";
-
-            tStr = "주문서";
-
-            strPrint = Space(21 - encodelen(tStr)) + tStr + Space(21 - encodelen(tStr)) + "\r\n\r\n";
-            strPrint += "------------------------------------------\r\n";  // 42
-
+            String strPrint = "------------------------------------------\r\n";  // 42
 
             for (int i = 0; i < name.Count; i++)
             {
@@ -4762,50 +4749,37 @@ namespace thepos
             }
 
             strPrint += "------------------------------------------\r\n\r\n";  // 42
-
-            strPrint += "주문업장 : " + get_shop_name(shop) + "\r\n";
-            strPrint += "주문번호 : " + order_no + "\r\n";
-
-
-
+            strPrint += "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
+            
 
             return strPrint;
         }
 
 
 
-
-
-        private static void print_order_str(String shop, String print_str)
+        public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, String order_dt)  // 주문서
         {
             String printer_name = "";
 
-            for (int i = 0; i < mShop.Length; i++ )
+            if (to_printer == "to_local")
             {
-                if (mShop[i].shop_code == shop)
+                printer_name = mBillPrinterPort;
+            }
+            else if (to_printer == "to_shop")
+            {
+                for (int i = 0; i < mShop.Length; i++ )
                 {
-                    if (mShop[i].printer_type == "N")
+                    if (mShop[i].shop_code == shop)
                     {
-                        printer_name = mShop[i].network_printer_name;
+                        if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;
+                        else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;
+                        else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;
+                        else
+                        {
+                            return;
+                        }
                     }
-                    else if (mShop[i].printer_type == "L")
-                    {
-                        printer_name = mOrderPrinterPort;
-                    }
-                    else if (mShop[i].printer_type == "R")
-                    {
-                        printer_name = mBillPrinterPort;
-                    }
-                    else if (mShop[i].printer_type == "D")  // test display 
-                    {
-                        MessageBox.Show(print_str, "thepos");
-                        return;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
+                }                
             }
 
 
@@ -4825,10 +4799,43 @@ namespace thepos
             byte[] BytesValue = new byte[100];
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(title));
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
-            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(print_str));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharLarge());   // 주문번호 크게 인쇄
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(order_no));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes("코너 : " + get_shop_name(shop)));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+            String strPrint = "---------------------\r\n";  // 21
+            for (int i = 0; i < name.Count; i++)
+            {
+                strPrint += name[i] + Space(16 - encodelen(name[i]));
+                String strCnt = cnt[i].ToString("N0");     // 수량
+                strPrint += Space(5 - encodelen(strCnt)) + strCnt;
+                strPrint += "\r\n";
+            }
+            strPrint += "---------------------\r\n";  // 21
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+            strPrint = "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -4842,14 +4849,7 @@ namespace thepos
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
-
-
-
-
             PrintExtensions.Print(BytesValue, printer_name);
-
-
-
         }
 
 
@@ -4936,5 +4936,7 @@ namespace thepos
         {
             MessageBox.Show(msg, "thepos");
         }
+
+
     }
 }

@@ -121,9 +121,8 @@ namespace thepos
         public static String[] mCornerName; // 코너 명
 
 
-
-
-
+        // 영수증 출력 상단 이미지
+        public static byte[] mByteLogoImage;
 
 
         public static String mLanguage = ""; // KR EN CH
@@ -558,6 +557,14 @@ namespace thepos
         public static SQLiteConnection mConn;
 
 
+
+
+        public static Label mLblTheModeStatus;
+
+
+
+
+
         public static String get_MMddHHmm(String d, String t)
         {
             return d.Substring(4, 2) + "-" + d.Substring(6, 2) + " " + t.Substring(0, 2) + ":" + t.Substring(2, 2);
@@ -586,7 +593,7 @@ namespace thepos
                 else if (mTicketType == "PD") name = "후불";
                 else name = code;
             }
-            else if (code == "ST") name = "정산";
+            else if (code == "ST") name = "정산:";
             else name = code;
 
             return name;

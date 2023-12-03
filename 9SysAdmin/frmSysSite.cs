@@ -89,7 +89,7 @@ namespace thepos._9SysAdmin
             tmTicketMedia = new String[2] { "BC", "RF" };
             tmTicketMediaText = new String[2] { "띠지", "팔찌" };
 
-            tmVanCode = new String[2] { "NICE", "KCP" };
+            tmVanCode = new String[3] { "NICE", "KCP", "KOVAN" };
 
 
 
@@ -170,6 +170,23 @@ namespace thepos._9SysAdmin
                         //
                         tbCallCenter.Text = arr[0]["callCenterNo"].ToString();
 
+                        // 이미지
+                        String image_str = arr[0]["billImage"].ToString();
+
+                        try
+                        {
+                            byte[] imgBytes = Convert.FromBase64String(image_str);
+
+                            MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                            ms.Write(imgBytes, 0, imgBytes.Length);
+
+                            pbBillImage.Image = System.Drawing.Image.FromStream(ms, true);
+                        }
+                        catch
+                        {
+
+                        }
+
                     }
                 }
                 else
@@ -223,13 +240,13 @@ namespace thepos._9SysAdmin
             {
                 if (pbBillImage.Image == null)
                 {
-//?                    parameters["imagePath"] = "";
+                    parameters["billImage"] = "";
                 }
                 else
                 {
                     var ms = new MemoryStream();
                     pbBillImage.Image.Save(ms, pbBillImage.Image.RawFormat);
-//?                    parameters["imagePath"] = Convert.ToBase64String(ms.ToArray());
+                    parameters["billImage"] = Convert.ToBase64String(ms.ToArray());
                 }
             }
 

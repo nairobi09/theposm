@@ -28,6 +28,9 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Reflection.Emit;
 using System.Security.AccessControl;
 using System.Management;
+using System.Collections;
+using System.Drawing.Imaging;
+using System.Threading;
 
 namespace thepos
 {
@@ -36,14 +39,12 @@ namespace thepos
         public static Panel mPanelDivision;
         TextBox mTbKeyDisplayController;  // 공용컨트롤러
 
+        String sysadmin_pw_patern = "";
 
-        public static bool mNetworkStat = false;
+        Thread threadSyncLink;
 
 
 
-        public static PictureBox mPbNetworkConn = null;
-
-        String in_patern = "";
 
         public frmMain()
         {
@@ -80,7 +81,6 @@ namespace thepos
             font24 = new Font(fontCollection.Families[0], 24f);
 
 
-            lblNetworkCheck.Font = font10;
 
             btnClose.Font = font12;
 
@@ -127,7 +127,6 @@ namespace thepos
             btnKeyClear.Font = font14;
             btnKeyLogin.Font = font12;
 
-            lblLocalMode.Font = font10;
             lblReqUser.Font = font10;
 
         }
@@ -135,7 +134,12 @@ namespace thepos
         private void initialize_the()
         {
 
-            //? Cursor.Hide();
+            mLblTheModeStatus = lblLocalModeTitle;
+
+
+            mLblTheModeStatus.Visible = false;
+
+
 
             mPanelDivision = panelDivision;
 
@@ -171,7 +175,6 @@ namespace thepos
             tbID.Tag = tbID.Text;
 
 
-
             if (tbID.Text.Length == 4)
             {
                 mTbKeyDisplayController = tbPW;
@@ -189,13 +192,6 @@ namespace thepos
 
 
 
-            // Session key 로그인관련 
-            handler.CookieContainer = cookies;
-
-            mHttpClient = new HttpClient(handler);
-
-
-
             // local DB
             String cs = "";
 #if DEBUG
@@ -210,13 +206,594 @@ namespace thepos
             mConn = new SQLiteConnection(cs);
             mConn.Open();
 
-            // 네트워크 테스트콜 후 램프칼라 표시
-            //network_testcall();
-            network_check();
+
+
+            // Session key 로그인관련 
+            handler.CookieContainer = cookies;
+            mHttpClient = new HttpClient(handler);
+
+
+
 
         }
 
- 
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+
+            // 네트워크 상태 : 정상이미지를 보이기/숨기기
+            pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable();
+
+
+            // 서버 상태 : 최초 서버 테스트콜
+            bool statusServer = check_server_status();
+            if (statusServer == false)
+            {
+                change_mode_server_to_local();
+            }
+            else if (statusServer == true)
+            {
+                change_mode_local_to_server();
+            }
+
+
+
+            // SyncLink 쓰레드
+            threadSyncLink = new Thread(SyncLink);
+            threadSyncLink.Start();
+
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            threadSyncLink.Abort();
+        }
+
+
+        private void SyncLink()
+        {
+            // 3가지 기능
+            // 1. 테스트콜 -> 모드 자동전환
+            // 2. 서버원장 자동다운로드
+            // 3. 로컬레코드 자동업로드
+
+            while(true)
+            {
+                //
+                Thread.Sleep(1000 * 10); // XX초
+
+
+                // 네트워크 상태 : 정상이미지를 보이기/숨기기
+                pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable()));
+                pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkDisconn.Visible));
+
+
+                // 서버 상태 : 최초 서버 테스트콜
+                bool statusServer = check_server_status();
+
+                if (mTheMode == "Server" & statusServer == true)
+                {
+                    // Skip
+                }
+                else if (mTheMode == "Server" & statusServer == false)
+                {
+                    // Server -> Local
+                    change_mode_server_to_local();
+                }
+                else if (mTheMode == "Local" & statusServer == true)
+                {
+                    // Local -> Server
+                    change_mode_local_to_server();
+                }
+                else if (mTheMode == "Local" & statusServer == false)
+                {
+                    // Skip
+                }
+
+
+                //
+                if (mTheMode == "Server")
+                {
+
+                    if (mSiteId == "")
+                    {
+                        //
+                    }
+                    else
+                    {
+                        // 1.서버원장 다운로드
+                        String ver_server = get_version_server();
+                        String ver_local = get_version_local();
+
+                        if (ver_server == "" | ver_local == "")
+                        {
+                            // 에러
+                        }
+                        else
+                        {
+                            if (string.Compare(ver_server, ver_local) == 1)
+                            {
+                                sync_data_server_to_local();
+                            }
+                        }
+
+
+                        // 2. 로컬레코드 업로드
+                        int local_record_cnt = get_local_record_cnt();
+
+                        if (local_record_cnt > 0)
+                        {
+                            int upload_cnt = upload_local_record();
+                        }
+
+                    }
+
+                }
+                else if (mTheMode == "Local")
+                {
+                    // 할일없음.
+                }
+
+            }
+
+        }
+
+
+
+
+
+        private void change_mode_server_to_local()
+        {
+            mTheMode = "Local";
+
+            // "로컬모드"
+            lblLocalModeTitle.BeginInvoke(new Action(() => lblLocalModeTitle.Visible = true));
+            // 로컬모드 테마 적용
+            btnBusiness.BeginInvoke(new Action(() => btnBusiness.Enabled = false));
+            btnReports.BeginInvoke(new Action(() => btnReports.Enabled = false));
+            btnSupport.BeginInvoke(new Action(() => btnSupport.Enabled = false));
+        }
+
+        private void change_mode_local_to_server()
+        {
+            mTheMode = "Server";
+
+            // "로컬모드"
+            lblLocalModeTitle.BeginInvoke(new Action(() => lblLocalModeTitle.Visible = false));
+            // 로컬모드 테마 적용
+            btnBusiness.BeginInvoke(new Action(() => btnBusiness.Enabled = true));
+            btnReports.BeginInvoke(new Action(() => btnReports.Enabled = true));
+            btnSupport.BeginInvoke(new Action(() => btnSupport.Enabled = true));
+        }
+
+        public static String get_version_server()
+        {
+            String sUrl = "site?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["sites"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count > 0)
+                    {
+                        return arr[0]["basicDbVer"].ToString();
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+
+        public static String get_version_local()
+        {
+            String sql = "SELECT * FROM site";
+            SQLiteDataReader dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                return dr["basicDbVer"].ToString();
+            }
+
+            return "";
+
+        }
+
+        private int get_local_record_cnt()
+        {
+            int local_cnt = 0;
+
+            //
+            String sql = "SELECT count(*) as cnt FROM orders";
+            SQLiteDataReader dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            sql = "SELECT count(*) as cnt FROM orders";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            sql = "SELECT count(*) as cnt FROM orderItem";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            sql = "SELECT count(*) as cnt FROM orderItem WHERE send_YN != 'Y' ";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+
+            //
+            sql = "SELECT count(*) as cnt FROM payment";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            sql = "SELECT count(*) as cnt FROM payment WHERE send_YN != 'Y' ";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            //
+            sql = "SELECT count(*) as cnt FROM paymentCash";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            sql = "SELECT count(*) as cnt FROM paymentCash WHERE send_YN != 'Y' ";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            //
+            sql = "SELECT count(*) as cnt FROM paymentCard";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            sql = "SELECT count(*) as cnt FROM paymentCard WHERE send_YN != 'Y' ";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                local_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
+            return local_cnt;
+
+        }
+
+        private int upload_local_record()
+        {
+            int upload_cnt = 0;
+            int error_cnt = 0;
+
+            // orders
+            String sql = "SELECT * FROM orders";
+            SQLiteDataReader dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["orderDate"] = dr["orderDate"].ToString();
+                parameters["orderTime"] = dr["orderTime"].ToString();
+                parameters["tranType"] = dr["tranType"].ToString();
+                parameters["cnt"] = dr["cnt"].ToString();
+                parameters["isCancel"] = dr["isCancel"].ToString();
+
+                if (mRequestPost("orders", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM orders WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+
+                        upload_cnt++;
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+
+            }
+            dr.Close();
+
+
+            // orderItem
+            sql = "SELECT * FROM orderItem";
+            dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["orderDate"] = dr["orderDate"].ToString();
+                parameters["orderTime"] = dr["orderTime"].ToString();
+                parameters["tranType"] = dr["tranType"].ToString();
+                parameters["itemCode"] = dr["itemCode"].ToString();
+                parameters["itemName"] = dr["itemName"].ToString();
+
+                parameters["cnt"] = dr["cnt"].ToString();
+                parameters["amt"] = dr["amt"].ToString();
+                parameters["ticketYn"] = dr["ticketYn"].ToString();
+                parameters["taxFree"] = dr["taxFree"].ToString();
+                parameters["dcAmount"] = dr["dcAmount"].ToString();
+
+                parameters["dcrType"] = dr["dcrType"].ToString();
+                parameters["dcrDes"] = dr["dcrDes"].ToString();
+                parameters["dcrValue"] = dr["dcrValue"].ToString();
+                parameters["payClass"] = dr["payClass"].ToString();
+                parameters["ticketNo"] = dr["ticketNo"].ToString();
+
+                parameters["isCancel"] = dr["isCancel"].ToString();
+                parameters["shopCode"] = dr["shopCode"].ToString();
+                parameters["shopOrderNo"] = dr["shopOrderNo"].ToString();
+
+                if (mRequestPost("orderItem", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM orderItem WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+
+                        upload_cnt++;
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+            }
+            dr.Close();
+
+
+            // payment
+            sql = "SELECT * FROM payment";
+            dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["payDate"] = dr["payDate"].ToString();
+                parameters["payTime"] = dr["payTime"].ToString();
+                parameters["tranType"] = dr["tranType"].ToString();
+                parameters["payClass"] = dr["payClass"].ToString();
+                parameters["billNo"] = dr["billNo"].ToString();
+
+                parameters["netAmount"] = dr["netAmount"].ToString();
+                parameters["amountCash"] = dr["amountCash"].ToString();
+                parameters["amountCard"] = dr["amountCard"].ToString();
+                parameters["amountEasy"] = dr["amountPoint"].ToString();
+                parameters["amountPoint"] = dr["amountEasy"].ToString();
+
+                parameters["dcAmount"] = dr["dcAmount"].ToString();
+                parameters["isCancel"] = dr["isCancel"].ToString();
+
+                if (mRequestPost("payment", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM payment WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+
+                        upload_cnt++;
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+            }
+            dr.Close();
+
+
+            // paymentCash
+            sql = "SELECT * FROM paymentCash";
+            dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["payDate"] = dr["payDate"].ToString();
+                parameters["payTime"] = dr["payTime"].ToString();
+                parameters["payType"] = dr["payType"].ToString();
+                parameters["tranType"] = dr["tranType"].ToString();
+                parameters["payClass"] = dr["payClass"].ToString();
+
+                parameters["ticketNo"] = dr["ticketNo"].ToString();
+                parameters["paySeq"] = dr["paySeq"].ToString();
+                parameters["tranDate"] = dr["tranDate"].ToString();
+                parameters["amount"] = dr["amount"].ToString();
+                parameters["receiptType"] = dr["receiptType"].ToString();
+
+                parameters["issuedMethodNo"] = dr["issuedMethodNo"].ToString();
+                parameters["authNo"] = dr["authNo"].ToString();
+                parameters["tranSerial"] = dr["tranSerial"].ToString();
+                parameters["isCancel"] = dr["isCancel"].ToString();
+                parameters["vanCode"] = dr["vanCode"].ToString();
+
+                if (mRequestPost("paymentCash", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM paymentCash WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+
+                        upload_cnt++;
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+            }
+            dr.Close();
+
+
+            // paymentCard
+            sql = "SELECT * FROM paymentCard";
+            dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["payDate"] = dr["payDate"].ToString();
+                parameters["payTime"] = dr["payTime"].ToString();
+                parameters["payType"] = dr["payType"].ToString();
+                parameters["tranType"] = dr["tranType"].ToString();
+                parameters["payClass"] = dr["payClass"].ToString();
+
+                parameters["ticketNo"] = dr["ticketNo"].ToString();
+                parameters["paySeq"] = dr["paySeq"].ToString();
+                parameters["tranDate"] = dr["tranDate"].ToString();
+                parameters["amount"] = dr["amount"].ToString();
+                parameters["taxAmount"] = dr["taxAmount"].ToString();
+
+                parameters["freeAmount"] = dr["freeAmount"].ToString();
+                parameters["serviceAmt"] = dr["serviceAmt"].ToString();
+                parameters["tax"] = dr["tax"].ToString();
+                parameters["install"] = dr["install"].ToString();
+                parameters["authNo"] = dr["authNo"].ToString();
+
+                parameters["cardNo"] = dr["cardNo"].ToString();
+                parameters["cardName"] = dr["cardName"].ToString();
+                parameters["isuCode"] = dr["isuCode"].ToString();
+                parameters["acqCode"] = dr["acqCode"].ToString();
+                parameters["merchantNo"] = dr["merchantNo"].ToString();
+
+                parameters["tranSerial"] = dr["tranSerial"].ToString();
+                parameters["signPath"] = dr["signPath"].ToString();
+                parameters["giftChange"] = dr["giftChange"].ToString();
+                parameters["isCancel"] = dr["isCancel"].ToString();
+                parameters["vanCode"] = dr["vanCode"].ToString();
+
+                if (mRequestPost("paymentCard", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM paymentCard WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+
+                        upload_cnt++;
+
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+            }
+            dr.Close();
+
+            if (error_cnt > 0)
+            {
+                
+            }
+
+
+
+            return upload_cnt;
+        }
+
 
         private void start_sub_screen()
         {
@@ -306,14 +883,19 @@ namespace thepos
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
 
-            if (mNetworkStat)
+            if (mTheMode == "Server")
             {
                 server_login();
 
             }
-            else
+            else if (mTheMode == "Local")
             {
                 local_mode();
+            }
+            else
+            {
+                MessageBox.Show("네트워크 모드 오류", "thepos");
+                return;
             }
 
 
@@ -322,6 +904,15 @@ namespace thepos
             {
                 start_sub_screen();
             }
+
+
+            // 마우스 커서
+            if (mPosType == "POS")
+            {
+                Cursor.Hide();
+            }
+
+
 
 
             //? 데이터 체크 임시
@@ -365,10 +956,6 @@ namespace thepos
             // 서버 -> 메모리
             sync_data_server_to_memory();
 
-
-            // 서버모드 
-            mTheMode = "Server";
-            lblLocalModeTitle.Visible = false;
 
 
             // 일반(서버) 테마 적용
@@ -423,35 +1010,37 @@ namespace thepos
             frmLocalModeInfo frm = new frmLocalModeInfo();
             frm.ShowDialog();
 
-            if (mTheMode == "Local")
+            if (!mReturn)
             {
-                mUserID = "";
-                mUserName = "";
-                mPosNo = "";
-
-                mPayClass = "OR";
-
-
-
-                // 로컬DB -> 메모리 
-                sync_data_local_to_memory();  // 함수내에서 mPosNo를 구한다.
-
-                lblLocalModeTitle.Visible = true;
-
-                panelLogin.Visible = false;
-
-                lblSiteAlias.Text = mSiteAlias;
-                lblSiteName.Text = mSiteName;
-                lblPosNo.Text = mPosNo;
-                lblUserName.Text = "";
-                lblCallCenterNo.Text = mCallCenterNo;
-
-                // 긴급사용화면 테마 적용
-                btnBusiness.Enabled = false;
-                btnReports.Enabled = false;
-                btnSupport.Enabled = false;
-
+                return;
             }
+
+
+            mUserID = "";
+            mUserName = "";
+            mPosNo = "";
+
+
+            //?
+            mPayClass = "OR";
+
+
+
+            // 로컬DB -> 메모리 
+            sync_data_local_to_memory();  // 함수내에서 mPosNo를 구한다.
+
+
+            lblLocalModeTitle.Visible = true;  // 로컬모드 표시
+
+            panelLogin.Visible = false;
+
+            lblSiteAlias.Text = mSiteAlias;
+            lblSiteName.Text = mSiteName;
+            lblPosNo.Text = mPosNo;
+            lblUserName.Text = "";
+            lblCallCenterNo.Text = mCallCenterNo;
+
+
         }
 
 
@@ -545,6 +1134,34 @@ namespace thepos
                             mTicketMedia = arr[0]["ticketMedia"].ToString();
                             mVanCode = arr[0]["vanCode"].ToString();
                             mCallCenterNo = arr[0]["callCenterNo"].ToString();
+
+                            String image_str = arr[0]["billImage"].ToString();
+
+                            if (image_str == "")
+                            {
+                                mByteLogoImage = null;
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    byte[] mBillImageByte = Convert.FromBase64String(image_str);
+
+                                    MemoryStream ms = new MemoryStream(mBillImageByte, 0, mBillImageByte.Length);
+                                    ms.Write(mBillImageByte, 0, mBillImageByte.Length);
+
+                                    Bitmap bitmap_bill = new Bitmap(ms);
+
+
+                                    mByteLogoImage = GetImage(bitmap_bill, 500);
+                                }
+                                catch
+                                {
+                                    mByteLogoImage = null;
+                                }
+                            }
+
+
                         }
                     }
                     else
@@ -814,6 +1431,118 @@ namespace thepos
 
 
 
+
+        public static byte[] GetImage(Bitmap bill_image, int printWidth)
+        {
+            List<byte> byteList = new List<byte>();
+
+            BitmapData data = GetBitmapData(bill_image, printWidth);
+
+
+            BitArray dots = data.Dots;
+            byte[] width = BitConverter.GetBytes(data.Width);
+
+            int offset = 0;
+            //byteList.Add(Convert.ToByte(Convert.ToChar(0x1B)));
+            //byteList.Add(Convert.ToByte('@'));
+            byteList.Add(Convert.ToByte(Convert.ToChar(0x1B)));
+            byteList.Add(Convert.ToByte('3'));
+            byteList.Add((byte)24);
+            while (offset < data.Height)
+            {
+                byteList.Add(Convert.ToByte(Convert.ToChar(0x1B)));
+                byteList.Add(Convert.ToByte('*'));
+                byteList.Add((byte)33);
+                byteList.Add(width[0]);
+                byteList.Add(width[1]);
+
+                for (int x = 0; x < data.Width; ++x)
+                {
+                    for (int k = 0; k < 3; ++k)
+                    {
+                        byte slice = 0;
+                        for (int b = 0; b < 8; ++b)
+                        {
+                            int y = (((offset / 8) + k) * 8) + b;
+                            int i = (y * data.Width) + x;
+
+                            bool v = false;
+                            if (i < dots.Length)
+                                v = dots[i];
+
+                            slice |= (byte)((v ? 1 : 0) << (7 - b));
+                        }
+                        byteList.Add(slice);
+                    }
+                }
+                offset += 24;
+                byteList.Add(Convert.ToByte(0x0A));
+            }
+            byteList.Add(Convert.ToByte(0x1B));
+            byteList.Add(Convert.ToByte('3'));
+            byteList.Add((byte)30);
+            return byteList.ToArray();
+        }
+
+        private static BitmapData GetBitmapData(Bitmap bill_image, int width)
+        {
+            using (var bitmap = bill_image)
+            {
+                var threshold = 127;
+                var index = 0;
+                double multiplier = width; // 이미지 width조정
+                double scale = (double)(multiplier / (double)bitmap.Width);
+                int xheight = (int)(bitmap.Height * scale);
+                int xwidth = (int)(bitmap.Width * scale);
+                var dimensions = xwidth * xheight;
+                var dots = new BitArray(dimensions);
+
+                for (var y = 0; y < xheight; y++)
+                {
+                    for (var x = 0; x < xwidth; x++)
+                    {
+                        var _x = (int)(x / scale);
+                        var _y = (int)(y / scale);
+                        var color = bitmap.GetPixel(_x, _y);
+                        var luminance = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11);
+                        dots[index] = (luminance < threshold);
+                        index++;
+                    }
+                }
+
+                return new BitmapData()
+                {
+                    Dots = dots,
+                    Height = (int)(bitmap.Height * scale),
+                    Width = (int)(bitmap.Width * scale)
+                };
+            }
+        }
+
+
+        private class BitmapData
+        {
+            public BitArray Dots
+            {
+                get;
+                set;
+            }
+
+            public int Height
+            {
+                get;
+                set;
+            }
+
+            public int Width
+            {
+                get;
+                set;
+            }
+        }
+
+
+
         public static void sync_data_server_to_local()
         {
             // 1. site -> 마지막에 다운. 에러감안한 버전관리
@@ -854,13 +1583,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. goodsGroup\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -906,13 +1633,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. goodsItemAndGoods\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -948,13 +1673,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. shop\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -989,13 +1712,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -1032,13 +1753,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -1076,13 +1795,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("정보 오류. dcrFavorite\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. dcrFavorite\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -1121,13 +1838,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("정보 오류. paymentConsole\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. paymentConsole\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -1170,13 +1885,11 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. site\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
@@ -1441,6 +2154,7 @@ namespace thepos
 
             if (mTheMode == "Local")  // 긴급사용모드
             {
+                // 영업일자 입력받은 그대로 사용... 
                 //mBizDate = ;
 
                 panelDivision.Visible = true;
@@ -1613,93 +2327,49 @@ namespace thepos
             fReqUser.ShowDialog();
         }
 
-        private void picLogo_Click(object sender, EventArgs e)
-        {
-
-            frmSysAdmin frmSysAdmin = new frmSysAdmin(in_patern);
-            frmSysAdmin.ShowDialog();
-
-            in_patern = "";
-        }
 
         private void lblSiteAlias_Click(object sender, EventArgs e)
         {
-            in_patern = "";
+            sysadmin_pw_patern = "";
         }
 
         private void lblPosNoTitle_Click(object sender, EventArgs e)
         {
-            in_patern += "1";
+            sysadmin_pw_patern += "1";
         }
 
         private void lblUserNameTitle_Click(object sender, EventArgs e)
         {
-            in_patern += "2";
+            sysadmin_pw_patern += "2";
         }
 
         private void lblCallCenterNo_Click(object sender, EventArgs e)
         {
-            frmSysAdmin frmSysAdmin = new frmSysAdmin(in_patern);
+            frmSysAdmin frmSysAdmin = new frmSysAdmin(sysadmin_pw_patern);
             frmSysAdmin.ShowDialog();
 
-            in_patern = "";
+            sysadmin_pw_patern = "";
         }
 
 
-        private void lblLocalMode_Click(object sender, EventArgs e)
-        {
-            local_mode();
-        }
-
-
-        private void lblNetworkCheck_Click(object sender, EventArgs e)
-        {
-            network_testcall();
-        }
-
-        private void timerNetwork_Tick(object sender, EventArgs e)
-        {
-            network_check();
-        }
-
-        private void network_testcall()
+        private bool check_server_status()
         {
             String sUrl = "testCall?siteId=" + mSiteId + "&posNo=" + mPosNo + "&testDt=" + get_today_date() + get_today_time();
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    pbNetworkConn.Visible = true;
-
-                    MessageBox.Show("서버연결 정상");
+                    return true;
                 }
                 else
                 {
-                    pbNetworkConn.Visible = false;
-                    MessageBox.Show("서버연결 오류");
+                    return false;
                 }
             }
             else
             {
-                pbNetworkConn.Visible = false;
-                MessageBox.Show("서버연결 오류");
+                return false;
             }
-        }
-
-        private void network_check()
-        { 
-            bool connected = NetworkInterface.GetIsNetworkAvailable();
-
-            mNetworkStat = connected;
-
-            pbNetworkConn.Visible = connected;
-
-            // frmSales의 네트워크상태 세팅
-            if (mPbNetworkConn != null)
-            {
-                mPbNetworkConn.Visible = pbNetworkConn.Visible;
-            }
-
         }
 
 

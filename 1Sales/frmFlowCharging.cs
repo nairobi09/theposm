@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using Newtonsoft.Json.Linq;
+using System.Numerics;
 
 namespace thepos
 {
@@ -94,6 +95,7 @@ namespace thepos
         private void frmFlowCharging_FormClosed(object sender, FormClosedEventArgs e)
         {
             mClearSaleForm();
+            
 
             mTbKeyDisplayController = saveKeyDisplay;
             mPayClass = "OR"; // 원복: order
@@ -279,7 +281,7 @@ namespace thepos
                 {
                     String dt = mScanString.Substring(4, 8);
                     String posno = mScanString.Substring(12, 2);
-                    String t6no = mScanString.Substring(14, 8);
+                    String t8no = mScanString.Substring(14, 8);
 
                     int yyyy = int.Parse(dt.Substring(0, 4));
                     int mm = int.Parse(dt.Substring(4, 2));
@@ -295,7 +297,7 @@ namespace thepos
                         }
                     }
 
-                    tbTicketNo.Text = t6no;
+                    tbTicketNo.Text = t8no;
 
 
                     view_flow(dt, posno, mScanString);

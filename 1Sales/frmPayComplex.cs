@@ -246,7 +246,7 @@ namespace thepos
         {
             if (mComplexNestAmount == 0) // 복합결제 완료
             {
-                mClearSaleForm();
+                //mClearSaleForm();
                 this.Close();
             }
             else if (mComplexNetAmount == mComplexNestAmount) // 시작전
@@ -266,7 +266,8 @@ namespace thepos
             }
             else
             {
-                frmSales.ConsoleEnable();
+                mClearSaleForm();
+                //frmSales.ConsoleEnable();
             }
 
 

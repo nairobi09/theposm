@@ -132,6 +132,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1Sales\frmDisplayBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmDisplayBill.Designer.cs">
+      <DependentUpon>frmDisplayBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="1Sales\frmFlowCert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +456,12 @@
     <Compile Include="4Setup\frmSetupPos.Designer.cs">
       <DependentUpon>frmSetupPos.cs</DependentUpon>
     </Compile>
+    <Compile Include="4Setup\frmSyncLink.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="4Setup\frmSyncLink.Designer.cs">
+      <DependentUpon>frmSyncLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
     <Compile Include="van\KCP\ClsDate.cs" />
     <Compile Include="van\KCP\clsEnum.cs" />
@@ -460,10 +472,12 @@
     <Compile Include="van\KCP\paymentKCP.cs" />
     <Compile Include="van\KOVAN\paymentKovan.cs" />
     <Compile Include="van\Nice\paymentNice.cs" />
-    <Compile Include="van\Toss\paymentToss.cs" />
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="1Sales\frmDisplayBill.resx">
+      <DependentUpon>frmDisplayBill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowCert.resx">
       <DependentUpon>frmFlowCert.cs</DependentUpon>
     </EmbeddedResource>
@@ -623,6 +637,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSub.resx">
       <DependentUpon>frmSub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="4Setup\frmSyncLink.resx">
+      <DependentUpon>frmSyncLink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

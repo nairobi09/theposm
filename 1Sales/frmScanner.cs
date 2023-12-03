@@ -11,7 +11,6 @@ using static thepos.thePos;
 using static thepos.frmSales;
 
 
-
 namespace thepos
 {
     public partial class frmScanner : Form
@@ -43,7 +42,7 @@ namespace thepos
 
         private void tbScanning_TextChanged(object sender, EventArgs e)
         {
-            if (tbScanning.Text.Length == scanLength)
+            if (tbScanning.Text.Length >= scanLength)
             {
                 if (tbScanning.Text.Substring(0,4) == mSiteId)
                 {

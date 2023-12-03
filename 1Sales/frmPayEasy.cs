@@ -279,8 +279,16 @@ namespace thepos
                     print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
 
 
-
-                    mClearSaleForm();
+                    if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+                    {
+                    }
+                    else
+                    {
+                        if (isComplex == false)
+                        {
+                            mClearSaleForm();
+                        }
+                    }
 
                     mPaySeq = 1;
                 }
@@ -308,9 +316,9 @@ namespace thepos
                 paymentKCP p = new paymentKCP();
                 ret = p.requestKcpEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaoPay, out mPaymentEasy2);
             }
-            else if (mVanCode == "TOSS")
+            else if (mVanCode == "KOVAN")
             {
-                paymentToss p = new paymentToss();
+                paymentKovan p = new paymentKovan();
             }
 
             mPaymentEasy = mPaymentEasy2;
@@ -394,7 +402,7 @@ namespace thepos
             }
             else
             {
-                frmSales.ConsoleEnable();
+                //frmSales.ConsoleEnable();
             }
 
             mTbKeyDisplayController = saveKeyDisplay;

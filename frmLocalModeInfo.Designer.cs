@@ -88,7 +88,7 @@
             this.dtpBizDate.CalendarTrailingForeColor = System.Drawing.Color.DarkOrange;
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(246, 252);
+            this.dtpBizDate.Location = new System.Drawing.Point(246, 253);
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 44;

@@ -91,5 +91,17 @@ namespace thepos
             Close();
             mPanelDivision.Visible = false;
         }
+
+        private void btnSyncLink_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "setupSyncLink") return;
+
+            mThisButtonClick = "setupSyncLink";
+            panelSetup.Controls.Clear();
+
+            frmSyncLink fSetup = new frmSyncLink() { TopLevel = false, TopMost = true };
+            panelSetup.Controls.Add(fSetup);
+            fSetup.Show();
+        }
     }
 }

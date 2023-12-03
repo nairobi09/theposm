@@ -18,13 +18,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ComponentModel.Composition.Primitives;
 using System.Data.SQLite;
 using System.Web.UI.WebControls.Expressions;
-
+using System.Security.Policy;
+using thepos._1Sales;
 
 namespace thepos
 {
     public partial class frmPayManager : Form
     {
-
         System.Windows.Forms.TextBox saveKeyDisplay;
 
         String selected_biz_date = "";
@@ -37,7 +37,6 @@ namespace thepos
         public frmPayManager()
         {
             InitializeComponent();
-
             initialize_font();
             initialize_the();
         }
@@ -57,13 +56,11 @@ namespace thepos
 
             btnView.Font = font10;
             lvwPayManager.Font = font10;
-
-            // 폰트적용 제외
-            //lblLayoutBill.Font = font12;
-
+            lvwPayOrder.Font = font10;
 
             btnPrintBill.Font = font10;
             btnPrintBillex.Font = font9;
+            btnPrintBilldisp.Font = font9;
 
             btnPrintOrder.Font = font10;
 
@@ -75,10 +72,10 @@ namespace thepos
             //dtBusiness.Value = DateTime.Now;
             dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
-
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwPayManager.SmallImageList = imgList;
+            lvwPayOrder.SmallImageList = imgList;
 
             cbPosNo.Items.Clear();
             for (int i = 0; i < mPosNoList.Length; i++)
@@ -104,7 +101,6 @@ namespace thepos
             mPanelCancel.Height = 704;
 
             mLvwPayManager = lvwPayManager;
-
 
         }
 
@@ -152,8 +148,8 @@ namespace thepos
             }
 
             if (t_isCancel == "y")
-                lvItem.SubItems.Add("취소1");
-            if (t_isCancel == "Y")
+                lvItem.SubItems.Add("취소:");
+            else if (t_isCancel == "Y")
                 lvItem.SubItems.Add("취소");
             else if (t_isCancel == "0")
                 lvItem.SubItems.Add("취소중");
@@ -162,6 +158,8 @@ namespace thepos
 
 
             lvItem.SubItems.Add(pay_keep);
+            lvItem.SubItems.Add(t_payClass);
+            lvItem.SubItems.Add(t_isCancel);
 
 
             if (t_isCancel == "Y" | t_isCancel == "y")
@@ -186,6 +184,7 @@ namespace thepos
         private void viewList(String biz_date, String pos_no, String the_no)
         { 
             lvwPayManager.Items.Clear();
+            lvwPayOrder.Items.Clear();
 
             //!
             if (mTheMode == "Local")
@@ -440,8 +439,6 @@ namespace thepos
 
         private void lvwPayManager_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblLayoutBill.Text = "";
-
             if (lvwPayManager.SelectedItems.Count <= 0)
             {
                 return;
@@ -451,17 +448,383 @@ namespace thepos
             String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 아래와 동일
-            String cancel_name = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel)].Text;
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel_code)].Text;
+
 
             String tran_type = "A";
-            if (cancel_name == "Y" | cancel_name == "취소됨")
+            if (isCancel == "Y" | isCancel == "y")
             {
                 tran_type = "C";
             }
 
-            lblLayoutBill.Text = make_bill_header() + make_bill_body(tTheNo, tran_type, "", pay_keep) + make_bill_trailer();
+            view_list_pay_order(tTheNo, tran_type, pay_keep);
+            
+        }
+
+
+        private void view_list_pay_order(String tTheNo, String tranType, String pay_keep)
+        {
+            lvwPayOrder.Items.Clear();
+
+            //
+            if (mTheMode == "Local")
+                view_list_order_local(tTheNo, tranType);
+            else
+                view_list_order_server(tTheNo, tranType);
+
+            //
+            if (mTheMode == "Local")
+                view_list_pay_local(tTheNo, tranType, pay_keep);
+            else
+                view_list_pay_server(tTheNo, tranType, pay_keep);
+
 
         }
+        private void view_list_order_local(String tTheNo, String tranType)
+        {
+            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='" + tranType + "'");
+            while (dr.Read())
+            {
+                ListViewItem lvItem = new ListViewItem();
+
+                String shop_order_no = dr["shopOrderNo"].ToString();
+
+                if (shop_order_no.Length == 4)
+                    lvItem.Tag = "O";
+                else
+                    lvItem.Tag = "";
+
+                lvItem.Text = dr["shopOrderNo"].ToString();
+                lvItem.SubItems.Add(dr["itemName"].ToString());
+                lvItem.SubItems.Add(convert_number(dr["cnt"].ToString()).ToString("N0"));
+                lvItem.SubItems.Add(get_shop_name(dr["shopCode"].ToString()));
+                lvwPayOrder.Items.Add(lvItem);
+            }
+
+            dr.Close();
+        }
+
+        private void view_list_order_server(String tTheNo, String tranType)
+        {
+            String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=" + tranType;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["orderItems"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        //
+                        ListViewItem lvItem = new ListViewItem();
+
+                        String shop_order_no = arr[i]["shopOrderNo"].ToString();
+
+                        if (shop_order_no.Length == 4)
+                            lvItem.Tag = "O";
+                        else
+                            lvItem.Tag = "";
+
+                        lvItem.Text = arr[i]["shopOrderNo"].ToString();
+                        lvItem.SubItems.Add(arr[i]["itemName"].ToString());
+                        lvItem.SubItems.Add(convert_number(arr[i]["cnt"].ToString()).ToString("N0"));
+                        lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
+                        lvwPayOrder.Items.Add(lvItem);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+            }
+        }
+
+
+        private void view_list_pay_local(String tTheNo, String tranType, String pay_keep)
+        {
+            String pay_keep_cash = pay_keep.Substring(0, 1);
+            String pay_keep_card = pay_keep.Substring(1, 1);
+            String pay_keep_point = pay_keep.Substring(2, 1);
+            String pay_keep_easy = pay_keep.Substring(3, 1);
+
+            String sUrl = "";
+            String pay_name = "";
+            int pay_amount = 0;
+
+
+            //! 현금결제
+            if (pay_keep_cash == "1")
+            {
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentCash WHERE theNo='" + tTheNo + "'");
+                while (dr.Read())
+                {
+                    if (dr["tranType"].ToString() == tranType)
+                    {
+                        pay_name = get_pay_type_name(dr["payType"].ToString());
+                        pay_amount = convert_number(dr["amount"].ToString());
+
+                        if (tranType == "C") 
+                            pay_amount = -pay_amount;
+
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Tag = "P";
+                        lvItem.Text = "(결제)";
+                        lvItem.SubItems.Add(pay_name);
+                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                        lvItem.SubItems.Add("");
+                        lvwPayOrder.Items.Add(lvItem);
+                    }
+                }
+
+                dr.Close();
+            }
+
+
+            //! 카드결제
+            if (pay_keep_card == "1")
+            {
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentCard WHERE theNo='" + tTheNo + "'");
+                while (dr.Read())
+                {
+                    if (dr["tranType"].ToString() == tranType)
+                    {
+                        pay_name = get_pay_type_name(dr["payType"].ToString());
+                        pay_amount = convert_number(dr["amount"].ToString());
+
+                        if (tranType == "C")
+                            pay_amount = -pay_amount;
+
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Tag = "P";
+                        lvItem.Text = "(결제)";
+                        lvItem.SubItems.Add(pay_name);
+                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                        lvItem.SubItems.Add("");
+                        lvwPayOrder.Items.Add(lvItem);
+                    }
+                }
+
+                dr.Close();
+            }
+
+
+            //! 포인트
+            if (pay_keep_point == "1")
+            {
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentPoint WHERE theNo='" + tTheNo + "'");
+                while (dr.Read())
+                {
+                    if (dr["tranType"].ToString() == tranType)
+                    {
+                        pay_name = get_pay_type_name(dr["payType"].ToString());
+                        pay_amount = convert_number(dr["amount"].ToString());
+
+                        if (tranType == "C")
+                            pay_amount = -pay_amount;
+
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Tag = "P";
+                        lvItem.Text = "(결제)";
+                        lvItem.SubItems.Add(pay_name);
+                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                        lvItem.SubItems.Add("");
+                        lvwPayOrder.Items.Add(lvItem);
+                    }
+                }
+
+                dr.Close();
+            }
+
+
+            //? 간편결제
+            if (pay_keep_easy == "1")
+            {
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentEasy WHERE theNo='" + tTheNo + "'");
+                while (dr.Read())
+                {
+                    if (dr["tranType"].ToString() == tranType)
+                    {
+                        pay_name = get_pay_type_name(dr["payType"].ToString());
+                        pay_amount = convert_number(dr["amount"].ToString());
+
+                        if (tranType == "C")
+                            pay_amount = -pay_amount;
+
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Tag = "P";
+                        lvItem.Text = "(결제)";
+                        lvItem.SubItems.Add(pay_name);
+                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                        lvItem.SubItems.Add("");
+                        lvwPayOrder.Items.Add(lvItem);
+                    }
+                }
+
+                dr.Close();
+            }
+        }
+
+        private void view_list_pay_server(String tTheNo, String tranType, String pay_keep)
+        {
+            String pay_keep_cash = pay_keep.Substring(0, 1);
+            String pay_keep_card = pay_keep.Substring(1, 1);
+            String pay_keep_point = pay_keep.Substring(2, 1);
+            String pay_keep_easy = pay_keep.Substring(3, 1);
+
+            String sUrl = "";
+            String pay_name = "";
+            int pay_amount = 0;
+
+
+            //! 현금결제
+            if (pay_keep_cash == "1")
+            {
+                sUrl = "paymentCash?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCashs"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                pay_name = get_pay_type_name(arr[i]["payType"].ToString());
+                                pay_amount = convert_number(arr[i]["amount"].ToString());
+
+                                if (tranType == "C")
+                                    pay_amount = -pay_amount;
+
+                                //
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Tag = "P";
+                                lvItem.Text = "(결제)";
+                                lvItem.SubItems.Add(pay_name);
+                                lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                                lvItem.SubItems.Add("");
+                                lvwPayOrder.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            //! 카드결제
+            if (pay_keep_card == "1")
+            {
+                sUrl = "paymentCard?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCards"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                pay_name = get_pay_type_name(arr[i]["payType"].ToString());
+                                pay_amount = convert_number(arr[i]["amount"].ToString());
+
+                                if (tranType == "C")
+                                    pay_amount = -pay_amount;
+
+                                //
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Tag = "P";
+                                lvItem.Text = "(결제)";
+                                lvItem.SubItems.Add(pay_name);
+                                lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                                lvItem.SubItems.Add("");
+                                lvwPayOrder.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            //! 포인트
+            if (pay_keep_point == "1")
+            {
+                sUrl = "paymentPoint?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentPoints"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            //? 포인트 취소인 경우 잘되는지 다시 확인바람
+                            pay_name = get_pay_type_name(arr[i]["payType"].ToString());
+                            pay_amount = convert_number(arr[i]["amount"].ToString());
+
+                            if (tranType == "C")
+                                pay_amount = -pay_amount;
+
+                            //
+                            ListViewItem lvItem = new ListViewItem();
+                            lvItem.Tag = "P";
+                            lvItem.Text = "(결제)";
+                            lvItem.SubItems.Add(pay_name);
+                            lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                            lvItem.SubItems.Add("");
+                            lvwPayOrder.Items.Add(lvItem);
+                        }
+                    }
+                }
+            }
+
+
+            //? 간편결제
+            if (pay_keep_easy == "1")
+            {
+                sUrl = "paymentEasy?theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentEasys"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                pay_name = get_pay_type_name(arr[i]["payType"].ToString());
+                                pay_amount = convert_number(arr[i]["amount"].ToString());
+
+                                if (tranType == "C")
+                                    pay_amount = -pay_amount;
+
+                                //
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Tag = "P";
+                                lvItem.Text = "(결제)";
+                                lvItem.SubItems.Add(pay_name);
+                                lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                                lvItem.SubItems.Add("");
+                                lvwPayOrder.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
 
 
         private void btnPrintBill_Click(object sender, EventArgs e)
@@ -476,7 +839,7 @@ namespace thepos
 
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
-            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(is_cancel)].Text;
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel_code)].Text;
 
             String tran_type = "A";
             if (isCancel == "Y" | isCancel == "y")
@@ -500,7 +863,7 @@ namespace thepos
 
 
             // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
-            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(is_cancel)].Text;
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel_code)].Text;
 
             String tran_type = "A";
             if (isCancel == "Y" | isCancel == "y")
@@ -510,6 +873,37 @@ namespace thepos
 
             print_bill(tTheNo, tran_type, "Y", pay_keep, false);  // Y 상품정보제외
 
+        }
+
+
+        private void btnPrintBilldisp_Click(object sender, EventArgs e)
+        {
+            if (lvwPayManager.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+
+            String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
+            String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
+
+            // 취소된 건을 선택하면 취소전표를 출력한다.. 아래와 동일
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel_code)].Text;
+
+
+
+            String tran_type = "A";
+            if (isCancel == "Y" | isCancel == "y")
+            {
+                tran_type = "C";
+            }
+
+
+
+            String str_bill = make_bill_header() + make_bill_body(tTheNo, tran_type, "", pay_keep) + make_bill_trailer();
+
+
+            frmDisplayBill f = new frmDisplayBill(tTheNo, tran_type, pay_keep);
+            f.ShowDialog();
 
         }
 
@@ -542,25 +936,151 @@ namespace thepos
         }
 
 
+
+
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            //
+            String billNo = tbBillNo.Text;
+
+
+            selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
+            selected_pos_no = cbPosNo.Text;
+
+            if (billNo.Length == 6)
+            {
+                selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
+            }
+            else
+            {
+                selected_the_no = "";
+            }
+
+            viewList(selected_biz_date, selected_pos_no, selected_the_no);
+
+            if (lvwPayManager.Items.Count == 1)
+            {
+                lvwPayManager.Items[0].Selected = true;
+            }
+
+        }
+
+        private void btnPrintOrder_Click(object sender, EventArgs e)
+        {
+            if (lvwPayOrder.SelectedItems.Count < 1)
+            {
+                SetDisplayAlarm("I", "주문항목 선택 필요.");
+                return;
+            }
+
+            if (lvwPayOrder.SelectedItems[0].Tag.ToString() != "O")  // O 주문, P 결제
+            {
+                SetDisplayAlarm("I", "주문번호가 포함된 주문건 선택 필요.");
+                return;
+            }
+
+            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel_code)].Text;
+            if (isCancel == "Y" | isCancel == "y")
+            {
+                SetDisplayAlarm("I", "취소건 주문서 출력 불가.");
+                return;
+            }
+
+
+
+            String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
+            String t_order_no = lvwPayOrder.SelectedItems[0].Text;
+
+            String t_shop_code = "";
+            String t_order_dt = "";
+            List<String> t_good_name = new List<String>();
+            List<int> t_good_cnt = new List<int>();
+
+
+
+            if (mTheMode == "Local")
+            {
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='A'");
+                while (dr.Read())
+                {
+                    if (dr["shopOrderNo"].ToString() == t_order_no)
+                    {
+                        t_shop_code = dr["shopCode"].ToString();
+                        t_order_dt = dr["orderDate"].ToString() + dr["orderTime"].ToString();
+
+                        t_good_name.Add(dr["itemName"].ToString());
+                        t_good_cnt.Add(convert_number(dr["cnt"].ToString()));
+                    }
+                }
+
+                dr.Close();
+            }
+            else
+            {
+                String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=A";
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["orderItems"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["shopOrderNo"].ToString() == t_order_no)
+                            {
+                                t_shop_code = arr[i]["shopCode"].ToString();
+                                t_order_dt = arr[i]["orderDate"].ToString() + arr[i]["orderTime"].ToString();
+
+                                t_good_name.Add(arr[i]["itemName"].ToString());
+                                t_good_cnt.Add(convert_number(arr[i]["cnt"].ToString()));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+            }
+                
+
+
+
+
+
+            // 업장주문서 출력 -> shop 등록정보 프린터
+            print_order_str("to_shop", t_shop_code, "주문서[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+            // 주문교환권 출력 -> 영수증프린터
+            print_order_str("to_local", t_shop_code, "교환권[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+        }
+
         private void btnScanner_Click(object sender, EventArgs e)
         {
             btnScanner.Enabled = false;
 
-
             Form f = new frmScanner(20);
             f.ShowDialog();
-
 
             if (mIsScanOK)
             {
                 lvwPayManager.Items.Clear();
-                lblLayoutBill.Text = "";
 
                 try
                 {
                     String dt = mScanString.Substring(4, 8);
                     String posno = mScanString.Substring(12, 2);
-                    String billno = mScanString.Substring(14, 6);
+                    String t6no = mScanString.Substring(14, 6);
 
                     int yyyy = int.Parse(dt.Substring(0, 4));
                     int mm = int.Parse(dt.Substring(4, 2));
@@ -576,12 +1096,10 @@ namespace thepos
                         }
                     }
 
-                    tbBillNo.Text = billno;
+                    tbBillNo.Text = t6no;
 
 
 
-
-                    //
                     String billNo = tbBillNo.Text;
 
                     selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
@@ -597,7 +1115,11 @@ namespace thepos
                     }
 
                     viewList(selected_biz_date, selected_pos_no, selected_the_no);
-                    lblLayoutBill.Text = "";
+
+                    if (lvwPayManager.Items.Count == 1)
+                    {
+                        lvwPayManager.Items[0].Selected = true;
+                    }
 
                 }
                 catch
@@ -610,61 +1132,6 @@ namespace thepos
             btnScanner.Enabled = true;
         }
 
-        private void btnView_Click(object sender, EventArgs e)
-        {
 
-            //
-            String billNo = tbBillNo.Text;
-
-            selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
-            selected_pos_no = cbPosNo.Text;
-
-            if (billNo.Length == 6)
-            {
-                selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
-            }
-            else
-            {
-                selected_the_no = "";
-            }
-
-            viewList(selected_biz_date, selected_pos_no, selected_the_no);
-            lblLayoutBill.Text = "";
-        }
-
-        private void btnPrintOrder_Click(object sender, EventArgs e)
-        {
-            if (lvwPayManager.SelectedItems.Count < 1)
-            {
-                return;
-            }
-
-            String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
-            String pay_keep = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(paykeep)].Text;
-
-
-            // 취소된 건을 선택하면 취소전표를 출력한다.. 위와 동일
-            String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(is_cancel)].Text;
-
-
-            if (isCancel == "Y" | isCancel == "y")
-            {
-                SetDisplayAlarm("W", "취소건 주문서 출력불가.");
-                return;
-            }
-
-
-
-
-
-
-
-
-            //print_bill(tTheNo, tran_type, "", pay_keep, false);
-
-
-
-
-        }
     }
 }
