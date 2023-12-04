@@ -59,7 +59,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        if (arr[i]["shopOrderNo"].ToString().Length == 4)
+                        if (arr[i]["shopOrderNo"].ToString().Length >= 4)
                         {
                             String is_cancel = arr[i]["isCancel"].ToString();
 
@@ -109,6 +109,15 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
             }
+
+
+        }
+
+        private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //? 
+
+
 
 
         }

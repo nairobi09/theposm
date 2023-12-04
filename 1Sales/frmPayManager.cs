@@ -489,7 +489,7 @@ namespace thepos
 
                 String shop_order_no = dr["shopOrderNo"].ToString();
 
-                if (shop_order_no.Length == 4)
+                if (shop_order_no.Length >= 4)
                     lvItem.Tag = "O";
                 else
                     lvItem.Tag = "";
@@ -521,7 +521,7 @@ namespace thepos
 
                         String shop_order_no = arr[i]["shopOrderNo"].ToString();
 
-                        if (shop_order_no.Length == 4)
+                        if (shop_order_no.Length >= 4)
                             lvItem.Tag = "O";
                         else
                             lvItem.Tag = "";

@@ -330,18 +330,6 @@
     <Compile Include="frmSetup.Designer.cs">
       <DependentUpon>frmSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="4Setup\frmSetupDbSync.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="4Setup\frmSetupDbSync.Designer.cs">
-      <DependentUpon>frmSetupDbSync.cs</DependentUpon>
-    </Compile>
-    <Compile Include="4Setup\frmSetupLocalMode.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="4Setup\frmSetupLocalMode.Designer.cs">
-      <DependentUpon>frmSetupLocalMode.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -628,12 +616,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSetup.resx">
       <DependentUpon>frmSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4Setup\frmSetupDbSync.resx">
-      <DependentUpon>frmSetupDbSync.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4Setup\frmSetupLocalMode.resx">
-      <DependentUpon>frmSetupLocalMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSub.resx">
       <DependentUpon>frmSub.cs</DependentUpon>

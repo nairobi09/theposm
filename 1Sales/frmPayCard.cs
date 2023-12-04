@@ -621,13 +621,13 @@ namespace thepos
         private bool SavePaymentCard_Local(PaymentCard mPaymentCard)
         {
 
-            String sql = "INSERT INTO paymentCard (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, taxAmount, freeAmount, serviceAmt, tax, install, authNo, cardNo, cardName, isuCode, acqCode, merchantNo, tranSerial, signPath, giftChange, isCancel, vanCode, send_YN) " +
+            String sql = "INSERT INTO paymentCard (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, taxAmount, freeAmount, serviceAmt, tax, install, authNo, cardNo, cardName, isuCode, acqCode, merchantNo, tranSerial, signPath, giftChange, isCancel, vanCode) " +
                 "values ('" + mPaymentCard.site_id + "','" + mPaymentCard.pos_no + "','" + mPaymentCard.biz_dt + "','" + mPaymentCard.the_no + "','" + mPaymentCard.ref_no + "'," + 
                         "'" + mPaymentCard.pay_date + "','" + mPaymentCard.pay_time + "','" + mPaymentCard.pay_type + "','" + mPaymentCard.tran_type + "','" + mPaymentCard.pay_class + "'," +
                         "'" + mPaymentCard.ticket_no + "'," + mPaymentCard.pay_seq + ",'" + mPaymentCard.tran_date + "'," + mPaymentCard.amount + "," + mPaymentCard.tax_amount + "," +
                         "" + mPaymentCard.tfree_amount + "," +  mPaymentCard.service_amount + "," + mPaymentCard.tax + ",'" + mPaymentCard.install + "','" + mPaymentCard.auth_no + "'," +
                         "'" + mPaymentCard.card_no + "','" + mPaymentCard.card_name + "','" + mPaymentCard.isu_code + "','" + mPaymentCard.acq_code + "','" + mPaymentCard.merchant_no + "'," +
-                        "'" + mPaymentCard.tran_serial + "','" + mPaymentCard.sign_path + "','" + mPaymentCard.gift_change + "','" + mPaymentCard.is_cancel + "','" + mPaymentCard.van_code + "','')";
+                        "'" + mPaymentCard.tran_serial + "','" + mPaymentCard.sign_path + "','" + mPaymentCard.gift_change + "','" + mPaymentCard.is_cancel + "','" + mPaymentCard.van_code + "')";
             int ret = sql_excute_local_db(sql);
 
 

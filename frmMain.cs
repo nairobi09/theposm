@@ -31,6 +31,7 @@ using System.Management;
 using System.Collections;
 using System.Drawing.Imaging;
 using System.Threading;
+using static thepos.ClsWin32Api;
 
 namespace thepos
 {
@@ -229,10 +230,12 @@ namespace thepos
             if (statusServer == false)
             {
                 change_mode_server_to_local();
+                synclink_log("기동 : 로컬모드");
             }
             else if (statusServer == true)
             {
                 change_mode_local_to_server();
+                synclink_log("기동 : 서버모드");
             }
 
 
@@ -246,6 +249,8 @@ namespace thepos
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             threadSyncLink.Abort();
+
+            synclink_log("SyncLink 쓰레드 종료");
         }
 
 
@@ -256,7 +261,9 @@ namespace thepos
             // 2. 서버원장 자동다운로드
             // 3. 로컬레코드 자동업로드
 
-            while(true)
+            synclink_log("SyncLink 쓰레드 시작");
+
+            while (true)
             {
                 //
                 Thread.Sleep(1000 * 10); // XX초
@@ -278,11 +285,13 @@ namespace thepos
                 {
                     // Server -> Local
                     change_mode_server_to_local();
+                    synclink_log("전환 : 서버 -> 로컬 모드");
                 }
                 else if (mTheMode == "Local" & statusServer == true)
                 {
                     // Local -> Server
                     change_mode_local_to_server();
+                    synclink_log("전환 : 로컬 -> 서버 모드");
                 }
                 else if (mTheMode == "Local" & statusServer == false)
                 {
@@ -313,6 +322,7 @@ namespace thepos
                             if (string.Compare(ver_server, ver_local) == 1)
                             {
                                 sync_data_server_to_local();
+                                synclink_log("서버원장 다운로드 : " + ver_local + "-> " + ver_server);
                             }
                         }
 
@@ -323,6 +333,7 @@ namespace thepos
                         if (local_record_cnt > 0)
                         {
                             int upload_cnt = upload_local_record();
+                            synclink_log("로컬레코드 업로드 : " + local_record_cnt + "건");
                         }
 
                     }
@@ -422,23 +433,7 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM orders";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                local_cnt += convert_number(dr["cnt"].ToString());
-            }
-            dr.Close();
-
             sql = "SELECT count(*) as cnt FROM orderItem";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                local_cnt += convert_number(dr["cnt"].ToString());
-            }
-            dr.Close();
-
-            sql = "SELECT count(*) as cnt FROM orderItem WHERE send_YN != 'Y' ";
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
@@ -456,14 +451,6 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM payment WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                local_cnt += convert_number(dr["cnt"].ToString());
-            }
-            dr.Close();
-
             //
             sql = "SELECT count(*) as cnt FROM paymentCash";
             dr = sql_select_local_db(sql);
@@ -473,24 +460,8 @@ namespace thepos
             }
             dr.Close();
 
-            sql = "SELECT count(*) as cnt FROM paymentCash WHERE send_YN != 'Y' ";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                local_cnt += convert_number(dr["cnt"].ToString());
-            }
-            dr.Close();
-
             //
             sql = "SELECT count(*) as cnt FROM paymentCard";
-            dr = sql_select_local_db(sql);
-            if (dr.Read())
-            {
-                local_cnt += convert_number(dr["cnt"].ToString());
-            }
-            dr.Close();
-
-            sql = "SELECT count(*) as cnt FROM paymentCard WHERE send_YN != 'Y' ";
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
@@ -1043,69 +1014,6 @@ namespace thepos
 
         }
 
-
-
-        private bool is_need_download_server_db()
-        {
-            String local_version = "";
-            String server_version = "";
-
-
-
-            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM site");
-            while (dr.Read())
-            {
-                local_version = dr["basicDbVer"].ToString();
-            }
-            dr.Close();
-
-
-
-            if (local_version == "") local_version = "0";
-
-
-
-            String sUrl = "site?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["sites"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    if (arr.Count == 1)
-                    {
-                        server_version = arr[0]["basicDbVer"].ToString();
-                    }
-                    else
-                    {
-                        MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("사이트정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return false;
-            }
-
-
-            if (long.Parse(local_version) < long.Parse(server_version))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
 
 
 
@@ -2372,6 +2280,12 @@ namespace thepos
             }
         }
 
-
+        private void synclink_log(String msg)
+        {
+            // Insert
+            String sql = "INSERT INTO syncLink (biz_dt, dt, msg) " +
+                         "values ('" + mBizDate + "','" + get_today_date() + get_today_time() + "','" + msg + "')";
+            int ret = sql_excute_local_db(sql);
+        }
     }
 }

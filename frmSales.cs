@@ -1460,8 +1460,8 @@ namespace thepos
                 else if (payType == "Easy") amount_easy = amount;
                 else if (payType == "Point") amount_point = amount;
 
-                String sql = "INSERT INTO payment (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, tranType, payClass, billNo, netAmount, amountCash, amountCard, amountEasy, amountPoint, dcAmount, isCancel, send_YN) " +
-                             "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + get_today_date() + "','" + get_today_time() + "','A','" + mPayClass + "','" + mTheNo.Substring(14, 6) + "'," + amount + "," + amount_cash + "," + amount_card + "," + amount_easy + "," + amount_point + "," + dcAmount + ",'', '')";
+                String sql = "INSERT INTO payment (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, tranType, payClass, billNo, netAmount, amountCash, amountCard, amountEasy, amountPoint, dcAmount, isCancel) " +
+                             "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + get_today_date() + "','" + get_today_time() + "','A','" + mPayClass + "','" + mTheNo.Substring(14, 6) + "'," + amount + "," + amount_cash + "," + amount_card + "," + amount_easy + "," + amount_point + "," + dcAmount + ",'')";
                 sql_excute_local_db(sql);
 
             }
@@ -4628,16 +4628,32 @@ namespace thepos
             if (mTheMode == "Local")
             {
                 //? 로컬모드에서 주문번호를 어떻게 부여할까?? 자리수 늘리기?
+                SQLiteDataReader dr;
 
 
+                int local_order_cnt = 0;
 
-                0000
+                dr = sql_select_local_db("SELECT * FROM localOrderCnt WHERE biz_dt = '" + mBizDate + "'");
+                if (dr.Read())
+                {
+                    local_order_cnt = int.Parse(dr["cnt"].ToString());
+                    local_order_cnt++;
+
+                    String sql = "UPDATE localOrderCnt SET cnt = " + local_order_cnt + " WHERE biz_dt='" + mBizDate + "'";
+                    int ret = sql_excute_local_db(sql);
+                }
+                else
+                {
+                    local_order_cnt = 1;
+
+                    String sql = "INSERT INTO localOrderCnt (biz_dt, cnt) values ('" + mBizDate + "', " + local_order_cnt + ")";
+                    int ret = sql_excute_local_db(sql);
+                }
+                dr.Close();
 
 
-
-
-
-
+                // 로컬모드 주문번호는 5자리
+                order_no = mPosNo + local_order_cnt.ToString("000");
 
             }
             else
@@ -4849,7 +4865,16 @@ namespace thepos
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
-            PrintExtensions.Print(BytesValue, printer_name);
+            try
+            {
+                PrintExtensions.Print(BytesValue, printer_name);
+            }
+            catch
+            {
+                MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
+            }
+
+
         }
 
 
