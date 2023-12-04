@@ -763,7 +763,11 @@ namespace thepos
             if (isComplex == true)
                 mPanelHigh.Visible = false;
             else
+            {
                 mPanelPayment.Visible = false;
+                frmSales.ConsoleEnable();
+            }
+                
 
         }
 

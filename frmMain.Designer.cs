@@ -701,7 +701,7 @@
             // pbNetworkConn
             // 
             this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect;
-            this.pbNetworkConn.Location = new System.Drawing.Point(49, 42);
+            this.pbNetworkConn.Location = new System.Drawing.Point(49, 40);
             this.pbNetworkConn.Name = "pbNetworkConn";
             this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
             this.pbNetworkConn.TabIndex = 16;
@@ -711,9 +711,9 @@
             // pbNetworkDisconn
             // 
             this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect;
-            this.pbNetworkDisconn.Location = new System.Drawing.Point(49, 41);
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(49, 39);
             this.pbNetworkDisconn.Name = "pbNetworkDisconn";
-            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
+            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 21);
             this.pbNetworkDisconn.TabIndex = 17;
             this.pbNetworkDisconn.TabStop = false;
             // 

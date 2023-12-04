@@ -624,6 +624,13 @@ namespace thepos
         //
         private void btnFlowCert_Click(object sender, EventArgs e)
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             ConsoleDisable();
 
 
@@ -638,6 +645,13 @@ namespace thepos
 
         private void btnFlowTicketing_Click(object sender, EventArgs e)
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             ConsoleDisable();
 
             mPanelMiddle.Controls.Clear();
@@ -652,6 +666,13 @@ namespace thepos
 
         private void btnFlowCharging_Click(object sender, EventArgs e)
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             if (mTicketType == "PA")  //선불형
             {
 
@@ -684,6 +705,13 @@ namespace thepos
 
         private void btnFlowSettlement_Click(object sender, EventArgs e)
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             if (lvwOrderItem.Items.Count > 0)
             {
                 SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
@@ -704,6 +732,13 @@ namespace thepos
 
         private void btnFlowLocker_Click(object sender, EventArgs e)
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             ConsoleDisable();
 
             mPanelMiddle.Controls.Clear();
@@ -815,6 +850,13 @@ namespace thepos
 
         private void ClickedPayPoint()
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             if (mLvwOrderItem.Items.Count == 0)
             {
                 return;
@@ -898,6 +940,13 @@ namespace thepos
 
         private void ClickedPayEasy()
         {
+            if (mTheMode == "Local")
+            {
+                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                return;
+            }
+
+
             if (mLvwOrderItem.Items.Count == 0)
             {
                 return;
@@ -4503,7 +4552,7 @@ namespace thepos
 
 
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("영수증 출력 오류.\r\n헬프데스크로 문의바랍니다.");  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;

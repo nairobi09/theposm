@@ -19,6 +19,8 @@ namespace thepos
         {
             InitializeComponent();
             initialize_font();
+
+            dtViewDate.Value = DateTime.Now;
         }
 
 
@@ -30,7 +32,8 @@ namespace thepos
 
             //
             lblDetail.Font = font10;
-            btnSuncLinkStory.Font = font10;
+            btnSyncLink.Font = font9;
+            lvwSyncLink.Font = font9;
 
             //
             lblTitle2.Font = font10;
@@ -134,6 +137,28 @@ namespace thepos
                 lblPaymentCardCnt.Text = dr["cnt"].ToString();
             }
             dr.Close();
+        }
+
+        private void btnSyncLink_Click(object sender, EventArgs e)
+        {
+            string sl_date = dtViewDate.Value.ToString("yyyyMMdd");
+
+
+            String sql = "SELECT * FROM syncLink WHERE sl_date = '" + sl_date + "' ORDER BY sl_time";
+            SQLiteDataReader dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                ListViewItem lvItem = new ListViewItem();
+
+                String t = dr["sl_time"].ToString();
+
+                lvItem.Text = t.Substring(0,2) + ":" + t.Substring(2, 2) + ":" + t.Substring(4, 2);
+                lvItem.SubItems.Add(dr["msg"].ToString());
+                lvwSyncLink.Items.Add(lvItem);
+            }
+            dr.Close();
+
+
         }
     }
 }

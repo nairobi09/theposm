@@ -163,6 +163,17 @@ namespace thepos
 
         private void RequestPay(String pay_type)
         {
+            if (mTheMode == "Local")
+            {
+                if (pay_type == "EASY")
+                {
+                    SetDisplayAlarm("W", "로컬모드에서 사용불가.");
+                    return;
+                }
+            }
+
+
+
             int reqAmount;
 
             if (!int.TryParse(tbReqAmount.Text.Replace(",",""), out reqAmount))

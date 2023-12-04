@@ -552,7 +552,6 @@ namespace thepos
             String pay_keep_point = pay_keep.Substring(2, 1);
             String pay_keep_easy = pay_keep.Substring(3, 1);
 
-            String sUrl = "";
             String pay_name = "";
             int pay_amount = 0;
 

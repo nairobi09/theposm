@@ -21,7 +21,6 @@ using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Data.SQLite;
-using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -223,19 +222,19 @@ namespace thepos
 
             // 네트워크 상태 : 정상이미지를 보이기/숨기기
             pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable();
-
+            pbNetworkDisconn.Visible = !pbNetworkConn.Visible;
 
             // 서버 상태 : 최초 서버 테스트콜
             bool statusServer = check_server_status();
             if (statusServer == false)
             {
                 change_mode_server_to_local();
-                synclink_log("기동 : 로컬모드");
+                synclink_log("모드기동 : 로컬");
             }
             else if (statusServer == true)
             {
                 change_mode_local_to_server();
-                synclink_log("기동 : 서버모드");
+                synclink_log("모드기동 : 서버");
             }
 
 
@@ -250,7 +249,7 @@ namespace thepos
         {
             threadSyncLink.Abort();
 
-            synclink_log("SyncLink 쓰레드 종료");
+            //synclink_log("SyncLink 쓰레드 종료");
         }
 
 
@@ -261,17 +260,23 @@ namespace thepos
             // 2. 서버원장 자동다운로드
             // 3. 로컬레코드 자동업로드
 
-            synclink_log("SyncLink 쓰레드 시작");
+            //synclink_log("SyncLink 쓰레드 시작");
+
+
+            // 인터벌 기준 5초 기준   ->  5초 * 12 = 1분
+            int wait_cnt = 0;
+
 
             while (true)
             {
                 //
-                Thread.Sleep(1000 * 10); // XX초
+                Thread.Sleep(1000 * 5); // XX초
+
 
 
                 // 네트워크 상태 : 정상이미지를 보이기/숨기기
                 pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable()));
-                pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkDisconn.Visible));
+                pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkConn.Visible));
 
 
                 // 서버 상태 : 최초 서버 테스트콜
@@ -285,13 +290,13 @@ namespace thepos
                 {
                     // Server -> Local
                     change_mode_server_to_local();
-                    synclink_log("전환 : 서버 -> 로컬 모드");
+                    synclink_log("모드전환 : 서버 -> 로컬");
                 }
                 else if (mTheMode == "Local" & statusServer == true)
                 {
                     // Local -> Server
                     change_mode_local_to_server();
-                    synclink_log("전환 : 로컬 -> 서버 모드");
+                    synclink_log("모드전환 : 로컬 -> 서버");
                 }
                 else if (mTheMode == "Local" & statusServer == false)
                 {
@@ -300,48 +305,52 @@ namespace thepos
 
 
                 //
-                if (mTheMode == "Server")
+                wait_cnt++;
+
+                if (wait_cnt > 12) // 12 -> 1분
                 {
+                    wait_cnt = 0;
 
-                    if (mSiteId == "")
+                    if (mTheMode == "Server")
                     {
-                        //
-                    }
-                    else
-                    {
-                        // 1.서버원장 다운로드
-                        String ver_server = get_version_server();
-                        String ver_local = get_version_local();
-
-                        if (ver_server == "" | ver_local == "")
+                        if (mSiteId == "")
                         {
-                            // 에러
+                            // 로그인전이면 skip
                         }
                         else
                         {
-                            if (string.Compare(ver_server, ver_local) == 1)
+                            // 1.서버원장 다운로드
+                            String ver_server = get_version_server();
+                            String ver_local = get_version_local();
+
+                            if (ver_server == "" | ver_local == "")
                             {
-                                sync_data_server_to_local();
-                                synclink_log("서버원장 다운로드 : " + ver_local + "-> " + ver_server);
+                                // 에러
+                            }
+                            else
+                            {
+                                if (string.Compare(ver_server, ver_local) == 1)
+                                {
+                                    sync_data_server_to_local();
+                                    synclink_log("원장다운로드 : " + ver_local + "-> " + ver_server);
+                                }
+                            }
+
+                            // 2. 로컬레코드 업로드
+                            int order_cnt = 0;
+                            int record_cnt = get_local_record_cnt(out order_cnt);
+
+                            if (record_cnt > 0)
+                            {
+                                int upload_cnt = upload_local_record();
+                                synclink_log("로컬데이터 업로드 : " + order_cnt + "|" + record_cnt + "건");
                             }
                         }
-
-
-                        // 2. 로컬레코드 업로드
-                        int local_record_cnt = get_local_record_cnt();
-
-                        if (local_record_cnt > 0)
-                        {
-                            int upload_cnt = upload_local_record();
-                            synclink_log("로컬레코드 업로드 : " + local_record_cnt + "건");
-                        }
-
                     }
-
-                }
-                else if (mTheMode == "Local")
-                {
-                    // 할일없음.
+                    else if (mTheMode == "Local")
+                    {
+                        // 할일없음.
+                    }
                 }
 
             }
@@ -420,16 +429,18 @@ namespace thepos
 
         }
 
-        private int get_local_record_cnt()
+        private int get_local_record_cnt(out int order_cnt)
         {
-            int local_cnt = 0;
+            order_cnt = 0;
+            int record_cnt = 0;
 
             //
             String sql = "SELECT count(*) as cnt FROM orders";
             SQLiteDataReader dr = sql_select_local_db(sql);
             if (dr.Read())
             {
-                local_cnt += convert_number(dr["cnt"].ToString());
+                record_cnt += convert_number(dr["cnt"].ToString());
+                order_cnt = record_cnt;
             }
             dr.Close();
 
@@ -437,7 +448,7 @@ namespace thepos
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
-                local_cnt += convert_number(dr["cnt"].ToString());
+                record_cnt += convert_number(dr["cnt"].ToString());
             }
             dr.Close();
 
@@ -447,7 +458,7 @@ namespace thepos
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
-                local_cnt += convert_number(dr["cnt"].ToString());
+                record_cnt += convert_number(dr["cnt"].ToString());
             }
             dr.Close();
 
@@ -456,7 +467,7 @@ namespace thepos
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
-                local_cnt += convert_number(dr["cnt"].ToString());
+                record_cnt += convert_number(dr["cnt"].ToString());
             }
             dr.Close();
 
@@ -465,11 +476,11 @@ namespace thepos
             dr = sql_select_local_db(sql);
             if (dr.Read())
             {
-                local_cnt += convert_number(dr["cnt"].ToString());
+                record_cnt += convert_number(dr["cnt"].ToString());
             }
             dr.Close();
 
-            return local_cnt;
+            return record_cnt;
 
         }
 
@@ -2060,7 +2071,7 @@ namespace thepos
 
 
 
-            if (mTheMode == "Local")  // 긴급사용모드
+            if (mTheMode == "Local")  // 로컬모드
             {
                 // 영업일자 입력받은 그대로 사용... 
                 //mBizDate = ;
@@ -2283,8 +2294,8 @@ namespace thepos
         private void synclink_log(String msg)
         {
             // Insert
-            String sql = "INSERT INTO syncLink (biz_dt, dt, msg) " +
-                         "values ('" + mBizDate + "','" + get_today_date() + get_today_time() + "','" + msg + "')";
+            String sql = "INSERT INTO syncLink (sl_date, sl_time, biz_dt, msg) " +
+                         "values ('" + get_today_date() + "', '" + get_today_time() + "', '" + mBizDate + "', '" + msg + "')";
             int ret = sql_excute_local_db(sql);
         }
     }

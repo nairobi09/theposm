@@ -672,7 +672,7 @@ namespace thepos
             // pbNetworkConn
             // 
             this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect1;
-            this.pbNetworkConn.Location = new System.Drawing.Point(23, 15);
+            this.pbNetworkConn.Location = new System.Drawing.Point(23, 14);
             this.pbNetworkConn.Name = "pbNetworkConn";
             this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
             this.pbNetworkConn.TabIndex = 39;
@@ -684,7 +684,7 @@ namespace thepos
             this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect1;
             this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 14);
             this.pbNetworkDisconn.Name = "pbNetworkDisconn";
-            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 19);
+            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 22);
             this.pbNetworkDisconn.TabIndex = 40;
             this.pbNetworkDisconn.TabStop = false;
             // 

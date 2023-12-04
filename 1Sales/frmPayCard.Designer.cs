@@ -204,9 +204,9 @@
             this.btnCardTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardTemp.ForeColor = System.Drawing.Color.White;
-            this.btnCardTemp.Location = new System.Drawing.Point(330, 155);
+            this.btnCardTemp.Location = new System.Drawing.Point(330, 145);
             this.btnCardTemp.Name = "btnCardTemp";
-            this.btnCardTemp.Size = new System.Drawing.Size(130, 40);
+            this.btnCardTemp.Size = new System.Drawing.Size(130, 50);
             this.btnCardTemp.TabIndex = 50;
             this.btnCardTemp.Text = "임의등록";
             this.btnCardTemp.UseVisualStyleBackColor = false;
