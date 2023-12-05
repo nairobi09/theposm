@@ -127,7 +127,8 @@ namespace thepos
             btnKeyClear.Font = font14;
             btnKeyLogin.Font = font12;
 
-            lblReqUser.Font = font10;
+            btnReqSupport.Font = font10;
+            btnReqUser.Font = font10;
 
         }
 
@@ -136,10 +137,7 @@ namespace thepos
 
             mLblTheModeStatus = lblLocalModeTitle;
 
-
             mLblTheModeStatus.Visible = false;
-
-
 
             mPanelDivision = panelDivision;
 
@@ -352,12 +350,9 @@ namespace thepos
                         // 할일없음.
                     }
                 }
-
             }
 
         }
-
-
 
 
 
@@ -2240,11 +2235,6 @@ namespace thepos
 
         }
 
-        private void lblReqUser_Click(object sender, EventArgs e)
-        {
-            frmReqUser fReqUser = new frmReqUser();
-            fReqUser.ShowDialog();
-        }
 
 
         private void lblSiteAlias_Click(object sender, EventArgs e)
@@ -2301,7 +2291,26 @@ namespace thepos
 
         private void btnSupport_Click(object sender, EventArgs e)
         {
+            //원격지원
             System.Diagnostics.Process.Start("https://367.co.kr/112/");
         }
+
+        private void lblReqSupport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReqSupport_Click(object sender, EventArgs e)
+        {
+            //원격지원
+            System.Diagnostics.Process.Start("https://367.co.kr/112/");
+        }
+
+        private void btnReqUser_Click(object sender, EventArgs e)
+        {
+            frmReqUser fReqUser = new frmReqUser();
+            fReqUser.ShowDialog();
+        }
+
     }
 }

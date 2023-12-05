@@ -667,8 +667,8 @@ namespace thepos
             }
             else if (mVanCode == "KOVAN")
             {
-                // 코밴은 신용만.
-
+                paymentKovan p = new paymentKovan();
+                //ret = p.requestKovanCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
             }
 
 

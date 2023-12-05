@@ -719,7 +719,7 @@ namespace thepos
             else if (mVanCode == "KOVAN")
             {
                 paymentKovan p = new paymentKovan();
-//                ret = p.requestKovanCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
+                ret = p.requestKovanCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard2);
             }
 
             mPaymentCard = mPaymentCard2;
