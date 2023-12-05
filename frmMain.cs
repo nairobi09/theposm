@@ -1815,7 +1815,7 @@ namespace thepos
 
 
             //
-            MessageBox.Show("다운로드 완료.", "thepos");
+            //MessageBox.Show("다운로드 완료.", "thepos");
 
         }
 
@@ -2297,6 +2297,11 @@ namespace thepos
             String sql = "INSERT INTO syncLink (sl_date, sl_time, biz_dt, msg) " +
                          "values ('" + get_today_date() + "', '" + get_today_time() + "', '" + mBizDate + "', '" + msg + "')";
             int ret = sql_excute_local_db(sql);
+        }
+
+        private void btnSupport_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://367.co.kr/112/");
         }
     }
 }
