@@ -60,15 +60,13 @@ namespace thepos
             else
                 tcode = Encoding.Default.GetBytes("S0");          //
 
-            
-
 
             tid = Encoding.Default.GetBytes("");              //tid
             halbu = Encoding.Default.GetBytes(install.ToString("00"));          //할부
             tamt = Encoding.Default.GetBytes(tAmount.ToString("000000000"));   //거래금액:실제 결제되는 금액
             ori_date = Encoding.Default.GetBytes("      ");      //취소시 원거래일자
             ori_authno = Encoding.Default.GetBytes("            ");//취소시 원거래 승인번호 12자리 우측 스페이스 채움
-            tran_serial = Encoding.Default.GetBytes("000001      ");//거래일련번호 망취소시 거래일련번호로 사용됨므로 중복되면 망취소 안됨(하루에 중복되는 거래일련번호로 사용시 망취소 에러). 
+            tran_serial = Encoding.Default.GetBytes(get_today_date().Substring(2,6) + get_today_time());//거래일련번호 망취소시 거래일련번호로 사용됨므로 중복되면 망취소 안됨(하루에 중복되는 거래일련번호로 사용시 망취소 에러). 
             idno = Encoding.Default.GetBytes("                                 ");//33 스페이스, 현금영수증거래/ 수표조회시 식별번호
 
             amt_flag = Encoding.Default.GetBytes("   ");//미사용 스페이스

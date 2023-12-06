@@ -172,7 +172,6 @@ namespace thepos
 
         }
 
-
         public int requestNiceCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
         {
             pCardCancel = pCardAuth;
@@ -225,6 +224,7 @@ namespace thepos
             }
 
         }
+
 
 
         public int requestNiceCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash pCash)
@@ -309,7 +309,6 @@ namespace thepos
 
         }
 
-
         public int requestNiceCashCancel(PaymentCash pCashAuth, out PaymentCash pCashCancel)
         {
             pCashCancel = pCashAuth;
@@ -382,8 +381,6 @@ namespace thepos
         }
 
 
-
-        // 간편결제
 
         public int requestNiceEasyAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String tBarcodeNo, out PaymentEasy pEasy)
         {
@@ -469,7 +466,6 @@ namespace thepos
             }
 
         }
-
 
         public int requestNiceEasyCancel(PaymentEasy pEasyAuth, out PaymentEasy pEasyCancel)
         {
