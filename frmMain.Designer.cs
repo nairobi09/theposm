@@ -39,6 +39,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.btnReqUser = new System.Windows.Forms.Button();
+            this.btnReqSupport = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPW = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
@@ -76,8 +78,6 @@
             this.lblLocalModeTitle = new System.Windows.Forms.Label();
             this.pbNetworkConn = new System.Windows.Forms.PictureBox();
             this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
-            this.btnReqSupport = new System.Windows.Forms.Button();
-            this.btnReqUser = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -237,6 +237,30 @@
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
             // 
+            // btnReqUser
+            // 
+            this.btnReqUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReqUser.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnReqUser.Location = new System.Drawing.Point(180, 663);
+            this.btnReqUser.Name = "btnReqUser";
+            this.btnReqUser.Size = new System.Drawing.Size(90, 35);
+            this.btnReqUser.TabIndex = 44;
+            this.btnReqUser.Text = "계정신청";
+            this.btnReqUser.UseVisualStyleBackColor = true;
+            this.btnReqUser.Click += new System.EventHandler(this.btnReqUser_Click);
+            // 
+            // btnReqSupport
+            // 
+            this.btnReqSupport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReqSupport.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnReqSupport.Location = new System.Drawing.Point(84, 663);
+            this.btnReqSupport.Name = "btnReqSupport";
+            this.btnReqSupport.Size = new System.Drawing.Size(90, 35);
+            this.btnReqSupport.TabIndex = 43;
+            this.btnReqSupport.Text = "원격지원";
+            this.btnReqSupport.UseVisualStyleBackColor = true;
+            this.btnReqSupport.Click += new System.EventHandler(this.btnReqSupport_Click);
+            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
@@ -372,7 +396,7 @@
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(190, 270);
+            this.panelNumpad.Size = new System.Drawing.Size(190, 278);
             this.panelNumpad.TabIndex = 24;
             // 
             // btnKey1
@@ -707,30 +731,6 @@
             this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 21);
             this.pbNetworkDisconn.TabIndex = 17;
             this.pbNetworkDisconn.TabStop = false;
-            // 
-            // btnReqSupport
-            // 
-            this.btnReqSupport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReqSupport.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnReqSupport.Location = new System.Drawing.Point(68, 659);
-            this.btnReqSupport.Name = "btnReqSupport";
-            this.btnReqSupport.Size = new System.Drawing.Size(99, 39);
-            this.btnReqSupport.TabIndex = 43;
-            this.btnReqSupport.Text = "원격지원";
-            this.btnReqSupport.UseVisualStyleBackColor = true;
-            this.btnReqSupport.Click += new System.EventHandler(this.btnReqSupport_Click);
-            // 
-            // btnReqUser
-            // 
-            this.btnReqUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReqUser.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnReqUser.Location = new System.Drawing.Point(173, 659);
-            this.btnReqUser.Name = "btnReqUser";
-            this.btnReqUser.Size = new System.Drawing.Size(99, 39);
-            this.btnReqUser.TabIndex = 44;
-            this.btnReqUser.Text = "계정신청";
-            this.btnReqUser.UseVisualStyleBackColor = true;
-            this.btnReqUser.Click += new System.EventHandler(this.btnReqUser_Click);
             // 
             // frmMain
             // 

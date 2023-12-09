@@ -254,7 +254,7 @@
             // network_printer_name
             // 
             this.network_printer_name.Text = "네트워크프린터명";
-            this.network_printer_name.Width = 230;
+            this.network_printer_name.Width = 220;
             // 
             // frmSysShop
             // 

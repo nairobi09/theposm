@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using System.Data.SQLite;
 using System.IO;
+using thepos._9SysAdmin;
 
 namespace thepos
 {

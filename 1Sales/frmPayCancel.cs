@@ -387,6 +387,7 @@ namespace thepos
                         pCardAuth.acq_code = dr["acqCode"].ToString();
                         pCardAuth.merchant_no = dr["merchantNo"].ToString();
                         pCardAuth.tran_serial = dr["tranSerial"].ToString();
+                        pCardAuth.is_cup = dr["isCup"].ToString();
 
                         pCardAuth.tax_amount = 0;
                         pCardAuth.tfree_amount = 0;
@@ -401,7 +402,6 @@ namespace thepos
                         MessageBox.Show("결제자료 오류. paymentCard\n\n", "thepos");
                         return;
                     }
-                    
                 }
                 else
                 {
@@ -441,6 +441,8 @@ namespace thepos
                                 pCardAuth.acq_code = arr[0]["acqCode"].ToString();
                                 pCardAuth.merchant_no = arr[0]["merchantNo"].ToString();
                                 pCardAuth.tran_serial = arr[0]["tranSerial"].ToString();
+
+                                pCardAuth.is_cup = arr[0]["isCup"].ToString();
 
                                 pCardAuth.tax_amount = 0;
                                 pCardAuth.tfree_amount = 0;
@@ -1411,6 +1413,14 @@ namespace thepos
             }
 
 
+
+            if (is_cancel_stat == "Y")
+            {
+                print_cancel_order(the_no);
+            }
+
+
+
             // 다시 불러오기
             if (is_apply == true)
             {
@@ -1953,6 +1963,124 @@ namespace thepos
 
         }
 
+
+        public static void print_cancel_order(String tTheNo)
+        {
+            List<MemOrderItem> MemOrderItemList = new List<MemOrderItem>();
+
+            if (mTheMode == "Local")
+            {
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='C'");
+                while (dr.Read())
+                {
+                    if (dr["shopOrderNo"].ToString() != "")
+                    {
+                        MemOrderItem memOrderItem = new MemOrderItem();
+
+                        memOrderItem.shop_order_no = dr["shopOrderNo"].ToString();
+                        memOrderItem.shop_code = dr["shopCode"].ToString();
+                        memOrderItem.name = dr["itemName"].ToString();
+                        memOrderItem.cnt = convert_number(dr["cnt"].ToString());
+
+                        MemOrderItemList.Add(memOrderItem);
+                    }
+                }
+
+                dr.Close();
+            }
+            else
+            {
+                String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=C";
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["orderItems"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String shop_order_no = arr[i]["shopOrderNo"].ToString();
+
+                            if (shop_order_no != "")
+                            {
+                                MemOrderItem memOrderItem = new MemOrderItem();
+
+                                memOrderItem.shop_order_no = shop_order_no;
+                                memOrderItem.shop_code = arr[i]["shopCode"].ToString();
+                                memOrderItem.name = arr[i]["itemName"].ToString();
+                                memOrderItem.cnt = convert_number(arr[i]["cnt"].ToString());
+
+                                MemOrderItemList.Add(memOrderItem);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("취소주문서 출력오류\n\n핼프데스크로 문의바랍니다.", "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("취소주문서 출력오류\n\n핼프데스크로 문의바랍니다.", "thepos");
+                    return;
+                }
+            }
+
+
+
+
+            if (MemOrderItemList.Count == 0)
+                return;
+
+
+
+            //
+            String t_shop_code = "";
+            String t_order_no = "";
+            String t_order_dt = get_today_date() + get_today_time();
+            List<String> t_good_name = new List<String>();
+            List<int> t_good_cnt = new List<int>();
+
+            t_shop_code = MemOrderItemList[0].shop_code;
+            t_order_no = MemOrderItemList[0].shop_order_no;
+            t_good_name.Add(MemOrderItemList[0].name);
+            t_good_cnt.Add(MemOrderItemList[0].cnt);
+
+
+            for (int i = 0; i < MemOrderItemList.Count - 1; i++)
+            {
+                if (string.Compare(MemOrderItemList[i].shop_code, MemOrderItemList[i + 1].shop_code) == 0)
+                {
+                    t_good_name.Add(MemOrderItemList[i + 1].name);
+                    t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
+                }
+                else
+                {
+                    // 업장주문서 출력 -> shop 등록정보 프린터
+                    print_order_str("to_shop", t_shop_code, "취소주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+                    // 주문교환권 출력 -> 영수증프린터
+                    print_order_str("to_local", t_shop_code, "취소교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+
+                    t_good_name.Clear();
+                    t_good_cnt.Clear();
+                    t_shop_code = MemOrderItemList[i + 1].shop_code;
+                    t_order_no = MemOrderItemList[i + 1].shop_order_no;
+                    t_good_name.Add(MemOrderItemList[i + 1].name);
+                    t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
+                }
+            }
+
+            // 업장주문서 출력 -> shop 등록정보 프린터
+            print_order_str("to_shop", t_shop_code, "취소주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+            // 주문교환권 출력 -> 영수증프린터
+            print_order_str("to_local", t_shop_code, "취소교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+        }
 
 
 

@@ -37,7 +37,6 @@ namespace thepos
         bool isLast = false;
         int selectIdx = -1;
 
-        TextBox saveKeyDisplay;
 
         String ticketNo = "";
 
@@ -61,8 +60,18 @@ namespace thepos
 
             reset_amount();
 
-            saveKeyDisplay = mTbKeyDisplayController;
-            mTbKeyDisplayController = tbIssuedMethodNo;
+
+
+            // 밴이 나이스만 입력수단을 표시한다...
+            if (mVanCode == "NICE")
+            {
+                gbInputType.Visible = true;
+            }
+            else
+            {
+                gbInputType.Visible = false;
+            }
+            
 
 
             if (mPayClass == "OR")
@@ -129,11 +138,9 @@ namespace thepos
             rbTypeBusiness.Font = font10;
             rbTypeSelf.Font = font10;
             
-            rb고객식별번호.Font = font10;
+            rb화면입력.Font = font10;
             rbKeyin.Font = font10;
             rb카드거래.Font = font10;
-            
-            tbIssuedMethodNo.Font = font10;
 
             lblAuthNo.Font = font10;
             btnCashRecept.Font = font10;
@@ -380,7 +387,7 @@ namespace thepos
             else if (rbTypeBusiness.Checked == true) receipt_type = "2";
             else receipt_type = "S";
 
-            String issues_method_no = tbIssuedMethodNo.Text.Trim();
+            String issues_method_no = "";
 
 
             PaymentCash paymentCash = new PaymentCash();
@@ -388,13 +395,13 @@ namespace thepos
 
             int input_type = 0;
 
-            if (rb고객식별번호.Checked) input_type = 0;
+            if (rb화면입력.Checked) input_type = 0;
             else if (rbKeyin.Checked) input_type = 1;
             else if (rb카드거래.Checked) input_type = 2;
 
 
 
-            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, issues_method_no, out paymentCash) != 0)  // Toss process
+            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, out paymentCash) != 0)  // Toss process
             {
                 display_error_msg(mErrorMsg);
             }
@@ -648,7 +655,7 @@ namespace thepos
 
 
 
-        int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash mPaymentCash)
+        int requestCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, out PaymentCash mPaymentCash)
         {
             int ret = -1;
 
@@ -658,17 +665,17 @@ namespace thepos
             if (mVanCode == "NICE")
             {
                 paymentNice p = new paymentNice();
-                ret = p.requestNiceCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, issues_method_no, out mPaymentCash2);
+                ret = p.requestNiceCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, out mPaymentCash2);
             }
             else if (mVanCode == "KCP")
             {
                 paymentKCP p = new paymentKCP();
-                ret = p.requestKcpCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
+                ret = p.requestKcpCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, out mPaymentCash2);
             }
             else if (mVanCode == "KOVAN")
             {
                 paymentKovan p = new paymentKovan();
-                //ret = p.requestKovanCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, issues_method_no, out mPaymentCash2);
+                ret = p.requestKovanCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, out mPaymentCash2);
             }
 
 
@@ -743,7 +750,6 @@ namespace thepos
                 //frmSales.ConsoleEnable();
             }
 
-            mTbKeyDisplayController = saveKeyDisplay;
 
             if (isComplex == true)
                 mPanelHigh.Visible = false;

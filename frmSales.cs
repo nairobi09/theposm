@@ -132,10 +132,8 @@ namespace thepos
 
         private void frmSales_Shown(object sender, EventArgs e)
         {
-            ChangeTheMode();
-
+            ChangeTheMode(true);
         }
-
 
 
 
@@ -292,11 +290,11 @@ namespace thepos
 
 
             // 
-            mLblTheModeStatus.VisibleChanged += (sender, args) => ChangeTheMode();
+            mLblTheModeStatus.VisibleChanged += (sender, args) => ChangeTheMode(false);
 
         }
 
-        public void ChangeTheMode()
+        public void ChangeTheMode(bool isFirst)
         {
             // 네트워크 상태 : 정상이미지를 보이기/숨기기
             //pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable()));
@@ -307,12 +305,29 @@ namespace thepos
             {
                 lblLocalModeTitle.Visible = false;
 
-                SetDisplayAlarm("W", "모드변경 : 로컬 -> 서버");
+                if (isFirst) 
+                { 
+
+                }
+                else
+                {
+                    SetDisplayAlarm("W", "모드변경 : 로컬 -> 서버");
+                }
+                
             }
             else
             {
                 lblLocalModeTitle.Visible = true;
-                SetDisplayAlarm("W", "모드변경 : 서버 -> 로걸");
+
+                if (isFirst)
+                {
+                    
+                }
+                else
+                {
+                    SetDisplayAlarm("W", "모드변경 : 서버 -> 로걸");
+                }
+                
             }
 
 
@@ -4143,7 +4158,7 @@ namespace thepos
                                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                                 strPrintPayment += "\r\n";
 
-                                tStr = arr[i]["cardName"].ToString();
+                                tStr = arr[i]["cardName"].ToString().Trim();
                                 strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
                                 String no = arr[i]["cardNo"].ToString();
@@ -4799,28 +4814,6 @@ namespace thepos
         }
 
 
-        public static String __make_printer_order_str(String shop, List<String> name, List<int> cnt, String order_no, String order_dt)
-        {
-            String strPrint = "------------------------------------------\r\n";  // 42
-
-            for (int i = 0; i < name.Count; i++)
-            {
-                strPrint += name[i] + Space(32 - encodelen(name[i]));
-
-                String strCnt = cnt[i].ToString("N0");     // 수량
-                strPrint += Space(10 - encodelen(strCnt)) + strCnt;
-
-                strPrint += "\r\n";
-            }
-
-            strPrint += "------------------------------------------\r\n\r\n";  // 42
-            strPrint += "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
-            
-
-            return strPrint;
-        }
-
-
 
         public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, String order_dt)  // 주문서
         {
@@ -4836,9 +4829,9 @@ namespace thepos
                 {
                     if (mShop[i].shop_code == shop)
                     {
-                        if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;
-                        else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;
-                        else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;
+                        if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;    // Network
+                        else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;                // Local
+                        else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;                 // Recept
                         else
                         {
                             return;
@@ -4946,7 +4939,7 @@ namespace thepos
             else if (mVanCode == "KOVAN")
             {
                 paymentKovan p = new paymentKovan();
-                //ret = p.requestKovanCardCancel(pCardAuth, out pCardCancel);
+                ret = p.requestKovanCardCancel(pCardAuth, out pCardCancel);
             }
 
 
@@ -4973,7 +4966,7 @@ namespace thepos
             else if (mVanCode == "KOVAN")
             {
                 paymentKovan p = new paymentKovan();
-                //ret = p.requestKovanCashCancel(paymentCash, out pCashCancel);
+                ret = p.requestKovanCashCancel(paymentCash, out pCashCancel);
             }
 
             return ret;

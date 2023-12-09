@@ -181,8 +181,18 @@ namespace thepos
             string SendData = "";
 
 
-            //!
-            SendData = "0420" + FS + "10" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용취소" + FS;
+            // 은련구분
+            if (pCardAuth.is_cup == "1'")
+            {
+                SendData = "0420" + FS + "UP" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "해외은련취소요청" + FS;
+            }    
+            else
+            {
+                SendData = "0420" + FS + "10" + FS + "C" + FS + pCardAuth.amount + FS + pCardAuth.tax + FS + pCardAuth.service_amount + FS + Halbu + FS + pCardAuth.auth_no + FS + pCardAuth.tran_date + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용취소" + FS;
+            }
+
+
+            
             byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
             byte[] mRecv = new byte[2048];
 
@@ -227,7 +237,7 @@ namespace thepos
 
 
 
-        public int requestNiceCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, String issues_method_no, out PaymentCash pCash)
+        public int requestNiceCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, int input_type, out PaymentCash pCash)
         {
             PaymentCash mPaymentCash = new PaymentCash();
             pCash = mPaymentCash;
@@ -247,6 +257,9 @@ namespace thepos
             //else if (rb카드거래.Checked) input_type = 2;
 
 
+
+
+
             if (input_type == 1)
             {
                 //Keyin거래
@@ -254,8 +267,8 @@ namespace thepos
             }
             else if (input_type == 0)
             {
-                // 고객식별번호 입력거래
-                SendData = "0200" + FS + "21" + FS + "P" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + issues_method_no + FS + FS + FS + FS + FS + "현금영수증승인POS입력" + FS;
+                // 화면터치
+                SendData = "0200" + FS + "21" + FS + "T" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + tReceiptType + FS + "" + FS + "" + FS + "" + FS + FS + FS + "" + FS + FS + FS + FS + FS + "현금영수증승인터치방식" + FS;
             }
             else if (input_type == 2)
             {
@@ -370,6 +383,7 @@ namespace thepos
                 pCashCancel.tran_serial = mNiceResponse.t전문관리번호;
                 // 거래일시
                 pCashCancel.tran_date = mNiceResponse.t승인일시;
+                pCashCancel.issued_method_no = mNiceResponse.t카드BIN;
 
                 return 0;
             }

@@ -331,6 +331,7 @@
             // 
             this.chkCUP.AutoSize = true;
             this.chkCUP.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkCUP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.chkCUP.Location = new System.Drawing.Point(196, 183);
             this.chkCUP.Name = "chkCUP";
             this.chkCUP.Size = new System.Drawing.Size(82, 18);

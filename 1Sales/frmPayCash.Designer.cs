@@ -30,12 +30,11 @@
         {
             this.panelback = new System.Windows.Forms.Panel();
             this.gbCashReceipt = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbInputType = new System.Windows.Forms.GroupBox();
             this.lbl5 = new System.Windows.Forms.Label();
             this.rb카드거래 = new System.Windows.Forms.RadioButton();
             this.rbKeyin = new System.Windows.Forms.RadioButton();
-            this.rb고객식별번호 = new System.Windows.Forms.RadioButton();
-            this.tbIssuedMethodNo = new System.Windows.Forms.TextBox();
+            this.rb화면입력 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbl4 = new System.Windows.Forms.Label();
             this.rbTypeSelf = new System.Windows.Forms.RadioButton();
@@ -61,7 +60,7 @@
             this.lbl1 = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.gbCashReceipt.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gbInputType.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.gbCashSimple.SuspendLayout();
             this.SuspendLayout();
@@ -84,34 +83,33 @@
             // 
             // gbCashReceipt
             // 
-            this.gbCashReceipt.Controls.Add(this.groupBox4);
+            this.gbCashReceipt.Controls.Add(this.gbInputType);
             this.gbCashReceipt.Controls.Add(this.groupBox3);
             this.gbCashReceipt.Controls.Add(this.lblAuthNo);
             this.gbCashReceipt.Controls.Add(this.lbl6);
             this.gbCashReceipt.Controls.Add(this.btnCashRecept);
-            this.gbCashReceipt.Location = new System.Drawing.Point(22, 332);
+            this.gbCashReceipt.Location = new System.Drawing.Point(22, 360);
             this.gbCashReceipt.Name = "gbCashReceipt";
-            this.gbCashReceipt.Size = new System.Drawing.Size(480, 343);
+            this.gbCashReceipt.Size = new System.Drawing.Size(480, 317);
             this.gbCashReceipt.TabIndex = 50;
             this.gbCashReceipt.TabStop = false;
             // 
-            // groupBox4
+            // gbInputType
             // 
-            this.groupBox4.Controls.Add(this.lbl5);
-            this.groupBox4.Controls.Add(this.rb카드거래);
-            this.groupBox4.Controls.Add(this.rbKeyin);
-            this.groupBox4.Controls.Add(this.rb고객식별번호);
-            this.groupBox4.Controls.Add(this.tbIssuedMethodNo);
-            this.groupBox4.Location = new System.Drawing.Point(15, 80);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(450, 125);
-            this.groupBox4.TabIndex = 54;
-            this.groupBox4.TabStop = false;
+            this.gbInputType.Controls.Add(this.lbl5);
+            this.gbInputType.Controls.Add(this.rb카드거래);
+            this.gbInputType.Controls.Add(this.rbKeyin);
+            this.gbInputType.Controls.Add(this.rb화면입력);
+            this.gbInputType.Location = new System.Drawing.Point(15, 97);
+            this.gbInputType.Name = "gbInputType";
+            this.gbInputType.Size = new System.Drawing.Size(450, 60);
+            this.gbInputType.TabIndex = 54;
+            this.gbInputType.TabStop = false;
             // 
             // lbl5
             // 
             this.lbl5.AutoSize = true;
-            this.lbl5.Location = new System.Drawing.Point(20, 61);
+            this.lbl5.Location = new System.Drawing.Point(22, 27);
             this.lbl5.Name = "lbl5";
             this.lbl5.Size = new System.Drawing.Size(63, 14);
             this.lbl5.TabIndex = 45;
@@ -120,7 +118,7 @@
             // rb카드거래
             // 
             this.rb카드거래.AutoSize = true;
-            this.rb카드거래.Location = new System.Drawing.Point(136, 84);
+            this.rb카드거래.Location = new System.Drawing.Point(228, 25);
             this.rb카드거래.Name = "rb카드거래";
             this.rb카드거래.Size = new System.Drawing.Size(81, 18);
             this.rb카드거래.TabIndex = 50;
@@ -131,33 +129,23 @@
             // 
             this.rbKeyin.AutoSize = true;
             this.rbKeyin.Checked = true;
-            this.rbKeyin.Location = new System.Drawing.Point(136, 56);
+            this.rbKeyin.Location = new System.Drawing.Point(138, 25);
             this.rbKeyin.Name = "rbKeyin";
-            this.rbKeyin.Size = new System.Drawing.Size(95, 18);
+            this.rbKeyin.Size = new System.Drawing.Size(67, 18);
             this.rbKeyin.TabIndex = 50;
             this.rbKeyin.TabStop = true;
-            this.rbKeyin.Text = "키패드입력";
+            this.rbKeyin.Text = "키패드";
             this.rbKeyin.UseVisualStyleBackColor = true;
             // 
-            // rb고객식별번호
+            // rb화면입력
             // 
-            this.rb고객식별번호.AutoSize = true;
-            this.rb고객식별번호.Location = new System.Drawing.Point(136, 27);
-            this.rb고객식별번호.Name = "rb고객식별번호";
-            this.rb고객식별번호.Size = new System.Drawing.Size(81, 18);
-            this.rb고객식별번호.TabIndex = 50;
-            this.rb고객식별번호.Text = "식별번호";
-            this.rb고객식별번호.UseVisualStyleBackColor = true;
-            // 
-            // tbIssuedMethodNo
-            // 
-            this.tbIssuedMethodNo.BackColor = System.Drawing.Color.White;
-            this.tbIssuedMethodNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbIssuedMethodNo.Location = new System.Drawing.Point(228, 22);
-            this.tbIssuedMethodNo.MaxLength = 20;
-            this.tbIssuedMethodNo.Name = "tbIssuedMethodNo";
-            this.tbIssuedMethodNo.Size = new System.Drawing.Size(181, 23);
-            this.tbIssuedMethodNo.TabIndex = 49;
+            this.rb화면입력.AutoSize = true;
+            this.rb화면입력.Location = new System.Drawing.Point(329, 25);
+            this.rb화면입력.Name = "rb화면입력";
+            this.rb화면입력.Size = new System.Drawing.Size(81, 18);
+            this.rb화면입력.TabIndex = 50;
+            this.rb화면입력.Text = "화면터치";
+            this.rb화면입력.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -165,16 +153,16 @@
             this.groupBox3.Controls.Add(this.rbTypeSelf);
             this.groupBox3.Controls.Add(this.rbTypeIndividual);
             this.groupBox3.Controls.Add(this.rbTypeBusiness);
-            this.groupBox3.Location = new System.Drawing.Point(15, 20);
+            this.groupBox3.Location = new System.Drawing.Point(15, 37);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(451, 53);
+            this.groupBox3.Size = new System.Drawing.Size(451, 60);
             this.groupBox3.TabIndex = 53;
             this.groupBox3.TabStop = false;
             // 
             // lbl4
             // 
             this.lbl4.AutoSize = true;
-            this.lbl4.Location = new System.Drawing.Point(22, 24);
+            this.lbl4.Location = new System.Drawing.Point(22, 26);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(63, 14);
             this.lbl4.TabIndex = 45;
@@ -183,7 +171,7 @@
             // rbTypeSelf
             // 
             this.rbTypeSelf.AutoSize = true;
-            this.rbTypeSelf.Location = new System.Drawing.Point(286, 20);
+            this.rbTypeSelf.Location = new System.Drawing.Point(329, 24);
             this.rbTypeSelf.Name = "rbTypeSelf";
             this.rbTypeSelf.Size = new System.Drawing.Size(81, 18);
             this.rbTypeSelf.TabIndex = 52;
@@ -194,7 +182,7 @@
             // 
             this.rbTypeIndividual.AutoSize = true;
             this.rbTypeIndividual.Checked = true;
-            this.rbTypeIndividual.Location = new System.Drawing.Point(138, 20);
+            this.rbTypeIndividual.Location = new System.Drawing.Point(138, 24);
             this.rbTypeIndividual.Name = "rbTypeIndividual";
             this.rbTypeIndividual.Size = new System.Drawing.Size(53, 18);
             this.rbTypeIndividual.TabIndex = 52;
@@ -205,7 +193,7 @@
             // rbTypeBusiness
             // 
             this.rbTypeBusiness.AutoSize = true;
-            this.rbTypeBusiness.Location = new System.Drawing.Point(208, 20);
+            this.rbTypeBusiness.Location = new System.Drawing.Point(228, 24);
             this.rbTypeBusiness.Name = "rbTypeBusiness";
             this.rbTypeBusiness.Size = new System.Drawing.Size(67, 18);
             this.rbTypeBusiness.TabIndex = 52;
@@ -224,7 +212,7 @@
             // lbl6
             // 
             this.lbl6.AutoSize = true;
-            this.lbl6.Location = new System.Drawing.Point(37, 235);
+            this.lbl6.Location = new System.Drawing.Point(37, 213);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(63, 14);
             this.lbl6.TabIndex = 45;
@@ -235,11 +223,11 @@
             this.btnCashRecept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashRecept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
-            this.btnCashRecept.Location = new System.Drawing.Point(307, 235);
+            this.btnCashRecept.Location = new System.Drawing.Point(307, 189);
             this.btnCashRecept.Name = "btnCashRecept";
             this.btnCashRecept.Size = new System.Drawing.Size(140, 60);
             this.btnCashRecept.TabIndex = 44;
-            this.btnCashRecept.Text = "승인요청";
+            this.btnCashRecept.Text = "현금영수증";
             this.btnCashRecept.UseVisualStyleBackColor = false;
             this.btnCashRecept.Click += new System.EventHandler(this.btnCashRecept_Click);
             // 
@@ -257,7 +245,7 @@
             this.gbCashSimple.Controls.Add(this.btn50t);
             this.gbCashSimple.Location = new System.Drawing.Point(22, 152);
             this.gbCashSimple.Name = "gbCashSimple";
-            this.gbCashSimple.Size = new System.Drawing.Size(478, 171);
+            this.gbCashSimple.Size = new System.Drawing.Size(478, 182);
             this.gbCashSimple.TabIndex = 47;
             this.gbCashSimple.TabStop = false;
             // 
@@ -443,8 +431,8 @@
             this.panelback.PerformLayout();
             this.gbCashReceipt.ResumeLayout(false);
             this.gbCashReceipt.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gbInputType.ResumeLayout(false);
+            this.gbInputType.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.gbCashSimple.ResumeLayout(false);
@@ -476,13 +464,12 @@
         private System.Windows.Forms.GroupBox gbCashReceipt;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lblAuthNo;
-        private System.Windows.Forms.TextBox tbIssuedMethodNo;
         private System.Windows.Forms.RadioButton rbTypeSelf;
         private System.Windows.Forms.RadioButton rbTypeBusiness;
         private System.Windows.Forms.RadioButton rbTypeIndividual;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton rb고객식별번호;
+        private System.Windows.Forms.GroupBox gbInputType;
+        private System.Windows.Forms.RadioButton rb화면입력;
         private System.Windows.Forms.RadioButton rb카드거래;
         private System.Windows.Forms.RadioButton rbKeyin;
         private System.Windows.Forms.Label lbl5;

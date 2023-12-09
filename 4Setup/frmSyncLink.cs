@@ -141,8 +141,10 @@ namespace thepos
 
         private void btnSyncLink_Click(object sender, EventArgs e)
         {
-            string sl_date = dtViewDate.Value.ToString("yyyyMMdd");
+            lvwSyncLink.Items.Clear();
 
+
+            string sl_date = dtViewDate.Value.ToString("yyyyMMdd");
 
             String sql = "SELECT * FROM syncLink WHERE sl_date = '" + sl_date + "' ORDER BY sl_time";
             SQLiteDataReader dr = sql_select_local_db(sql);
@@ -158,7 +160,7 @@ namespace thepos
             }
             dr.Close();
 
-
+            lvwSyncLink.EnsureVisible(lvwSyncLink.Items.Count - 1);
         }
     }
 }

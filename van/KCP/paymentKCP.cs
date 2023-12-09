@@ -136,7 +136,17 @@ namespace thepos
             clsSecureDLL.InitData();
 
             clsSecureDLL.SetData("WORK_CODE", "0420");
-            clsSecureDLL.SetData("PROC_CODE", "A01");
+
+
+            if (pCardAuth.is_cup == "1")
+            {
+                clsSecureDLL.SetData("PROC_CODE", "A02");
+            }
+            else
+            {
+                clsSecureDLL.SetData("PROC_CODE", "A01");
+            }
+
 
             clsSecureDLL.SetData("SCREEN_FLAG", "0");  //일반취소
 
@@ -186,7 +196,7 @@ namespace thepos
         }
 
 
-        public int requestKcpCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, String issues_method_no, out PaymentCash pCash)
+        public int requestKcpCashAuth(int tAmount, int tFreeAmount, int tTaxAmount, int tTax, int tServiceAmt, String receipt_type, out PaymentCash pCash)
         {
             PaymentCash mPaymentCash = new PaymentCash();
             pCash = mPaymentCash;
@@ -312,7 +322,6 @@ namespace thepos
             {
                 pCashCancel.biz_dt = mBizDate;
                 pCashCancel.tran_type = "C";
-
                 pCashCancel.tran_date = clsSecureDLL.GetData("OTX_DT");
 
                 return 0;

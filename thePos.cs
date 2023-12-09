@@ -44,13 +44,10 @@ using System.Data.SQLite;
  */
 
 
-
 namespace thepos
 {
     public class thePos
     {
-
-
         public struct CardTemp
         {
             public int amount;
@@ -60,7 +57,6 @@ namespace thepos
             public string card_name;
             public string isu_code;
         }
-
 
         public static Font font5;
         public static Font font8;
@@ -76,7 +72,6 @@ namespace thepos
         public static Font font24;
 
         public static PrivateFontCollection fontCollection = new PrivateFontCollection();
-
 
 
         // //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,16 +97,10 @@ namespace thepos
 
         // 콜센터 연락처
         public static String mCallCenterNo = "";
-
         public static String mServerDbVer = "";
-
-
 
         public static String mPosNo = "";       // 내 포스번호
         public static String[] mPosNoList;      // Site내 포스번호 목록
-
-
-
 
 
         // 주문서 - 상품정보 필드관리
@@ -124,18 +113,13 @@ namespace thepos
         // 영수증 출력 상단 이미지
         public static byte[] mByteLogoImage;
 
-
         public static String mLanguage = ""; // KR EN CH
-
 
 
         // //////////////////////////////////////////////////////////////////////////////////////////
         /// 포스 설정값 <summary>
         /// 포스 설정값
         public static string mClientType = "";  // PC:PC, POS:포스, KIOSK:키오스크
-
-
-
 
 
 
@@ -378,6 +362,7 @@ namespace thepos
             public int gift_change;     // 기프트 잔액
             public String is_cancel;    // 취소여부 : "" or "1"
             public String van_code;
+            public String is_cup;
         }
         public static List<PaymentCard> mPaymentCards = new List<PaymentCard>();
 
@@ -534,8 +519,14 @@ namespace thepos
 
 
 
+        public static bool mNetworkState;  
+        public static bool mPrevNetworkState;
 
         public static String mTheMode = "";  // Server Local
+
+
+        public static String mIsLogin = "N";
+
 
         public static String mPayClass = "OR"; // order
 
@@ -552,16 +543,13 @@ namespace thepos
         public static String mOrderPrinterPort = "";
         public static String mPosType = ""; // 기종 : POS PC KIOSK
         public static String mCustomerMonitor = "";  // Y N
+        public static String mVanTID = "";    // 결제밴 T-ID
+
 
         //Local DB
         public static SQLiteConnection mConn;
 
-
-
-
         public static Label mLblTheModeStatus;
-
-
 
 
 

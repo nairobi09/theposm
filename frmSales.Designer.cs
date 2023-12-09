@@ -661,7 +661,8 @@ namespace thepos
             // 
             this.lblLocalModeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblLocalModeTitle.Location = new System.Drawing.Point(57, 11);
+            this.lblLocalModeTitle.Location = new System.Drawing.Point(57, 12);
+            this.lblLocalModeTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblLocalModeTitle.Name = "lblLocalModeTitle";
             this.lblLocalModeTitle.Size = new System.Drawing.Size(82, 22);
             this.lblLocalModeTitle.TabIndex = 41;
@@ -672,7 +673,7 @@ namespace thepos
             // pbNetworkConn
             // 
             this.pbNetworkConn.Image = global::thepos.Properties.Resources.net_connect1;
-            this.pbNetworkConn.Location = new System.Drawing.Point(23, 14);
+            this.pbNetworkConn.Location = new System.Drawing.Point(23, 13);
             this.pbNetworkConn.Name = "pbNetworkConn";
             this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
             this.pbNetworkConn.TabIndex = 39;
@@ -682,7 +683,7 @@ namespace thepos
             // pbNetworkDisconn
             // 
             this.pbNetworkDisconn.Image = global::thepos.Properties.Resources.net_disconnect1;
-            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 14);
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 13);
             this.pbNetworkDisconn.Name = "pbNetworkDisconn";
             this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 22);
             this.pbNetworkDisconn.TabIndex = 40;

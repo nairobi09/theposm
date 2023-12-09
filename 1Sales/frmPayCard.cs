@@ -488,6 +488,8 @@ namespace thepos
                 mPaymentCard.sign_path = "";
                 mPaymentCard.is_cancel = "";
                 mPaymentCard.van_code = mVanCode;
+                mPaymentCard.is_cup = is_cup;
+
                 // 밴에서 응답으로 받은건 payChannel 모듈에서 세팅
 
                 if (!SavePaymentCard_Server(mPaymentCard))
@@ -675,6 +677,7 @@ namespace thepos
             parameters["giftChange"] = mPaymentCard.gift_change + "";
             parameters["isCancel"] = mPaymentCard.is_cancel;
             parameters["vanCode"] = mPaymentCard.van_code; ;
+            parameters["isCup"] = mPaymentCard.is_cup;
 
             if (mRequestPost("paymentCard", parameters))
             {

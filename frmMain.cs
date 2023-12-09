@@ -31,6 +31,7 @@ using System.Collections;
 using System.Drawing.Imaging;
 using System.Threading;
 using static thepos.ClsWin32Api;
+using System.Diagnostics.Eventing.Reader;
 
 namespace thepos
 {
@@ -217,22 +218,30 @@ namespace thepos
 
         private void frmMain_Shown(object sender, EventArgs e)
         {
+            synclink_log("-------------------------------------------");
+
+            mNetworkState = NetworkInterface.GetIsNetworkAvailable();
+            synclink_log("네트워크상태 : " + mNetworkState);
+
+            //
+            mPrevNetworkState = mNetworkState;
+
 
             // 네트워크 상태 : 정상이미지를 보이기/숨기기
             pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable();
             pbNetworkDisconn.Visible = !pbNetworkConn.Visible;
 
             // 서버 상태 : 최초 서버 테스트콜
-            bool statusServer = check_server_status();
-            if (statusServer == false)
+            bool tServerStatus = check_server_status();
+            if (tServerStatus == false)
             {
                 change_mode_server_to_local();
-                synclink_log("모드기동 : 로컬");
+                synclink_log("모드기동 : 로컬모드");
             }
-            else if (statusServer == true)
+            else if (tServerStatus == true)
             {
                 change_mode_local_to_server();
-                synclink_log("모드기동 : 서버");
+                synclink_log("모드기동 : 서버모드");
             }
 
 
@@ -258,7 +267,11 @@ namespace thepos
             // 2. 서버원장 자동다운로드
             // 3. 로컬레코드 자동업로드
 
-            //synclink_log("SyncLink 쓰레드 시작");
+            synclink_log("======  SyncLink 쓰레드 시작  ======");
+
+
+            // 서버 테스트콜
+            bool tServerStatus = check_server_status();
 
 
             // 인터벌 기준 5초 기준   ->  5초 * 12 = 1분
@@ -268,54 +281,67 @@ namespace thepos
             while (true)
             {
                 //
-                Thread.Sleep(1000 * 5); // XX초
+                Thread.Sleep(1000 * 2); // XX초
 
-
-
-                // 네트워크 상태 : 정상이미지를 보이기/숨기기
-                pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable()));
-                pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkConn.Visible));
-
-
-                // 서버 상태 : 최초 서버 테스트콜
-                bool statusServer = check_server_status();
-
-                if (mTheMode == "Server" & statusServer == true)
-                {
-                    // Skip
-                }
-                else if (mTheMode == "Server" & statusServer == false)
-                {
-                    // Server -> Local
-                    change_mode_server_to_local();
-                    synclink_log("모드전환 : 서버 -> 로컬");
-                }
-                else if (mTheMode == "Local" & statusServer == true)
-                {
-                    // Local -> Server
-                    change_mode_local_to_server();
-                    synclink_log("모드전환 : 로컬 -> 서버");
-                }
-                else if (mTheMode == "Local" & statusServer == false)
-                {
-                    // Skip
-                }
-
-
-                //
                 wait_cnt++;
 
-                if (wait_cnt > 12) // 12 -> 1분
+
+                mNetworkState = NetworkInterface.GetIsNetworkAvailable();
+ 
+                if (mPrevNetworkState != mNetworkState) 
+                {
+                   // 네트워크 상태 : 정상이미지를 보이기/숨기기
+                    pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = mNetworkState));
+                    pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkConn.Visible));
+
+                    synclink_log("네트워크상태변경 : " + mPrevNetworkState + "-> " + mNetworkState);
+
+                    mPrevNetworkState = mNetworkState;
+
+
+                    if (mNetworkState == false)
+                    {
+                        // Server -> Local  체크없이 바로 Local로 전환!!!
+                        tServerStatus = false;
+                        change_mode_server_to_local();
+                        synclink_log("모드전환 [서버 -> 로컬]");
+                    }
+
+                }
+
+
+                
+                if ((mNetworkState != tServerStatus) | (wait_cnt >= 30))  // 5분
+                {
+                    tServerStatus = check_server_status();
+
+                    if (mTheMode == "Server" & tServerStatus == false)
+                    {
+                        // Server -> Local
+                        change_mode_server_to_local();
+                        synclink_log("모드전환 [서버 -> 로컬]");
+                    }
+                    else if (mTheMode == "Local" & tServerStatus == true)
+                    {
+                        // Local -> Server
+                        change_mode_local_to_server();
+                        synclink_log("모드전환 [로컬 -> 서버]");
+                    }
+                    else
+                    {
+                        // Skip
+                    }
+                }
+
+
+
+                if (wait_cnt >= 30) // 5분
                 {
                     wait_cnt = 0;
 
                     if (mTheMode == "Server")
                     {
-                        if (mSiteId == "")
-                        {
-                            // 로그인전이면 skip
-                        }
-                        else
+                        if (mIsLogin == "Y")
                         {
                             // 1.서버원장 다운로드
                             String ver_server = get_version_server();
@@ -324,13 +350,21 @@ namespace thepos
                             if (ver_server == "" | ver_local == "")
                             {
                                 // 에러
+                                synclink_log("다운로드 : 원장버전체크 에러");
                             }
                             else
                             {
                                 if (string.Compare(ver_server, ver_local) == 1)
                                 {
                                     sync_data_server_to_local();
-                                    synclink_log("원장다운로드 : " + ver_local + "-> " + ver_server);
+                                    synclink_log("다운로드 : 원장 " + ver_local + "-> " + ver_server);
+
+                                    Thread.Sleep(1000 * 2); // XX초
+                                }
+                                else
+                                {
+                                    // 원장동일하면 Skip
+                                    synclink_log("다운로드 : 원장동일 Skip");
                                 }
                             }
 
@@ -338,16 +372,28 @@ namespace thepos
                             int order_cnt = 0;
                             int record_cnt = get_local_record_cnt(out order_cnt);
 
+                            synclink_log("업로드 : 대상건수 주문=" + order_cnt + " | 레코드=" + record_cnt);
+
                             if (record_cnt > 0)
                             {
                                 int upload_cnt = upload_local_record();
-                                synclink_log("로컬데이터 업로드 : " + order_cnt + "|" + record_cnt + "건");
                             }
+                            else
+                            {
+                                // Skip
+                                synclink_log("업로드 : 대상없음 Skip");
+                            }
+                        }
+                        else
+                        {
+                            // 로그인전이면 skip
+                            synclink_log("미로그인 Skip");
                         }
                     }
                     else if (mTheMode == "Local")
                     {
                         // 할일없음.
+                        synclink_log("로컬모드 Skip");
                     }
                 }
             }
@@ -481,10 +527,12 @@ namespace thepos
 
         private int upload_local_record()
         {
+            int cnt = 0;
             int upload_cnt = 0;
             int error_cnt = 0;
 
             // orders
+            cnt = 0;
             String sql = "SELECT * FROM orders";
             SQLiteDataReader dr = sql_select_local_db(sql);
             while (dr.Read())
@@ -511,8 +559,7 @@ namespace thepos
                     {
                         sql = "DELETE FROM orders WHERE seq_key = " + seq_key + "";
                         int ret = sql_excute_local_db(sql);
-
-                        upload_cnt++;
+                        cnt++;
                     }
                     else
                     {
@@ -527,8 +574,15 @@ namespace thepos
             }
             dr.Close();
 
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : orders = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
 
             // orderItem
+            cnt = 0;
             sql = "SELECT * FROM orderItem";
             dr = sql_select_local_db(sql);
             while (dr.Read())
@@ -571,8 +625,7 @@ namespace thepos
                     {
                         sql = "DELETE FROM orderItem WHERE seq_key = " + seq_key + "";
                         int ret = sql_excute_local_db(sql);
-
-                        upload_cnt++;
+                        cnt++;
                     }
                     else
                     {
@@ -586,8 +639,16 @@ namespace thepos
             }
             dr.Close();
 
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : orderItem = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
+
 
             // payment
+            cnt = 0;
             sql = "SELECT * FROM payment";
             dr = sql_select_local_db(sql);
             while (dr.Read())
@@ -623,8 +684,7 @@ namespace thepos
                     {
                         sql = "DELETE FROM payment WHERE seq_key = " + seq_key + "";
                         int ret = sql_excute_local_db(sql);
-
-                        upload_cnt++;
+                        cnt++;
                     }
                     else
                     {
@@ -638,8 +698,16 @@ namespace thepos
             }
             dr.Close();
 
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : payment = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
+
 
             // paymentCash
+            cnt = 0;
             sql = "SELECT * FROM paymentCash";
             dr = sql_select_local_db(sql);
             while (dr.Read())
@@ -678,8 +746,7 @@ namespace thepos
                     {
                         sql = "DELETE FROM paymentCash WHERE seq_key = " + seq_key + "";
                         int ret = sql_excute_local_db(sql);
-
-                        upload_cnt++;
+                        cnt++;
                     }
                     else
                     {
@@ -693,8 +760,16 @@ namespace thepos
             }
             dr.Close();
 
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : paymentCash = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
+
 
             // paymentCard
+            cnt = 0;
             sql = "SELECT * FROM paymentCard";
             dr = sql_select_local_db(sql);
             while (dr.Read())
@@ -738,6 +813,7 @@ namespace thepos
                 parameters["giftChange"] = dr["giftChange"].ToString();
                 parameters["isCancel"] = dr["isCancel"].ToString();
                 parameters["vanCode"] = dr["vanCode"].ToString();
+                parameters["isCup"] = dr["isCup"].ToString();
 
                 if (mRequestPost("paymentCard", parameters))
                 {
@@ -745,9 +821,7 @@ namespace thepos
                     {
                         sql = "DELETE FROM paymentCard WHERE seq_key = " + seq_key + "";
                         int ret = sql_excute_local_db(sql);
-
-                        upload_cnt++;
-
+                        cnt++;
                     }
                     else
                     {
@@ -761,9 +835,17 @@ namespace thepos
             }
             dr.Close();
 
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : paymentCard = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
+
+
             if (error_cnt > 0)
             {
-                
+                synclink_log("업로드 : 오류 = " + error_cnt);
             }
 
 
@@ -953,6 +1035,12 @@ namespace thepos
             save_registry_info();
 
 
+
+
+            // 로그인여부
+            mIsLogin = "Y";
+
+
             //////////////////////////////////
             //? 개시마감 
             String biz_date = "";
@@ -1067,7 +1155,7 @@ namespace thepos
                                     Bitmap bitmap_bill = new Bitmap(ms);
 
 
-                                    mByteLogoImage = GetImage(bitmap_bill, 500);
+                                    mByteLogoImage = GetImage(bitmap_bill, 400);
                                 }
                                 catch
                                 {
@@ -1264,6 +1352,7 @@ namespace thepos
                             else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
                         }
                     }
                 }
@@ -1457,7 +1546,7 @@ namespace thepos
 
 
 
-        public static void sync_data_server_to_local()
+        public void sync_data_server_to_local()
         {
             // 1. site -> 마지막에 다운. 에러감안한 버전관리
 
@@ -1494,6 +1583,9 @@ namespace thepos
                             "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + groupName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + soldout + "')";
                             ret = sql_excute_local_db(sql);
                         }
+
+                        synclink_log("다운로드 : goodsGroup = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
                     }
                     else
                     {
@@ -1505,6 +1597,9 @@ namespace thepos
                     return;
                 }
             }
+
+
+
 
 
             // 3. goodsItemAndGoods
@@ -1544,6 +1639,9 @@ namespace thepos
                                 "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + cutout + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
                             ret = sql_excute_local_db(sql);
                         }
+
+                        synclink_log("다운로드 : goodsItemAndGoods = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
                     }
                     else
                     {
@@ -1584,6 +1682,10 @@ namespace thepos
                                          "values ('" + siteId + "','" + shopCode + "','" + shopName + "','" + printerType + "','" + networkPrinterName + "')";
                             ret = sql_excute_local_db(sql);
                         }
+
+                        synclink_log("다운로드 : shop = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
+
                     }
                     else
                     {
@@ -1623,6 +1725,9 @@ namespace thepos
                                         "values ('" + siteId + "','" + posNo + "','" + macAddr + "','" + posStatus + "')";
                             ret = sql_excute_local_db(sql);
                         }
+                        synclink_log("다운로드 : pos = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
+
                     }
                     else
                     {
@@ -1664,6 +1769,9 @@ namespace thepos
                                     "values ('" + siteId + "','" + posNo + "','" + setupCode + "','" + setupName + "','" + setupValue + "','" + memo + "')";
                             ret = sql_excute_local_db(sql);
                         }
+                        synclink_log("다운로드 : setupPos = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
+
                     }
                     else
                     {
@@ -1706,6 +1814,9 @@ namespace thepos
                                     "values ('" + siteId + "'," + sortNo + ",'" + dcrCode + "','" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
                             ret = sql_excute_local_db(sql);
                         }
+                        synclink_log("다운로드 : dcrFavorite = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
+
                     }
                     else
                     {
@@ -1749,6 +1860,9 @@ namespace thepos
                                     "values ('" + siteId + "'," + posNo + ",'" + buttonCode + "','" + buttonName + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + usage + "')";
                             ret = sql_excute_local_db(sql);
                         }
+                        synclink_log("다운로드 : paymentConsole = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
+
                     }
                     else
                     {
@@ -1796,6 +1910,9 @@ namespace thepos
                                          "values ('" + siteId + "','" + siteName + "','" + siteAlias + "','" + registNo + "','" + capName + "','" + bizAddr + "','" + bizTelNo + "','" + ticketType + "','" + ticketMedia + "','" + vanCode + "','" + callCenterNo + "','" + basicDbVer + "')";
                             ret = sql_excute_local_db(sql);
                         }
+                        synclink_log("다운로드 : site = " + arr.Count);
+                        Thread.Sleep(1000 * 1); // 1초
+
                     }
                     else
                     {
@@ -2268,15 +2385,18 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
+                    synclink_log("server stat : true");
                     return true;
                 }
                 else
                 {
+                    synclink_log("server stat : false(1)");
                     return false;
                 }
             }
             else
             {
+                synclink_log("server stat : false(2)");
                 return false;
             }
         }

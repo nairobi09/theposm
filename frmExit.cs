@@ -31,12 +31,14 @@ namespace thepos
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            mIsLogin = "N";
             this.DialogResult = DialogResult.Yes;   // 로그아웃
             Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            mIsLogin = "N";
             this.DialogResult = DialogResult.OK;    // 종료
             Close();
         }
@@ -49,6 +51,7 @@ namespace thepos
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
+            mIsLogin = "N";
             Application.Restart();
         }
     }

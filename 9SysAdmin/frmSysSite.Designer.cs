@@ -108,6 +108,7 @@
             this.tbSiteName.Name = "tbSiteName";
             this.tbSiteName.Size = new System.Drawing.Size(157, 23);
             this.tbSiteName.TabIndex = 54;
+            this.tbSiteName.TabStop = false;
             // 
             // groupBox1
             // 
@@ -137,6 +138,7 @@
             this.tbBizTelNo.Name = "tbBizTelNo";
             this.tbBizTelNo.Size = new System.Drawing.Size(157, 23);
             this.tbBizTelNo.TabIndex = 54;
+            this.tbBizTelNo.TabStop = false;
             // 
             // tbBizAddr
             // 
@@ -146,6 +148,7 @@
             this.tbBizAddr.Name = "tbBizAddr";
             this.tbBizAddr.Size = new System.Drawing.Size(331, 23);
             this.tbBizAddr.TabIndex = 54;
+            this.tbBizAddr.TabStop = false;
             // 
             // tbCapName
             // 
@@ -155,6 +158,7 @@
             this.tbCapName.Name = "tbCapName";
             this.tbCapName.Size = new System.Drawing.Size(157, 23);
             this.tbCapName.TabIndex = 54;
+            this.tbCapName.TabStop = false;
             // 
             // tbRegistNo
             // 
@@ -164,6 +168,7 @@
             this.tbRegistNo.Name = "tbRegistNo";
             this.tbRegistNo.Size = new System.Drawing.Size(157, 23);
             this.tbRegistNo.TabIndex = 54;
+            this.tbRegistNo.TabStop = false;
             // 
             // tbSiteAlias
             // 
@@ -173,6 +178,7 @@
             this.tbSiteAlias.Name = "tbSiteAlias";
             this.tbSiteAlias.Size = new System.Drawing.Size(157, 23);
             this.tbSiteAlias.TabIndex = 54;
+            this.tbSiteAlias.TabStop = false;
             // 
             // lblBizTelNo
             // 
@@ -254,6 +260,7 @@
             this.cbVanCode.Name = "cbVanCode";
             this.cbVanCode.Size = new System.Drawing.Size(156, 21);
             this.cbVanCode.TabIndex = 58;
+            this.cbVanCode.TabStop = false;
             // 
             // cbTicketMedia
             // 
@@ -264,6 +271,7 @@
             this.cbTicketMedia.Name = "cbTicketMedia";
             this.cbTicketMedia.Size = new System.Drawing.Size(156, 21);
             this.cbTicketMedia.TabIndex = 57;
+            this.cbTicketMedia.TabStop = false;
             // 
             // cbTicketType
             // 
@@ -274,6 +282,7 @@
             this.cbTicketType.Name = "cbTicketType";
             this.cbTicketType.Size = new System.Drawing.Size(156, 21);
             this.cbTicketType.TabIndex = 56;
+            this.cbTicketType.TabStop = false;
             // 
             // tbCallCenter
             // 
@@ -283,6 +292,7 @@
             this.tbCallCenter.Name = "tbCallCenter";
             this.tbCallCenter.Size = new System.Drawing.Size(330, 23);
             this.tbCallCenter.TabIndex = 55;
+            this.tbCallCenter.TabStop = false;
             // 
             // lblCallCenter
             // 

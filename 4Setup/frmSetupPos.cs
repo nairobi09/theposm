@@ -43,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[5];
+        Setup[] listSetup = new Setup[6];
 
 
         bool isAdd = false;
@@ -63,6 +63,8 @@ namespace thepos
             setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
             setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
             setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
+            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 설정된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[5] = setupItem;
+
 
             reload_setup_pos();
         }
@@ -86,6 +88,8 @@ namespace thepos
 
             lblValueTitle2.Font = font10;
             cbValue.Font = font10;
+            tbValue.Font = font10;
+            lblMemo.Font = font10;
 
             btnAdd.Font = font10;
 
@@ -176,6 +180,7 @@ namespace thepos
                 ListViewItem lvItem = new ListViewItem();
                 lvItem.Text = listSetup[i].name;
                 lvItem.SubItems.Add(listSetup[i].value);
+                lvItem.SubItems.Add("");
                 lvItem.SubItems.Add(listSetup[i].memo);
                 lvItem.Tag = listSetup[i].code;
                 lvwList.Items.Add(lvItem);
@@ -194,12 +199,19 @@ namespace thepos
 
             lblName.Text = lvwList.SelectedItems[0].Text;
             lblValue.Text = lvwList.SelectedItems[0].SubItems[1].Text.ToString();
+            lblMemo.Text = lvwList.SelectedItems[0].SubItems[3].Text.ToString();
+
+            cbValue.Visible = false;
+            tbValue.Visible = false;
+
+
+
             cbValue.SelectedIndex = -1;
 
             
             if (code == listSetup[0].code)  // PosType
             {
-                cbValue.Enabled = true;
+                cbValue.Visible = true;
 
                 cbValue.Items.Clear();
                 cbValue.Items.Add("");
@@ -209,17 +221,16 @@ namespace thepos
             }
             else if (code == listSetup[1].code)  // CustomerMonitor
             {
-                cbValue.Enabled = true;
+                cbValue.Visible = true;
 
                 cbValue.Items.Clear();
                 cbValue.Items.Add("");
                 cbValue.Items.Add("Y");
                 cbValue.Items.Add("N");
             }
-
             else if (code == listSetup[2].code | code == listSetup[3].code | code == listSetup[4].code) // BillPrinterPort TicketPrinterPort ScannerPort
             {
-                cbValue.Enabled = true;
+                cbValue.Visible = true;
 
                 cbValue.Items.Clear ();
                 cbValue.Items.Add("");
@@ -228,11 +239,28 @@ namespace thepos
                     cbValue.Items.Add(s);
                 }
             }
+            else if (code == listSetup[5].code)  // t-id
+            {
+                tbValue.Visible = true;
+
+            }
+
+
+
+
+
+
+
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            lvwList.SelectedItems[0].SubItems[2].Text = cbValue.Text;
+
+            if (cbValue.Visible)
+                lvwList.SelectedItems[0].SubItems[2].Text = cbValue.Text;
+            else
+                lvwList.SelectedItems[0].SubItems[2].Text = tbValue.Text;
 
             isAdd = true;
         }
@@ -276,6 +304,7 @@ namespace thepos
                         else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = t_value;
                         else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = t_value;
                         else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = t_value;
+                        else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = t_value;
 
                     }
                 }
@@ -324,6 +353,7 @@ namespace thepos
                         else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[2].Text;
                         else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[2].Text;
                         else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[2].Text;
+                        else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[2].Text;
 
                     }
                 }

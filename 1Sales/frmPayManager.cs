@@ -383,12 +383,15 @@ namespace thepos
                 lvItem.SubItems.Add("");
 
             //
-            if (t_isCancel == "Y")
-                lvItem.SubItems.Add("취소됨");
+            if (t_isCancel == "y")
+                lvItem.SubItems.Add("취소:");
+            else if (t_isCancel == "Y")
+                lvItem.SubItems.Add("취소");
             else if (t_isCancel == "0")
                 lvItem.SubItems.Add("취소중");
             else
                 lvItem.SubItems.Add("");
+
 
 
             lvItem.SubItems.Add(pay_keep);
@@ -975,17 +978,18 @@ namespace thepos
 
             if (lvwPayOrder.SelectedItems[0].Tag.ToString() != "O")  // O 주문, P 결제
             {
-                SetDisplayAlarm("I", "주문번호가 포함된 주문건 선택 필요.");
+                SetDisplayAlarm("I", "#주문번호가 포함된 주문건 선택 필요.");
                 return;
             }
 
+
+
+            String tran_type = "A";
             String isCancel = lvwPayManager.SelectedItems[0].SubItems[lvwPayManager.Columns.IndexOf(cancel_code)].Text;
             if (isCancel == "Y" | isCancel == "y")
             {
-                SetDisplayAlarm("I", "취소건 주문서 출력 불가.");
-                return;
+                tran_type = "C";
             }
-
 
 
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
@@ -1000,7 +1004,7 @@ namespace thepos
 
             if (mTheMode == "Local")
             {
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='A'");
+                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='" + tran_type + "'");
                 while (dr.Read())
                 {
                     if (dr["shopOrderNo"].ToString() == t_order_no)
@@ -1017,7 +1021,7 @@ namespace thepos
             }
             else
             {
-                String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=A";
+                String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1053,14 +1057,24 @@ namespace thepos
                 
 
 
+            if (tran_type == "A")
+            {
+                // 업장주문서 출력 -> shop 등록정보 프린터
+                print_order_str("to_shop", t_shop_code, "주문서[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+                // 주문교환권 출력 -> 영수증프린터
+                print_order_str("to_local", t_shop_code, "교환권[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+            }
+            else
+            {
+                // 업장주문서 출력 -> shop 등록정보 프린터
+                print_order_str("to_shop", t_shop_code, "취소주문서[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+
+                // 주문교환권 출력 -> 영수증프린터
+                print_order_str("to_local", t_shop_code, "취소교환권[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+            }
 
 
-
-            // 업장주문서 출력 -> shop 등록정보 프린터
-            print_order_str("to_shop", t_shop_code, "주문서[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
-
-            // 주문교환권 출력 -> 영수증프린터
-            print_order_str("to_local", t_shop_code, "교환권[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
 
         }
 
