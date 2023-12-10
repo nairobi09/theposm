@@ -131,13 +131,12 @@
             // type
             // 
             this.type.Text = "유형";
-            this.type.Width = 50;
             // 
             // value
             // 
             this.value.Text = "할인값";
             this.value.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.value.Width = 80;
+            this.value.Width = 70;
             // 
             // des1
             // 

@@ -61,6 +61,7 @@
             this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.msg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSyncLink = new System.Windows.Forms.Button();
+            this.btnDeleteLog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -455,6 +456,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDeleteLog);
             this.groupBox2.Controls.Add(this.dtViewDate);
             this.groupBox2.Controls.Add(this.lvwSyncLink);
             this.groupBox2.Controls.Add(this.btnSyncLink);
@@ -523,6 +525,22 @@
             this.btnSyncLink.UseVisualStyleBackColor = false;
             this.btnSyncLink.Click += new System.EventHandler(this.btnSyncLink_Click);
             // 
+            // btnDeleteLog
+            // 
+            this.btnDeleteLog.BackColor = System.Drawing.Color.White;
+            this.btnDeleteLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteLog.Font = new System.Drawing.Font("굴림", 9F);
+            this.btnDeleteLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDeleteLog.Location = new System.Drawing.Point(316, 194);
+            this.btnDeleteLog.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDeleteLog.Name = "btnDeleteLog";
+            this.btnDeleteLog.Size = new System.Drawing.Size(68, 27);
+            this.btnDeleteLog.TabIndex = 83;
+            this.btnDeleteLog.TabStop = false;
+            this.btnDeleteLog.Text = "로그삭제";
+            this.btnDeleteLog.UseVisualStyleBackColor = false;
+            this.btnDeleteLog.Click += new System.EventHandler(this.btnDeleteLog_Click);
+            // 
             // frmSyncLink
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -577,5 +595,6 @@
         private System.Windows.Forms.ColumnHeader time;
         private System.Windows.Forms.ColumnHeader msg;
         private System.Windows.Forms.DateTimePicker dtViewDate;
+        private System.Windows.Forms.Button btnDeleteLog;
     }
 }

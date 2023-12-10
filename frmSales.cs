@@ -24,6 +24,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Data.SQLite;
 using System.Collections;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 
 
@@ -4817,6 +4818,7 @@ namespace thepos
 
         public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, String order_dt)  // 주문서
         {
+            String printer_type = "";
             String printer_name = "";
 
             if (to_printer == "to_local")
@@ -4829,6 +4831,8 @@ namespace thepos
                 {
                     if (mShop[i].shop_code == shop)
                     {
+                        printer_type = mShop[i].printer_type;
+
                         if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;    // Network
                         else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;                // Local
                         else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;                 // Recept
@@ -4909,7 +4913,22 @@ namespace thepos
 
             try
             {
-                PrintExtensions.Print(BytesValue, printer_name);
+                if (printer_type == "N")
+                {
+                    TcpClient client = new TcpClient();
+                    client.Connect(printer_name, 9100);
+
+                    NetworkStream stream = client.GetStream();
+                    stream.Write(BytesValue, 0, BytesValue.Length);
+
+                    stream.Flush();
+                    stream.Close();
+                    client.Close();
+                }
+                else
+                {
+                    PrintExtensions.Print(BytesValue, printer_name);
+                }
             }
             catch
             {

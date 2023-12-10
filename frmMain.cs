@@ -218,6 +218,10 @@ namespace thepos
 
         private void frmMain_Shown(object sender, EventArgs e)
         {
+
+
+
+
             synclink_log("-------------------------------------------");
 
             mNetworkState = NetworkInterface.GetIsNetworkAvailable();
@@ -311,7 +315,7 @@ namespace thepos
 
 
                 
-                if ((mNetworkState != tServerStatus) | (wait_cnt >= 30))  // 5분
+                if ((mNetworkState != tServerStatus) | (wait_cnt >= 150))  // 5분
                 {
                     tServerStatus = check_server_status();
 
@@ -335,7 +339,7 @@ namespace thepos
 
 
 
-                if (wait_cnt >= 30) // 5분
+                if (wait_cnt >= 150) // 5분
                 {
                     wait_cnt = 0;
 
@@ -372,10 +376,10 @@ namespace thepos
                             int order_cnt = 0;
                             int record_cnt = get_local_record_cnt(out order_cnt);
 
-                            synclink_log("업로드 : 대상건수 주문=" + order_cnt + " | 레코드=" + record_cnt);
 
                             if (record_cnt > 0)
                             {
+                                synclink_log("업로드 : 대상건수 주문=" + order_cnt + " | 레코드=" + record_cnt);
                                 int upload_cnt = upload_local_record();
                             }
                             else

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmMain;
 using System.Data.SQLite;
+using static thepos.ClsWin32Api;
+using System.Security.Policy;
 
 namespace thepos
 {
@@ -33,6 +35,7 @@ namespace thepos
             //
             lblDetail.Font = font10;
             btnSyncLink.Font = font9;
+            btnDeleteLog.Font = font9;
             lvwSyncLink.Font = font9;
 
             //
@@ -160,7 +163,19 @@ namespace thepos
             }
             dr.Close();
 
-            lvwSyncLink.EnsureVisible(lvwSyncLink.Items.Count - 1);
+            if (lvwSyncLink.Items.Count > 0)
+            {
+                lvwSyncLink.EnsureVisible(lvwSyncLink.Items.Count - 1);
+            }
+            
+        }
+
+        private void btnDeleteLog_Click(object sender, EventArgs e)
+        {
+            //int ret = sql_excute_local_db("TRUNCATE TABLE syncLink");  // 권한필요
+            int ret = sql_excute_local_db("DELETE FROM syncLink");
+
+            lvwSyncLink.Items.Clear();
         }
     }
 }

@@ -87,7 +87,7 @@
             this.tbNetworkPrinterName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbNetworkPrinterName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbNetworkPrinterName.Location = new System.Drawing.Point(99, 134);
-            this.tbNetworkPrinterName.MaxLength = 16;
+            this.tbNetworkPrinterName.MaxLength = 50;
             this.tbNetworkPrinterName.Name = "tbNetworkPrinterName";
             this.tbNetworkPrinterName.Size = new System.Drawing.Size(270, 23);
             this.tbNetworkPrinterName.TabIndex = 47;
