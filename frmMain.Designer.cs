@@ -245,6 +245,7 @@
             this.btnReqUser.Name = "btnReqUser";
             this.btnReqUser.Size = new System.Drawing.Size(90, 35);
             this.btnReqUser.TabIndex = 44;
+            this.btnReqUser.TabStop = false;
             this.btnReqUser.Text = "계정신청";
             this.btnReqUser.UseVisualStyleBackColor = true;
             this.btnReqUser.Click += new System.EventHandler(this.btnReqUser_Click);
@@ -257,6 +258,7 @@
             this.btnReqSupport.Name = "btnReqSupport";
             this.btnReqSupport.Size = new System.Drawing.Size(90, 35);
             this.btnReqSupport.TabIndex = 43;
+            this.btnReqSupport.TabStop = false;
             this.btnReqSupport.Text = "원격지원";
             this.btnReqSupport.UseVisualStyleBackColor = true;
             this.btnReqSupport.Click += new System.EventHandler(this.btnReqSupport_Click);

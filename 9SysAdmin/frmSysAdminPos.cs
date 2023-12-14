@@ -103,7 +103,7 @@ namespace thepos._9SysAdmin
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (tbSiteId.Text.Length < 4)
+            if (tbSiteId.Text.Length != 4)
             {
                 MessageBox.Show("기관코드.(4자리)", "thepos");
                 return;

@@ -289,7 +289,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSysAdmin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "사용자어드민";
             this.panelAdminConsole.ResumeLayout(false);
             this.panelCertConsole.ResumeLayout(false);

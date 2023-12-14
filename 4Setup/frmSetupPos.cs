@@ -63,7 +63,7 @@ namespace thepos
             setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
             setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
             setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
-            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 설정된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[5] = setupItem;
+            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[5] = setupItem;
 
 
             reload_setup_pos();
@@ -72,6 +72,7 @@ namespace thepos
 
         private void initialize_font()
         {
+            lblTitle.Font = font10;
             lvwList.Font = font10;
 
             lblSiteNameTitle.Font = font10;

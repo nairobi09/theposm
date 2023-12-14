@@ -336,39 +336,6 @@ namespace thepos
 
 
 
-        private void get_last_theno()
-        {
-            String sUrl = "orderLastNo?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&posNo=" + mPosNo;
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["orders"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    String theno = arr[0]["theNo"].ToString();
-
-                    mBillTheNo = int.Parse(theno.Substring(14, 4));
-
-                    //? 이후 삭제요망
-                    //MessageBox.Show("orderLastNo = " + theno, "//?");
-
-
-                }
-                else
-                {
-                    MessageBox.Show("데이터 오류. orderLastNo\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-            }
-        }
-
-
-
         private void display_paymentConsol()
         {
             Button btnPayItem;
@@ -455,8 +422,7 @@ namespace thepos
                 btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
                 btnGoodsGroup.Dock = DockStyle.Fill;
 
-                
-                if (mGoodsGroup[i].columnspan == 1)
+                if (mGoodsGroup[i].columnspan == 1 | mGoodsGroup[i].rowspan == 1)
                 {
                     btnGoodsGroup.Font = font9;
                 }
@@ -543,15 +509,14 @@ namespace thepos
                     {
                         btnGoodsItem.Font = font9;
                     }
-                    else if (mGoodsItem[i].rowspan == 2)
-                    {
-                        btnGoodsItem.Font = font14;
-                    }
-                    else
+                    else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 2)
                     {
                         btnGoodsItem.Font = font20;
                     }
-
+                    else
+                    {
+                        btnGoodsItem.Font = font14;
+                    }
 
 
                     

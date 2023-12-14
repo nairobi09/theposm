@@ -56,7 +56,7 @@ namespace thepos
             lblBizCloseUser.Text = "";
 
             //dtpBizDate.Text = "";
-            tbBizOpenAmount.Text = "";
+            tbBizOpenAmount.Text = "0";
             lblBizOpenUser.Text = "";
 
 

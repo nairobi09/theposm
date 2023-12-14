@@ -15,7 +15,7 @@ namespace thepos
         [STAThread]
         static void Main()
         {
-            Process[] procs = Process.GetProcessesByName("theposMain");
+            Process[] procs = Process.GetProcessesByName("thepos");
 
             if (procs.Length > 1)
             {

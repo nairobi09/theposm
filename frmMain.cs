@@ -170,8 +170,17 @@ namespace thepos
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
 
 
-            tbID.Text = get_registry_id();
-            tbID.Tag = tbID.Text;
+            try
+            {
+                tbID.Text = get_registry_id();
+                tbID.Tag = tbID.Text;
+            }
+            catch
+            {
+                MessageBox.Show("레지스트리 오류...", "thepos");
+                return;
+            }
+
 
 
             if (tbID.Text.Length == 4)
@@ -183,27 +192,44 @@ namespace thepos
                 mTbKeyDisplayController = tbID;
             }
 
-            // 기동시 MAC값 구하기 및 보관
-            var nics = NetworkInterface.GetAllNetworkInterfaces();
-            var selectedNic = nics.First();
-            mMacAddr = selectedNic.GetPhysicalAddress().ToString();
 
-
+            try
+            {
+                // 기동시 MAC값 구하기 및 보관
+                var nics = NetworkInterface.GetAllNetworkInterfaces();
+                var selectedNic = nics.First();
+                mMacAddr = selectedNic.GetPhysicalAddress().ToString();
+            }
+            catch
+            {
+                MessageBox.Show("MAC초기화 오류...", "thepos");
+                return;
+            }
 
 
             // local DB
             String cs = "";
+
+            try
+            {
 #if DEBUG
-            var enviroment = System.Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
-            cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
+                var enviroment = System.Environment.CurrentDirectory;
+                string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
+                cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
 
 #else
-            cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
+                cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
 #endif
 
-            mConn = new SQLiteConnection(cs);
-            mConn.Open();
+                mConn = new SQLiteConnection(cs);
+                mConn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB초기화 오류...\r\n" + ex.Message.ToString() + "\r\n" + cs, "thepos");
+                return;
+            }
+
 
 
 
@@ -218,10 +244,7 @@ namespace thepos
 
         private void frmMain_Shown(object sender, EventArgs e)
         {
-
-
-
-
+            
             synclink_log("-------------------------------------------");
 
             mNetworkState = NetworkInterface.GetIsNetworkAvailable();
@@ -2419,10 +2442,6 @@ namespace thepos
             System.Diagnostics.Process.Start("https://367.co.kr/112/");
         }
 
-        private void lblReqSupport_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnReqSupport_Click(object sender, EventArgs e)
         {
