@@ -42,7 +42,7 @@ panelProduct : 488, 56 529, 547
 // ð ✕ ◈ ◆ ⬅ 〈 ˂
 // Music Title In Here
 // 0:00 ━━●─── 4:00
-// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮
+// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮   ₩
 
 
 namespace thepos
