@@ -96,7 +96,7 @@ namespace thepos._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        if (arr[i]["active"].ToString() == "Y")
+                        if (arr[i]["cutout"].ToString() != "Y")
                         {
                             ListViewItem lvItem = new ListViewItem();
                             lvItem.Text = arr[i]["itemName"].ToString();
