@@ -1076,8 +1076,8 @@ namespace thepos
                         param["orderDate"] = get_today_date();
                         param["orderTime"] = get_today_time();
 
-                        param["itemCode"] = arr[0]["itemCode"].ToString();
-                        param["itemName"] = arr[0]["itemName"].ToString();
+                        param["goodsCode"] = arr[0]["goodsCode"].ToString();
+                        param["goodsName"] = arr[0]["goodsName"].ToString();
                         param["cnt"] = arr[0]["cnt"].ToString();
                         param["amt"] = arr[0]["amt"].ToString();
                         param["ticketYn"] = arr[0]["ticketYn"].ToString();

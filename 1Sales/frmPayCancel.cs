@@ -1603,8 +1603,8 @@ namespace thepos
                 SQLiteDataReader dr = sql_select_local_db(sql);
                 while (dr.Read())
                 {
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + the_no + "','" + dr["refNo"].ToString() + "','C','" + get_today_date() + "','" + get_today_time() + "','" + dr["itemCode"].ToString() + "','" + dr["itemName"].ToString() + "'," + dr["cnt"].ToString() + "," + dr["amt"].ToString() + "," +
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + the_no + "','" + dr["refNo"].ToString() + "','C','" + get_today_date() + "','" + get_today_time() + "','" + dr["goodsCode"].ToString() + "','" + dr["goodsName"].ToString() + "'," + dr["cnt"].ToString() + "," + dr["amt"].ToString() + "," +
                                 "'" + dr["shopCode"].ToString() + "','" + dr["ticketNo"].ToString() + "','" + dr["taxFree"].ToString() + "'," + dr["dcAmount"].ToString() + ",'" + dr["dcrType"].ToString() + "','" + dr["dcrDes"].ToString() + "'," + dr["dcrValue"].ToString() + ",'" + dr["payClass"].ToString() + "','" + dr["ticketNo"].ToString() + "','Y', '" + dr["shopCode"].ToString() + "','" + dr["shopOrderNo"].ToString() + "')";
                     sql_excute_local_db(sql);
                 }
@@ -1632,8 +1632,8 @@ namespace thepos
                             parameters["orderDate"] = get_today_date();
                             parameters["orderTime"] = get_today_time();
 
-                            parameters["itemCode"] = arr[i]["itemCode"].ToString();
-                            parameters["itemName"] = arr[i]["itemName"].ToString();
+                            parameters["goodsCode"] = arr[i]["goodsCode"].ToString();
+                            parameters["goodsName"] = arr[i]["goodsName"].ToString();
 
                             parameters["cnt"] = arr[i]["cnt"].ToString();
                             parameters["amt"] = arr[i]["amt"].ToString();
@@ -1979,7 +1979,7 @@ namespace thepos
 
                         memOrderItem.shop_order_no = dr["shopOrderNo"].ToString();
                         memOrderItem.shop_code = dr["shopCode"].ToString();
-                        memOrderItem.name = dr["itemName"].ToString();
+                        memOrderItem.goods_name = dr["goodsName"].ToString();
                         memOrderItem.cnt = convert_number(dr["cnt"].ToString());
 
                         MemOrderItemList.Add(memOrderItem);
@@ -2008,7 +2008,7 @@ namespace thepos
 
                                 memOrderItem.shop_order_no = shop_order_no;
                                 memOrderItem.shop_code = arr[i]["shopCode"].ToString();
-                                memOrderItem.name = arr[i]["itemName"].ToString();
+                                memOrderItem.goods_name = arr[i]["goodsName"].ToString();
                                 memOrderItem.cnt = convert_number(arr[i]["cnt"].ToString());
 
                                 MemOrderItemList.Add(memOrderItem);
@@ -2045,7 +2045,7 @@ namespace thepos
 
             t_shop_code = MemOrderItemList[0].shop_code;
             t_order_no = MemOrderItemList[0].shop_order_no;
-            t_good_name.Add(MemOrderItemList[0].name);
+            t_good_name.Add(MemOrderItemList[0].goods_name);
             t_good_cnt.Add(MemOrderItemList[0].cnt);
 
 
@@ -2053,7 +2053,7 @@ namespace thepos
             {
                 if (string.Compare(MemOrderItemList[i].shop_code, MemOrderItemList[i + 1].shop_code) == 0)
                 {
-                    t_good_name.Add(MemOrderItemList[i + 1].name);
+                    t_good_name.Add(MemOrderItemList[i + 1].goods_name);
                     t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
                 }
                 else
@@ -2069,7 +2069,7 @@ namespace thepos
                     t_good_cnt.Clear();
                     t_shop_code = MemOrderItemList[i + 1].shop_code;
                     t_order_no = MemOrderItemList[i + 1].shop_order_no;
-                    t_good_name.Add(MemOrderItemList[i + 1].name);
+                    t_good_name.Add(MemOrderItemList[i + 1].goods_name);
                     t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
                 }
             }

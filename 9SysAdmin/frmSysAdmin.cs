@@ -50,6 +50,8 @@ namespace thepos
             btnSysShop.Font = font10;
             btnSysGoods.Font = font10;
 
+            btnSysOption.Font = font10;
+
             btnSysGoodsGroup.Font = font10;
             btnSysGoodsGroup2.Font = font10;
 
@@ -128,7 +130,17 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnSysOption_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Option") return;
 
+            mThisButtonClick = "Option";
+            panelView.Controls.Clear();
+
+            frmSysOption fSysAdmin = new frmSysOption() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
 
         private void btnSysGoodsGroup_Click(object sender, EventArgs e)  // POS
         {
@@ -228,5 +240,7 @@ namespace thepos
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
+
+
     }
 }

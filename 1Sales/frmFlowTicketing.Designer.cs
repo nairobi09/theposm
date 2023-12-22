@@ -42,7 +42,7 @@
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bangle_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.item_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.goods_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -158,7 +158,7 @@
             this.ticket_dt,
             this.ticket_no,
             this.bangle_no,
-            this.item_code});
+            this.goods_code});
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -195,10 +195,10 @@
             this.bangle_no.Text = "팔찌번호";
             this.bangle_no.Width = 90;
             // 
-            // item_code
+            // goods_code
             // 
-            this.item_code.Text = "itemCode";
-            this.item_code.Width = 0;
+            this.goods_code.Text = "goodsCode";
+            this.goods_code.Width = 0;
             // 
             // frmFlowTicketing
             // 
@@ -234,6 +234,6 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnTicketReact;
         private System.Windows.Forms.ColumnHeader bangle_no;
-        private System.Windows.Forms.ColumnHeader item_code;
+        private System.Windows.Forms.ColumnHeader goods_code;
     }
 }

@@ -97,8 +97,8 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderTime"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemName"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(arr[i]["cnt"].ToString());
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["ticketYn"].ToString());
@@ -392,7 +392,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["pointUsage"].ToString());
                         lvItem.SubItems.Add(arr[i]["settlePointCharge"].ToString());
                         lvItem.SubItems.Add(arr[i]["settlePointUsage"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["flowStep"].ToString());
                         lvItem.SubItems.Add(arr[i]["lockerNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["openLocker"].ToString());

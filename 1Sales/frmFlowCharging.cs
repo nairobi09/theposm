@@ -161,7 +161,7 @@ namespace thepos
                         item.Text = tStat;
                         item.Tag = ticket_no;
 
-                        item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
+                        item.SubItems.Add(get_goods_name(arr[i]["goodsCode"].ToString()));
                         item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
 
                         String tStr = "";
@@ -230,7 +230,7 @@ namespace thepos
                         item.Text = tStat;
                         item.Tag = ticket_no;
 
-                        item.SubItems.Add(get_goods_name(arr[0]["itemCode"].ToString()));
+                        item.SubItems.Add(get_goods_name(arr[0]["goodsCode"].ToString()));
                         item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
 
                         String tStr = "";
@@ -354,8 +354,8 @@ namespace thepos
             if (lv_idx == -1)
             {
 
-                memOrderItem.code = "CHARGE";
-                memOrderItem.name = "충전";
+                memOrderItem.goods_code = "CHARGE";
+                memOrderItem.goods_name = "충전";
                 memOrderItem.cnt = 1;
                 memOrderItem.amt = charge_amt;
                 memOrderItem.dc_amount = 0;
@@ -371,7 +371,7 @@ namespace thepos
                 item.Tag = memOrderItem;
 
                 item.Text = "1";
-                item.SubItems.Add(memOrderItem.name);                            // 1: name 상품명
+                item.SubItems.Add(memOrderItem.goods_name);                            // 1: name 상품명
                 item.SubItems.Add(memOrderItem.amt.ToString("N0"));              // 2: amt 단가
                 item.SubItems.Add(memOrderItem.cnt.ToString());                  // 3: cnt 수량
                 item.SubItems.Add(memOrderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인

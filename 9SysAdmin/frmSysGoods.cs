@@ -28,10 +28,10 @@ namespace thepos._9SysAdmin
         private int sortColumn = -1;
 
 
-        String sv_itemName = "";
-        String sv_itemNameEN = "";
-        String sv_itemNameCH = "";
-        String sv_itemNameJP = "";
+        String sv_goodsName = "";
+        String sv_goodsNameEN = "";
+        String sv_goodsNameCH = "";
+        String sv_goodsNameJP = "";
 
         String sv_amt = "";
         String sv_shopCode = "";
@@ -145,16 +145,16 @@ namespace thepos._9SysAdmin
                         ListViewItem lvItem;
 
                         if (arr[i]["imagePath"].ToString() == "")
-                            lvItem = new ListViewItem(arr[i]["itemName"].ToString());
+                            lvItem = new ListViewItem(arr[i]["goodsName"].ToString());
                         else
-                            lvItem = new ListViewItem(arr[i]["itemName"].ToString(), 0);  // image index = 0
+                            lvItem = new ListViewItem(arr[i]["goodsName"].ToString(), 0);  // image index = 0
 
-                        lvItem.SubItems.Add(arr[i]["itemNameEn"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemNameCh"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemNameJp"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsNameEn"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsNameCh"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsNameJp"].ToString());
 
-                        // itemcode
-                        lvItem.SubItems.Add(arr[i]["itemCode"].ToString());
+                        // goodscode
+                        lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
@@ -212,7 +212,7 @@ namespace thepos._9SysAdmin
 
 
                         int code_num = 0;
-                        if (get_number(arr[i]["itemCode"].ToString(), ref code_num))
+                        if (get_number(arr[i]["goodsCode"].ToString(), ref code_num))
                         {
                             if (max_goodscode < code_num)
                             {
@@ -240,7 +240,7 @@ namespace thepos._9SysAdmin
         {
             String tTicket, tTaxFree, tCutout, tSoldout = "";
 
-            String sUrl = "goods?siteId=" + mSiteId + "&itemCode=" + code;
+            String sUrl = "goods?siteId=" + mSiteId + "&goodsCode=" + code;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -253,16 +253,16 @@ namespace thepos._9SysAdmin
                         ListViewItem lvItem;
 
                         if (arr[0]["imagePath"].ToString() == "")
-                            lvItem = new ListViewItem(arr[0]["itemName"].ToString());
+                            lvItem = new ListViewItem(arr[0]["goodsName"].ToString());
                         else
-                            lvItem = new ListViewItem(arr[0]["itemName"].ToString(), 0);  // image index = 0
+                            lvItem = new ListViewItem(arr[0]["goodsName"].ToString(), 0);  // image index = 0
 
-                        lvItem.SubItems.Add(arr[0]["itemNameEn"].ToString());
-                        lvItem.SubItems.Add(arr[0]["itemNameCh"].ToString());
-                        lvItem.SubItems.Add(arr[0]["itemNameJp"].ToString());
+                        lvItem.SubItems.Add(arr[0]["goodsNameEn"].ToString());
+                        lvItem.SubItems.Add(arr[0]["goodsNameCh"].ToString());
+                        lvItem.SubItems.Add(arr[0]["goodsNameJp"].ToString());
 
-                        // itemcode
-                        lvItem.SubItems.Add(arr[0]["itemCode"].ToString());
+                        // goodscode
+                        lvItem.SubItems.Add(arr[0]["goodsCode"].ToString());
                         lvItem.SubItems.Add(arr[0]["amt"].ToString());
                         lvItem.SubItems.Add(arr[0]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[0]["shopCode"].ToString()));
@@ -315,7 +315,7 @@ namespace thepos._9SysAdmin
 
 
                         int code_num = 0;
-                        if (get_number(arr[0]["itemCode"].ToString(), ref code_num))
+                        if (get_number(arr[0]["goodsCode"].ToString(), ref code_num))
                         {
                             if (max_goodscode < code_num)
                             {
@@ -414,10 +414,10 @@ namespace thepos._9SysAdmin
 
 
             // 보관
-            sv_itemName = tbGoodsName.Text;
-            sv_itemNameEN = tbGoodsNameEN.Text;
-            sv_itemNameCH = tbGoodsNameCH.Text;
-            sv_itemNameJP = tbGoodsNameJP.Text;
+            sv_goodsName = tbGoodsName.Text;
+            sv_goodsNameEN = tbGoodsNameEN.Text;
+            sv_goodsNameCH = tbGoodsNameCH.Text;
+            sv_goodsNameJP = tbGoodsNameJP.Text;
 
             sv_amt = tbGoodsAmt.Text;
             sv_shopCode = cbShop.SelectedIndex + "";
@@ -461,20 +461,20 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = select_goodscode;
+            parameters["goodsCode"] = select_goodscode;
 
             // 변경된 항목만 파라메터에 넣는다.
             // 
-            if (sv_itemName != tbGoodsName.Text.Trim())
+            if (sv_goodsName != tbGoodsName.Text.Trim())
                 parameters["itemName"] = tbGoodsName.Text.Trim();
 
-            if (sv_itemNameEN != tbGoodsNameEN.Text.Trim())
+            if (sv_goodsNameEN != tbGoodsNameEN.Text.Trim())
                 parameters["itemNameEn"] = tbGoodsNameEN.Text.Trim();
 
-            if (sv_itemNameCH != tbGoodsNameCH.Text.Trim())
+            if (sv_goodsNameCH != tbGoodsNameCH.Text.Trim())
                 parameters["itemNameCh"] = tbGoodsNameCH.Text.Trim();
 
-            if (sv_itemNameJP != tbGoodsNameJP.Text.Trim())
+            if (sv_goodsNameJP != tbGoodsNameJP.Text.Trim())
                 parameters["itemNameJp"] = tbGoodsNameJP.Text.Trim();
 
 
@@ -603,12 +603,12 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = max_goodscode.ToString();
+            parameters["goodsCode"] = max_goodscode.ToString();
 
-            parameters["itemName"] = tbGoodsName.Text.Trim();
-            parameters["itemNameEN"] = tbGoodsNameEN.Text.Trim();
-            parameters["itemNameCH"] = tbGoodsNameCH.Text.Trim();
-            parameters["itemNameJP"] = tbGoodsNameJP.Text.Trim();
+            parameters["goodsName"] = tbGoodsName.Text.Trim();
+            parameters["goodsNameEN"] = tbGoodsNameEN.Text.Trim();
+            parameters["goodsNameCH"] = tbGoodsNameCH.Text.Trim();
+            parameters["goodsNameJP"] = tbGoodsNameJP.Text.Trim();
 
             parameters["amt"] = tbGoodsAmt.Text;
 
@@ -708,7 +708,7 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = tbGoodsName.Tag.ToString();
+            parameters["goodsCode"] = tbGoodsName.Tag.ToString();
 
 
             if (mRequestDelete("goods", parameters))

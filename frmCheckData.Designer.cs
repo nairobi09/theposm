@@ -53,8 +53,8 @@
             this.oi_tranType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_orderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_orderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.oi_itemCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.oi_itemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oi_goodsCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.oi_goodsName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_ticketYn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,6 +67,7 @@
             this.oi_ticketNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_isCancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_shopCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ol_shopOrderNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwPayment = new System.Windows.Forms.ListView();
             this.p_siteId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_posNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -203,12 +204,11 @@
             this.t_pointUsage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_settlePointCharge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_settlePointUsage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.t_itemCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.t_goodsCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_flowStep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_lockerNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_openLocker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
-            this.ol_shopOrderNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -343,8 +343,8 @@
             this.oi_tranType,
             this.oi_orderDate,
             this.oi_orderTime,
-            this.oi_itemCode,
-            this.oi_itemName,
+            this.oi_goodsCode,
+            this.oi_goodsName,
             this.oi_cnt,
             this.oi_amt,
             this.oi_ticketYn,
@@ -406,13 +406,13 @@
             this.oi_orderTime.Text = "orderTime";
             this.oi_orderTime.Width = 80;
             // 
-            // oi_itemCode
+            // oi_goodsCode
             // 
-            this.oi_itemCode.Text = "itemCode";
+            this.oi_goodsCode.Text = "goodsCode";
             // 
-            // oi_itemName
+            // oi_goodsName
             // 
-            this.oi_itemName.Text = "itemName";
+            this.oi_goodsName.Text = "goodsName";
             // 
             // oi_cnt
             // 
@@ -464,6 +464,10 @@
             // oi_shopCode
             // 
             this.oi_shopCode.Text = "shopCode";
+            // 
+            // ol_shopOrderNo
+            // 
+            this.ol_shopOrderNo.Text = "shopOrderNo";
             // 
             // lvwPayment
             // 
@@ -1188,7 +1192,7 @@
             this.t_pointUsage,
             this.t_settlePointCharge,
             this.t_settlePointUsage,
-            this.t_itemCode,
+            this.t_goodsCode,
             this.t_flowStep,
             this.t_lockerNo,
             this.t_openLocker});
@@ -1270,10 +1274,10 @@
             this.t_settlePointUsage.Text = "settlePointUsage";
             this.t_settlePointUsage.Width = 119;
             // 
-            // t_itemCode
+            // t_goodsCode
             // 
-            this.t_itemCode.Text = "itemCode";
-            this.t_itemCode.Width = 74;
+            this.t_goodsCode.Text = "goodsCode";
+            this.t_goodsCode.Width = 74;
             // 
             // t_flowStep
             // 
@@ -1296,10 +1300,6 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "ticket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // ol_shopOrderNo
-            // 
-            this.ol_shopOrderNo.Text = "shopOrderNo";
             // 
             // frmCheckData
             // 
@@ -1358,8 +1358,8 @@
         private System.Windows.Forms.ColumnHeader oi_orderTime;
         private System.Windows.Forms.ColumnHeader oi_cnt;
         private System.Windows.Forms.ColumnHeader oi_isCancel;
-        private System.Windows.Forms.ColumnHeader oi_itemCode;
-        private System.Windows.Forms.ColumnHeader oi_itemName;
+        private System.Windows.Forms.ColumnHeader oi_goodsCode;
+        private System.Windows.Forms.ColumnHeader oi_goodsName;
         private System.Windows.Forms.ColumnHeader oi_amt;
         private System.Windows.Forms.ColumnHeader oi_ticketYn;
         private System.Windows.Forms.ColumnHeader oi_taxFree;
@@ -1502,7 +1502,7 @@
         private System.Windows.Forms.ColumnHeader t_pointUsage;
         private System.Windows.Forms.ColumnHeader t_settlePointCharge;
         private System.Windows.Forms.ColumnHeader t_settlePointUsage;
-        private System.Windows.Forms.ColumnHeader t_itemCode;
+        private System.Windows.Forms.ColumnHeader t_goodsCode;
         private System.Windows.Forms.ColumnHeader t_flowStep;
         private System.Windows.Forms.ColumnHeader t_lockerNo;
         private System.Windows.Forms.ColumnHeader t_openLocker;

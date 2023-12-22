@@ -100,7 +100,7 @@ namespace thepos
                         }
 
                         ListViewItem Item = new ListViewItem();
-                        Item.Text = get_goods_name(arr[i]["itemCode"].ToString());
+                        Item.Text = get_goods_name(arr[i]["goodsCode"].ToString());
                         Item.SubItems.Add(cnt.ToString("N0"));
                         Item.SubItems.Add(amount.ToString("N0"));
                         Item.SubItems.Add(dcAmount.ToString("N0"));

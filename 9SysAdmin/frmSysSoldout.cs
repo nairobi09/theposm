@@ -64,10 +64,10 @@ namespace thepos._9SysAdmin
                     {
                         ListViewItem lvItem = new ListViewItem();
                         lvItem.Text = get_shop_name(arr[i]["shopCode"].ToString());
-                        lvItem.SubItems.Add(arr[i]["itemName"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["soldout"].ToString());
-                        lvItem.Tag = arr[i]["itemCode"].ToString();
+                        lvItem.Tag = arr[i]["goodsCode"].ToString();
 
                         if (arr[i]["soldout"].ToString() == "Y")
                         {
@@ -214,7 +214,7 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["itemCode"] = lvwGoodsList.SelectedItems[0].Tag.ToString();
+            parameters["goodsCode"] = lvwGoodsList.SelectedItems[0].Tag.ToString();
             parameters["soldout"] = t_soldout;
 
             if (mRequestPatch("goods", parameters))

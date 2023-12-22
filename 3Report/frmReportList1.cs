@@ -111,8 +111,8 @@ namespace thepos
                     if (nodeShop[shop_idx].Tag.ToString() == "S" + mGoodsItem[i].shop_code)
                     {
                         TreeNode nodeGoods = new TreeNode();
-                        nodeGoods.Text = mGoodsItem[i].item_name;
-                        nodeGoods.Tag = "G" + mGoodsItem[i].item_code;
+                        nodeGoods.Text = mGoodsItem[i].goods_name;
+                        nodeGoods.Tag = "G" + mGoodsItem[i].goods_code;
 
                         nodeShop[shop_idx].Nodes.Add(nodeGoods);
                     }
@@ -271,7 +271,7 @@ namespace thepos
                 }
 
 
-                sUrl = "reportMonthListShop?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&shopCode=" + shop_code + "&itemCode=" + goods_code;
+                sUrl = "reportMonthListShop?siteId=" + mSiteId + "&bizDtMon=" + yyyymm + "&shopCode=" + shop_code + "&goodsCode=" + goods_code;
 
                 if (mRequestGet(sUrl))
                 {

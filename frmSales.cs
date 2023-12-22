@@ -493,8 +493,8 @@ namespace thepos
                 {
                     int idx = i;
                     btnGoodsItem = new Button();
-                    btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + mGoodsItem[i].amt.ToString("N0");
-                    btnGoodsItem.Tag = mGoodsItem[i].item_code;
+                    btnGoodsItem.Text = mGoodsItem[i].goods_name + "\n" + mGoodsItem[i].amt.ToString("N0");
+                    btnGoodsItem.Tag = mGoodsItem[i].goods_code;
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
 
                     btnGoodsItem.ForeColor = Color.White;
@@ -525,14 +525,14 @@ namespace thepos
                         btnGoodsItem.ForeColor = Color.White;
                         btnGoodsItem.BackColor = Color.White;
 
-                        btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + "[절판]";
+                        btnGoodsItem.Text = mGoodsItem[i].goods_name + "\n" + "[절판]";
                     }
                     else if (mGoodsItem[i].soldout == "Y")  // 품절
                     {
                         btnGoodsItem.ForeColor = Color.Gray;
                         btnGoodsItem.BackColor = Color.White;
 
-                        btnGoodsItem.Text = mGoodsItem[i].item_name + "\n" + "[품절]";
+                        btnGoodsItem.Text = mGoodsItem[i].goods_name + "\n" + "[품절]";
                     }
                     else
                     {
@@ -554,15 +554,15 @@ namespace thepos
         private void ClickedGoodsItem(int i)
         {
             MemOrderItem orderItem = new MemOrderItem();
-            int lv_idx = (get_lvitem_idx(mGoodsItem[i].item_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {
                 ListViewItem lvItem = new ListViewItem();
 
                 orderItem.order_no = 0;
-                orderItem.code = mGoodsItem[i].item_code.ToString();
-                orderItem.name = mGoodsItem[i].item_name.ToString();
+                orderItem.goods_code = mGoodsItem[i].goods_code.ToString();
+                orderItem.goods_name = mGoodsItem[i].goods_name.ToString();
                 orderItem.ticket = mGoodsItem[i].ticket;
                 orderItem.taxfree = mGoodsItem[i].taxfree;
                 orderItem.amt = mGoodsItem[i].amt;
@@ -575,7 +575,7 @@ namespace thepos
 
                 lvItem.Tag = orderItem;
                 lvItem.Text = (lvwOrderItem.Items.Count + 1).ToString();
-                lvItem.SubItems.Add(orderItem.name);                // 1: name 상품명
+                lvItem.SubItems.Add(orderItem.goods_name);                // 1: name 상품명
                 lvItem.SubItems.Add(orderItem.amt.ToString("N0"));  // 2: amt 단가
                 lvItem.SubItems.Add("1");                               // 3: cnt 수량
                 lvItem.SubItems.Add("");                                // 4: dc_amount 할인
@@ -1005,8 +1005,8 @@ namespace thepos
                             orderItem.tran_type = arr[i]["tranType"].ToString();
                             orderItem.order_date = arr[i]["orderDate"].ToString();
                             orderItem.order_time = arr[i]["orderTime"].ToString();
-                            orderItem.code = arr[i]["itemCode"].ToString();
-                            orderItem.name = arr[i]["itemName"].ToString();
+                            orderItem.goods_code = arr[i]["goodsCode"].ToString();
+                            orderItem.goods_name = arr[i]["goodsName"].ToString();
                             orderItem.amt = convert_number(arr[i]["amt"].ToString());
                             orderItem.cnt = convert_number(arr[i]["cnt"].ToString());
                             orderItem.ticket = arr[i]["ticketYn"].ToString();
@@ -1032,8 +1032,8 @@ namespace thepos
                             parameters["tranType"] = "C";
                             parameters["orderDate"] = get_today_date();
                             parameters["orderTime"] = get_today_time();
-                            parameters["itemCode"] = orderItem.code;
-                            parameters["itemName"] = orderItem.name;
+                            parameters["goodsCode"] = orderItem.goods_code;
+                            parameters["goodsName"] = orderItem.goods_name;
                             parameters["cnt"] = orderItem.cnt + "";
                             parameters["amt"] = orderItem.amt + "";
                             parameters["ticketYn"] = orderItem.ticket;
@@ -1354,8 +1354,8 @@ namespace thepos
                 for (int i = 0; i < memOrderItemArr.Length; i++)
                 {
                     MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, itemCode, itemName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, shopOrderNo, isCancel) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItemArr[i].code + "','" + memOrderItemArr[i].name + "'," + memOrderItemArr[i].cnt + "," + memOrderItemArr[i].amt + "," +
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, shopOrderNo, isCancel) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItemArr[i].goods_code + "','" + memOrderItemArr[i].goods_name + "'," + memOrderItemArr[i].cnt + "," + memOrderItemArr[i].amt + "," +
                                 "'" + memOrderItemArr[i].shop_code + "','" + memOrderItemArr[i].ticket + "','" + memOrderItemArr[i].taxfree + "'," + memOrderItemArr[i].dc_amount + ",'" + memOrderItemArr[i].dcr_type + "','" + memOrderItemArr[i].dcr_des + "'," + memOrderItemArr[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + memOrderItemArr[i].shop_order_no + "','')";
                     sql_excute_local_db(sql);
                 }
@@ -1417,8 +1417,8 @@ namespace thepos
                 parameters["tranType"] = "A";
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
-                parameters["itemCode"] = memOrderItemArr[i].code;
-                parameters["itemName"] = memOrderItemArr[i].name;
+                parameters["goodsCode"] = memOrderItemArr[i].goods_code;
+                parameters["goodsName"] = memOrderItemArr[i].goods_name;
                 parameters["cnt"] = memOrderItemArr[i].cnt + "";
                 parameters["amt"] = memOrderItemArr[i].amt + "";
                 parameters["ticketYn"] = memOrderItemArr[i].ticket;
@@ -1749,7 +1749,7 @@ namespace thepos
                             parameters["settlePointCharge"] = "0";
                             parameters["settlePointUsage"] = "0";
 
-                            parameters["itemCode"] = orderItem.code;
+                            parameters["goodsCode"] = orderItem.goods_code;
                             parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
                             parameters["lockerNo"] = "";
                             parameters["openLocker"] = "1";             // 선불 :  항상 open
@@ -1777,7 +1777,7 @@ namespace thepos
                             // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
                             if (mTicketMedia == "BC")  // 띠지
                             {
-                                print_ticket(t_ticket_no, orderItem.code);
+                                print_ticket(t_ticket_no, orderItem.goods_code);
                             }
                         } 
 
@@ -2718,7 +2718,7 @@ namespace thepos
                     orderItem = listWaitingItem[i];
 
                     lvItem.Text = (lv_no).ToString();
-                    lvItem.SubItems.Add(orderItem.name);                            // 1: name 상품명
+                    lvItem.SubItems.Add(orderItem.goods_name);                            // 1: name 상품명
                     lvItem.SubItems.Add(orderItem.amt.ToString("N0"));              // 2: amt 단가
                     lvItem.SubItems.Add(orderItem.cnt.ToString());                  // 3: cnt 수량
                     lvItem.SubItems.Add(orderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
@@ -3189,7 +3189,7 @@ namespace thepos
         {
             for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
             {
-                if (code == ((MemOrderItem)(mLvwOrderItem.Items[i].Tag)).code)
+                if (code == ((MemOrderItem)(mLvwOrderItem.Items[i].Tag)).goods_code)
                 { return i; }
             }
             return -1;
@@ -4742,7 +4742,7 @@ namespace thepos
 
             t_shop_code = MemOrderItemList[0].shop_code;
             t_order_no = MemOrderItemList[0].shop_order_no;
-            t_good_name.Add(MemOrderItemList[0].name);
+            t_good_name.Add(MemOrderItemList[0].goods_name);
             t_good_cnt.Add(MemOrderItemList[0].cnt);
 
 
@@ -4750,7 +4750,7 @@ namespace thepos
             {
                 if (string.Compare(MemOrderItemList[i].shop_code, MemOrderItemList[i + 1].shop_code) == 0)
                 {
-                    t_good_name.Add(MemOrderItemList[i + 1].name );
+                    t_good_name.Add(MemOrderItemList[i + 1].goods_name );
                     t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
                 }
                 else
@@ -4766,7 +4766,7 @@ namespace thepos
                     t_good_cnt.Clear();
                     t_shop_code = MemOrderItemList[i + 1].shop_code;
                     t_order_no = MemOrderItemList[i + 1].shop_order_no;
-                    t_good_name.Add(MemOrderItemList[i + 1].name);
+                    t_good_name.Add(MemOrderItemList[i + 1].goods_name);
                     t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
                 }
             }

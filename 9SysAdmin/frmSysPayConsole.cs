@@ -290,7 +290,7 @@ namespace thepos._1Sales
             }
 
 
-            String mSelecteditemCode = lvwConsole.SelectedItems[0].Tag.ToString();
+            String mSelectedGoodsCode = lvwConsole.SelectedItems[0].Tag.ToString();
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -331,7 +331,7 @@ namespace thepos._1Sales
             //
             for (int i = 0; i < lvwConsoleLink.Items.Count; i++)
             {
-                if (lvwConsoleLink.Items[i].Tag.ToString() == mSelecteditemCode)
+                if (lvwConsoleLink.Items[i].Tag.ToString() == mSelectedGoodsCode)
                 {
                     lvwConsoleLink.Items[i].Selected = true; //
                     return;

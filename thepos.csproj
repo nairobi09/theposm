@@ -477,6 +477,12 @@
     <Compile Include="4Setup\frmSyncLink.Designer.cs">
       <DependentUpon>frmSyncLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysOption.Designer.cs">
+      <DependentUpon>frmSysOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
     <Compile Include="van\KCP\ClsDate.cs" />
     <Compile Include="van\KCP\clsEnum.cs" />
@@ -656,6 +662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="4Setup\frmSyncLink.resx">
       <DependentUpon>frmSyncLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysOption.resx">
+      <DependentUpon>frmSysOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

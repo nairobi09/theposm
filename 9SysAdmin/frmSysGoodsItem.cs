@@ -113,7 +113,7 @@ namespace thepos
                         if (arr[i]["cutout"].ToString() != "Y")
                         {
                             ListViewItem lvItem = new ListViewItem();
-                            lvItem.Text = arr[i]["itemName"].ToString();
+                            lvItem.Text = arr[i]["goodsName"].ToString();
                             lvItem.SubItems.Add(arr[i]["amt"].ToString());
                             lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
 
@@ -127,7 +127,7 @@ namespace thepos
                             lvItem.SubItems.Add(tTaxFree);
                             lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
-                            lvItem.Tag = arr[i]["itemCode"].ToString();
+                            lvItem.Tag = arr[i]["goodsCode"].ToString();
 
                             lvwGoods.Items.Add(lvItem);
                         }
@@ -223,13 +223,13 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = arr[i]["itemName"].ToString();
+                        lvItem.Text = arr[i]["goodsName"].ToString();
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["locateX"].ToString());
                         lvItem.SubItems.Add(arr[i]["locateY"].ToString());
                         lvItem.SubItems.Add(arr[i]["sizeX"].ToString());
                         lvItem.SubItems.Add(arr[i]["sizeY"].ToString());
-                        lvItem.Tag = arr[i]["itemCode"].ToString();
+                        lvItem.Tag = arr[i]["goodsCode"].ToString();
 
                         lvwGoodsLink.Items.Add(lvItem);
 
@@ -363,7 +363,7 @@ namespace thepos
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = mSelectedGroupCode;
-            parameters["itemCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
+            parameters["goodsCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
             parameters["locateX"] = tbLocateX.Text;
             parameters["locateY"] = tbLocateY.Text;
             parameters["sizeX"] = tbSizeX.Text;
@@ -412,14 +412,14 @@ namespace thepos
 
 
 
-            String mSelecteditemCode = lvwGoodsLink.SelectedItems[0].Tag.ToString();
+            String mSelectedGoodsCode = lvwGoodsLink.SelectedItems[0].Tag.ToString();
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = mSelectedGroupCode;
-            parameters["itemCode"] = mSelecteditemCode;
+            parameters["goodsCode"] = mSelectedGoodsCode;
 
 
             if (mRequestDelete("goodsItem", parameters))
@@ -472,14 +472,14 @@ namespace thepos
             }
 
 
-            String mSelecteditemCode = lvwGoods.SelectedItems[0].Tag.ToString();
+            String mSelectedGoodsCode = lvwGoods.SelectedItems[0].Tag.ToString();
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = mSelectedGroupCode;
-            parameters["itemCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
+            parameters["goodsCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
             parameters["locateX"] = "7";
             parameters["locateY"] = "7";
             parameters["sizeX"] = "1";
@@ -513,7 +513,7 @@ namespace thepos
             //
             for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
             {
-                if (lvwGoodsLink.Items[i].Tag.ToString() == mSelecteditemCode)
+                if (lvwGoodsLink.Items[i].Tag.ToString() == mSelectedGoodsCode)
                 {
                     lvwGoodsLink.Items[i].Selected = true; //
                     return;
@@ -637,7 +637,7 @@ namespace thepos
                     parameters["siteId"] = mSiteId;
                     parameters["posNo"] = mSelectedPosNo;
                     parameters["groupCode"] = mSelectedGroupCode;
-                    parameters["itemCode"] = lvwGoodsLink.Items[i].Tag.ToString(); ;
+                    parameters["goodsCode"] = lvwGoodsLink.Items[i].Tag.ToString(); ;
 
                     if (mRequestDelete("goodsItem", parameters))
                     {
@@ -680,7 +680,7 @@ namespace thepos
                         parameters["siteId"] = mSiteId;
                         parameters["posNo"] = mSelectedPosNo;
                         parameters["groupCode"] = mSelectedGroupCode;
-                        parameters["itemCode"] = arr[i]["itemCode"].ToString();
+                        parameters["goodsCode"] = arr[i]["goodsCode"].ToString();
                         parameters["locateX"] = arr[i]["locateX"].ToString();
                         parameters["locateY"] = arr[i]["locateY"].ToString();
                         parameters["sizeX"] = arr[i]["sizeX"].ToString();

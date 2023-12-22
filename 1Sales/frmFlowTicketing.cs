@@ -106,7 +106,7 @@ namespace thepos
                         item.Text = tStat;
 
 
-                        item.SubItems.Add(get_goods_name(arr[i]["itemCode"].ToString()));
+                        item.SubItems.Add(get_goods_name(arr[i]["goodsCode"].ToString()));
                         item.SubItems.Add(ticketing_dt.Substring(4, 2) + "-" +
                                           ticketing_dt.Substring(6, 2) + " " +
                                           ticketing_dt.Substring(8, 2) + ":" +
@@ -115,7 +115,7 @@ namespace thepos
                         item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
                         
                         item.SubItems.Add("");  // bangle_no 들어갈 자리
-                        item.SubItems.Add(arr[i]["itemCode"].ToString());
+                        item.SubItems.Add(arr[i]["goodsCode"].ToString());
 
                         item.Tag = ticket_no;
 

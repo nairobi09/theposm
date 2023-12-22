@@ -212,8 +212,8 @@ namespace thepos
         public struct GoodsItem
         {
             public string group_code;
-            public string item_code;
-            public string item_name;
+            public string goods_code;
+            public string goods_name;
             public int amt;
             public String ticket; // 일반상품 0. 티켓상품 1
             public String taxfree; // 과세품 0, 면세품 1
@@ -241,8 +241,8 @@ namespace thepos
         public struct MemOrderItem
         {
             public int order_no;       // 대기번호 [대기]을 위해
-            public String code;         // 상품code(6) or 전체할인코드고정("EDC")
-            public String name;         // 상품name or 전체할인명("할인")
+            public String goods_code;         // 상품code(6) or 전체할인코드고정("EDC")
+            public String goods_name;         // 상품name or 전체할인명("할인")
             public int cnt;
             public int amt;
             public String ticket;
@@ -286,8 +286,8 @@ namespace thepos
             public String tran_type;
             public String order_date;
             public String order_time;
-            public String code;         // 상품code(6) or 전체할인코드고정("EDC")
-            public String name;         // 상품name or 전체할인명("할인")
+            public String goods_code;         // 상품code(6) or 전체할인코드고정("EDC")
+            public String goods_name;         // 상품name or 전체할인명("할인")
             public int cnt;
             public int amt;
             public String ticket;
@@ -689,9 +689,9 @@ namespace thepos
 
             for (int i = 0; i < mGoodsItem.Length; i++)
             {
-                if (mGoodsItem[i].item_code == code)
+                if (mGoodsItem[i].goods_code == code)
                 {
-                    return mGoodsItem[i].item_name;
+                    return mGoodsItem[i].goods_name;
                 }
             }
 

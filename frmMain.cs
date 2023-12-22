@@ -627,8 +627,8 @@ namespace thepos
                 parameters["orderDate"] = dr["orderDate"].ToString();
                 parameters["orderTime"] = dr["orderTime"].ToString();
                 parameters["tranType"] = dr["tranType"].ToString();
-                parameters["itemCode"] = dr["itemCode"].ToString();
-                parameters["itemName"] = dr["itemName"].ToString();
+                parameters["goodsCode"] = dr["goodsCode"].ToString();
+                parameters["goodsName"] = dr["goodsName"].ToString();
 
                 parameters["cnt"] = dr["cnt"].ToString();
                 parameters["amt"] = dr["amt"].ToString();
@@ -1260,8 +1260,8 @@ namespace thepos
                         for (int i = 0; i < arr.Count; i++)
                         {
                             mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
-                            mGoodsItem[i].item_code = arr[i]["itemCode"].ToString();
-                            mGoodsItem[i].item_name = arr[i]["itemName"].ToString();
+                            mGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
+                            mGoodsItem[i].goods_name = arr[i]["goodsName"].ToString();
                             mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
                             mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
                             mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
@@ -1276,7 +1276,7 @@ namespace thepos
                             // 면세상픔은 상품명앞에 *을 붙인다.
                             if (mGoodsItem[i].taxfree == "1")
                             {
-                                mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
+                                mGoodsItem[i].goods_name = "*" + mGoodsItem[i].goods_name;
                             }
                         }
                     }
@@ -1649,8 +1649,8 @@ namespace thepos
                             String siteId = arr[i]["siteId"].ToString();
                             String posNo = arr[i]["posNo"].ToString();
                             String groupCode = arr[i]["groupCode"].ToString();
-                            String itemCode = arr[i]["itemCode"].ToString();
-                            String itemName = arr[i]["itemName"].ToString();
+                            String goodsCode = arr[i]["goodsCode"].ToString();
+                            String goodsName = arr[i]["goodsName"].ToString();
                             String shopCode = arr[i]["shopCode"].ToString();
                             int amt = int.Parse(arr[i]["amt"].ToString());
                             String ticketYn = arr[i]["ticketYn"].ToString();
@@ -1662,8 +1662,8 @@ namespace thepos
                             int sizeX = int.Parse(arr[i]["sizeX"].ToString());
                             int sizeY = int.Parse(arr[i]["sizeY"].ToString());
 
-                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, itemCode, itemName, shopCode, amt, ticketYn, taxFree, cutout, soldout, locateX, locateY, sizeX, sizeY) " +
-                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + itemCode + "','" + itemName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + cutout + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
+                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, goodsCode, goodsName, shopCode, amt, ticketYn, taxFree, cutout, soldout, locateX, locateY, sizeX, sizeY) " +
+                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + goodsCode + "','" + goodsName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + cutout + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ")";
                             ret = sql_excute_local_db(sql);
                         }
 
@@ -2036,8 +2036,8 @@ namespace thepos
                 while (dr.Read())
                 {
                     mGoodsItem[i].group_code = dr["groupCode"].ToString();
-                    mGoodsItem[i].item_code = dr["itemCode"].ToString();
-                    mGoodsItem[i].item_name = dr["itemName"].ToString();
+                    mGoodsItem[i].goods_code = dr["goodsCode"].ToString();
+                    mGoodsItem[i].goods_name = dr["goodsName"].ToString();
                     mGoodsItem[i].shop_code = dr["shopCode"].ToString();
                     mGoodsItem[i].amt = int.Parse(dr["amt"].ToString());
                     mGoodsItem[i].ticket = dr["ticketYn"].ToString();
@@ -2052,7 +2052,7 @@ namespace thepos
                     // 면세상픔은 상품명앞에 *을 붙인다.
                     if (mGoodsItem[i].taxfree == "1")
                     {
-                        mGoodsItem[i].item_name = "*" + mGoodsItem[i].item_name;
+                        mGoodsItem[i].goods_name = "*" + mGoodsItem[i].goods_name;
                     }
 
                     i++;

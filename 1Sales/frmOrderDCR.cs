@@ -223,13 +223,13 @@ namespace thepos
                 orderItem.cnt = 0;
                 orderItem.amt = 0;
                 orderItem.dc_amount = t_dc_amount;
-                orderItem.code = e_dcr_code;  // 전체 할인코드
-                orderItem.name = e_dcr_name;
+                orderItem.goods_code = e_dcr_code;  // 전체 할인코드
+                orderItem.goods_name = e_dcr_name;
 
                 if (isExist_E == true)
                 {
                     mLvwOrderItem.Items[t_count].Text = (t_count + 1).ToString();
-                    mLvwOrderItem.Items[t_count].SubItems[1].Text = orderItem.name;
+                    mLvwOrderItem.Items[t_count].SubItems[1].Text = orderItem.goods_name;
                     mLvwOrderItem.Items[t_count].SubItems[2].Text = "";
                     mLvwOrderItem.Items[t_count].SubItems[3].Text = "";
                     mLvwOrderItem.Items[t_count].SubItems[4].Text = orderItem.dc_amount.ToString("N0");   // dc_amount
@@ -242,7 +242,7 @@ namespace thepos
                 {
                     ListViewItem lvItem = new ListViewItem();
                     lvItem.Text = (t_count + 1).ToString();
-                    lvItem.SubItems.Add(orderItem.name);                            // 1: name 상품명
+                    lvItem.SubItems.Add(orderItem.goods_name);                            // 1: name 상품명
                     lvItem.SubItems.Add("");                                        // 2: amt 단가
                     lvItem.SubItems.Add("");                                        // 3: cnt 수량
                     lvItem.SubItems.Add(orderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
