@@ -530,7 +530,7 @@ namespace thepos
                             lvItem.Tag = "";
 
                         lvItem.Text = arr[i]["shopOrderNo"].ToString();
-                        lvItem.SubItems.Add(arr[i]["itemName"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(convert_number(arr[i]["cnt"].ToString()).ToString("N0"));
                         lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
                         lvwPayOrder.Items.Add(lvItem);
@@ -1036,7 +1036,7 @@ namespace thepos
                                 t_shop_code = arr[i]["shopCode"].ToString();
                                 t_order_dt = arr[i]["orderDate"].ToString() + arr[i]["orderTime"].ToString();
 
-                                t_good_name.Add(arr[i]["itemName"].ToString());
+                                t_good_name.Add(arr[i]["goodsName"].ToString());
                                 t_good_cnt.Add(convert_number(arr[i]["cnt"].ToString()));
                             }
                         }

@@ -3855,7 +3855,7 @@ namespace thepos
                             if (arr[i]["taxFree"].ToString() == "Y")
                                 tStr = "*" + arr[i]["itemName"].ToString();
                             else
-                                tStr = arr[i]["itemName"].ToString();
+                                tStr = arr[i]["goodsName"].ToString();
 
                             strPrintOrder += tStr + Space(18 - encodelen(tStr));
 

@@ -81,6 +81,8 @@
             this.tbOptionItemNameCH = new System.Windows.Forms.TextBox();
             this.tbOptionItemNameEN = new System.Windows.Forms.TextBox();
             this.tbOptionItemName = new System.Windows.Forms.TextBox();
+            this.btnOptionCopy = new System.Windows.Forms.Button();
+            this.cbSourceGoods = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +116,7 @@
             this.lvwGoods.Location = new System.Drawing.Point(28, 58);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(271, 621);
+            this.lvwGoods.Size = new System.Drawing.Size(267, 621);
             this.lvwGoods.SmallImageList = this.imageList1;
             this.lvwGoods.TabIndex = 0;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
@@ -126,7 +128,7 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "check.png");
+            this.imageList1.Images.SetKeyName(0, "option.png");
             // 
             // lblJP
             // 
@@ -230,9 +232,9 @@
             this.groupBox1.Controls.Add(this.tbOptionNameEN);
             this.groupBox1.Controls.Add(this.tbOptionName);
             this.groupBox1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(305, 219);
+            this.groupBox1.Location = new System.Drawing.Point(305, 198);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(537, 133);
+            this.groupBox1.Size = new System.Drawing.Size(537, 134);
             this.groupBox1.TabIndex = 53;
             this.groupBox1.TabStop = false;
             // 
@@ -242,7 +244,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(427, 60);
+            this.btnSave.Location = new System.Drawing.Point(422, 60);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 63);
             this.btnSave.TabIndex = 62;
@@ -257,7 +259,7 @@
             this.btnOptionUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionUp.Location = new System.Drawing.Point(266, 40);
+            this.btnOptionUp.Location = new System.Drawing.Point(248, 40);
             this.btnOptionUp.Name = "btnOptionUp";
             this.btnOptionUp.Size = new System.Drawing.Size(40, 40);
             this.btnOptionUp.TabIndex = 57;
@@ -272,7 +274,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd.Location = new System.Drawing.Point(318, 26);
+            this.btnAdd.Location = new System.Drawing.Point(294, 26);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 30);
             this.btnAdd.TabIndex = 59;
@@ -287,7 +289,7 @@
             this.btnOptionDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionDn.Location = new System.Drawing.Point(266, 83);
+            this.btnOptionDn.Location = new System.Drawing.Point(248, 83);
             this.btnOptionDn.Name = "btnOptionDn";
             this.btnOptionDn.Size = new System.Drawing.Size(40, 40);
             this.btnOptionDn.TabIndex = 56;
@@ -302,7 +304,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUpdate.Location = new System.Drawing.Point(318, 60);
+            this.btnUpdate.Location = new System.Drawing.Point(294, 60);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(100, 30);
             this.btnUpdate.TabIndex = 58;
@@ -317,7 +319,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDelete.Location = new System.Drawing.Point(318, 93);
+            this.btnDelete.Location = new System.Drawing.Point(294, 93);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 30);
             this.btnDelete.TabIndex = 60;
@@ -353,7 +355,7 @@
             this.lvwOption.Location = new System.Drawing.Point(305, 58);
             this.lvwOption.MultiSelect = false;
             this.lvwOption.Name = "lvwOption";
-            this.lvwOption.Size = new System.Drawing.Size(537, 160);
+            this.lvwOption.Size = new System.Drawing.Size(424, 140);
             this.lvwOption.TabIndex = 54;
             this.lvwOption.TabStop = false;
             this.lvwOption.UseCompatibleStateImageBehavior = false;
@@ -400,10 +402,10 @@
             this.lvwOptionItem.FullRowSelect = true;
             this.lvwOptionItem.GridLines = true;
             this.lvwOptionItem.HideSelection = false;
-            this.lvwOptionItem.Location = new System.Drawing.Point(305, 384);
+            this.lvwOptionItem.Location = new System.Drawing.Point(305, 406);
             this.lvwOptionItem.MultiSelect = false;
             this.lvwOptionItem.Name = "lvwOptionItem";
-            this.lvwOptionItem.Size = new System.Drawing.Size(537, 160);
+            this.lvwOptionItem.Size = new System.Drawing.Size(537, 140);
             this.lvwOptionItem.TabIndex = 55;
             this.lvwOptionItem.TabStop = false;
             this.lvwOptionItem.UseCompatibleStateImageBehavior = false;
@@ -446,7 +448,7 @@
             this.btnSave2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave2.ForeColor = System.Drawing.Color.White;
-            this.btnSave2.Location = new System.Drawing.Point(426, 61);
+            this.btnSave2.Location = new System.Drawing.Point(420, 62);
             this.btnSave2.Name = "btnSave2";
             this.btnSave2.Size = new System.Drawing.Size(100, 62);
             this.btnSave2.TabIndex = 64;
@@ -484,11 +486,12 @@
             // 
             this.tbOptionItemAmt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionItemAmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionItemAmt.Location = new System.Drawing.Point(169, 100);
+            this.tbOptionItemAmt.Location = new System.Drawing.Point(162, 100);
             this.tbOptionItemAmt.MaxLength = 30;
             this.tbOptionItemAmt.Name = "tbOptionItemAmt";
             this.tbOptionItemAmt.Size = new System.Drawing.Size(78, 23);
             this.tbOptionItemAmt.TabIndex = 61;
+            this.tbOptionItemAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblJP2
             // 
@@ -507,7 +510,7 @@
             this.btnOptionItemUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionItemUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionItemUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionItemUp.Location = new System.Drawing.Point(266, 40);
+            this.btnOptionItemUp.Location = new System.Drawing.Point(246, 40);
             this.btnOptionItemUp.Name = "btnOptionItemUp";
             this.btnOptionItemUp.Size = new System.Drawing.Size(40, 40);
             this.btnOptionItemUp.TabIndex = 57;
@@ -522,7 +525,7 @@
             this.btnAdd2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd2.Location = new System.Drawing.Point(318, 25);
+            this.btnAdd2.Location = new System.Drawing.Point(292, 26);
             this.btnAdd2.Name = "btnAdd2";
             this.btnAdd2.Size = new System.Drawing.Size(100, 30);
             this.btnAdd2.TabIndex = 59;
@@ -537,7 +540,7 @@
             this.btnOptionItemDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionItemDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionItemDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionItemDn.Location = new System.Drawing.Point(266, 83);
+            this.btnOptionItemDn.Location = new System.Drawing.Point(246, 83);
             this.btnOptionItemDn.Name = "btnOptionItemDn";
             this.btnOptionItemDn.Size = new System.Drawing.Size(40, 40);
             this.btnOptionItemDn.TabIndex = 56;
@@ -552,7 +555,7 @@
             this.btnUpdate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUpdate2.Location = new System.Drawing.Point(318, 59);
+            this.btnUpdate2.Location = new System.Drawing.Point(292, 60);
             this.btnUpdate2.Name = "btnUpdate2";
             this.btnUpdate2.Size = new System.Drawing.Size(100, 30);
             this.btnUpdate2.TabIndex = 58;
@@ -578,7 +581,7 @@
             this.btnDelete2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDelete2.Location = new System.Drawing.Point(318, 93);
+            this.btnDelete2.Location = new System.Drawing.Point(292, 94);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(100, 30);
             this.btnDelete2.TabIndex = 60;
@@ -592,7 +595,7 @@
             this.lblAmtTitle.AutoSize = true;
             this.lblAmtTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmtTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblAmtTitle.Location = new System.Drawing.Point(169, 83);
+            this.lblAmtTitle.Location = new System.Drawing.Point(162, 83);
             this.lblAmtTitle.Name = "lblAmtTitle";
             this.lblAmtTitle.Size = new System.Drawing.Size(29, 12);
             this.lblAmtTitle.TabIndex = 57;
@@ -660,10 +663,38 @@
             this.tbOptionItemName.Size = new System.Drawing.Size(117, 23);
             this.tbOptionItemName.TabIndex = 1;
             // 
+            // btnOptionCopy
+            // 
+            this.btnOptionCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnOptionCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOptionCopy.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOptionCopy.ForeColor = System.Drawing.Color.White;
+            this.btnOptionCopy.Location = new System.Drawing.Point(742, 109);
+            this.btnOptionCopy.Name = "btnOptionCopy";
+            this.btnOptionCopy.Size = new System.Drawing.Size(100, 29);
+            this.btnOptionCopy.TabIndex = 66;
+            this.btnOptionCopy.TabStop = false;
+            this.btnOptionCopy.Text = "옵션복사";
+            this.btnOptionCopy.UseVisualStyleBackColor = false;
+            this.btnOptionCopy.Click += new System.EventHandler(this.btnOptionCopy_Click);
+            // 
+            // cbSourceGoods
+            // 
+            this.cbSourceGoods.BackColor = System.Drawing.Color.White;
+            this.cbSourceGoods.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbSourceGoods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbSourceGoods.FormattingEnabled = true;
+            this.cbSourceGoods.Location = new System.Drawing.Point(742, 82);
+            this.cbSourceGoods.Name = "cbSourceGoods";
+            this.cbSourceGoods.Size = new System.Drawing.Size(100, 21);
+            this.cbSourceGoods.TabIndex = 83;
+            // 
             // frmSysOption
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.cbSourceGoods);
+            this.Controls.Add(this.btnOptionCopy);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lvwOptionItem);
             this.Controls.Add(this.lvwOption);
@@ -734,5 +765,7 @@
         private System.Windows.Forms.ColumnHeader option_item_name_jp;
         private System.Windows.Forms.ColumnHeader option_item_amt;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnOptionCopy;
+        private System.Windows.Forms.ComboBox cbSourceGoods;
     }
 }
