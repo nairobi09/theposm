@@ -18,15 +18,15 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 using System.IO;
 using System.Web.UI.WebControls.Expressions;
-
 using System.Security.Policy;
 using System.Diagnostics.Eventing.Reader;
 using System.Data.SQLite;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-
-
+using static BrightIdeasSoftware.ObjectListView;
+using BrightIdeasSoftware;
+using System.Web;
 
 /* 과제
     + 마우스 포인터 표시 : pc pos 구분필요 
@@ -67,7 +67,10 @@ namespace thepos
         public static Panel mPanelProductConsole;
         public static Label mLblDisplayAlarm;
         //public static Label mLblKeyDisplay;
-        public static ListView mLvwOrderItem;
+
+        //public static ListView mLvwOrderItem;
+        public static BrightIdeasSoftware.ObjectListView mLvwOrderItem;
+
         public static Label mLblOrderAmount;
         public static Label mLblOrderAmountDC;
         public static Label mLblOrderAmountNet;
@@ -551,15 +554,40 @@ namespace thepos
         }
 
 
+        class order_line
+        {
+            public string lv_no { get; set; }
+            public string lv_name { get; set; }
+            public string lv_amt { get; set; }
+            public string lv_cnt { get; set; }
+            public string lv_dc_amount { get; set; }
+            public string lv_net_amount { get; set; }
+            public string lv_memo { get; set; }
+            public string lv_tip { get; set; }
+
+            public order_line(string no, string name, string amt, string cnt, string dc_amount, string net_amount, string memo, string tip)
+            {
+                this.lv_no = no;
+                this.lv_name = name;
+                this.lv_amt = amt;
+                this.lv_cnt = cnt;
+                this.lv_dc_amount = dc_amount;
+                this.lv_net_amount = net_amount;
+                this.lv_memo = memo;
+                this.lv_tip = tip;
+            }
+
+        }
+
+
         private void ClickedGoodsItem(int i)
         {
             MemOrderItem orderItem = new MemOrderItem();
-            int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            //int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = -1;
 
             if (lv_idx == -1)
             {
-                ListViewItem lvItem = new ListViewItem();
-
                 orderItem.order_no = 0;
                 orderItem.goods_code = mGoodsItem[i].goods_code.ToString();
                 orderItem.goods_name = mGoodsItem[i].goods_name.ToString();
@@ -573,21 +601,20 @@ namespace thepos
                 orderItem.dcr_value = 0;
                 orderItem.shop_code = mGoodsItem[i].shop_code;
 
-                lvItem.Tag = orderItem;
-                lvItem.Text = (lvwOrderItem.Items.Count + 1).ToString();
-                lvItem.SubItems.Add(orderItem.goods_name);                // 1: name 상품명
-                lvItem.SubItems.Add(orderItem.amt.ToString("N0"));  // 2: amt 단가
-                lvItem.SubItems.Add("1");                               // 3: cnt 수량
-                lvItem.SubItems.Add("");                                // 4: dc_amount 할인
-                lvItem.SubItems.Add(orderItem.amt.ToString("N0"));  // 5: net_amount 금액
-                lvItem.SubItems.Add("");                                // 6: 비고
 
-                lvwOrderItem.Items.Add(lvItem);
+                List<order_line> orderLine = new List<order_line>();
+                orderLine.Add(new order_line((lvwOrderItem.Items.Count + 1).ToString(), orderItem.goods_name + "\r\n-옵션:1", orderItem.amt.ToString("N0"), "1", "", orderItem.amt.ToString("N0"), "", ""));
+
+
+                lvwOrderItem.AddObjects(orderLine);
+
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
 
+                lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Tag = orderItem;
+
                 // 전체할인이 있으면 주문항목 가장 아래로 이동???
-                move_dcr_e_last();
+                //move_dcr_e_last();
 
             }
             else
@@ -597,7 +624,7 @@ namespace thepos
                 lvwOrderItem.Items[lv_idx].Selected = true;
             }
 
-            ReCalculateAmount();
+            //ReCalculateAmount();
         }
 
 
@@ -2848,16 +2875,16 @@ namespace thepos
                 return;
             }
 
-            lvwOrderItem.Items[lv_idx].SubItems[2].Text = orderItem.amt.ToString("N0");           // amt
+            lvwOrderItem.Items[lv_idx].SubItems[lvwOrderItem.Columns.IndexOf(lv_amt)].Text = orderItem.amt.ToString("N0");           // amt
 
             if (orderItem.dcr_type == "R")
             {
                 orderItem.dc_amount = ((orderItem.cnt * orderItem.amt) * orderItem.dcr_value) / 100;
             }
 
-            int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
-            lvwOrderItem.Items[lv_idx].SubItems[4].Text = orderItem.dc_amount.ToString("N0");
-            lvwOrderItem.Items[lv_idx].SubItems[5].Text = net_amount.ToString("N0");        // net_amount
+            int netAmount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
+            lvwOrderItem.Items[lv_idx].SubItems[lvwOrderItem.Columns.IndexOf(lv_dc_amount)].Text = orderItem.dc_amount.ToString("N0");
+            lvwOrderItem.Items[lv_idx].SubItems[lvwOrderItem.Columns.IndexOf(lv_net_amount)].Text = netAmount.ToString("N0");        // net_amount
 
             lvwOrderItem.Items[lv_idx].Tag = orderItem;
         }
@@ -2894,9 +2921,9 @@ namespace thepos
             int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
 
 
-            lvwItem.SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
-            lvwItem.SubItems[4].Text = orderItem.dc_amount.ToString("###,###,###");
-            lvwItem.SubItems[5].Text = net_amount.ToString("N0");        // net_amount
+            lvwItem.SubItems[lvwOrderItem.Columns.IndexOf(lv_cnt)].Text = orderItem.cnt.ToString("N0");           // cnt
+            lvwItem.SubItems[lvwOrderItem.Columns.IndexOf(lv_dc_amount)].Text = orderItem.dc_amount.ToString("###,###,###");
+            lvwItem.SubItems[lvwOrderItem.Columns.IndexOf(lv_net_amount)].Text = net_amount.ToString("N0");        // net_amount
             lvwItem.Tag = orderItem;
 
             mLvwOrderItem.Items[lv_idx] = lvwItem;
@@ -3268,7 +3295,7 @@ namespace thepos
             }
 
 
-
+            
             this.lvwOrderItem.Items.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
                 {
@@ -3281,7 +3308,7 @@ namespace thepos
                     item.BackColor = SystemColors.Highlight;
                     item.ForeColor = SystemColors.HighlightText;
                 });
-
+            
         }
 
         private void lvwOrderItem_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
@@ -4987,7 +5014,6 @@ namespace thepos
         {
             MessageBox.Show(msg, "thepos");
         }
-
 
     }
 }

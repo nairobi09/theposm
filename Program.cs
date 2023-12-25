@@ -20,7 +20,7 @@ namespace thepos
             if (procs.Length > 1)
             {
                 //중복 실행 방지
-                MessageBox.Show("'프로세스 이름'는 실행 중 입니다.");
+                MessageBox.Show("이미 실행 중 입니다.");
                 return;
             }
             else

@@ -286,7 +286,7 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem;
-                        lvItem = new ListViewItem(arr[i]["optionNo"].ToString());
+                        lvItem = new ListViewItem(arr[i]["optionSeq"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionName"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionNameEn"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionNameCh"].ToString());
@@ -493,7 +493,7 @@ namespace thepos
                 parameters["siteId"] = mSiteId;
                 parameters["goodsCode"] = selected_goods_code;
                 parameters["optionCode"] = lvwOption.Items[i].Tag.ToString();
-                parameters["optionNo"] = lvwOption.Items[i].Text;
+                parameters["optionSeq"] = lvwOption.Items[i].Text;
 
                 parameters["optionName"] = lvwOption.Items[i].SubItems[1].Text;
                 parameters["optionNameEn"] = lvwOption.Items[i].SubItems[2].Text;
@@ -812,7 +812,7 @@ namespace thepos
                             parameters["siteId"] = mSiteId;
                             parameters["goodsCode"] = selected_goods_code;
                             parameters["optionCode"] = arr[i]["optionCode"].ToString();
-                            parameters["optionNo"] = arr[i]["optionNo"].ToString();
+                            parameters["optionSeq"] = arr[i]["optionSeq"].ToString();
 
                             parameters["optionName"] = arr[i]["optionName"].ToString();
                             parameters["optionNameEn"] = arr[i]["optionNameEn"].ToString();
