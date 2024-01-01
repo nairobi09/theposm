@@ -18,7 +18,7 @@ using System.Security.Policy;
 using System.Collections;
 using System.IO;
 using System.Data.SQLite;
-
+using static BrightIdeasSoftware.ObjectListView;
 
 /*
  
@@ -150,7 +150,7 @@ namespace thepos
 
         public static frmSub fSub;
         public static Panel mPanelOrderInfo;
-        public static ListView mSublvwOrderItem;
+        public static BrightIdeasSoftware.ObjectListView mSublvwOrderItem;
 
         public static Label mSublblOrderAmount;
         public static Label mSublblOrderAmountDC;
@@ -224,8 +224,29 @@ namespace thepos
             public int row;
             public int columnspan;
             public int rowspan;
+            public String is_option;
         }
         public static GoodsItem[] mGoodsItem;
+
+
+        public struct GoodsOption
+        {
+            public string goods_code;
+            public string option_code;
+            public int option_seq;
+            public string option_name;
+        }
+        public static GoodsOption[] mGoodsOption;
+
+        public struct GoodsOptionItem
+        {
+            public string goods_code;
+            public string option_code;
+            public int option_item_no;
+            public string option_item_name;
+            public int option_item_amt;
+        }
+        public static GoodsOptionItem[] mGoodsOptionItem;
 
 
         // 로컬
@@ -240,15 +261,32 @@ namespace thepos
 
         public struct MemOrderItem
         {
-            public int order_no;       // 대기번호 [대기]을 위해
-            public String goods_code;         // 상품code(6) or 전체할인코드고정("EDC")
-            public String goods_name;         // 상품name or 전체할인명("할인")
+            public int lv_order_no;             // 
+            public String lv_goods_name;        // 상품name or 전체할인명("할인")
+            public String lv_cnt;
+            public String lv_amt;
+            public String lv_dc_amount;         // 실할인금액
+            public String lv_net_amount;        // 결제금액
+            
+            public String option_name_description;          // render를 통한 옵션 표시
+            public String option_amt_description;          // render를 통한 옵션 표시
+            public int option_cnt;
+            public List<orderOptionItem> orderOptionItemList;
+
+            public int order_no;                // 대기번호 [대기]을 위해
+            public String goods_code;           // 상품code(6) or 전체할인코드고정("EDC")
+            public String goods_name;        // 상품name or 전체할인명("할인")
+
             public int cnt;
-            public int amt;
+            public int amt;                     // 상품단가
+            public int option_amt;              // 옵션단가
+            public int dc_amount;               // 실할인금액
+            public int net_amount;              // 결제금액
+
             public String ticket;
             public String taxfree;
             public String shop_code;
-            public int dc_amount;       // 실할인금액
+
             public String dcr_code;     // 
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
             public String dcr_des;      // 전체"E", 선택"S"
@@ -256,8 +294,25 @@ namespace thepos
             public String pay_class;
             public String ticket_no;     // 충전, 사용인경우
             public String shop_order_no;
+
+            public String lv_memo;
         }
         public static List<MemOrderItem> listWaitingItem = new List<MemOrderItem>();
+
+
+        public struct orderOptionItem
+        {
+            public String option_code;
+            public String option_name;
+            public int option_item_no;
+            public String option_item_name;
+            public int amt;
+        }
+        public static List<orderOptionItem> mOrderOptionItemList = new List<orderOptionItem>();
+
+        public static int mOrderCntInOption = 1;
+
+
 
 
         //? 서버

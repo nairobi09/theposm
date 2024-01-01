@@ -27,6 +27,9 @@ using System.Net.Sockets;
 using static BrightIdeasSoftware.ObjectListView;
 using BrightIdeasSoftware;
 using System.Web;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using System.Net;
+
 
 /* 과제
     + 마우스 포인터 표시 : pc pos 구분필요 
@@ -42,13 +45,16 @@ panelProduct : 488, 56 529, 547
 // ð ✕ ◈ ◆ ⬅ 〈 ˂
 // Music Title In Here
 // 0:00 ━━●─── 4:00
-// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮   ₩
+// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮   원화 기호 ₩
 
 
 namespace thepos
 {
     public partial class frmSales : Form
     {
+        public static List<MemOrderItem> mOrderItemList = new List<MemOrderItem>();
+
+
         public static int mBillTheNo = 0;
         int mWaitingNoCounter = 0;
         public static int mSelectedWaitingNo = 0;
@@ -93,8 +99,6 @@ namespace thepos
         public static Button mBtnOrderWaiting;
 
         public static TableLayoutPanel mTableLayoutPanelPayControl;
-
-
 
 
 
@@ -163,7 +167,7 @@ namespace thepos
 
             btnClose.Font = font12;
 
-            lvwOrderItem.Font = font10;
+            //lvwOrderItem.Font = font10;
             lblDisplayAlarm.Font = font10;
 
             btnOrderCancelAll.Font = font10;
@@ -173,6 +177,7 @@ namespace thepos
             btnOrderCntChange.Font = font10;
             btnOrderItemScrollUp.Font = font8;
             btnOrderItemScrollDn.Font = font8;
+            btnOrderAmtChange.Font = font10;
 
             lblOrderAmountSumTitle.Font = font9;
             lblOrderAmountDCTitle.Font = font9;
@@ -296,7 +301,49 @@ namespace thepos
             // 
             mLblTheModeStatus.VisibleChanged += (sender, args) => ChangeTheMode(false);
 
+            // 메모리 초기화
+            mOrderItemList.Clear();
+
+
+            this.lv_name.Renderer = rendererName();
+            this.lv_amt.Renderer = rendererAmt();
+
         }
+
+        public DescribedTaskRenderer rendererName()
+        {
+            DescribedTaskRenderer renderer = new DescribedTaskRenderer();
+            renderer.DescriptionAspectName = "option_name_description";
+
+            renderer.TitleFont = new Font("굴림", 11, FontStyle.Regular);
+            renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Gray;
+            renderer.ImageTextSpace = 0;
+            renderer.TitleDescriptionSpace = 0;
+
+            renderer.UseGdiTextRendering = false;
+
+
+            return (renderer);
+        }
+
+        public DescribedTaskRenderer rendererAmt()
+        {
+            DescribedTaskRenderer renderer = new DescribedTaskRenderer();
+            renderer.DescriptionAspectName = "option_amt_description";
+
+            renderer.TitleFont = new Font("굴림", 11, FontStyle.Regular);
+            renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Gray;
+            renderer.ImageTextSpace = 0;
+            renderer.TitleDescriptionSpace = 0;
+
+            renderer.UseGdiTextRendering = false;
+            
+
+            return (renderer);
+        }
+
 
         public void ChangeTheMode(bool isFirst)
         {
@@ -336,7 +383,6 @@ namespace thepos
 
 
         }
-
 
 
         private void display_paymentConsol()
@@ -554,64 +600,91 @@ namespace thepos
         }
 
 
-        class order_line
-        {
-            public string lv_no { get; set; }
-            public string lv_name { get; set; }
-            public string lv_amt { get; set; }
-            public string lv_cnt { get; set; }
-            public string lv_dc_amount { get; set; }
-            public string lv_net_amount { get; set; }
-            public string lv_memo { get; set; }
-            public string lv_tip { get; set; }
-
-            public order_line(string no, string name, string amt, string cnt, string dc_amount, string net_amount, string memo, string tip)
-            {
-                this.lv_no = no;
-                this.lv_name = name;
-                this.lv_amt = amt;
-                this.lv_cnt = cnt;
-                this.lv_dc_amount = dc_amount;
-                this.lv_net_amount = net_amount;
-                this.lv_memo = memo;
-                this.lv_tip = tip;
-            }
-
-        }
-
 
         private void ClickedGoodsItem(int i)
         {
+            // 옵션항목 목록: frmOrderOption에서 채운다.
+            mOrderOptionItemList.Clear();
+
+            int order_cnt = 1;
+
+            if (mGoodsItem[i].is_option == "Y")
+            {
+                frmOrderOption fForm = new frmOrderOption(mGoodsItem[i]);
+                DialogResult ret = fForm.ShowDialog();
+
+                if (ret == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                // 수량을 전역변수에서 받음 : fk30fgu9w04ufgw
+                order_cnt = mOrderCntInOption;
+            }
+
+
             MemOrderItem orderItem = new MemOrderItem();
-            //int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
-            int lv_idx = -1;
+            int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {
-                orderItem.order_no = 0;
+
+                //
+                orderItem.option_name_description = "";   // 리스트뷰 상품항목 아랫줄에 표시
+                orderItem.option_amt_description = "";    // 리스트뷰 단가항목 아랫줄에 표시
+
+                if (mOrderOptionItemList.Count > 0)
+                {
+                    for (int k = 0;  k < mOrderOptionItemList.Count; k++)
+                    {
+                        orderItem.option_name_description += " " + mOrderOptionItemList[k].option_item_name;
+
+                        orderItem.option_amt += (int)mOrderOptionItemList[k].amt;
+                    }
+                }
+
+                if (mOrderOptionItemList.Count > 0)
+                {
+                    orderItem.option_amt_description = orderItem.option_amt.ToString("N0");
+                }
+                else
+                {
+                    orderItem.option_amt_description = "";
+                }
+                
+
+
+
+                //
+                orderItem.option_cnt = mOrderOptionItemList.Count;
+                orderItem.orderOptionItemList = mOrderOptionItemList;
+
+                orderItem.order_no = mOrderItemList.Count + 1;
                 orderItem.goods_code = mGoodsItem[i].goods_code.ToString();
-                orderItem.goods_name = mGoodsItem[i].goods_name.ToString();
+                orderItem.goods_name = mGoodsItem[i].goods_name;
                 orderItem.ticket = mGoodsItem[i].ticket;
                 orderItem.taxfree = mGoodsItem[i].taxfree;
+
+
+                orderItem.cnt = order_cnt;
+
                 orderItem.amt = mGoodsItem[i].amt;
-                orderItem.cnt = 1;
-                orderItem.dc_amount = 0;
+                //orderItem.option_amt    // 위에서 세팅
+
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
                 orderItem.shop_code = mGoodsItem[i].shop_code;
 
+                //
+                replace_mem_order_item(ref orderItem, "add");
 
-                List<order_line> orderLine = new List<order_line>();
-                orderLine.Add(new order_line((lvwOrderItem.Items.Count + 1).ToString(), orderItem.goods_name + "\r\n-옵션:1", orderItem.amt.ToString("N0"), "1", "", orderItem.amt.ToString("N0"), "", ""));
 
-
-                lvwOrderItem.AddObjects(orderLine);
-
+                mOrderItemList.Add(orderItem);
+                lvwOrderItem.SetObjects(mOrderItemList);
+                
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
-
-                lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Tag = orderItem;
 
                 // 전체할인이 있으면 주문항목 가장 아래로 이동???
                 //move_dcr_e_last();
@@ -624,10 +697,55 @@ namespace thepos
                 lvwOrderItem.Items[lv_idx].Selected = true;
             }
 
-            //ReCalculateAmount();
+            ReCalculateAmount();
         }
 
+        public static void replace_mem_order_item(ref MemOrderItem orderItem, String job)
+        {
+            //
+            if (job == "add")
+            {
+                orderItem.lv_order_no = mLvwOrderItem.Items.Count + 1;
+            }
+            else
+            {
+                // 유지
+            }
 
+
+            if (orderItem.dcr_des == "E")
+            {
+                // 전체할인 금액은 이전에 계산해서 들어옴
+            }
+            else
+            {
+                orderItem.dc_amount = get_dc_amount(orderItem);
+            }
+            
+
+
+            orderItem.net_amount = ((orderItem.amt + orderItem.option_amt) * orderItem.cnt) - orderItem.dc_amount;
+
+            orderItem.lv_goods_name = orderItem.goods_name;
+
+            if (orderItem.dcr_des == "E")
+            {
+                orderItem.lv_cnt = "";
+                orderItem.lv_amt = "";
+                orderItem.lv_net_amount = "";
+            }
+            else
+            {
+                orderItem.lv_cnt = orderItem.cnt.ToString("N0");
+                orderItem.lv_amt = orderItem.amt.ToString("N0");
+                orderItem.lv_net_amount = orderItem.net_amount.ToString("N0");
+            }
+
+            orderItem.lv_dc_amount = orderItem.dc_amount.ToString("N0");
+            
+            orderItem.lv_memo = getDCRmemo(orderItem);
+
+        }
 
         //
         private void btnFlowCert_Click(object sender, EventArgs e)
@@ -1320,8 +1438,6 @@ namespace thepos
 
             return memOrderItemArr;
         }
-
-
 
 
         public static bool isExistOrderPrinter(String shop_code)
@@ -2064,8 +2180,6 @@ namespace thepos
             return 0;
         }
 
-
-
         public static int CheckCancelTicketFlow(String auth_pay_class, String the_no, String ticket_no)
         {
             // return int
@@ -2527,7 +2641,8 @@ namespace thepos
         // OrderItem ListView 관련 버튼들
         private void btnOrderCancelAll_Click(object sender, EventArgs e)
         {
-            lvwOrderItem.Items.Clear();
+            mOrderItemList.Clear();
+            lvwOrderItem.SetObjects(mOrderItemList);
 
             ReCalculateAmount();
         }
@@ -2538,7 +2653,24 @@ namespace thepos
             {
                 int idx = lvwOrderItem.SelectedItems[0].Index;
 
-                lvwOrderItem.SelectedItems[0].Remove();
+                mOrderItemList.Remove(mOrderItemList[idx]);
+
+                // renumbering
+                for (int i = idx; i < mOrderItemList.Count; i++)
+                {
+                    MemOrderItem orderItem = mOrderItemList[i];
+
+                    orderItem.order_no = i + 1;
+                    orderItem.lv_order_no = i + 1;
+
+                    mOrderItemList[i] =orderItem;
+                }
+                
+
+                lvwOrderItem.SetObjects(mOrderItemList);
+
+
+                //lvwOrderItem.SelectedItems[0].Remove();
 
                 if (idx == lvwOrderItem.Items.Count & idx == 0)
                 {
@@ -2553,11 +2685,6 @@ namespace thepos
                     lvwOrderItem.Items[idx].Selected = true;
                 }
 
-                // renumbering
-                for (int i = idx; i < lvwOrderItem.Items.Count; i++)
-                {
-                    lvwOrderItem.Items[i].Text = (i+1).ToString();
-                }
 
                 ReCalculateAmount();
             }
@@ -2565,62 +2692,72 @@ namespace thepos
 
         private void btnOrderAmtChange_Click(object sender, EventArgs e)
         {
-            if (lvwOrderItem.SelectedItems.Count > 0)
+            if (lvwOrderItem.SelectedItems.Count != 1)
             {
-                if (int.TryParse(tbKeyDisplay.Text, out int amt))
+                return;
+            }
+
+            if (int.TryParse(tbKeyDisplay.Text, out int amt))
+            {
+                if (amt > 0 & amt < 100000000)
                 {
-                    if (amt > 0 & amt < 100000000)
-                    {
-                        set_item_change_orderamt(lvwOrderItem.SelectedItems[0].Index, "set", amt);
-                        tbKeyDisplay.Text = "";
-                        ReCalculateAmount();
-                    }
-                    else
-                    {
-                        SetDisplayAlarm("W", "단가 입력값 확인요망.");
-                        return;
-                    }
+                    set_item_change_orderamt(lvwOrderItem.SelectedItems[0].Index, "set", amt);
+                    tbKeyDisplay.Text = "";
+                    ReCalculateAmount();
                 }
                 else
                 {
-                    SetDisplayAlarm("E", "단가 입력값 오류.");
+                    SetDisplayAlarm("W", "단가 입력값 확인요망.");
                     return;
                 }
             }
-
-
+            else
+            {
+                SetDisplayAlarm("E", "단가 입력값 오류.");
+                return;
+            }
         }
 
         private void btnOrderCntDn_Click(object sender, EventArgs e)
         {
-            if (lvwOrderItem.SelectedItems.Count > 0)
+            if (lvwOrderItem.SelectedItems.Count != 1)
             {
-                if (((MemOrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt == 1)
-                {
-                    SetDisplayAlarm("W", "수량은 0이하로 입력할 수 없습니다.");
-                    return;
-                }
-
-                int lv_idx = lvwOrderItem.SelectedItems[0].Index;
-                set_item_change_ordercnt(lv_idx, "add", -1);
-                ReCalculateAmount();
+                return;
             }
+
+
+            int lv_idx = lvwOrderItem.SelectedItems[0].Index;
+
+            if (mOrderItemList[lv_idx].cnt == 1)
+            {
+                SetDisplayAlarm("W", "수량은 0이하로 입력할 수 없습니다.");
+                return;
+            }
+
+            set_item_change_ordercnt(lv_idx, "add", -1);
+            ReCalculateAmount();
+
         }
 
         private void btnOrderCntUp_Click(object sender, EventArgs e)
         {
-            if (lvwOrderItem.SelectedItems.Count > 0)
+            if (lvwOrderItem.SelectedItems.Count != 1)
             {
-                if (((MemOrderItem)lvwOrderItem.SelectedItems[0].Tag).cnt >= 999)
-                {
-                    SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
-                    return;
-                }
-
-                int lv_idx = lvwOrderItem.SelectedItems[0].Index;
-                set_item_change_ordercnt(lv_idx, "add", 1);
-                ReCalculateAmount();
+                return;
             }
+
+
+            int lv_idx = lvwOrderItem.SelectedItems[0].Index;
+
+            if (mOrderItemList[lv_idx].cnt >= 999)
+            {
+                SetDisplayAlarm("W", "수량은 1000이상 입력할 수 없습니다.");
+                return;
+            }
+
+            set_item_change_ordercnt(lv_idx, "add", 1);
+            ReCalculateAmount();
+            
         }
 
         private void btnOrderCntChange_Click(object sender, EventArgs e)
@@ -2686,23 +2823,26 @@ namespace thepos
                 waiting.dt = DateTime.Now;
                 waiting.amount = 0;
 
-                for (int i = 0; i < lvwOrderItem.Items.Count; i++)
+                for (int i = 0; i < mOrderItemList.Count; i++)
                 {
-                    MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[i].Tag;
+                    MemOrderItem orderItem = mOrderItemList[i];
                     orderItem.order_no = mWaitingNoCounter;
 
                     waiting.cnt++;
-                    waiting.amount += (orderItem.cnt * orderItem.amt);
+                    waiting.amount += orderItem.net_amount;
 
                     listWaitingItem.Add(orderItem);
                 }
 
                 listWaiting.Add(waiting);
 
-                lvwOrderItem.Items.Clear();
+                mOrderItemList.Clear();
+                lvwOrderItem.SetObjects(mOrderItemList);
+
+
                 btnOrderWaiting.Text = "대기\n" + listWaiting.Count + "";
 
-                lvwOrderItem.Items.Clear();
+
                 ReCalculateAmount();
 
 
@@ -2741,25 +2881,15 @@ namespace thepos
 
                     lvItem.Tag = listWaitingItem[i];
 
-                    MemOrderItem orderItem = new MemOrderItem();
-                    orderItem = listWaitingItem[i];
-
-                    lvItem.Text = (lv_no).ToString();
-                    lvItem.SubItems.Add(orderItem.goods_name);                            // 1: name 상품명
-                    lvItem.SubItems.Add(orderItem.amt.ToString("N0"));              // 2: amt 단가
-                    lvItem.SubItems.Add(orderItem.cnt.ToString());                  // 3: cnt 수량
-                    lvItem.SubItems.Add(orderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
-
-                    int net_amount = (orderItem.amt * orderItem.cnt) - orderItem.dc_amount;
-                    lvItem.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
-
-                    lvItem.SubItems.Add(getDCRmemo(orderItem));                     // 6: 메모
-
-                    mLvwOrderItem.Items.Add(lvItem);
-                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+                    MemOrderItem orderItem = listWaitingItem[i];
+                    mOrderItemList.Add(orderItem);
                 }
             }
-            mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
+
+            mLvwOrderItem.SetObjects(mOrderItemList);
+
+            mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+            //mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
 
 
             for (int i = listWaitingItem.Count - 1; i >= 0; i--)
@@ -2790,7 +2920,6 @@ namespace thepos
             }
 
             ReCalculateAmount();
-
 
         }
 
@@ -2864,7 +2993,7 @@ namespace thepos
 
         private void set_item_change_orderamt(int lv_idx, String jobtype, int amt)
         {
-            MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[lv_idx].Tag;
+            MemOrderItem orderItem = mOrderItemList[lv_idx];
 
             if (jobtype == "set")
             {
@@ -2875,33 +3004,27 @@ namespace thepos
                 return;
             }
 
-            lvwOrderItem.Items[lv_idx].SubItems[lvwOrderItem.Columns.IndexOf(lv_amt)].Text = orderItem.amt.ToString("N0");           // amt
+            //
+            replace_mem_order_item(ref orderItem, "update");
 
-            if (orderItem.dcr_type == "R")
-            {
-                orderItem.dc_amount = ((orderItem.cnt * orderItem.amt) * orderItem.dcr_value) / 100;
-            }
 
-            int netAmount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
-            lvwOrderItem.Items[lv_idx].SubItems[lvwOrderItem.Columns.IndexOf(lv_dc_amount)].Text = orderItem.dc_amount.ToString("N0");
-            lvwOrderItem.Items[lv_idx].SubItems[lvwOrderItem.Columns.IndexOf(lv_net_amount)].Text = netAmount.ToString("N0");        // net_amount
+            mOrderItemList[lv_idx] = orderItem;
 
-            lvwOrderItem.Items[lv_idx].Tag = orderItem;
+            lvwOrderItem.SetObjects(mOrderItemList);
+
+            lvwOrderItem.Items[lv_idx].Selected = true;
         }
 
         private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
         {
-            MemOrderItem orderItem = (MemOrderItem)lvwOrderItem.Items[lv_idx].Tag;
-
-            if (orderItem.dcr_des == "E")
+            if (mOrderItemList[lv_idx].dcr_des == "E")
             {
                 SetDisplayAlarm("W", "전체할인 수량변경 불가.");
                 return;
             }
 
-            ListViewItem lvwItem = new ListViewItem();
-            lvwItem = lvwOrderItem.Items[lv_idx];
 
+            MemOrderItem orderItem = mOrderItemList[lv_idx];
 
             if (jobtype == "add")
             {
@@ -2916,33 +3039,24 @@ namespace thepos
                 return;
             }
 
+            // 
+            replace_mem_order_item(ref orderItem, "update");
 
-            orderItem.dc_amount = get_dc_amount(orderItem);
-            int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
+            mOrderItemList[lv_idx] = orderItem;
 
+            lvwOrderItem.SetObjects(mOrderItemList);
 
-            lvwItem.SubItems[lvwOrderItem.Columns.IndexOf(lv_cnt)].Text = orderItem.cnt.ToString("N0");           // cnt
-            lvwItem.SubItems[lvwOrderItem.Columns.IndexOf(lv_dc_amount)].Text = orderItem.dc_amount.ToString("###,###,###");
-            lvwItem.SubItems[lvwOrderItem.Columns.IndexOf(lv_net_amount)].Text = net_amount.ToString("N0");        // net_amount
-            lvwItem.Tag = orderItem;
+            lvwOrderItem.Items[lv_idx].Selected = true;
 
-            mLvwOrderItem.Items[lv_idx] = lvwItem;
-
-
-            /*
-            mLvwOrderItem.Items[lv_idx].SubItems[3].Text = orderItem.cnt.ToString("N0");           // cnt
-            mLvwOrderItem.Items[lv_idx].SubItems[4].Text = orderItem.dc_amount.ToString("###,###,###");
-            mLvwOrderItem.Items[lv_idx].SubItems[5].Text = net_amount.ToString("N0");        // net_amount
-            mLvwOrderItem.Items[lv_idx].Tag = orderItem;
-            */
 
         }
 
 
         public static int get_dc_amount(MemOrderItem orderItem)
         {
-            int amount = orderItem.amt * orderItem.cnt;
+            int amount = (orderItem.amt + orderItem.option_amt) * orderItem.cnt;
             int tdcamount = 0;
+
 
             if (orderItem.dcr_type == "A")
             {
@@ -2976,15 +3090,28 @@ namespace thepos
 
         public static bool isExist_DCR(String des)  // des = E or S
         {
-            for (int i = mLvwOrderItem.Items.Count - 1; i >= 0; i--)
+            for (int i = mOrderItemList.Count - 1; i >= 0; i--)
             {
-                if (((MemOrderItem)mLvwOrderItem.Items[i].Tag).dcr_des == des)
+                if (mOrderItemList[i].dcr_des == des)
                 {
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public static int get_lv_DCR(String des)  // des = E or S
+        {
+            for (int i = mOrderItemList.Count - 1; i >= 0; i--)
+            {
+                if (mOrderItemList[i].dcr_des == des)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
 
@@ -2994,14 +3121,14 @@ namespace thepos
             int dcAmount = 0;
             mNetAmount = 0;
 
-            MemOrderItem orderItemInfo;
+            MemOrderItem orderItem;
 
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                orderItemInfo = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                Amount += (orderItemInfo.cnt * orderItemInfo.amt);      // 주문금액
-                dcAmount += orderItemInfo.dc_amount;                    // 할인금액
-                mNetAmount += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);      // 결제금액
+                orderItem = mOrderItemList[i];
+                Amount += (orderItem.amt + orderItem.option_amt) * orderItem.cnt;      // 주문금액
+                dcAmount += orderItem.dc_amount;                    // 할인금액
+                mNetAmount += orderItem.net_amount;      // 결제금액
             }
 
             mLblOrderAmount.Text = Amount.ToString("N0");
@@ -3069,19 +3196,9 @@ namespace thepos
             {
                 mPanelOrderInfo.Visible = true;
 
-                mSublvwOrderItem.Items.Clear();
+                mSublvwOrderItem.SetObjects(mOrderItemList);
 
-                for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
-                {
-                    ListViewItem lvItem = new ListViewItem();
-                    lvItem.Text = mLvwOrderItem.Items[i].Text;
-                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[1]);
-                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[2]);
-                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[3]);
-                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[4]);
-                    lvItem.SubItems.Add(mLvwOrderItem.Items[i].SubItems[5]);
-                    mSublvwOrderItem.Items.Add(lvItem);
-                }
+
 
                 mSublblOrderAmount.Text = mLblOrderAmount.Text;
                 mSublblOrderAmountDC.Text = mLblOrderAmountDC.Text;
@@ -3214,9 +3331,12 @@ namespace thepos
 
         public static int get_lvitem_idx(string code)
         {
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            // 옵션이 있는 항목은 상품코드가 동일해도 다른 상품으로 간주한다.
+
+
+            for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                if (code == ((MemOrderItem)(mLvwOrderItem.Items[i].Tag)).goods_code)
+                if (code == mOrderItemList[i].goods_code & mOrderItemList[i].option_cnt == 0)
                 { return i; }
             }
             return -1;
@@ -3272,6 +3392,9 @@ namespace thepos
             {
                 mPanelOrderInfo.Visible = false;
             }
+
+            // 메모리 초기화
+            mOrderItemList.Clear();
 
             this.Close();
 

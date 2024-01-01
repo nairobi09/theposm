@@ -49,15 +49,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblSiteAlias = new System.Windows.Forms.Label();
             this.lblSiteName = new System.Windows.Forms.Label();
-            this.lvwOrderItem = new System.Windows.Forms.ListView();
-            this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dc_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lvwOrderItem = new BrightIdeasSoftware.ObjectListView();
+            this.lv_no = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lv_name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lv_amt = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lv_cnt = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lv_dc_amount = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lv_net_amount = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lv_memo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelOrderInfo.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -66,40 +67,41 @@
             this.panel_in_0.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOrderAmountNet
             // 
             this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblOrderAmountNet.Location = new System.Drawing.Point(261, 22);
+            this.lblOrderAmountNet.Location = new System.Drawing.Point(261, 13);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
-            this.lblOrderAmountNet.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblOrderAmountNet.Size = new System.Drawing.Size(249, 34);
+            this.lblOrderAmountNet.Size = new System.Drawing.Size(249, 50);
             this.lblOrderAmountNet.TabIndex = 1;
             this.lblOrderAmountNet.Text = "0";
+            this.lblOrderAmountNet.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblOrderAmountDC
             // 
             this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDC.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmountDC.Location = new System.Drawing.Point(100, 16);
+            this.lblOrderAmountDC.Location = new System.Drawing.Point(100, 10);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
-            this.lblOrderAmountDC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblOrderAmountDC.Size = new System.Drawing.Size(129, 23);
+            this.lblOrderAmountDC.Size = new System.Drawing.Size(129, 32);
             this.lblOrderAmountDC.TabIndex = 1;
             this.lblOrderAmountDC.Text = "0";
+            this.lblOrderAmountDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblOrderAmount
             // 
             this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmount.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmount.Location = new System.Drawing.Point(99, 16);
+            this.lblOrderAmount.Location = new System.Drawing.Point(99, 12);
             this.lblOrderAmount.Name = "lblOrderAmount";
-            this.lblOrderAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblOrderAmount.Size = new System.Drawing.Size(129, 23);
+            this.lblOrderAmount.Size = new System.Drawing.Size(129, 29);
             this.lblOrderAmount.TabIndex = 1;
             this.lblOrderAmount.Text = "0";
+            this.lblOrderAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblOrderAmountNetTitle
             // 
@@ -137,13 +139,13 @@
             // panelOrderInfo
             // 
             this.panelOrderInfo.BackColor = System.Drawing.Color.Lavender;
+            this.panelOrderInfo.Controls.Add(this.lvwOrderItem);
             this.panelOrderInfo.Controls.Add(this.panel5);
             this.panelOrderInfo.Controls.Add(this.panel4);
             this.panelOrderInfo.Controls.Add(this.panel3);
             this.panelOrderInfo.Controls.Add(this.panel2);
             this.panelOrderInfo.Controls.Add(this.lblTitle1);
             this.panelOrderInfo.Controls.Add(this.panel_in_0);
-            this.panelOrderInfo.Controls.Add(this.lvwOrderItem);
             this.panelOrderInfo.Controls.Add(this.panel1);
             this.panelOrderInfo.Location = new System.Drawing.Point(1, 1);
             this.panelOrderInfo.Name = "panelOrderInfo";
@@ -188,12 +190,12 @@
             // 
             this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRest.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblOrderAmountRest.Location = new System.Drawing.Point(125, 16);
+            this.lblOrderAmountRest.Location = new System.Drawing.Point(125, 10);
             this.lblOrderAmountRest.Name = "lblOrderAmountRest";
-            this.lblOrderAmountRest.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblOrderAmountRest.Size = new System.Drawing.Size(129, 23);
+            this.lblOrderAmountRest.Size = new System.Drawing.Size(129, 31);
             this.lblOrderAmountRest.TabIndex = 3;
             this.lblOrderAmountRest.Text = "0";
+            this.lblOrderAmountRest.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel3
             // 
@@ -221,12 +223,12 @@
             // 
             this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceive.ForeColor = System.Drawing.Color.Black;
-            this.lblOrderAmountReceive.Location = new System.Drawing.Point(122, 16);
+            this.lblOrderAmountReceive.Location = new System.Drawing.Point(122, 11);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";
-            this.lblOrderAmountReceive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblOrderAmountReceive.Size = new System.Drawing.Size(129, 23);
+            this.lblOrderAmountReceive.Size = new System.Drawing.Size(129, 31);
             this.lblOrderAmountReceive.TabIndex = 44;
             this.lblOrderAmountReceive.Text = "0";
+            this.lblOrderAmountReceive.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel2
             // 
@@ -294,64 +296,6 @@
             this.lblSiteName.Text = "___";
             this.lblSiteName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lvwOrderItem
-            // 
-            this.lvwOrderItem.BackColor = System.Drawing.Color.AliceBlue;
-            this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.no,
-            this.name,
-            this.amt,
-            this.cnt,
-            this.dc_amount,
-            this.net_amount});
-            this.lvwOrderItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvwOrderItem.ForeColor = System.Drawing.Color.Black;
-            this.lvwOrderItem.FullRowSelect = true;
-            this.lvwOrderItem.GridLines = true;
-            this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwOrderItem.HideSelection = false;
-            this.lvwOrderItem.Location = new System.Drawing.Point(9, 33);
-            this.lvwOrderItem.MultiSelect = false;
-            this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.Size = new System.Drawing.Size(530, 506);
-            this.lvwOrderItem.TabIndex = 39;
-            this.lvwOrderItem.TabStop = false;
-            this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
-            this.lvwOrderItem.View = System.Windows.Forms.View.Details;
-            // 
-            // no
-            // 
-            this.no.Text = "#";
-            this.no.Width = 30;
-            // 
-            // name
-            // 
-            this.name.Text = "상품명";
-            this.name.Width = 143;
-            // 
-            // amt
-            // 
-            this.amt.Text = "단가";
-            this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amt.Width = 88;
-            // 
-            // cnt
-            // 
-            this.cnt.Text = "수량";
-            this.cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // dc_amount
-            // 
-            this.dc_amount.Text = "할인";
-            this.dc_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.dc_amount.Width = 90;
-            // 
-            // net_amount
-            // 
-            this.net_amount.Text = "금액";
-            this.net_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.net_amount.Width = 90;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
@@ -372,6 +316,96 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 40;
             this.pictureBox1.TabStop = false;
+            // 
+            // lvwOrderItem
+            // 
+            this.lvwOrderItem.AllColumns.Add(this.lv_no);
+            this.lvwOrderItem.AllColumns.Add(this.lv_name);
+            this.lvwOrderItem.AllColumns.Add(this.lv_amt);
+            this.lvwOrderItem.AllColumns.Add(this.lv_cnt);
+            this.lvwOrderItem.AllColumns.Add(this.lv_dc_amount);
+            this.lvwOrderItem.AllColumns.Add(this.lv_net_amount);
+            this.lvwOrderItem.AllColumns.Add(this.lv_memo);
+            this.lvwOrderItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvwOrderItem.CellEditUseWholeCell = false;
+            this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lv_no,
+            this.lv_name,
+            this.lv_amt,
+            this.lv_cnt,
+            this.lv_dc_amount,
+            this.lv_net_amount,
+            this.lv_memo});
+            this.lvwOrderItem.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lvwOrderItem.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwOrderItem.FullRowSelect = true;
+            this.lvwOrderItem.GridLines = true;
+            this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwOrderItem.HideSelection = false;
+            this.lvwOrderItem.Location = new System.Drawing.Point(9, 34);
+            this.lvwOrderItem.MultiSelect = false;
+            this.lvwOrderItem.Name = "lvwOrderItem";
+            this.lvwOrderItem.RowHeight = 50;
+            this.lvwOrderItem.ShowGroups = false;
+            this.lvwOrderItem.Size = new System.Drawing.Size(530, 505);
+            this.lvwOrderItem.TabIndex = 46;
+            this.lvwOrderItem.TabStop = false;
+            this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
+            this.lvwOrderItem.View = System.Windows.Forms.View.Details;
+            // 
+            // lv_no
+            // 
+            this.lv_no.AspectName = "lv_order_no";
+            this.lv_no.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
+            this.lv_no.Text = "#";
+            this.lv_no.Width = 30;
+            // 
+            // lv_name
+            // 
+            this.lv_name.AspectName = "lv_goods_name";
+            this.lv_name.CellPadding = new System.Drawing.Rectangle(0, 10, 0, 0);
+            this.lv_name.Text = "상품명";
+            this.lv_name.Width = 138;
+            this.lv_name.WordWrap = true;
+            // 
+            // lv_amt
+            // 
+            this.lv_amt.AspectName = "lv_amt";
+            this.lv_amt.CellPadding = new System.Drawing.Rectangle(0, 10, 0, 0);
+            this.lv_amt.Text = "단가";
+            this.lv_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.lv_amt.Width = 86;
+            // 
+            // lv_cnt
+            // 
+            this.lv_cnt.AspectName = "lv_cnt";
+            this.lv_cnt.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
+            this.lv_cnt.Text = "수량";
+            this.lv_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.lv_cnt.Width = 59;
+            // 
+            // lv_dc_amount
+            // 
+            this.lv_dc_amount.AspectName = "lv_dc_amount";
+            this.lv_dc_amount.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
+            this.lv_dc_amount.Text = "할인";
+            this.lv_dc_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.lv_dc_amount.Width = 86;
+            // 
+            // lv_net_amount
+            // 
+            this.lv_net_amount.AspectName = "lv_net_amount";
+            this.lv_net_amount.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
+            this.lv_net_amount.Text = "금액";
+            this.lv_net_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.lv_net_amount.Width = 99;
+            // 
+            // lv_memo
+            // 
+            this.lv_memo.AspectName = "lv_memo";
+            this.lv_memo.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
+            this.lv_memo.Text = "비고";
+            this.lv_memo.Width = 0;
             // 
             // frmSub
             // 
@@ -400,6 +434,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -413,13 +448,6 @@
         private System.Windows.Forms.Label lblOrderAmountDCTitle;
         private System.Windows.Forms.Label lblOrderAmountSumTitle;
         private System.Windows.Forms.Panel panelOrderInfo;
-        private System.Windows.Forms.ListView lvwOrderItem;
-        private System.Windows.Forms.ColumnHeader no;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader amt;
-        private System.Windows.Forms.ColumnHeader cnt;
-        private System.Windows.Forms.ColumnHeader dc_amount;
-        private System.Windows.Forms.ColumnHeader net_amount;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel_in_0;
         private System.Windows.Forms.Label lblSiteAlias;
@@ -435,5 +463,13 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
+        private BrightIdeasSoftware.ObjectListView lvwOrderItem;
+        private BrightIdeasSoftware.OLVColumn lv_no;
+        private BrightIdeasSoftware.OLVColumn lv_name;
+        private BrightIdeasSoftware.OLVColumn lv_amt;
+        private BrightIdeasSoftware.OLVColumn lv_cnt;
+        private BrightIdeasSoftware.OLVColumn lv_dc_amount;
+        private BrightIdeasSoftware.OLVColumn lv_net_amount;
+        private BrightIdeasSoftware.OLVColumn lv_memo;
     }
 }

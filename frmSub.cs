@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,23 @@ namespace thepos
 {
     public partial class frmSub : Form
     {
+        public struct OrderItem
+        {
+            public int lv_order_no;             // 
+            public String lv_goods_name;        // 상품name or 전체할인명("할인")
+            public String lv_cnt;
+            public String lv_amt;
+            public String lv_dc_amount;         // 실할인금액
+            public String lv_net_amount;        // 결제금액
+
+            public String option_name_description;          // render를 통한 옵션 표시
+            public String option_amt_description;          // render를 통한 옵션 표시
+
+            public String lv_memo;
+        }
+        public static List<OrderItem> mOrrdeItemList = new List<OrderItem>();
+
+
         public frmSub()
         {
             InitializeComponent();
@@ -30,7 +48,7 @@ namespace thepos
         private void initialize_font()
         {
             lblTitle1.Font = font10;
-            lvwOrderItem.Font = font16;
+            //lvwOrderItem.Font = font16;
 
             lblOrderAmountSumTitle.Font = font14;
             lblOrderAmountDCTitle.Font = font14;
@@ -52,12 +70,7 @@ namespace thepos
 
         private void initialize_the()
         {
-            ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 60);
-
-            lvwOrderItem.SmallImageList = imgList;
             lvwOrderItem.HideSelection = true;
-
 
             mPanelOrderInfo = panelOrderInfo;
             mSublvwOrderItem = lvwOrderItem;
@@ -71,8 +84,38 @@ namespace thepos
 
 
 
+            this.lv_name.Renderer = rendererName();
+            this.lv_amt.Renderer = rendererAmt();
         }
 
+        public DescribedTaskRenderer rendererName()
+        {
+            DescribedTaskRenderer renderer = new DescribedTaskRenderer();
+            renderer.DescriptionAspectName = "option_name_description";
 
+            renderer.TitleFont = new Font("굴림", 15, FontStyle.Regular);
+            renderer.DescriptionFont = new Font("굴림", 10, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Gray;
+            renderer.ImageTextSpace = 0;
+            renderer.TitleDescriptionSpace = 0;
+            renderer.UseGdiTextRendering = false;
+
+            return (renderer);
+        }
+
+        public DescribedTaskRenderer rendererAmt()
+        {
+            DescribedTaskRenderer renderer = new DescribedTaskRenderer();
+            renderer.DescriptionAspectName = "option_amt_description";
+
+            renderer.TitleFont = new Font("굴림", 15, FontStyle.Regular);
+            renderer.DescriptionFont = new Font("굴림", 10, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Gray;
+            renderer.ImageTextSpace = 0;
+            renderer.TitleDescriptionSpace = 0;
+            renderer.UseGdiTextRendering = false;
+
+            return (renderer);
+        }
     }
 }

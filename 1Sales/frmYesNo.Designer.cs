@@ -39,7 +39,7 @@
             this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNo.ForeColor = System.Drawing.Color.White;
-            this.btnNo.Location = new System.Drawing.Point(231, 104);
+            this.btnNo.Location = new System.Drawing.Point(87, 94);
             this.btnNo.Name = "btnNo";
             this.btnNo.Size = new System.Drawing.Size(140, 100);
             this.btnNo.TabIndex = 42;
@@ -53,7 +53,7 @@
             this.btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnYes.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnYes.ForeColor = System.Drawing.Color.White;
-            this.btnYes.Location = new System.Drawing.Point(85, 104);
+            this.btnYes.Location = new System.Drawing.Point(233, 94);
             this.btnYes.Name = "btnYes";
             this.btnYes.Size = new System.Drawing.Size(140, 100);
             this.btnYes.TabIndex = 41;

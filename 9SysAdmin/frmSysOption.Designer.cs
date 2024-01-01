@@ -671,7 +671,7 @@
             this.btnOptionCopy.ForeColor = System.Drawing.Color.White;
             this.btnOptionCopy.Location = new System.Drawing.Point(742, 109);
             this.btnOptionCopy.Name = "btnOptionCopy";
-            this.btnOptionCopy.Size = new System.Drawing.Size(100, 29);
+            this.btnOptionCopy.Size = new System.Drawing.Size(96, 29);
             this.btnOptionCopy.TabIndex = 66;
             this.btnOptionCopy.TabStop = false;
             this.btnOptionCopy.Text = "옵션복사";
@@ -686,7 +686,7 @@
             this.cbSourceGoods.FormattingEnabled = true;
             this.cbSourceGoods.Location = new System.Drawing.Point(742, 82);
             this.cbSourceGoods.Name = "cbSourceGoods";
-            this.cbSourceGoods.Size = new System.Drawing.Size(100, 21);
+            this.cbSourceGoods.Size = new System.Drawing.Size(95, 21);
             this.cbSourceGoods.TabIndex = 83;
             // 
             // frmSysOption

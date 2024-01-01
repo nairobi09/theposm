@@ -152,22 +152,21 @@ namespace thepos
 
                 if (mLvwOrderItem.SelectedItems.Count > 0)
                 {
-                    MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.SelectedItems[0].Tag;
+                    int sel_idx = mLvwOrderItem.SelectedItems[0].Index;
+
+                    MemOrderItem orderItem = mOrderItemList[sel_idx];
 
                     orderItem.dcr_des = des;
                     orderItem.dcr_type = type;
                     orderItem.dcr_value = value;
 
 
-                    orderItem.dc_amount = frmSales.get_dc_amount(orderItem);
+                    // 
+                    replace_mem_order_item(ref orderItem, "update");
 
-
-                    int net_amount = (orderItem.cnt * orderItem.amt) - orderItem.dc_amount;
-
-                    mLvwOrderItem.SelectedItems[0].SubItems[4].Text = orderItem.dc_amount.ToString("N0");  // dc_amount
-                    mLvwOrderItem.SelectedItems[0].SubItems[5].Text = net_amount.ToString("N0");  // net_amount
-                    mLvwOrderItem.SelectedItems[0].SubItems[6].Text = getDCRmemo(orderItem);
-                    mLvwOrderItem.SelectedItems[0].Tag = orderItem;
+                    mOrderItemList[sel_idx] = orderItem;
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+                    mLvwOrderItem.Items[sel_idx].Selected = true;
 
                     ReCalculateAmount();
                 }
@@ -175,7 +174,6 @@ namespace thepos
             }
             else if (des == "E")  // 전체할인
             {
-                int t_count = 0;
                 int t_dc_amount = 0;
                 bool isExist_E = false;
 
@@ -187,15 +185,11 @@ namespace thepos
                 }
 
 
-                
-                if (isExist_DCR("E"))
+                int dcr_e_idx = get_lv_DCR("E");
+
+                if (dcr_e_idx >= 0)  // 
                 {
                     isExist_E = true;
-                    t_count = mLvwOrderItem.Items.Count - 1;
-                }
-                else
-                {
-                    t_count = mLvwOrderItem.Items.Count;
                 }
 
 
@@ -207,50 +201,59 @@ namespace thepos
                 if (type == "R")
                 {
                     int t_amount = 0;
-                    for (int i = 0; i < t_count; i++)
+                    for (int i = 0; i < mOrderItemList.Count; i++)
                     {
-                        t_amount += (((MemOrderItem)mLvwOrderItem.Items[i].Tag).cnt * ((MemOrderItem)mLvwOrderItem.Items[i].Tag).amt);
+                        if (dcr_e_idx != i)  // 전체할인항목 레코드는 합계에서 제외
+                        {
+                            t_amount += ((mOrderItemList[i].amt + mOrderItemList[i].option_amt) + mOrderItemList[i].cnt);
+                        }
                     }
                     t_dc_amount = (t_amount * value) / 100;
                 }
                 else return;
 
 
+
                 MemOrderItem orderItem = new MemOrderItem();
+
+                if (isExist_E == true)
+                {
+                    orderItem = mOrderItemList[dcr_e_idx];
+                }
+
+
+
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;
                 orderItem.dcr_value = value;
                 orderItem.cnt = 0;
                 orderItem.amt = 0;
+                orderItem.option_amt = 0;
                 orderItem.dc_amount = t_dc_amount;
+                orderItem.net_amount = -t_dc_amount;
                 orderItem.goods_code = e_dcr_code;  // 전체 할인코드
                 orderItem.goods_name = e_dcr_name;
 
+
+
                 if (isExist_E == true)
                 {
-                    mLvwOrderItem.Items[t_count].Text = (t_count + 1).ToString();
-                    mLvwOrderItem.Items[t_count].SubItems[1].Text = orderItem.goods_name;
-                    mLvwOrderItem.Items[t_count].SubItems[2].Text = "";
-                    mLvwOrderItem.Items[t_count].SubItems[3].Text = "";
-                    mLvwOrderItem.Items[t_count].SubItems[4].Text = orderItem.dc_amount.ToString("N0");   // dc_amount
-                    mLvwOrderItem.Items[t_count].SubItems[5].Text = "";                                   // net_amount
-                    mLvwOrderItem.Items[t_count].SubItems[6].Text = getDCRmemo(orderItem);
-                    mLvwOrderItem.Items[t_count].Tag = orderItem;
-                    mLvwOrderItem.Items[t_count].Selected = true;
+                    //
+                    replace_mem_order_item(ref orderItem, "update");
+
+                    mOrderItemList[dcr_e_idx] = orderItem;
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
+                    mLvwOrderItem.Items[dcr_e_idx].Selected = true;
                 }
                 else
                 {
-                    ListViewItem lvItem = new ListViewItem();
-                    lvItem.Text = (t_count + 1).ToString();
-                    lvItem.SubItems.Add(orderItem.goods_name);                            // 1: name 상품명
-                    lvItem.SubItems.Add("");                                        // 2: amt 단가
-                    lvItem.SubItems.Add("");                                        // 3: cnt 수량
-                    lvItem.SubItems.Add(orderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
-                    lvItem.SubItems.Add("");                                        // 5: net_amount 금액
-                    lvItem.SubItems.Add(getDCRmemo(orderItem));                     // 6: 메모
-                    lvItem.Tag = orderItem;
+                    //
+                    replace_mem_order_item(ref orderItem, "add");
 
-                    mLvwOrderItem.Items.Add(lvItem);
+                    mOrderItemList.Add(orderItem);
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
 
@@ -268,7 +271,10 @@ namespace thepos
 
             if (mLvwOrderItem.SelectedItems.Count > 0)
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.SelectedItems[0].Tag;
+                int sel_idx = mLvwOrderItem.SelectedItems[0].Index;
+
+
+                MemOrderItem orderItem = mOrderItemList[sel_idx];
 
                 if (orderItem.dcr_des == "S")
                 {
@@ -277,17 +283,23 @@ namespace thepos
                     orderItem.dcr_value = 0;
                     orderItem.dc_amount = 0;
 
-                    mLvwOrderItem.SelectedItems[0].SubItems[4].Text = "";       // dc_amount
-                    mLvwOrderItem.SelectedItems[0].SubItems[5].Text = (orderItem.cnt * orderItem.amt).ToString("N0");  // net_amount
-                    mLvwOrderItem.SelectedItems[0].SubItems[6].Text = "";
-                    mLvwOrderItem.SelectedItems[0].Tag = orderItem;
+
+                    replace_mem_order_item(ref orderItem, "update");
+
+                    
+                    mOrderItemList[sel_idx] = orderItem;
+
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
 
                     SetDisplayAlarm("I", "선택할인 취소");
                     ReCalculateAmount();
                 }
                 else if (orderItem.dcr_des == "E")
                 {
-                    mLvwOrderItem.SelectedItems[0].Remove();
+                    mOrderItemList.RemoveAt(sel_idx);
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
 
                     SetDisplayAlarm("I", "전체할인 취소");
                     ReCalculateAmount();

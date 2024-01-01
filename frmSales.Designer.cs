@@ -124,7 +124,6 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
-            this.lv_tag = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -1070,7 +1069,6 @@ namespace thepos
             this.lvwOrderItem.AllColumns.Add(this.lv_net_amount);
             this.lvwOrderItem.AllColumns.Add(this.lv_memo);
             this.lvwOrderItem.AllColumns.Add(this.lv_tip);
-            this.lvwOrderItem.AllColumns.Add(this.lv_tag);
             this.lvwOrderItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvwOrderItem.CellEditUseWholeCell = false;
             this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1081,10 +1079,9 @@ namespace thepos
             this.lv_dc_amount,
             this.lv_net_amount,
             this.lv_memo,
-            this.lv_tip,
-            this.lv_tag});
+            this.lv_tip});
             this.lvwOrderItem.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvwOrderItem.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwOrderItem.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwOrderItem.FullRowSelect = true;
             this.lvwOrderItem.GridLines = true;
             this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -1092,6 +1089,7 @@ namespace thepos
             this.lvwOrderItem.Location = new System.Drawing.Point(0, 0);
             this.lvwOrderItem.MultiSelect = false;
             this.lvwOrderItem.Name = "lvwOrderItem";
+            this.lvwOrderItem.RowHeight = 38;
             this.lvwOrderItem.ShowGroups = false;
             this.lvwOrderItem.Size = new System.Drawing.Size(510, 294);
             this.lvwOrderItem.TabIndex = 38;
@@ -1102,13 +1100,15 @@ namespace thepos
             // 
             // lv_no
             // 
-            this.lv_no.AspectName = "lv_no";
+            this.lv_no.AspectName = "lv_order_no";
+            this.lv_no.CellPadding = new System.Drawing.Rectangle(0, -5, 0, 0);
             this.lv_no.Text = "#";
             this.lv_no.Width = 30;
             // 
             // lv_name
             // 
-            this.lv_name.AspectName = "lv_name";
+            this.lv_name.AspectName = "lv_goods_name";
+            this.lv_name.CellPadding = new System.Drawing.Rectangle(0, 8, 0, 0);
             this.lv_name.Text = "상품명";
             this.lv_name.Width = 106;
             this.lv_name.WordWrap = true;
@@ -1116,6 +1116,7 @@ namespace thepos
             // lv_amt
             // 
             this.lv_amt.AspectName = "lv_amt";
+            this.lv_amt.CellPadding = new System.Drawing.Rectangle(0, 8, 0, 0);
             this.lv_amt.Text = "단가";
             this.lv_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_amt.Width = 70;
@@ -1123,6 +1124,7 @@ namespace thepos
             // lv_cnt
             // 
             this.lv_cnt.AspectName = "lv_cnt";
+            this.lv_cnt.CellPadding = new System.Drawing.Rectangle(0, -5, 0, 0);
             this.lv_cnt.Text = "수량";
             this.lv_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_cnt.Width = 50;
@@ -1130,6 +1132,7 @@ namespace thepos
             // lv_dc_amount
             // 
             this.lv_dc_amount.AspectName = "lv_dc_amount";
+            this.lv_dc_amount.CellPadding = new System.Drawing.Rectangle(0, -5, 0, 0);
             this.lv_dc_amount.Text = "할인";
             this.lv_dc_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_dc_amount.Width = 70;
@@ -1137,6 +1140,7 @@ namespace thepos
             // lv_net_amount
             // 
             this.lv_net_amount.AspectName = "lv_net_amount";
+            this.lv_net_amount.CellPadding = new System.Drawing.Rectangle(0, -5, 0, 0);
             this.lv_net_amount.Text = "금액";
             this.lv_net_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_net_amount.Width = 80;
@@ -1144,12 +1148,14 @@ namespace thepos
             // lv_memo
             // 
             this.lv_memo.AspectName = "lv_memo";
+            this.lv_memo.CellPadding = new System.Drawing.Rectangle(0, -5, 0, 0);
             this.lv_memo.Text = "비고";
             this.lv_memo.Width = 62;
             // 
             // lv_tip
             // 
             this.lv_tip.AspectName = "lv_tip";
+            this.lv_tip.CellPadding = new System.Drawing.Rectangle(0, -5, 0, 0);
             this.lv_tip.Width = 0;
             // 
             // panelGoodsItem
@@ -1380,10 +1386,6 @@ namespace thepos
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
             // 
-            // lv_tag
-            // 
-            this.lv_tag.AspectName = "lv_tag";
-            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1535,7 +1537,6 @@ namespace thepos
         private BrightIdeasSoftware.OLVColumn lv_net_amount;
         private BrightIdeasSoftware.OLVColumn lv_memo;
         private BrightIdeasSoftware.OLVColumn lv_tip;
-        private BrightIdeasSoftware.OLVColumn lv_tag;
     }
 }
 
