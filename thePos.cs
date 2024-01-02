@@ -270,6 +270,7 @@ namespace thepos
             
             public String option_name_description;          // render를 통한 옵션 표시
             public String option_amt_description;          // render를 통한 옵션 표시
+            public String option_dc_amount_description;          // render를 통한 옵션 표시
             public int option_cnt;
             public List<orderOptionItem> orderOptionItemList;
 
@@ -298,6 +299,9 @@ namespace thepos
             public String lv_memo;
         }
         public static List<MemOrderItem> listWaitingItem = new List<MemOrderItem>();
+
+        // 메인 주문아이템리스트
+        public static List<MemOrderItem> mOrderItemList = new List<MemOrderItem>();
 
 
         public struct orderOptionItem

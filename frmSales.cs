@@ -45,14 +45,14 @@ panelProduct : 488, 56 529, 547
 // ð ✕ ◈ ◆ ⬅ 〈 ˂
 // Music Title In Here
 // 0:00 ━━●─── 4:00
-// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮   원화 기호 ₩
+// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮    원화기호: ₩
 
 
 namespace thepos
 {
     public partial class frmSales : Form
     {
-        public static List<MemOrderItem> mOrderItemList = new List<MemOrderItem>();
+
 
 
         public static int mBillTheNo = 0;
@@ -167,6 +167,8 @@ namespace thepos
 
             btnClose.Font = font12;
 
+
+            lvwOrderItem.Font = new Font("굴림", 11, FontStyle.Bold);
             //lvwOrderItem.Font = font10;
             lblDisplayAlarm.Font = font10;
 
@@ -307,6 +309,7 @@ namespace thepos
 
             this.lv_name.Renderer = rendererName();
             this.lv_amt.Renderer = rendererAmt();
+            this.lv_dc_amount.Renderer = rendererDcAmount();
 
         }
 
@@ -315,14 +318,13 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_name_description";
 
-            renderer.TitleFont = new Font("굴림", 11, FontStyle.Regular);
+            renderer.TitleFont = new Font("굴림", 11, FontStyle.Bold);
             renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
             renderer.DescriptionColor = Color.Gray;
             renderer.ImageTextSpace = 0;
             renderer.TitleDescriptionSpace = 0;
 
             renderer.UseGdiTextRendering = false;
-
 
             return (renderer);
         }
@@ -332,18 +334,33 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_amt_description";
 
-            renderer.TitleFont = new Font("굴림", 11, FontStyle.Regular);
+            renderer.TitleFont = new Font("굴림", 11, FontStyle.Bold);
             renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
             renderer.DescriptionColor = Color.Gray;
             renderer.ImageTextSpace = 0;
             renderer.TitleDescriptionSpace = 0;
 
             renderer.UseGdiTextRendering = false;
-            
 
             return (renderer);
         }
 
+        public DescribedTaskRenderer rendererDcAmount()
+        {
+            DescribedTaskRenderer renderer = new DescribedTaskRenderer();
+            renderer.DescriptionAspectName = "option_dc_amount_description";
+
+            renderer.TitleFont = new Font("굴림", 11, FontStyle.Bold);
+            renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Gray;
+            renderer.ImageTextSpace = 0;
+            renderer.TitleDescriptionSpace = 0;
+
+            renderer.UseGdiTextRendering = false;
+
+
+            return (renderer);
+        }
 
         public void ChangeTheMode(bool isFirst)
         {
@@ -651,7 +668,10 @@ namespace thepos
                 {
                     orderItem.option_amt_description = "";
                 }
-                
+
+
+
+
 
 
 
@@ -742,8 +762,22 @@ namespace thepos
             }
 
             orderItem.lv_dc_amount = orderItem.dc_amount.ToString("N0");
-            
-            orderItem.lv_memo = getDCRmemo(orderItem);
+
+
+            //
+            if (orderItem.dcr_type == "A")
+            {
+                orderItem.option_dc_amount_description = "₩" + orderItem.dcr_value.ToString("N0");
+            }
+            else if (orderItem.dcr_type == "R")
+            {
+                orderItem.option_dc_amount_description = orderItem.dcr_value + "%";
+            }
+            else
+            {
+                orderItem.option_dc_amount_description = "";
+            }
+
 
         }
 
@@ -3406,7 +3440,6 @@ namespace thepos
         {
             if (mRightFace == "PayComplex")
             {
-
                 if (lvwOrderItem.SelectedItems.Count > 0)
                 {
                     MemOrderItem orderItem = (MemOrderItem)(lvwOrderItem.SelectedItems[0].Tag);
@@ -3418,7 +3451,7 @@ namespace thepos
             }
 
 
-            
+
             this.lvwOrderItem.Items.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
                 {
@@ -3431,6 +3464,7 @@ namespace thepos
                     item.BackColor = SystemColors.Highlight;
                     item.ForeColor = SystemColors.HighlightText;
                 });
+
             
         }
 
@@ -3471,14 +3505,6 @@ namespace thepos
             mRefNo = mTheNo;
             // the_no : 결제단위 - cash card complex point easy 결제버튼을 누른경우 새로운 the_no부여
             // ref_no : 입장단위 - 포인트 충전 정산의 경우 티켓번호 18자리로 세트
-        }
-
-
-
-        private void btnKeyEnter_Click(object sender, EventArgs e)
-        {
-            //? 열린창에 따라서 순번대로 입력하는 UI로 기능 개발
-            // 카드결제 창 - 3개 입력항목 감안
         }
 
 
@@ -5137,6 +5163,7 @@ namespace thepos
         {
             MessageBox.Show(msg, "thepos");
         }
+
 
     }
 }

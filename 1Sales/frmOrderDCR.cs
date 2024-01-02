@@ -117,16 +117,16 @@ namespace thepos
             String type = mDCR[dcr_idx].dcr_type;
             int value = mDCR[dcr_idx].dcr_value;
 
-            applyDCR(des, type, value, code, name);
+            applyDCR(des, type, value, code, "[전체할인]", name);
         }
 
 
-        private void btnSelAmount_Click(object sender, EventArgs e) { applyDCR("S", "A", -1, "", ""); }
-        private void btnSelRate_Click(object sender, EventArgs e) { applyDCR("S", "R", -1, "", ""); }
-        private void btnAllAmount_Click(object sender, EventArgs e) { applyDCR("E", "A", -1, "DCRE", "[전체할인]"); }
-        private void btnAllRate_Click(object sender, EventArgs e) { applyDCR("E", "R", -1, "DCRE", "[전체할인]"); }
+        private void btnSelAmount_Click(object sender, EventArgs e) { applyDCR("S", "A", -1, "", "", ""); }
+        private void btnSelRate_Click(object sender, EventArgs e) { applyDCR("S", "R", -1, "", "", ""); }
+        private void btnAllAmount_Click(object sender, EventArgs e) { applyDCR("E", "A", -1, "DCRE", "[전체할인]", ""); }
+        private void btnAllRate_Click(object sender, EventArgs e) { applyDCR("E", "R", -1, "DCRE", "[전체할인]", ""); }
 
-        void applyDCR(String des, String type, int value, String e_dcr_code, String e_dcr_name)
+        void applyDCR(String des, String type, int value, String e_dcr_code, String e_dcr_name, String description_name)
         {
             if (value == -1 )  // Keypad의 입력값을 Value로..
             {
@@ -233,6 +233,7 @@ namespace thepos
                 orderItem.net_amount = -t_dc_amount;
                 orderItem.goods_code = e_dcr_code;  // 전체 할인코드
                 orderItem.goods_name = e_dcr_name;
+                orderItem.option_name_description = description_name;
 
 
 
