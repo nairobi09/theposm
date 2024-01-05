@@ -1990,7 +1990,7 @@ namespace thepos
             }
             else
             {
-                String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=C";
+                String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=C";
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

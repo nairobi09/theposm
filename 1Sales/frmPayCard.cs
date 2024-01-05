@@ -188,9 +188,13 @@ namespace thepos
             int order_cnt = 0;
             int dcAmount = 0;
 
-            
+
             // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
-            MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+            //MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+
+            
+            set_shop_order_no_on_orderitem(out dcAmount);
+
 
 
             if (paySeq == 1)
@@ -203,7 +207,7 @@ namespace thepos
 
 
                 // orders, orderItem 
-                order_cnt = SaveOrder(ticketNo, memOrderItemArr);  // order. orderitem  ->  업장주문서 출력은 제외
+                order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외
                 if (order_cnt == -1)
                 {
                     return; // 재로그인 요구
@@ -367,7 +371,7 @@ namespace thepos
                 // 주문서 출력
                 if (mPayClass == "OR")
                 {
-                    print_order(memOrderItemArr);
+                    print_order();
                 }
 
 
@@ -443,7 +447,10 @@ namespace thepos
 
                 
                 // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
-                MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+                //MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
+
+                set_shop_order_no_on_orderitem(out dcAmount);
+
 
 
                 if (paySeq == 1)
@@ -456,7 +463,7 @@ namespace thepos
 
 
                     // orders, orderItem 
-                    order_cnt = SaveOrder(ticketNo, memOrderItemArr);  // order. orderitem  ->  업장주문서 출력은 제외
+                    order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외
                     if (order_cnt == -1)
                     {
                         return; // 재로그인 요구
@@ -583,7 +590,7 @@ namespace thepos
                     // 주문서 출력
                     if (mPayClass == "OR")
                     {
-                        print_order(memOrderItemArr);
+                        print_order();
                     }
 
 

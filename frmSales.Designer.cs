@@ -1083,7 +1083,7 @@ namespace thepos
             this.lvwOrderItem.Location = new System.Drawing.Point(0, 0);
             this.lvwOrderItem.MultiSelect = false;
             this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.RowHeight = 38;
+            this.lvwOrderItem.RowHeight = 43;
             this.lvwOrderItem.SelectAllOnControlA = false;
             this.lvwOrderItem.ShowGroups = false;
             this.lvwOrderItem.Size = new System.Drawing.Size(510, 294);
@@ -1104,7 +1104,7 @@ namespace thepos
             // lv_name
             // 
             this.lv_name.AspectName = "lv_goods_name";
-            this.lv_name.CellPadding = new System.Drawing.Rectangle(0, 8, 0, 0);
+            this.lv_name.CellPadding = new System.Drawing.Rectangle(0, 12, 0, 0);
             this.lv_name.Text = "상품명";
             this.lv_name.Width = 160;
             this.lv_name.WordWrap = true;
@@ -1112,7 +1112,7 @@ namespace thepos
             // lv_amt
             // 
             this.lv_amt.AspectName = "lv_amt";
-            this.lv_amt.CellPadding = new System.Drawing.Rectangle(0, 8, 0, 0);
+            this.lv_amt.CellPadding = new System.Drawing.Rectangle(0, 12, 0, 0);
             this.lv_amt.Text = "단가";
             this.lv_amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_amt.Width = 70;
@@ -1128,7 +1128,7 @@ namespace thepos
             // lv_dc_amount
             // 
             this.lv_dc_amount.AspectName = "lv_dc_amount";
-            this.lv_dc_amount.CellPadding = new System.Drawing.Rectangle(0, 8, 0, 0);
+            this.lv_dc_amount.CellPadding = new System.Drawing.Rectangle(0, 12, 0, 0);
             this.lv_dc_amount.Text = "할인";
             this.lv_dc_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_dc_amount.Width = 80;

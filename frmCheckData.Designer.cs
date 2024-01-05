@@ -209,6 +209,23 @@
             this.t_lockerNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_openLocker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label10 = new System.Windows.Forms.Label();
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -363,7 +380,7 @@
             this.lvwOrderItem.HideSelection = false;
             this.lvwOrderItem.Location = new System.Drawing.Point(43, 136);
             this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.Size = new System.Drawing.Size(1671, 271);
+            this.lvwOrderItem.Size = new System.Drawing.Size(1671, 148);
             this.lvwOrderItem.TabIndex = 4;
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
             this.lvwOrderItem.View = System.Windows.Forms.View.Details;
@@ -494,7 +511,7 @@
             this.lvwPayment.FullRowSelect = true;
             this.lvwPayment.GridLines = true;
             this.lvwPayment.HideSelection = false;
-            this.lvwPayment.Location = new System.Drawing.Point(43, 413);
+            this.lvwPayment.Location = new System.Drawing.Point(43, 441);
             this.lvwPayment.Name = "lvwPayment";
             this.lvwPayment.Size = new System.Drawing.Size(1671, 166);
             this.lvwPayment.TabIndex = 6;
@@ -611,9 +628,9 @@
             this.lvwPaymentCash.FullRowSelect = true;
             this.lvwPaymentCash.GridLines = true;
             this.lvwPaymentCash.HideSelection = false;
-            this.lvwPaymentCash.Location = new System.Drawing.Point(43, 585);
+            this.lvwPaymentCash.Location = new System.Drawing.Point(43, 613);
             this.lvwPaymentCash.Name = "lvwPaymentCash";
-            this.lvwPaymentCash.Size = new System.Drawing.Size(1671, 170);
+            this.lvwPaymentCash.Size = new System.Drawing.Size(1671, 142);
             this.lvwPaymentCash.TabIndex = 8;
             this.lvwPaymentCash.UseCompatibleStateImageBehavior = false;
             this.lvwPaymentCash.View = System.Windows.Forms.View.Details;
@@ -1301,10 +1318,121 @@
             this.label9.Text = "ticket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader24});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(43, 290);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1671, 145);
+            this.listView1.TabIndex = 18;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "siteId";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "posNo";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "bizDt";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "theNo";
+            this.columnHeader4.Width = 140;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "refNo";
+            this.columnHeader5.Width = 140;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "optionNo";
+            this.columnHeader6.Width = 80;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "orderDate";
+            this.columnHeader7.Width = 80;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "orderTime";
+            this.columnHeader8.Width = 80;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "goodsCode";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "optionCode";
+            this.columnHeader10.Width = 80;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "optionItemNo";
+            this.columnHeader11.Width = 80;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "optionItemName";
+            this.columnHeader12.Width = 80;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "cnt";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "amt";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(0, 319);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 36);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "order\r\nOption\r\nItem";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "isCancel";
+            // 
             // frmCheckData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1726, 1253);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.lvwOrder);
             this.Controls.Add(this.lvwTicketFlow);
             this.Controls.Add(this.label9);
@@ -1514,5 +1642,22 @@
         private System.Windows.Forms.ColumnHeader pc_payType;
         private System.Windows.Forms.ColumnHeader pe_payType;
         private System.Windows.Forms.ColumnHeader ol_shopOrderNo;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.Label label10;
     }
 }

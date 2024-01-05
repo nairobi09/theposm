@@ -153,7 +153,7 @@ namespace thepos
 
 
             // order
-            String sUrl = "orderItem?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+            String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -227,7 +227,7 @@ namespace thepos
 
             if (pay_keep_cash == "1")
             {
-                sUrl = "paymentCash?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+                sUrl = "paymentCash?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -277,7 +277,7 @@ namespace thepos
 
             if (pay_keep_card == "1")
             {
-                sUrl = "paymentCard?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+                sUrl = "paymentCard?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -335,7 +335,7 @@ namespace thepos
 
             if (pay_keep_easy == "1")
             {
-                sUrl = "paymentEasy?bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+                sUrl = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -393,7 +393,7 @@ namespace thepos
 
             if (pay_keep_point == "1")
             {
-                sUrl = "paymentPoint?bizDt=" + thisBizDt + "&theNo=" + tTheNo;
+                sUrl = "paymentPoint?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

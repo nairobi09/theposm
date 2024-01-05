@@ -498,7 +498,7 @@ namespace thepos
                     lvItem.Tag = "";
 
                 lvItem.Text = dr["shopOrderNo"].ToString();
-                lvItem.SubItems.Add(dr["itemName"].ToString());
+                lvItem.SubItems.Add(dr["goodsName"].ToString());
                 lvItem.SubItems.Add(convert_number(dr["cnt"].ToString()).ToString("N0"));
                 lvItem.SubItems.Add(get_shop_name(dr["shopCode"].ToString()));
                 lvwPayOrder.Items.Add(lvItem);
@@ -509,7 +509,7 @@ namespace thepos
 
         private void view_list_order_server(String tTheNo, String tranType)
         {
-            String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=" + tranType;
+            String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tranType;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -686,7 +686,7 @@ namespace thepos
             //! 현금결제
             if (pay_keep_cash == "1")
             {
-                sUrl = "paymentCash?theNo=" + tTheNo;
+                sUrl = "paymentCash?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -722,7 +722,7 @@ namespace thepos
             //! 카드결제
             if (pay_keep_card == "1")
             {
-                sUrl = "paymentCard?theNo=" + tTheNo;
+                sUrl = "paymentCard?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -758,7 +758,7 @@ namespace thepos
             //! 포인트
             if (pay_keep_point == "1")
             {
-                sUrl = "paymentPoint?theNo=" + tTheNo;
+                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -792,7 +792,7 @@ namespace thepos
             //? 간편결제
             if (pay_keep_easy == "1")
             {
-                sUrl = "paymentEasy?theNo=" + tTheNo;
+                sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1021,7 +1021,7 @@ namespace thepos
             }
             else
             {
-                String sUrl = "orderItem?theNo=" + tTheNo + "&tranType=" + tran_type;
+                String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tran_type;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

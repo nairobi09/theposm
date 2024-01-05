@@ -55,6 +55,9 @@ namespace thepos
             lblOrdersCnt.Font = font10;
             lblOrderItemTitle.Font = font10;
             lblOrderItemCnt.Font = font10;
+            lblOrderOptionItemTitle.Font = font10;
+            lblOrderOptionItemCnt.Font = font10;
+
             lblPaymentTitle.Font = font10;
             lblPaymentCnt.Font = font10;
             lblPaymentCashTitle.Font = font10;
@@ -108,6 +111,15 @@ namespace thepos
             if (dr.Read())
             {
                 lblOrderItemCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
+
+
+            sql = "SELECT count(*) as cnt FROM orderOptionItem";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblOrderOptionItemCnt.Text = dr["cnt"].ToString();
             }
             dr.Close();
 

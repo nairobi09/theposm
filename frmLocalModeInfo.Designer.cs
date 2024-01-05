@@ -107,10 +107,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCancel.BackColor = System.Drawing.Color.White;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.ForeColor = System.Drawing.Color.DarkOrange;
             this.btnCancel.Location = new System.Drawing.Point(153, 300);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 40);
@@ -126,9 +126,9 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(279, 300);
+            this.btnOK.Location = new System.Drawing.Point(279, 299);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(120, 40);
+            this.btnOK.Size = new System.Drawing.Size(122, 42);
             this.btnOK.TabIndex = 3;
             this.btnOK.TabStop = false;
             this.btnOK.Text = "사용";

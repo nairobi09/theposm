@@ -56,12 +56,14 @@
             this.lblTitle3 = new System.Windows.Forms.Label();
             this.lblTitle2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteLog = new System.Windows.Forms.Button();
             this.dtViewDate = new System.Windows.Forms.DateTimePicker();
             this.lvwSyncLink = new System.Windows.Forms.ListView();
             this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.msg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSyncLink = new System.Windows.Forms.Button();
-            this.btnDeleteLog = new System.Windows.Forms.Button();
+            this.lblOrderOptionItemCnt = new System.Windows.Forms.Label();
+            this.lblOrderOptionItemTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +95,7 @@
             this.lblServerVersion.BackColor = System.Drawing.Color.LightGray;
             this.lblServerVersion.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblServerVersion.ForeColor = System.Drawing.Color.Black;
-            this.lblServerVersion.Location = new System.Drawing.Point(134, 94);
+            this.lblServerVersion.Location = new System.Drawing.Point(134, 92);
             this.lblServerVersion.Margin = new System.Windows.Forms.Padding(0);
             this.lblServerVersion.Name = "lblServerVersion";
             this.lblServerVersion.Padding = new System.Windows.Forms.Padding(5);
@@ -107,7 +109,7 @@
             this.lblLocalVersion.BackColor = System.Drawing.Color.LightGray;
             this.lblLocalVersion.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalVersion.ForeColor = System.Drawing.Color.Black;
-            this.lblLocalVersion.Location = new System.Drawing.Point(134, 127);
+            this.lblLocalVersion.Location = new System.Drawing.Point(134, 125);
             this.lblLocalVersion.Margin = new System.Windows.Forms.Padding(0);
             this.lblLocalVersion.Name = "lblLocalVersion";
             this.lblLocalVersion.Padding = new System.Windows.Forms.Padding(5);
@@ -121,7 +123,7 @@
             this.lblVersionTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblVersionTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVersionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblVersionTitle.Location = new System.Drawing.Point(134, 61);
+            this.lblVersionTitle.Location = new System.Drawing.Point(134, 59);
             this.lblVersionTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblVersionTitle.Name = "lblVersionTitle";
             this.lblVersionTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -135,7 +137,7 @@
             this.label1.BackColor = System.Drawing.Color.DarkGray;
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(26, 61);
+            this.label1.Location = new System.Drawing.Point(26, 59);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5);
@@ -148,7 +150,7 @@
             this.lblServerTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblServerTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblServerTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblServerTitle.Location = new System.Drawing.Point(26, 94);
+            this.lblServerTitle.Location = new System.Drawing.Point(26, 92);
             this.lblServerTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblServerTitle.Name = "lblServerTitle";
             this.lblServerTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -162,7 +164,7 @@
             this.lblLocalTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblLocalTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblLocalTitle.Location = new System.Drawing.Point(26, 127);
+            this.lblLocalTitle.Location = new System.Drawing.Point(26, 125);
             this.lblLocalTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblLocalTitle.Name = "lblLocalTitle";
             this.lblLocalTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -177,7 +179,7 @@
             this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDownload.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDownload.ForeColor = System.Drawing.Color.White;
-            this.btnDownload.Location = new System.Drawing.Point(228, 174);
+            this.btnDownload.Location = new System.Drawing.Point(228, 172);
             this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(120, 50);
@@ -192,7 +194,7 @@
             this.btnViewVer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewVer.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnViewVer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewVer.Location = new System.Drawing.Point(103, 175);
+            this.btnViewVer.Location = new System.Drawing.Point(103, 173);
             this.btnViewVer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnViewVer.Name = "btnViewVer";
             this.btnViewVer.Size = new System.Drawing.Size(120, 48);
@@ -235,7 +237,7 @@
             this.lblOrderItemCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblOrderItemCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderItemCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblOrderItemCnt.Location = new System.Drawing.Point(134, 378);
+            this.lblOrderItemCnt.Location = new System.Drawing.Point(134, 344);
             this.lblOrderItemCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderItemCnt.Name = "lblOrderItemCnt";
             this.lblOrderItemCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -249,7 +251,7 @@
             this.lblOrdersCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblOrdersCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrdersCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblOrdersCnt.Location = new System.Drawing.Point(134, 344);
+            this.lblOrdersCnt.Location = new System.Drawing.Point(134, 310);
             this.lblOrdersCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrdersCnt.Name = "lblOrdersCnt";
             this.lblOrdersCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -305,7 +307,7 @@
             this.lblOrderItemTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrderItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderItemTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblOrderItemTitle.Location = new System.Drawing.Point(26, 378);
+            this.lblOrderItemTitle.Location = new System.Drawing.Point(26, 344);
             this.lblOrderItemTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderItemTitle.Name = "lblOrderItemTitle";
             this.lblOrderItemTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -319,7 +321,7 @@
             this.label2.BackColor = System.Drawing.Color.DarkGray;
             this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(26, 310);
+            this.label2.Location = new System.Drawing.Point(26, 276);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(5);
@@ -332,7 +334,7 @@
             this.lblOrdersTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrdersTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrdersTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblOrdersTitle.Location = new System.Drawing.Point(26, 344);
+            this.lblOrdersTitle.Location = new System.Drawing.Point(26, 310);
             this.lblOrdersTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrdersTitle.Name = "lblOrdersTitle";
             this.lblOrdersTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -346,7 +348,7 @@
             this.lblCntTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblCntTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCntTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCntTitle.Location = new System.Drawing.Point(134, 310);
+            this.lblCntTitle.Location = new System.Drawing.Point(134, 276);
             this.lblCntTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblCntTitle.Name = "lblCntTitle";
             this.lblCntTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -402,6 +404,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblOrderOptionItemCnt);
+            this.groupBox1.Controls.Add(this.lblOrderOptionItemTitle);
             this.groupBox1.Controls.Add(this.lblTitle3);
             this.groupBox1.Controls.Add(this.lblTitle2);
             this.groupBox1.Controls.Add(this.label1);
@@ -437,7 +441,7 @@
             this.lblTitle3.AutoSize = true;
             this.lblTitle3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle3.Location = new System.Drawing.Point(26, 283);
+            this.lblTitle3.Location = new System.Drawing.Point(26, 250);
             this.lblTitle3.Name = "lblTitle3";
             this.lblTitle3.Size = new System.Drawing.Size(180, 14);
             this.lblTitle3.TabIndex = 107;
@@ -466,6 +470,22 @@
             this.groupBox2.Size = new System.Drawing.Size(401, 604);
             this.groupBox2.TabIndex = 107;
             this.groupBox2.TabStop = false;
+            // 
+            // btnDeleteLog
+            // 
+            this.btnDeleteLog.BackColor = System.Drawing.Color.White;
+            this.btnDeleteLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteLog.Font = new System.Drawing.Font("굴림", 9F);
+            this.btnDeleteLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDeleteLog.Location = new System.Drawing.Point(316, 194);
+            this.btnDeleteLog.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDeleteLog.Name = "btnDeleteLog";
+            this.btnDeleteLog.Size = new System.Drawing.Size(68, 27);
+            this.btnDeleteLog.TabIndex = 83;
+            this.btnDeleteLog.TabStop = false;
+            this.btnDeleteLog.Text = "로그삭제";
+            this.btnDeleteLog.UseVisualStyleBackColor = false;
+            this.btnDeleteLog.Click += new System.EventHandler(this.btnDeleteLog_Click);
             // 
             // dtViewDate
             // 
@@ -525,21 +545,33 @@
             this.btnSyncLink.UseVisualStyleBackColor = false;
             this.btnSyncLink.Click += new System.EventHandler(this.btnSyncLink_Click);
             // 
-            // btnDeleteLog
+            // lblOrderOptionItemCnt
             // 
-            this.btnDeleteLog.BackColor = System.Drawing.Color.White;
-            this.btnDeleteLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteLog.Font = new System.Drawing.Font("굴림", 9F);
-            this.btnDeleteLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDeleteLog.Location = new System.Drawing.Point(316, 194);
-            this.btnDeleteLog.Margin = new System.Windows.Forms.Padding(0);
-            this.btnDeleteLog.Name = "btnDeleteLog";
-            this.btnDeleteLog.Size = new System.Drawing.Size(68, 27);
-            this.btnDeleteLog.TabIndex = 83;
-            this.btnDeleteLog.TabStop = false;
-            this.btnDeleteLog.Text = "로그삭제";
-            this.btnDeleteLog.UseVisualStyleBackColor = false;
-            this.btnDeleteLog.Click += new System.EventHandler(this.btnDeleteLog_Click);
+            this.lblOrderOptionItemCnt.BackColor = System.Drawing.Color.LightGray;
+            this.lblOrderOptionItemCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderOptionItemCnt.ForeColor = System.Drawing.Color.Blue;
+            this.lblOrderOptionItemCnt.Location = new System.Drawing.Point(134, 378);
+            this.lblOrderOptionItemCnt.Margin = new System.Windows.Forms.Padding(0);
+            this.lblOrderOptionItemCnt.Name = "lblOrderOptionItemCnt";
+            this.lblOrderOptionItemCnt.Padding = new System.Windows.Forms.Padding(5);
+            this.lblOrderOptionItemCnt.Size = new System.Drawing.Size(214, 30);
+            this.lblOrderOptionItemCnt.TabIndex = 109;
+            this.lblOrderOptionItemCnt.Text = "0";
+            this.lblOrderOptionItemCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblOrderOptionItemTitle
+            // 
+            this.lblOrderOptionItemTitle.BackColor = System.Drawing.Color.DarkGray;
+            this.lblOrderOptionItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderOptionItemTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblOrderOptionItemTitle.Location = new System.Drawing.Point(26, 378);
+            this.lblOrderOptionItemTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblOrderOptionItemTitle.Name = "lblOrderOptionItemTitle";
+            this.lblOrderOptionItemTitle.Padding = new System.Windows.Forms.Padding(5);
+            this.lblOrderOptionItemTitle.Size = new System.Drawing.Size(104, 30);
+            this.lblOrderOptionItemTitle.TabIndex = 108;
+            this.lblOrderOptionItemTitle.Text = "주문옵션항목";
+            this.lblOrderOptionItemTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmSyncLink
             // 
@@ -596,5 +628,7 @@
         private System.Windows.Forms.ColumnHeader msg;
         private System.Windows.Forms.DateTimePicker dtViewDate;
         private System.Windows.Forms.Button btnDeleteLog;
+        private System.Windows.Forms.Label lblOrderOptionItemCnt;
+        private System.Windows.Forms.Label lblOrderOptionItemTitle;
     }
 }

@@ -222,6 +222,11 @@ namespace thepos
                 }
 
 
+                mOrderOptionItemList.Clear();
+
+                orderItem.option_cnt = mOrderOptionItemList.Count;
+                orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
+
 
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;

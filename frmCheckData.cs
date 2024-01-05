@@ -29,6 +29,7 @@ namespace thepos
 
             get_order();
             get_order_Item();
+            get_order_option_Item();
 
             get_payment();
             get_payment_cash();
@@ -44,7 +45,7 @@ namespace thepos
         {
             lvwOrder.Items.Clear();
 
-            String sUrl = "orders?refNo=" + tbTheNo.Text;
+            String sUrl = "orders?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -76,8 +77,7 @@ namespace thepos
         {
             lvwOrderItem.Items.Clear();
 
-            //String sUrl = "orderItem?theNo=" + tbTheNo.Text;
-            String sUrl = "orderItem?refNo=" + tbTheNo.Text;
+            String sUrl = "orderItem?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -120,12 +120,49 @@ namespace thepos
             }
         }
 
+        private void get_order_option_Item()
+        {
+            lvwOrderItem.Items.Clear();
+
+            String sUrl = "orderOptionItem?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["orderOptionItems"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Text = arr[i]["siteId"].ToString();
+                        lvItem.SubItems.Add(arr[i]["posNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["bizDt"].ToString());
+                        lvItem.SubItems.Add(arr[i]["theNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["refNo"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["optionNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["orderDate"].ToString());
+                        lvItem.SubItems.Add(arr[i]["orderTime"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["optionCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["optionItemNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["optionItemName"].ToString());
+                        lvItem.SubItems.Add(arr[i]["cnt"].ToString());
+                        lvItem.SubItems.Add(arr[i]["amt"].ToString());
+                        lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+
+                        lvwOrderItem.Items.Add(lvItem);
+                    }
+                }
+            }
+        }
+
         private void get_payment()
         {
             lvwPayment.Items.Clear();
 
-            //String sUrl = "payment?theNo=" + tbTheNo.Text;
-            String sUrl = "payment?refNo=" + tbTheNo.Text;
+            String sUrl = "payment?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -167,8 +204,7 @@ namespace thepos
         {
             lvwPaymentCash.Items.Clear();
 
-            //String sUrl = "paymentCash?theNo=" + tbTheNo.Text;
-            String sUrl = "paymentCash?refNo=" + tbTheNo.Text;
+            String sUrl = "paymentCash?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -213,8 +249,7 @@ namespace thepos
         {
             lvwPaymentCard.Items.Clear();
 
-            //String sUrl = "paymentCard?theNo=" + tbTheNo.Text;
-            String sUrl = "paymentCard?refNo=" + tbTheNo.Text;
+            String sUrl = "paymentCard?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -270,8 +305,7 @@ namespace thepos
         {
             lvwPaymentEasy.Items.Clear();
 
-            //String sUrl = "paymentEasy?theNo=" + tbTheNo.Text;
-            String sUrl = "paymentEasy?refNo=" + tbTheNo.Text;
+            String sUrl = "paymentEasy?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -327,8 +361,7 @@ namespace thepos
         {
             lvwPaymentPoint.Items.Clear();
 
-            //String sUrl = "paymentPoint?theNo=" + tbTheNo.Text;
-            String sUrl = "paymentPoint?refNo=" + tbTheNo.Text;
+            String sUrl = "paymentPoint?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -365,8 +398,7 @@ namespace thepos
         {
             lvwTicketFlow.Items.Clear();
 
-            //String sUrl = "ticketFlow?theNo=" + tbTheNo.Text;
-            String sUrl = "ticketFlow?refNo=" + tbTheNo.Text;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

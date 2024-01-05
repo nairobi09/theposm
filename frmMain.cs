@@ -519,6 +519,14 @@ namespace thepos
             dr.Close();
 
 
+            sql = "SELECT count(*) as cnt FROM orderOptionItem";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                record_cnt += convert_number(dr["cnt"].ToString());
+            }
+            dr.Close();
+
             //
             sql = "SELECT count(*) as cnt FROM payment";
             dr = sql_select_local_db(sql);
@@ -669,6 +677,66 @@ namespace thepos
             //
             synclink_log("업로드 : orderItem = " + cnt);
             Thread.Sleep(1000 * 1); // 1초
+
+
+
+            // orderOptionItem
+            cnt = 0;
+            sql = "SELECT * FROM orderOptionItem";
+            dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["optionNo"] = dr["optionNo"].ToString();
+
+                parameters["orderDate"] = dr["orderDate"].ToString();
+                parameters["orderTime"] = dr["orderTime"].ToString();
+
+                parameters["goodsCode"] = dr["goodsCode"].ToString();
+
+                parameters["optionCode"] = dr["optionCode"].ToString();
+                parameters["optionItemNo"] = dr["optionItemNo"].ToString();
+                parameters["optionItemName"] = dr["optionItemName"].ToString();
+
+                parameters["cnt"] = dr["cnt"].ToString();
+                parameters["amt"] = dr["amt"].ToString();
+                parameters["isCancel"] = dr["isCancel"].ToString();
+
+                if (mRequestPost("orderOptionItem", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM orderOptionItem WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+                        cnt++;
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+            }
+            dr.Close();
+
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : orderOptionItem = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
 
 
 

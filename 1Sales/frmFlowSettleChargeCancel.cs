@@ -1379,7 +1379,7 @@ namespace thepos
             int settle_charge_amount = 0;
             String flow_step = "";
 
-            String sUrl = "ticketFlow?bizDt=" + mBizDate + "&ticketNo=" + ticket_no;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no;
 
             if (mRequestGet(sUrl))
             {

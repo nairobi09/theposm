@@ -40,12 +40,7 @@ panelProduct : 488, 56 529, 547
 
 */
 
-// ▲ △ ◀ ◁ ▶ ▷ ▼ ▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＞ △	▲	▽	▼ ⪤ □ × × ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
-// (*‿*✿) \\\٩(✪ꀾ⍟༶)و/// ♡◟(●•ᴗ•●)◞♡ ◄:•D .ᐟ ヾ(・ᆺ・✿)ﾉﾞ φ(◎◎ヘ)  ☑☆★☘︎ ☁︎ ⚑ 🟨 
-// ð ✕ ◈ ◆ ⬅ 〈 ˂
-// Music Title In Here
-// 0:00 ━━●─── 4:00
-// ⇆      ◁ ❚▮▮||||||||❚ ▷     ↻       ▮    원화기호: ₩
+
 
 
 namespace thepos
@@ -488,10 +483,14 @@ namespace thepos
                 btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
                 btnGoodsGroup.Dock = DockStyle.Fill;
 
-                if (mGoodsGroup[i].columnspan == 1 | mGoodsGroup[i].rowspan == 1)
+                if (mGoodsGroup[i].columnspan == 1)
                 {
                     btnGoodsGroup.Font = font9;
                 }
+                else if (mGoodsGroup[i].rowspan == 1)
+                {
+                    btnGoodsGroup.Font = font12;
+            }
                 else if (mGoodsGroup[i].columnspan >= 3 & mGoodsGroup[i].rowspan >= 2)
                 {
                     btnGoodsGroup.Font = font20;
@@ -621,6 +620,7 @@ namespace thepos
         private void ClickedGoodsItem(int i)
         {
             // 옵션항목 목록: frmOrderOption에서 채운다.
+
             mOrderOptionItemList.Clear();
 
             int order_cnt = 1;
@@ -637,6 +637,7 @@ namespace thepos
 
                 // 수량을 전역변수에서 받음 : fk30fgu9w04ufgw
                 order_cnt = mOrderCntInOption;
+
             }
 
 
@@ -669,15 +670,9 @@ namespace thepos
                     orderItem.option_amt_description = "";
                 }
 
-
-
-
-
-
-
                 //
                 orderItem.option_cnt = mOrderOptionItemList.Count;
-                orderItem.orderOptionItemList = mOrderOptionItemList;
+                orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
 
                 orderItem.order_no = mOrderItemList.Count + 1;
                 orderItem.goods_code = mGoodsItem[i].goods_code.ToString();
@@ -702,7 +697,8 @@ namespace thepos
 
                 mOrderItemList.Add(orderItem);
                 lvwOrderItem.SetObjects(mOrderItemList);
-                
+
+
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
 
@@ -725,7 +721,7 @@ namespace thepos
             //
             if (job == "add")
             {
-                orderItem.lv_order_no = mLvwOrderItem.Items.Count + 1;
+                orderItem.lv_order_no = mOrderItemList.Count + 1;
             }
             else
             {
@@ -963,7 +959,7 @@ namespace thepos
 
         private void ClickedPayCard()
         {
-            if (mLvwOrderItem.Items.Count == 0)
+            if (mOrderItemList.Count == 0)
             {
                 return;
             }
@@ -1017,7 +1013,7 @@ namespace thepos
             }
 
 
-            if (mLvwOrderItem.Items.Count == 0)
+            if (mOrderItemList.Count == 0)
             {
                 return;
             }
@@ -1049,7 +1045,7 @@ namespace thepos
 
         private void ClickedPayComplex()
         {
-            if (mLvwOrderItem.Items.Count == 0)
+            if (mOrderItemList.Count == 0)
             {
                 return;
             }
@@ -1107,7 +1103,7 @@ namespace thepos
             }
 
 
-            if (mLvwOrderItem.Items.Count == 0)
+            if (mOrderItemList.Count == 0)
             {
                 return;
             }
@@ -1160,7 +1156,7 @@ namespace thepos
             
 
             // orderItem
-            String sUrl = "orderItem?ticketNo=" + ticket_no + "&payClass=US&tranType=A";
+            String sUrl = "orderItem?siteId=" + mSiteId + "&ticketNo=" + ticket_no + "&payClass=US&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -1303,7 +1299,7 @@ namespace thepos
 
             for (int i = 0; i < list_the_no.Count; i++)
             {
-                sUrl = "orders?theNo=" + list_the_no[i] + "&tranType=A";
+                sUrl = "orders?siteId=" + mSiteId + "&theNo=" + list_the_no[i] + "&tranType=A";
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1405,6 +1401,50 @@ namespace thepos
         }
 
 
+        public static void set_shop_order_no_on_orderitem(out int dcAmount)
+        {
+            dcAmount = 0;
+
+            List<String> shop_code_list = new List<String>();
+            List<String> order_no_list = new List<String>();
+
+
+            for (int i = 0; i < mOrderItemList.Count; i++)
+            {
+                if (isExistOrderPrinter(mOrderItemList[i].shop_code) & mOrderItemList[i].ticket != "Y")
+                {
+                    shop_code_list.Add(mOrderItemList[i].shop_code);
+                }
+
+                dcAmount += mOrderItemList[i].dc_amount;
+            }
+
+            shop_code_list.Distinct().ToList();
+
+
+            for (int i = 0; i < shop_code_list.Count; i++)
+            {
+                order_no_list.Add(get_new_order_no());
+            }
+
+
+            for (int i = 0; i < mOrderItemList.Count; i++)
+            {
+                for (int k = 0; k < order_no_list.Count; k++)
+                {
+                    if (mOrderItemList[i].shop_code == shop_code_list[k] & mOrderItemList[i].ticket != "Y")
+                    {
+                        MemOrderItem orderItem = mOrderItemList[i];
+                        orderItem.shop_order_no = order_no_list[k];
+                        mOrderItemList[i] = orderItem;
+                    }
+                }
+            }
+
+
+        }
+
+
         public static MemOrderItem[] getMemOrderItemArr(out int dcAmount)
         {
             dcAmount = 0;
@@ -1412,15 +1452,15 @@ namespace thepos
 
             // OrderItem 테이블
             // 주문 리스트뷰를 배열로 변환
-            MemOrderItem[] memOrderItemArr = new MemOrderItem[mLvwOrderItem.Items.Count];
+            MemOrderItem[] memOrderItemArr = new MemOrderItem[mOrderItemList.Count];
 
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                memOrderItemArr[i] = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                memOrderItemArr[i] = mOrderItemList[i];
 
                 dcAmount += memOrderItemArr[i].dc_amount;
             }
-
+            
 
             // 업장코드별로 정렬
             bool order_sort_complete = false;
@@ -1441,7 +1481,6 @@ namespace thepos
                     }
                 }
             }
-
 
 
             // 업장주문번호 부여
@@ -1498,43 +1537,57 @@ namespace thepos
 
 
 
-        public static int SaveOrder(String ticket_no, MemOrderItem[] memOrderItemArr)
+        public static int SaveOrder(String ticket_no)
         {
 
             int return_cnt = 0;
 
             if (mTheMode == "Local")
             {
-                return_cnt = SaveOrder_Local(ticket_no, memOrderItemArr);  // order. orderitem
+                return_cnt = SaveOrder_Local(ticket_no);  // order. orderitem
             }
             else
             {
-                return_cnt = SaveOrder_Server(ticket_no, memOrderItemArr);  // order. orderitem
+                return_cnt = SaveOrder_Server(ticket_no);  // order. orderitem
             }
 
 
             return return_cnt;  // 주문항목수
         }
 
-        public static int SaveOrder_Local(String ticket_no, MemOrderItem[] memOrderItemArr)
+        public static int SaveOrder_Local(String ticket_no)
         {
             try
             {
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-
                 String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + memOrderItemArr.Length + ", '')";
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + mOrderItemList.Count + ", '')";
                 sql_excute_local_db(sql);
 
-
                 //
-                for (int i = 0; i < memOrderItemArr.Length; i++)
+                for (int i = 0; i < mOrderItemList.Count; i++)
                 {
-                    MemOrderItem memOrderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, shopOrderNo, isCancel) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + memOrderItemArr[i].goods_code + "','" + memOrderItemArr[i].goods_name + "'," + memOrderItemArr[i].cnt + "," + memOrderItemArr[i].amt + "," +
-                                "'" + memOrderItemArr[i].shop_code + "','" + memOrderItemArr[i].ticket + "','" + memOrderItemArr[i].taxfree + "'," + memOrderItemArr[i].dc_amount + ",'" + memOrderItemArr[i].dcr_type + "','" + memOrderItemArr[i].dcr_des + "'," + memOrderItemArr[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + memOrderItemArr[i].shop_order_no + "','')";
+                    String t_option_no = "";
+
+                    if (mOrderItemList[i].orderOptionItemList.Count > 0)
+                    {
+                        t_option_no = mTheNo + i.ToString("00");
+                    }
+
+
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, optionAmt, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo, optionNo) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + mOrderItemList[i].goods_code + "','" + mOrderItemList[i].goods_name + "'," + mOrderItemList[i].cnt + "," + mOrderItemList[i].amt + "," + mOrderItemList[i].option_amt + "," +
+                                "'" + mOrderItemList[i].ticket + "','" + mOrderItemList[i].taxfree + "'," + mOrderItemList[i].dc_amount + ",'" + mOrderItemList[i].dcr_type + "','" + mOrderItemList[i].dcr_des + "'," + mOrderItemList[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + "','" + mOrderItemList[i].shop_code + "','" + mOrderItemList[i].shop_order_no + "','" + t_option_no + "')";
                     sql_excute_local_db(sql);
+
+
+                    //// 옵션상품이 아닌 경우
+                    for (int k = 0; k < mOrderItemList[i].orderOptionItemList.Count; k++)
+                    {
+                        sql = "INSERT INTO orderOptionItem (siteId, posNo, bizDt, theNo, refNo, optionNo, orderDate, orderTime, goodsCode, optionCode, optionItemNo, optionItemName, cnt, amt, isCancel) " +
+                                    "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + t_option_no + "','" + get_today_date() + "','" + get_today_time() + "','" +
+                                    mOrderItemList[i].goods_code + "','" + mOrderItemList[i].orderOptionItemList[k].option_code + "'," + mOrderItemList[i].orderOptionItemList[k].option_item_no + ",'" + mOrderItemList[i].orderOptionItemList[k].option_item_name + "'," + mOrderItemList[i].cnt + "," + mOrderItemList[i].amt + ",'')";
+                        sql_excute_local_db(sql);
+                    }
                 }
             }
             catch (Exception e) 
@@ -1543,11 +1596,11 @@ namespace thepos
                 return -1;
             }
 
-            return memOrderItemArr.Length;
+            return mOrderItemList.Count;
 
         }
 
-        public static int SaveOrder_Server(String ticket_no, MemOrderItem[] memOrderItemArr)
+        public static int SaveOrder_Server(String ticket_no)
         {
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -1561,7 +1614,7 @@ namespace thepos
             parameters["tranType"] = "A";
             parameters["orderDate"] = get_today_date();
             parameters["orderTime"] = get_today_time();
-            parameters["cnt"] = memOrderItemArr.Length + "";
+            parameters["cnt"] = mOrderItemList.Count + "";
             parameters["isCancel"] = "";
             if (mRequestPost("orders", parameters))
             {
@@ -1583,8 +1636,15 @@ namespace thepos
 
 
             // 서버저장
-            for (int i = 0; i < memOrderItemArr.Length; i++)
+            for (int i = 0; i < mOrderItemList.Count; i++)
             {
+                String t_option_no = "";
+
+                if (mOrderItemList[i].orderOptionItemList.Count > 0)
+                {
+                    t_option_no = mTheNo + i.ToString("00");
+                }
+
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
                 parameters["posNo"] = mPosNo;
@@ -1594,21 +1654,23 @@ namespace thepos
                 parameters["tranType"] = "A";
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
-                parameters["goodsCode"] = memOrderItemArr[i].goods_code;
-                parameters["goodsName"] = memOrderItemArr[i].goods_name;
-                parameters["cnt"] = memOrderItemArr[i].cnt + "";
-                parameters["amt"] = memOrderItemArr[i].amt + "";
-                parameters["ticketYn"] = memOrderItemArr[i].ticket;
-                parameters["taxFree"] = memOrderItemArr[i].taxfree;
-                parameters["dcAmount"] = memOrderItemArr[i].dc_amount + "";
-                parameters["dcrType"] = memOrderItemArr[i].dcr_type;
-                parameters["dcrDes"] = memOrderItemArr[i].dcr_des;
-                parameters["dcrValue"] = memOrderItemArr[i].dcr_value + "";
+                parameters["goodsCode"] = mOrderItemList[i].goods_code;
+                parameters["goodsName"] = mOrderItemList[i].goods_name;
+                parameters["cnt"] = mOrderItemList[i].cnt + "";
+                parameters["amt"] = mOrderItemList[i].amt + "";
+                parameters["optionAmt"] = mOrderItemList[i].option_amt + "";   //
+                parameters["ticketYn"] = mOrderItemList[i].ticket;
+                parameters["taxFree"] = mOrderItemList[i].taxfree;
+                parameters["dcAmount"] = mOrderItemList[i].dc_amount + "";
+                parameters["dcrType"] = mOrderItemList[i].dcr_type;
+                parameters["dcrDes"] = mOrderItemList[i].dcr_des;
+                parameters["dcrValue"] = mOrderItemList[i].dcr_value + "";
                 parameters["payClass"] = mPayClass;  //
                 parameters["ticketNo"] = ticket_no;  //
                 parameters["isCancel"] = "";
-                parameters["shopCode"] = memOrderItemArr[i].shop_code;
-                parameters["shopOrderNo"] = memOrderItemArr[i].shop_order_no;  // 업장주문번호
+                parameters["shopCode"] = mOrderItemList[i].shop_code;
+                parameters["shopOrderNo"] = mOrderItemList[i].shop_order_no;  // 업장주문번호
+                parameters["optionNo"] = t_option_no;
 
                 if (mRequestPost("orderItem", parameters))
                 {
@@ -1626,10 +1688,52 @@ namespace thepos
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return -1;
                 }
+
+                // 옵션상품 경우
+                for (int k = 0; k < mOrderItemList[i].orderOptionItemList.Count; k++)
+                {
+                    parameters.Clear();
+                    parameters["siteId"] = mSiteId;
+                    parameters["posNo"] = mPosNo;
+                    parameters["bizDt"] = mBizDate;
+                    parameters["theNo"] = mTheNo;
+                    parameters["refNo"] = mRefNo;
+                    parameters["optionNo"] = t_option_no;
+
+                    parameters["orderDate"] = get_today_date();
+                    parameters["orderTime"] = get_today_time();
+
+                    parameters["goodsCode"] = mOrderItemList[i].goods_code;
+
+                    parameters["optionCode"] = mOrderItemList[i].orderOptionItemList[k].option_code;
+                    parameters["optionItemNo"] = mOrderItemList[i].orderOptionItemList[k].option_item_no + "";
+                    parameters["optionItemName"] = mOrderItemList[i].orderOptionItemList[k].option_item_name;
+
+                    parameters["cnt"] = mOrderItemList[i].cnt + "";
+                    parameters["amt"] = mOrderItemList[i].orderOptionItemList[k].amt + "";
+                    parameters["isCancel"] = "";
+
+
+                    if (mRequestPost("orderOptionItem", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("오류 orderOptionItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            return -1;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                        return -1;
+                    }
+                }
             }
 
-            return memOrderItemArr.Length;
-
+            return mOrderItemList.Count;
         }
 
 
@@ -1787,7 +1891,7 @@ namespace thepos
 
 
                 // GET
-                String sUrl = "payment?theNo=" + mTheNo;
+                String sUrl = "payment?siteId=" + mSiteId + "&theNo=" + mTheNo;
 
                 if (mRequestGet(sUrl))
                 {
@@ -1877,9 +1981,10 @@ namespace thepos
                 int ticket_seq = 0;
                 String t_ticket_no = "";
 
-                for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+                for (int i = 0; i < mOrderItemList.Count; i++)
                 {
-                    MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                    //? 리스트직접 젹용
+                    MemOrderItem orderItem = mOrderItemList[i];
 
                     if (orderItem.ticket == "Y")
                     {
@@ -1892,7 +1997,6 @@ namespace thepos
                                 // 티켓번호 + 2자리로 변경
                                 //t_ticket_no = mTheNo + ticket_seq.ToString("000");
                                 t_ticket_no = mTheNo + ticket_seq.ToString("00");
-
                             }
                             else  // 팔찌
                             {
@@ -1901,9 +2005,7 @@ namespace thepos
 
                                 //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
                                 t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
-
                             }
-
 
                             Dictionary<string, string> parameters = new Dictionary<string, string>();
                             parameters.Clear();
@@ -1949,7 +2051,6 @@ namespace thepos
                                 return -1;
                             }
 
-
                             //
                             // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
                             if (mTicketMedia == "BC")  // 띠지
@@ -1957,7 +2058,6 @@ namespace thepos
                                 print_ticket(t_ticket_no, orderItem.goods_code);
                             }
                         } 
-
                     }
                 }
 
@@ -1974,7 +2074,7 @@ namespace thepos
                 int prev_point_charge = 0;
 
                 // GET
-                String sUrl = "ticketFlow?bizDt=" + mBizDate + "&ticketNo=" + t_no;
+                String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
                 if (mRequestGet(sUrl))
                 {
@@ -2044,7 +2144,7 @@ namespace thepos
                 int prev_point_usage = 0;
 
                 // GET
-                String sUrl = "ticketFlow?bizDt=" + mBizDate + "&ticketNo=" + t_no;
+                String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
                 if (mRequestGet(sUrl))
                 {
@@ -2664,7 +2764,8 @@ namespace thepos
 
         public static void mClearSaleForm()
         {
-            mLvwOrderItem.Items.Clear();
+            mOrderItemList.Clear();
+            mLvwOrderItem.SetObjects(mOrderItemList);
 
             ReCalculateAmount();
             ConsoleEnable();
@@ -2923,7 +3024,7 @@ namespace thepos
             mLvwOrderItem.SetObjects(mOrderItemList);
 
             mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
-            //mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
+
 
 
             for (int i = listWaitingItem.Count - 1; i >= 0; i--)
@@ -3186,9 +3287,9 @@ namespace thepos
             t면세금액 = 0;
             int t전체할인금액 = 0;
 
-            for (int i = 0; i < mLvwOrderItem.Items.Count; i++)
+            for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                MemOrderItem orderItemInfo = (MemOrderItem)mLvwOrderItem.Items[i].Tag;
+                MemOrderItem orderItemInfo = mOrderItemList[i];
 
                 if (orderItemInfo.dcr_des == "E") // 전체할인
                 {
@@ -3198,11 +3299,11 @@ namespace thepos
                 {
                     if (orderItemInfo.taxfree == "Y")
                     {
-                        t면세금액 += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
+                        t면세금액 += (((orderItemInfo.amt + orderItemInfo.option_amt) * orderItemInfo.cnt) - orderItemInfo.dc_amount);
                     }
                     else
                     {
-                        t과세금액 += ((orderItemInfo.cnt * orderItemInfo.amt) - orderItemInfo.dc_amount);
+                        t과세금액 += (((orderItemInfo.amt + orderItemInfo.option_amt) * orderItemInfo.cnt) - orderItemInfo.dc_amount);
                     }
                 }
             }
@@ -3284,7 +3385,7 @@ namespace thepos
                     lvwOrderItem.Items[sel_idx + 1].Selected = true;
 
                     int top_idx = this.lvwOrderItem.TopItem.Index;
-                    if (sel_idx - top_idx > 6 & sel_idx < lvwOrderItem.Items.Count - 1)
+                    if (sel_idx - top_idx > 4 & sel_idx < lvwOrderItem.Items.Count - 1)
                     {
                         lvwOrderItem.TopItem = lvwOrderItem.Items[top_idx + 1];
                     }
@@ -3616,6 +3717,7 @@ namespace thepos
             while (dr.Read())
             {
                 int amt = convert_number(dr["amt"].ToString());
+                int option_amt = convert_number(dr["optionAmt"].ToString());
                 int cnt = convert_number(dr["cnt"].ToString());
                 int dc_amt = convert_number(dr["dcAmount"].ToString());
                 String dcr_des = dr["dcrDes"].ToString();
@@ -3634,7 +3736,7 @@ namespace thepos
                     }
                     else if (dcr_type == "R")
                     {
-                        tStr = dr["itemName"].ToString() + "-" + dcr_value + "%";
+                        tStr = dr["goodsName"].ToString() + "-" + dcr_value + "%";
                         strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                         tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3644,10 +3746,11 @@ namespace thepos
                 }
                 else                                 // 일반상품항목
                 {
+                    // 상품아이템
                     if (dr["taxFree"].ToString() == "Y")
-                        tStr = "*" + dr["itemName"].ToString();
+                        tStr = "*" + dr["goodsName"].ToString();
                     else
-                        tStr = dr["itemName"].ToString();
+                        tStr = dr["goodsName"].ToString();
 
                     strPrintOrder += tStr + Space(18 - encodelen(tStr));
 
@@ -3662,9 +3765,37 @@ namespace thepos
 
                     strPrintOrder += "\r\n";
 
+
+                    String mmm = dr["optionNo"].ToString();
+
+                    // 옵션아이템
+                    if (dr["optionNo"].ToString().Length > 0)
+                    {
+                        tStr = "  ";
+                        SQLiteDataReader dr2 = sql_select_local_db("SELECT * FROM orderOptionItem WHERE optionNo='" + dr["optionNo"].ToString() + "'");
+                        while (dr2.Read())
+                        {
+                            tStr += dr2["optionItemName"].ToString() + " ";
+                        }
+                        strPrintOrder += tStr + Space(18 - encodelen(tStr));
+
+                        tStr = option_amt.ToString("N0");     //단가
+                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                        tStr = cnt.ToString("N0");     // 수량
+                        strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
+
+                        tStr = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
+                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                        strPrintOrder += "\r\n";
+                    }
+                    
+                    
+                    // 할인
                     if (dcr_type == "A")
                     {
-                        tStr = "    할인";
+                        tStr = "  할인";
                         strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                         tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3674,7 +3805,7 @@ namespace thepos
                     }
                     else if (dr["dcrType"].ToString() == "R")
                     {
-                        tStr = "    할인-" + dr["dcrValue"].ToString() + "%";
+                        tStr = "  할인-" + dr["dcrValue"].ToString() + "%";
                         strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                         tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -3950,7 +4081,7 @@ namespace thepos
 
 
             //!
-            String sUrl = "orders?theNo=" + tTheNo;
+            String sUrl = "orders?siteId=" + mSiteId + "&theNo=" + tTheNo;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -3989,7 +4120,7 @@ namespace thepos
             strPrintOrder += "상품명                 단가  수량     금액\r\n";
             strPrintOrder += "------------------------------------------\r\n";  // 42
 
-            sUrl = "orderItem?theNo=" + tTheNo + "&tranType=" + tranType;
+            sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tranType;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -4000,6 +4131,7 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         int amt = convert_number(arr[i]["amt"].ToString());
+                        int option_amt = convert_number(arr[i]["optionAmt"].ToString());
                         int cnt = convert_number(arr[i]["cnt"].ToString());
                         int dc_amt = convert_number(arr[i]["dcAmount"].ToString());
                         String dcr_des = arr[i]["dcrDes"].ToString();
@@ -4010,7 +4142,7 @@ namespace thepos
                         {
                             if (dcr_type == "A")
                             {
-                                tStr = arr[i]["itemName"].ToString();
+                                tStr = arr[i]["goodsName"].ToString();
                                 strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                                 tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -4018,7 +4150,7 @@ namespace thepos
                             }
                             else if (dcr_type == "R")
                             {
-                                tStr = arr[i]["itemName"].ToString() + "-" + dcr_value + "%";
+                                tStr = arr[i]["goodsName"].ToString() + "-" + dcr_value + "%";
                                 strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                                 tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -4028,8 +4160,9 @@ namespace thepos
                         }
                         else                                 // 일반상품항목
                         {
+                            // 상품아이템
                             if (arr[i]["taxFree"].ToString() == "Y")
-                                tStr = "*" + arr[i]["itemName"].ToString();
+                                tStr = "*" + arr[i]["goodsName"].ToString();
                             else
                                 tStr = arr[i]["goodsName"].ToString();
 
@@ -4046,9 +4179,44 @@ namespace thepos
 
                             strPrintOrder += "\r\n";
 
+
+                            // 옵션아이템
+                            if (arr[i]["optionNo"].ToString() != "")
+                            {
+                                sUrl = "orderOptionItem?siteId=" + mSiteId + "&optionNo=" + arr[i]["optionNo"].ToString();
+                                if (mRequestGet(sUrl))
+                                {
+                                    if (mObj["resultCode"].ToString() == "200")
+                                    {
+                                        String data2 = mObj["orderOptionItems"].ToString();
+                                        JArray arr2 = JArray.Parse(data2);
+
+                                        tStr = "  ";
+                                        for (int k = 0; k < arr2.Count; k++)
+                                        {
+                                            tStr += arr2[k]["optionItemName"].ToString() + " ";
+                                        }
+                                        strPrintOrder += tStr + Space(18 - encodelen(tStr));
+
+                                        tStr = option_amt.ToString("N0");     //단가
+                                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                                        tStr = cnt.ToString("N0");     // 수량
+                                        strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
+
+                                        tStr = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
+                                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                                        strPrintOrder += "\r\n";
+                                    }
+                                }
+                            }
+
+
+                            // 할인
                             if (dcr_type == "A")
                             {
-                                tStr = "    할인";
+                                tStr = "  할인";
                                 strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                                 tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -4058,7 +4226,7 @@ namespace thepos
                             }
                             else if (arr[i]["dcrType"].ToString() == "R")
                             {
-                                tStr = "    할인-" + arr[i]["dcrValue"].ToString() + "%";
+                                tStr = "  할인-" + arr[i]["dcrValue"].ToString() + "%";
                                 strPrintOrder += tStr + Space(21 - encodelen(tStr));
 
                                 tStr = (-dc_amt).ToString("N0");        // 할인 정액
@@ -4072,8 +4240,8 @@ namespace thepos
 
                         
                         //?  전체할인인 경우 과세가액 계산.. 아래로직을 [여기]로 옮겨야하나??
-                        if (arr[i]["taxFree"].ToString() == "Y") t면세가액 += ((cnt * amt) - dc_amt);
-                        else t과세가액 += ((cnt * amt) - dc_amt);
+                        if (arr[i]["taxFree"].ToString() == "Y") t면세가액 += ((cnt * (amt + option_amt)) - dc_amt);
+                        else t과세가액 += ((cnt * (amt + option_amt)) - dc_amt);
 
                         //
                         t할인금액 += dc_amt;
@@ -4153,7 +4321,7 @@ namespace thepos
             //! 현금결제
             if (pay_keep_cash == "1")
             {
-                sUrl = "paymentCash?theNo=" + tTheNo;
+                sUrl = "paymentCash?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4267,7 +4435,7 @@ namespace thepos
             //! 카드결제
             if (pay_keep_card == "1")
             {
-                sUrl = "paymentCard?theNo=" + tTheNo;
+                sUrl = "paymentCard?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4348,7 +4516,7 @@ namespace thepos
             //! 포인트
             if (pay_keep_point == "1")
             {
-                sUrl = "paymentPoint?theNo=" + tTheNo;
+                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4397,7 +4565,7 @@ namespace thepos
             //? 간편결제
             if (pay_keep_easy == "1")
             {
-                sUrl = "paymentEasy?theNo=" + tTheNo;
+                sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4889,23 +5057,60 @@ namespace thepos
         }
 
 
-        public static void print_order(MemOrderItem[] memOrderItemArr)
+        public static void print_order()
         {
-            
-            List<MemOrderItem> MemOrderItemList = new List<MemOrderItem>();
+            int shop_order_count = 0;
 
-
-            for (int i = 0; i < memOrderItemArr.Length; i++)
+            for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                if (memOrderItemArr[i].shop_order_no != "")
+                if (mOrderItemList[i].shop_order_no != "" & mOrderItemList[i].ticket != "Y" & mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
-                    MemOrderItemList.Add(memOrderItemArr[i]);
+                    shop_order_count++;
                 }
             }
 
 
-            if (MemOrderItemList.Count == 0)
+
+            MemOrderItem[] orderItemArr = new MemOrderItem[shop_order_count];
+
+            int k = 0;
+
+            for (int i = 0; i < mOrderItemList.Count; i++)
+            {
+                if (mOrderItemList[i].shop_order_no != "" & mOrderItemList[i].ticket != "Y" & mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
+                {
+                    orderItemArr[k] = mOrderItemList[i];
+                    k++;
+                }
+            }
+
+
+            if (orderItemArr.Length == 0)
                 return;
+
+
+
+             
+            // 업장코드별로 정렬
+            bool order_sort_complete = false;
+            MemOrderItem memOrderItemTemp;
+
+            while (!order_sort_complete)
+            {
+                order_sort_complete = true;
+                for (int i = 0; i < orderItemArr.Length - 1; i++)
+                {
+                    if (string.Compare(orderItemArr[i].shop_order_no, orderItemArr[i + 1].shop_order_no) == 1)  // ascending
+                    {
+                        memOrderItemTemp = orderItemArr[i];
+                        orderItemArr[i] = orderItemArr[i + 1];
+                        orderItemArr[i + 1] = memOrderItemTemp;
+
+                        order_sort_complete = false;
+                    }
+                }
+            }
+
 
 
 
@@ -4916,18 +5121,18 @@ namespace thepos
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
 
-            t_shop_code = MemOrderItemList[0].shop_code;
-            t_order_no = MemOrderItemList[0].shop_order_no;
-            t_good_name.Add(MemOrderItemList[0].goods_name);
-            t_good_cnt.Add(MemOrderItemList[0].cnt);
+            t_shop_code = orderItemArr[0].shop_code;
+            t_order_no = orderItemArr[0].shop_order_no;
+            t_good_name.Add(orderItemArr[0].goods_name);
+            t_good_cnt.Add(orderItemArr[0].cnt);
 
 
-            for (int i = 0; i < MemOrderItemList.Count - 1; i++)
+            for (int i = 0; i < orderItemArr.Length - 1; i++)
             {
-                if (string.Compare(MemOrderItemList[i].shop_code, MemOrderItemList[i + 1].shop_code) == 0)
+                if (string.Compare(orderItemArr[i].shop_order_no, orderItemArr[i + 1].shop_order_no) == 0)
                 {
-                    t_good_name.Add(MemOrderItemList[i + 1].goods_name );
-                    t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
+                    t_good_name.Add(orderItemArr[i + 1].goods_name );
+                    t_good_cnt.Add(orderItemArr[i + 1].cnt);
                 }
                 else
                 {
@@ -4940,10 +5145,10 @@ namespace thepos
 
                     t_good_name.Clear();
                     t_good_cnt.Clear();
-                    t_shop_code = MemOrderItemList[i + 1].shop_code;
-                    t_order_no = MemOrderItemList[i + 1].shop_order_no;
-                    t_good_name.Add(MemOrderItemList[i + 1].goods_name);
-                    t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
+                    t_shop_code = orderItemArr[i + 1].shop_code;
+                    t_order_no = orderItemArr[i + 1].shop_order_no;
+                    t_good_name.Add(orderItemArr[i + 1].goods_name);
+                    t_good_cnt.Add(orderItemArr[i + 1].cnt);
                 }
             }
 

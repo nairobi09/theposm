@@ -354,10 +354,10 @@
     <Compile Include="3Report\frmReportShopOrder.Designer.cs">
       <DependentUpon>frmReportShopOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOrderOption.cs">
+    <Compile Include="1Sales\frmOrderOption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOrderOption.Designer.cs">
+    <Compile Include="1Sales\frmOrderOption.Designer.cs">
       <DependentUpon>frmOrderOption.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSetup.cs">
@@ -628,7 +628,7 @@
     <EmbeddedResource Include="3Report\frmReportList1.resx">
       <DependentUpon>frmReportList1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOrderOption.resx">
+    <EmbeddedResource Include="1Sales\frmOrderOption.resx">
       <DependentUpon>frmOrderOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReports.resx">
