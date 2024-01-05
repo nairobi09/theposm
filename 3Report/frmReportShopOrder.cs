@@ -90,7 +90,7 @@ namespace thepos
                                     lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
                                     lvItem.SubItems.Add(get_MMddHHmm(arr[i]["orderDate"].ToString(), arr[i]["orderTime"].ToString()));
                                     lvItem.SubItems.Add(arr[i]["posNo"].ToString());
-                                    lvItem.SubItems.Add(arr[i]["itemName"].ToString());
+                                    lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                                     lvItem.SubItems.Add(arr[i]["cnt"].ToString());
                                     //lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
                                     lvItem.SubItems.Add(is_cancel);

@@ -1580,12 +1580,12 @@ namespace thepos
                     sql_excute_local_db(sql);
 
 
-                    //// 옵션상품이 아닌 경우
+                    //// 옵션상품이 경우
                     for (int k = 0; k < mOrderItemList[i].orderOptionItemList.Count; k++)
                     {
-                        sql = "INSERT INTO orderOptionItem (siteId, posNo, bizDt, theNo, refNo, optionNo, orderDate, orderTime, goodsCode, optionCode, optionItemNo, optionItemName, cnt, amt, isCancel) " +
+                        sql = "INSERT INTO orderOptionItem (siteId, posNo, bizDt, theNo, refNo, optionNo, orderDate, orderTime, goodsCode, optionCode, optionName, optionItemNo, optionItemName, cnt, amt, isCancel) " +
                                     "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + t_option_no + "','" + get_today_date() + "','" + get_today_time() + "','" +
-                                    mOrderItemList[i].goods_code + "','" + mOrderItemList[i].orderOptionItemList[k].option_code + "'," + mOrderItemList[i].orderOptionItemList[k].option_item_no + ",'" + mOrderItemList[i].orderOptionItemList[k].option_item_name + "'," + mOrderItemList[i].cnt + "," + mOrderItemList[i].amt + ",'')";
+                                    mOrderItemList[i].goods_code + "','" + mOrderItemList[i].orderOptionItemList[k].option_code + "','" + mOrderItemList[i].orderOptionItemList[k].option_name + "'," + mOrderItemList[i].orderOptionItemList[k].option_item_no + ",'" + mOrderItemList[i].orderOptionItemList[k].option_item_name + "'," + mOrderItemList[i].cnt + "," + mOrderItemList[i].amt + ",'')";
                         sql_excute_local_db(sql);
                     }
                 }
@@ -1706,6 +1706,7 @@ namespace thepos
                     parameters["goodsCode"] = mOrderItemList[i].goods_code;
 
                     parameters["optionCode"] = mOrderItemList[i].orderOptionItemList[k].option_code;
+                    parameters["optionName"] = mOrderItemList[i].orderOptionItemList[k].option_name;
                     parameters["optionItemNo"] = mOrderItemList[i].orderOptionItemList[k].option_item_no + "";
                     parameters["optionItemName"] = mOrderItemList[i].orderOptionItemList[k].option_item_name;
 
@@ -4698,6 +4699,13 @@ namespace thepos
             return charSize;
         }
 
+        public static byte[] sizeCharMedium2()
+        {
+            byte[] charSize = new byte[3] { 0x1D, Convert.ToByte('!'), 16 };
+            return charSize;
+        }
+
+
 
         public static void print_ticket(String t_ticket_no, String t_goods_code)
         {
@@ -5057,6 +5065,17 @@ namespace thepos
         }
 
 
+
+        public struct order_pack
+        {
+            public string goods_name;
+            public int goods_cnt;
+            public List<string> option_name;
+            public List<string> option_item_name;
+        }
+        
+
+
         public static void print_order()
         {
             int shop_order_count = 0;
@@ -5073,14 +5092,14 @@ namespace thepos
 
             MemOrderItem[] orderItemArr = new MemOrderItem[shop_order_count];
 
-            int k = 0;
+            int t_cnt = 0;
 
             for (int i = 0; i < mOrderItemList.Count; i++)
             {
                 if (mOrderItemList[i].shop_order_no != "" & mOrderItemList[i].ticket != "Y" & mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
-                    orderItemArr[k] = mOrderItemList[i];
-                    k++;
+                    orderItemArr[t_cnt] = mOrderItemList[i];
+                    t_cnt++;
                 }
             }
 
@@ -5112,56 +5131,237 @@ namespace thepos
             }
 
 
-
-
             //
+            List<order_pack> order_pack_list = new List<order_pack>();
+            order_pack orderPack = new order_pack();
+            List<String> option_name_list = new List<String>();
+            List<String> option_item_name_list = new List<String>();
+
             String t_shop_code = "";
             String t_order_no = "";
             String t_order_dt = get_today_date() + get_today_time();
-            List<String> t_good_name = new List<String>();
-            List<int> t_good_cnt = new List<int>();
 
             t_shop_code = orderItemArr[0].shop_code;
             t_order_no = orderItemArr[0].shop_order_no;
-            t_good_name.Add(orderItemArr[0].goods_name);
-            t_good_cnt.Add(orderItemArr[0].cnt);
+
+
+
+            //
+            orderPack.goods_name = orderItemArr[0].goods_name;
+            orderPack.goods_cnt = orderItemArr[0].cnt;
+
+            for (int k = 0; k < orderItemArr[0].orderOptionItemList.Count; k++)
+            {
+                option_name_list.Add(orderItemArr[0].orderOptionItemList[k].option_name);
+                option_item_name_list.Add(orderItemArr[0].orderOptionItemList[k].option_item_name);
+            }
+
+            orderPack.option_name = option_name_list.ToList();
+            orderPack.option_item_name = option_item_name_list.ToList();
+
+            order_pack_list.Add(orderPack);
+
 
 
             for (int i = 0; i < orderItemArr.Length - 1; i++)
             {
                 if (string.Compare(orderItemArr[i].shop_order_no, orderItemArr[i + 1].shop_order_no) == 0)
                 {
-                    t_good_name.Add(orderItemArr[i + 1].goods_name );
-                    t_good_cnt.Add(orderItemArr[i + 1].cnt);
+
                 }
                 else
                 {
                     // 업장주문서 출력 -> shop 등록정보 프린터
-                    print_order_str("to_shop", t_shop_code, "주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                    print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
 
                     // 주문교환권 출력 -> 영수증프린터
-                    print_order_str("to_local", t_shop_code, "교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                    print_order_str("to_local", t_shop_code, "교환권", t_order_no, order_pack_list, t_order_dt);
 
-
-                    t_good_name.Clear();
-                    t_good_cnt.Clear();
+                    //
+                    order_pack_list.Clear();
                     t_shop_code = orderItemArr[i + 1].shop_code;
                     t_order_no = orderItemArr[i + 1].shop_order_no;
-                    t_good_name.Add(orderItemArr[i + 1].goods_name);
-                    t_good_cnt.Add(orderItemArr[i + 1].cnt);
                 }
+
+
+
+                //
+                orderPack.goods_name = orderItemArr[i + 1].goods_name;
+                orderPack.goods_cnt = orderItemArr[i + 1].cnt;
+
+                option_name_list.Clear();
+                option_item_name_list.Clear();
+
+                for (int k = 0; k < orderItemArr[i + 1].orderOptionItemList.Count; k++)
+                {
+                    option_name_list.Add(orderItemArr[i + 1].orderOptionItemList[k].option_name);
+                    option_item_name_list.Add(orderItemArr[i + 1].orderOptionItemList[k].option_item_name);
+                }
+
+                orderPack.option_name = option_name_list.ToList();
+                orderPack.option_item_name = option_item_name_list.ToList();
+
+                order_pack_list.Add(orderPack);
+
             }
 
             // 업장주문서 출력 -> shop 등록정보 프린터
-            print_order_str("to_shop", t_shop_code, "주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+            print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
 
             // 주문교환권 출력 -> 영수증프린터
-            print_order_str("to_local", t_shop_code, "교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+            print_order_str("to_local", t_shop_code, "교환권", t_order_no, order_pack_list, t_order_dt);
 
         }
 
+        public static void print_order_str(String to_printer, String shop, String title, String order_no, List<order_pack> orderPackList, String order_dt)  // 주문서
+        {
+            String printer_type = "";
+            String printer_name = "";
+
+            if (to_printer == "to_local")
+            {
+                printer_name = mBillPrinterPort;
+            }
+            else if (to_printer == "to_shop")
+            {
+                for (int i = 0; i < mShop.Length; i++ )
+                {
+                    if (mShop[i].shop_code == shop)
+                    {
+                        printer_type = mShop[i].printer_type;
+
+                        if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;    // Network
+                        else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;                // Local
+                        else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;                 // Recept
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }                
+            }
 
 
+            // 프린터를 못핮으면 패스
+            if (printer_name == "")
+            {
+                return;
+            }
+
+
+            //
+            const string ESC = "\u001B";
+            const string InitializePrinter = ESC + "@";
+
+            PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+            byte[] BytesValue = new byte[100];
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(title));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharLarge());   // 주문번호 크게 인쇄
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(order_no));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes("코너 : " + get_shop_name(shop)));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+            String strPrint = "---------------------\r\n";  // 21
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+
+            for (int i = 0; i < orderPackList.Count; i++)
+            {
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
+
+                strPrint = orderPackList[i].goods_name + Space(16 - encodelen(orderPackList[i].goods_name));
+                String strCnt = orderPackList[i].goods_cnt.ToString("N0");     // 수량
+                strPrint += Space(5 - encodelen(strCnt)) + strCnt;
+                strPrint += "\r\n";
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+
+                for (int k = 0; k < orderPackList[i].option_name.Count; k++)
+                {
+                    strPrint = "     [" + orderPackList[i].option_name[k] + "]" + Space(18 - encodelen(orderPackList[i].option_name[k]));
+                    String strTmp= orderPackList[i].option_item_name[k];     // 수량
+                    strPrint += strTmp;
+                    strPrint += "\r\n";
+
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                }
+            }
+
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
+            strPrint = "---------------------\r\n";  // 21
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+
+
+
+            strPrint = "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
+
+            try
+            {
+                if (printer_type == "N")
+                {
+                    TcpClient client = new TcpClient();
+                    client.Connect(printer_name, 9100);
+
+                    NetworkStream stream = client.GetStream();
+                    stream.Write(BytesValue, 0, BytesValue.Length);
+
+                    stream.Flush();
+                    stream.Close();
+                    client.Close();
+                }
+                else
+                {
+                    PrintExtensions.Print(BytesValue, printer_name);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
+            }
+        }
+
+
+        // xxx
         public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, String order_dt)  // 주문서
         {
             String printer_type = "";

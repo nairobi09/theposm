@@ -175,7 +175,7 @@ namespace thepos
 
                         lvItem.Text = (i + 1).ToString();
 
-                        lvItem.SubItems.Add(arr[i]["itemName"].ToString());
+                        lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(amt.ToString("N0"));
                         lvItem.SubItems.Add(cnt.ToString("N0"));
                         lvItem.SubItems.Add(dc_amt.ToString("N0"));

@@ -993,10 +993,17 @@ namespace thepos
 
 
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
-            String t_order_no = lvwPayOrder.SelectedItems[0].Text;
 
+
+            List<order_pack> order_pack_list = new List<order_pack>();
+            order_pack orderPack = new order_pack();
+            List<String> option_name_list = new List<String>();
+            List<String> option_item_name_list = new List<String>();
+
+            String t_order_no = lvwPayOrder.SelectedItems[0].Text;
             String t_shop_code = "";
             String t_order_dt = "";
+
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
 
@@ -1012,11 +1019,29 @@ namespace thepos
                         t_shop_code = dr["shopCode"].ToString();
                         t_order_dt = dr["orderDate"].ToString() + dr["orderTime"].ToString();
 
-                        t_good_name.Add(dr["itemName"].ToString());
-                        t_good_cnt.Add(convert_number(dr["cnt"].ToString()));
+                        orderPack.goods_name = dr["goodsName"].ToString();
+                        orderPack.goods_cnt = convert_number(dr["cnt"].ToString());
+
+
+                        option_name_list.Clear();
+                        option_item_name_list.Clear();
+
+                        //
+                        if (dr["optionNo"].ToString() != "")
+                        {
+                            SQLiteDataReader dr2 = sql_select_local_db("SELECT * FROM orderOptionItem WHERE optionNo='" + dr["optionNo"].ToString() + "'");
+                            while (dr2.Read())
+                            {
+                                option_name_list.Add(dr2["optionName"].ToString());
+                                option_item_name_list.Add(dr2["optionItemName"].ToString());
+                            }
+                        }
+                        orderPack.option_name = option_name_list.ToList();
+                        orderPack.option_item_name = option_item_name_list.ToList();
+
+                        order_pack_list.Add(orderPack);
                     }
                 }
-
                 dr.Close();
             }
             else
@@ -1036,8 +1061,38 @@ namespace thepos
                                 t_shop_code = arr[i]["shopCode"].ToString();
                                 t_order_dt = arr[i]["orderDate"].ToString() + arr[i]["orderTime"].ToString();
 
-                                t_good_name.Add(arr[i]["goodsName"].ToString());
-                                t_good_cnt.Add(convert_number(arr[i]["cnt"].ToString()));
+                                orderPack.goods_name = arr[i]["goodsName"].ToString();
+                                orderPack.goods_cnt = convert_number(arr[i]["cnt"].ToString());
+
+
+                                option_name_list.Clear();
+                                option_item_name_list.Clear();
+
+                                //
+                                if (arr[i]["optionNo"].ToString() != "")
+                                {
+                                    sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&optionNo=" + arr[i]["optionNo"].ToString();
+                                    if (mRequestGet(sUrl))
+                                    {
+                                        if (mObj["resultCode"].ToString() == "200")
+                                        {
+                                            String data2 = mObj["orderOptionItems"].ToString();
+                                            JArray arr2 = JArray.Parse(data2);
+
+                                            for (int k = 0; k < arr2.Count; k++)
+                                            {
+                                                option_name_list.Add(arr2[k]["optionName"].ToString());
+                                                option_item_name_list.Add(arr2[k]["optionItemName"].ToString());
+                                            }
+                                        }
+                                    }
+                                }
+
+                                orderPack.option_name = option_name_list.ToList();
+                                orderPack.option_item_name = option_item_name_list.ToList();
+
+                                order_pack_list.Add(orderPack);
+
                             }
                         }
                     }
@@ -1060,18 +1115,18 @@ namespace thepos
             if (tran_type == "A")
             {
                 // 업장주문서 출력 -> shop 등록정보 프린터
-                print_order_str("to_shop", t_shop_code, "주문서[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                print_order_str("to_shop", t_shop_code, "주문서[재발급]", t_order_no, order_pack_list, t_order_dt);
 
                 // 주문교환권 출력 -> 영수증프린터
-                print_order_str("to_local", t_shop_code, "교환권[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                print_order_str("to_local", t_shop_code, "교환권[재발급]", t_order_no, order_pack_list, t_order_dt);
             }
             else
             {
                 // 업장주문서 출력 -> shop 등록정보 프린터
-                print_order_str("to_shop", t_shop_code, "취소주문서[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                print_order_str("to_shop", t_shop_code, "취소주문서[재발급]", t_order_no, order_pack_list, t_order_dt);
 
-                // 주문교환권 출력 -> 영수증프린터
-                print_order_str("to_local", t_shop_code, "취소교환권[재발급]", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                //주문교환권 출력 -> 영수증프린터
+                print_order_str("to_local", t_shop_code, "취소교환권[재발급]", t_order_no, order_pack_list, t_order_dt);
             }
 
 

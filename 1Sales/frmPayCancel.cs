@@ -943,7 +943,7 @@ namespace thepos
                     cancel_payment(pay_seq, pCashAuth.amount, pay_type, is_cancel_stat);
 
 
-                    //# 취소건 추가
+                    //# paymentCash 취소건 추가
                     if (mTheMode == "Local")
                     {
                         String sql = "INSERT INTO paymentCash (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, receiptType, issuedMethodNo, authNo, tranSerial, isCancel, vanCode) " +
@@ -1476,7 +1476,7 @@ namespace thepos
 
 
 
-            //# 취소건 추가
+            //# orders 취소건 추가
             if (mTheMode == "Local")
             {
                 String sql = "SELECT * FROM orders WHERE bizDt= '" + selected_biz_date + "' AND theNo='" + the_no + "' AND tranType='A'";
@@ -1561,7 +1561,7 @@ namespace thepos
             // orderItem
 
 
-            //# 승인건 취소마킹
+            //# orderItem 승인건 취소마킹
             if (mTheMode == "Local")
             {
                 String sql = "UPDATE orderItem SET isCancel = 'Y' WHERE bizDt = '" + selected_biz_date + "' AND theNo ='" + the_no + "'";
@@ -1596,16 +1596,16 @@ namespace thepos
             }
 
 
-            //# 취소건 추가
+            //# orderItem 취소건 추가
             if (mTheMode == "Local")
             {
                 String sql = "SELECT * FROM orderItem WHERE bizDt= '" + selected_biz_date + "' AND theNo='" + the_no + "' AND tranType='A'";
                 SQLiteDataReader dr = sql_select_local_db(sql);
                 while (dr.Read())
                 {
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo) " +
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo, optionNo) " +
                                 "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + the_no + "','" + dr["refNo"].ToString() + "','C','" + get_today_date() + "','" + get_today_time() + "','" + dr["goodsCode"].ToString() + "','" + dr["goodsName"].ToString() + "'," + dr["cnt"].ToString() + "," + dr["amt"].ToString() + "," +
-                                "'" + dr["shopCode"].ToString() + "','" + dr["ticketNo"].ToString() + "','" + dr["taxFree"].ToString() + "'," + dr["dcAmount"].ToString() + ",'" + dr["dcrType"].ToString() + "','" + dr["dcrDes"].ToString() + "'," + dr["dcrValue"].ToString() + ",'" + dr["payClass"].ToString() + "','" + dr["ticketNo"].ToString() + "','Y', '" + dr["shopCode"].ToString() + "','" + dr["shopOrderNo"].ToString() + "')";
+                                "'" + dr["shopCode"].ToString() + "','" + dr["ticketNo"].ToString() + "','" + dr["taxFree"].ToString() + "'," + dr["dcAmount"].ToString() + ",'" + dr["dcrType"].ToString() + "','" + dr["dcrDes"].ToString() + "'," + dr["dcrValue"].ToString() + ",'" + dr["payClass"].ToString() + "','" + dr["ticketNo"].ToString() + "','Y', '" + dr["shopCode"].ToString() + "','" + dr["shopOrderNo"].ToString() + "','" + dr["optionNo"].ToString() + "')";
                     sql_excute_local_db(sql);
                 }
             }
@@ -1652,6 +1652,7 @@ namespace thepos
                             parameters["isCancel"] = "Y";
                             parameters["shopCode"] = arr[i]["shopCode"].ToString();
                             parameters["shopOrderNo"] = arr[i]["shopOrderNo"].ToString();
+                            parameters["optionNo"] = arr[i]["optionNo"].ToString();
 
                             if (mRequestPost("orderItem", parameters))
                             {
@@ -1685,6 +1686,38 @@ namespace thepos
             }
 
 
+            //# orderOptionItem 승인건 취소마킹
+            if (mTheMode == "Local")
+            {
+                String sql = "UPDATE orderOptionItem SET isCancel = 'Y' WHERE bizDt = '" + selected_biz_date + "' AND theNo ='" + the_no + "'";
+                int ret = sql_excute_local_db(sql);
+            }
+            else
+            {
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["bizDt"] = selected_biz_date;
+                parameters["theNo"] = the_no;
+                parameters["isCancel"] = "Y";
+
+                if (mRequestPatch("orderOptionItem", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
         }
 
 
@@ -1966,6 +1999,9 @@ namespace thepos
 
         public static void print_cancel_order(String tTheNo)
         {
+            // [취소 주문서/교환권]은 주문옵션아이템 항목은 제외한다.
+
+
             List<MemOrderItem> MemOrderItemList = new List<MemOrderItem>();
 
             if (mTheMode == "Local")
