@@ -1059,7 +1059,7 @@ namespace thepos
 
 
             // 마우스 커서
-            if (mPosType == "POS")
+            if (mPosType == "POS" | mPosType == "POS-Ticket")
             {
                 Cursor.Hide();
             }

@@ -52,13 +52,17 @@ namespace thepos
             this.btnKeyClear = new System.Windows.Forms.Button();
             this.panelOrderConsole = new System.Windows.Forms.Panel();
             this.btnOrderCntUp = new System.Windows.Forms.Button();
+            this.btnPayManager = new System.Windows.Forms.Button();
             this.btnOrderCntDn = new System.Windows.Forms.Button();
             this.btnOrderCntChange = new System.Windows.Forms.Button();
             this.btnOrderAmtChange = new System.Windows.Forms.Button();
             this.btnOrderCancelSelect = new System.Windows.Forms.Button();
+            this.btnOrderWaiting = new System.Windows.Forms.Button();
             this.btnOrderAmountDC = new System.Windows.Forms.Button();
             this.btnOrderCancelAll = new System.Windows.Forms.Button();
-            this.btnOrderWaiting = new System.Windows.Forms.Button();
+            this.panelFlowConsole = new System.Windows.Forms.Panel();
+            this.btnFlowLocker = new System.Windows.Forms.Button();
+            this.btnFlowCert = new System.Windows.Forms.Button();
             this.btnOrderItemScrollDn = new System.Windows.Forms.Button();
             this.btnOrderItemScrollUp = new System.Windows.Forms.Button();
             this.btnPay1 = new System.Windows.Forms.Button();
@@ -92,10 +96,6 @@ namespace thepos
             this.lblOrderAmountChargeTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountDCTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountSumTitle = new System.Windows.Forms.Label();
-            this.panelFlowConsole = new System.Windows.Forms.Panel();
-            this.btnFlowLocker = new System.Windows.Forms.Button();
-            this.btnPayManager = new System.Windows.Forms.Button();
-            this.btnFlowCert = new System.Windows.Forms.Button();
             this.panelDisplayAlarmWhite = new System.Windows.Forms.Panel();
             this.lblDisplayAlarm = new System.Windows.Forms.Label();
             this.panelOrderLvw = new System.Windows.Forms.Panel();
@@ -122,16 +122,19 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
+            this.btnOrder1 = new System.Windows.Forms.Button();
+            this.btnOrder2 = new System.Windows.Forms.Button();
+            this.btnOrder3 = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
+            this.panelFlowConsole.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
             this.panelOrderSumWhile.SuspendLayout();
             this.panelOrderSumBlack.SuspendLayout();
-            this.panelFlowConsole.SuspendLayout();
             this.panelDisplayAlarmWhite.SuspendLayout();
             this.panelOrderLvw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).BeginInit();
@@ -150,7 +153,7 @@ namespace thepos
             this.btnFlowSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowSettlement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnFlowSettlement.Location = new System.Drawing.Point(0, 157);
+            this.btnFlowSettlement.Location = new System.Drawing.Point(0, 104);
             this.btnFlowSettlement.Name = "btnFlowSettlement";
             this.btnFlowSettlement.Size = new System.Drawing.Size(124, 48);
             this.btnFlowSettlement.TabIndex = 0;
@@ -165,7 +168,7 @@ namespace thepos
             this.btnFlowCharging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowCharging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowCharging.ForeColor = System.Drawing.Color.White;
-            this.btnFlowCharging.Location = new System.Drawing.Point(0, 105);
+            this.btnFlowCharging.Location = new System.Drawing.Point(0, 52);
             this.btnFlowCharging.Name = "btnFlowCharging";
             this.btnFlowCharging.Size = new System.Drawing.Size(124, 48);
             this.btnFlowCharging.TabIndex = 0;
@@ -180,7 +183,7 @@ namespace thepos
             this.btnFlowTicketing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlowTicketing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFlowTicketing.ForeColor = System.Drawing.Color.White;
-            this.btnFlowTicketing.Location = new System.Drawing.Point(0, 209);
+            this.btnFlowTicketing.Location = new System.Drawing.Point(0, 156);
             this.btnFlowTicketing.Name = "btnFlowTicketing";
             this.btnFlowTicketing.Size = new System.Drawing.Size(60, 48);
             this.btnFlowTicketing.TabIndex = 0;
@@ -417,16 +420,22 @@ namespace thepos
             // 
             // panelOrderConsole
             // 
+            this.panelOrderConsole.Controls.Add(this.btnOrder2);
+            this.panelOrderConsole.Controls.Add(this.btnOrder1);
+            this.panelOrderConsole.Controls.Add(this.btnOrder3);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntUp);
+            this.panelOrderConsole.Controls.Add(this.btnPayManager);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntDn);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntChange);
             this.panelOrderConsole.Controls.Add(this.btnOrderAmtChange);
             this.panelOrderConsole.Controls.Add(this.btnOrderCancelSelect);
+            this.panelOrderConsole.Controls.Add(this.btnOrderWaiting);
             this.panelOrderConsole.Controls.Add(this.btnOrderAmountDC);
             this.panelOrderConsole.Controls.Add(this.btnOrderCancelAll);
+            this.panelOrderConsole.Controls.Add(this.panelFlowConsole);
             this.panelOrderConsole.Location = new System.Drawing.Point(6, 397);
             this.panelOrderConsole.Name = "panelOrderConsole";
-            this.panelOrderConsole.Size = new System.Drawing.Size(474, 102);
+            this.panelOrderConsole.Size = new System.Drawing.Size(474, 367);
             this.panelOrderConsole.TabIndex = 25;
             // 
             // btnOrderCntUp
@@ -435,7 +444,7 @@ namespace thepos
             this.btnOrderCntUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderCntUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCntUp.ForeColor = System.Drawing.Color.White;
-            this.btnOrderCntUp.Location = new System.Drawing.Point(281, 0);
+            this.btnOrderCntUp.Location = new System.Drawing.Point(281, 1);
             this.btnOrderCntUp.Name = "btnOrderCntUp";
             this.btnOrderCntUp.Size = new System.Drawing.Size(60, 48);
             this.btnOrderCntUp.TabIndex = 0;
@@ -444,13 +453,28 @@ namespace thepos
             this.btnOrderCntUp.UseVisualStyleBackColor = false;
             this.btnOrderCntUp.Click += new System.EventHandler(this.btnOrderCntUp_Click);
             // 
+            // btnPayManager
+            // 
+            this.btnPayManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnPayManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPayManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPayManager.ForeColor = System.Drawing.Color.White;
+            this.btnPayManager.Location = new System.Drawing.Point(350, 209);
+            this.btnPayManager.Name = "btnPayManager";
+            this.btnPayManager.Size = new System.Drawing.Size(124, 152);
+            this.btnPayManager.TabIndex = 0;
+            this.btnPayManager.TabStop = false;
+            this.btnPayManager.Text = "결제내역관리";
+            this.btnPayManager.UseVisualStyleBackColor = false;
+            this.btnPayManager.Click += new System.EventHandler(this.btnPayManager_Click);
+            // 
             // btnOrderCntDn
             // 
             this.btnOrderCntDn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnOrderCntDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderCntDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCntDn.ForeColor = System.Drawing.Color.White;
-            this.btnOrderCntDn.Location = new System.Drawing.Point(217, 0);
+            this.btnOrderCntDn.Location = new System.Drawing.Point(217, 1);
             this.btnOrderCntDn.Name = "btnOrderCntDn";
             this.btnOrderCntDn.Size = new System.Drawing.Size(60, 48);
             this.btnOrderCntDn.TabIndex = 0;
@@ -465,7 +489,7 @@ namespace thepos
             this.btnOrderCntChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderCntChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCntChange.ForeColor = System.Drawing.Color.White;
-            this.btnOrderCntChange.Location = new System.Drawing.Point(153, 0);
+            this.btnOrderCntChange.Location = new System.Drawing.Point(153, 1);
             this.btnOrderCntChange.Name = "btnOrderCntChange";
             this.btnOrderCntChange.Size = new System.Drawing.Size(60, 48);
             this.btnOrderCntChange.TabIndex = 0;
@@ -495,7 +519,7 @@ namespace thepos
             this.btnOrderCancelSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderCancelSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCancelSelect.ForeColor = System.Drawing.Color.White;
-            this.btnOrderCancelSelect.Location = new System.Drawing.Point(74, 0);
+            this.btnOrderCancelSelect.Location = new System.Drawing.Point(74, 1);
             this.btnOrderCancelSelect.Name = "btnOrderCancelSelect";
             this.btnOrderCancelSelect.Size = new System.Drawing.Size(70, 48);
             this.btnOrderCancelSelect.TabIndex = 0;
@@ -504,13 +528,28 @@ namespace thepos
             this.btnOrderCancelSelect.UseVisualStyleBackColor = false;
             this.btnOrderCancelSelect.Click += new System.EventHandler(this.btnOrderCancelSelect_Click);
             // 
+            // btnOrderWaiting
+            // 
+            this.btnOrderWaiting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
+            this.btnOrderWaiting.Location = new System.Drawing.Point(350, 1);
+            this.btnOrderWaiting.Name = "btnOrderWaiting";
+            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 48);
+            this.btnOrderWaiting.TabIndex = 0;
+            this.btnOrderWaiting.TabStop = false;
+            this.btnOrderWaiting.Text = "대기\r\n";
+            this.btnOrderWaiting.UseVisualStyleBackColor = false;
+            this.btnOrderWaiting.Click += new System.EventHandler(this.btnOrderWaiting_Click);
+            // 
             // btnOrderAmountDC
             // 
             this.btnOrderAmountDC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnOrderAmountDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderAmountDC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderAmountDC.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAmountDC.Location = new System.Drawing.Point(217, 53);
+            this.btnOrderAmountDC.Location = new System.Drawing.Point(350, 53);
             this.btnOrderAmountDC.Name = "btnOrderAmountDC";
             this.btnOrderAmountDC.Size = new System.Drawing.Size(124, 48);
             this.btnOrderAmountDC.TabIndex = 0;
@@ -525,7 +564,7 @@ namespace thepos
             this.btnOrderCancelAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderCancelAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderCancelAll.ForeColor = System.Drawing.Color.White;
-            this.btnOrderCancelAll.Location = new System.Drawing.Point(0, 0);
+            this.btnOrderCancelAll.Location = new System.Drawing.Point(0, 1);
             this.btnOrderCancelAll.Name = "btnOrderCancelAll";
             this.btnOrderCancelAll.Size = new System.Drawing.Size(70, 48);
             this.btnOrderCancelAll.TabIndex = 0;
@@ -534,20 +573,48 @@ namespace thepos
             this.btnOrderCancelAll.UseVisualStyleBackColor = false;
             this.btnOrderCancelAll.Click += new System.EventHandler(this.btnOrderCancelAll_Click);
             // 
-            // btnOrderWaiting
+            // panelFlowConsole
             // 
-            this.btnOrderWaiting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderWaiting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderWaiting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
-            this.btnOrderWaiting.Location = new System.Drawing.Point(0, 0);
-            this.btnOrderWaiting.Name = "btnOrderWaiting";
-            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 48);
-            this.btnOrderWaiting.TabIndex = 0;
-            this.btnOrderWaiting.TabStop = false;
-            this.btnOrderWaiting.Text = "대기\r\n";
-            this.btnOrderWaiting.UseVisualStyleBackColor = false;
-            this.btnOrderWaiting.Click += new System.EventHandler(this.btnOrderWaiting_Click);
+            this.panelFlowConsole.Controls.Add(this.btnFlowLocker);
+            this.panelFlowConsole.Controls.Add(this.btnFlowSettlement);
+            this.panelFlowConsole.Controls.Add(this.btnFlowCharging);
+            this.panelFlowConsole.Controls.Add(this.btnFlowCert);
+            this.panelFlowConsole.Controls.Add(this.btnFlowTicketing);
+            this.panelFlowConsole.Location = new System.Drawing.Point(350, 105);
+            this.panelFlowConsole.Name = "panelFlowConsole";
+            this.panelFlowConsole.Size = new System.Drawing.Size(131, 205);
+            this.panelFlowConsole.TabIndex = 27;
+            this.panelFlowConsole.Visible = false;
+            // 
+            // btnFlowLocker
+            // 
+            this.btnFlowLocker.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnFlowLocker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFlowLocker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnFlowLocker.ForeColor = System.Drawing.Color.White;
+            this.btnFlowLocker.Location = new System.Drawing.Point(64, 156);
+            this.btnFlowLocker.Name = "btnFlowLocker";
+            this.btnFlowLocker.Size = new System.Drawing.Size(60, 48);
+            this.btnFlowLocker.TabIndex = 0;
+            this.btnFlowLocker.TabStop = false;
+            this.btnFlowLocker.Text = "락커";
+            this.btnFlowLocker.UseVisualStyleBackColor = false;
+            this.btnFlowLocker.Click += new System.EventHandler(this.btnFlowLocker_Click);
+            // 
+            // btnFlowCert
+            // 
+            this.btnFlowCert.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnFlowCert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFlowCert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnFlowCert.ForeColor = System.Drawing.Color.White;
+            this.btnFlowCert.Location = new System.Drawing.Point(0, 0);
+            this.btnFlowCert.Name = "btnFlowCert";
+            this.btnFlowCert.Size = new System.Drawing.Size(124, 48);
+            this.btnFlowCert.TabIndex = 0;
+            this.btnFlowCert.TabStop = false;
+            this.btnFlowCert.Text = "인증";
+            this.btnFlowCert.UseVisualStyleBackColor = false;
+            this.btnFlowCert.Click += new System.EventHandler(this.btnFlowCert_Click);
             // 
             // btnOrderItemScrollDn
             // 
@@ -557,8 +624,8 @@ namespace thepos
             this.btnOrderItemScrollDn.ForeColor = System.Drawing.Color.White;
             this.btnOrderItemScrollDn.Location = new System.Drawing.Point(420, 353);
             this.btnOrderItemScrollDn.Name = "btnOrderItemScrollDn";
-            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(60, 39);
-            this.btnOrderItemScrollDn.TabIndex = 0;
+            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(60, 40);
+            this.btnOrderItemScrollDn.TabIndex = 28;
             this.btnOrderItemScrollDn.TabStop = false;
             this.btnOrderItemScrollDn.Text = "▼";
             this.btnOrderItemScrollDn.UseVisualStyleBackColor = false;
@@ -572,8 +639,8 @@ namespace thepos
             this.btnOrderItemScrollUp.ForeColor = System.Drawing.Color.White;
             this.btnOrderItemScrollUp.Location = new System.Drawing.Point(356, 353);
             this.btnOrderItemScrollUp.Name = "btnOrderItemScrollUp";
-            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(60, 39);
-            this.btnOrderItemScrollUp.TabIndex = 0;
+            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(60, 40);
+            this.btnOrderItemScrollUp.TabIndex = 29;
             this.btnOrderItemScrollUp.TabStop = false;
             this.btnOrderItemScrollUp.Text = "▲";
             this.btnOrderItemScrollUp.UseVisualStyleBackColor = false;
@@ -968,72 +1035,13 @@ namespace thepos
             this.lblOrderAmountSumTitle.TabIndex = 0;
             this.lblOrderAmountSumTitle.Text = "합계금액";
             // 
-            // panelFlowConsole
-            // 
-            this.panelFlowConsole.Controls.Add(this.btnFlowLocker);
-            this.panelFlowConsole.Controls.Add(this.btnPayManager);
-            this.panelFlowConsole.Controls.Add(this.btnFlowSettlement);
-            this.panelFlowConsole.Controls.Add(this.btnFlowCharging);
-            this.panelFlowConsole.Controls.Add(this.btnFlowCert);
-            this.panelFlowConsole.Controls.Add(this.btnOrderWaiting);
-            this.panelFlowConsole.Controls.Add(this.btnFlowTicketing);
-            this.panelFlowConsole.Location = new System.Drawing.Point(356, 397);
-            this.panelFlowConsole.Name = "panelFlowConsole";
-            this.panelFlowConsole.Size = new System.Drawing.Size(131, 365);
-            this.panelFlowConsole.TabIndex = 27;
-            // 
-            // btnFlowLocker
-            // 
-            this.btnFlowLocker.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnFlowLocker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFlowLocker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFlowLocker.ForeColor = System.Drawing.Color.White;
-            this.btnFlowLocker.Location = new System.Drawing.Point(64, 209);
-            this.btnFlowLocker.Name = "btnFlowLocker";
-            this.btnFlowLocker.Size = new System.Drawing.Size(60, 48);
-            this.btnFlowLocker.TabIndex = 0;
-            this.btnFlowLocker.TabStop = false;
-            this.btnFlowLocker.Text = "락커";
-            this.btnFlowLocker.UseVisualStyleBackColor = false;
-            this.btnFlowLocker.Click += new System.EventHandler(this.btnFlowLocker_Click);
-            // 
-            // btnPayManager
-            // 
-            this.btnPayManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPayManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPayManager.ForeColor = System.Drawing.Color.White;
-            this.btnPayManager.Location = new System.Drawing.Point(0, 261);
-            this.btnPayManager.Name = "btnPayManager";
-            this.btnPayManager.Size = new System.Drawing.Size(124, 100);
-            this.btnPayManager.TabIndex = 0;
-            this.btnPayManager.TabStop = false;
-            this.btnPayManager.Text = "결제내역관리";
-            this.btnPayManager.UseVisualStyleBackColor = false;
-            this.btnPayManager.Click += new System.EventHandler(this.btnPayManager_Click);
-            // 
-            // btnFlowCert
-            // 
-            this.btnFlowCert.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnFlowCert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFlowCert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFlowCert.ForeColor = System.Drawing.Color.White;
-            this.btnFlowCert.Location = new System.Drawing.Point(0, 53);
-            this.btnFlowCert.Name = "btnFlowCert";
-            this.btnFlowCert.Size = new System.Drawing.Size(124, 48);
-            this.btnFlowCert.TabIndex = 0;
-            this.btnFlowCert.TabStop = false;
-            this.btnFlowCert.Text = "인증";
-            this.btnFlowCert.UseVisualStyleBackColor = false;
-            this.btnFlowCert.Click += new System.EventHandler(this.btnFlowCert_Click);
-            // 
             // panelDisplayAlarmWhite
             // 
             this.panelDisplayAlarmWhite.BackColor = System.Drawing.Color.White;
             this.panelDisplayAlarmWhite.Controls.Add(this.lblDisplayAlarm);
             this.panelDisplayAlarmWhite.Location = new System.Drawing.Point(6, 353);
             this.panelDisplayAlarmWhite.Name = "panelDisplayAlarmWhite";
-            this.panelDisplayAlarmWhite.Size = new System.Drawing.Size(342, 39);
+            this.panelDisplayAlarmWhite.Size = new System.Drawing.Size(342, 40);
             this.panelDisplayAlarmWhite.TabIndex = 36;
             // 
             // lblDisplayAlarm
@@ -1045,7 +1053,7 @@ namespace thepos
             this.lblDisplayAlarm.Location = new System.Drawing.Point(1, 1);
             this.lblDisplayAlarm.Name = "lblDisplayAlarm";
             this.lblDisplayAlarm.Padding = new System.Windows.Forms.Padding(5);
-            this.lblDisplayAlarm.Size = new System.Drawing.Size(340, 37);
+            this.lblDisplayAlarm.Size = new System.Drawing.Size(340, 38);
             this.lblDisplayAlarm.TabIndex = 3;
             this.lblDisplayAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1080,7 +1088,7 @@ namespace thepos
             this.lvwOrderItem.GridLines = true;
             this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrderItem.HideSelection = false;
-            this.lvwOrderItem.Location = new System.Drawing.Point(0, 0);
+            this.lvwOrderItem.Location = new System.Drawing.Point(-1, 0);
             this.lvwOrderItem.MultiSelect = false;
             this.lvwOrderItem.Name = "lvwOrderItem";
             this.lvwOrderItem.RowHeight = 43;
@@ -1270,7 +1278,7 @@ namespace thepos
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPay1, 0, 0);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPay2, 6, 0);
             this.tableLayoutPanelPayControl.Controls.Add(this.btnPay3, 8, 0);
-            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 605);
+            this.tableLayoutPanelPayControl.Location = new System.Drawing.Point(487, 604);
             this.tableLayoutPanelPayControl.Name = "tableLayoutPanelPayControl";
             this.tableLayoutPanelPayControl.RowCount = 4;
             this.tableLayoutPanelPayControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -1369,25 +1377,68 @@ namespace thepos
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
             // 
+            // btnOrder1
+            // 
+            this.btnOrder1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrder1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrder1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrder1.ForeColor = System.Drawing.Color.White;
+            this.btnOrder1.Location = new System.Drawing.Point(217, 53);
+            this.btnOrder1.Name = "btnOrder1";
+            this.btnOrder1.Size = new System.Drawing.Size(125, 48);
+            this.btnOrder1.TabIndex = 28;
+            this.btnOrder1.TabStop = false;
+            this.btnOrder1.Text = "메뉴▷";
+            this.btnOrder1.UseVisualStyleBackColor = false;
+            this.btnOrder1.Click += new System.EventHandler(this.btnOrder1_Click);
+            // 
+            // btnOrder2
+            // 
+            this.btnOrder2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrder2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrder2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrder2.ForeColor = System.Drawing.Color.White;
+            this.btnOrder2.Location = new System.Drawing.Point(350, 105);
+            this.btnOrder2.Name = "btnOrder2";
+            this.btnOrder2.Size = new System.Drawing.Size(124, 48);
+            this.btnOrder2.TabIndex = 29;
+            this.btnOrder2.TabStop = false;
+            this.btnOrder2.Text = "회원";
+            this.btnOrder2.UseVisualStyleBackColor = false;
+            this.btnOrder2.Click += new System.EventHandler(this.btnOrder2_Click);
+            // 
+            // btnOrder3
+            // 
+            this.btnOrder3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrder3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrder3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrder3.ForeColor = System.Drawing.Color.White;
+            this.btnOrder3.Location = new System.Drawing.Point(350, 157);
+            this.btnOrder3.Name = "btnOrder3";
+            this.btnOrder3.Size = new System.Drawing.Size(124, 48);
+            this.btnOrder3.TabIndex = 30;
+            this.btnOrder3.TabStop = false;
+            this.btnOrder3.UseVisualStyleBackColor = false;
+            this.btnOrder3.Click += new System.EventHandler(this.btnOrder3_Click);
+            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ControlBox = false;
+            this.Controls.Add(this.btnOrderItemScrollDn);
             this.Controls.Add(this.panelCancel);
+            this.Controls.Add(this.btnOrderItemScrollUp);
             this.Controls.Add(this.panelPayment);
             this.Controls.Add(this.panelMiddle);
-            this.Controls.Add(this.btnOrderItemScrollDn);
             this.Controls.Add(this.tableLayoutPanelPayControl);
             this.Controls.Add(this.panelGoodsGroupWhite);
             this.Controls.Add(this.panelGoodsItemWhite);
-            this.Controls.Add(this.btnOrderItemScrollUp);
             this.Controls.Add(this.panelOrderLvw);
             this.Controls.Add(this.panelDisplayAlarmWhite);
             this.Controls.Add(this.panelOrderSumWhile);
             this.Controls.Add(this.panelTitleWhite);
-            this.Controls.Add(this.panelFlowConsole);
             this.Controls.Add(this.panelNumpad);
             this.Controls.Add(this.panelOrderConsole);
             this.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -1404,6 +1455,7 @@ namespace thepos
             this.panelKeyDisplayWhite.ResumeLayout(false);
             this.panelKeyDisplayWhite.PerformLayout();
             this.panelOrderConsole.ResumeLayout(false);
+            this.panelFlowConsole.ResumeLayout(false);
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
@@ -1411,7 +1463,6 @@ namespace thepos
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
-            this.panelFlowConsole.ResumeLayout(false);
             this.panelDisplayAlarmWhite.ResumeLayout(false);
             this.panelOrderLvw.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).EndInit();
@@ -1444,8 +1495,6 @@ namespace thepos
         private System.Windows.Forms.Button btnKey7;
         private System.Windows.Forms.Button btnKeyClear;
         private System.Windows.Forms.Panel panelOrderConsole;
-        private System.Windows.Forms.Button btnOrderItemScrollDn;
-        private System.Windows.Forms.Button btnOrderItemScrollUp;
         private System.Windows.Forms.Button btnOrderCntUp;
         private System.Windows.Forms.Button btnOrderCntDn;
         private System.Windows.Forms.Button btnOrderCntChange;
@@ -1518,6 +1567,11 @@ namespace thepos
         private BrightIdeasSoftware.OLVColumn lv_cnt;
         private BrightIdeasSoftware.OLVColumn lv_dc_amount;
         private BrightIdeasSoftware.OLVColumn lv_net_amount;
+        private System.Windows.Forms.Button btnOrderItemScrollDn;
+        private System.Windows.Forms.Button btnOrderItemScrollUp;
+        private System.Windows.Forms.Button btnOrder1;
+        private System.Windows.Forms.Button btnOrder3;
+        private System.Windows.Forms.Button btnOrder2;
     }
 }
 

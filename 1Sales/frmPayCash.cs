@@ -80,7 +80,7 @@ namespace thepos
             }
             else if (mPayClass == "CH")
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                MemOrderItem orderItem = mOrderItemList[0];
                 mRefNo = orderItem.ticket_no.Substring(0, 20);
                 ticketNo = orderItem.ticket_no;
             }

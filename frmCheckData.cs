@@ -113,6 +113,7 @@ namespace thepos
 
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["shopOrderNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["optionNo"].ToString());
 
                         lvwOrderItem.Items.Add(lvItem);
                     }
@@ -122,9 +123,9 @@ namespace thepos
 
         private void get_order_option_Item()
         {
-            lvwOrderItem.Items.Clear();
+            lvwOrderIOptiontem.Items.Clear();
 
-            String sUrl = "orderOptionItem?siteId=" + mSiteId;
+            String sUrl = "orderOptionItem?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -152,7 +153,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
 
-                        lvwOrderItem.Items.Add(lvItem);
+                        lvwOrderIOptiontem.Items.Add(lvItem);
                     }
                 }
             }
@@ -179,9 +180,9 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["theNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["refNo"].ToString());
 
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["payDate"].ToString());
                         lvItem.SubItems.Add(arr[i]["payTime"].ToString());
-                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
                         lvItem.SubItems.Add(arr[i]["payClass"].ToString());
                         lvItem.SubItems.Add(arr[i]["billNo"].ToString());
 

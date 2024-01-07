@@ -209,7 +209,7 @@
             this.t_lockerNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.t_openLocker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvwOrderIOptiontem = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -224,8 +224,9 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label10 = new System.Windows.Forms.Label();
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label10 = new System.Windows.Forms.Label();
+            this.ol_optionNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -374,7 +375,8 @@
             this.oi_ticketNo,
             this.oi_isCancel,
             this.oi_shopCode,
-            this.ol_shopOrderNo});
+            this.ol_shopOrderNo,
+            this.ol_optionNo});
             this.lvwOrderItem.FullRowSelect = true;
             this.lvwOrderItem.GridLines = true;
             this.lvwOrderItem.HideSelection = false;
@@ -1318,11 +1320,11 @@
             this.label9.Text = "ticket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // listView1
+            // lvwOrderIOptiontem
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lvwOrderIOptiontem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwOrderIOptiontem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -1338,15 +1340,15 @@
             this.columnHeader13,
             this.columnHeader14,
             this.columnHeader24});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(43, 290);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1671, 145);
-            this.listView1.TabIndex = 18;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvwOrderIOptiontem.FullRowSelect = true;
+            this.lvwOrderIOptiontem.GridLines = true;
+            this.lvwOrderIOptiontem.HideSelection = false;
+            this.lvwOrderIOptiontem.Location = new System.Drawing.Point(43, 290);
+            this.lvwOrderIOptiontem.Name = "lvwOrderIOptiontem";
+            this.lvwOrderIOptiontem.Size = new System.Drawing.Size(1671, 145);
+            this.lvwOrderIOptiontem.TabIndex = 18;
+            this.lvwOrderIOptiontem.UseCompatibleStateImageBehavior = false;
+            this.lvwOrderIOptiontem.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -1413,6 +1415,10 @@
             // 
             this.columnHeader14.Text = "amt";
             // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "isCancel";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -1423,15 +1429,16 @@
             this.label10.Text = "order\r\nOption\r\nItem";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // columnHeader24
+            // ol_optionNo
             // 
-            this.columnHeader24.Text = "isCancel";
+            this.ol_optionNo.Text = "optionNo";
+            this.ol_optionNo.Width = 120;
             // 
             // frmCheckData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1726, 1253);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvwOrderIOptiontem);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lvwOrder);
             this.Controls.Add(this.lvwTicketFlow);
@@ -1642,7 +1649,7 @@
         private System.Windows.Forms.ColumnHeader pc_payType;
         private System.Windows.Forms.ColumnHeader pe_payType;
         private System.Windows.Forms.ColumnHeader ol_shopOrderNo;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvwOrderIOptiontem;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -1659,5 +1666,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ColumnHeader ol_optionNo;
     }
 }

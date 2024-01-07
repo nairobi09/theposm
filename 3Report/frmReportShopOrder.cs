@@ -77,10 +77,7 @@ namespace thepos
                             {
                                 String is_cancel = arr[i]["isCancel"].ToString();
 
-                                if (is_cancel == "y")
-                                {
-                                    is_cancel = "";
-                                }
+
 
                                 if (arr[i]["tranType"].ToString() == "A")
                                 {
@@ -95,7 +92,7 @@ namespace thepos
                                     //lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
                                     lvItem.SubItems.Add(is_cancel);
 
-                                    if (is_cancel == "Y")
+                                    if (is_cancel == "Y" | is_cancel == "y")
                                     {
                                         lvItem.ForeColor = Color.Gray;
                                         lvItem.SubItems[1].ForeColor = Color.Gray;

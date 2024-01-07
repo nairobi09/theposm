@@ -347,55 +347,52 @@ namespace thepos
 
 
 
-            MemOrderItem memOrderItem = new MemOrderItem();
+            MemOrderItem orderItem = new MemOrderItem();
 
             int lv_idx = (frmSales.get_lvitem_idx("CHARGE"));  // 이미  동일 상품이 주문리스트뷰에 있는지
 
             if (lv_idx == -1)
             {
 
-                memOrderItem.goods_code = "CHARGE";
-                memOrderItem.goods_name = "충전";
-                memOrderItem.cnt = 1;
-                memOrderItem.amt = charge_amt;
-                memOrderItem.dc_amount = 0;
-                memOrderItem.dcr_des = "";
-                memOrderItem.dcr_type = "";
-                memOrderItem.dcr_value = 0;
-                memOrderItem.ticket = "";
-                memOrderItem.pay_class = "CH";
-                memOrderItem.ticket_no = lvwFlow.SelectedItems[0].Tag.ToString();
-                memOrderItem.shop_code = "CHARGE";
+                orderItem.goods_code = "CHARGE";
+                orderItem.goods_name = "충전";
+                orderItem.cnt = 1;
+                orderItem.amt = charge_amt;
+                orderItem.dc_amount = 0;
+                orderItem.dcr_des = "";
+                orderItem.dcr_type = "";
+                orderItem.dcr_value = 0;
+                orderItem.ticket = "";
+                orderItem.pay_class = "CH";
+                orderItem.ticket_no = lvwFlow.SelectedItems[0].Tag.ToString();
+                orderItem.shop_code = "CHARGE";
+                orderItem.option_item_cnt = 0;
 
-                ListViewItem item = new ListViewItem();
-                item.Tag = memOrderItem;
+                mOrderOptionItemList.Clear();
+                orderItem.orderOptionItemList = mOrderOptionItemList.ToList();
 
-                item.Text = "1";
-                item.SubItems.Add(memOrderItem.goods_name);                            // 1: name 상품명
-                item.SubItems.Add(memOrderItem.amt.ToString("N0"));              // 2: amt 단가
-                item.SubItems.Add(memOrderItem.cnt.ToString());                  // 3: cnt 수량
-                item.SubItems.Add(memOrderItem.dc_amount.ToString("#,###"));     // 4: dc_amount 할인
+                //
+                replace_mem_order_item(ref orderItem, "add");
 
-                int net_amount = (memOrderItem.amt * memOrderItem.cnt) - memOrderItem.dc_amount;
-                item.SubItems.Add(net_amount.ToString("N0"));                 // 5: net_amount 금액
-                item.SubItems.Add(getDCRmemo(memOrderItem));                     // 6: 메모
-                item.SubItems.Add(lvwFlow.SelectedItems[0].Tag.ToString());
-                mLvwOrderItem.Items.Add(item);
+                mOrderItemList.Add(orderItem);
+                mLvwOrderItem.SetObjects(mOrderItemList);
 
-                mLvwOrderItem.Items[0].Selected = true;
+                mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+                mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
 
             }
             else
             {
-                memOrderItem = (MemOrderItem)mLvwOrderItem.Items[lv_idx].Tag;
+                orderItem = mOrderItemList[lv_idx];
 
-                memOrderItem.amt = charge_amt;
-                mLvwOrderItem.Items[lv_idx].SubItems[2].Text = memOrderItem.amt.ToString("N0");     // 2: amt 단가
+                orderItem.amt = charge_amt;
 
-                int net_amount = (memOrderItem.cnt * memOrderItem.amt) - memOrderItem.dc_amount;
-                mLvwOrderItem.Items[lv_idx].SubItems[5].Text = net_amount.ToString("N0");        // net_amount
-                mLvwOrderItem.Items[lv_idx].SubItems[6].Text = lvwFlow.SelectedItems[0].Tag.ToString();
-                mLvwOrderItem.Items[lv_idx].Tag = memOrderItem;
+                // 
+                replace_mem_order_item(ref orderItem, "update");
+
+                mOrderItemList[lv_idx] = orderItem;
+
+                mLvwOrderItem.SetObjects(mOrderItemList);
 
                 mLvwOrderItem.Items[lv_idx].Selected = true;
 

@@ -217,7 +217,9 @@ namespace thepos
                 cbValue.Items.Clear();
                 cbValue.Items.Add("");
                 cbValue.Items.Add("POS");
+                cbValue.Items.Add("POS-Ticket");
                 cbValue.Items.Add("PC");
+                cbValue.Items.Add("PC-Ticket");
                 cbValue.Items.Add("KIOSK");
             }
             else if (code == listSetup[1].code)  // CustomerMonitor

@@ -282,12 +282,15 @@ namespace thepos
             public String option_name_description;          // render를 통한 옵션 표시
             public String option_amt_description;          // render를 통한 옵션 표시
             public String option_dc_amount_description;          // render를 통한 옵션 표시
-            public int option_cnt;
+
+            public int option_item_cnt;  
+            public String option_no;   // option_item 연결번호
             public List<orderOptionItem> orderOptionItemList;
 
             public int order_no;                // 대기번호 [대기]을 위해
+
             public String goods_code;           // 상품code(6) or 전체할인코드고정("EDC")
-            public String goods_name;        // 상품name or 전체할인명("할인")
+            public String goods_name;           // 상품name or 전체할인명("할인")
 
             public int cnt;
             public int amt;                     // 상품단가
@@ -345,7 +348,7 @@ namespace thepos
             public String is_cancel;    // Y
         }
         public static List<dbOrder> listOrder = new List<dbOrder>();
-
+        /*
         public struct dbOrderItem
         {
             public String site_id;
@@ -371,9 +374,10 @@ namespace thepos
             public String is_cancel;    // Y
             public String shop_code;
             public String shop_order_no;
+            public String option_no;
         }
         public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
-
+        */
 
 
         // 서버

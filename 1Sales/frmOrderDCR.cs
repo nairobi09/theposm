@@ -224,7 +224,7 @@ namespace thepos
 
                 mOrderOptionItemList.Clear();
 
-                orderItem.option_cnt = mOrderOptionItemList.Count;
+                orderItem.option_item_cnt = mOrderOptionItemList.Count;
                 orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
 
 

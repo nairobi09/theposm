@@ -1056,6 +1056,7 @@ namespace thepos
 
         bool cancel_order_item(String the_no)
         {
+            //String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no + "&tranType=A";
             String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {

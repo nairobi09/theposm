@@ -97,7 +97,7 @@
             // 
             this.lblTicketSettleTitle.AutoSize = true;
             this.lblTicketSettleTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTicketSettleTitle.Location = new System.Drawing.Point(21, 363);
+            this.lblTicketSettleTitle.Location = new System.Drawing.Point(21, 351);
             this.lblTicketSettleTitle.Name = "lblTicketSettleTitle";
             this.lblTicketSettleTitle.Size = new System.Drawing.Size(53, 12);
             this.lblTicketSettleTitle.TabIndex = 71;
@@ -244,10 +244,10 @@
             this.lvwTicketSettle.FullRowSelect = true;
             this.lvwTicketSettle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwTicketSettle.HideSelection = false;
-            this.lvwTicketSettle.Location = new System.Drawing.Point(20, 378);
+            this.lvwTicketSettle.Location = new System.Drawing.Point(20, 366);
             this.lvwTicketSettle.MultiSelect = false;
             this.lvwTicketSettle.Name = "lvwTicketSettle";
-            this.lvwTicketSettle.Size = new System.Drawing.Size(482, 93);
+            this.lvwTicketSettle.Size = new System.Drawing.Size(482, 104);
             this.lvwTicketSettle.TabIndex = 67;
             this.lvwTicketSettle.UseCompatibleStateImageBehavior = false;
             this.lvwTicketSettle.View = System.Windows.Forms.View.Details;
@@ -265,7 +265,7 @@
             // 
             // cnt
             // 
-            this.cnt.Text = "건";
+            this.cnt.Text = "회";
             this.cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cnt.Width = 40;
             // 
@@ -297,7 +297,7 @@
             this.lvwTicketFlow.Location = new System.Drawing.Point(20, 140);
             this.lvwTicketFlow.MultiSelect = false;
             this.lvwTicketFlow.Name = "lvwTicketFlow";
-            this.lvwTicketFlow.Size = new System.Drawing.Size(483, 211);
+            this.lvwTicketFlow.Size = new System.Drawing.Size(483, 195);
             this.lvwTicketFlow.TabIndex = 67;
             this.lvwTicketFlow.UseCompatibleStateImageBehavior = false;
             this.lvwTicketFlow.View = System.Windows.Forms.View.Details;

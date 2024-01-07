@@ -67,9 +67,9 @@ namespace thepos
 
             if (mLvwOrderItem.SelectedItems.Count > 0)
             {
-                MemOrderItem orderItem = (MemOrderItem)(mLvwOrderItem.SelectedItems[0].Tag);
+                MemOrderItem orderItem = mOrderItemList[0];
 
-                int amt = orderItem.cnt * orderItem.amt - orderItem.dc_amount;
+                int amt = orderItem.cnt * (orderItem.amt + orderItem.option_amt) - orderItem.dc_amount;
 
                 mTbReqAmount.Text = amt.ToString("N0");
             }
@@ -257,11 +257,13 @@ namespace thepos
         {
             if (mComplexNestAmount == 0) // 복합결제 완료
             {
-                //mClearSaleForm();
+                mClearSaleForm();
                 this.Close();
             }
             else if (mComplexNetAmount == mComplexNestAmount) // 시작전
             {
+                //
+                ConsoleEnable();
                 this.Close();
             }
             else  // 부분결제 진행중
@@ -277,7 +279,7 @@ namespace thepos
             }
             else
             {
-                mClearSaleForm();
+                //mClearSaleForm();
                 //frmSales.ConsoleEnable();
             }
 
