@@ -130,17 +130,7 @@ namespace thepos
                 // 티켓플로패널
                 panelFlowConsole.Visible = true;
 
-
-                // 1 메뉴
-                btnOrder1.Location = new Point(281, 53);
-                btnOrder1.Size = new Size(60, 48);
-
-                // 2 회원
-                btnOrder2.Location = new Point(217, 53);
-                btnOrder2.Size = new Size(60, 48);
-
-                // 3 
-                btnOrder3.Visible = false;
+                btnOrderWaiting.Size = new Size(124, 48);
 
 
                 // 결제내역관리
@@ -2614,6 +2604,8 @@ namespace thepos
                 int usage_cnt = 0;
                 String flow_step = "";
 
+
+                //?? mBisDate 와 실재 bizdate가 다르면 오류발생 -> 전일자 포인트 추가가 가능해야하는가?
                 String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no;
 
                 if (mRequestGet(sUrl))
@@ -3554,7 +3546,7 @@ namespace thepos
                 }
             }
 
-
+            
 
             this.lvwOrderItem.Items.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
@@ -3568,7 +3560,7 @@ namespace thepos
                     item.BackColor = SystemColors.Highlight;
                     item.ForeColor = SystemColors.HighlightText;
                 });
-
+            
             
         }
 

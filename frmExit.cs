@@ -23,7 +23,6 @@ namespace thepos
         private void initialize_font()
         {
             btnLogout.Font = font12;
-            btnRestart.Font = font12;
             btnExit.Font = font12;
             btnCancel.Font = font12;
         }
@@ -49,11 +48,6 @@ namespace thepos
             Close();
         }
 
-        private void btnRestart_Click(object sender, EventArgs e)
-        {
-            mIsLogin = "N";
-            Application.Restart();
-        }
     }
 }
 
