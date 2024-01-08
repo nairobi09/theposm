@@ -78,7 +78,6 @@
             this.lvwList.TabIndex = 6;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
-            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
             // 
             // shop_order_no
             // 

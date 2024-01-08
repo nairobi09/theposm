@@ -90,7 +90,7 @@ namespace thepos
             }
             else if (mPayClass == "ST")
             {
-                //?
+                //
                 ticketNo = frmFlowSettlement.mSelectedTicketNo;
                 mRefNo = ticketNo.Substring(0, 20);
             }

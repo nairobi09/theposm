@@ -122,13 +122,5 @@ namespace thepos
 
         }
 
-        private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //? 
-
-
-
-
-        }
     }
 }

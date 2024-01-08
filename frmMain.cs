@@ -1067,7 +1067,7 @@ namespace thepos
 
 
 
-            //? 데이터 체크 임시
+            // 데이터 체크 임시
             //Form f = new frmCheckData();
             //f.Show();
 
@@ -1135,7 +1135,7 @@ namespace thepos
 
 
             //////////////////////////////////
-            //? 개시마감 
+            // 개시마감 
             String biz_date = "";
             String biz_status = "";
             mBizDate = "";
@@ -1179,7 +1179,7 @@ namespace thepos
             mPosNo = "";
 
 
-            //?
+            //
             mPayClass = "OR";
 
 
@@ -2504,7 +2504,7 @@ namespace thepos
         // 판매관리
         private void btnSales_Click(object sender, EventArgs e)
         {
-            //? 영업상태
+            // 영업상태
             // 영업중상태: 개시후 마감전
             // 영업마감상태 : 마감이후 개시전
 
@@ -2624,7 +2624,7 @@ namespace thepos
             }
             else if (ret == DialogResult.Retry)
             {
-                //?
+                //??
 
 
 

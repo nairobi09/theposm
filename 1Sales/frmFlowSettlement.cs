@@ -92,7 +92,7 @@ namespace thepos
             mPayClass = "ST"; // 정산 settement
 
 
-            //? 후불식이이면 취소버튼을 안보이게한다.. 
+            // 후불식이이면 취소버튼을 안보이게한다.. 
             if (mTicketType == "PD") btnCancelReq.Visible = false;
 
             // 결제버튼
@@ -206,8 +206,8 @@ namespace thepos
                         item.SubItems.Add(ticketFlow.settle_point_charge.ToString("N0"));
                         item.SubItems.Add(ticketFlow.settle_point_usage.ToString("N0"));
 
-                        //? 정산완료이면 ForeColor=gray로 변경
 
+                        // 정산완료이면 ForeColor=gray로 변경
                         if (ticketFlow.flow_step == "9")
                         {
                             item.ForeColor = Color.Gray;
@@ -591,8 +591,6 @@ namespace thepos
                                     orderItem.pay_class = arr[i]["payClass"].ToString();
                                     orderItem.ticket_no = arr[i]["ticketNo"].ToString();
 
-                                    //? description 표시
-
 
                                     //
                                     replace_mem_order_item(ref orderItem, "add");
@@ -656,7 +654,7 @@ namespace thepos
 
 
 
-            //?
+            //
             int select_idx = 0;
 
             mPanelCancel.Controls.Clear();

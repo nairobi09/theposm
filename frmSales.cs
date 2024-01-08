@@ -114,7 +114,7 @@ namespace thepos
 
             if (default_click_no > -1)
             {
-                ClickedGoodsGroup(mGoodsGroup[default_click_no].group_code);   //? 디폴트로 설정된 그룹으로 보여주자.-> 수정요망
+                ClickedGoodsGroup(mGoodsGroup[default_click_no].group_code);   // 디폴트로 설정된 그룹을 첫화면에 보여주자
             }
 
                         
@@ -261,9 +261,6 @@ namespace thepos
             lvwOrderItem.HideSelection = true;
 
 
-            //? 리스트뷰 항목이 추가 변경될때 합계를 다시 계산하기위해 
-            //  리스트뷰 변경 이벤트 추가
-
 
             btnKey1.Click += (sender, args) => ClickedKey("1");
             btnKey2.Click += (sender, args) => ClickedKey("2");
@@ -279,7 +276,7 @@ namespace thepos
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
 
 
-            //? 최초세팅 - 이후 개별창이 뜰때마다 각각창의 KeyDisplay로 세팅을 변경할 수 있다. 
+            // 최초세팅 - 이후 개별창이 뜰때마다 각각창의 KeyDisplay로 세팅을 변경할 수 있다. 
             // 서브창이 열리면서 Sale창의 콘트롤 Enable/Disable 관리를 위해서...
             mTbKeyDisplaySales = tbKeyDisplay;
             mTbKeyDisplayController = mTbKeyDisplaySales;
@@ -1999,7 +1996,6 @@ namespace thepos
 
                 for (int i = 0; i < mOrderItemList.Count; i++)
                 {
-                    //? 리스트직접 젹용
                     MemOrderItem orderItem = mOrderItemList[i];
 
                     if (orderItem.ticket == "Y")
@@ -3209,7 +3205,7 @@ namespace thepos
 
             if (orderItem.dcr_type == "A")
             {
-                tdcamount = orderItem.dcr_value;
+                tdcamount = orderItem.dcr_value * orderItem.cnt;
             }
             else if (orderItem.dcr_type == "R")
             {
@@ -3229,13 +3225,6 @@ namespace thepos
 
         }
 
-        void move_dcr_e_last()
-        {
-            //? 전체할인인 경우 리스트뷰 가장 아래줄로 내린다..
-
-
-
-        }
 
         public static bool isExist_DCR(String des)  // des = E or S
         {
@@ -4000,7 +3989,7 @@ namespace thepos
                     if (dr["tranType"].ToString() == tranType)
                     {
                         if (dr["payType"].ToString() == "C1") tStr = "카드결제";
-                        else if (dr["payType"].ToString() == "C0") tStr = "카드결제";  //? 임의등록
+                        else if (dr["payType"].ToString() == "C0") tStr = "카드결제";  // 임의등록
 
                         if (tranType == "C")
                         {
@@ -4462,7 +4451,7 @@ namespace thepos
                             if (arr[i]["tranType"].ToString() == tranType)
                             {
                                 if (arr[i]["payType"].ToString() == "C1") tStr = "카드결제";
-                                else if (arr[i]["payType"].ToString() == "C0") tStr = "카드결제";  //? 임의등록
+                                else if (arr[i]["payType"].ToString() == "C0") tStr = "카드결제";  // 임의등록
 
                                 if (tranType == "C")
                                 {
@@ -4544,7 +4533,7 @@ namespace thepos
                             //? 포인트 취소인 경우 잘되는지 다시 확인바람
                             int amount = convert_number(arr[i]["amount"].ToString());
 
-                            if (arr[i]["payType"].ToString() == "PA") // 선불 포인트  //? 잔여포인트 표시
+                            if (arr[i]["payType"].ToString() == "PA") // 선불 포인트
                             {
                                 tStr = "포인트";
                             }
@@ -4789,8 +4778,7 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
-
-                //? 영수증출력
+                //
                 PrintExtensions.Print(BytesValue, mTicketPrinterPort);
 
 
@@ -4893,7 +4881,7 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
 
-                //? 영수증출력
+                //
                 PrintExtensions.Print(BytesValue, mBillPrinterPort);
 
 
@@ -5022,7 +5010,7 @@ namespace thepos
 
             if (mTheMode == "Local")
             {
-                //? 로컬모드에서 주문번호를 어떻게 부여할까?? 자리수 늘리기?
+
                 SQLiteDataReader dr;
 
 

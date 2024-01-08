@@ -417,8 +417,7 @@ namespace thepos
             int dcAmount = 0;
 
 
-            //? 결제시 금액 세팅 - 면세금액 세금 봉사료
-
+            //?? 결제시 금액 세팅 - 면세금액 세금 봉사료
 
 
             int tAmount = netAmount;    // 결제금액

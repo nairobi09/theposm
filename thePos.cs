@@ -333,7 +333,7 @@ namespace thepos
 
 
 
-        //? 서버
+        // 서버
         public struct dbOrder
         {
             public String site_id;

@@ -487,7 +487,7 @@ namespace thepos
 
                 if (pCardAuth.pay_type == "C1")  // 카드결제취소
                 {
-                    //?
+                    //
                     PaymentCard pCardCancel = new PaymentCard();
 
                     if (requestCardCancel(pCardAuth, out pCardCancel) != 0)  // Toss process
@@ -1149,7 +1149,7 @@ namespace thepos
 
                 if (pEasyAuth.pay_type == "E1") 
                 {
-                    //?
+                    //
                     PaymentEasy pEasyCancel = new PaymentEasy();
 
                     if (requestEasyCancel(pEasyAuth, out pEasyCancel) != 0)  // Toss process
@@ -1331,7 +1331,7 @@ namespace thepos
                     cancel_payment(pay_seq, pPointAuth.amount, pay_type, is_cancel_stat);
 
 
-                    //? 포인트취소는 paymentPoint테이블에 취소건을 추가하지 않는다. 20231004
+                    // 포인트취소는 paymentPoint테이블에 취소건을 추가하지 않는다. 20231004
                     /*
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;

@@ -304,7 +304,7 @@ namespace thepos
 
                 if (pCardAuth.pay_type == "C1")  // 카드결제취소
                 {
-                    //?
+                    //
                     PaymentCard pCardCancel = new PaymentCard();
 
                     if (requestCardCancel(pCardAuth, out pCardCancel) != 0)  // Toss process
@@ -805,7 +805,7 @@ namespace thepos
 
                 if (pEasyAuth.pay_type == "E1")
                 {
-                    //?
+                    //
                     PaymentEasy pEasyCancel = new PaymentEasy();
 
                     if (requestEasyCancel(pEasyAuth, out pEasyCancel) != 0)  // Toss process

@@ -643,7 +643,7 @@ namespace thepos
             }
 
 
-            //? 간편결제
+            // 간편결제
             if (pay_keep_easy == "1")
             {
                 SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentEasy WHERE theNo='" + tTheNo + "'");
@@ -789,7 +789,7 @@ namespace thepos
             }
 
 
-            //? 간편결제
+            // 간편결제
             if (pay_keep_easy == "1")
             {
                 sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo;
