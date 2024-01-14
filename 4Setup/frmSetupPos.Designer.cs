@@ -78,7 +78,7 @@
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
-            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwOrderItem_SelectedIndexChanged);
+            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
             // 
             // name
             // 

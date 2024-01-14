@@ -466,16 +466,16 @@ namespace thepos._9SysAdmin
             // 변경된 항목만 파라메터에 넣는다.
             // 
             if (sv_goodsName != tbGoodsName.Text.Trim())
-                parameters["itemName"] = tbGoodsName.Text.Trim();
+                parameters["goodsName"] = tbGoodsName.Text.Trim();
 
             if (sv_goodsNameEN != tbGoodsNameEN.Text.Trim())
-                parameters["itemNameEn"] = tbGoodsNameEN.Text.Trim();
+                parameters["goodsNameEn"] = tbGoodsNameEN.Text.Trim();
 
             if (sv_goodsNameCH != tbGoodsNameCH.Text.Trim())
-                parameters["itemNameCh"] = tbGoodsNameCH.Text.Trim();
+                parameters["goodsNameCh"] = tbGoodsNameCH.Text.Trim();
 
             if (sv_goodsNameJP != tbGoodsNameJP.Text.Trim())
-                parameters["itemNameJp"] = tbGoodsNameJP.Text.Trim();
+                parameters["goodsNameJp"] = tbGoodsNameJP.Text.Trim();
 
 
             //

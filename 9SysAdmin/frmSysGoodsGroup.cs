@@ -21,13 +21,17 @@ namespace thepos
 
         String mSelectedPosNo = "";
 
+        List<String> pos_no = new List<String>();
+        List<String> pos_type = new List<String>();
+
 
         public frmSysGoodsGroup()
         {
             InitializeComponent();
             initialize_font();
 
-            get_posno();
+            //get_posno();
+            get_posno_from_setupPos();
 
         }
 
@@ -41,7 +45,15 @@ namespace thepos
             btnViewPosNo.Font = font10;
 
             lblGroupNameTitle.Font = font10;
+            lblGroupNameTitleEN.Font = font10;
+            lblGroupNameTitleCH.Font = font10;
+            lblGroupNameTitleJP.Font = font10;
+
             tbGroupName.Font = font10;
+            tbGroupNameEN.Font = font10;
+            tbGroupNameCH.Font = font10;
+            tbGroupNameJP.Font = font10;
+
 
             lblLocXTitle.Font = font10;
             lblLocYTitle.Font = font10;
@@ -91,12 +103,54 @@ namespace thepos
             }
         }
 
+        private void get_posno_from_setupPos()
+        {
+            String sUrl = "setupPos?siteId=" + mSiteId + "&setupCode=PosType";
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["setupPos"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        comboPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+
+                        pos_no.Add(arr[i]["posNo"].ToString());
+                        pos_type.Add(arr[i]["setupValue"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
+
 
         private void btnViewPosNo_Click(object sender, EventArgs e)
         {
             if (comboPosNo.SelectedIndex == -1) { return; }
 
-            mSelectedPosNo = comboPosNo.SelectedItem.ToString();
+            mSelectedPosNo = pos_no[comboPosNo.SelectedIndex];
+
+
+            if (pos_type[comboPosNo.SelectedIndex] == "KIOSK")
+            {
+                MessageBox.Show("KIOSK로 등록된 포스입니다.\r\n상품그룹(KIOSK) 메뉴에서 수정가능합니다.", "thepos");
+
+                return;
+            }
+
 
 
             reload_server();
@@ -113,11 +167,14 @@ namespace thepos
             tableLayoutPanelGroup.Controls.Clear();
 
             tbGroupName.Text = "";
+            tbGroupNameEN.Text = "";
+            tbGroupNameCH.Text = "";
+            tbGroupNameJP.Text = "";
+
             tbLocateX.Text = "";
             tbLocateY.Text = "";
             tbSizeX.Text = "";
             tbSizeY.Text = "";
-
 
 
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
@@ -133,6 +190,10 @@ namespace thepos
                     {
                         ListViewItem lvItem = new ListViewItem();
                         lvItem.Text = arr[i]["groupName"].ToString();
+                        lvItem.SubItems.Add(arr[i]["groupNameEn"].ToString());
+                        lvItem.SubItems.Add(arr[i]["groupNameCh"].ToString());
+                        lvItem.SubItems.Add(arr[i]["groupNameJp"].ToString());
+
                         lvItem.SubItems.Add(arr[i]["locateX"].ToString());
                         lvItem.SubItems.Add(arr[i]["locateY"].ToString());
                         lvItem.SubItems.Add(arr[i]["sizeX"].ToString());
@@ -170,6 +231,10 @@ namespace thepos
             if (lvwList.SelectedItems.Count == 0)
             {
                 tbGroupName.Text = "";
+                tbGroupNameEN.Text = "";
+                tbGroupNameCH.Text = "";
+                tbGroupNameJP.Text = "";
+
                 tbLocateX.Text = "";
                 tbLocateY.Text = "";
                 tbSizeX.Text = "";
@@ -180,6 +245,10 @@ namespace thepos
             else
             {
                 tbGroupName.Text = lvwList.SelectedItems[0].Text;
+                tbGroupNameEN.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name_en)].Text;
+                tbGroupNameCH.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name_ch)].Text;
+                tbGroupNameJP.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name_jp)].Text;
+
                 tbLocateX.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locX)].Text;
                 tbLocateY.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locY)].Text;
                 tbSizeX.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szX)].Text;
@@ -325,6 +394,9 @@ namespace thepos
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
             parameters["groupName"] = tbGroupName.Text;
+            parameters["groupNameEn"] = tbGroupNameEN.Text;
+            parameters["groupNameCh"] = tbGroupNameCH.Text;
+            parameters["groupNameJp"] = tbGroupNameJP.Text;
 
             parameters["locateX"] = locX.ToString();
             parameters["locateY"] = locY.ToString();
@@ -376,6 +448,9 @@ namespace thepos
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = (max_groupcode + 1).ToString();
             parameters["groupName"] = tbGroupName.Text;
+            parameters["groupNameEn"] = tbGroupNameEN.Text;
+            parameters["groupNameCh"] = tbGroupNameCH.Text;
+            parameters["groupNameJp"] = tbGroupNameJP.Text;
 
             parameters["locateX"] = locX.ToString();
             parameters["locateY"] = locY.ToString();

@@ -338,7 +338,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(116, 14);
             this.lblTitle.TabIndex = 103;
-            this.lblTitle.Text = "상품관리(KIOSK)";
+            this.lblTitle.Text = "상품배치(KIOSK)";
             // 
             // btnUp
             // 

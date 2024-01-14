@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblServerTitle = new System.Windows.Forms.Label();
             this.lblLocalTitle = new System.Windows.Forms.Label();
-            this.btnDownload = new System.Windows.Forms.Button();
             this.btnViewVer = new System.Windows.Forms.Button();
             this.lblPaymentCardCnt = new System.Windows.Forms.Label();
             this.lblPaymentCashCnt = new System.Windows.Forms.Label();
@@ -50,9 +49,10 @@
             this.lblOrdersTitle = new System.Windows.Forms.Label();
             this.lblCntTitle = new System.Windows.Forms.Label();
             this.lblPaymentCnt = new System.Windows.Forms.Label();
-            this.btnUpload = new System.Windows.Forms.Button();
             this.btnViewRecord = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblOrderOptionItemCnt = new System.Windows.Forms.Label();
+            this.lblOrderOptionItemTitle = new System.Windows.Forms.Label();
             this.lblTitle3 = new System.Windows.Forms.Label();
             this.lblTitle2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -62,8 +62,6 @@
             this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.msg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSyncLink = new System.Windows.Forms.Button();
-            this.lblOrderOptionItemCnt = new System.Windows.Forms.Label();
-            this.lblOrderOptionItemTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -173,28 +171,13 @@
             this.lblLocalTitle.Text = "로컬DB";
             this.lblLocalTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnDownload
-            // 
-            this.btnDownload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDownload.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDownload.ForeColor = System.Drawing.Color.White;
-            this.btnDownload.Location = new System.Drawing.Point(228, 172);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(120, 50);
-            this.btnDownload.TabIndex = 78;
-            this.btnDownload.TabStop = false;
-            this.btnDownload.Text = "수동다운로드";
-            this.btnDownload.UseVisualStyleBackColor = false;
-            // 
             // btnViewVer
             // 
             this.btnViewVer.BackColor = System.Drawing.Color.White;
             this.btnViewVer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewVer.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnViewVer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewVer.Location = new System.Drawing.Point(103, 173);
+            this.btnViewVer.Location = new System.Drawing.Point(228, 173);
             this.btnViewVer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnViewVer.Name = "btnViewVer";
             this.btnViewVer.Size = new System.Drawing.Size(120, 48);
@@ -371,28 +354,13 @@
             this.lblPaymentCnt.Text = "0";
             this.lblPaymentCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnUpload
-            // 
-            this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpload.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpload.ForeColor = System.Drawing.Color.White;
-            this.btnUpload.Location = new System.Drawing.Point(228, 528);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(120, 50);
-            this.btnUpload.TabIndex = 86;
-            this.btnUpload.TabStop = false;
-            this.btnUpload.Text = "수동업로드";
-            this.btnUpload.UseVisualStyleBackColor = false;
-            // 
             // btnViewRecord
             // 
             this.btnViewRecord.BackColor = System.Drawing.Color.White;
             this.btnViewRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewRecord.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnViewRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewRecord.Location = new System.Drawing.Point(103, 529);
+            this.btnViewRecord.Location = new System.Drawing.Point(228, 530);
             this.btnViewRecord.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnViewRecord.Name = "btnViewRecord";
             this.btnViewRecord.Size = new System.Drawing.Size(120, 48);
@@ -411,7 +379,6 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblPaymentCardCnt);
             this.groupBox1.Controls.Add(this.btnViewVer);
-            this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.lblPaymentCashCnt);
             this.groupBox1.Controls.Add(this.lblLocalTitle);
             this.groupBox1.Controls.Add(this.lblServerTitle);
@@ -422,7 +389,6 @@
             this.groupBox1.Controls.Add(this.lblServerVersion);
             this.groupBox1.Controls.Add(this.btnViewRecord);
             this.groupBox1.Controls.Add(this.lblPaymentCardTitle);
-            this.groupBox1.Controls.Add(this.btnUpload);
             this.groupBox1.Controls.Add(this.lblPaymentCashTitle);
             this.groupBox1.Controls.Add(this.lblPaymentTitle);
             this.groupBox1.Controls.Add(this.lblOrderItemTitle);
@@ -435,6 +401,34 @@
             this.groupBox1.Size = new System.Drawing.Size(379, 604);
             this.groupBox1.TabIndex = 106;
             this.groupBox1.TabStop = false;
+            // 
+            // lblOrderOptionItemCnt
+            // 
+            this.lblOrderOptionItemCnt.BackColor = System.Drawing.Color.LightGray;
+            this.lblOrderOptionItemCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderOptionItemCnt.ForeColor = System.Drawing.Color.Blue;
+            this.lblOrderOptionItemCnt.Location = new System.Drawing.Point(134, 378);
+            this.lblOrderOptionItemCnt.Margin = new System.Windows.Forms.Padding(0);
+            this.lblOrderOptionItemCnt.Name = "lblOrderOptionItemCnt";
+            this.lblOrderOptionItemCnt.Padding = new System.Windows.Forms.Padding(5);
+            this.lblOrderOptionItemCnt.Size = new System.Drawing.Size(214, 30);
+            this.lblOrderOptionItemCnt.TabIndex = 109;
+            this.lblOrderOptionItemCnt.Text = "0";
+            this.lblOrderOptionItemCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblOrderOptionItemTitle
+            // 
+            this.lblOrderOptionItemTitle.BackColor = System.Drawing.Color.DarkGray;
+            this.lblOrderOptionItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderOptionItemTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblOrderOptionItemTitle.Location = new System.Drawing.Point(26, 378);
+            this.lblOrderOptionItemTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblOrderOptionItemTitle.Name = "lblOrderOptionItemTitle";
+            this.lblOrderOptionItemTitle.Padding = new System.Windows.Forms.Padding(5);
+            this.lblOrderOptionItemTitle.Size = new System.Drawing.Size(104, 30);
+            this.lblOrderOptionItemTitle.TabIndex = 108;
+            this.lblOrderOptionItemTitle.Text = "주문옵션항목";
+            this.lblOrderOptionItemTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblTitle3
             // 
@@ -545,34 +539,6 @@
             this.btnSyncLink.UseVisualStyleBackColor = false;
             this.btnSyncLink.Click += new System.EventHandler(this.btnSyncLink_Click);
             // 
-            // lblOrderOptionItemCnt
-            // 
-            this.lblOrderOptionItemCnt.BackColor = System.Drawing.Color.LightGray;
-            this.lblOrderOptionItemCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderOptionItemCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblOrderOptionItemCnt.Location = new System.Drawing.Point(134, 378);
-            this.lblOrderOptionItemCnt.Margin = new System.Windows.Forms.Padding(0);
-            this.lblOrderOptionItemCnt.Name = "lblOrderOptionItemCnt";
-            this.lblOrderOptionItemCnt.Padding = new System.Windows.Forms.Padding(5);
-            this.lblOrderOptionItemCnt.Size = new System.Drawing.Size(214, 30);
-            this.lblOrderOptionItemCnt.TabIndex = 109;
-            this.lblOrderOptionItemCnt.Text = "0";
-            this.lblOrderOptionItemCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblOrderOptionItemTitle
-            // 
-            this.lblOrderOptionItemTitle.BackColor = System.Drawing.Color.DarkGray;
-            this.lblOrderOptionItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderOptionItemTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblOrderOptionItemTitle.Location = new System.Drawing.Point(26, 378);
-            this.lblOrderOptionItemTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblOrderOptionItemTitle.Name = "lblOrderOptionItemTitle";
-            this.lblOrderOptionItemTitle.Padding = new System.Windows.Forms.Padding(5);
-            this.lblOrderOptionItemTitle.Size = new System.Drawing.Size(104, 30);
-            this.lblOrderOptionItemTitle.TabIndex = 108;
-            this.lblOrderOptionItemTitle.Text = "주문옵션항목";
-            this.lblOrderOptionItemTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // frmSyncLink
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -602,7 +568,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblServerTitle;
         private System.Windows.Forms.Label lblLocalTitle;
-        private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnViewVer;
         private System.Windows.Forms.Label lblPaymentCardCnt;
         private System.Windows.Forms.Label lblPaymentCashCnt;
@@ -616,7 +581,6 @@
         private System.Windows.Forms.Label lblOrdersTitle;
         private System.Windows.Forms.Label lblCntTitle;
         private System.Windows.Forms.Label lblPaymentCnt;
-        private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button btnViewRecord;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblTitle2;

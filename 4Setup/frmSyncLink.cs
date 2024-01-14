@@ -46,7 +46,6 @@ namespace thepos
             lblLocalTitle.Font = font10;
             lblLocalVersion.Font = font10;
             btnViewVer.Font = font10;
-            btnDownload.Font = font10;
 
             //
             lblTitle3.Font = font10;
@@ -65,7 +64,6 @@ namespace thepos
             lblPaymentCardTitle.Font = font10;
             lblPaymentCardCnt.Font = font10;
             btnViewRecord.Font = font10;
-            btnUpload.Font = font10;
 
         }
 

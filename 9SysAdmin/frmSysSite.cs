@@ -23,7 +23,8 @@ namespace thepos._9SysAdmin
         String[] tmTicketMedia;
         String[] tmTicketMediaText;
         String[] tmVanCode;
-
+        String[] tmCutoffType;
+        String[] tmCutoffTypeText;
 
         public frmSysSite()
         {
@@ -69,6 +70,21 @@ namespace thepos._9SysAdmin
             cbVanCode.Font = font10;
             tbCallCenter.Font = font10;
 
+
+            lblCutoffType.Font = font10;
+            cbCutoffType.Font = font10;
+
+            lblCutoffTime.Font = font10;
+            tbCutoffTime.Font = font10;
+
+            lblCutoffTime1.Font = font10;
+            lblCutoffTime2.Font = font10;
+
+
+
+
+
+
             lblBillImage.Font = font10;
             btnX.Font = font10;
 
@@ -92,7 +108,10 @@ namespace thepos._9SysAdmin
             tmVanCode = new String[3] { "NICE", "KCP", "KOVAN" };
 
 
+            tmCutoffType = new String[2] { "A", "M" };
+            tmCutoffTypeText = new String[2] { "자동", "수동" };
 
+            
             cbTicketType.Items.Clear();
             for (int i = 0; i < tmTicketTypeText.Length; i++)
             {
@@ -109,6 +128,12 @@ namespace thepos._9SysAdmin
             for (int i = 0; i < tmVanCode.Length; i++)
             {
                 cbVanCode.Items.Add(tmVanCode[i]);
+            }
+
+            cbCutoffType.Items.Clear();
+            for (int i = 0; i < tmCutoffTypeText.Length; i++)
+            {
+                cbCutoffType.Items.Add(tmCutoffTypeText[i]);
             }
 
 
@@ -167,6 +192,24 @@ namespace thepos._9SysAdmin
                             }
                         }
 
+                        // A M
+                        String cutoffType = arr[0]["cutoffType"].ToString();
+                        for (int i = 0; i < tmCutoffType.Length; i++)
+                        {
+                            if (tmCutoffType[i] == cutoffType)
+                            {
+                                cbCutoffType.SelectedIndex = i;
+                            }
+                        }
+
+                        tbCutoffTime.Text = arr[0]["cutoffTime"].ToString();
+
+
+
+                        tbBizTelNo.Text = arr[0]["bizTelNo"].ToString();
+
+
+
                         //
                         tbCallCenter.Text = arr[0]["callCenterNo"].ToString();
 
@@ -206,6 +249,18 @@ namespace thepos._9SysAdmin
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+
+            if (tbCutoffTime.Text.Length != 4)
+            {
+
+
+                MessageBox.Show("마감시간 오류.", "thepos");
+                return;
+            }
+
+
+
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
 
@@ -232,6 +287,12 @@ namespace thepos._9SysAdmin
                 parameters["vanCode"] = "";
             else
                 parameters["vanCode"] = tmVanCode[cbVanCode.SelectedIndex];
+
+            //
+            parameters["cutoffType"] = tmCutoffType[cbCutoffType.SelectedIndex];
+            parameters["cutoffTime"] = tbCutoffTime.Text;
+
+
 
             parameters["callCenterNo"] = tbCallCenter.Text;
 
@@ -269,6 +330,7 @@ namespace thepos._9SysAdmin
                     mTicketType = tmTicketType[cbTicketType.SelectedIndex];
                     mTicketMedia = tmTicketMedia[cbTicketMedia.SelectedIndex];
                     mVanCode = tmVanCode[cbVanCode.SelectedIndex];
+
                     mCallCenterNo = tbCallCenter.Text;
 
                     MessageBox.Show("정상 수정 완료.", "thepos");

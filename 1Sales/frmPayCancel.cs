@@ -580,7 +580,7 @@ namespace thepos
 
 
                         SetDisplayAlarm("I", "카드결제 취소.");
-                        MessageBox.Show("카드결제 취소 성공", "thepos");
+                        //MessageBox.Show("카드결제 취소 성공", "thepos");
                     }
                 }
                 else if (pCardAuth.pay_type == "C0")  // 임의 등록
@@ -719,7 +719,7 @@ namespace thepos
                 // 영수증인쇄
                 if (is_cancel_stat == "Y")
                 {
-                    print_bill(mTheNo, "C", "", "1101", true);
+                    print_bill(pCardAuth.the_no, "C", "", "1101", true);
                 }
 
             }

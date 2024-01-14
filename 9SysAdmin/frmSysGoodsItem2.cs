@@ -21,6 +21,9 @@ namespace thepos._9SysAdmin
         private BindingList<object> selected_groupList = new BindingList<object>();
         private BindingList<object> source_groupList = new BindingList<object>();
 
+        List<String> pos_no = new List<String>();
+        List<String> pos_type = new List<String>();
+
 
         public frmSysGoodsItem2()
         {
@@ -30,14 +33,15 @@ namespace thepos._9SysAdmin
             initialize_the();
 
             get_goods();
+            get_posno_from_setupPos();
 
-
+            /*
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
             }
-
+            */
         }
 
 
@@ -132,9 +136,41 @@ namespace thepos._9SysAdmin
             }
         }
 
+        private void get_posno_from_setupPos()
+        {
+            String sUrl = "setupPos?siteId=" + mSiteId + "&setupCode=PosType";
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["setupPos"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        cbPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+
+                        pos_no.Add(arr[i]["posNo"].ToString());
+                        pos_type.Add(arr[i]["setupValue"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
         private void cbPosNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mSelectedPosNo = cbPosNo.SelectedItem.ToString();
+            mSelectedPosNo = pos_no[cbPosNo.SelectedIndex];
 
 
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
@@ -172,7 +208,17 @@ namespace thepos._9SysAdmin
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            mSelectedPosNo = cbPosNo.SelectedItem.ToString();
+            mSelectedPosNo = pos_no[cbPosNo.SelectedIndex];
+
+
+            if (pos_type[cbPosNo.SelectedIndex] != "KIOSK")
+            {
+                MessageBox.Show("KIOSK로 등록된 포스가 아닙니다.\r\n상품배치(POS) 메뉴에서 수정가능합니다.", "thepos");
+
+                return;
+            }
+
+
             mSelectedGroupCode = cbGroup.SelectedValue.ToString();
 
             reload_server();

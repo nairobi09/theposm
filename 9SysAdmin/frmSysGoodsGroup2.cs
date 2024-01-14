@@ -18,12 +18,17 @@ namespace thepos._9SysAdmin
 
         String mSelectedPosNo = "";
 
+        List<String> pos_no = new List<String>();
+        List<String> pos_type = new List<String>();
+
+
         public frmSysGoodsGroup2()
         {
             InitializeComponent();
             initialize_font();
 
-            get_posno();
+            //get_posno();
+            get_posno_from_setupPos();
 
         }
 
@@ -37,7 +42,14 @@ namespace thepos._9SysAdmin
             btnViewPosNo.Font = font10;
 
             lblGroupNameTitle.Font = font10;
+            lblGroupNameTitleEN.Font = font10;
+            lblGroupNameTitleCH.Font = font10;
+            lblGroupNameTitleJP.Font = font10;
+
             tbGroupName.Font = font10;
+            tbGroupNameEN.Font = font10;
+            tbGroupNameCH.Font = font10;
+            tbGroupNameJP.Font = font10;
 
             btnInput.Font = font10;
             btnUpdate.Font = font10;
@@ -75,12 +87,51 @@ namespace thepos._9SysAdmin
             }
         }
 
+        private void get_posno_from_setupPos()
+        {
+            String sUrl = "setupPos?siteId=" + mSiteId + "&setupCode=PosType";
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["setupPos"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        comboPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+
+                        pos_no.Add(arr[i]["posNo"].ToString());
+                        pos_type.Add(arr[i]["setupValue"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
         private void btnViewPosNo_Click(object sender, EventArgs e)
         {
             if (comboPosNo.SelectedIndex == -1) { return; }
 
-            mSelectedPosNo = comboPosNo.SelectedItem.ToString();
+            mSelectedPosNo = pos_no[comboPosNo.SelectedIndex];
 
+
+            if (pos_type[comboPosNo.SelectedIndex] != "KIOSK")
+            {
+                MessageBox.Show("KIOSK로 등록된 포스가 아닙니다.\r\n상품그룹(POS) 메뉴에서 수정가능합니다.", "thepos");
+
+                return;
+            }
 
             reload_server();
 
@@ -96,6 +147,9 @@ namespace thepos._9SysAdmin
             else
             {
                 tbGroupName.Text = lvwList.SelectedItems[0].SubItems[1].Text;
+                tbGroupNameEN.Text = lvwList.SelectedItems[0].SubItems[2].Text;
+                tbGroupNameCH.Text = lvwList.SelectedItems[0].SubItems[3].Text;
+                tbGroupNameJP.Text = lvwList.SelectedItems[0].SubItems[4].Text;
             }
         }
 
@@ -111,6 +165,9 @@ namespace thepos._9SysAdmin
             int[] group_seq;
             String[] group_code;
             String[] group_name;
+            String[] group_name_en;
+            String[] group_name_ch;
+            String[] group_name_jp;
 
 
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
@@ -125,12 +182,18 @@ namespace thepos._9SysAdmin
                     group_seq = new int[arr.Count];
                     group_code = new String[arr.Count];
                     group_name = new String[arr.Count];
+                    group_name_en = new String[arr.Count];
+                    group_name_ch = new String[arr.Count];
+                    group_name_jp = new String[arr.Count];
 
                     for (int i = 0; i < arr.Count; i++)
                     {
                         group_seq[i] = convert_number(arr[i]["locateX"].ToString());
-                        group_name[i] = arr[i]["groupName"].ToString();
                         group_code[i] = arr[i]["groupCode"].ToString();
+                        group_name[i] = arr[i]["groupName"].ToString();
+                        group_name_en[i] = arr[i]["groupNameEn"].ToString();
+                        group_name_ch[i] = arr[i]["groupNameCh"].ToString();
+                        group_name_jp[i] = arr[i]["groupNameJp"].ToString();
 
                         int code_num = 0;
                         if (get_number(arr[i]["groupCode"].ToString(), ref code_num))
@@ -177,9 +240,10 @@ namespace thepos._9SysAdmin
                         group_code[i] = group_code[i + 1];
                         group_code[i + 1] = temp_str;
 
-                        temp_str = group_name[i];
-                        group_name[i] = group_name[i + 1];
-                        group_name[i + 1] = temp_str;
+                        temp_str = group_name[i];       group_name[i] = group_name[i + 1];          group_name[i + 1] = temp_str;
+                        temp_str = group_name_en[i];    group_name_en[i] = group_name_en[i + 1];    group_name_en[i + 1] = temp_str;
+                        temp_str = group_name_ch[i];    group_name_ch[i] = group_name_ch[i + 1];    group_name_ch[i + 1] = temp_str;
+                        temp_str = group_name_jp[i];    group_name_jp[i] = group_name_jp[i + 1];    group_name_jp[i + 1] = temp_str;
 
                         sort_complete = false;
                     }
@@ -187,12 +251,15 @@ namespace thepos._9SysAdmin
             }
 
 
-
             for (int i = 0; i < group_seq.Length; i++)
             {
                 ListViewItem lvItem = new ListViewItem();
                 lvItem.Text = (i + 1).ToString();
                 lvItem.SubItems.Add(group_name[i]);
+                lvItem.SubItems.Add(group_name_en[i]);
+                lvItem.SubItems.Add(group_name_ch[i]);
+                lvItem.SubItems.Add(group_name_jp[i]);
+
                 lvItem.Tag = group_code[i];
 
                 lvwList.Items.Add(lvItem);
@@ -252,6 +319,9 @@ namespace thepos._9SysAdmin
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = (++max_groupcode).ToString();
             parameters["groupName"] = tbGroupName.Text;
+            parameters["groupNameEn"] = tbGroupNameEN.Text;
+            parameters["groupNameCh"] = tbGroupNameCH.Text;
+            parameters["groupNameJp"] = tbGroupNameJP.Text;
 
             parameters["locateX"] = (lvwList.Items.Count + 1).ToString();
             parameters["locateY"] = "0";
@@ -289,6 +359,9 @@ namespace thepos._9SysAdmin
             parameters["posNo"] = mSelectedPosNo;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
             parameters["groupName"] = tbGroupName.Text;
+            parameters["groupNameEn"] = tbGroupNameEN.Text;
+            parameters["groupNameCh"] = tbGroupNameCH.Text;
+            parameters["groupNameJp"] = tbGroupNameJP.Text;
 
             parameters["locateX"] = lvwList.SelectedItems[0].Text;
             parameters["locateY"] = "0";
@@ -369,7 +442,7 @@ namespace thepos._9SysAdmin
                 parameters["sizeX"] = "0";
                 parameters["sizeY"] = "0";
 
-                if (mRequestPatch("goodsItem", parameters))
+                if (mRequestPatch("goodsGroup", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {

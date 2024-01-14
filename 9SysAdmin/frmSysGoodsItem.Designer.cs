@@ -94,7 +94,7 @@
             this.lvwGoodsLink.Location = new System.Drawing.Point(401, 55);
             this.lvwGoodsLink.MultiSelect = false;
             this.lvwGoodsLink.Name = "lvwGoodsLink";
-            this.lvwGoodsLink.Size = new System.Drawing.Size(339, 333);
+            this.lvwGoodsLink.Size = new System.Drawing.Size(334, 333);
             this.lvwGoodsLink.TabIndex = 43;
             this.lvwGoodsLink.TabStop = false;
             this.lvwGoodsLink.UseCompatibleStateImageBehavior = false;
@@ -150,7 +150,7 @@
             this.tableLayoutPanelItemSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelItemSelected.Location = new System.Drawing.Point(381, 398);
+            this.tableLayoutPanelItemSelected.Location = new System.Drawing.Point(378, 398);
             this.tableLayoutPanelItemSelected.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelItemSelected.Name = "tableLayoutPanelItemSelected";
             this.tableLayoutPanelItemSelected.RowCount = 8;
@@ -162,7 +162,7 @@
             this.tableLayoutPanelItemSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItemSelected.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelItemSelected.Size = new System.Drawing.Size(359, 299);
+            this.tableLayoutPanelItemSelected.Size = new System.Drawing.Size(357, 299);
             this.tableLayoutPanelItemSelected.TabIndex = 60;
             // 
             // cbGroup
@@ -172,7 +172,7 @@
             this.cbGroup.FormattingEnabled = true;
             this.cbGroup.Location = new System.Drawing.Point(6, 79);
             this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(100, 21);
+            this.cbGroup.Size = new System.Drawing.Size(105, 21);
             this.cbGroup.TabIndex = 61;
             // 
             // lblTitle
@@ -184,7 +184,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(107, 14);
             this.lblTitle.TabIndex = 62;
-            this.lblTitle.Text = "상품관리(POS)";
+            this.lblTitle.Text = "상품배치(POS)";
             // 
             // lblT4
             // 
@@ -321,7 +321,7 @@
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Location = new System.Drawing.Point(6, 32);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(100, 21);
+            this.cbPosNo.Size = new System.Drawing.Size(105, 21);
             this.cbPosNo.TabIndex = 82;
             this.cbPosNo.SelectedIndexChanged += new System.EventHandler(this.comboPosNo_SelectedIndexChanged);
             // 
@@ -351,7 +351,7 @@
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelItem.Size = new System.Drawing.Size(359, 299);
+            this.tableLayoutPanelItem.Size = new System.Drawing.Size(357, 299);
             this.tableLayoutPanelItem.TabIndex = 84;
             // 
             // btnDelete
@@ -362,7 +362,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(6, 142);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(100, 30);
+            this.btnDelete.Size = new System.Drawing.Size(105, 30);
             this.btnDelete.TabIndex = 88;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -376,7 +376,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Location = new System.Drawing.Point(7, 96);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(105, 40);
             this.btnUpdate.TabIndex = 89;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -388,9 +388,9 @@
             this.btnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLink.ForeColor = System.Drawing.Color.White;
-            this.btnLink.Location = new System.Drawing.Point(754, 221);
+            this.btnLink.Location = new System.Drawing.Point(749, 221);
             this.btnLink.Name = "btnLink";
-            this.btnLink.Size = new System.Drawing.Size(100, 40);
+            this.btnLink.Size = new System.Drawing.Size(105, 40);
             this.btnLink.TabIndex = 90;
             this.btnLink.Text = "상품연결";
             this.btnLink.UseVisualStyleBackColor = false;
@@ -409,9 +409,9 @@
             this.groupBox1.Controls.Add(this.tbSizeX);
             this.groupBox1.Controls.Add(this.tbLocateY);
             this.groupBox1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(748, 267);
+            this.groupBox1.Location = new System.Drawing.Point(743, 267);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(113, 178);
+            this.groupBox1.Size = new System.Drawing.Size(118, 178);
             this.groupBox1.TabIndex = 93;
             this.groupBox1.TabStop = false;
             // 
@@ -432,9 +432,9 @@
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnApply.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnApply.Location = new System.Drawing.Point(755, 464);
+            this.btnApply.Location = new System.Drawing.Point(750, 464);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(100, 40);
+            this.btnApply.Size = new System.Drawing.Size(105, 40);
             this.btnApply.TabIndex = 95;
             this.btnApply.Text = "적용보기";
             this.btnApply.UseVisualStyleBackColor = false;
@@ -470,9 +470,9 @@
             this.groupBox2.Controls.Add(this.cbPosNo);
             this.groupBox2.Controls.Add(this.lblPosNoTitle);
             this.groupBox2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox2.Location = new System.Drawing.Point(748, 47);
+            this.groupBox2.Location = new System.Drawing.Point(743, 47);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(113, 160);
+            this.groupBox2.Size = new System.Drawing.Size(118, 160);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
             // 
@@ -484,7 +484,7 @@
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnView.Location = new System.Drawing.Point(6, 112);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 40);
+            this.btnView.Size = new System.Drawing.Size(105, 40);
             this.btnView.TabIndex = 99;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
@@ -498,9 +498,9 @@
             this.groupBox3.Controls.Add(this.cbSourcePosNo);
             this.groupBox3.Controls.Add(this.lblCopyPosNoTitle);
             this.groupBox3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(748, 508);
+            this.groupBox3.Location = new System.Drawing.Point(743, 508);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(113, 186);
+            this.groupBox3.Size = new System.Drawing.Size(118, 186);
             this.groupBox3.TabIndex = 100;
             this.groupBox3.TabStop = false;
             // 
@@ -512,7 +512,7 @@
             this.btnCopy.ForeColor = System.Drawing.Color.White;
             this.btnCopy.Location = new System.Drawing.Point(6, 114);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(100, 30);
+            this.btnCopy.Size = new System.Drawing.Size(105, 30);
             this.btnCopy.TabIndex = 99;
             this.btnCopy.Text = "그룹복사";
             this.btnCopy.UseVisualStyleBackColor = false;
@@ -526,7 +526,7 @@
             this.cbSourceGroup.FormattingEnabled = true;
             this.cbSourceGroup.Location = new System.Drawing.Point(6, 82);
             this.cbSourceGroup.Name = "cbSourceGroup";
-            this.cbSourceGroup.Size = new System.Drawing.Size(100, 21);
+            this.cbSourceGroup.Size = new System.Drawing.Size(105, 21);
             this.cbSourceGroup.TabIndex = 61;
             // 
             // lblCopyGroupTitle
@@ -548,7 +548,7 @@
             this.cbSourcePosNo.FormattingEnabled = true;
             this.cbSourcePosNo.Location = new System.Drawing.Point(6, 36);
             this.cbSourcePosNo.Name = "cbSourcePosNo";
-            this.cbSourcePosNo.Size = new System.Drawing.Size(100, 21);
+            this.cbSourcePosNo.Size = new System.Drawing.Size(105, 21);
             this.cbSourcePosNo.TabIndex = 82;
             this.cbSourcePosNo.SelectedIndexChanged += new System.EventHandler(this.cbSourcePosNo_SelectedIndexChanged);
             // 

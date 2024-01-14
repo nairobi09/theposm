@@ -2543,7 +2543,7 @@ namespace thepos
                         panelDivision.Controls.Add(fForm);
                         fForm.Show();
                     }
-                    else if (biz_Status == "F")  // 마감
+                    else if (biz_Status == "F" | biz_Status == "Y")  // 마감, 집계완료
                     {
                         MessageBox.Show("영업개시전입니다. 영업개시 입력바랍니다.", "thepos");
                         return;

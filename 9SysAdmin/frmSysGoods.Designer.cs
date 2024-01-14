@@ -41,6 +41,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblJP = new System.Windows.Forms.Label();
             this.lblCH = new System.Windows.Forms.Label();
@@ -198,6 +199,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblJP);
             this.groupBox1.Controls.Add(this.lblCH);
@@ -223,20 +225,31 @@
             this.groupBox1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(28, 521);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(649, 166);
+            this.groupBox1.Size = new System.Drawing.Size(649, 171);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(589, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 12);
+            this.label2.TabIndex = 60;
+            this.label2.Text = "jpg";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(493, 150);
+            this.label1.Location = new System.Drawing.Point(586, 121);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 60;
-            this.label1.Text = "250 × 250";
+            this.label1.Text = "240 × 240";
             // 
             // lblJP
             // 
@@ -329,7 +342,7 @@
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnX.ForeColor = System.Drawing.Color.DimGray;
-            this.btnX.Location = new System.Drawing.Point(589, 117);
+            this.btnX.Location = new System.Drawing.Point(589, 83);
             this.btnX.Name = "btnX";
             this.btnX.Size = new System.Drawing.Size(33, 30);
             this.btnX.TabIndex = 12;
@@ -341,10 +354,10 @@
             // pbImage
             // 
             this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbImage.Location = new System.Drawing.Point(463, 27);
+            this.pbImage.Location = new System.Drawing.Point(463, 28);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(120, 120);
-            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImage.TabIndex = 48;
             this.pbImage.TabStop = false;
             this.pbImage.Click += new System.EventHandler(this.pbImage_Click);
@@ -584,5 +597,6 @@
         private System.Windows.Forms.Label lblKR;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label label2;
     }
 }

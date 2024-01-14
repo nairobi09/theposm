@@ -191,7 +191,7 @@ namespace thepos
 
 
 
-        private void lvwOrderItem_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwList.SelectedItems.Count == 0) return;
 
@@ -247,13 +247,6 @@ namespace thepos
                 tbValue.Visible = true;
 
             }
-
-
-
-
-
-
-
 
         }
 
@@ -373,14 +366,6 @@ namespace thepos
         {
             reload_setup_pos();
         }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-
-            mPanelDivision.Visible = false;
-        }
-
 
     }
 }

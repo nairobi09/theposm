@@ -30,6 +30,7 @@
         {
             this.btnNo = new System.Windows.Forms.Button();
             this.btnYes = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -39,9 +40,9 @@
             this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNo.ForeColor = System.Drawing.Color.White;
-            this.btnNo.Location = new System.Drawing.Point(87, 94);
+            this.btnNo.Location = new System.Drawing.Point(100, 159);
             this.btnNo.Name = "btnNo";
-            this.btnNo.Size = new System.Drawing.Size(140, 100);
+            this.btnNo.Size = new System.Drawing.Size(160, 100);
             this.btnNo.TabIndex = 42;
             this.btnNo.Text = "안함";
             this.btnNo.UseVisualStyleBackColor = false;
@@ -53,23 +54,34 @@
             this.btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnYes.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnYes.ForeColor = System.Drawing.Color.White;
-            this.btnYes.Location = new System.Drawing.Point(233, 94);
+            this.btnYes.Location = new System.Drawing.Point(266, 159);
             this.btnYes.Name = "btnYes";
-            this.btnYes.Size = new System.Drawing.Size(140, 100);
+            this.btnYes.Size = new System.Drawing.Size(160, 100);
             this.btnYes.TabIndex = 41;
             this.btnYes.Text = "출력";
             this.btnYes.UseVisualStyleBackColor = false;
             this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(118, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(290, 59);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "영수증을 출력할까요?";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblTitle
             // 
-            this.lblTitle.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(153, 36);
+            this.lblTitle.Location = new System.Drawing.Point(118, 24);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(149, 26);
-            this.lblTitle.TabIndex = 43;
-            this.lblTitle.Text = "영수증 출력";
+            this.lblTitle.Size = new System.Drawing.Size(290, 59);
+            this.lblTitle.TabIndex = 48;
+            this.lblTitle.Text = "정상완료";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmYesNo
@@ -77,7 +89,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(461, 245);
+            this.ClientSize = new System.Drawing.Size(526, 319);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.btnYes);
@@ -94,6 +107,7 @@
 
         private System.Windows.Forms.Button btnNo;
         private System.Windows.Forms.Button btnYes;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTitle;
     }
 }

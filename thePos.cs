@@ -106,6 +106,8 @@ namespace thepos
         public static String mTicketMedia;  // 띠지BC   팔찌RF
         public static String mVanCode = "";
 
+        
+
         // 콜센터 연락처
         public static String mCallCenterNo = "";
         public static String mServerDbVer = "";

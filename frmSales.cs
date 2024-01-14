@@ -1436,8 +1436,6 @@ namespace thepos
                     }
                 }
             }
-
-
         }
 
 
@@ -4840,8 +4838,6 @@ namespace thepos
                 }
 
 
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 //
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(headerBill));
@@ -4863,6 +4859,9 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -5316,6 +5315,8 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 

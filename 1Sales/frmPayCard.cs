@@ -446,8 +446,6 @@ namespace thepos
 
                 
                 // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
-                //MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
-
                 set_shop_order_no_on_orderitem(out dcAmount);
 
 
