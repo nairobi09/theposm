@@ -5247,7 +5247,7 @@ namespace thepos
 
             PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
 
-            byte[] BytesValue = new byte[100];
+            byte[] BytesValue = new byte[0];
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
@@ -5314,11 +5314,6 @@ namespace thepos
             strPrint = "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -5398,7 +5393,7 @@ namespace thepos
 
             PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
 
-            byte[] BytesValue = new byte[100];
+            byte[] BytesValue = new byte[0];
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
@@ -5438,9 +5433,6 @@ namespace thepos
             strPrint = "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
-
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());

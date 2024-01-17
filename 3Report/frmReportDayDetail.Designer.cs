@@ -94,7 +94,7 @@
             // 
             // the_no
             // 
-            this.the_no.Text = "####";
+            this.the_no.Text = "######";
             // 
             // tran_type
             // 
@@ -170,7 +170,7 @@
             this.lvwOrder.GridLines = true;
             this.lvwOrder.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrder.HideSelection = false;
-            this.lvwOrder.Location = new System.Drawing.Point(20, 429);
+            this.lvwOrder.Location = new System.Drawing.Point(20, 431);
             this.lvwOrder.MultiSelect = false;
             this.lvwOrder.Name = "lvwOrder";
             this.lvwOrder.Size = new System.Drawing.Size(760, 139);
@@ -180,13 +180,13 @@
             // 
             // no
             // 
-            this.no.Text = "#";
-            this.no.Width = 30;
+            this.no.Text = "#주문";
+            this.no.Width = 50;
             // 
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 120;
+            this.name.Width = 200;
             // 
             // amt
             // 
@@ -247,8 +247,8 @@
             // 
             // p_seq_no
             // 
-            this.p_seq_no.Text = "#";
-            this.p_seq_no.Width = 30;
+            this.p_seq_no.Text = "#결제";
+            this.p_seq_no.Width = 50;
             // 
             // p_tran_type
             // 

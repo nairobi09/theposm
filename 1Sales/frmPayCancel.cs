@@ -1603,8 +1603,8 @@ namespace thepos
                 SQLiteDataReader dr = sql_select_local_db(sql);
                 while (dr.Read())
                 {
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo, optionNo) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + the_no + "','" + dr["refNo"].ToString() + "','C','" + get_today_date() + "','" + get_today_time() + "','" + dr["goodsCode"].ToString() + "','" + dr["goodsName"].ToString() + "'," + dr["cnt"].ToString() + "," + dr["amt"].ToString() + "," +
+                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, optionAmt, shopCode, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo, optionNo) " +
+                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + the_no + "','" + dr["refNo"].ToString() + "','C','" + get_today_date() + "','" + get_today_time() + "','" + dr["goodsCode"].ToString() + "','" + dr["goodsName"].ToString() + "'," + dr["cnt"].ToString() + "," + dr["amt"].ToString() + "," + dr["optionAmt"].ToString() + "," +
                                 "'" + dr["shopCode"].ToString() + "','" + dr["ticketNo"].ToString() + "','" + dr["taxFree"].ToString() + "'," + dr["dcAmount"].ToString() + ",'" + dr["dcrType"].ToString() + "','" + dr["dcrDes"].ToString() + "'," + dr["dcrValue"].ToString() + ",'" + dr["payClass"].ToString() + "','" + dr["ticketNo"].ToString() + "','Y', '" + dr["shopCode"].ToString() + "','" + dr["shopOrderNo"].ToString() + "','" + dr["optionNo"].ToString() + "')";
                     sql_excute_local_db(sql);
                 }
@@ -1637,6 +1637,7 @@ namespace thepos
 
                             parameters["cnt"] = arr[i]["cnt"].ToString();
                             parameters["amt"] = arr[i]["amt"].ToString();
+                            parameters["optionAmt"] = arr[i]["optionAmt"].ToString();  // 
 
                             parameters["ticketYn"] = arr[i]["ticketYn"].ToString();
                             parameters["taxFree"] = arr[i]["taxFree"].ToString();

@@ -1046,8 +1046,9 @@ namespace thepos
             }
             else
             {
-                MessageBox.Show("네트워크 모드 오류", "thepos");
-                return;
+                // 설치후 최초실행
+                server_login();
+
             }
 
 

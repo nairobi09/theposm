@@ -71,7 +71,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        if (arr[i]["shopOrderNo"].ToString().Length >= 4)
+                    ///    if (arr[i]["shopOrderNo"].ToString().Length >= 4)
                         {
                             if (shop_code == "" | (shop_code != "" & shop_code == arr[i]["shopCode"].ToString()))
                             {

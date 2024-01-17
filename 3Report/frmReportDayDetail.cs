@@ -163,24 +163,22 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        int amt = convert_number(arr[i]["amt"].ToString());
                         int cnt = convert_number(arr[i]["cnt"].ToString());
+                        int amt = convert_number(arr[i]["amt"].ToString());
+                        int option_amt = convert_number(arr[i]["optionAmt"].ToString());
                         int dc_amt = convert_number(arr[i]["dcAmount"].ToString());
-                        int net_amt = (amt * cnt) - dc_amt;
+                        int net_amt = ((amt + option_amt) * cnt) - dc_amt;
                         String dcr_des = arr[i]["dcrDes"].ToString();
                         String dcr_type = arr[i]["dcrType"].ToString();
                         String dcr_value = arr[i]["dcrValue"].ToString();
 
                         ListViewItem lvItem = new ListViewItem();
-
                         lvItem.Text = (i + 1).ToString();
-
                         lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(amt.ToString("N0"));
                         lvItem.SubItems.Add(cnt.ToString("N0"));
                         lvItem.SubItems.Add(dc_amt.ToString("N0"));
                         lvItem.SubItems.Add(net_amt.ToString("N0"));
-
 
                         String memo = "";
                         if (dcr_type == "R")
@@ -194,8 +192,41 @@ namespace thepos
 
                         lvItem.SubItems.Add(memo);
 
-
                         lvwOrder.Items.Add(lvItem);
+
+                        
+                        // 옵션아이템 보기
+                        if (arr[i]["optionNo"].ToString() != "")
+                        {
+                            sUrl = "orderOptionItem?siteId=" + mSiteId + "&optionNo=" + arr[i]["optionNo"].ToString();
+                            if (mRequestGet(sUrl))
+                            {
+                                if (mObj["resultCode"].ToString() == "200")
+                                {
+                                    String data2 = mObj["orderOptionItems"].ToString();
+                                    JArray arr2 = JArray.Parse(data2);
+
+                                    String t_option_name = "";
+
+                                    for (int k = 0; k < arr2.Count; k++)
+                                    {
+                                        t_option_name += arr2[k]["optionItemName"].ToString() + " ";
+                                    }
+
+                                    ListViewItem lvItem2 = new ListViewItem();
+                                    lvItem2.Text = "";
+                                    lvItem2.SubItems.Add("- " + t_option_name);
+                                    lvItem2.SubItems.Add(option_amt.ToString("N0"));
+                                    lvItem2.SubItems.Add("");
+                                    lvItem2.SubItems.Add("");
+                                    lvItem2.SubItems.Add("");
+                                    lvItem2.SubItems.Add("");
+
+                                    lvwOrder.Items.Add(lvItem2);
+
+                                }
+                            }
+                        }
 
                     }
                 }
