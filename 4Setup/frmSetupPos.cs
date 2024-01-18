@@ -183,6 +183,7 @@ namespace thepos
                 lvItem.SubItems.Add(listSetup[i].value);
                 lvItem.SubItems.Add("");
                 lvItem.SubItems.Add(listSetup[i].memo);
+                lvItem.SubItems.Add("");
                 lvItem.Tag = listSetup[i].code;
                 lvwList.Items.Add(lvItem);
             }
@@ -227,7 +228,7 @@ namespace thepos
                 cbValue.Visible = true;
 
                 cbValue.Items.Clear();
-                cbValue.Items.Add("");
+                cbValue.Items.Add(" ");
                 cbValue.Items.Add("Y");
                 cbValue.Items.Add("N");
             }
@@ -236,7 +237,7 @@ namespace thepos
                 cbValue.Visible = true;
 
                 cbValue.Items.Clear ();
-                cbValue.Items.Add("");
+                cbValue.Items.Add(" ");
                 foreach (string s in SerialPort.GetPortNames())
                 {
                     cbValue.Items.Add(s);
@@ -254,9 +255,16 @@ namespace thepos
         {
 
             if (cbValue.Visible)
+            {
                 lvwList.SelectedItems[0].SubItems[2].Text = cbValue.Text;
+                lvwList.SelectedItems[0].SubItems[4].Text = "변경";
+            }
             else
+            {
                 lvwList.SelectedItems[0].SubItems[2].Text = tbValue.Text;
+                lvwList.SelectedItems[0].SubItems[4].Text = "변경";
+            }
+                
 
             isAdd = true;
         }
@@ -279,7 +287,7 @@ namespace thepos
                     {
                         String t_value = "";
 
-                        if (lvwList.Items[i].SubItems[2].Text != "")
+                        if (lvwList.Items[i].SubItems[4].Text == "변경")
                         {
                             t_value = lvwList.Items[i].SubItems[2].Text;
                         }
@@ -294,14 +302,6 @@ namespace thepos
                         result = sql_excute_local_db(sql);
 
 
-                        //
-                        if (lvwList.Items[i].Tag.ToString() == "PosType") mPosType = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = t_value;
-                        else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = t_value;
-
                     }
                 }
                 else
@@ -314,52 +314,72 @@ namespace thepos
                 //
                 for (int i = 0; i < lvwList.Items.Count; i++)
                 {
-                    if (lvwList.Items[i].SubItems[2].Text != "")
-                    {
-                        Dictionary<string, string> parameters = new Dictionary<string, string>();
-                        parameters["siteId"] = mSiteId;
-                        parameters["posNo"] = mPosNo;
-                        parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
-                        parameters["setupName"] = lvwList.Items[i].Text;
-                        parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
-                        parameters["memo"] = "";
+                    Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-                        if (mRequestPost("setupPos", parameters))
+                    parameters["siteId"] = mSiteId;
+                    parameters["posNo"] = mPosNo;
+                    parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
+                    parameters["setupName"] = lvwList.Items[i].Text;
+
+
+                    if (lvwList.Items[i].SubItems[4].Text == "변경")
+                    {
+                        parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
+                    }
+                    else
+                    {
+                        parameters["setupValue"] = lvwList.Items[i].SubItems[1].Text;
+                    }
+                        
+                        
+                    parameters["memo"] = "";
+
+                    if (mRequestPost("setupPos", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
                         {
-                            if (mObj["resultCode"].ToString() == "200")
-                            {
                             
-                            }
-                            else
-                            {
-                                MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
-                                return;
-                            }
                         }
                         else
                         {
-                            MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                            MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
                             return;
                         }
-
-
-                        // 바뀐거만 여기로 온다.
-                        if (lvwList.Items[i].Tag.ToString() == "PosType") mPosType = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[2].Text;
-                        else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[2].Text;
-
                     }
+                    else
+                    {
+                        MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                        return;
+                    }
+
+
+
                 }
 
                 //
                 MessageBox.Show("포스정보 저장완료.", "thepos");
+
             }
 
 
             isAdd = false;
+
+
+            reload_setup_pos();
+
+
+            for (int i = 0; i < lvwList.Items.Count; i++)
+            {
+                if (lvwList.Items[i].Tag.ToString() == "PosType") mPosType = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[1].Text;
+
+            }
+
+
         }
 
         private void btnLoad_Click(object sender, EventArgs e)

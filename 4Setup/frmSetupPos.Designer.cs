@@ -46,11 +46,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbValue = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblMemo = new System.Windows.Forms.Label();
+            this.tbValue = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblLocalMode = new System.Windows.Forms.Label();
-            this.tbValue = new System.Windows.Forms.TextBox();
-            this.lblMemo = new System.Windows.Forms.Label();
+            this.ischange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -63,7 +64,8 @@
             this.name,
             this.value,
             this.change,
-            this.memo});
+            this.memo,
+            this.ischange});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -83,17 +85,17 @@
             // name
             // 
             this.name.Text = "항목";
-            this.name.Width = 219;
+            this.name.Width = 200;
             // 
             // value
             // 
             this.value.Text = "설정값";
-            this.value.Width = 150;
+            this.value.Width = 130;
             // 
             // change
             // 
             this.change.Text = "변경값";
-            this.change.Width = 150;
+            this.change.Width = 130;
             // 
             // btnLoad
             // 
@@ -278,6 +280,24 @@
             this.panel2.Size = new System.Drawing.Size(251, 346);
             this.panel2.TabIndex = 46;
             // 
+            // lblMemo
+            // 
+            this.lblMemo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblMemo.ForeColor = System.Drawing.Color.Gray;
+            this.lblMemo.Location = new System.Drawing.Point(32, 144);
+            this.lblMemo.Name = "lblMemo";
+            this.lblMemo.Size = new System.Drawing.Size(190, 96);
+            this.lblMemo.TabIndex = 48;
+            // 
+            // tbValue
+            // 
+            this.tbValue.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbValue.Location = new System.Drawing.Point(84, 100);
+            this.tbValue.Name = "tbValue";
+            this.tbValue.Size = new System.Drawing.Size(138, 23);
+            this.tbValue.TabIndex = 47;
+            this.tbValue.Visible = false;
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
@@ -315,23 +335,10 @@
             this.lblLocalMode.TabIndex = 48;
             this.lblLocalMode.Text = "로컬모드";
             // 
-            // tbValue
+            // ischange
             // 
-            this.tbValue.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbValue.Location = new System.Drawing.Point(84, 100);
-            this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(138, 23);
-            this.tbValue.TabIndex = 47;
-            this.tbValue.Visible = false;
-            // 
-            // lblMemo
-            // 
-            this.lblMemo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblMemo.ForeColor = System.Drawing.Color.Gray;
-            this.lblMemo.Location = new System.Drawing.Point(32, 144);
-            this.lblMemo.Name = "lblMemo";
-            this.lblMemo.Size = new System.Drawing.Size(190, 96);
-            this.lblMemo.TabIndex = 48;
+            this.ischange.Text = "";
+            this.ischange.Width = 50;
             // 
             // memo
             // 
@@ -388,6 +395,7 @@
         private System.Windows.Forms.Label lblLocalMode;
         private System.Windows.Forms.TextBox tbValue;
         private System.Windows.Forms.Label lblMemo;
+        private System.Windows.Forms.ColumnHeader ischange;
         private System.Windows.Forms.ColumnHeader memo;
     }
 }

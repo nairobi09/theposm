@@ -282,8 +282,12 @@ namespace thepos
                     print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
 
 
-                    if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+                    if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
                     {
+                    }
+                    else if (mPayClass == "CH")
+                    {
+                        mClearSaleForm();
                     }
                     else
                     {

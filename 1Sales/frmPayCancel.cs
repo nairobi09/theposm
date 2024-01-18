@@ -2073,17 +2073,25 @@ namespace thepos
 
 
 
+
+
             //
             String t_shop_code = "";
             String t_order_no = "";
             String t_order_dt = get_today_date() + get_today_time();
+
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
 
             t_shop_code = MemOrderItemList[0].shop_code;
             t_order_no = MemOrderItemList[0].shop_order_no;
+            
             t_good_name.Add(MemOrderItemList[0].goods_name);
             t_good_cnt.Add(MemOrderItemList[0].cnt);
+
+
+
+
 
 
             for (int i = 0; i < MemOrderItemList.Count - 1; i++)

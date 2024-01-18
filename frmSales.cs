@@ -29,6 +29,7 @@ using BrightIdeasSoftware;
 using System.Web;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using System.Net;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 /* 과제
@@ -4769,7 +4770,16 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
                 //
-                PrintExtensions.Print(BytesValue, mTicketPrinterPort);
+                if (mTicketPrinterPort != "")
+                {
+                    PrintExtensions.Print(BytesValue, mTicketPrinterPort);
+                }
+                else
+                {
+
+                }
+
+
 
 
             }
@@ -4873,7 +4883,16 @@ namespace thepos
 
 
                 //
-                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+                if (mBillPrinterPort != "")
+                {
+                    PrintExtensions.Print(BytesValue, mBillPrinterPort);
+                }
+                else
+                {
+                    SetDisplayAlarm("E", "영수증 프린터 미설정");
+                    return;
+                }
+
 
 
             }
@@ -5237,6 +5256,7 @@ namespace thepos
             // 프린터를 못핮으면 패스
             if (printer_name == "")
             {
+                SetDisplayAlarm("E", title + "프린터 미설정");
                 return;
             }
 
@@ -5320,7 +5340,6 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
@@ -5350,7 +5369,7 @@ namespace thepos
         }
 
 
-        // xxx
+        // 취소용
         public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, String order_dt)  // 주문서
         {
             String printer_type = "";
@@ -5383,6 +5402,7 @@ namespace thepos
             // 프린터를 못핮으면 패스
             if (printer_name == "")
             {
+                SetDisplayAlarm("E", title + "프린터 미설정");
                 return;
             }
 
@@ -5434,7 +5454,6 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());

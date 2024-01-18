@@ -310,6 +310,8 @@ namespace thepos
 
                             // 충전화면 리스트뷰
                             frmFlowCharging.review_flow(ticketNo, selectIdx);
+
+
                         }
                         else if (mPayClass == "ST") // 정산
                         {
@@ -347,8 +349,12 @@ namespace thepos
 
 
 
-                if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+                if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
                 {
+                }
+                else if (mPayClass == "CH") 
+                {
+                    mClearSaleForm();
                 }
                 else
                 {
@@ -357,7 +363,6 @@ namespace thepos
                          mClearSaleForm();
                      }                   
                 }
-
 
 
                 mPaySeq = 1;
@@ -573,8 +578,12 @@ namespace thepos
                     }
 
 
-                    if (mPayClass == "ST" | mPayClass == "CH")  // 정산창위에  떠있는 경우.
+                    if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
                     {
+                    }
+                    else if (mPayClass == "CH")
+                    {
+                        mClearSaleForm();
                     }
                     else
                     {
