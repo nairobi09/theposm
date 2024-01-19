@@ -262,6 +262,13 @@ namespace thepos
         public static GoodsOptionItem[] mGoodsOptionItem;
 
 
+        // 상품명을 찾기위해서
+        public static List<string> aGoodsCode = new List<string>();
+        public static List<string> aGoodsName = new List<string>();
+        public static string aGoodsLoad = "N";
+
+
+
         // 로컬
         public struct MemOrder
         {
@@ -763,11 +770,43 @@ namespace thepos
             if (code == "CHARGE")
                 return "충전";
 
-            for (int i = 0; i < mGoodsItem.Length; i++)
+
+            // 상품명 찾기 전용 메모리 사용
+            if (aGoodsLoad == "N")
             {
-                if (mGoodsItem[i].goods_code == code)
+                String sUrl = "goodsName?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
                 {
-                    return mGoodsItem[i].goods_name;
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String pos = mObj["goods"].ToString();
+                        JArray arr = JArray.Parse(pos);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            aGoodsCode.Add(arr[i]["goodsCode"].ToString());
+                            aGoodsName.Add(arr[i]["goodsName"].ToString());
+                        }
+
+                        aGoodsLoad = "Y";
+                    }
+                    else
+                    {
+                        aGoodsLoad = "E";
+                    }
+                }
+                else
+                {
+                    aGoodsLoad = "E";
+                }
+            }
+
+            
+            for (int i = 0; i < aGoodsCode.Count; i++)
+            {
+                if (aGoodsCode[i] == code)
+                {
+                    return aGoodsName[i];
                 }
             }
 

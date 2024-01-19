@@ -253,7 +253,6 @@ namespace thepos
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
             if (cbValue.Visible)
             {
                 lvwList.SelectedItems[0].SubItems[2].Text = cbValue.Text;
@@ -265,14 +264,12 @@ namespace thepos
                 lvwList.SelectedItems[0].SubItems[4].Text = "변경";
             }
                 
-
             isAdd = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (isAdd == false) return;
-
 
             if (mTheMode == "Local")
             {
@@ -351,9 +348,6 @@ namespace thepos
                         MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
                         return;
                     }
-
-
-
                 }
 
                 //

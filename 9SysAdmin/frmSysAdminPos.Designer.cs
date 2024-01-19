@@ -58,9 +58,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lblTitle.Location = new System.Drawing.Point(204, 33);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(124, 14);
+            this.lblTitle.Size = new System.Drawing.Size(96, 14);
             this.lblTitle.TabIndex = 27;
-            this.lblTitle.Text = "포스기기 등록신청";
+            this.lblTitle.Text = "기기 등록신청";
             // 
             // tbSiteId
             // 

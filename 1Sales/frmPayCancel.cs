@@ -278,7 +278,7 @@ namespace thepos
                     lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
 
 
-                    if (arr[i]["isCancel"].ToString() == "Y")
+                    if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                         lvItem.SubItems.Add("취소됨");
                     else if (arr[i]["isCancel"].ToString() == "0")
                         lvItem.SubItems.Add("취소중");
@@ -297,7 +297,7 @@ namespace thepos
 
 
 
-                    if (arr[i]["isCancel"].ToString() == "Y")
+                    if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                     {
                         lvItem.ForeColor = Color.Gray;
                         lvItem.SubItems[1].ForeColor = Color.Gray;
@@ -312,7 +312,10 @@ namespace thepos
 
                     netAmount += convert_number(arr[i]["amount"].ToString());
 
-                    if (arr[i]["isCancel"].ToString() == "Y") { cancelAmount += convert_number(arr[i]["amount"].ToString()); }
+                    if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
+                    {
+                        cancelAmount += convert_number(arr[i]["amount"].ToString()); 
+                    }
                 }
             }
         }

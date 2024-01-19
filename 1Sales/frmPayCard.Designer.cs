@@ -102,7 +102,7 @@
             this.gbCardTemp.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.gbCardTemp.Location = new System.Drawing.Point(20, 148);
             this.gbCardTemp.Name = "gbCardTemp";
-            this.gbCardTemp.Size = new System.Drawing.Size(480, 224);
+            this.gbCardTemp.Size = new System.Drawing.Size(480, 258);
             this.gbCardTemp.TabIndex = 57;
             this.gbCardTemp.TabStop = false;
             // 
@@ -129,16 +129,17 @@
             // 
             // rbCard7
             // 
-            this.rbCard7.AutoSize = true;
+            this.rbCard7.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard7.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard7.Location = new System.Drawing.Point(138, 180);
+            this.rbCard7.Location = new System.Drawing.Point(138, 209);
             this.rbCard7.Name = "rbCard7";
-            this.rbCard7.Size = new System.Drawing.Size(52, 18);
+            this.rbCard7.Size = new System.Drawing.Size(82, 32);
             this.rbCard7.TabIndex = 0;
-            this.rbCard7.TabStop = true;
             this.rbCard7.Tag = "91";
             this.rbCard7.Text = "농협";
+            this.rbCard7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard7.UseVisualStyleBackColor = true;
             // 
             // lblAuthNoTitle
@@ -178,16 +179,17 @@
             // 
             // rbCard8
             // 
-            this.rbCard8.AutoSize = true;
+            this.rbCard8.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard8.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard8.Location = new System.Drawing.Point(222, 180);
+            this.rbCard8.Location = new System.Drawing.Point(226, 209);
             this.rbCard8.Name = "rbCard8";
-            this.rbCard8.Size = new System.Drawing.Size(52, 18);
+            this.rbCard8.Size = new System.Drawing.Size(82, 32);
             this.rbCard8.TabIndex = 0;
-            this.rbCard8.TabStop = true;
             this.rbCard8.Tag = "00";
             this.rbCard8.Text = "기타";
+            this.rbCard8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard8.UseVisualStyleBackColor = true;
             // 
             // lblCardNoTitle
@@ -204,7 +206,7 @@
             this.btnCardTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardTemp.ForeColor = System.Drawing.Color.White;
-            this.btnCardTemp.Location = new System.Drawing.Point(330, 145);
+            this.btnCardTemp.Location = new System.Drawing.Point(331, 191);
             this.btnCardTemp.Name = "btnCardTemp";
             this.btnCardTemp.Size = new System.Drawing.Size(130, 50);
             this.btnCardTemp.TabIndex = 50;
@@ -214,100 +216,109 @@
             // 
             // rbCard5
             // 
-            this.rbCard5.AutoSize = true;
+            this.rbCard5.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard5.Location = new System.Drawing.Point(222, 152);
+            this.rbCard5.Location = new System.Drawing.Point(226, 171);
             this.rbCard5.Name = "rbCard5";
-            this.rbCard5.Size = new System.Drawing.Size(52, 18);
+            this.rbCard5.Size = new System.Drawing.Size(82, 32);
             this.rbCard5.TabIndex = 0;
-            this.rbCard5.TabStop = true;
             this.rbCard5.Tag = "31";
             this.rbCard5.Text = "비씨";
+            this.rbCard5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard5.UseVisualStyleBackColor = true;
             // 
             // rbCard6
             // 
-            this.rbCard6.AutoSize = true;
+            this.rbCard6.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard6.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard6.Location = new System.Drawing.Point(56, 180);
+            this.rbCard6.Location = new System.Drawing.Point(50, 209);
             this.rbCard6.Name = "rbCard6";
-            this.rbCard6.Size = new System.Drawing.Size(52, 18);
+            this.rbCard6.Size = new System.Drawing.Size(82, 32);
             this.rbCard6.TabIndex = 0;
-            this.rbCard6.TabStop = true;
             this.rbCard6.Tag = "71";
             this.rbCard6.Text = "롯데";
+            this.rbCard6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard6.UseVisualStyleBackColor = true;
             // 
             // rbCard3
             // 
-            this.rbCard3.AutoSize = true;
+            this.rbCard3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard3.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard3.Location = new System.Drawing.Point(56, 152);
+            this.rbCard3.Location = new System.Drawing.Point(50, 171);
             this.rbCard3.Name = "rbCard3";
-            this.rbCard3.Size = new System.Drawing.Size(52, 18);
+            this.rbCard3.Size = new System.Drawing.Size(82, 32);
             this.rbCard3.TabIndex = 0;
-            this.rbCard3.TabStop = true;
             this.rbCard3.Tag = "51";
             this.rbCard3.Text = "삼성";
+            this.rbCard3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard3.UseVisualStyleBackColor = true;
             // 
             // rbCard4
             // 
-            this.rbCard4.AutoSize = true;
+            this.rbCard4.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard4.Location = new System.Drawing.Point(138, 152);
+            this.rbCard4.Location = new System.Drawing.Point(138, 171);
             this.rbCard4.Name = "rbCard4";
-            this.rbCard4.Size = new System.Drawing.Size(52, 18);
+            this.rbCard4.Size = new System.Drawing.Size(82, 32);
             this.rbCard4.TabIndex = 0;
-            this.rbCard4.TabStop = true;
             this.rbCard4.Tag = "61";
             this.rbCard4.Text = "현대";
+            this.rbCard4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard4.UseVisualStyleBackColor = true;
             // 
             // rbCard2
             // 
-            this.rbCard2.AutoSize = true;
+            this.rbCard2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard2.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard2.Location = new System.Drawing.Point(222, 124);
+            this.rbCard2.Location = new System.Drawing.Point(226, 133);
             this.rbCard2.Name = "rbCard2";
-            this.rbCard2.Size = new System.Drawing.Size(52, 18);
+            this.rbCard2.Size = new System.Drawing.Size(82, 32);
             this.rbCard2.TabIndex = 0;
-            this.rbCard2.TabStop = true;
             this.rbCard2.Tag = "41";
             this.rbCard2.Text = "신한";
+            this.rbCard2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard2.UseVisualStyleBackColor = true;
             // 
             // rbCard1
             // 
-            this.rbCard1.AutoSize = true;
+            this.rbCard1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard1.Location = new System.Drawing.Point(138, 124);
+            this.rbCard1.Location = new System.Drawing.Point(138, 133);
             this.rbCard1.Name = "rbCard1";
-            this.rbCard1.Size = new System.Drawing.Size(52, 18);
+            this.rbCard1.Size = new System.Drawing.Size(82, 32);
             this.rbCard1.TabIndex = 0;
-            this.rbCard1.TabStop = true;
             this.rbCard1.Tag = "32";
             this.rbCard1.Text = "하나";
+            this.rbCard1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard1.UseVisualStyleBackColor = true;
             // 
             // rbCard0
             // 
-            this.rbCard0.AutoSize = true;
+            this.rbCard0.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCard0.Checked = true;
+            this.rbCard0.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard0.Location = new System.Drawing.Point(57, 124);
+            this.rbCard0.Location = new System.Drawing.Point(50, 133);
             this.rbCard0.Name = "rbCard0";
-            this.rbCard0.Size = new System.Drawing.Size(52, 18);
+            this.rbCard0.Size = new System.Drawing.Size(82, 32);
             this.rbCard0.TabIndex = 0;
             this.rbCard0.TabStop = true;
             this.rbCard0.Tag = "11";
             this.rbCard0.Text = "국민";
+            this.rbCard0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbCard0.UseVisualStyleBackColor = true;
             // 
             // gbCardAuth
@@ -321,9 +332,9 @@
             this.gbCardAuth.Controls.Add(this.btnKeyInputInstall);
             this.gbCardAuth.Controls.Add(this.btnInstall06);
             this.gbCardAuth.Controls.Add(this.btnInstall12);
-            this.gbCardAuth.Location = new System.Drawing.Point(20, 391);
+            this.gbCardAuth.Location = new System.Drawing.Point(20, 424);
             this.gbCardAuth.Name = "gbCardAuth";
-            this.gbCardAuth.Size = new System.Drawing.Size(480, 281);
+            this.gbCardAuth.Size = new System.Drawing.Size(480, 245);
             this.gbCardAuth.TabIndex = 56;
             this.gbCardAuth.TabStop = false;
             // 

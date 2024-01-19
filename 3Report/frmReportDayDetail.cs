@@ -52,7 +52,7 @@ namespace thepos
             lvwPayment.Items.Clear();
 
 
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + thisBizDt;
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&isCancel=";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -92,7 +92,7 @@ namespace thepos
                         lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
 
 
-                        if (arr[i]["isCancel"].ToString() == "Y")
+                        if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                             lvItem.SubItems.Add("취소됨");
                         else if (arr[i]["isCancel"].ToString() == "0")
                             lvItem.SubItems.Add("취소중");
@@ -104,7 +104,7 @@ namespace thepos
 
 
 
-                        if (arr[i]["isCancel"].ToString() == "Y")
+                        if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                         {
                             lvItem.ForeColor = Color.Gray;
                             lvItem.SubItems[1].ForeColor = Color.Gray;
@@ -282,7 +282,7 @@ namespace thepos
                             lvItem.SubItems.Add("");
                             lvItem.SubItems.Add(arr[i]["authNo"].ToString());
 
-                            if (arr[i]["isCancel"].ToString() == "Y")
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                                 lvItem.SubItems.Add("취소됨");
                             else if (arr[i]["isCancel"].ToString() == "0")
                                 lvItem.SubItems.Add("취소중");
@@ -340,7 +340,7 @@ namespace thepos
                             lvItem.SubItems.Add(arr[i]["cardName"].ToString());
                             lvItem.SubItems.Add(arr[i]["authNo"].ToString());
 
-                            if (arr[i]["isCancel"].ToString() == "Y")
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                                 lvItem.SubItems.Add("취소됨");
                             else if (arr[i]["isCancel"].ToString() == "0")
                                 lvItem.SubItems.Add("취소중");
@@ -398,7 +398,7 @@ namespace thepos
                             lvItem.SubItems.Add(arr[i]["cardName"].ToString());
                             lvItem.SubItems.Add(arr[i]["authNo"].ToString());
 
-                            if (arr[i]["isCancel"].ToString() == "Y")
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                                 lvItem.SubItems.Add("취소됨");
                             else if (arr[i]["isCancel"].ToString() == "0")
                                 lvItem.SubItems.Add("취소중");
@@ -444,7 +444,7 @@ namespace thepos
                             lvItem.SubItems.Add("");
                             lvItem.SubItems.Add(arr[i]["usageNo"].ToString());
 
-                            if (arr[i]["isCancel"].ToString() == "Y")
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                                 lvItem.SubItems.Add("취소됨");
                             else if (arr[i]["isCancel"].ToString() == "0")
                                 lvItem.SubItems.Add("취소중");

@@ -489,11 +489,11 @@ namespace thepos
                                     orderItem.pay_class = arr[i]["payClass"].ToString();
                                     orderItem.ticket_no = arr[i]["ticketNo"].ToString();
                                     orderItem.shop_code = arr[i]["shopCode"].ToString();
+                                    orderItem.option_no = arr[i]["optionNo"].ToString();
 
                                     List<orderOptionItem> orderOptionItemList = new List<orderOptionItem>();
 
                                     orderOptionItem orderOptionItem = new orderOptionItem();
-
 
 
                                     if (arr[i]["optionNo"].ToString() != "")
@@ -515,9 +515,24 @@ namespace thepos
                                                     orderOptionItem.amt = convert_number(arr2[k]["amt"].ToString());
 
                                                     orderOptionItemList.Add(orderOptionItem);
+
+                                                    orderItem.option_name_description += " " + arr2[k]["optionItemName"].ToString();
                                                 }
 
                                                 orderItem.orderOptionItemList = orderOptionItemList;
+                                                orderItem.option_item_cnt = mOrderOptionItemList.Count;
+
+                                                //
+                                                if (orderOptionItemList.Count > 0)
+                                                {
+                                                    orderItem.option_amt_description = orderItem.option_amt.ToString("N0");
+                                                }
+                                                else
+                                                {
+                                                    orderItem.option_amt_description = "";
+                                                }
+
+
                                             }
                                             else
                                             {

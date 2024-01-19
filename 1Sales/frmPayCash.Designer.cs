@@ -102,14 +102,14 @@
             this.gbInputType.Controls.Add(this.rb화면입력);
             this.gbInputType.Location = new System.Drawing.Point(15, 97);
             this.gbInputType.Name = "gbInputType";
-            this.gbInputType.Size = new System.Drawing.Size(450, 60);
+            this.gbInputType.Size = new System.Drawing.Size(450, 74);
             this.gbInputType.TabIndex = 54;
             this.gbInputType.TabStop = false;
             // 
             // lbl5
             // 
             this.lbl5.AutoSize = true;
-            this.lbl5.Location = new System.Drawing.Point(22, 27);
+            this.lbl5.Location = new System.Drawing.Point(22, 36);
             this.lbl5.Name = "lbl5";
             this.lbl5.Size = new System.Drawing.Size(63, 14);
             this.lbl5.TabIndex = 45;
@@ -117,34 +117,37 @@
             // 
             // rb카드거래
             // 
-            this.rb카드거래.AutoSize = true;
-            this.rb카드거래.Location = new System.Drawing.Point(228, 25);
+            this.rb카드거래.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rb카드거래.Location = new System.Drawing.Point(225, 21);
             this.rb카드거래.Name = "rb카드거래";
-            this.rb카드거래.Size = new System.Drawing.Size(81, 18);
+            this.rb카드거래.Size = new System.Drawing.Size(91, 41);
             this.rb카드거래.TabIndex = 50;
             this.rb카드거래.Text = "카드리더";
+            this.rb카드거래.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rb카드거래.UseVisualStyleBackColor = true;
             // 
             // rbKeyin
             // 
-            this.rbKeyin.AutoSize = true;
+            this.rbKeyin.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbKeyin.Checked = true;
-            this.rbKeyin.Location = new System.Drawing.Point(138, 25);
+            this.rbKeyin.Location = new System.Drawing.Point(126, 21);
             this.rbKeyin.Name = "rbKeyin";
-            this.rbKeyin.Size = new System.Drawing.Size(67, 18);
+            this.rbKeyin.Size = new System.Drawing.Size(91, 41);
             this.rbKeyin.TabIndex = 50;
             this.rbKeyin.TabStop = true;
             this.rbKeyin.Text = "키패드";
+            this.rbKeyin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbKeyin.UseVisualStyleBackColor = true;
             // 
             // rb화면입력
             // 
-            this.rb화면입력.AutoSize = true;
-            this.rb화면입력.Location = new System.Drawing.Point(329, 25);
+            this.rb화면입력.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rb화면입력.Location = new System.Drawing.Point(323, 21);
             this.rb화면입력.Name = "rb화면입력";
-            this.rb화면입력.Size = new System.Drawing.Size(81, 18);
+            this.rb화면입력.Size = new System.Drawing.Size(91, 41);
             this.rb화면입력.TabIndex = 50;
             this.rb화면입력.Text = "화면터치";
+            this.rb화면입력.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rb화면입력.UseVisualStyleBackColor = true;
             // 
             // groupBox3
@@ -153,16 +156,16 @@
             this.groupBox3.Controls.Add(this.rbTypeSelf);
             this.groupBox3.Controls.Add(this.rbTypeIndividual);
             this.groupBox3.Controls.Add(this.rbTypeBusiness);
-            this.groupBox3.Location = new System.Drawing.Point(15, 37);
+            this.groupBox3.Location = new System.Drawing.Point(15, 22);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(451, 60);
+            this.groupBox3.Size = new System.Drawing.Size(451, 75);
             this.groupBox3.TabIndex = 53;
             this.groupBox3.TabStop = false;
             // 
             // lbl4
             // 
             this.lbl4.AutoSize = true;
-            this.lbl4.Location = new System.Drawing.Point(22, 26);
+            this.lbl4.Location = new System.Drawing.Point(22, 35);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(63, 14);
             this.lbl4.TabIndex = 45;
@@ -170,34 +173,37 @@
             // 
             // rbTypeSelf
             // 
-            this.rbTypeSelf.AutoSize = true;
-            this.rbTypeSelf.Location = new System.Drawing.Point(329, 24);
+            this.rbTypeSelf.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbTypeSelf.Location = new System.Drawing.Point(323, 21);
             this.rbTypeSelf.Name = "rbTypeSelf";
-            this.rbTypeSelf.Size = new System.Drawing.Size(81, 18);
+            this.rbTypeSelf.Size = new System.Drawing.Size(91, 41);
             this.rbTypeSelf.TabIndex = 52;
             this.rbTypeSelf.Text = "자진발급";
+            this.rbTypeSelf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbTypeSelf.UseVisualStyleBackColor = true;
             // 
             // rbTypeIndividual
             // 
-            this.rbTypeIndividual.AutoSize = true;
+            this.rbTypeIndividual.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbTypeIndividual.Checked = true;
-            this.rbTypeIndividual.Location = new System.Drawing.Point(138, 24);
+            this.rbTypeIndividual.Location = new System.Drawing.Point(126, 21);
             this.rbTypeIndividual.Name = "rbTypeIndividual";
-            this.rbTypeIndividual.Size = new System.Drawing.Size(53, 18);
+            this.rbTypeIndividual.Size = new System.Drawing.Size(91, 41);
             this.rbTypeIndividual.TabIndex = 52;
             this.rbTypeIndividual.TabStop = true;
             this.rbTypeIndividual.Text = "개인";
+            this.rbTypeIndividual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbTypeIndividual.UseVisualStyleBackColor = true;
             // 
             // rbTypeBusiness
             // 
-            this.rbTypeBusiness.AutoSize = true;
-            this.rbTypeBusiness.Location = new System.Drawing.Point(228, 24);
+            this.rbTypeBusiness.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbTypeBusiness.Location = new System.Drawing.Point(225, 21);
             this.rbTypeBusiness.Name = "rbTypeBusiness";
-            this.rbTypeBusiness.Size = new System.Drawing.Size(67, 18);
+            this.rbTypeBusiness.Size = new System.Drawing.Size(91, 41);
             this.rbTypeBusiness.TabIndex = 52;
             this.rbTypeBusiness.Text = "사업자";
+            this.rbTypeBusiness.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbTypeBusiness.UseVisualStyleBackColor = true;
             // 
             // lblAuthNo
@@ -223,7 +229,7 @@
             this.btnCashRecept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashRecept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
-            this.btnCashRecept.Location = new System.Drawing.Point(307, 189);
+            this.btnCashRecept.Location = new System.Drawing.Point(307, 213);
             this.btnCashRecept.Name = "btnCashRecept";
             this.btnCashRecept.Size = new System.Drawing.Size(140, 60);
             this.btnCashRecept.TabIndex = 44;

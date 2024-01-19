@@ -680,6 +680,7 @@ namespace thepos
                     }
                 }
 
+                //
                 if (mOrderOptionItemList.Count > 0)
                 {
                     orderItem.option_amt_description = orderItem.option_amt.ToString("N0");
@@ -1207,6 +1208,8 @@ namespace thepos
                             parameters["goodsName"] = arr[i]["goodsName"].ToString();
                             parameters["cnt"] = arr[i]["cnt"].ToString();
                             parameters["amt"] = arr[i]["amt"].ToString();
+                            parameters["optionAmt"] = arr[i]["optionAmt"].ToString();  //#
+
                             parameters["ticketYn"] = arr[i]["ticketYn"].ToString();
                             parameters["taxFree"] = arr[i]["taxFree"].ToString();
                             parameters["dcAmount"] = arr[i]["dcAmount"].ToString();
@@ -1215,7 +1218,7 @@ namespace thepos
                             parameters["dcrValue"] = arr[i]["dcrValue"].ToString();
                             parameters["payClass"] = arr[i]["payClass"].ToString();
                             parameters["ticketNo"] = arr[i]["ticketNo"].ToString();
-                            //
+                            
                             parameters["isCancel"] = "y";                       // y 정산취소 Y 일반취소
                             parameters["shopCode"] = arr[i]["shopCode"].ToString();
                             parameters["shopOrderNo"] = arr[i]["shopOrderNo"].ToString(); // 포인트사용시 부여된 번호를 정산에 그대로 복사
@@ -1635,6 +1638,7 @@ namespace thepos
             {
                 String t_option_no = "";
 
+                //??
                 if (mOrderItemList[i].option_item_cnt > 0)
                 {
                     if (mOrderItemList[i].orderOptionItemList.Count > 0)
@@ -2012,6 +2016,7 @@ namespace thepos
                             parameters.Clear();
                             parameters["siteId"] = mSiteId;
                             parameters["bizDt"] = mBizDate;
+                            parameters["posNo"] = mPosNo;
                             parameters["theNo"] = mTheNo;
                             parameters["refNo"] = mRefNo;
 
@@ -2576,12 +2581,16 @@ namespace thepos
                             Dictionary<string, string> parameters = new Dictionary<string, string>();
                             parameters.Clear();
                             parameters["siteId"] = mSiteId;
+
+                            //? 원승인일자를 넣어야
+                            parameters["bizDt"] = mBizDate;
+
                             parameters["ticketNo"] = ticket_no;
 
                             parameters["pointCharge"] = charge_amount + "";
                             parameters["pointChargeCnt"] = charge_cnt + "";
                             parameters["flowStep"] = flow_step;
-                            //? bizDt 추가요망
+                            
                             if (mRequestPatch("ticketFlow", parameters))
                             {
                                 if (mObj["resultCode"].ToString() == "200")
@@ -4533,14 +4542,15 @@ namespace thepos
                                 tStr = "포인트";
                             }
 
-                            if (arr[i]["isCancel"].ToString() == "Y")
-                            {
+                            
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
+                                {
                                 tStr += "취소";
                             }
 
                             strPrintPayment += tStr + Space(21 - encodelen(tStr));
 
-                            if (arr[i]["isCancel"].ToString() == "Y")
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                                 tStr = (-amount).ToString("N0");
                             else
                                 tStr = amount.ToString("N0");
@@ -4702,7 +4712,8 @@ namespace thepos
 
         public static void print_ticket(String t_ticket_no, String t_goods_code)
         {
-            if (mTicketPrinterPort + "" == "")
+
+            if (mTicketPrinterPort.Trim().Length == 0)
             {
                 SetDisplayAlarm("W", "티켓프린터 미설정으로 티켓출력불가..");
                 return;
@@ -4770,22 +4781,13 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
                 //
-                if (mTicketPrinterPort != "")
-                {
-                    PrintExtensions.Print(BytesValue, mTicketPrinterPort);
-                }
-                else
-                {
-
-                }
-
-
+                PrintExtensions.Print(BytesValue, mTicketPrinterPort);
 
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
+                MessageBox.Show("티켓프린터 인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;
             }
 
@@ -4795,7 +4797,7 @@ namespace thepos
         public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep, bool isQuestion)
         {
 
-            if (mBillPrinterPort == "")
+            if (mBillPrinterPort.Trim().Length == 0)
             {
                 SetDisplayAlarm("W", "영수증프린터 미설정으로 영수증출력불가..");
                 return;
@@ -4883,17 +4885,8 @@ namespace thepos
 
 
                 //
-                if (mBillPrinterPort != "")
-                {
-                    PrintExtensions.Print(BytesValue, mBillPrinterPort);
-                }
-                else
-                {
-                    SetDisplayAlarm("E", "영수증 프린터 미설정");
-                    return;
-                }
-
-
+                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+                
 
             }
             catch
@@ -5254,7 +5247,7 @@ namespace thepos
 
 
             // 프린터를 못핮으면 패스
-            if (printer_name == "")
+            if (printer_name.Trim().Length == 0)
             {
                 SetDisplayAlarm("E", title + "프린터 미설정");
                 return;
@@ -5400,7 +5393,7 @@ namespace thepos
 
 
             // 프린터를 못핮으면 패스
-            if (printer_name == "")
+            if (printer_name.Trim().Length == 0)
             {
                 SetDisplayAlarm("E", title + "프린터 미설정");
                 return;

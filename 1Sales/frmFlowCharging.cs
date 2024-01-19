@@ -11,6 +11,7 @@ using static thepos.thePos;
 using static thepos.frmSales;
 using Newtonsoft.Json.Linq;
 using System.Numerics;
+using System.Diagnostics.Eventing.Reader;
 
 namespace thepos
 {
@@ -116,12 +117,28 @@ namespace thepos
             String pos_no = cbPosNo.Text;
 
             String ticketNo = "";
-            String t7No = tbTicketNo.Text;
+            String t8No = tbTicketNo.Text;
 
-            if (t7No.Length == 6 & pos_no.Length == 2)
+
+            if (t8No.Length == 0)
             {
-                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + pos_no + t7No;
+                // 통과
             }
+            else if (t8No.Length == 8 & pos_no.Length == 2)
+            {
+                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + pos_no + t8No;
+            }
+            else if (t8No.Length == 8 & pos_no.Length != 2)
+            {
+                SetDisplayAlarm("I", "티켓번호로 조회시 포스번호 필수입니다.");
+                return;
+            }
+            else
+            {
+                SetDisplayAlarm("I", "조회입력값 오류입니다.");
+                return;
+            }
+
 
 
             view_flow(biz_date, pos_no, ticketNo);
@@ -130,6 +147,12 @@ namespace thepos
 
         public void view_flow(String biz_date, String pos_no, String t_no)
         {
+
+            mOrderItemList.Clear();
+            mLvwOrderItem.SetObjects(mOrderItemList);
+            ReCalculateAmount();
+
+
             lvwFlow.Items.Clear();
 
             String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&ticketNo=" + t_no;
@@ -354,8 +377,11 @@ namespace thepos
             if (lv_idx == -1)
             {
 
+                String t_no = lvwFlow.SelectedItems[0].Tag.ToString();
+
+
                 orderItem.goods_code = "CHARGE";
-                orderItem.goods_name = "충전";
+                orderItem.goods_name = "충전_" + t_no.Substring(14,6) + "-" + t_no.Substring(20, 2);
                 orderItem.cnt = 1;
                 orderItem.amt = charge_amt;
                 orderItem.dc_amount = 0;

@@ -62,7 +62,7 @@ namespace thepos
             }
             else if (mPayClass == "CH")
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
+                MemOrderItem orderItem = mOrderItemList[0];
                 mRefNo = orderItem.ticket_no.Substring(0, 20);
                 ticketNo = orderItem.ticket_no;
             }
@@ -72,9 +72,10 @@ namespace thepos
             }
             else if (mPayClass == "ST")
             {
-                MemOrderItem orderItem = (MemOrderItem)mLvwOrderItem.Items[0].Tag;
-                mRefNo = orderItem.ticket_no.Substring(0, 20);
-                ticketNo = orderItem.ticket_no;
+                //
+                ticketNo = frmFlowSettlement.mSelectedTicketNo;
+                mRefNo = ticketNo.Substring(0, 20);
+
             }
 
 

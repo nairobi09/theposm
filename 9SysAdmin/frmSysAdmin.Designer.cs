@@ -246,7 +246,7 @@
             this.btnPos.Size = new System.Drawing.Size(112, 50);
             this.btnPos.TabIndex = 0;
             this.btnPos.TabStop = false;
-            this.btnPos.Text = "포스등록신청";
+            this.btnPos.Text = "기기등록신청";
             this.btnPos.UseVisualStyleBackColor = false;
             this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
             // 
