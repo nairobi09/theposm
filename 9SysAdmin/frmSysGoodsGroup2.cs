@@ -160,7 +160,9 @@ namespace thepos._9SysAdmin
             lvwList.Items.Clear();
 
             tbGroupName.Text = "";
-
+            tbGroupNameEN.Text = "";
+            tbGroupNameCH.Text = "";
+            tbGroupNameJP.Text = "";
 
             int[] group_seq;
             String[] group_code;

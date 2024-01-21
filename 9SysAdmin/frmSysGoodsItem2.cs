@@ -188,10 +188,12 @@ namespace thepos._9SysAdmin
                         selected_groupList.Add(new { Text = arr[i]["groupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
                     }
 
-                    cbGroup.DataSource = selected_groupList;
-                    cbGroup.DisplayMember = "Text";
-                    cbGroup.ValueMember = "Value";
-
+                    if (selected_groupList.Count > 0)
+                    {
+                        cbGroup.DataSource = selected_groupList;
+                        cbGroup.DisplayMember = "Text";
+                        cbGroup.ValueMember = "Value";
+                    }
                 }
                 else
                 {
@@ -219,7 +221,12 @@ namespace thepos._9SysAdmin
             }
 
 
-            mSelectedGroupCode = cbGroup.SelectedValue.ToString();
+            if (cbGroup.SelectedIndex >= 0)
+            {
+                mSelectedGroupCode = cbGroup.SelectedValue.ToString();
+            }
+
+
 
             reload_server();
         }
