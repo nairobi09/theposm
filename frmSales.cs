@@ -949,6 +949,14 @@ namespace thepos
             }
 
 
+            // 영업일자 등 선체크 
+            if (!isPreCheck(out String error_msg))
+            {
+                MessageBox.Show(error_msg, "thepos");
+                return;
+            }
+
+
 
             countup_the_no();
             ConsoleDisable();
@@ -994,6 +1002,14 @@ namespace thepos
             if (!get_amounts(out int t과세금액, out int t면세금액))
             {
                 MessageBox.Show("과세금액, 면세금액 계산오류");
+                return;
+            }
+
+
+            // 영업일자 등 선체크 
+            if (!isPreCheck(out String error_msg))
+            {
+                MessageBox.Show(error_msg, "thepos");
                 return;
             }
 
@@ -1048,6 +1064,16 @@ namespace thepos
 
             if (mNetAmount == 0) return;
 
+
+            // 영업일자 등 선체크 
+            if (!isPreCheck(out String error_msg))
+            {
+                MessageBox.Show(error_msg, "thepos");
+                return;
+            }
+
+
+
             countup_the_no();
             ConsoleDisable();
 
@@ -1083,6 +1109,13 @@ namespace thepos
                 return;
             }
 
+
+            // 영업일자 등 선체크 
+            if (!isPreCheck(out String error_msg))
+            {
+                MessageBox.Show(error_msg, "thepos");
+                return;
+            }
 
 
             countup_the_no();
@@ -1141,6 +1174,14 @@ namespace thepos
             }
 
 
+            // 영업일자 등 선체크 
+            if (!isPreCheck(out String error_msg))
+            {
+                MessageBox.Show(error_msg, "thepos");
+                return;
+            }
+
+
             countup_the_no();
             ConsoleDisable();
 
@@ -1166,6 +1207,46 @@ namespace thepos
             mPanelPayment.BringToFront();
 
         }
+
+
+
+        private static Boolean isPreCheck(out String error_msg)
+        {
+            error_msg = "";
+
+            String sUrl = "preCheck?siteId=" + mSiteId + "&posNo=" + mPosNo + "&bizDt=" + mBizDate;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["preCheck"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    String resp_code = arr[0]["respCode"].ToString();
+
+                    if (resp_code == "00")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        error_msg = arr[0]["respMsg"].ToString();
+                        return false;
+                    }
+                }
+                else
+                {
+                    error_msg = "영업일자 검증 오류.";
+                    return false;
+                }
+            }
+            else
+            {
+                error_msg = "영업일자 검증 오류.";
+                return false;
+            }
+        }
+
 
 
         public static bool CancelOrderSettle( String ticket_no)

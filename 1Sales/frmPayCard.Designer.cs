@@ -113,7 +113,7 @@
             this.tbAuthNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbAuthNo.Location = new System.Drawing.Point(120, 72);
             this.tbAuthNo.Name = "tbAuthNo";
-            this.tbAuthNo.Size = new System.Drawing.Size(177, 26);
+            this.tbAuthNo.Size = new System.Drawing.Size(187, 26);
             this.tbAuthNo.TabIndex = 53;
             // 
             // tbCardNo
@@ -124,7 +124,7 @@
             this.tbCardNo.Location = new System.Drawing.Point(120, 33);
             this.tbCardNo.MaxLength = 20;
             this.tbCardNo.Name = "tbCardNo";
-            this.tbCardNo.Size = new System.Drawing.Size(177, 26);
+            this.tbCardNo.Size = new System.Drawing.Size(187, 26);
             this.tbCardNo.TabIndex = 52;
             // 
             // rbCard7
@@ -133,7 +133,7 @@
             this.rbCard7.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard7.Location = new System.Drawing.Point(138, 209);
+            this.rbCard7.Location = new System.Drawing.Point(138, 200);
             this.rbCard7.Name = "rbCard7";
             this.rbCard7.Size = new System.Drawing.Size(82, 32);
             this.rbCard7.TabIndex = 0;
@@ -156,7 +156,7 @@
             this.btnKeyInputAuthNo.BackColor = System.Drawing.Color.White;
             this.btnKeyInputAuthNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputAuthNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(303, 70);
+            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(331, 68);
             this.btnKeyInputAuthNo.Name = "btnKeyInputAuthNo";
             this.btnKeyInputAuthNo.Size = new System.Drawing.Size(40, 30);
             this.btnKeyInputAuthNo.TabIndex = 51;
@@ -169,7 +169,7 @@
             this.btnKeyInputCardNo.BackColor = System.Drawing.Color.White;
             this.btnKeyInputCardNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputCardNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnKeyInputCardNo.Location = new System.Drawing.Point(303, 31);
+            this.btnKeyInputCardNo.Location = new System.Drawing.Point(331, 29);
             this.btnKeyInputCardNo.Name = "btnKeyInputCardNo";
             this.btnKeyInputCardNo.Size = new System.Drawing.Size(40, 30);
             this.btnKeyInputCardNo.TabIndex = 51;
@@ -183,7 +183,7 @@
             this.rbCard8.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard8.Location = new System.Drawing.Point(226, 209);
+            this.rbCard8.Location = new System.Drawing.Point(226, 200);
             this.rbCard8.Name = "rbCard8";
             this.rbCard8.Size = new System.Drawing.Size(82, 32);
             this.rbCard8.TabIndex = 0;
@@ -206,7 +206,7 @@
             this.btnCardTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardTemp.ForeColor = System.Drawing.Color.White;
-            this.btnCardTemp.Location = new System.Drawing.Point(331, 191);
+            this.btnCardTemp.Location = new System.Drawing.Point(331, 124);
             this.btnCardTemp.Name = "btnCardTemp";
             this.btnCardTemp.Size = new System.Drawing.Size(130, 50);
             this.btnCardTemp.TabIndex = 50;
@@ -220,7 +220,7 @@
             this.rbCard5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard5.Location = new System.Drawing.Point(226, 171);
+            this.rbCard5.Location = new System.Drawing.Point(226, 162);
             this.rbCard5.Name = "rbCard5";
             this.rbCard5.Size = new System.Drawing.Size(82, 32);
             this.rbCard5.TabIndex = 0;
@@ -235,7 +235,7 @@
             this.rbCard6.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard6.Location = new System.Drawing.Point(50, 209);
+            this.rbCard6.Location = new System.Drawing.Point(50, 200);
             this.rbCard6.Name = "rbCard6";
             this.rbCard6.Size = new System.Drawing.Size(82, 32);
             this.rbCard6.TabIndex = 0;
@@ -250,7 +250,7 @@
             this.rbCard3.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard3.Location = new System.Drawing.Point(50, 171);
+            this.rbCard3.Location = new System.Drawing.Point(50, 162);
             this.rbCard3.Name = "rbCard3";
             this.rbCard3.Size = new System.Drawing.Size(82, 32);
             this.rbCard3.TabIndex = 0;
@@ -265,7 +265,7 @@
             this.rbCard4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard4.Location = new System.Drawing.Point(138, 171);
+            this.rbCard4.Location = new System.Drawing.Point(138, 162);
             this.rbCard4.Name = "rbCard4";
             this.rbCard4.Size = new System.Drawing.Size(82, 32);
             this.rbCard4.TabIndex = 0;
@@ -280,7 +280,7 @@
             this.rbCard2.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard2.Location = new System.Drawing.Point(226, 133);
+            this.rbCard2.Location = new System.Drawing.Point(226, 124);
             this.rbCard2.Name = "rbCard2";
             this.rbCard2.Size = new System.Drawing.Size(82, 32);
             this.rbCard2.TabIndex = 0;
@@ -295,7 +295,7 @@
             this.rbCard1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard1.Location = new System.Drawing.Point(138, 133);
+            this.rbCard1.Location = new System.Drawing.Point(138, 124);
             this.rbCard1.Name = "rbCard1";
             this.rbCard1.Size = new System.Drawing.Size(82, 32);
             this.rbCard1.TabIndex = 0;
@@ -311,7 +311,7 @@
             this.rbCard0.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.rbCard0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbCard0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.rbCard0.Location = new System.Drawing.Point(50, 133);
+            this.rbCard0.Location = new System.Drawing.Point(50, 124);
             this.rbCard0.Name = "rbCard0";
             this.rbCard0.Size = new System.Drawing.Size(82, 32);
             this.rbCard0.TabIndex = 0;
@@ -369,7 +369,7 @@
             this.btnInstall00.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnInstall00.Location = new System.Drawing.Point(55, 113);
             this.btnInstall00.Name = "btnInstall00";
-            this.btnInstall00.Size = new System.Drawing.Size(71, 46);
+            this.btnInstall00.Size = new System.Drawing.Size(77, 46);
             this.btnInstall00.TabIndex = 52;
             this.btnInstall00.Text = "일시불";
             this.btnInstall00.UseVisualStyleBackColor = true;
@@ -401,9 +401,9 @@
             // 
             this.btnInstall03.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInstall03.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnInstall03.Location = new System.Drawing.Point(132, 113);
+            this.btnInstall03.Location = new System.Drawing.Point(137, 113);
             this.btnInstall03.Name = "btnInstall03";
-            this.btnInstall03.Size = new System.Drawing.Size(46, 46);
+            this.btnInstall03.Size = new System.Drawing.Size(54, 46);
             this.btnInstall03.TabIndex = 53;
             this.btnInstall03.Text = "03";
             this.btnInstall03.UseVisualStyleBackColor = true;
@@ -426,9 +426,9 @@
             // 
             this.btnInstall06.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInstall06.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnInstall06.Location = new System.Drawing.Point(182, 113);
+            this.btnInstall06.Location = new System.Drawing.Point(195, 113);
             this.btnInstall06.Name = "btnInstall06";
-            this.btnInstall06.Size = new System.Drawing.Size(46, 46);
+            this.btnInstall06.Size = new System.Drawing.Size(54, 46);
             this.btnInstall06.TabIndex = 54;
             this.btnInstall06.Text = "06";
             this.btnInstall06.UseVisualStyleBackColor = true;
@@ -438,9 +438,9 @@
             // 
             this.btnInstall12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInstall12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnInstall12.Location = new System.Drawing.Point(232, 113);
+            this.btnInstall12.Location = new System.Drawing.Point(253, 113);
             this.btnInstall12.Name = "btnInstall12";
-            this.btnInstall12.Size = new System.Drawing.Size(46, 46);
+            this.btnInstall12.Size = new System.Drawing.Size(54, 46);
             this.btnInstall12.TabIndex = 55;
             this.btnInstall12.Text = "12";
             this.btnInstall12.UseVisualStyleBackColor = true;
