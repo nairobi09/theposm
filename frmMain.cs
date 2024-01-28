@@ -453,7 +453,9 @@ namespace thepos
 
         public static String get_version_server()
         {
-            String sUrl = "site?siteId=" + mSiteId;
+
+            //?? 버전파라메터만 수신할수 있도록.. 버전외 이미지 등은 제외
+            String sUrl = "basicDbVer?siteId=" + mSiteId;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

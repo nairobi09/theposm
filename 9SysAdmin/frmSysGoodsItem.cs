@@ -36,13 +36,13 @@ namespace thepos
             get_goods();
             get_posno_from_setupPos();
 
-            /*
+            
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
             }
-            */
+            
 
         }
 

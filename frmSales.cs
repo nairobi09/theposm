@@ -1230,19 +1230,24 @@ namespace thepos
                     }
                     else
                     {
-                        error_msg = arr[0]["respMsg"].ToString();
+                        error_msg = "관리자 문의바랍니다.\r\n" + arr[0]["respMsg"].ToString(); // 99 : 마감후 집계완료상태입니다. 
                         return false;
                     }
                 }
+                else if (mObj["resultCode"].ToString() == "660")
+                {
+                    error_msg = "관리자 문의바랍니다.\r\n영업일자 검증 오류. 재로그인 필요합니다.";
+                    return false;
+                }
                 else
                 {
-                    error_msg = "영업일자 검증 오류.";
+                    error_msg = "관리자 문의바랍니다.\r\n시스템오류. 영업개시 검증 오류";
                     return false;
                 }
             }
             else
             {
-                error_msg = "영업일자 검증 오류.";
+                error_msg = "관리자 문의바랍니다.\r\n시스템오류. 영업개시 검증 오류";
                 return false;
             }
         }

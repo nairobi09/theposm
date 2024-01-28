@@ -157,8 +157,13 @@ namespace thepos
         public static HttpClientHandler handler = new HttpClientHandler();
         public static HttpClient mHttpClient;
 
-        public static String mBaseUri = "http://211.42.156.219:8080/";
 
+
+#if DEBUG
+        public static String mBaseUri = "http://211.42.156.219:8080/";
+#else
+        public static String mBaseUri = "http://211.45.170.55:8080/";
+#endif
 
 
         public static frmSub fSub;

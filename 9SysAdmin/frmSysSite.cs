@@ -16,7 +16,8 @@ namespace thepos._9SysAdmin
 {
     public partial class frmSysSite : Form
     {
-        String ch_image = "";
+        String ch_bill_image = "";
+        String ch_kiosk_logo_image = "";
 
         String[] tmTicketType;
         String[] tmTicketTypeText;
@@ -82,11 +83,12 @@ namespace thepos._9SysAdmin
 
 
 
-
-
-
             lblBillImage.Font = font10;
-            btnX.Font = font10;
+            btnX1.Font = font10;
+
+
+            lblKioskLogoImage.Font = font10;
+            btnX2.Font = font10;
 
             btnUpdate.Font = font10;
 
@@ -230,6 +232,24 @@ namespace thepos._9SysAdmin
 
                         }
 
+
+                        // 이미지
+                        String image_str2 = arr[0]["kioskLogoImage"].ToString();
+                        try
+                        {
+                            byte[] imgBytes2 = Convert.FromBase64String(image_str2);
+
+                            MemoryStream ms2 = new MemoryStream(imgBytes2, 0, imgBytes2.Length);
+                            ms2.Write(imgBytes2, 0, imgBytes2.Length);
+
+                            pbKioskLogoImage.Image = System.Drawing.Image.FromStream(ms2, true);
+                        }
+                        catch
+                        {
+
+                        }
+
+
                     }
                 }
                 else
@@ -297,7 +317,7 @@ namespace thepos._9SysAdmin
             parameters["callCenterNo"] = tbCallCenter.Text;
 
             //
-            if (ch_image == "1")
+            if (ch_bill_image == "1")
             {
                 if (pbBillImage.Image == null)
                 {
@@ -311,6 +331,20 @@ namespace thepos._9SysAdmin
                 }
             }
 
+            //
+            if (ch_kiosk_logo_image == "1")
+            {
+                if (pbKioskLogoImage.Image == null)
+                {
+                    parameters["kioskLogoImage"] = "";
+                }
+                else
+                {
+                    var ms2 = new MemoryStream();
+                    pbKioskLogoImage.Image.Save(ms2, pbKioskLogoImage.Image.RawFormat);
+                    parameters["kioskLogoImage"] = Convert.ToBase64String(ms2.ToArray());
+                }
+            }
 
 
             // 
@@ -350,6 +384,11 @@ namespace thepos._9SysAdmin
             // site 수정을 같은 테이블이라 한번에 한다.
             //set_version_basic_db_change();
 
+
+            ch_bill_image = "";
+            ch_kiosk_logo_image = "";
+
+
         }
 
         private void pbBillImage_Click(object sender, EventArgs e)
@@ -364,14 +403,36 @@ namespace thepos._9SysAdmin
                 System.Drawing.Image image = System.Drawing.Image.FromFile(fileFullName);
                 this.pbBillImage.Image = image;
 
-                ch_image = "1";
+                ch_bill_image = "1";
             }
         }
 
-        private void btnX_Click(object sender, EventArgs e)
+        private void btnX1_Click(object sender, EventArgs e)
         {
             pbBillImage.Image = null;
-            ch_image = "1";
+            ch_bill_image = "1";
+        }
+
+        private void pbKioskLogoImage_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = openFileDialog.ShowDialog();
+
+            //OK버튼 클릭시
+            if (dr == DialogResult.OK)
+            {
+                string fileFullName = openFileDialog.FileName;
+
+                System.Drawing.Image image = System.Drawing.Image.FromFile(fileFullName);
+                this.pbKioskLogoImage.Image = image;
+
+                ch_kiosk_logo_image = "1";
+            }
+        }
+
+        private void btnX2_Click(object sender, EventArgs e)
+        {
+            pbKioskLogoImage.Image = null;
+            ch_kiosk_logo_image = "1";
         }
     }
 }

@@ -53,7 +53,7 @@
             this.lblTicketMedia = new System.Windows.Forms.Label();
             this.lblTicketType = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnX = new System.Windows.Forms.Button();
+            this.btnX1 = new System.Windows.Forms.Button();
             this.pbBillImage = new System.Windows.Forms.PictureBox();
             this.lblBillImage = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -64,11 +64,17 @@
             this.tbCutoffTime = new System.Windows.Forms.TextBox();
             this.lblCutoffTime = new System.Windows.Forms.Label();
             this.lblCutoffType = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnX2 = new System.Windows.Forms.Button();
+            this.pbKioskLogoImage = new System.Windows.Forms.PictureBox();
+            this.lblKioskLogoImage = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbKioskLogoImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -77,7 +83,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(647, 615);
+            this.btnUpdate.Location = new System.Drawing.Point(658, 595);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(156, 50);
             this.btnUpdate.TabIndex = 52;
@@ -91,7 +97,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle.Location = new System.Drawing.Point(116, 26);
+            this.lblTitle.Location = new System.Drawing.Point(68, 26);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(82, 14);
             this.lblTitle.TabIndex = 51;
@@ -102,7 +108,7 @@
             this.lblSiteName.AutoSize = true;
             this.lblSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblSiteName.Location = new System.Drawing.Point(13, 33);
+            this.lblSiteName.Location = new System.Drawing.Point(13, 24);
             this.lblSiteName.Name = "lblSiteName";
             this.lblSiteName.Size = new System.Drawing.Size(77, 14);
             this.lblSiteName.TabIndex = 53;
@@ -112,7 +118,7 @@
             // 
             this.tbSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbSiteName.Location = new System.Drawing.Point(98, 27);
+            this.tbSiteName.Location = new System.Drawing.Point(98, 18);
             this.tbSiteName.Name = "tbSiteName";
             this.tbSiteName.Size = new System.Drawing.Size(157, 23);
             this.tbSiteName.TabIndex = 54;
@@ -132,9 +138,9 @@
             this.groupBox1.Controls.Add(this.lblRegistNo);
             this.groupBox1.Controls.Add(this.lblSiteAlias);
             this.groupBox1.Controls.Add(this.lblSiteName);
-            this.groupBox1.Location = new System.Drawing.Point(120, 51);
+            this.groupBox1.Location = new System.Drawing.Point(72, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(504, 224);
+            this.groupBox1.Size = new System.Drawing.Size(548, 193);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             // 
@@ -142,7 +148,7 @@
             // 
             this.tbBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbBizTelNo.Location = new System.Drawing.Point(98, 187);
+            this.tbBizTelNo.Location = new System.Drawing.Point(98, 158);
             this.tbBizTelNo.Name = "tbBizTelNo";
             this.tbBizTelNo.Size = new System.Drawing.Size(157, 23);
             this.tbBizTelNo.TabIndex = 54;
@@ -152,7 +158,7 @@
             // 
             this.tbBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbBizAddr.Location = new System.Drawing.Point(98, 155);
+            this.tbBizAddr.Location = new System.Drawing.Point(98, 130);
             this.tbBizAddr.Name = "tbBizAddr";
             this.tbBizAddr.Size = new System.Drawing.Size(331, 23);
             this.tbBizAddr.TabIndex = 54;
@@ -162,7 +168,7 @@
             // 
             this.tbCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbCapName.Location = new System.Drawing.Point(98, 123);
+            this.tbCapName.Location = new System.Drawing.Point(98, 102);
             this.tbCapName.Name = "tbCapName";
             this.tbCapName.Size = new System.Drawing.Size(157, 23);
             this.tbCapName.TabIndex = 54;
@@ -172,7 +178,7 @@
             // 
             this.tbRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbRegistNo.Location = new System.Drawing.Point(98, 91);
+            this.tbRegistNo.Location = new System.Drawing.Point(98, 74);
             this.tbRegistNo.Name = "tbRegistNo";
             this.tbRegistNo.Size = new System.Drawing.Size(157, 23);
             this.tbRegistNo.TabIndex = 54;
@@ -182,7 +188,7 @@
             // 
             this.tbSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbSiteAlias.Location = new System.Drawing.Point(98, 59);
+            this.tbSiteAlias.Location = new System.Drawing.Point(98, 46);
             this.tbSiteAlias.Name = "tbSiteAlias";
             this.tbSiteAlias.Size = new System.Drawing.Size(157, 23);
             this.tbSiteAlias.TabIndex = 54;
@@ -193,7 +199,7 @@
             this.lblBizTelNo.AutoSize = true;
             this.lblBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBizTelNo.Location = new System.Drawing.Point(13, 193);
+            this.lblBizTelNo.Location = new System.Drawing.Point(13, 164);
             this.lblBizTelNo.Name = "lblBizTelNo";
             this.lblBizTelNo.Size = new System.Drawing.Size(63, 14);
             this.lblBizTelNo.TabIndex = 53;
@@ -204,7 +210,7 @@
             this.lblBizAddr.AutoSize = true;
             this.lblBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBizAddr.Location = new System.Drawing.Point(23, 161);
+            this.lblBizAddr.Location = new System.Drawing.Point(23, 145);
             this.lblBizAddr.Name = "lblBizAddr";
             this.lblBizAddr.Size = new System.Drawing.Size(35, 14);
             this.lblBizAddr.TabIndex = 53;
@@ -215,7 +221,7 @@
             this.lblCapName.AutoSize = true;
             this.lblCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCapName.Location = new System.Drawing.Point(13, 129);
+            this.lblCapName.Location = new System.Drawing.Point(13, 108);
             this.lblCapName.Name = "lblCapName";
             this.lblCapName.Size = new System.Drawing.Size(63, 14);
             this.lblCapName.TabIndex = 53;
@@ -226,7 +232,7 @@
             this.lblRegistNo.AutoSize = true;
             this.lblRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblRegistNo.Location = new System.Drawing.Point(13, 97);
+            this.lblRegistNo.Location = new System.Drawing.Point(13, 80);
             this.lblRegistNo.Name = "lblRegistNo";
             this.lblRegistNo.Size = new System.Drawing.Size(77, 14);
             this.lblRegistNo.TabIndex = 53;
@@ -237,7 +243,7 @@
             this.lblSiteAlias.AutoSize = true;
             this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblSiteAlias.Location = new System.Drawing.Point(13, 65);
+            this.lblSiteAlias.Location = new System.Drawing.Point(13, 52);
             this.lblSiteAlias.Name = "lblSiteAlias";
             this.lblSiteAlias.Size = new System.Drawing.Size(77, 14);
             this.lblSiteAlias.TabIndex = 53;
@@ -253,9 +259,9 @@
             this.groupBox2.Controls.Add(this.lblVanCode);
             this.groupBox2.Controls.Add(this.lblTicketMedia);
             this.groupBox2.Controls.Add(this.lblTicketType);
-            this.groupBox2.Location = new System.Drawing.Point(120, 284);
+            this.groupBox2.Location = new System.Drawing.Point(72, 247);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(504, 157);
+            this.groupBox2.Size = new System.Drawing.Size(548, 140);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
             // 
@@ -264,7 +270,7 @@
             this.cbVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbVanCode.FormattingEnabled = true;
-            this.cbVanCode.Location = new System.Drawing.Point(98, 84);
+            this.cbVanCode.Location = new System.Drawing.Point(98, 75);
             this.cbVanCode.Name = "cbVanCode";
             this.cbVanCode.Size = new System.Drawing.Size(156, 21);
             this.cbVanCode.TabIndex = 58;
@@ -275,7 +281,7 @@
             this.cbTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTicketMedia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbTicketMedia.FormattingEnabled = true;
-            this.cbTicketMedia.Location = new System.Drawing.Point(98, 55);
+            this.cbTicketMedia.Location = new System.Drawing.Point(98, 47);
             this.cbTicketMedia.Name = "cbTicketMedia";
             this.cbTicketMedia.Size = new System.Drawing.Size(156, 21);
             this.cbTicketMedia.TabIndex = 57;
@@ -286,7 +292,7 @@
             this.cbTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTicketType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbTicketType.FormattingEnabled = true;
-            this.cbTicketType.Location = new System.Drawing.Point(98, 26);
+            this.cbTicketType.Location = new System.Drawing.Point(98, 19);
             this.cbTicketType.Name = "cbTicketType";
             this.cbTicketType.Size = new System.Drawing.Size(156, 21);
             this.cbTicketType.TabIndex = 56;
@@ -296,7 +302,7 @@
             // 
             this.tbCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbCallCenter.Location = new System.Drawing.Point(98, 116);
+            this.tbCallCenter.Location = new System.Drawing.Point(98, 104);
             this.tbCallCenter.Name = "tbCallCenter";
             this.tbCallCenter.Size = new System.Drawing.Size(330, 23);
             this.tbCallCenter.TabIndex = 55;
@@ -307,7 +313,7 @@
             this.lblCallCenter.AutoSize = true;
             this.lblCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCallCenter.Location = new System.Drawing.Point(13, 121);
+            this.lblCallCenter.Location = new System.Drawing.Point(13, 109);
             this.lblCallCenter.Name = "lblCallCenter";
             this.lblCallCenter.Size = new System.Drawing.Size(77, 14);
             this.lblCallCenter.TabIndex = 54;
@@ -318,7 +324,7 @@
             this.lblVanCode.AutoSize = true;
             this.lblVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblVanCode.Location = new System.Drawing.Point(13, 87);
+            this.lblVanCode.Location = new System.Drawing.Point(13, 78);
             this.lblVanCode.Name = "lblVanCode";
             this.lblVanCode.Size = new System.Drawing.Size(63, 14);
             this.lblVanCode.TabIndex = 54;
@@ -329,7 +335,7 @@
             this.lblTicketMedia.AutoSize = true;
             this.lblTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketMedia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTicketMedia.Location = new System.Drawing.Point(13, 58);
+            this.lblTicketMedia.Location = new System.Drawing.Point(13, 50);
             this.lblTicketMedia.Name = "lblTicketMedia";
             this.lblTicketMedia.Size = new System.Drawing.Size(63, 14);
             this.lblTicketMedia.TabIndex = 54;
@@ -340,7 +346,7 @@
             this.lblTicketType.AutoSize = true;
             this.lblTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTicketType.Location = new System.Drawing.Point(13, 29);
+            this.lblTicketType.Location = new System.Drawing.Point(13, 22);
             this.lblTicketType.Name = "lblTicketType";
             this.lblTicketType.Size = new System.Drawing.Size(63, 14);
             this.lblTicketType.TabIndex = 54;
@@ -348,33 +354,33 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnX);
+            this.groupBox3.Controls.Add(this.btnX1);
             this.groupBox3.Controls.Add(this.pbBillImage);
             this.groupBox3.Controls.Add(this.lblBillImage);
-            this.groupBox3.Location = new System.Drawing.Point(121, 567);
+            this.groupBox3.Location = new System.Drawing.Point(73, 498);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(504, 118);
+            this.groupBox3.Size = new System.Drawing.Size(547, 102);
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
             // 
-            // btnX
+            // btnX1
             // 
-            this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnX.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnX.ForeColor = System.Drawing.Color.DimGray;
-            this.btnX.Location = new System.Drawing.Point(382, 68);
-            this.btnX.Name = "btnX";
-            this.btnX.Size = new System.Drawing.Size(33, 30);
-            this.btnX.TabIndex = 55;
-            this.btnX.TabStop = false;
-            this.btnX.Text = "X";
-            this.btnX.UseVisualStyleBackColor = true;
-            this.btnX.Click += new System.EventHandler(this.btnX_Click);
+            this.btnX1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnX1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnX1.ForeColor = System.Drawing.Color.DimGray;
+            this.btnX1.Location = new System.Drawing.Point(382, 60);
+            this.btnX1.Name = "btnX1";
+            this.btnX1.Size = new System.Drawing.Size(33, 30);
+            this.btnX1.TabIndex = 55;
+            this.btnX1.TabStop = false;
+            this.btnX1.Text = "X";
+            this.btnX1.UseVisualStyleBackColor = true;
+            this.btnX1.Click += new System.EventHandler(this.btnX1_Click);
             // 
             // pbBillImage
             // 
             this.pbBillImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbBillImage.Location = new System.Drawing.Point(98, 27);
+            this.pbBillImage.Location = new System.Drawing.Point(98, 19);
             this.pbBillImage.Name = "pbBillImage";
             this.pbBillImage.Size = new System.Drawing.Size(259, 71);
             this.pbBillImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -387,7 +393,7 @@
             this.lblBillImage.AutoSize = true;
             this.lblBillImage.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBillImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBillImage.Location = new System.Drawing.Point(13, 27);
+            this.lblBillImage.Location = new System.Drawing.Point(13, 19);
             this.lblBillImage.Name = "lblBillImage";
             this.lblBillImage.Size = new System.Drawing.Size(49, 42);
             this.lblBillImage.TabIndex = 54;
@@ -405,9 +411,9 @@
             this.groupBox4.Controls.Add(this.tbCutoffTime);
             this.groupBox4.Controls.Add(this.lblCutoffTime);
             this.groupBox4.Controls.Add(this.lblCutoffType);
-            this.groupBox4.Location = new System.Drawing.Point(119, 447);
+            this.groupBox4.Location = new System.Drawing.Point(71, 391);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(504, 114);
+            this.groupBox4.Size = new System.Drawing.Size(548, 102);
             this.groupBox4.TabIndex = 58;
             this.groupBox4.TabStop = false;
             // 
@@ -416,7 +422,7 @@
             this.lblCutoffTime1.AutoSize = true;
             this.lblCutoffTime1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCutoffTime1.Location = new System.Drawing.Point(233, 61);
+            this.lblCutoffTime1.Location = new System.Drawing.Point(233, 55);
             this.lblCutoffTime1.Name = "lblCutoffTime1";
             this.lblCutoffTime1.Size = new System.Drawing.Size(102, 14);
             this.lblCutoffTime1.TabIndex = 57;
@@ -427,7 +433,7 @@
             this.lblCutoffTime2.AutoSize = true;
             this.lblCutoffTime2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCutoffTime2.Location = new System.Drawing.Point(98, 86);
+            this.lblCutoffTime2.Location = new System.Drawing.Point(98, 78);
             this.lblCutoffTime2.Name = "lblCutoffTime2";
             this.lblCutoffTime2.Size = new System.Drawing.Size(162, 14);
             this.lblCutoffTime2.TabIndex = 57;
@@ -438,7 +444,7 @@
             this.cbCutoffType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbCutoffType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbCutoffType.FormattingEnabled = true;
-            this.cbCutoffType.Location = new System.Drawing.Point(98, 26);
+            this.cbCutoffType.Location = new System.Drawing.Point(98, 18);
             this.cbCutoffType.Name = "cbCutoffType";
             this.cbCutoffType.Size = new System.Drawing.Size(129, 21);
             this.cbCutoffType.TabIndex = 56;
@@ -448,7 +454,7 @@
             // 
             this.tbCutoffTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCutoffTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbCutoffTime.Location = new System.Drawing.Point(98, 55);
+            this.tbCutoffTime.Location = new System.Drawing.Point(98, 49);
             this.tbCutoffTime.MaxLength = 4;
             this.tbCutoffTime.Name = "tbCutoffTime";
             this.tbCutoffTime.Size = new System.Drawing.Size(131, 23);
@@ -460,7 +466,7 @@
             this.lblCutoffTime.AutoSize = true;
             this.lblCutoffTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCutoffTime.Location = new System.Drawing.Point(13, 60);
+            this.lblCutoffTime.Location = new System.Drawing.Point(13, 54);
             this.lblCutoffTime.Name = "lblCutoffTime";
             this.lblCutoffTime.Size = new System.Drawing.Size(63, 14);
             this.lblCutoffTime.TabIndex = 54;
@@ -471,16 +477,64 @@
             this.lblCutoffType.AutoSize = true;
             this.lblCutoffType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCutoffType.Location = new System.Drawing.Point(13, 30);
+            this.lblCutoffType.Location = new System.Drawing.Point(13, 22);
             this.lblCutoffType.Name = "lblCutoffType";
             this.lblCutoffType.Size = new System.Drawing.Size(63, 14);
             this.lblCutoffType.TabIndex = 54;
             this.lblCutoffType.Text = "마감유형";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnX2);
+            this.groupBox5.Controls.Add(this.pbKioskLogoImage);
+            this.groupBox5.Controls.Add(this.lblKioskLogoImage);
+            this.groupBox5.Location = new System.Drawing.Point(71, 601);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(548, 83);
+            this.groupBox5.TabIndex = 59;
+            this.groupBox5.TabStop = false;
+            // 
+            // btnX2
+            // 
+            this.btnX2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnX2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnX2.ForeColor = System.Drawing.Color.DimGray;
+            this.btnX2.Location = new System.Drawing.Point(481, 29);
+            this.btnX2.Name = "btnX2";
+            this.btnX2.Size = new System.Drawing.Size(33, 30);
+            this.btnX2.TabIndex = 55;
+            this.btnX2.TabStop = false;
+            this.btnX2.Text = "X";
+            this.btnX2.UseVisualStyleBackColor = true;
+            this.btnX2.Click += new System.EventHandler(this.btnX2_Click);
+            // 
+            // pbKioskLogoImage
+            // 
+            this.pbKioskLogoImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbKioskLogoImage.Location = new System.Drawing.Point(98, 19);
+            this.pbKioskLogoImage.Name = "pbKioskLogoImage";
+            this.pbKioskLogoImage.Size = new System.Drawing.Size(360, 40);
+            this.pbKioskLogoImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbKioskLogoImage.TabIndex = 56;
+            this.pbKioskLogoImage.TabStop = false;
+            this.pbKioskLogoImage.Click += new System.EventHandler(this.pbKioskLogoImage_Click);
+            // 
+            // lblKioskLogoImage
+            // 
+            this.lblKioskLogoImage.AutoSize = true;
+            this.lblKioskLogoImage.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblKioskLogoImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblKioskLogoImage.Location = new System.Drawing.Point(13, 19);
+            this.lblKioskLogoImage.Name = "lblKioskLogoImage";
+            this.lblKioskLogoImage.Size = new System.Drawing.Size(77, 56);
+            this.lblKioskLogoImage.TabIndex = 54;
+            this.lblKioskLogoImage.Text = "KIOSK\r\n로고이미지\r\n(JPG)\r\n1080*120";
+            // 
             // frmSysSite
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -499,6 +553,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbKioskLogoImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -531,7 +588,7 @@
         private System.Windows.Forms.ComboBox cbTicketType;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblBillImage;
-        private System.Windows.Forms.Button btnX;
+        private System.Windows.Forms.Button btnX1;
         private System.Windows.Forms.PictureBox pbBillImage;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -541,5 +598,9 @@
         private System.Windows.Forms.Label lblCutoffType;
         private System.Windows.Forms.Label lblCutoffTime1;
         private System.Windows.Forms.Label lblCutoffTime2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnX2;
+        private System.Windows.Forms.PictureBox pbKioskLogoImage;
+        private System.Windows.Forms.Label lblKioskLogoImage;
     }
 }
