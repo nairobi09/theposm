@@ -1080,31 +1080,59 @@ namespace thepos
 
         private void server_login()
         {
-            // 로그인
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["userId"] = tbID.Text;
-            parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
-            parameters["macAddr"] = mMacAddr;
 
-            if (mRequestPost("login", parameters))
+            // 
+            if (tbID.Text == "1120" & tbPW.Text == "4089")
             {
-                if (mObj["resultCode"].ToString() == "200")
+                // 개발자 전용 로그인
+                frmDevAdmin frm = new frmDevAdmin();
+                DialogResult ret = frm.ShowDialog();
+
+                if (ret == DialogResult.OK)  // Real
                 {
-                    mSiteId = mObj["siteId"].ToString();
-                    mUserID = tbID.Text;
-                    mUserName = mObj["userName"].ToString();
-                    mPosNo = mObj["posNo"].ToString();
+
+                }
+                else if (ret == DialogResult.Yes) // TEST
+                {
+                    lblIsTest.Visible = true;
+
                 }
                 else
                 {
-                    MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
+
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
+                // 로그인
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["userId"] = tbID.Text;
+                parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
+                parameters["macAddr"] = mMacAddr;
+
+                if (mRequestPost("login", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        mSiteId = mObj["siteId"].ToString();
+                        mUserID = tbID.Text;
+                        mUserName = mObj["userName"].ToString();
+                        mPosNo = mObj["posNo"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+
             }
 
 
@@ -1149,7 +1177,7 @@ namespace thepos
                 {
                     mBizDate = biz_date;
                 }
-                else if (biz_status == "F")  // 마감
+                else  // F:마감 Y:집계완료 X:초기상태
                 {
                     //? 개시화면으로 이동?
 
@@ -2546,7 +2574,7 @@ namespace thepos
                         panelDivision.Controls.Add(fForm);
                         fForm.Show();
                     }
-                    else if (biz_Status == "F" | biz_Status == "Y")  // 마감, 집계완료
+                    else if (biz_Status == "F" | biz_Status == "Y" | biz_Status == "X")  // 마감, 집계완료, 초기상태
                     {
                         MessageBox.Show("영업개시전입니다. 영업개시 입력바랍니다.", "thepos");
                         return;

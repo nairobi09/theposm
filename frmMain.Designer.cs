@@ -78,6 +78,7 @@
             this.lblLocalModeTitle = new System.Windows.Forms.Label();
             this.pbNetworkConn = new System.Windows.Forms.PictureBox();
             this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
+            this.lblIsTest = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -734,6 +735,20 @@
             this.pbNetworkDisconn.TabIndex = 17;
             this.pbNetworkDisconn.TabStop = false;
             // 
+            // lblIsTest
+            // 
+            this.lblIsTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblIsTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblIsTest.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblIsTest.ForeColor = System.Drawing.Color.Orange;
+            this.lblIsTest.Location = new System.Drawing.Point(705, 654);
+            this.lblIsTest.Name = "lblIsTest";
+            this.lblIsTest.Size = new System.Drawing.Size(275, 44);
+            this.lblIsTest.TabIndex = 19;
+            this.lblIsTest.Text = "테스트서버연결중...";
+            this.lblIsTest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIsTest.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -750,6 +765,7 @@
             this.Controls.Add(this.lblLocalModeTitle);
             this.Controls.Add(this.pbNetworkConn);
             this.Controls.Add(this.pbNetworkDisconn);
+            this.Controls.Add(this.lblIsTest);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -828,5 +844,6 @@
         private System.Windows.Forms.PictureBox pbNetworkDisconn;
         private System.Windows.Forms.Button btnReqSupport;
         private System.Windows.Forms.Button btnReqUser;
+        private System.Windows.Forms.Label lblIsTest;
     }
 }

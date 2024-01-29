@@ -62,7 +62,7 @@ namespace thepos
 
             String biz_status = "";
             String biz_date = "";
-
+            String close_dt = "";
 
             String sUrl = "bizDateLast?siteId=" + mSiteId;
 
@@ -70,21 +70,36 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["bizDate"].ToString();
-                    JArray arr = JArray.Parse(data);
+                    String cnt = mObj["bizDateCnt"].ToString();
 
-                    biz_date = arr[0]["bizDt"].ToString();
-                    biz_status = arr[0]["bizStatus"].ToString();
-                    String close_dt = arr[0]["closeDt"].ToString();
+                    if (cnt == "0")
+                    {
+                        biz_date = "";
+                        biz_status = "X";
+                    }
+                    else
+                    {
+                        String data = mObj["bizDate"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        biz_date = arr[0]["bizDt"].ToString();
+                        biz_status = arr[0]["bizStatus"].ToString();
+                        close_dt = arr[0]["closeDt"].ToString();
+                    }
+
 
                     if (biz_status == "A")
                     {
                         
                     }
-                    else if (biz_status == "F")
+                    else if (biz_status == "F" | biz_status == "Y")
                     {
                         lblLastBizCloseDate.Text = biz_date.Substring(0, 4) + "-" + biz_date.Substring(4, 2) + "-" + biz_date.Substring(6, 2);
                         lblLastBizDtInput.Text = close_dt.Substring(0, 4) + "-" + close_dt.Substring(4, 2) + "-" + close_dt.Substring(6, 2) + " " + close_dt.Substring(8, 2) + ":" + close_dt.Substring(10, 2) + ":" + close_dt.Substring(12, 2);
+                    }
+                    else if (biz_status == "X")
+                    {
+
                     }
                 }
                 else

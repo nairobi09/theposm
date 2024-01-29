@@ -162,6 +162,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmDevAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevAdmin.Designer.cs">
+      <DependentUpon>frmDevAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="1Sales\frmDisplayBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -512,6 +518,9 @@
     <Content Include="x86\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="frmDevAdmin.resx">
+      <DependentUpon>frmDevAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmDisplayBill.resx">
       <DependentUpon>frmDisplayBill.cs</DependentUpon>
     </EmbeddedResource>

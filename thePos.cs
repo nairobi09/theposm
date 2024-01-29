@@ -159,11 +159,7 @@ namespace thepos
 
 
 
-#if DEBUG
-        public static String mBaseUri = "http://211.42.156.219:8080/";
-#else
         public static String mBaseUri = "http://211.45.170.55:8080/";
-#endif
 
 
         public static frmSub fSub;
@@ -987,13 +983,23 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["bizDate"].ToString();
-                    JArray arr = JArray.Parse(data);
+                    String cnt = mObj["bizDateCnt"].ToString();
 
-                    biz_date = arr[0]["bizDt"].ToString();
-                    biz_status = arr[0]["bizStatus"].ToString();
+                    if (cnt == "0")
+                    {
+                        biz_date = "";
+                        biz_status = "X";
+                    }
+                    else
+                    {
+                        String data = mObj["bizDate"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        biz_date = arr[0]["bizDt"].ToString();
+                        biz_status = arr[0]["bizStatus"].ToString();
+                    }
                     return true;
+
                 }
                 else
                 {
