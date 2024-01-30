@@ -462,7 +462,7 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("그룹버튼 입력 완료.", "thepos");
+                    //MessageBox.Show("그룹버튼 입력 완료.", "thepos");
                 }
                 else
                 {

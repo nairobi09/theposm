@@ -33,8 +33,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tbSiteID = new System.Windows.Forms.TextBox();
             this.tbPosNo = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnLoginDev = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -45,7 +43,7 @@
             this.cbTest.Checked = true;
             this.cbTest.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTest.ForeColor = System.Drawing.Color.LightGray;
-            this.cbTest.Location = new System.Drawing.Point(60, 57);
+            this.cbTest.Location = new System.Drawing.Point(19, 56);
             this.cbTest.Name = "cbTest";
             this.cbTest.Size = new System.Drawing.Size(56, 16);
             this.cbTest.TabIndex = 2;
@@ -54,7 +52,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(144, 73);
+            this.btnClose.Location = new System.Drawing.Point(103, 72);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(73, 24);
             this.btnClose.TabIndex = 4;
@@ -66,8 +64,8 @@
             // 
             this.tbSiteID.BackColor = System.Drawing.Color.DarkGray;
             this.tbSiteID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbSiteID.Font = new System.Drawing.Font("Gulim", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbSiteID.Location = new System.Drawing.Point(60, 15);
+            this.tbSiteID.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteID.Location = new System.Drawing.Point(19, 14);
             this.tbSiteID.Name = "tbSiteID";
             this.tbSiteID.Size = new System.Drawing.Size(68, 15);
             this.tbSiteID.TabIndex = 0;
@@ -76,35 +74,15 @@
             // 
             this.tbPosNo.BackColor = System.Drawing.Color.DarkGray;
             this.tbPosNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbPosNo.Font = new System.Drawing.Font("Gulim", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPosNo.Location = new System.Drawing.Point(60, 36);
+            this.tbPosNo.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbPosNo.Location = new System.Drawing.Point(19, 35);
             this.tbPosNo.Name = "tbPosNo";
             this.tbPosNo.Size = new System.Drawing.Size(68, 15);
             this.tbPosNo.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 12);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "SiteID";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(12, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "PosNo";
-            // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(144, 43);
+            this.btnLogin.Location = new System.Drawing.Point(103, 42);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(73, 24);
             this.btnLogin.TabIndex = 5;
@@ -114,7 +92,7 @@
             // 
             // btnLoginDev
             // 
-            this.btnLoginDev.Location = new System.Drawing.Point(144, 13);
+            this.btnLoginDev.Location = new System.Drawing.Point(103, 12);
             this.btnLoginDev.Name = "btnLoginDev";
             this.btnLoginDev.Size = new System.Drawing.Size(73, 24);
             this.btnLoginDev.TabIndex = 6;
@@ -127,11 +105,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(237, 108);
+            this.ClientSize = new System.Drawing.Size(197, 108);
             this.Controls.Add(this.btnLoginDev);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.cbTest);
             this.Controls.Add(this.tbPosNo);
@@ -151,8 +127,6 @@
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.TextBox tbSiteID;
         public System.Windows.Forms.TextBox tbPosNo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnLoginDev;
     }

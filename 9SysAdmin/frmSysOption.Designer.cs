@@ -113,10 +113,10 @@
             this.lvwGoods.FullRowSelect = true;
             this.lvwGoods.GridLines = true;
             this.lvwGoods.HideSelection = false;
-            this.lvwGoods.Location = new System.Drawing.Point(28, 58);
+            this.lvwGoods.Location = new System.Drawing.Point(19, 58);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(267, 621);
+            this.lvwGoods.Size = new System.Drawing.Size(276, 621);
             this.lvwGoods.SmallImageList = this.imageList1;
             this.lvwGoods.TabIndex = 0;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;

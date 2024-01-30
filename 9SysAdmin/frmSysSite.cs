@@ -361,8 +361,17 @@ namespace thepos._9SysAdmin
                     mRegistNo = tbCapName.Text;
                     mBizAddr = tbBizAddr.Text;
                     mBizTelNo = tbBizTelNo.Text;
-                    mTicketType = tmTicketType[cbTicketType.SelectedIndex];
-                    mTicketMedia = tmTicketMedia[cbTicketMedia.SelectedIndex];
+                    
+                    if (cbTicketType.SelectedIndex < 0)
+                        mTicketType = "";
+                    else
+                        mTicketType = tmTicketType[cbTicketType.SelectedIndex];
+
+                    if (cbTicketMedia.SelectedIndex < 0)
+                        mTicketMedia = "";
+                    else
+                        mTicketMedia = tmTicketMedia[cbTicketMedia.SelectedIndex];
+
                     mVanCode = tmVanCode[cbVanCode.SelectedIndex];
 
                     mCallCenterNo = tbCallCenter.Text;

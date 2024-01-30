@@ -594,7 +594,7 @@ namespace thepos
                     }
                     else
                     {
-                        btnGoodsItem.Font = font14;
+                        btnGoodsItem.Font = font12;
                     }
 
 

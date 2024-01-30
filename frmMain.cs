@@ -1085,7 +1085,7 @@ namespace thepos
 
                 if (ret == DialogResult.OK)  // Real
                 {
-
+                    lblIsTest.Visible = false;
                 }
                 else if (ret == DialogResult.Yes) // TEST
                 {

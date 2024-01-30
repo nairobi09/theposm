@@ -113,7 +113,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        cbPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+                        //cbPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
 
                         pos_no.Add(arr[i]["posNo"].ToString());
                         pos_type.Add(arr[i]["setupValue"].ToString());
