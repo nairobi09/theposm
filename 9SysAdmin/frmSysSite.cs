@@ -101,11 +101,11 @@ namespace thepos._9SysAdmin
             imgList.ImageSize = new Size(1, 32);
 
 
-            tmTicketType = new String[2] { "PA", "PD" };
-            tmTicketTypeText = new String[2] { "선불", "후불" };
+            tmTicketType = new String[3] { "", "PA", "PD" };
+            tmTicketTypeText = new String[3] {"", "선불", "후불" };
 
-            tmTicketMedia = new String[2] { "BC", "RF" };
-            tmTicketMediaText = new String[2] { "띠지", "팔찌" };
+            tmTicketMedia = new String[3] { "", "BC", "RF" };
+            tmTicketMediaText = new String[3] { "", "띠지", "팔찌" };
 
             tmVanCode = new String[3] { "NICE", "KCP", "KOVAN" };
 

@@ -1050,7 +1050,6 @@ namespace thepos
             {
                 // 설치후 최초실행
                 server_login();
-
             }
 
 
@@ -1068,8 +1067,6 @@ namespace thepos
             }
 
 
-
-
             // 데이터 체크 임시
             //Form f = new frmCheckData();
             //f.Show();
@@ -1077,10 +1074,8 @@ namespace thepos
         }
 
 
-
         private void server_login()
         {
-
             // 
             if (tbID.Text == "1120" & tbPW.Text == "4089")
             {
@@ -1105,7 +1100,9 @@ namespace thepos
             }
             else
             {
-                // 로그인
+
+                mBaseUri = uri_real;
+                
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["userId"] = tbID.Text;
                 parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
@@ -1128,7 +1125,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("시스템오류\n\n" + "RequestPost Login", "thepos");
                     return;
                 }
 
@@ -1136,17 +1133,15 @@ namespace thepos
             }
 
 
+
+
             // 서버 -> 메모리
             sync_data_server_to_memory();
-
-
 
             // 일반(서버) 테마 적용
             btnBusiness.Enabled = true;
             btnReports.Enabled = true;
             btnSupport.Enabled = true;
-
-
 
             panelLogin.Visible = false;
 
@@ -1157,8 +1152,6 @@ namespace thepos
             lblCallCenterNo.Text = mCallCenterNo;
 
             save_registry_info();
-
-
 
 
             // 로그인여부
@@ -1179,8 +1172,6 @@ namespace thepos
                 }
                 else  // F:마감 Y:집계완료 X:초기상태
                 {
-                    //? 개시화면으로 이동?
-
                     return;
                 }
             }
@@ -1189,7 +1180,6 @@ namespace thepos
                 MessageBox.Show("개시마감관리 오류\n서버에서 정보를 읽어오지 못했습니다.", "thepos");
                 return;
             }
-
         }
 
 
@@ -1204,7 +1194,6 @@ namespace thepos
                 return;
             }
 
-
             mUserID = "";
             mUserName = "";
             mPosNo = "";
@@ -1212,7 +1201,6 @@ namespace thepos
 
             //
             mPayClass = "OR";
-
 
 
             // 로컬DB -> 메모리 
@@ -1229,10 +1217,7 @@ namespace thepos
             lblUserName.Text = "";
             lblCallCenterNo.Text = mCallCenterNo;
 
-
         }
-
-
 
 
         private void sync_data_server_to_memory()

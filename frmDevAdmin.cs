@@ -25,17 +25,17 @@ namespace thepos
             Close();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void btnLoginDev_Click(object sender, EventArgs e)
         {
 
             if (cbTest.Checked)
             {
-                // TEST
-                mBaseUri = "http://211.42.156.219:8080/";
+                mBaseUri = uri_test;
                 DialogResult = DialogResult.Yes;  // TEST
             }
             else
             {
+                mBaseUri = uri_real;
                 DialogResult = DialogResult.OK;  // REAL
             }
 
@@ -68,5 +68,50 @@ namespace thepos
 
 
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
+            if (cbTest.Checked)
+            {
+                mBaseUri = "http://211.42.156.219:8080/";
+                DialogResult = DialogResult.Yes;  // TEST
+            }
+            else
+            {
+                mBaseUri = "http://211.45.170.55:8080/";
+                DialogResult = DialogResult.OK;  // REAL
+            }
+
+
+            // 로그인
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["userId"] = tbSiteID.Text;
+            parameters["userPw"] = SHA1HashCrypt(tbPosNo.Text);
+            parameters["macAddr"] = mMacAddr;
+
+            if (mRequestPost("login", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    mSiteId = mObj["siteId"].ToString();
+                    mUserID = tbSiteID.Text;
+                    mUserName = mObj["userName"].ToString();
+                    mPosNo = mObj["posNo"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
+
     }
 }

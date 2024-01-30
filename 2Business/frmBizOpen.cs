@@ -129,12 +129,23 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["bizDate"].ToString();
-                    JArray arr = JArray.Parse(data);
+                    String cnt = mObj["bizDateCnt"].ToString();
+                    if (cnt == "0")
+                    {
+                        biz_date = "";
+                        biz_status = "X";
+                    }
+                    else
+                    {
+                        String data = mObj["bizDate"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-                    biz_date = arr[0]["bizDt"].ToString();
-                    biz_status = arr[0]["bizStatus"].ToString();
-                    String close_dt = arr[0]["closeDt"].ToString();
+                        biz_date = arr[0]["bizDt"].ToString();
+                        biz_status = arr[0]["bizStatus"].ToString();
+                        String close_dt = arr[0]["closeDt"].ToString();
+                    }
+
+
 
 
                     if (biz_status == "A")
@@ -178,6 +189,19 @@ namespace thepos
                                 //ok
                             }
                         }
+                    }
+                    else if (biz_status == "X")
+                    {
+                        input_biz_date = dtpBizDate.Value.ToString("yyyyMMdd");
+
+                        int cur = 0;
+
+                        if (!get_number(input_biz_date, ref cur))
+                        {
+                            MessageBox.Show("영업개시일자 오류.", "thepos");
+                            return;
+                        }
+
                     }
                 }
                 else

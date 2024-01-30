@@ -160,6 +160,10 @@ namespace thepos
 
 
         public static String mBaseUri = "http://211.45.170.55:8080/";
+        public static String uri_real = "http://211.45.170.55:8080/";
+        public static String uri_test = "http://211.42.156.219:8080/";
+
+
 
 
         public static frmSub fSub;
