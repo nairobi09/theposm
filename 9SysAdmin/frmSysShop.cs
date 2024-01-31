@@ -55,7 +55,7 @@ namespace thepos._9SysAdmin
         private void initialize_the()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 32);
+            imgList.ImageSize = new Size(1, 24);
 
             lvwList.SmallImageList = imgList;
             lvwList.HideSelection = true;
@@ -70,7 +70,7 @@ namespace thepos._9SysAdmin
             mPrinterTypeName[1] = "네트워크프린터";
             mPrinterTypeName[2] = "로컬전용프린터";
             mPrinterTypeName[3] = "영수증프린터";
-            mPrinterTypeName[4] = "화면출력(테스트)";
+            mPrinterTypeName[4] = "(테스트)";
 
 
             cbPrinterType.Items.Clear();

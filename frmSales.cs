@@ -497,6 +497,9 @@ namespace thepos
                 btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
                 btnGoodsGroup.Dock = DockStyle.Fill;
 
+                btnGoodsGroup.FlatAppearance.BorderSize = 2;
+
+
                 if (mGoodsGroup[i].columnspan == 1)
                 {
                     btnGoodsGroup.Font = font9;
@@ -538,10 +541,6 @@ namespace thepos
                 tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, mGoodsGroup[i].rowspan);
 
                 tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
-
-
-
-
 
             }
 

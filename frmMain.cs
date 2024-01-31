@@ -336,7 +336,7 @@ namespace thepos
 
 
                 
-                if ((mNetworkState != tServerStatus) | (wait_cnt >= 150))  // 5분
+                if ((mNetworkState != tServerStatus) | (wait_cnt >= 300))  // 10분
                 {
                     tServerStatus = check_server_status();
 
@@ -360,7 +360,7 @@ namespace thepos
 
 
 
-                if (wait_cnt >= 150) // 5분
+                if (wait_cnt >= 300) // 10분
                 {
                     wait_cnt = 0;
 
@@ -1848,27 +1848,36 @@ namespace thepos
                         // Delete
                         int ret = sql_excute_local_db("DELETE FROM goodsOption");
 
-                        //
-                        String data = mObj["goodsOption"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
+                        String strCnt = mObj["optionCnt"].ToString();
+                        if (strCnt == "0")
                         {
-                            String siteId = arr[i]["siteId"].ToString();
-                            String goodsCode = arr[i]["goodsCode"].ToString();
-                            String optionCode = arr[i]["optionCode"].ToString();
-                            int optionSeq = int.Parse(arr[i]["optionSeq"].ToString());
-                            String optionName = arr[i]["optionName"].ToString();
-                            String optionNameEn = arr[i]["optionNameEn"].ToString();
-                            String optionNameCh = arr[i]["optionNameCh"].ToString();
-                            String optionNameJp = arr[i]["optionNameJp"].ToString();
+                            synclink_log("다운로드 : goodsOption => Skip...");
+                        }
+                        else
+                        {
+                            //
+                            String data = mObj["goodsOption"].ToString();
+                            JArray arr = JArray.Parse(data);
 
-                            String sql = "INSERT INTO goodsOption (siteId, goodsCode, optionCode, optionSeq, optionName, optionNameEn, optionNameCh, optionNameJp) " +
-                                "values ('" + siteId + "','" + goodsCode + "','" + optionCode + "'," + optionSeq + ",'" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
-                            ret = sql_excute_local_db(sql);
+                            for (int i = 0; i < arr.Count; i++)
+                            {
+                                String siteId = arr[i]["siteId"].ToString();
+                                String goodsCode = arr[i]["goodsCode"].ToString();
+                                String optionCode = arr[i]["optionCode"].ToString();
+                                int optionSeq = int.Parse(arr[i]["optionSeq"].ToString());
+                                String optionName = arr[i]["optionName"].ToString();
+                                String optionNameEn = arr[i]["optionNameEn"].ToString();
+                                String optionNameCh = arr[i]["optionNameCh"].ToString();
+                                String optionNameJp = arr[i]["optionNameJp"].ToString();
+
+                                String sql = "INSERT INTO goodsOption (siteId, goodsCode, optionCode, optionSeq, optionName, optionNameEn, optionNameCh, optionNameJp) " +
+                                    "values ('" + siteId + "','" + goodsCode + "','" + optionCode + "'," + optionSeq + ",'" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
+                                ret = sql_excute_local_db(sql);
+                            }
+
+                            synclink_log("다운로드 : goodsOption = " + arr.Count);
                         }
 
-                        synclink_log("다운로드 : goodsOption = " + arr.Count);
                         Thread.Sleep(1000 * 1); // 1초
                     }
                     else
@@ -1897,28 +1906,36 @@ namespace thepos
                         // Delete
                         int ret = sql_excute_local_db("DELETE FROM goodsOptionItem");
 
-                        //
-                        String data = mObj["optionItem"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
+                        String strCnt = mObj["optionItemCnt"].ToString();
+                        if (strCnt == "0")
                         {
-                            String siteId = arr[i]["siteId"].ToString();
-                            String goodsCode = arr[i]["goodsCode"].ToString();
-                            String optionCode = arr[i]["optionCode"].ToString();
-                            int optionItemNo = int.Parse(arr[i]["optionItemNo"].ToString());
-                            String optionItemName = arr[i]["optionItemName"].ToString();
-                            String optionItemNameEn = arr[i]["optionItemNameEn"].ToString();
-                            String optionItemNameCh = arr[i]["optionItemNameCh"].ToString();
-                            String optionItemNameJp = arr[i]["optionItemNameJp"].ToString();
-                            int optionItemAmt = int.Parse(arr[i]["optionItemAmt"].ToString());
-
-                            String sql = "INSERT INTO goodsOptionItem (siteId, goodsCode, optionCode, optionItemNo, optionItemName, optionItemNameEn, optionItemNameCh, optionItemNameJp, optionItemAmt) " +
-                                "values ('" + siteId + "','" + goodsCode + "','" + optionCode + "'," + optionItemNo + ",'" + optionItemName + "','" + optionItemNameEn + "','" + optionItemNameCh + "','" + optionItemNameJp + "'," + optionItemAmt + ")";
-                            ret = sql_excute_local_db(sql);
+                            synclink_log("다운로드 : goodsOptionItem => Skip...");
                         }
+                        else
+                        {
+                            //
+                            String data = mObj["optionItem"].ToString();
+                            JArray arr = JArray.Parse(data);
 
-                        synclink_log("다운로드 : goodsOptionItem = " + arr.Count);
+                            for (int i = 0; i < arr.Count; i++)
+                            {
+                                String siteId = arr[i]["siteId"].ToString();
+                                String goodsCode = arr[i]["goodsCode"].ToString();
+                                String optionCode = arr[i]["optionCode"].ToString();
+                                int optionItemNo = int.Parse(arr[i]["optionItemNo"].ToString());
+                                String optionItemName = arr[i]["optionItemName"].ToString();
+                                String optionItemNameEn = arr[i]["optionItemNameEn"].ToString();
+                                String optionItemNameCh = arr[i]["optionItemNameCh"].ToString();
+                                String optionItemNameJp = arr[i]["optionItemNameJp"].ToString();
+                                int optionItemAmt = int.Parse(arr[i]["optionItemAmt"].ToString());
+
+                                String sql = "INSERT INTO goodsOptionItem (siteId, goodsCode, optionCode, optionItemNo, optionItemName, optionItemNameEn, optionItemNameCh, optionItemNameJp, optionItemAmt) " +
+                                    "values ('" + siteId + "','" + goodsCode + "','" + optionCode + "'," + optionItemNo + ",'" + optionItemName + "','" + optionItemNameEn + "','" + optionItemNameCh + "','" + optionItemNameJp + "'," + optionItemAmt + ")";
+                                ret = sql_excute_local_db(sql);
+                            }
+
+                            synclink_log("다운로드 : goodsOptionItem = " + arr.Count);
+                        }
                         Thread.Sleep(1000 * 1); // 1초
                     }
                     else
@@ -2078,25 +2095,34 @@ namespace thepos
                         // Delete
                         int ret = sql_excute_local_db("DELETE FROM dcrFavorite");
 
-                        //
-                        String data = mObj["dcr"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
+                        String strCnt = mObj["dcrCnt"].ToString();
+                        if (strCnt == "0")
                         {
-                            String siteId = arr[i]["siteId"].ToString();
-                            int sortNo = int.Parse(arr[i]["sortNo"].ToString());
-                            String dcrCode = arr[i]["dcrCode"].ToString();
-                            String dcrName = arr[i]["dcrName"].ToString();
-                            String dcrDes = arr[i]["dcrDes"].ToString();
-                            String dcrType = arr[i]["dcrType"].ToString();
-                            int dcrValue = int.Parse(arr[i]["dcrValue"].ToString());
-
-                            String sql = "INSERT INTO dcrFavorite (siteId, sortNo, dcrCode, dcrName, dcrDes, dcrType, dcrValue) " +
-                                    "values ('" + siteId + "'," + sortNo + ",'" + dcrCode + "','" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
-                            ret = sql_excute_local_db(sql);
+                            synclink_log("다운로드 : dcrFavorite => Skip...");
                         }
-                        synclink_log("다운로드 : dcrFavorite = " + arr.Count);
+                        else
+                        {
+                            //
+                            String data = mObj["dcr"].ToString();
+                            JArray arr = JArray.Parse(data);
+
+                            for (int i = 0; i < arr.Count; i++)
+                            {
+                                String siteId = arr[i]["siteId"].ToString();
+                                int sortNo = int.Parse(arr[i]["sortNo"].ToString());
+                                String dcrCode = arr[i]["dcrCode"].ToString();
+                                String dcrName = arr[i]["dcrName"].ToString();
+                                String dcrDes = arr[i]["dcrDes"].ToString();
+                                String dcrType = arr[i]["dcrType"].ToString();
+                                int dcrValue = int.Parse(arr[i]["dcrValue"].ToString());
+
+                                String sql = "INSERT INTO dcrFavorite (siteId, sortNo, dcrCode, dcrName, dcrDes, dcrType, dcrValue) " +
+                                        "values ('" + siteId + "'," + sortNo + ",'" + dcrCode + "','" + dcrName + "','" + dcrDes + "','" + dcrType + "'," + dcrValue + ")";
+                                ret = sql_excute_local_db(sql);
+                            }
+                            synclink_log("다운로드 : dcrFavorite = " + arr.Count);
+                        }
+
                         Thread.Sleep(1000 * 1); // 1초
 
                     }
