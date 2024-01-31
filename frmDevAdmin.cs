@@ -74,12 +74,12 @@ namespace thepos
 
             if (cbTest.Checked)
             {
-                mBaseUri = "http://211.42.156.219:8080/";
+                mBaseUri = uri_test;
                 DialogResult = DialogResult.Yes;  // TEST
             }
             else
             {
-                mBaseUri = "http://211.45.170.55:8080/";
+                mBaseUri = uri_real;
                 DialogResult = DialogResult.OK;  // REAL
             }
 

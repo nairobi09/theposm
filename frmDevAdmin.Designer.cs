@@ -43,18 +43,20 @@
             this.cbTest.Checked = true;
             this.cbTest.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTest.ForeColor = System.Drawing.Color.LightGray;
-            this.cbTest.Location = new System.Drawing.Point(19, 56);
+            this.cbTest.Location = new System.Drawing.Point(27, 84);
+            this.cbTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbTest.Name = "cbTest";
-            this.cbTest.Size = new System.Drawing.Size(56, 16);
+            this.cbTest.Size = new System.Drawing.Size(69, 22);
             this.cbTest.TabIndex = 2;
             this.cbTest.Text = "TEST";
             this.cbTest.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(103, 72);
+            this.btnClose.Location = new System.Drawing.Point(147, 108);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(73, 24);
+            this.btnClose.Size = new System.Drawing.Size(104, 36);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -65,9 +67,10 @@
             this.tbSiteID.BackColor = System.Drawing.Color.DarkGray;
             this.tbSiteID.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbSiteID.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbSiteID.Location = new System.Drawing.Point(19, 14);
+            this.tbSiteID.Location = new System.Drawing.Point(27, 21);
+            this.tbSiteID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSiteID.Name = "tbSiteID";
-            this.tbSiteID.Size = new System.Drawing.Size(68, 15);
+            this.tbSiteID.Size = new System.Drawing.Size(97, 15);
             this.tbSiteID.TabIndex = 0;
             // 
             // tbPosNo
@@ -75,16 +78,18 @@
             this.tbPosNo.BackColor = System.Drawing.Color.DarkGray;
             this.tbPosNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPosNo.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPosNo.Location = new System.Drawing.Point(19, 35);
+            this.tbPosNo.Location = new System.Drawing.Point(27, 52);
+            this.tbPosNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPosNo.Name = "tbPosNo";
-            this.tbPosNo.Size = new System.Drawing.Size(68, 15);
+            this.tbPosNo.Size = new System.Drawing.Size(97, 15);
             this.tbPosNo.TabIndex = 1;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(103, 42);
+            this.btnLogin.Location = new System.Drawing.Point(147, 63);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(73, 24);
+            this.btnLogin.Size = new System.Drawing.Size(104, 36);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -92,9 +97,10 @@
             // 
             // btnLoginDev
             // 
-            this.btnLoginDev.Location = new System.Drawing.Point(103, 12);
+            this.btnLoginDev.Location = new System.Drawing.Point(147, 18);
+            this.btnLoginDev.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLoginDev.Name = "btnLoginDev";
-            this.btnLoginDev.Size = new System.Drawing.Size(73, 24);
+            this.btnLoginDev.Size = new System.Drawing.Size(104, 36);
             this.btnLoginDev.TabIndex = 6;
             this.btnLoginDev.Text = "loginDev";
             this.btnLoginDev.UseVisualStyleBackColor = true;
@@ -102,10 +108,9 @@
             // 
             // frmDevAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(197, 108);
+            this.ClientSize = new System.Drawing.Size(281, 162);
             this.Controls.Add(this.btnLoginDev);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnClose);
@@ -114,6 +119,7 @@
             this.Controls.Add(this.tbSiteID);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDevAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmDevAdmin";
