@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using static thepos.thePos;
 
 
@@ -39,6 +40,7 @@ namespace thepos._9SysAdmin
         String sv_taxFree = "";
         String sv_cutout = "";
         String sv_soldout = "";
+        String sv_option_template_id = "";
         String sv_memo = "";
         String ch_imagePath = "";
 
@@ -48,7 +50,7 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            initialize_font();
+            //initialize_font();
             initialize_the();
 
             reload_all();
@@ -82,6 +84,9 @@ namespace thepos._9SysAdmin
             lblShopTitle.Font = font10;
             cbShop.Font = font10;
 
+            lblOptionTitle.Font = font10;
+            cbOptionTemplate.Font = font10;
+
             lblMemoTitle.Font = font10;
             tbMemo.Font = font10;
 
@@ -102,6 +107,12 @@ namespace thepos._9SysAdmin
             {
                 cbShop.Items.Add(mShop[i].shop_name);
             }
+
+            cbOptionTemplate.Items.Clear();
+            for (int i = 0; i < mOptionTemplate.Length; i++)
+            {
+                cbOptionTemplate.Items.Add(mOptionTemplate[i].option_template_name);
+            }
         }
 
         private void clear_console()
@@ -117,6 +128,7 @@ namespace thepos._9SysAdmin
             cbTicket.Checked = false;
             cbTaxFree.Checked = false;
             cbCutout.Checked = false;
+
             tbMemo.Text = "";
             pbImage.Image = null;
         }
@@ -155,6 +167,7 @@ namespace thepos._9SysAdmin
 
                         // goodscode
                         lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
+
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
@@ -173,6 +186,10 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
+
+                        lvItem.SubItems.Add(arr[i]["optionTemplateId"].ToString());
+                        lvItem.SubItems.Add(get_option_template_name(arr[i]["optionTemplateId"].ToString()));
+
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
                         if (tCutout == "Y")  // 중지
@@ -224,7 +241,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -281,6 +298,10 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
+
+                        lvItem.SubItems.Add(arr[0]["optionTemplateId"].ToString());
+                        lvItem.SubItems.Add(get_option_template_name(arr[0]["optionTemplateId"].ToString()));
+
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
 
                         if (tCutout == "Y")  // 중지
@@ -329,7 +350,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return null;
                 }
             }
@@ -390,6 +411,25 @@ namespace thepos._9SysAdmin
             else
                 cbSoldout.Checked = false;
 
+            //
+
+            String id = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(option_id)].Text;
+
+            if (id == "")
+            {
+                cbOptionTemplate.SelectedIndex = -1;
+            }
+            else
+            {
+                for (int i = 0; i < mOptionTemplate.Length; i++)
+                {
+                    if (mOptionTemplate[i].option_template_id == id)
+                    {
+                        cbOptionTemplate.SelectedIndex = 1;
+                    }
+                }
+            }
+
 
             tbMemo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(memo)].Text;
 
@@ -425,6 +465,9 @@ namespace thepos._9SysAdmin
             sv_taxFree = cbTaxFree.Checked + "";
             sv_cutout = cbCutout.Checked + "";
             sv_soldout = cbSoldout.Checked + "";
+
+            sv_option_template_id = cbOptionTemplate.SelectedIndex + "";
+
             sv_memo = tbMemo.Text;
             ch_imagePath = "0";
 
@@ -522,6 +565,22 @@ namespace thepos._9SysAdmin
                     parameters["soldout"] = "";
             }
 
+
+
+            //
+            if (sv_option_template_id != cbOptionTemplate.SelectedIndex + "")
+            {
+                if (cbOptionTemplate.SelectedIndex > -1)
+                {
+                    parameters["optionTemplateId"] = mOptionTemplate[cbOptionTemplate.SelectedIndex].option_template_id;
+                }
+                else
+                {
+                    parameters["optionTemplateId"] = "";
+                }
+            }
+
+
             //
             if (sv_memo != tbMemo.Text)
                 parameters["memo"] = tbMemo.Text;
@@ -551,7 +610,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -636,6 +695,10 @@ namespace thepos._9SysAdmin
                 parameters["soldout"] = "N";
 
 
+
+
+
+
             parameters["memo"] = tbMemo.Text;
 
             if (pbImage.Image == null)
@@ -659,7 +722,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -719,7 +782,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

@@ -117,7 +117,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("샵정보 오류. shop\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("샵정보 오류. shop\n\n " + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -170,7 +170,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("업장정보 오류. shop\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("업장정보 오류. shop\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -225,7 +225,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("오류. shop\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. shop\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -281,7 +281,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("업장정보 오류. shop\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("업장정보 오류. shop\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

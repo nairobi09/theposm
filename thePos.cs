@@ -204,6 +204,49 @@ namespace thepos
         public static PayConsol[] mPayConsol;
 
 
+
+
+        public struct OptionTemplate
+        {
+            public string option_template_id;
+            public string option_template_name;
+        }
+        public static OptionTemplate[] mOptionTemplate;
+
+
+
+        public struct TempOption
+        {
+            public string option_template_id;
+            public string option_id;
+            public int option_seq;
+            public string option_init_dsp;
+            public string option_name;
+            public string option_name_en;
+            public string option_name_ch;
+            public string option_name_jp;
+        }
+        public static TempOption[] mTempOption;
+
+
+        public struct TempOptionItem
+        {
+            public string option_template_id;
+            public string option_id;
+            public string option_item_id;
+            public int option_item_seq;
+            public string link_option_id;
+            public string option_item_name;
+            public string option_item_name_en;
+            public string option_item_name_ch;
+            public string option_item_name_jp;
+            public int option_item_amt;
+        }
+        public static TempOptionItem[] mTempOptionItem;
+
+
+
+
         public struct Shop
         {
             public string shop_code;
@@ -242,7 +285,7 @@ namespace thepos
             public int row;
             public int columnspan;
             public int rowspan;
-            public String is_option;
+            public String option_template_id;
         }
         public static GoodsItem[] mGoodsItem;
 
@@ -265,6 +308,7 @@ namespace thepos
             public int option_item_amt;
         }
         public static GoodsOptionItem[] mGoodsOptionItem;
+
 
 
         // 상품명을 찾기위해서
@@ -627,8 +671,11 @@ namespace thepos
 
         // 포스별 설정
         public static String mBillPrinterPort = "";
+        public static String mBillPrinterSpeed = "";
         public static String mTicketPrinterPort = "";
+        public static String mTicketPrinterSpeed = "";
         public static String mOrderPrinterPort = "";
+        public static String mOrderPrinterSpeed = "";
         public static String mPosType = ""; // 기종 : POS PC KIOSK
         public static String mCustomerMonitor = "";  // Y N
         public static String mVanTID = "";    // 결제밴 T-ID
@@ -817,6 +864,24 @@ namespace thepos
 
             return code;
         }
+
+
+        public static String get_option_template_name(String template_id)
+        {
+
+            for (int i = 0; i < mOptionTemplate.Length; i++)
+            {
+                if (mOptionTemplate[i].option_template_id == template_id)
+                {
+                    return mOptionTemplate[i].option_template_name;
+                }
+            }
+
+            return template_id;
+        }
+
+
+
 
         public static String get_shop_name(String shop_code)
         {
@@ -1007,7 +1072,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("영업개시마감 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     //MessageBox.Show("영업개시마감 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
@@ -1035,7 +1100,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류. site\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. site\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

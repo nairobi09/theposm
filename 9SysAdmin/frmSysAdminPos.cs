@@ -136,7 +136,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("등록신청오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("등록신청오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

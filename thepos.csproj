@@ -29,7 +29,7 @@
     <InstallUrl>http://thepos.co.kr/setup/tp1/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>59</ApplicationRevision>
+    <ApplicationRevision>65</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -498,6 +498,12 @@
     <Compile Include="9SysAdmin\frmSysOption.Designer.cs">
       <DependentUpon>frmSysOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysOptionTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysOptionTemplate.Designer.cs">
+      <DependentUpon>frmSysOptionTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="van\KCP\ClsConfig.cs" />
     <Compile Include="van\KCP\ClsDate.cs" />
     <Compile Include="van\KCP\clsEnum.cs" />
@@ -687,6 +693,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysOption.resx">
       <DependentUpon>frmSysOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysOptionTemplate.resx">
+      <DependentUpon>frmSysOptionTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

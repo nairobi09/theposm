@@ -224,8 +224,6 @@ namespace thepos
                             p_net_amount[day_idx] = convert_number(arr[i]["netAmount"].ToString());
                         }
 
-
-
                         lvwList.Items.Clear();
                         for (int i = 1;i <= last_date;i++) 
                         {
@@ -238,12 +236,10 @@ namespace thepos
                             lvwList.Items.Add(Item);
                         }
 
-
-
                     }
                     else
                     {
-                        MessageBox.Show("정보 오류. reportMonthListPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show(mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -304,7 +300,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("정보 오류. reportMonthListShop\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show(mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }

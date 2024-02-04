@@ -43,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[6];
+        Setup[] listSetup = new Setup[9];
 
 
         bool isAdd = false;
@@ -60,10 +60,17 @@ namespace thepos
 
             setupItem.code = "PosType";               setupItem.name = "기기유형";          setupItem.value = "";   setupItem.memo = "";    listSetup[0] = setupItem;
             setupItem.code = "CustomerMonitor";       setupItem.name = "고객용모니터사용";  setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
+            
             setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
-            setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
-            setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
-            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[5] = setupItem;
+            setupItem.code = "BillPrinterSpeed";      setupItem.name = "영수증프린터속도";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
+
+            setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
+            setupItem.code = "OrderPrinterSpeed";     setupItem.name = "주문서프린터속도";  setupItem.value = "";   setupItem.memo = "";    listSetup[5] = setupItem;
+
+            setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[6] = setupItem;
+            setupItem.code = "TicketPrinterSpeed";    setupItem.name = "티켓프린터속도";    setupItem.value = "";   setupItem.memo = "";    listSetup[7] = setupItem;
+
+            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[8] = setupItem;
 
 
             reload_setup_pos();
@@ -161,7 +168,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("설정정보 오류. setupPos\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("설정정보 오류. setupPos\n\n " + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -232,7 +239,7 @@ namespace thepos
                 cbValue.Items.Add("Y");
                 cbValue.Items.Add("N");
             }
-            else if (code == listSetup[2].code | code == listSetup[3].code | code == listSetup[4].code) // BillPrinterPort TicketPrinterPort ScannerPort
+            else if (code == listSetup[2].code | code == listSetup[4].code | code == listSetup[6].code) // BillPrinterPort TicketPrinterPort ScannerPort
             {
                 cbValue.Visible = true;
 
@@ -243,7 +250,19 @@ namespace thepos
                     cbValue.Items.Add(s);
                 }
             }
-            else if (code == listSetup[5].code)  // t-id
+            else if (code == listSetup[3].code | code == listSetup[5].code | code == listSetup[7].code) // BillPrinterPort TicketPrinterPort ScannerPort
+            {
+                cbValue.Visible = true;
+
+                cbValue.Items.Clear();
+                cbValue.Items.Add(" ");
+                cbValue.Items.Add("9600");
+                cbValue.Items.Add("19200");
+                cbValue.Items.Add("38400");
+                cbValue.Items.Add("57600");
+                cbValue.Items.Add("115200");
+            }
+            else if (code == listSetup[8].code)  // t-id
             {
                 tbValue.Visible = true;
 
@@ -339,7 +358,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
@@ -367,8 +386,11 @@ namespace thepos
                 if (lvwList.Items[i].Tag.ToString() == "PosType") mPosType = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "BillPrinterSpeed") mBillPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterSpeed") mOrderPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[1].Text;
 
             }

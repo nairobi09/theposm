@@ -39,7 +39,14 @@ namespace thepos
 
         private void initialize_the()
         {
-            dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+            if (mBizDate == "")
+            {
+
+            }
+            else
+            {
+                dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+            }
 
         }
 
@@ -123,7 +130,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show(mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -232,7 +239,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -295,7 +302,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -352,7 +359,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -410,7 +417,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -456,7 +463,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }

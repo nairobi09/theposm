@@ -30,13 +30,20 @@ namespace thepos
             cbShop.Font = font10;
 
             lvwList.Font = font10;
-
             btnView.Font = font10;
         }
 
         private void initialize_the()
         {
-            dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+            if (mBizDate == "")
+            {
+
+            }
+            else
+            {
+                dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+            }
+
 
             cbShop.Items.Clear();
             cbShop.Items.Add("");
@@ -111,7 +118,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("주문데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show(mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else

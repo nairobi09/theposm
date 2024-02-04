@@ -378,7 +378,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }

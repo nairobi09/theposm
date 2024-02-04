@@ -160,7 +160,7 @@ namespace thepos
                     {
                         lblBizStatus.Text = "영업개시";
                     }
-                    else if (biz_status == "F")
+                    else if (biz_status == "F" | biz_status == "Y")
                     {
                         lblBizStatus.Text = "영업마감";
                         lblLastBizCloseDtInput.Text = close_dt.Substring(0, 4) + "-" + close_dt.Substring(4, 2) + "-" + close_dt.Substring(6, 2) + " " + close_dt.Substring(8, 2) + ":" + close_dt.Substring(10, 2) + ":" + close_dt.Substring(12, 2);
@@ -169,7 +169,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -254,17 +254,13 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("결제데이터 오류. reportDayPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("결제데이터 오류. reportDayPos\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
                 {
                     MessageBox.Show("시스템오류. reportDayShop\n\n" + mErrorMsg, "thepos");
                 }
-
-
-
-
 
 
             }
@@ -305,7 +301,7 @@ namespace thepos
                             return;
                         }
                     }
-                    else if (biz_status == "F")  // F영업마감
+                    else if (biz_status == "F" | biz_status == "Y")  // F영업마감
                     {
                         MessageBox.Show("이미 마감입력이 완료된 상태입니다.", "thepos");
                         return;
@@ -313,7 +309,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -343,7 +339,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -380,7 +376,7 @@ namespace thepos
                     {
                         lblBizStatus.Text = "영업개시";
                     }
-                    else if (biz_status == "F")
+                    else if (biz_status == "F" | biz_status == "Y")
                     {
                         lblBizStatus.Text = "영업마감";
                         lblLastBizCloseDtInput.Text = close_dt.Substring(0, 4) + "-" + close_dt.Substring(4, 2) + "-" + close_dt.Substring(6, 2) + " " + close_dt.Substring(8, 2) + ":" + close_dt.Substring(10, 2) + ":" + close_dt.Substring(12, 2);
@@ -388,7 +384,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else

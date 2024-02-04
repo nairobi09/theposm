@@ -137,7 +137,7 @@ namespace thepos
             mThisButtonClick = "Option";
             panelView.Controls.Clear();
 
-            frmSysOption fSysAdmin = new frmSysOption() { TopLevel = false, TopMost = true };
+            frmSysOptionTemplate fSysAdmin = new frmSysOptionTemplate() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }

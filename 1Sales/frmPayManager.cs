@@ -255,7 +255,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -337,7 +337,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -538,7 +538,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -1098,7 +1098,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }

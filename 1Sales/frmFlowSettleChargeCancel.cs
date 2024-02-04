@@ -84,7 +84,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("결제 데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("결제 데이터 오류. paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -103,7 +103,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("결제 데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("결제 데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -123,7 +123,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("결제 데이터 오류. paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("결제 데이터 오류. paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -291,7 +291,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("결제자료 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("결제자료 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -351,7 +351,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -380,7 +380,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -436,7 +436,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
@@ -464,7 +464,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
@@ -529,7 +529,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("결제자료 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("결제자료 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -592,7 +592,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -621,7 +621,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -686,7 +686,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
@@ -713,7 +713,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("오류. paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
@@ -791,7 +791,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("결제자료 오류. paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("결제자료 오류. paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -853,7 +853,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -881,7 +881,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류. paymentEasy\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류. paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -995,7 +995,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return false;
                             }
                         }
@@ -1008,13 +1008,13 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류. orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류. orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("오류. orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
@@ -1042,7 +1042,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류. orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
@@ -1099,7 +1099,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return false;
                             }
                         }
@@ -1112,13 +1112,13 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
@@ -1146,7 +1146,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
@@ -1299,13 +1299,13 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return arr.Count;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return -1;
                 }
             }
@@ -1331,7 +1331,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
@@ -1354,7 +1354,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }

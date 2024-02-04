@@ -638,7 +638,7 @@ namespace thepos
 
             int order_cnt = 1;
 
-            if (mGoodsItem[i].is_option == "Y")
+            if (mGoodsItem[i].option_template_id != "")
             {
                 frmOrderOption fForm = new frmOrderOption(mGoodsItem[i]);
                 DialogResult ret = fForm.ShowDialog();
@@ -1316,7 +1316,7 @@ namespace thepos
                                 }
                                 else
                                 {
-                                    MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     return false;
                                 }
                             }
@@ -1346,7 +1346,7 @@ namespace thepos
                                 }
                                 else
                                 {
-                                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     return false;
                                 }
                             }
@@ -1365,7 +1365,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
@@ -1429,7 +1429,7 @@ namespace thepos
                                 }
                                 else
                                 {
-                                    MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     return false;
                                 }
                             }
@@ -1455,7 +1455,7 @@ namespace thepos
                                 }
                                 else
                                 {
-                                    MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     return false;
                                 }
                             }
@@ -1706,7 +1706,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return -1;
                 }
             }
@@ -1769,7 +1769,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return -1;
                     }
                 }
@@ -1812,7 +1812,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("오류 orderOptionItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("오류 orderOptionItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return -1;
                         }
                     }
@@ -1962,7 +1962,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류 payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return false;
                     }
                 }
@@ -2005,7 +2005,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -2045,7 +2045,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("결제데이터 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return false;
                     }
                 }
@@ -2132,7 +2132,7 @@ namespace thepos
                                 }
                                 else
                                 {
-                                    MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                    MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     return -1;
                                 }
                             }
@@ -2185,7 +2185,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("티켓데이터 충전 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("티켓데이터 충전 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -2213,7 +2213,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return -1;
                     }
                 }
@@ -2255,7 +2255,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -2282,7 +2282,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return -1;
                     }
                 }
@@ -2333,7 +2333,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -2390,7 +2390,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return -1;
                     }
                 }
@@ -2598,7 +2598,7 @@ namespace thepos
                                     }
                                     else
                                     {
-                                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                        MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     }
                                 }
                                 else
@@ -4187,7 +4187,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("주문 데이터 오류. orders\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("주문 데이터 오류. orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -4337,7 +4337,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
@@ -4932,6 +4932,7 @@ namespace thepos
                 else
                 {
                     BytesValue = PrintExtensions.AddBytes(BytesValue, mByteLogoImage);
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 }
 
 
@@ -4968,9 +4969,30 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
+                try
+                {
+                    SerialPort mySerialPort = new SerialPort();
+                    mySerialPort.PortName = mBillPrinterPort;
+                    mySerialPort.BaudRate = convert_number(mBillPrinterSpeed);
+                    mySerialPort.Parity = Parity.None;
+                    mySerialPort.StopBits = StopBits.One;
+                    mySerialPort.DataBits = 8;
+                    mySerialPort.Handshake = Handshake.None;
 
-                //
-                PrintExtensions.Print(BytesValue, mBillPrinterPort);
+                    mySerialPort.Open();
+
+                    mySerialPort.Write(BytesValue, 0, BytesValue.Length);
+                    mySerialPort.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("프린터 출력 오류.\r\n" + ex.Message);
+                    return;
+                }
+
+
+                //PrintExtensions.Print(BytesValue, mBillPrinterPort);
                 
 
             }
@@ -5140,7 +5162,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
@@ -5367,8 +5389,8 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes("코너 : " + get_shop_name(shop)));
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
-
-            String strPrint = "---------------------\r\n";  // 21
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+            String strPrint = "------------------------------------------\r\n";  // 21 * 2
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
@@ -5377,9 +5399,14 @@ namespace thepos
                 //
                 BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
 
-                strPrint = orderPackList[i].goods_name + Space(16 - encodelen(orderPackList[i].goods_name));
+
+                String strName = orderPackList[i].goods_name;
                 String strCnt = orderPackList[i].goods_cnt.ToString("N0");     // 수량
-                strPrint += Space(5 - encodelen(strCnt)) + strCnt;
+
+                int len = encodelen(orderPackList[i].goods_name) + encodelen(strCnt);
+
+
+                strPrint = strName + Space(21 - len) + strCnt;
                 strPrint += "\r\n";
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
@@ -5400,12 +5427,12 @@ namespace thepos
             }
 
 
-            BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
-            strPrint = "---------------------\r\n";  // 21
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+            strPrint = "------------------------------------------\r\n";  // 21 * 2
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+            
 
 
 
@@ -5421,29 +5448,62 @@ namespace thepos
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
-            try
+
+            if (printer_type == "N")
             {
-                if (printer_type == "N")
+                try
                 {
                     TcpClient client = new TcpClient();
-                    client.Connect(printer_name, 9100);
+
+                    var result = client.BeginConnect(printer_name, 9100, null, null);
+                    var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(1));
+                    if (!success)
+                    {
+                        throw new Exception("Failed to connect.");
+                    }
+
+                    //client.Connect(printer_name, 9100);
 
                     NetworkStream stream = client.GetStream();
                     stream.Write(BytesValue, 0, BytesValue.Length);
 
                     stream.Flush();
                     stream.Close();
+
+                    //client.EndConnect(result);
                     client.Close();
                 }
-                else
+                catch
                 {
-                    PrintExtensions.Print(BytesValue, printer_name);
+                    MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
                 }
             }
-            catch
+            else
             {
-                MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
+                try
+                {
+                    SerialPort mySerialPort = new SerialPort();
+                    mySerialPort.PortName = mOrderPrinterPort;
+                    mySerialPort.BaudRate = convert_number(mOrderPrinterSpeed);
+                    mySerialPort.Parity = Parity.None;
+                    mySerialPort.StopBits = StopBits.One;
+                    mySerialPort.DataBits = 8;
+                    mySerialPort.Handshake = Handshake.None;
+
+                    mySerialPort.Open();
+
+                    mySerialPort.Write(BytesValue, 0, BytesValue.Length);
+                    mySerialPort.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("프린터 출력 오류.\r\n" + ex.Message);
+                    return;
+                }
+
             }
+
         }
 
 
@@ -5514,16 +5574,30 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
-            String strPrint = "---------------------\r\n";  // 21
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+            String strPrint = "------------------------------------------\r\n";  // 21 * 2
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
             for (int i = 0; i < name.Count; i++)
             {
-                strPrint += name[i] + Space(16 - encodelen(name[i]));
-                String strCnt = cnt[i].ToString("N0");     // 수량
-                strPrint += Space(5 - encodelen(strCnt)) + strCnt;
-                strPrint += "\r\n";
-            }
-            strPrint += "---------------------\r\n";  // 21
+                BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
 
+
+                String strName = name[i];
+                String strCnt = cnt[i].ToString("N0");     // 수량
+
+                int len = encodelen(strName) + encodelen(strCnt);
+
+
+                strPrint = strName + Space(21 - len) + strCnt;
+                strPrint += "\r\n";
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+            }
+
+            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+            strPrint = "------------------------------------------\r\n";  // 21 * 2
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
@@ -5540,9 +5614,10 @@ namespace thepos
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
-            try
+
+            if (printer_type == "N")
             {
-                if (printer_type == "N")
+                try
                 {
                     TcpClient client = new TcpClient();
                     client.Connect(printer_name, 9100);
@@ -5554,16 +5629,37 @@ namespace thepos
                     stream.Close();
                     client.Close();
                 }
-                else
+                catch
                 {
-                    PrintExtensions.Print(BytesValue, printer_name);
+                    MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
                 }
             }
-            catch
+            else
             {
-                MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
-            }
+                try
+                {
+                    SerialPort mySerialPort = new SerialPort();
+                    mySerialPort.PortName = mOrderPrinterPort;
+                    mySerialPort.BaudRate = convert_number(mOrderPrinterSpeed);
+                    mySerialPort.Parity = Parity.None;
+                    mySerialPort.StopBits = StopBits.One;
+                    mySerialPort.DataBits = 8;
+                    mySerialPort.Handshake = Handshake.None;
 
+                    mySerialPort.Open();
+
+                    mySerialPort.Write(BytesValue, 0, BytesValue.Length);
+                    mySerialPort.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("프린터 출력 오류.\r\n" + ex.Message);
+                    return;
+                }
+
+                //PrintExtensions.Print(BytesValue, printer_name);
+            }
 
         }
 

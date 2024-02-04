@@ -121,7 +121,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -172,7 +172,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -212,7 +212,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -285,7 +285,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -425,7 +425,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -478,7 +478,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -542,7 +542,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -645,7 +645,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -695,7 +695,7 @@ namespace thepos
                         }
                         else
                         {
-                            MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                            MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
@@ -742,7 +742,7 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                                MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
@@ -755,7 +755,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

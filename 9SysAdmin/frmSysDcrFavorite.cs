@@ -104,7 +104,7 @@ namespace thepos._1Sales
                 }
                 else
                 {
-                    MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -265,7 +265,7 @@ namespace thepos._1Sales
                 }
                 else
                 {
-                    MessageBox.Show("할인정보 삭제오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("할인정보 삭제오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -296,7 +296,7 @@ namespace thepos._1Sales
                     }
                     else
                     {
-                        MessageBox.Show("할인정보 입력오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("할인정보 입력오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }

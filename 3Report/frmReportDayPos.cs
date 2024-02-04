@@ -35,7 +35,16 @@ namespace thepos
 
         private void initialize_the()
         {
-            dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+
+            if (mBizDate == "")
+            {
+
+            }
+            else
+            {
+                dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
+            }
+            
 
 
         }
@@ -105,11 +114,10 @@ namespace thepos
                     tItem.SubItems.Add(tot_easy_amt.ToString("N0"));
                     lvwList.Items.Add(tItem);
 
-
                 }
                 else
                 {
-                    MessageBox.Show("결제데이터 오류. reportDayPos\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    //MessageBox.Show(mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else

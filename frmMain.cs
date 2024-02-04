@@ -1314,7 +1314,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1354,7 +1354,7 @@ namespace thepos
                             mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
                             mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
                             mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
-                            mGoodsItem[i].is_option = arr[i]["isOption"].ToString();
+                            mGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
 
                             // 면세상픔은 상품명앞에 *을 붙인다.
                             if (mGoodsItem[i].taxfree == "1")
@@ -1365,7 +1365,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1377,30 +1377,29 @@ namespace thepos
             }
 
 
-            // 3-1. goodsOption
+
+            // 3-1. optionTemplate
             if (true)
             {
-                String sUrl = "goodsOption?siteId=" + mSiteId;
+                String sUrl = "optionTemplate?siteId=" + mSiteId;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        String goods_option = mObj["goodsOption"].ToString();
-                        JArray arr = JArray.Parse(goods_option);
+                        String data = mObj["optionTemp"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-                        mGoodsOption = new GoodsOption[arr.Count];
+                        mOptionTemplate = new OptionTemplate[arr.Count];
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mGoodsOption[i].goods_code = arr[i]["goodsCode"].ToString();
-                            mGoodsOption[i].option_code = arr[i]["optionCode"].ToString();
-                            mGoodsOption[i].option_seq = int.Parse(arr[i]["optionSeq"].ToString());
-                            mGoodsOption[i].option_name = arr[i]["optionName"].ToString();
+                            mOptionTemplate[i].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            mOptionTemplate[i].option_template_name = arr[i]["optionTemplateName"].ToString();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("상품옵션정보 오류. goodsOption\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("옵션템플릿정보 오류. optionTemplate\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1411,31 +1410,32 @@ namespace thepos
                 }
             }
 
-            // 3-2. goodsOptionItem
+
+            // 3-2. tempOption
             if (true)
             {
-                String sUrl = "goodsOptionItem?siteId=" + mSiteId;
+                String sUrl = "tempOption?siteId=" + mSiteId;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        String goods_option_item = mObj["optionItem"].ToString();
-                        JArray arr = JArray.Parse(goods_option_item);
+                        String data = mObj["tempOption"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-                        mGoodsOptionItem = new GoodsOptionItem[arr.Count];
+                        mTempOption = new TempOption[arr.Count];
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mGoodsOptionItem[i].goods_code = arr[i]["goodsCode"].ToString();
-                            mGoodsOptionItem[i].option_code = arr[i]["optionCode"].ToString();
-                            mGoodsOptionItem[i].option_item_no = int.Parse(arr[i]["optionItemNo"].ToString());
-                            mGoodsOptionItem[i].option_item_name = arr[i]["optionItemName"].ToString();
-                            mGoodsOptionItem[i].option_item_amt = int.Parse(arr[i]["optionItemAmt"].ToString());
+                            mTempOption[i].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            mTempOption[i].option_id = arr[i]["optionId"].ToString();
+                            mTempOption[i].option_seq = convert_number(arr[i]["optionSeq"].ToString());
+                            mTempOption[i].option_init_dsp = arr[i]["optionInitDsp"].ToString();
+                            mTempOption[i].option_name = arr[i]["optionName"].ToString();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("상품옵션아이템 정보 오류. goodsOption\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("옵션정보 오류. tempOption\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1445,6 +1445,46 @@ namespace thepos
                     return;
                 }
             }
+
+
+            // 3-3. tempOptionItem
+            if (true)
+            {
+                String sUrl = "tempOptionItem?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["optionItem"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mTempOptionItem = new TempOptionItem[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mTempOptionItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            mTempOptionItem[i].option_id = arr[i]["optionId"].ToString();
+                            mTempOptionItem[i].option_item_id = arr[i]["optionItemId"].ToString();
+                            mTempOptionItem[i].option_item_seq = convert_number(arr[i]["optionItemSeq"].ToString());
+                            mTempOptionItem[i].link_option_id = arr[i]["linkOptionId"].ToString();
+                            mTempOptionItem[i].option_item_name = arr[i]["optionItemName"].ToString();
+                            mTempOptionItem[i].option_item_amt = convert_number(arr[i]["optionItemAmt"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("옵션정보 오류. tempOption\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
 
 
             // 4. 샵
@@ -1470,7 +1510,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1503,7 +1543,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1529,8 +1569,14 @@ namespace thepos
                         for (int i = 0; i < arr.Count; i++)
                         {
                             if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "BillPrinterSpeed") mBillPrinterSpeed = arr[i]["setupValue"].ToString();
+
                             else if (arr[i]["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "OrderPrinterSpeed") mOrderPrinterSpeed = arr[i]["setupValue"].ToString();
+
                             else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = arr[i]["setupValue"].ToString();
+
                             else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
@@ -1564,7 +1610,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("할인즐겨찾기정보 오류. shop\n\n " + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1600,7 +1646,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1815,10 +1861,10 @@ namespace thepos
                             int locateY = int.Parse(arr[i]["locateY"].ToString());
                             int sizeX = int.Parse(arr[i]["sizeX"].ToString());
                             int sizeY = int.Parse(arr[i]["sizeY"].ToString());
-                            String isOption = arr[i]["isOption"].ToString();
+                            String optionTemplateId = arr[i]["optionTemplateId"].ToString();
 
-                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, goodsCode, goodsName, shopCode, amt, ticketYn, taxFree, cutout, soldout, locateX, locateY, sizeX, sizeY, isOption) " +
-                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + goodsCode + "','" + goodsName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + cutout + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + isOption + "')";
+                            String sql = "INSERT INTO goodsItemAndGoods (siteId, posNo, groupCode, goodsCode, goodsName, shopCode, amt, ticketYn, taxFree, cutout, soldout, locateX, locateY, sizeX, sizeY, optionTemplateId) " +
+                                "values ('" + siteId + "','" + posNo + "','" + groupCode + "','" + goodsCode + "','" + goodsName + "','" + shopCode + "'," + amt + ",'" + ticketYn + "','" + taxFree + "','" + cutout + "','" + soldout + "'," + locateX + "," + locateY + "," + sizeX + "," + sizeY + ",'" + optionTemplateId + "')";
                             ret = sql_excute_local_db(sql);
                         }
 
@@ -1837,52 +1883,48 @@ namespace thepos
             }
 
 
-            // 3-1. goodsOption
+            // 3-0 optionTemplate
             if (true)
             {
-                String sUrl = "goodsOption?siteId=" + mSiteId;
+                String sUrl = "optionTemplate?siteId=" + mSiteId;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        int ret = sql_excute_local_db("DELETE FROM goodsOption");
+                        int ret = sql_excute_local_db("DELETE FROM optionTemplate");
 
-                        String strCnt = mObj["optionCnt"].ToString();
+                        String strCnt = mObj["cnt"].ToString();
                         if (strCnt == "0")
                         {
-                            synclink_log("다운로드 : goodsOption => Skip...");
+                            synclink_log("다운로드 : optionTemplate => Skip...");
                         }
                         else
                         {
                             //
-                            String data = mObj["goodsOption"].ToString();
+                            String data = mObj["optionTemp"].ToString();
                             JArray arr = JArray.Parse(data);
 
                             for (int i = 0; i < arr.Count; i++)
                             {
                                 String siteId = arr[i]["siteId"].ToString();
-                                String goodsCode = arr[i]["goodsCode"].ToString();
-                                String optionCode = arr[i]["optionCode"].ToString();
-                                int optionSeq = int.Parse(arr[i]["optionSeq"].ToString());
-                                String optionName = arr[i]["optionName"].ToString();
-                                String optionNameEn = arr[i]["optionNameEn"].ToString();
-                                String optionNameCh = arr[i]["optionNameCh"].ToString();
-                                String optionNameJp = arr[i]["optionNameJp"].ToString();
+                                String optionTemplateId = arr[i]["optionTemplateId"].ToString();
+                                String optionTemplateName = arr[i]["optionTemplateName"].ToString();
 
-                                String sql = "INSERT INTO goodsOption (siteId, goodsCode, optionCode, optionSeq, optionName, optionNameEn, optionNameCh, optionNameJp) " +
-                                    "values ('" + siteId + "','" + goodsCode + "','" + optionCode + "'," + optionSeq + ",'" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
+
+                                String sql = "INSERT INTO tempOption (siteId, optionTemplateId, optionTemplateName) " +
+                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionTemplateName + "')";
                                 ret = sql_excute_local_db(sql);
                             }
 
-                            synclink_log("다운로드 : goodsOption = " + arr.Count);
+                            synclink_log("다운로드 : optionTemplate = " + arr.Count);
                         }
 
                         Thread.Sleep(1000 * 1); // 1초
                     }
                     else
                     {
-                        MessageBox.Show("상품옵션정보 오류. goodsOption\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("옵션템플릿정보 오류. optionTemplate\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -1895,21 +1937,80 @@ namespace thepos
 
 
 
-            // 3-2. goodsOptionItem
+            // 3-1. tempOption
             if (true)
             {
-                String sUrl = "goodsOptionItem?siteId=" + mSiteId;
+                String sUrl = "tempOption?siteId=" + mSiteId;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         // Delete
-                        int ret = sql_excute_local_db("DELETE FROM goodsOptionItem");
+                        int ret = sql_excute_local_db("DELETE FROM tempOption");
 
-                        String strCnt = mObj["optionItemCnt"].ToString();
+                        String strCnt = mObj["cnt"].ToString();
                         if (strCnt == "0")
                         {
-                            synclink_log("다운로드 : goodsOptionItem => Skip...");
+                            synclink_log("다운로드 : tempOption => Skip...");
+                        }
+                        else
+                        {
+                            //
+                            String data = mObj["tempOption"].ToString();
+                            JArray arr = JArray.Parse(data);
+
+                            for (int i = 0; i < arr.Count; i++)
+                            {
+                                String siteId = arr[i]["siteId"].ToString();
+                                String optionTemplateId = arr[i]["optionTemplateId"].ToString();
+                                String optionId = arr[i]["optionId"].ToString();
+                                int optionSeq = int.Parse(arr[i]["optionSeq"].ToString());
+                                String optionInitDsp = arr[i]["optionInitDsp"].ToString();
+                                String optionName = arr[i]["optionName"].ToString();
+                                String optionNameEn = arr[i]["optionNameEn"].ToString();
+                                String optionNameCh = arr[i]["optionNameCh"].ToString();
+                                String optionNameJp = arr[i]["optionNameJp"].ToString();
+
+                                String sql = "INSERT INTO tempOption (siteId, optionTemplateId, optionId, optionSeq, optionInitDsp, optionName, optionNameEn, optionNameCh, optionNameJp) " +
+                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionSeq + ",'" + optionInitDsp + ",'" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
+                                ret = sql_excute_local_db(sql);
+                            }
+
+                            synclink_log("다운로드 : tempOption = " + arr.Count);
+                        }
+
+                        Thread.Sleep(1000 * 1); // 1초
+                    }
+                    else
+                    {
+                        MessageBox.Show("옵션정보 오류. tempOption\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+
+            // 3-2. tempOptionItem
+            if (true)
+            {
+                String sUrl = "tempOptionItem?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        // Delete
+                        int ret = sql_excute_local_db("DELETE FROM tempOptionItem");
+
+                        String strCnt = mObj["cnt"].ToString();
+                        if (strCnt == "0")
+                        {
+                            synclink_log("다운로드 : tempOptionItem => Skip...");
                         }
                         else
                         {
@@ -1920,27 +2021,29 @@ namespace thepos
                             for (int i = 0; i < arr.Count; i++)
                             {
                                 String siteId = arr[i]["siteId"].ToString();
-                                String goodsCode = arr[i]["goodsCode"].ToString();
-                                String optionCode = arr[i]["optionCode"].ToString();
-                                int optionItemNo = int.Parse(arr[i]["optionItemNo"].ToString());
+                                String optionTemplateId = arr[i]["optionTemplateId"].ToString();
+                                String optionId = arr[i]["optionId"].ToString();
+                                String optionItemId = arr[i]["optionItemId"].ToString();
+                                int optionItemSeq = int.Parse(arr[i]["optionItemSeq"].ToString());
+                                String linkOptionId = arr[i]["linkOptionId"].ToString();
                                 String optionItemName = arr[i]["optionItemName"].ToString();
                                 String optionItemNameEn = arr[i]["optionItemNameEn"].ToString();
                                 String optionItemNameCh = arr[i]["optionItemNameCh"].ToString();
                                 String optionItemNameJp = arr[i]["optionItemNameJp"].ToString();
                                 int optionItemAmt = int.Parse(arr[i]["optionItemAmt"].ToString());
 
-                                String sql = "INSERT INTO goodsOptionItem (siteId, goodsCode, optionCode, optionItemNo, optionItemName, optionItemNameEn, optionItemNameCh, optionItemNameJp, optionItemAmt) " +
-                                    "values ('" + siteId + "','" + goodsCode + "','" + optionCode + "'," + optionItemNo + ",'" + optionItemName + "','" + optionItemNameEn + "','" + optionItemNameCh + "','" + optionItemNameJp + "'," + optionItemAmt + ")";
+                                String sql = "INSERT INTO tempOptionItem (siteId, optionTemplateId, optionId, optionItemId, optionItemSeq, linkOptionId, optionItemName, optionItemNameEn, optionItemNameCh, optionItemNameJp, optionItemAmt) " +
+                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionItemId + "'," + optionItemSeq + ",'" + linkOptionId + "','" + optionItemName + "','" + optionItemNameEn + "','" + optionItemNameCh + "','" + optionItemNameJp + "'," + optionItemAmt + ")";
                                 ret = sql_excute_local_db(sql);
                             }
 
-                            synclink_log("다운로드 : goodsOptionItem = " + arr.Count);
+                            synclink_log("다운로드 : tempOptionItem = " + arr.Count);
                         }
                         Thread.Sleep(1000 * 1); // 1초
                     }
                     else
                     {
-                        MessageBox.Show("상품옵션아이템정보 오류. goodsOptionItem\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                        MessageBox.Show("옵션아이템정보 오류. tempOptionItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -2329,7 +2432,7 @@ namespace thepos
                     mGoodsItem[i].row = int.Parse(dr["locateY"].ToString());
                     mGoodsItem[i].columnspan = int.Parse(dr["sizeX"].ToString());
                     mGoodsItem[i].rowspan = int.Parse(dr["sizeY"].ToString());
-                    mGoodsItem[i].is_option = dr["isOption"].ToString();
+                    mGoodsItem[i].option_template_id = dr["optionTemplateId"].ToString();
 
                     // 면세상픔은 상품명앞에 *을 붙인다.
                     if (mGoodsItem[i].taxfree == "1")

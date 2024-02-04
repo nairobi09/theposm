@@ -653,7 +653,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }

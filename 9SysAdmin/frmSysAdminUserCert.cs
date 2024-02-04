@@ -72,7 +72,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("포스정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -114,7 +114,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("오류1\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류1\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -141,7 +141,7 @@ namespace thepos._9SysAdmin
                 }
                 else
                 {
-                    MessageBox.Show("오류2\n\n" + mObj["resultMsg"].ToString() + "\n" + mObj["detailMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류2\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
