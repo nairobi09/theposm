@@ -29,7 +29,13 @@
         private void InitializeComponent()
         {
             this.panelFront = new System.Windows.Forms.Panel();
+            this.lblGoodsInfo = new System.Windows.Forms.Label();
+            this.lblCntUp = new System.Windows.Forms.Label();
+            this.lblCntDn = new System.Windows.Forms.Label();
+            this.lblAmount = new System.Windows.Forms.Label();
+            this.lblCnt = new System.Windows.Forms.Label();
             this.panelOption3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.lblOrder3Item2Amt = new System.Windows.Forms.Label();
             this.lblOrder3Item1Amt = new System.Windows.Forms.Label();
             this.lblOrder3Item0Amt = new System.Windows.Forms.Label();
@@ -38,6 +44,7 @@
             this.rbOption3Item0Name = new System.Windows.Forms.RadioButton();
             this.lblOption3Name = new System.Windows.Forms.Label();
             this.panelOption2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.lblOrder2Item2Amt = new System.Windows.Forms.Label();
             this.lblOrder2Item1Amt = new System.Windows.Forms.Label();
             this.lblOrder2Item0Amt = new System.Windows.Forms.Label();
@@ -46,13 +53,16 @@
             this.rbOption2Item0Name = new System.Windows.Forms.RadioButton();
             this.lblOption2Name = new System.Windows.Forms.Label();
             this.panelOption1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lblOrder1Item2Amt = new System.Windows.Forms.Label();
             this.lblOrder1Item1Amt = new System.Windows.Forms.Label();
             this.lblOrder1Item0Amt = new System.Windows.Forms.Label();
             this.rbOption1Item2Name = new System.Windows.Forms.RadioButton();
+            this.rbOption1Item1Name = new System.Windows.Forms.RadioButton();
             this.rbOption1Item0Name = new System.Windows.Forms.RadioButton();
             this.lblOption1Name = new System.Windows.Forms.Label();
             this.panelOption0 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblOrder0Item2Amt = new System.Windows.Forms.Label();
             this.lblOrder0Item1Amt = new System.Windows.Forms.Label();
             this.lblOrder0Item0Amt = new System.Windows.Forms.Label();
@@ -64,27 +74,28 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelOrange = new System.Windows.Forms.Panel();
-            this.rbOption1Item1Name = new System.Windows.Forms.RadioButton();
-            this.lblCnt = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblAmount = new System.Windows.Forms.Label();
-            this.lblCntDn = new System.Windows.Forms.Label();
-            this.lblCntUp = new System.Windows.Forms.Label();
-            this.lblGoodsInfo = new System.Windows.Forms.Label();
+            this.panelOption4 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblOrder4Item2Amt = new System.Windows.Forms.Label();
+            this.lblOrder4Item1Amt = new System.Windows.Forms.Label();
+            this.lblOrder4Item0Amt = new System.Windows.Forms.Label();
+            this.rbOption4Item2Name = new System.Windows.Forms.RadioButton();
+            this.rbOption4Item1Name = new System.Windows.Forms.RadioButton();
+            this.rbOption4Item0Name = new System.Windows.Forms.RadioButton();
+            this.lblOption4Name = new System.Windows.Forms.Label();
             this.panelFront.SuspendLayout();
             this.panelOption3.SuspendLayout();
             this.panelOption2.SuspendLayout();
             this.panelOption1.SuspendLayout();
             this.panelOption0.SuspendLayout();
             this.panelOrange.SuspendLayout();
+            this.panelOption4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFront
             // 
             this.panelFront.BackColor = System.Drawing.Color.White;
+            this.panelFront.Controls.Add(this.panelOption4);
             this.panelFront.Controls.Add(this.lblGoodsInfo);
             this.panelFront.Controls.Add(this.lblCntUp);
             this.panelFront.Controls.Add(this.lblCntDn);
@@ -100,8 +111,64 @@
             this.panelFront.ForeColor = System.Drawing.Color.Black;
             this.panelFront.Location = new System.Drawing.Point(1, 1);
             this.panelFront.Name = "panelFront";
-            this.panelFront.Size = new System.Drawing.Size(586, 486);
+            this.panelFront.Size = new System.Drawing.Size(586, 576);
             this.panelFront.TabIndex = 2;
+            // 
+            // lblGoodsInfo
+            // 
+            this.lblGoodsInfo.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGoodsInfo.Location = new System.Drawing.Point(35, 42);
+            this.lblGoodsInfo.Name = "lblGoodsInfo";
+            this.lblGoodsInfo.Size = new System.Drawing.Size(165, 40);
+            this.lblGoodsInfo.TabIndex = 14;
+            this.lblGoodsInfo.Text = "_";
+            this.lblGoodsInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCntUp
+            // 
+            this.lblCntUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCntUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCntUp.Location = new System.Drawing.Point(320, 46);
+            this.lblCntUp.Name = "lblCntUp";
+            this.lblCntUp.Size = new System.Drawing.Size(40, 36);
+            this.lblCntUp.TabIndex = 13;
+            this.lblCntUp.Text = "+";
+            this.lblCntUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCntUp.Click += new System.EventHandler(this.lblCntUp_Click);
+            // 
+            // lblCntDn
+            // 
+            this.lblCntDn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCntDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCntDn.Location = new System.Drawing.Point(228, 47);
+            this.lblCntDn.Name = "lblCntDn";
+            this.lblCntDn.Size = new System.Drawing.Size(40, 36);
+            this.lblCntDn.TabIndex = 13;
+            this.lblCntDn.Text = "-";
+            this.lblCntDn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCntDn.Click += new System.EventHandler(this.lblCntDn_Click);
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblAmount.ForeColor = System.Drawing.Color.Blue;
+            this.lblAmount.Location = new System.Drawing.Point(403, 49);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(144, 28);
+            this.lblAmount.TabIndex = 12;
+            this.lblAmount.Text = "\\ 5,000";
+            this.lblAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCnt
+            // 
+            this.lblCnt.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCnt.ForeColor = System.Drawing.Color.Blue;
+            this.lblCnt.Location = new System.Drawing.Point(274, 43);
+            this.lblCnt.Name = "lblCnt";
+            this.lblCnt.Size = new System.Drawing.Size(40, 40);
+            this.lblCnt.TabIndex = 11;
+            this.lblCnt.Text = "1";
+            this.lblCnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelOption3
             // 
@@ -118,6 +185,14 @@
             this.panelOption3.Size = new System.Drawing.Size(553, 76);
             this.panelOption3.TabIndex = 8;
             this.panelOption3.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(553, 1);
+            this.panel4.TabIndex = 12;
             // 
             // lblOrder3Item2Amt
             // 
@@ -216,6 +291,14 @@
             this.panelOption2.TabIndex = 7;
             this.panelOption2.Visible = false;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(553, 1);
+            this.panel3.TabIndex = 12;
+            // 
             // lblOrder2Item2Amt
             // 
             this.lblOrder2Item2Amt.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -313,6 +396,14 @@
             this.panelOption1.TabIndex = 6;
             this.panelOption1.Visible = false;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(553, 1);
+            this.panel2.TabIndex = 12;
+            // 
             // lblOrder1Item2Amt
             // 
             this.lblOrder1Item2Amt.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -360,6 +451,17 @@
             this.rbOption1Item2Name.UseVisualStyleBackColor = true;
             this.rbOption1Item2Name.Visible = false;
             // 
+            // rbOption1Item1Name
+            // 
+            this.rbOption1Item1Name.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbOption1Item1Name.Location = new System.Drawing.Point(292, 16);
+            this.rbOption1Item1Name.Name = "rbOption1Item1Name";
+            this.rbOption1Item1Name.Size = new System.Drawing.Size(110, 40);
+            this.rbOption1Item1Name.TabIndex = 6;
+            this.rbOption1Item1Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbOption1Item1Name.UseVisualStyleBackColor = true;
+            this.rbOption1Item1Name.Visible = false;
+            // 
             // rbOption1Item0Name
             // 
             this.rbOption1Item0Name.Appearance = System.Windows.Forms.Appearance.Button;
@@ -398,6 +500,14 @@
             this.panelOption0.Size = new System.Drawing.Size(553, 76);
             this.panelOption0.TabIndex = 5;
             this.panelOption0.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(553, 1);
+            this.panel1.TabIndex = 11;
             // 
             // lblOrder0Item2Amt
             // 
@@ -486,7 +596,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCancel.Location = new System.Drawing.Point(170, 425);
+            this.btnCancel.Location = new System.Drawing.Point(170, 516);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 40);
             this.btnCancel.TabIndex = 2;
@@ -501,7 +611,7 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(296, 424);
+            this.btnOK.Location = new System.Drawing.Point(296, 515);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(122, 42);
             this.btnOK.TabIndex = 3;
@@ -527,112 +637,118 @@
             this.panelOrange.Controls.Add(this.panelFront);
             this.panelOrange.Location = new System.Drawing.Point(5, 5);
             this.panelOrange.Name = "panelOrange";
-            this.panelOrange.Size = new System.Drawing.Size(588, 488);
+            this.panelOrange.Size = new System.Drawing.Size(588, 578);
             this.panelOrange.TabIndex = 4;
             // 
-            // rbOption1Item1Name
+            // panelOption4
             // 
-            this.rbOption1Item1Name.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbOption1Item1Name.Location = new System.Drawing.Point(292, 16);
-            this.rbOption1Item1Name.Name = "rbOption1Item1Name";
-            this.rbOption1Item1Name.Size = new System.Drawing.Size(110, 40);
-            this.rbOption1Item1Name.TabIndex = 6;
-            this.rbOption1Item1Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbOption1Item1Name.UseVisualStyleBackColor = true;
-            this.rbOption1Item1Name.Visible = false;
+            this.panelOption4.Controls.Add(this.panel6);
+            this.panelOption4.Controls.Add(this.lblOrder4Item2Amt);
+            this.panelOption4.Controls.Add(this.lblOrder4Item1Amt);
+            this.panelOption4.Controls.Add(this.lblOrder4Item0Amt);
+            this.panelOption4.Controls.Add(this.rbOption4Item2Name);
+            this.panelOption4.Controls.Add(this.rbOption4Item1Name);
+            this.panelOption4.Controls.Add(this.rbOption4Item0Name);
+            this.panelOption4.Controls.Add(this.lblOption4Name);
+            this.panelOption4.Location = new System.Drawing.Point(16, 423);
+            this.panelOption4.Name = "panelOption4";
+            this.panelOption4.Size = new System.Drawing.Size(553, 76);
+            this.panelOption4.TabIndex = 15;
+            this.panelOption4.Visible = false;
             // 
-            // lblCnt
+            // panel6
             // 
-            this.lblCnt.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblCnt.Location = new System.Drawing.Point(274, 43);
-            this.lblCnt.Name = "lblCnt";
-            this.lblCnt.Size = new System.Drawing.Size(40, 40);
-            this.lblCnt.TabIndex = 11;
-            this.lblCnt.Text = "1";
-            this.lblCnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel6.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(553, 1);
+            this.panel6.TabIndex = 12;
             // 
-            // panel1
+            // lblOrder4Item2Amt
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(553, 1);
-            this.panel1.TabIndex = 11;
+            this.lblOrder4Item2Amt.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrder4Item2Amt.ForeColor = System.Drawing.Color.Blue;
+            this.lblOrder4Item2Amt.Location = new System.Drawing.Point(424, 57);
+            this.lblOrder4Item2Amt.Name = "lblOrder4Item2Amt";
+            this.lblOrder4Item2Amt.Size = new System.Drawing.Size(110, 16);
+            this.lblOrder4Item2Amt.TabIndex = 11;
+            this.lblOrder4Item2Amt.Text = "\\";
+            this.lblOrder4Item2Amt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblOrder4Item2Amt.Visible = false;
             // 
-            // panel2
+            // lblOrder4Item1Amt
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(553, 1);
-            this.panel2.TabIndex = 12;
+            this.lblOrder4Item1Amt.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrder4Item1Amt.ForeColor = System.Drawing.Color.Blue;
+            this.lblOrder4Item1Amt.Location = new System.Drawing.Point(292, 57);
+            this.lblOrder4Item1Amt.Name = "lblOrder4Item1Amt";
+            this.lblOrder4Item1Amt.Size = new System.Drawing.Size(110, 16);
+            this.lblOrder4Item1Amt.TabIndex = 10;
+            this.lblOrder4Item1Amt.Text = "\\";
+            this.lblOrder4Item1Amt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblOrder4Item1Amt.Visible = false;
             // 
-            // panel3
+            // lblOrder4Item0Amt
             // 
-            this.panel3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(553, 1);
-            this.panel3.TabIndex = 12;
+            this.lblOrder4Item0Amt.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrder4Item0Amt.ForeColor = System.Drawing.Color.Blue;
+            this.lblOrder4Item0Amt.Location = new System.Drawing.Point(160, 57);
+            this.lblOrder4Item0Amt.Name = "lblOrder4Item0Amt";
+            this.lblOrder4Item0Amt.Size = new System.Drawing.Size(110, 16);
+            this.lblOrder4Item0Amt.TabIndex = 9;
+            this.lblOrder4Item0Amt.Text = "\\";
+            this.lblOrder4Item0Amt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblOrder4Item0Amt.Visible = false;
             // 
-            // panel4
+            // rbOption4Item2Name
             // 
-            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(553, 1);
-            this.panel4.TabIndex = 12;
+            this.rbOption4Item2Name.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbOption4Item2Name.Location = new System.Drawing.Point(424, 16);
+            this.rbOption4Item2Name.Name = "rbOption4Item2Name";
+            this.rbOption4Item2Name.Size = new System.Drawing.Size(110, 40);
+            this.rbOption4Item2Name.TabIndex = 7;
+            this.rbOption4Item2Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbOption4Item2Name.UseVisualStyleBackColor = true;
+            this.rbOption4Item2Name.Visible = false;
             // 
-            // lblAmount
+            // rbOption4Item1Name
             // 
-            this.lblAmount.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblAmount.ForeColor = System.Drawing.Color.Blue;
-            this.lblAmount.Location = new System.Drawing.Point(403, 49);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(144, 28);
-            this.lblAmount.TabIndex = 12;
-            this.lblAmount.Text = "\\ 5,000";
-            this.lblAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rbOption4Item1Name.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbOption4Item1Name.Location = new System.Drawing.Point(292, 16);
+            this.rbOption4Item1Name.Name = "rbOption4Item1Name";
+            this.rbOption4Item1Name.Size = new System.Drawing.Size(110, 40);
+            this.rbOption4Item1Name.TabIndex = 6;
+            this.rbOption4Item1Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbOption4Item1Name.UseVisualStyleBackColor = true;
+            this.rbOption4Item1Name.Visible = false;
             // 
-            // lblCntDn
+            // rbOption4Item0Name
             // 
-            this.lblCntDn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCntDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCntDn.Location = new System.Drawing.Point(228, 47);
-            this.lblCntDn.Name = "lblCntDn";
-            this.lblCntDn.Size = new System.Drawing.Size(40, 36);
-            this.lblCntDn.TabIndex = 13;
-            this.lblCntDn.Text = "-";
-            this.lblCntDn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblCntDn.Click += new System.EventHandler(this.lblCntDn_Click);
+            this.rbOption4Item0Name.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbOption4Item0Name.Checked = true;
+            this.rbOption4Item0Name.Location = new System.Drawing.Point(160, 16);
+            this.rbOption4Item0Name.Name = "rbOption4Item0Name";
+            this.rbOption4Item0Name.Size = new System.Drawing.Size(110, 40);
+            this.rbOption4Item0Name.TabIndex = 5;
+            this.rbOption4Item0Name.TabStop = true;
+            this.rbOption4Item0Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbOption4Item0Name.UseVisualStyleBackColor = true;
+            this.rbOption4Item0Name.Visible = false;
             // 
-            // lblCntUp
+            // lblOption4Name
             // 
-            this.lblCntUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCntUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCntUp.Location = new System.Drawing.Point(320, 46);
-            this.lblCntUp.Name = "lblCntUp";
-            this.lblCntUp.Size = new System.Drawing.Size(40, 36);
-            this.lblCntUp.TabIndex = 13;
-            this.lblCntUp.Text = "+";
-            this.lblCntUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblCntUp.Click += new System.EventHandler(this.lblCntUp_Click);
-            // 
-            // lblGoodsInfo
-            // 
-            this.lblGoodsInfo.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblGoodsInfo.Location = new System.Drawing.Point(35, 42);
-            this.lblGoodsInfo.Name = "lblGoodsInfo";
-            this.lblGoodsInfo.Size = new System.Drawing.Size(165, 40);
-            this.lblGoodsInfo.TabIndex = 14;
-            this.lblGoodsInfo.Text = "_";
-            this.lblGoodsInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOption4Name.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOption4Name.Location = new System.Drawing.Point(19, 16);
+            this.lblOption4Name.Name = "lblOption4Name";
+            this.lblOption4Name.Size = new System.Drawing.Size(94, 40);
+            this.lblOption4Name.TabIndex = 4;
+            this.lblOption4Name.Text = "_";
+            this.lblOption4Name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmOrderOption
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(600, 500);
+            this.ClientSize = new System.Drawing.Size(600, 595);
             this.Controls.Add(this.panelOrange);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmOrderOption";
@@ -645,6 +761,7 @@
             this.panelOption1.ResumeLayout(false);
             this.panelOption0.ResumeLayout(false);
             this.panelOrange.ResumeLayout(false);
+            this.panelOption4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -697,5 +814,14 @@
         private System.Windows.Forms.Label lblCntUp;
         private System.Windows.Forms.Label lblCntDn;
         private System.Windows.Forms.Label lblGoodsInfo;
+        private System.Windows.Forms.Panel panelOption4;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lblOrder4Item2Amt;
+        private System.Windows.Forms.Label lblOrder4Item1Amt;
+        private System.Windows.Forms.Label lblOrder4Item0Amt;
+        private System.Windows.Forms.RadioButton rbOption4Item2Name;
+        private System.Windows.Forms.RadioButton rbOption4Item1Name;
+        private System.Windows.Forms.RadioButton rbOption4Item0Name;
+        private System.Windows.Forms.Label lblOption4Name;
     }
 }

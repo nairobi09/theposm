@@ -62,6 +62,7 @@
             this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.msg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSyncLink = new System.Windows.Forms.Button();
+            this.btnDbLoad = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +94,7 @@
             this.lblServerVersion.BackColor = System.Drawing.Color.LightGray;
             this.lblServerVersion.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblServerVersion.ForeColor = System.Drawing.Color.Black;
-            this.lblServerVersion.Location = new System.Drawing.Point(134, 92);
+            this.lblServerVersion.Location = new System.Drawing.Point(134, 103);
             this.lblServerVersion.Margin = new System.Windows.Forms.Padding(0);
             this.lblServerVersion.Name = "lblServerVersion";
             this.lblServerVersion.Padding = new System.Windows.Forms.Padding(5);
@@ -107,7 +108,7 @@
             this.lblLocalVersion.BackColor = System.Drawing.Color.LightGray;
             this.lblLocalVersion.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalVersion.ForeColor = System.Drawing.Color.Black;
-            this.lblLocalVersion.Location = new System.Drawing.Point(134, 125);
+            this.lblLocalVersion.Location = new System.Drawing.Point(134, 136);
             this.lblLocalVersion.Margin = new System.Windows.Forms.Padding(0);
             this.lblLocalVersion.Name = "lblLocalVersion";
             this.lblLocalVersion.Padding = new System.Windows.Forms.Padding(5);
@@ -121,7 +122,7 @@
             this.lblVersionTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblVersionTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVersionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblVersionTitle.Location = new System.Drawing.Point(134, 59);
+            this.lblVersionTitle.Location = new System.Drawing.Point(134, 70);
             this.lblVersionTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblVersionTitle.Name = "lblVersionTitle";
             this.lblVersionTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -135,7 +136,7 @@
             this.label1.BackColor = System.Drawing.Color.DarkGray;
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(26, 59);
+            this.label1.Location = new System.Drawing.Point(26, 70);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5);
@@ -148,7 +149,7 @@
             this.lblServerTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblServerTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblServerTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblServerTitle.Location = new System.Drawing.Point(26, 92);
+            this.lblServerTitle.Location = new System.Drawing.Point(26, 103);
             this.lblServerTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblServerTitle.Name = "lblServerTitle";
             this.lblServerTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -162,7 +163,7 @@
             this.lblLocalTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblLocalTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblLocalTitle.Location = new System.Drawing.Point(26, 125);
+            this.lblLocalTitle.Location = new System.Drawing.Point(26, 136);
             this.lblLocalTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblLocalTitle.Name = "lblLocalTitle";
             this.lblLocalTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -177,10 +178,10 @@
             this.btnViewVer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewVer.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnViewVer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewVer.Location = new System.Drawing.Point(228, 173);
+            this.btnViewVer.Location = new System.Drawing.Point(208, 33);
             this.btnViewVer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnViewVer.Name = "btnViewVer";
-            this.btnViewVer.Size = new System.Drawing.Size(120, 48);
+            this.btnViewVer.Size = new System.Drawing.Size(140, 30);
             this.btnViewVer.TabIndex = 77;
             this.btnViewVer.TabStop = false;
             this.btnViewVer.Text = "버전보기";
@@ -192,7 +193,7 @@
             this.lblPaymentCardCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblPaymentCardCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPaymentCardCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblPaymentCardCnt.Location = new System.Drawing.Point(134, 480);
+            this.lblPaymentCardCnt.Location = new System.Drawing.Point(134, 458);
             this.lblPaymentCardCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCardCnt.Name = "lblPaymentCardCnt";
             this.lblPaymentCardCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -206,7 +207,7 @@
             this.lblPaymentCashCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblPaymentCashCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPaymentCashCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblPaymentCashCnt.Location = new System.Drawing.Point(134, 446);
+            this.lblPaymentCashCnt.Location = new System.Drawing.Point(134, 424);
             this.lblPaymentCashCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCashCnt.Name = "lblPaymentCashCnt";
             this.lblPaymentCashCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -220,7 +221,7 @@
             this.lblOrderItemCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblOrderItemCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderItemCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblOrderItemCnt.Location = new System.Drawing.Point(134, 344);
+            this.lblOrderItemCnt.Location = new System.Drawing.Point(134, 322);
             this.lblOrderItemCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderItemCnt.Name = "lblOrderItemCnt";
             this.lblOrderItemCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -234,7 +235,7 @@
             this.lblOrdersCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblOrdersCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrdersCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblOrdersCnt.Location = new System.Drawing.Point(134, 310);
+            this.lblOrdersCnt.Location = new System.Drawing.Point(134, 288);
             this.lblOrdersCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrdersCnt.Name = "lblOrdersCnt";
             this.lblOrdersCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -248,7 +249,7 @@
             this.lblPaymentCardTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblPaymentCardTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPaymentCardTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblPaymentCardTitle.Location = new System.Drawing.Point(26, 480);
+            this.lblPaymentCardTitle.Location = new System.Drawing.Point(26, 458);
             this.lblPaymentCardTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCardTitle.Name = "lblPaymentCardTitle";
             this.lblPaymentCardTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -262,7 +263,7 @@
             this.lblPaymentCashTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblPaymentCashTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPaymentCashTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblPaymentCashTitle.Location = new System.Drawing.Point(26, 446);
+            this.lblPaymentCashTitle.Location = new System.Drawing.Point(26, 424);
             this.lblPaymentCashTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCashTitle.Name = "lblPaymentCashTitle";
             this.lblPaymentCashTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -276,7 +277,7 @@
             this.lblPaymentTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblPaymentTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPaymentTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblPaymentTitle.Location = new System.Drawing.Point(26, 412);
+            this.lblPaymentTitle.Location = new System.Drawing.Point(26, 390);
             this.lblPaymentTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentTitle.Name = "lblPaymentTitle";
             this.lblPaymentTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -290,7 +291,7 @@
             this.lblOrderItemTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrderItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderItemTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblOrderItemTitle.Location = new System.Drawing.Point(26, 344);
+            this.lblOrderItemTitle.Location = new System.Drawing.Point(26, 322);
             this.lblOrderItemTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderItemTitle.Name = "lblOrderItemTitle";
             this.lblOrderItemTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -304,7 +305,7 @@
             this.label2.BackColor = System.Drawing.Color.DarkGray;
             this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(26, 276);
+            this.label2.Location = new System.Drawing.Point(26, 254);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(5);
@@ -317,7 +318,7 @@
             this.lblOrdersTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrdersTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrdersTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblOrdersTitle.Location = new System.Drawing.Point(26, 310);
+            this.lblOrdersTitle.Location = new System.Drawing.Point(26, 288);
             this.lblOrdersTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrdersTitle.Name = "lblOrdersTitle";
             this.lblOrdersTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -331,7 +332,7 @@
             this.lblCntTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblCntTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCntTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCntTitle.Location = new System.Drawing.Point(134, 276);
+            this.lblCntTitle.Location = new System.Drawing.Point(134, 254);
             this.lblCntTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblCntTitle.Name = "lblCntTitle";
             this.lblCntTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -345,7 +346,7 @@
             this.lblPaymentCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblPaymentCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPaymentCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblPaymentCnt.Location = new System.Drawing.Point(134, 412);
+            this.lblPaymentCnt.Location = new System.Drawing.Point(134, 390);
             this.lblPaymentCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblPaymentCnt.Name = "lblPaymentCnt";
             this.lblPaymentCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -360,10 +361,10 @@
             this.btnViewRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewRecord.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnViewRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewRecord.Location = new System.Drawing.Point(228, 530);
+            this.btnViewRecord.Location = new System.Drawing.Point(208, 216);
             this.btnViewRecord.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnViewRecord.Name = "btnViewRecord";
-            this.btnViewRecord.Size = new System.Drawing.Size(120, 48);
+            this.btnViewRecord.Size = new System.Drawing.Size(140, 30);
             this.btnViewRecord.TabIndex = 85;
             this.btnViewRecord.TabStop = false;
             this.btnViewRecord.Text = "건수보기";
@@ -372,6 +373,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDbLoad);
             this.groupBox1.Controls.Add(this.lblOrderOptionItemCnt);
             this.groupBox1.Controls.Add(this.lblOrderOptionItemTitle);
             this.groupBox1.Controls.Add(this.lblTitle3);
@@ -396,9 +398,9 @@
             this.groupBox1.Controls.Add(this.lblPaymentCnt);
             this.groupBox1.Controls.Add(this.lblOrdersTitle);
             this.groupBox1.Controls.Add(this.lblCntTitle);
-            this.groupBox1.Location = new System.Drawing.Point(441, 73);
+            this.groupBox1.Location = new System.Drawing.Point(441, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(379, 604);
+            this.groupBox1.Size = new System.Drawing.Size(379, 618);
             this.groupBox1.TabIndex = 106;
             this.groupBox1.TabStop = false;
             // 
@@ -407,7 +409,7 @@
             this.lblOrderOptionItemCnt.BackColor = System.Drawing.Color.LightGray;
             this.lblOrderOptionItemCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderOptionItemCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblOrderOptionItemCnt.Location = new System.Drawing.Point(134, 378);
+            this.lblOrderOptionItemCnt.Location = new System.Drawing.Point(134, 356);
             this.lblOrderOptionItemCnt.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderOptionItemCnt.Name = "lblOrderOptionItemCnt";
             this.lblOrderOptionItemCnt.Padding = new System.Windows.Forms.Padding(5);
@@ -421,7 +423,7 @@
             this.lblOrderOptionItemTitle.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrderOptionItemTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderOptionItemTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblOrderOptionItemTitle.Location = new System.Drawing.Point(26, 378);
+            this.lblOrderOptionItemTitle.Location = new System.Drawing.Point(26, 356);
             this.lblOrderOptionItemTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblOrderOptionItemTitle.Name = "lblOrderOptionItemTitle";
             this.lblOrderOptionItemTitle.Padding = new System.Windows.Forms.Padding(5);
@@ -435,22 +437,22 @@
             this.lblTitle3.AutoSize = true;
             this.lblTitle3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle3.Location = new System.Drawing.Point(26, 250);
+            this.lblTitle3.Location = new System.Drawing.Point(26, 228);
             this.lblTitle3.Name = "lblTitle3";
-            this.lblTitle3.Size = new System.Drawing.Size(180, 14);
+            this.lblTitle3.Size = new System.Drawing.Size(105, 14);
             this.lblTitle3.TabIndex = 107;
-            this.lblTitle3.Text = "로컬거래데이터 수동업로드";
+            this.lblTitle3.Text = "로컬거래데이터";
             // 
             // lblTitle2
             // 
             this.lblTitle2.AutoSize = true;
             this.lblTitle2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle2.Location = new System.Drawing.Point(25, 34);
+            this.lblTitle2.Location = new System.Drawing.Point(25, 45);
             this.lblTitle2.Name = "lblTitle2";
-            this.lblTitle2.Size = new System.Drawing.Size(152, 14);
+            this.lblTitle2.Size = new System.Drawing.Size(60, 14);
             this.lblTitle2.TabIndex = 106;
-            this.lblTitle2.Text = "서버원장 수동다운로드";
+            this.lblTitle2.Text = "원장 DB";
             // 
             // groupBox2
             // 
@@ -459,9 +461,9 @@
             this.groupBox2.Controls.Add(this.lvwSyncLink);
             this.groupBox2.Controls.Add(this.btnSyncLink);
             this.groupBox2.Controls.Add(this.lblDetail);
-            this.groupBox2.Location = new System.Drawing.Point(34, 73);
+            this.groupBox2.Location = new System.Drawing.Point(34, 57);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(401, 604);
+            this.groupBox2.Size = new System.Drawing.Size(401, 618);
             this.groupBox2.TabIndex = 107;
             this.groupBox2.TabStop = false;
             // 
@@ -471,7 +473,7 @@
             this.btnDeleteLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteLog.Font = new System.Drawing.Font("굴림", 9F);
             this.btnDeleteLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDeleteLog.Location = new System.Drawing.Point(316, 194);
+            this.btnDeleteLog.Location = new System.Drawing.Point(316, 159);
             this.btnDeleteLog.Margin = new System.Windows.Forms.Padding(0);
             this.btnDeleteLog.Name = "btnDeleteLog";
             this.btnDeleteLog.Size = new System.Drawing.Size(68, 27);
@@ -486,7 +488,7 @@
             this.dtViewDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtViewDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtViewDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtViewDate.Location = new System.Drawing.Point(26, 194);
+            this.dtViewDate.Location = new System.Drawing.Point(26, 159);
             this.dtViewDate.Name = "dtViewDate";
             this.dtViewDate.Size = new System.Drawing.Size(100, 23);
             this.dtViewDate.TabIndex = 82;
@@ -504,10 +506,10 @@
             this.lvwSyncLink.FullRowSelect = true;
             this.lvwSyncLink.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwSyncLink.HideSelection = false;
-            this.lvwSyncLink.Location = new System.Drawing.Point(26, 230);
+            this.lvwSyncLink.Location = new System.Drawing.Point(26, 193);
             this.lvwSyncLink.MultiSelect = false;
             this.lvwSyncLink.Name = "lvwSyncLink";
-            this.lvwSyncLink.Size = new System.Drawing.Size(358, 348);
+            this.lvwSyncLink.Size = new System.Drawing.Size(358, 401);
             this.lvwSyncLink.TabIndex = 81;
             this.lvwSyncLink.TabStop = false;
             this.lvwSyncLink.UseCompatibleStateImageBehavior = false;
@@ -529,7 +531,7 @@
             this.btnSyncLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSyncLink.Font = new System.Drawing.Font("굴림", 9F);
             this.btnSyncLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSyncLink.Location = new System.Drawing.Point(132, 194);
+            this.btnSyncLink.Location = new System.Drawing.Point(132, 159);
             this.btnSyncLink.Margin = new System.Windows.Forms.Padding(0);
             this.btnSyncLink.Name = "btnSyncLink";
             this.btnSyncLink.Size = new System.Drawing.Size(106, 27);
@@ -538,6 +540,22 @@
             this.btnSyncLink.Text = "이력보기";
             this.btnSyncLink.UseVisualStyleBackColor = false;
             this.btnSyncLink.Click += new System.EventHandler(this.btnSyncLink_Click);
+            // 
+            // btnDbLoad
+            // 
+            this.btnDbLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDbLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDbLoad.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDbLoad.ForeColor = System.Drawing.Color.White;
+            this.btnDbLoad.Location = new System.Drawing.Point(137, 544);
+            this.btnDbLoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDbLoad.Name = "btnDbLoad";
+            this.btnDbLoad.Size = new System.Drawing.Size(211, 50);
+            this.btnDbLoad.TabIndex = 110;
+            this.btnDbLoad.TabStop = false;
+            this.btnDbLoad.Text = "수동 다운로드/업로드";
+            this.btnDbLoad.UseVisualStyleBackColor = false;
+            this.btnDbLoad.Click += new System.EventHandler(this.btnDbLoad_Click);
             // 
             // frmSyncLink
             // 
@@ -594,5 +612,6 @@
         private System.Windows.Forms.Button btnDeleteLog;
         private System.Windows.Forms.Label lblOrderOptionItemCnt;
         private System.Windows.Forms.Label lblOrderOptionItemTitle;
+        private System.Windows.Forms.Button btnDbLoad;
     }
 }

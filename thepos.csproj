@@ -492,11 +492,11 @@
     <Compile Include="4Setup\frmSyncLink.Designer.cs">
       <DependentUpon>frmSyncLink.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysOption.cs">
+    <Compile Include="9SysAdmin\frmSysOptionXXXX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysOption.Designer.cs">
-      <DependentUpon>frmSysOption.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysOptionXXXX.Designer.cs">
+      <DependentUpon>frmSysOptionXXXX.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysOptionTemplate.cs">
       <SubType>Form</SubType>
@@ -691,8 +691,8 @@
     <EmbeddedResource Include="4Setup\frmSyncLink.resx">
       <DependentUpon>frmSyncLink.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysOption.resx">
-      <DependentUpon>frmSysOption.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysOptionXXXX.resx">
+      <DependentUpon>frmSysOptionXXXX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysOptionTemplate.resx">
       <DependentUpon>frmSysOptionTemplate.cs</DependentUpon>

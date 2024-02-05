@@ -289,7 +289,7 @@ namespace thepos
         }
         public static GoodsItem[] mGoodsItem;
 
-
+        /*
         public struct GoodsOption
         {
             public string goods_code;
@@ -308,7 +308,7 @@ namespace thepos
             public int option_item_amt;
         }
         public static GoodsOptionItem[] mGoodsOptionItem;
-
+        */
 
 
         // 상품명을 찾기위해서
@@ -666,6 +666,10 @@ namespace thepos
         public static string mErrorMsg = "";
 
         public static JObject mObj = new JObject();
+
+
+        //
+        public static int mSyncLinkWaitCnt = 0;
 
 
 

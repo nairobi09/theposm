@@ -13,12 +13,12 @@ namespace thepos
 {
     public partial class frmOrderOption : Form
     {
-        Panel[] mPanelOption = new Panel[4];
+        Panel[] mPanelOption = new Panel[5];
 
-        Label[] mLblOptionName = new Label[4];
+        Label[] mLblOptionName = new Label[5];
 
-        RadioButton[ , ] mRbOptionItemName = new RadioButton[4, 3];
-        Label[ , ] mLblOrderItemAmt = new Label[4, 3];
+        RadioButton[ , ] mRbOptionItemName = new RadioButton[5, 3];
+        Label[ , ] mLblOrderItemAmt = new Label[5, 3];
 
 
         GoodsItem goodsItem = new GoodsItem();
@@ -40,7 +40,7 @@ namespace thepos
             lblGoodsInfo.Text = goodsItem.goods_name;
 
 
-            load_option_item(goodsItem.goods_code);
+            load_option_item(goodsItem.option_template_id);
 
             //
             goods_cnt = 1;
@@ -67,6 +67,7 @@ namespace thepos
             lblOption1Name.Font = font10;
             lblOption2Name.Font = font10;
             lblOption3Name.Font = font10;
+            lblOption4Name.Font = font10;
 
             rbOption0Item0Name.Font = font10;
             rbOption0Item1Name.Font = font10;
@@ -84,6 +85,11 @@ namespace thepos
             rbOption3Item1Name.Font = font10;
             rbOption3Item2Name.Font = font10;
 
+            rbOption4Item0Name.Font = font10;
+            rbOption4Item1Name.Font = font10;
+            rbOption4Item2Name.Font = font10;
+
+
             lblOrder0Item0Amt.Font = font10;
             lblOrder0Item1Amt.Font = font10;
             lblOrder0Item2Amt.Font = font10;
@@ -100,6 +106,9 @@ namespace thepos
             lblOrder3Item1Amt.Font = font10;
             lblOrder3Item2Amt.Font = font10;
 
+            lblOrder4Item0Amt.Font = font10;
+            lblOrder4Item1Amt.Font = font10;
+            lblOrder4Item2Amt.Font = font10;
 
             btnOK.Font = font10;
             btnCancel.Font = font10;
@@ -112,11 +121,13 @@ namespace thepos
             mPanelOption[1] = panelOption1;
             mPanelOption[2] = panelOption2;
             mPanelOption[3] = panelOption3;
+            mPanelOption[4] = panelOption4;
 
             mLblOptionName[0] = lblOption0Name;
             mLblOptionName[1] = lblOption1Name;
             mLblOptionName[2] = lblOption2Name;
             mLblOptionName[3] = lblOption3Name;
+            mLblOptionName[4] = lblOption4Name;
 
 
             mRbOptionItemName[0, 0] = rbOption0Item0Name;
@@ -135,6 +146,10 @@ namespace thepos
             mRbOptionItemName[3, 1] = rbOption3Item1Name;
             mRbOptionItemName[3, 2] = rbOption3Item2Name;
 
+            mRbOptionItemName[4, 0] = rbOption4Item0Name;
+            mRbOptionItemName[4, 1] = rbOption4Item1Name;
+            mRbOptionItemName[4, 2] = rbOption4Item2Name;
+
 
             mLblOrderItemAmt[0, 0] = lblOrder0Item0Amt;
             mLblOrderItemAmt[0, 1] = lblOrder0Item1Amt;
@@ -152,8 +167,12 @@ namespace thepos
             mLblOrderItemAmt[3, 1] = lblOrder3Item1Amt;
             mLblOrderItemAmt[3, 2] = lblOrder3Item2Amt;
 
+            mLblOrderItemAmt[4, 0] = lblOrder4Item0Amt;
+            mLblOrderItemAmt[4, 1] = lblOrder4Item1Amt;
+            mLblOrderItemAmt[4, 2] = lblOrder4Item2Amt;
 
-            for (int i = 0; i < 4; i++)
+
+            for (int i = 0; i < 5; i++)
             {
                 for (int k = 0; k < 3; k++)
                 {
@@ -163,35 +182,35 @@ namespace thepos
 
         }
 
-        private void load_option_item(String goods_code)
+        private void load_option_item(String option_template_id)
         {
             int option_idx = 0;
 
-            for (int i = 0; i < mGoodsOption.Length; i++) 
+            for (int i = 0; i < mTempOption.Length; i++) 
             {
-                if (mGoodsOption[i].goods_code == goods_code)
+                if (mTempOption[i].option_template_id == option_template_id)
                 {
                     mPanelOption[option_idx].Visible = true;
-                    mLblOptionName[option_idx].Text = mGoodsOption[i].option_name; 
-                    mLblOptionName[option_idx].Tag = mGoodsOption[i].option_code;
+                    mLblOptionName[option_idx].Text = mTempOption[i].option_name; 
+                    mLblOptionName[option_idx].Tag = mTempOption[i].option_id;
 
                     int item_idx = 0;
 
-                    for (int k = 0; k < mGoodsOptionItem.Length; k++)
+                    for (int k = 0; k < mTempOptionItem.Length; k++)
                     {
-                        if (mGoodsOptionItem[k].goods_code == goods_code & mGoodsOptionItem[k].option_code == mGoodsOption[i].option_code)
+                        if (mTempOptionItem[k].option_template_id == option_template_id & mTempOptionItem[k].option_id == mTempOption[i].option_id)
                         {
                             mRbOptionItemName[option_idx, item_idx].Visible = true;
-                            mRbOptionItemName[option_idx, item_idx].Text = mGoodsOptionItem[k].option_item_name;
-                            mRbOptionItemName[option_idx, item_idx].Tag = mGoodsOptionItem[k].option_item_no;
+                            mRbOptionItemName[option_idx, item_idx].Text = mTempOptionItem[k].option_item_name;
+                            mRbOptionItemName[option_idx, item_idx].Tag = mTempOptionItem[k].option_item_id;
 
 
-                            if (mGoodsOptionItem[k].option_item_amt > 0)
+                            if (mTempOptionItem[k].option_item_amt > 0)
                             {
                                 mLblOrderItemAmt[option_idx, item_idx].Visible = true;
-                                mLblOrderItemAmt[option_idx, item_idx].Text = "₩ " + mGoodsOptionItem[k].option_item_amt.ToString("N0");
+                                mLblOrderItemAmt[option_idx, item_idx].Text = "₩ " + mTempOptionItem[k].option_item_amt.ToString("N0");
                             }
-                            mLblOrderItemAmt[option_idx, item_idx].Tag = mGoodsOptionItem[k].option_item_amt;
+                            mLblOrderItemAmt[option_idx, item_idx].Tag = mTempOptionItem[k].option_item_amt;
 
                             item_idx++;
                         }
@@ -207,7 +226,7 @@ namespace thepos
         {
             int option_item_amt = 0;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 for (int k = 0; k < 3; k++)
                 {
@@ -253,7 +272,7 @@ namespace thepos
         {
             mOrderOptionItemList.Clear();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 for (int k = 0; k < 3; k++)
                 {

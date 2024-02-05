@@ -187,5 +187,14 @@ namespace thepos
 
             lvwSyncLink.Items.Clear();
         }
+
+        private void btnDbLoad_Click(object sender, EventArgs e)
+        {
+            mSyncLinkWaitCnt = 10000;
+
+            MessageBox.Show("수동 업로드/다운로드 작업이 시작됩니다.", "thepos");
+
+        }
+
     }
 }

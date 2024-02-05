@@ -17,7 +17,7 @@ using static thepos.thePos;
 
 namespace thepos
 {
-    public partial class frmSysOption : Form
+    public partial class frmSysOptionXXXX : Form
     {
 
         private int sortColumn = -1;
@@ -31,7 +31,7 @@ namespace thepos
 
 
 
-        public frmSysOption()
+        public frmSysOptionXXXX()
         {
             InitializeComponent();
 

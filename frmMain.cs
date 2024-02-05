@@ -300,7 +300,7 @@ namespace thepos
 
 
             // 인터벌 기준 5초 기준   ->  5초 * 12 = 1분
-            int wait_cnt = 0;
+            mSyncLinkWaitCnt = 0;
 
 
             while (true)
@@ -308,7 +308,7 @@ namespace thepos
                 //
                 Thread.Sleep(1000 * 2); // XX초
 
-                wait_cnt++;
+                mSyncLinkWaitCnt++;
 
 
                 mNetworkState = NetworkInterface.GetIsNetworkAvailable();
@@ -336,7 +336,7 @@ namespace thepos
 
 
                 
-                if ((mNetworkState != tServerStatus) | (wait_cnt >= 300))  // 10분
+                if ((mNetworkState != tServerStatus) | (mSyncLinkWaitCnt >= 300))  // 10분
                 {
                     tServerStatus = check_server_status();
 
@@ -360,9 +360,9 @@ namespace thepos
 
 
 
-                if (wait_cnt >= 300) // 10분
+                if (mSyncLinkWaitCnt >= 300 * 6) // 10 * 6분 = 1시간
                 {
-                    wait_cnt = 0;
+                    mSyncLinkWaitCnt = 0;
 
                     if (mTheMode == "Server")
                     {
@@ -1912,7 +1912,7 @@ namespace thepos
                                 String optionTemplateName = arr[i]["optionTemplateName"].ToString();
 
 
-                                String sql = "INSERT INTO tempOption (siteId, optionTemplateId, optionTemplateName) " +
+                                String sql = "INSERT INTO optionTemplate (siteId, optionTemplateId, optionTemplateName) " +
                                     "values ('" + siteId + "','" + optionTemplateId + "','" + optionTemplateName + "')";
                                 ret = sql_excute_local_db(sql);
                             }
@@ -1972,7 +1972,7 @@ namespace thepos
                                 String optionNameJp = arr[i]["optionNameJp"].ToString();
 
                                 String sql = "INSERT INTO tempOption (siteId, optionTemplateId, optionId, optionSeq, optionInitDsp, optionName, optionNameEn, optionNameCh, optionNameJp) " +
-                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionSeq + ",'" + optionInitDsp + ",'" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
+                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionSeq + ",'" + optionInitDsp + "','" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
                                 ret = sql_excute_local_db(sql);
                             }
 
@@ -2033,7 +2033,7 @@ namespace thepos
                                 int optionItemAmt = int.Parse(arr[i]["optionItemAmt"].ToString());
 
                                 String sql = "INSERT INTO tempOptionItem (siteId, optionTemplateId, optionId, optionItemId, optionItemSeq, linkOptionId, optionItemName, optionItemNameEn, optionItemNameCh, optionItemNameJp, optionItemAmt) " +
-                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionItemId + "'," + optionItemSeq + ",'" + linkOptionId + "','" + optionItemName + "','" + optionItemNameEn + "','" + optionItemNameCh + "','" + optionItemNameJp + "'," + optionItemAmt + ")";
+                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "','" + optionItemId + "'," + optionItemSeq + ",'" + linkOptionId + "','" + optionItemName + "','" + optionItemNameEn + "','" + optionItemNameCh + "','" + optionItemNameJp + "'," + optionItemAmt + ")";
                                 ret = sql_excute_local_db(sql);
                             }
 
@@ -2446,28 +2446,55 @@ namespace thepos
             }
 
 
-            // 3-1. goodsOption
+            // 3-0. optionTemplate
             if (true)
             {
                 int rowcnt = 0;
-                dr = sql_select_local_db("SELECT count(*) as cnt FROM goodsOption");
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM optionTemplate");
                 if (dr.Read())
                 {
                     rowcnt = int.Parse(dr["cnt"].ToString());
                 }
                 dr.Close();
 
-                mGoodsOption = new GoodsOption[rowcnt];
+                mOptionTemplate = new OptionTemplate[rowcnt];
 
-                dr = sql_select_local_db("SELECT * FROM goodsOption");
+                dr = sql_select_local_db("SELECT * FROM optionTemplate");
 
                 int i = 0;
                 while (dr.Read())
                 {
-                    mGoodsOption[i].goods_code = dr["goodsCode"].ToString();
-                    mGoodsOption[i].option_code = dr["optionCode"].ToString();
-                    mGoodsOption[i].option_seq = int.Parse(dr["optionSeq"].ToString());
-                    mGoodsOption[i].option_name = dr["optionName"].ToString();
+                    mOptionTemplate[i].option_template_id = dr["optionTemplateId"].ToString();
+                    mOptionTemplate[i].option_template_name = dr["optionTemplateName"].ToString();
+
+                    i++;
+                }
+                dr.Close();
+            }
+
+            // 3-1. tempOption
+            if (true)
+            {
+                int rowcnt = 0;
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM tempOption");
+                if (dr.Read())
+                {
+                    rowcnt = int.Parse(dr["cnt"].ToString());
+                }
+                dr.Close();
+
+                mTempOption = new TempOption[rowcnt];
+
+                dr = sql_select_local_db("SELECT * FROM tempOption");
+
+                int i = 0;
+                while (dr.Read())
+                {
+                    mTempOption[i].option_template_id = dr["optionTemplateId"].ToString();
+                    mTempOption[i].option_id = dr["optionId"].ToString();
+                    mTempOption[i].option_seq = int.Parse(dr["optionSeq"].ToString());
+                    mTempOption[i].option_init_dsp = dr["optionInitDsp"].ToString();
+                    mTempOption[i].option_name = dr["optionName"].ToString();
 
                     i++;
                 }
@@ -2475,29 +2502,31 @@ namespace thepos
             }
 
 
-            // 3-2. goodsOptionItem
+            // 3-2. tempOptionItem
             if (true)
             {
                 int rowcnt = 0;
-                dr = sql_select_local_db("SELECT count(*) as cnt FROM goodsOptionItem");
+                dr = sql_select_local_db("SELECT count(*) as cnt FROM tempOptionItem");
                 if (dr.Read())
                 {
                     rowcnt = int.Parse(dr["cnt"].ToString());
                 }
                 dr.Close();
 
-                mGoodsOptionItem = new GoodsOptionItem[rowcnt];
+                mTempOptionItem = new TempOptionItem[rowcnt];
 
-                dr = sql_select_local_db("SELECT * FROM goodsOptionItem");
+                dr = sql_select_local_db("SELECT * FROM tempOptionItem");
 
                 int i = 0;
                 while (dr.Read())
                 {
-                    mGoodsOptionItem[i].goods_code = dr["goodsCode"].ToString();
-                    mGoodsOptionItem[i].option_code = dr["optionCode"].ToString();
-                    mGoodsOptionItem[i].option_item_no = int.Parse(dr["optionItemNo"].ToString());
-                    mGoodsOptionItem[i].option_item_name = dr["optionItemName"].ToString();
-                    mGoodsOptionItem[i].option_item_amt = int.Parse(dr["optionItemAmt"].ToString());
+                    mTempOptionItem[i].option_template_id = dr["optionTemplateId"].ToString();
+                    mTempOptionItem[i].option_id = dr["optionId"].ToString();
+                    mTempOptionItem[i].option_item_id = dr["optionItemId"].ToString();
+                    mTempOptionItem[i].option_item_seq = int.Parse(dr["optionItemSeq"].ToString());
+                    mTempOptionItem[i].link_option_id = dr["linkOptionId"].ToString();
+                    mTempOptionItem[i].option_item_name = dr["optionItemName"].ToString();
+                    mTempOptionItem[i].option_item_amt = int.Parse(dr["optionItemAmt"].ToString());
 
                     i++;
                 }

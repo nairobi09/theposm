@@ -56,7 +56,7 @@
             this.tbOptionItemNameEN = new System.Windows.Forms.TextBox();
             this.tbOptionItemName = new System.Windows.Forms.TextBox();
             this.lvwOptionItem = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.link_option_id1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_name_jp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.templete_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.templete_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -78,7 +78,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkInitDsp = new System.Windows.Forms.CheckBox();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnSave1 = new System.Windows.Forms.Button();
             this.btnOptionUp = new System.Windows.Forms.Button();
             this.btnAdd1 = new System.Windows.Forms.Button();
             this.btnOptionDn = new System.Windows.Forms.Button();
@@ -96,6 +96,7 @@
             this.tbOptionTemplateId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.link_option_name1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -144,6 +145,7 @@
             this.btnSave2.TabStop = false;
             this.btnSave2.Text = "저장";
             this.btnSave2.UseVisualStyleBackColor = false;
+            this.btnSave2.Click += new System.EventHandler(this.btnSave2_Click);
             // 
             // groupBox2
             // 
@@ -218,6 +220,7 @@
             this.btnOptionItemUp.TabStop = false;
             this.btnOptionItemUp.Text = "▲";
             this.btnOptionItemUp.UseVisualStyleBackColor = false;
+            this.btnOptionItemUp.Click += new System.EventHandler(this.btnOptionItemUp_Click);
             // 
             // btnAdd2
             // 
@@ -247,6 +250,7 @@
             this.btnOptionItemDn.TabStop = false;
             this.btnOptionItemDn.Text = "▼";
             this.btnOptionItemDn.UseVisualStyleBackColor = false;
+            this.btnOptionItemDn.Click += new System.EventHandler(this.btnOptionItemDn_Click);
             // 
             // btnUpdate2
             // 
@@ -383,7 +387,8 @@
             this.option_item_name_ch,
             this.option_item_name_jp,
             this.option_item_amt,
-            this.columnHeader1});
+            this.link_option_id1,
+            this.link_option_name1});
             this.lvwOptionItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwOptionItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwOptionItem.FullRowSelect = true;
@@ -399,10 +404,10 @@
             this.lvwOptionItem.View = System.Windows.Forms.View.Details;
             this.lvwOptionItem.SelectedIndexChanged += new System.EventHandler(this.lvwOptionItem_SelectedIndexChanged);
             // 
-            // columnHeader1
+            // link_option_id1
             // 
-            this.columnHeader1.Text = "종속옵션";
-            this.columnHeader1.Width = 160;
+            this.link_option_id1.Text = "";
+            this.link_option_id1.Width = 0;
             // 
             // option_name_jp
             // 
@@ -584,7 +589,7 @@
             // 
             this.groupBox1.Controls.Add(this.chkInitDsp);
             this.groupBox1.Controls.Add(this.lblJP);
-            this.groupBox1.Controls.Add(this.btnSave);
+            this.groupBox1.Controls.Add(this.btnSave1);
             this.groupBox1.Controls.Add(this.btnOptionUp);
             this.groupBox1.Controls.Add(this.btnAdd1);
             this.groupBox1.Controls.Add(this.btnOptionDn);
@@ -614,19 +619,20 @@
             this.chkInitDsp.Text = "최초표시";
             this.chkInitDsp.UseVisualStyleBackColor = true;
             // 
-            // btnSave
+            // btnSave1
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(352, 79);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 63);
-            this.btnSave.TabIndex = 62;
-            this.btnSave.TabStop = false;
-            this.btnSave.Text = "저장";
-            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSave1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSave1.ForeColor = System.Drawing.Color.White;
+            this.btnSave1.Location = new System.Drawing.Point(352, 79);
+            this.btnSave1.Name = "btnSave1";
+            this.btnSave1.Size = new System.Drawing.Size(100, 63);
+            this.btnSave1.TabIndex = 62;
+            this.btnSave1.TabStop = false;
+            this.btnSave1.Text = "저장";
+            this.btnSave1.UseVisualStyleBackColor = false;
+            this.btnSave1.Click += new System.EventHandler(this.btnSave1_Click);
             // 
             // btnOptionUp
             // 
@@ -641,6 +647,7 @@
             this.btnOptionUp.TabStop = false;
             this.btnOptionUp.Text = "▲";
             this.btnOptionUp.UseVisualStyleBackColor = false;
+            this.btnOptionUp.Click += new System.EventHandler(this.btnOptionUp_Click);
             // 
             // btnAdd1
             // 
@@ -670,6 +677,7 @@
             this.btnOptionDn.TabStop = false;
             this.btnOptionDn.Text = "▼";
             this.btnOptionDn.UseVisualStyleBackColor = false;
+            this.btnOptionDn.Click += new System.EventHandler(this.btnOptionDn_Click);
             // 
             // btnUpdate1
             // 
@@ -848,6 +856,11 @@
             this.label6.TabIndex = 92;
             this.label6.Text = "옵션아이템";
             // 
+            // link_option_name1
+            // 
+            this.link_option_name1.Text = "종속옵션";
+            this.link_option_name1.Width = 160;
+            // 
             // frmSysOptionTemplate
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -919,7 +932,7 @@
         private System.Windows.Forms.TextBox tbOptionNameEN;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnSave1;
         private System.Windows.Forms.Button btnOptionUp;
         private System.Windows.Forms.Button btnAdd1;
         private System.Windows.Forms.Button btnOptionDn;
@@ -941,6 +954,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ColumnHeader init_dsp;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader link_option_id1;
+        private System.Windows.Forms.ColumnHeader link_option_name1;
     }
 }

@@ -105,7 +105,7 @@ namespace thepos
         {
             if (lvwTemplete.SelectedItems.Count == 0) { return; }
 
-            String selected_option_templete_id = lvwTemplete.SelectedItems[0].Text;
+            selected_option_template_id = lvwTemplete.SelectedItems[0].Text;
             selected_option_id = "";
 
             tbOptionTemplateId.Text = lvwTemplete.SelectedItems[0].Text;
@@ -114,7 +114,7 @@ namespace thepos
             //
             clear_option_console();
 
-            String sUrl = "tempOption?siteId=" + mSiteId + "&optionTemplateId=" + selected_option_templete_id;
+            String sUrl = "tempOption?siteId=" + mSiteId + "&optionTemplateId=" + selected_option_template_id;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -122,7 +122,7 @@ namespace thepos
                     String pos = mObj["tempOption"].ToString();
                     JArray arr = JArray.Parse(pos);
 
-                    max_option_id = 11;
+                    max_option_id = 10;
 
                     for (int i = 0; i < arr.Count; i++)
                     {
@@ -132,17 +132,21 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["optionNameEn"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionNameCh"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionNameJp"].ToString());
-                        lvItem.Tag = arr[i]["optionCode"].ToString();
+                        lvItem.SubItems.Add(arr[i]["optionInitDsp"].ToString());
+                        lvItem.Tag = arr[i]["optionId"].ToString();
 
                         lvwOption.Items.Add(lvItem);
 
-                        int t_no = convert_number(arr[i]["optionCode"].ToString());
+                        int t_no = convert_number(arr[i]["optionId"].ToString());
 
                         if (max_option_id < t_no)
                         {
                             max_option_id = t_no;
                         }
                     }
+
+                    set_link_option();
+
                 }
                 else
                 {
@@ -264,7 +268,7 @@ namespace thepos
             tbOptionNameEN.Text = lvwOption.SelectedItems[0].SubItems[2].Text;
             tbOptionNameCH.Text = lvwOption.SelectedItems[0].SubItems[3].Text;
             tbOptionNameJP.Text = lvwOption.SelectedItems[0].SubItems[4].Text;
-            if (lvwOption.SelectedItems[0].SubItems[5].Text == "Y")
+            if (lvwOption.SelectedItems[0].SubItems[5].Text.ToString() == "Y")
             {
                 chkInitDsp.Checked = true;
             }
@@ -278,6 +282,9 @@ namespace thepos
                 {
                     String pos = mObj["optionItem"].ToString();
                     JArray arr = JArray.Parse(pos);
+
+                    max_option_item_id = 20;
+
 
                     for (int i = 0; i < arr.Count; i++)
                     {
@@ -337,9 +344,9 @@ namespace thepos
 
         private void btnAdd1_Click(object sender, EventArgs e)
         {
-            if (lvwOption.Items.Count >= 4)
+            if (lvwOption.Items.Count >= 5)
             {
-                MessageBox.Show("옵션은 최대 4개까지 입력가능합니다.", "thepos");
+                MessageBox.Show("옵션은 최대 5개까지 입력가능합니다.", "thepos");
                 return;
             }
 
@@ -348,12 +355,19 @@ namespace thepos
             lvItem.SubItems.Add(tbOptionNameEN.Text);
             lvItem.SubItems.Add(tbOptionNameCH.Text);
             lvItem.SubItems.Add(tbOptionNameJP.Text);
+            
+            if (chkInitDsp.Checked)
+            {
+                lvItem.SubItems.Add("Y");
+            }
+            else
+            {
+                lvItem.SubItems.Add("");
+            }
+
             lvItem.Tag = ++max_option_id;
 
             lvwOption.Items.Add(lvItem);
-
-
-            set_link_option();
 
         }
 
@@ -367,7 +381,15 @@ namespace thepos
             lvwOption.SelectedItems[0].SubItems[3].Text = tbOptionNameCH.Text;
             lvwOption.SelectedItems[0].SubItems[4].Text = tbOptionNameJP.Text;
 
-            set_link_option();
+            if (chkInitDsp.Checked)
+            {
+                lvwOption.SelectedItems[0].SubItems[5].Text = "Y";
+            }
+            else
+            {
+                lvwOption.SelectedItems[0].SubItems[5].Text = "";
+            }
+
         }
 
         private void btnDelete1_Click(object sender, EventArgs e)
@@ -385,16 +407,133 @@ namespace thepos
             set_link_option();
         }
 
+        private void btnOptionUp_Click(object sender, EventArgs e)
+        {
+            if (lvwOption.SelectedItems.Count == 0) { return; }
+
+            if (lvwOption.SelectedItems[0].Index == 0) { return; }
+
+            ListViewItem items = new ListViewItem();
+
+            items = lvwOption.SelectedItems[0];
+            int idx = lvwOption.SelectedItems[0].Index;
+
+            lvwOption.Items[idx].Remove();
+            lvwOption.Items.Insert(idx - 1, items);
+
+            lvwOption.Items[idx - 1].Selected = true;
+            lvwOption.Select();
+        }
+
+        private void btnOptionDn_Click(object sender, EventArgs e)
+        {
+            if (lvwOption.SelectedItems.Count == 0) { return; }
+
+            if (lvwOption.SelectedItems[0].Index == lvwOption.Items.Count - 1) { return; }
+
+            ListViewItem items = new ListViewItem();
+
+            items = lvwOption.SelectedItems[0];
+            int idx = lvwOption.SelectedItems[0].Index;
+
+            lvwOption.Items[idx].Remove();
+            lvwOption.Items.Insert(idx + 1, items);
+
+            lvwOption.Items[idx + 1].Selected = true;
+            lvwOption.Select();
+        }
+
+
+        private void btnSave1_Click(object sender, EventArgs e)
+        {
+            // 전체 삭제
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["optionTemplateId"] = selected_option_template_id;
+
+            if (mRequestDelete("tempOption", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                }
+                else
+                {
+                    MessageBox.Show("옵션정보 삭제오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+
+            // 정렬
+            for (int i = 0; i < lvwOption.Items.Count; i++)
+            {
+                lvwOption.Items[i].Text = (i + 1).ToString();
+            }
+
+
+            // 차례로 추가
+            for (int i = 0; i < lvwOption.Items.Count; i++)
+            {
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["optionTemplateId"] = selected_option_template_id;
+                parameters["optionId"] = lvwOption.Items[i].Tag.ToString();
+                parameters["optionSeq"] = lvwOption.Items[i].Text;
+                parameters["optionInitDsp"] = lvwOption.Items[i].SubItems[5].Text;
+                parameters["optionName"] = lvwOption.Items[i].SubItems[1].Text;
+                parameters["optionNameEn"] = lvwOption.Items[i].SubItems[2].Text;
+                parameters["optionNameCh"] = lvwOption.Items[i].SubItems[3].Text;
+                parameters["optionNameJp"] = lvwOption.Items[i].SubItems[4].Text;
+
+                if (mRequestPost("tempOption", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("옵션정보 입력오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+            set_link_option();
+
+            //
+            set_version_basic_db_change();
+
+            MessageBox.Show("정상 저장 완료.", "thepos");
+
+        }
+
+
+
 
         private void set_link_option()
         {
             link_option_id.Clear();
             link_option_name.Clear();
+            cbLinkOption.Items.Clear();
+            cbLinkOption.Text = "";
 
             for (int i = 0; i < lvwOption.Items.Count; i++) 
             {
                 link_option_id.Add(lvwOption.Items[i].Tag.ToString());
-                link_option_name.Add(lvwOptionItem.Items[i].SubItems[1].ToString());
+                link_option_name.Add(lvwOption.Items[i].SubItems[1].Text);
+
+                cbLinkOption.Items.Add(lvwOption.Items[i].SubItems[1].Text);
             }
         }
 
@@ -422,19 +561,192 @@ namespace thepos
 
         private void btnAdd2_Click(object sender, EventArgs e)
         {
+            if (lvwOptionItem.Items.Count >= 3)
+            {
+                MessageBox.Show("옵션항목은 최대 3개까지 입력가능합니다.", "thepos");
+                return;
+            }
+
+            if (!is_number(tbOptionItemAmt.Text))
+            {
+                MessageBox.Show("단가 입력 오류", "thepos");
+                return;
+            }
+
+
+            ListViewItem lvItem = new ListViewItem("");
+            lvItem.SubItems.Add(tbOptionItemName.Text);
+            lvItem.SubItems.Add(tbOptionItemNameEN.Text);
+            lvItem.SubItems.Add(tbOptionItemNameCH.Text);
+            lvItem.SubItems.Add(tbOptionItemNameJP.Text);
+            lvItem.SubItems.Add(tbOptionItemAmt.Text);
+
+            if (cbLinkOption.SelectedIndex > -1)
+            {
+                lvItem.SubItems.Add(link_option_id[cbLinkOption.SelectedIndex]);
+                lvItem.SubItems.Add(link_option_name[cbLinkOption.SelectedIndex]);
+            }
+            else
+            {
+                lvItem.SubItems.Add("");
+                lvItem.SubItems.Add("");
+            }
+
+            lvItem.Tag = ++max_option_item_id;
+
+            lvwOptionItem.Items.Add(lvItem);
 
         }
 
         private void btnUpdate2_Click(object sender, EventArgs e)
         {
+            if (lvwOptionItem.SelectedItems.Count == 0) { return; }
+
+            if (!is_number(tbOptionItemAmt.Text))
+            {
+                MessageBox.Show("단가 입력 오류", "thepos");
+                return;
+            }
+
+            lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(option_item_name_kr)].Text = tbOptionItemName.Text;
+            lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(option_item_name_en)].Text = tbOptionItemNameEN.Text;
+            lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(option_item_name_ch)].Text = tbOptionItemNameCH.Text;
+            lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(option_item_name_jp)].Text = tbOptionItemNameJP.Text;
+            lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(option_item_amt)].Text = tbOptionItemAmt.Text;
+
+            if (cbLinkOption.SelectedIndex > -1)
+            {
+                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_id1)].Text = link_option_id[cbLinkOption.SelectedIndex];
+                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_name1)].Text = link_option_name[cbLinkOption.SelectedIndex];
+            }
+            else
+            {
+                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_id1)].Text = "";
+                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_name1)].Text = "";
+            }
 
         }
 
         private void btnDelete2_Click(object sender, EventArgs e)
         {
+            if (lvwOptionItem.SelectedItems.Count == 0) { return; }
 
+            lvwOptionItem.SelectedItems[0].Remove();
         }
 
+
+        private void btnOptionItemUp_Click(object sender, EventArgs e)
+        {
+            if (lvwOptionItem.SelectedItems.Count == 0) { return; }
+
+            if (lvwOptionItem.SelectedItems[0].Index == 0) { return; }
+
+            ListViewItem items = new ListViewItem();
+
+            items = lvwOptionItem.SelectedItems[0];
+            int idx = lvwOptionItem.SelectedItems[0].Index;
+
+            lvwOptionItem.Items[idx].Remove();
+            lvwOptionItem.Items.Insert(idx - 1, items);
+
+            lvwOptionItem.Items[idx - 1].Selected = true;
+            lvwOptionItem.Select();
+        }
+
+        private void btnOptionItemDn_Click(object sender, EventArgs e)
+        {
+            if (lvwOptionItem.SelectedItems.Count == 0) { return; }
+
+            if (lvwOptionItem.SelectedItems[0].Index == lvwOptionItem.Items.Count - 1) { return; }
+
+            ListViewItem items = new ListViewItem();
+
+            items = lvwOptionItem.SelectedItems[0];
+            int idx = lvwOptionItem.SelectedItems[0].Index;
+
+            lvwOptionItem.Items[idx].Remove();
+            lvwOptionItem.Items.Insert(idx + 1, items);
+
+            lvwOptionItem.Items[idx + 1].Selected = true;
+            lvwOptionItem.Select();
+        }
+
+
+
+        private void btnSave2_Click(object sender, EventArgs e)
+        {
+
+            // 전체 삭제
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["optionTemplateId"] = selected_option_template_id;
+            parameters["optionId"] = selected_option_id;
+
+            if (mRequestDelete("tempOptionItem", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                }
+                else
+                {
+                    MessageBox.Show("옵션아이템 정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+
+            // 정렬
+            for (int i = 0; i < lvwOptionItem.Items.Count; i++)
+            {
+                lvwOptionItem.Items[i].Text = (i + 1).ToString();
+            }
+
+            // 차례로 추가
+            for (int i = 0; i < lvwOptionItem.Items.Count; i++)
+            {
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["optionTemplateId"] = selected_option_template_id;
+                parameters["optionId"] = selected_option_id;
+                parameters["optionItemId"] = lvwOptionItem.Items[i].Tag.ToString();
+                parameters["optionItemSeq"] = lvwOptionItem.Items[i].Text;
+                parameters["linkOptionId"] = lvwOptionItem.Items[i].SubItems[6].Text;
+
+                parameters["optionItemName"] = lvwOptionItem.Items[i].SubItems[1].Text;
+                parameters["optionItemNameEn"] = lvwOptionItem.Items[i].SubItems[2].Text;
+                parameters["optionItemNameCh"] = lvwOptionItem.Items[i].SubItems[3].Text;
+                parameters["optionItemNameJp"] = lvwOptionItem.Items[i].SubItems[4].Text;
+                parameters["optionItemAmt"] = lvwOptionItem.Items[i].SubItems[5].Text;
+
+                if (mRequestPost("tempOptionItem", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품옵션정보 입력오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+            MessageBox.Show("정상 저장 완료.", "thepos");
+
+            //
+            set_version_basic_db_change();
+        }
 
 
     }
