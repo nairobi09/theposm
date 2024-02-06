@@ -184,41 +184,70 @@ namespace thepos
 
         private void load_option_item(String option_template_id)
         {
-            int option_idx = 0;
+            int option_dsp_idx = 0;
 
             for (int i = 0; i < mTempOption.Length; i++) 
             {
                 if (mTempOption[i].option_template_id == option_template_id)
                 {
-                    mPanelOption[option_idx].Visible = true;
-                    mLblOptionName[option_idx].Text = mTempOption[i].option_name; 
-                    mLblOptionName[option_idx].Tag = mTempOption[i].option_id;
-
-                    int item_idx = 0;
-
-                    for (int k = 0; k < mTempOptionItem.Length; k++)
+                    if (mTempOption[i].option_init_dsp == "Y")
                     {
-                        if (mTempOptionItem[k].option_template_id == option_template_id & mTempOptionItem[k].option_id == mTempOption[i].option_id)
+                        mPanelOption[option_dsp_idx].Visible = true;
+                        mLblOptionName[option_dsp_idx].Text = mTempOption[i].option_name; 
+                        mLblOptionName[option_dsp_idx].Tag = mTempOption[i].option_id;
+
+                        int item_dsp_idx = 0;
+
+                        for (int k = 0; k < mTempOptionItem.Length; k++)
                         {
-                            mRbOptionItemName[option_idx, item_idx].Visible = true;
-                            mRbOptionItemName[option_idx, item_idx].Text = mTempOptionItem[k].option_item_name;
-                            mRbOptionItemName[option_idx, item_idx].Tag = mTempOptionItem[k].option_item_id;
-
-
-                            if (mTempOptionItem[k].option_item_amt > 0)
+                            if (mTempOptionItem[k].option_template_id == option_template_id & mTempOptionItem[k].option_id == mTempOption[i].option_id)
                             {
-                                mLblOrderItemAmt[option_idx, item_idx].Visible = true;
-                                mLblOrderItemAmt[option_idx, item_idx].Text = "₩ " + mTempOptionItem[k].option_item_amt.ToString("N0");
-                            }
-                            mLblOrderItemAmt[option_idx, item_idx].Tag = mTempOptionItem[k].option_item_amt;
+                                mRbOptionItemName[option_dsp_idx, item_dsp_idx].Visible = true;
+                                mRbOptionItemName[option_dsp_idx, item_dsp_idx].Text = mTempOptionItem[k].option_item_name;
+                                mRbOptionItemName[option_dsp_idx, item_dsp_idx].Tag = mTempOptionItem[k].option_item_id;
 
-                            item_idx++;
+                                // 종속옵션 이벤트 설정
+                                mRbOptionItemName[option_dsp_idx, item_dsp_idx].Click += (sender, args) => ClickedOptionItem(mTempOptionItem[k].link_option_id);
+
+
+                                if (mTempOptionItem[k].option_item_amt > 0)
+                                {
+                                    mLblOrderItemAmt[option_dsp_idx, item_dsp_idx].Visible = true;
+                                    mLblOrderItemAmt[option_dsp_idx, item_dsp_idx].Text = "+ " + mTempOptionItem[k].option_item_amt.ToString("N0");
+                                }
+                                mLblOrderItemAmt[option_dsp_idx, item_dsp_idx].Tag = mTempOptionItem[k].option_item_amt;
+
+                                item_dsp_idx++;
+
+                            }
                         }
+
+                        option_dsp_idx++;
                     }
 
-                    option_idx++;
+
+
                 }
             }
+        }
+
+
+
+
+        private void ClickedOptionItem(String link_option_id)
+        {
+            if (link_option_id != "")
+            {
+
+
+
+
+            }
+
+
+
+
+
         }
 
 
