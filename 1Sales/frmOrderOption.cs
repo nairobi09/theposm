@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +29,9 @@ namespace thepos
         int goods_cnt = 0;
         int goods_amount = 0;
 
+        List<TempOption> thisTempOption = new List<TempOption>();
+
+
 
         public frmOrderOption(GoodsItem goods_item)
         {
@@ -44,14 +48,6 @@ namespace thepos
             lblGoodsInfo.Text = goodsItem.goods_name;
 
 
-            load_init_option();
-
-            //
-            goods_cnt = 1;
-
-            calculate_amount();
-
-
         }
 
 
@@ -59,39 +55,39 @@ namespace thepos
         {
             lblTitle.Font = font10;
 
-            lblGoodsInfo.Font = font10;
+            lblGoodsInfo.Font = font12;
 
-            lblCnt.Font = font10;
-            lblCntDn.Font = font12;
-            lblCntUp.Font = font12;
+            lblCnt.Font = font12bold;
+            lblCntDn.Font = font12bold;
+            lblCntUp.Font = font12bold;
 
-            lblAmount.Font = font10;
+            lblAmount.Font = font12;
 
-            lblOption0Name.Font = font10;
-            lblOption1Name.Font = font10;
-            lblOption2Name.Font = font10;
-            lblOption3Name.Font = font10;
-            lblOption4Name.Font = font10;
+            lblOption0Name.Font = font12;
+            lblOption1Name.Font = font12;
+            lblOption2Name.Font = font12;
+            lblOption3Name.Font = font12;
+            lblOption4Name.Font = font12;
 
-            rbOption0Item0Name.Font = font10;
-            rbOption0Item1Name.Font = font10;
-            rbOption0Item2Name.Font = font10;
+            rbOption0Item0Name.Font = font12;
+            rbOption0Item1Name.Font = font12;
+            rbOption0Item2Name.Font = font12;
 
-            rbOption1Item0Name.Font = font10;
-            rbOption1Item1Name.Font = font10;
-            rbOption1Item2Name.Font = font10;
+            rbOption1Item0Name.Font = font12;
+            rbOption1Item1Name.Font = font12;
+            rbOption1Item2Name.Font = font12;
 
-            rbOption2Item0Name.Font = font10;
-            rbOption2Item1Name.Font = font10;
-            rbOption2Item2Name.Font = font10;
+            rbOption2Item0Name.Font = font12;
+            rbOption2Item1Name.Font = font12;
+            rbOption2Item2Name.Font = font12;
 
-            rbOption3Item0Name.Font = font10;
-            rbOption3Item1Name.Font = font10;
-            rbOption3Item2Name.Font = font10;
+            rbOption3Item0Name.Font = font12;
+            rbOption3Item1Name.Font = font12;
+            rbOption3Item2Name.Font = font12;
 
-            rbOption4Item0Name.Font = font10;
-            rbOption4Item1Name.Font = font10;
-            rbOption4Item2Name.Font = font10;
+            rbOption4Item0Name.Font = font12;
+            rbOption4Item1Name.Font = font12;
+            rbOption4Item2Name.Font = font12;
 
 
             lblOrder0Item0Amt.Font = font10;
@@ -114,8 +110,8 @@ namespace thepos
             lblOrder4Item1Amt.Font = font10;
             lblOrder4Item2Amt.Font = font10;
 
-            btnOK.Font = font10;
-            btnCancel.Font = font10;
+            btnOK.Font = font12;
+            btnCancel.Font = font12;
 
         }
 
@@ -175,7 +171,7 @@ namespace thepos
             mLblOrderItemAmt[4, 1] = lblOrder4Item1Amt;
             mLblOrderItemAmt[4, 2] = lblOrder4Item2Amt;
 
-
+            /*
             for (int i = 0; i < 5; i++)
             {
                 for (int k = 0; k < 3; k++)
@@ -183,36 +179,102 @@ namespace thepos
                     mRbOptionItemName[i, k].Click += (sender, args) => calculate_amount();
                 }
             }
+            */
+        }
 
+
+        private void frmOrderOption_Shown(object sender, EventArgs e)
+        {
+            get_this_option();
+
+            display_option_seq(0);
+
+            //
+            goods_cnt = 1;
+
+            calculate_amount();
+        }
+
+
+        private void get_this_option()
+        {
+            for (int i = 0; i < mTempOption.Length; i++) 
+            {
+                if (mTempOption[i].option_template_id == thisOptionTemplateId)
+                {
+                    thisTempOption.Add(mTempOption[i]);
+                }
+            }
         }
 
 
 
 
-        private void load_init_option()
+        private void display_option_seq(int option_seq)
         {
-            
-            for (int i = 0; i < mTempOption.Length; i++) 
-            {
-                if (mTempOption[i].option_template_id == thisOptionTemplateId)
-                {
-                    if (mTempOption[i].option_init_dsp == "Y")
-                    {
-                        display_option(mTempOption[i]);
+            String m_next_optionid = "";
 
+
+            for (int i = 0; i < thisTempOption.Count; i++) 
+            {
+                if (thisTempOption[i].option_seq >= option_seq)
+                {
+                    if (m_next_optionid != "")
+                    {
+                        if (thisTempOption[i].option_id == m_next_optionid)
+                        {
+                            display_option(thisTempOption[i]);
+
+                            if (thisTempOption[i].is_turnoff == "Y")
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                m_next_optionid = thisTempOption[i].next_option_id;
+                            }
+                        }
+                        else
+                        {
+                            //skip
+                        }
                     }
+                    else
+                    {
+                        display_option(thisTempOption[i]);
+
+                        if (thisTempOption[i].is_turnoff == "Y")
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            m_next_optionid = thisTempOption[i].next_option_id;
+                        }
+                    }
+
                 }
             }
         }
 
         private void display_option(TempOption tempOption)
         {
-            int option_dsp_idx = 0;
+            int option_dsp_idx = -1;
             //
-            for (int i = 0;i < 4; i++)
+            for (int i = 0;i < 5; i++)
             {
                 if (mPanelOption[i].Visible == false)
+                {
                     option_dsp_idx = i;
+                    break;
+                }
+            }
+
+
+            if (option_dsp_idx == -1)
+            {
+                // 빈칸이 없음. 최대 5칸.
+                return;
             }
 
 
@@ -225,7 +287,7 @@ namespace thepos
             //
             int item_dsp_idx = 0;
 
-            for (int k = 0; k < mTempOptionItem.Length; k++)
+            for (int k = 0; k < mTempOptionItem.Length; k++) 
             {
                 if (mTempOptionItem[k].option_template_id == tempOption.option_template_id & mTempOptionItem[k].option_id == tempOption.option_id)
                 {
@@ -234,7 +296,19 @@ namespace thepos
                     mRbOptionItemName[option_dsp_idx, item_dsp_idx].Tag = mTempOptionItem[k].option_item_id;
 
                     // 종속옵션 이벤트 설정
-                    mRbOptionItemName[option_dsp_idx, item_dsp_idx].Click += (sender, args) => ClickedOptionItem(mTempOptionItem[k].link_option_id);
+                    String link_option_id =  mTempOptionItem[k].link_option_id;
+                    int dsp_idx = option_dsp_idx;
+                    mRbOptionItemName[option_dsp_idx, item_dsp_idx].Click += (sender, args) => ClickedOptionItem(link_option_id, dsp_idx);
+                    mRbOptionItemName[option_dsp_idx, item_dsp_idx].Click += (sender, args) => calculate_amount();
+
+
+
+                    // 분기점 아니면 버튼 체크
+                    if (tempOption.is_turnoff != "Y" & item_dsp_idx == 0)
+                    {
+                        mRbOptionItemName[option_dsp_idx, item_dsp_idx].Checked = true;
+                    }
+
 
 
                     if (mTempOptionItem[k].option_item_amt > 0)
@@ -259,15 +333,43 @@ namespace thepos
         }
 
 
-        private void ClickedOptionItem(String link_option_id)
+        private void ClickedOptionItem(String link_option_id, int dsp_idx)
         {
             if (link_option_id != "")
             {
-                for (int i = 0; i < mTempOption.Length; i++)
+                for (int i = dsp_idx + 1; i < 5; i++)
                 {
-                    if (mTempOption[i].option_template_id == thisOptionTemplateId & mTempOption[i].option_id == link_option_id)
+                    mPanelOption[i].Visible = false;
+                    mLblOptionName[i].Text = "";
+                    mLblOptionName[i].Tag = "";
+
+
+                    // 클릭이벤트 삭제
+                    for (int k = 0; k < 3; k++)
                     {
-                        display_option(mTempOption[i]);
+
+                        FieldInfo f1 = typeof(Control).GetField("EventClick", BindingFlags.Static | BindingFlags.NonPublic);
+
+                        object obj = f1.GetValue(mRbOptionItemName[i, k]);
+                        PropertyInfo pi = mRbOptionItemName[i, k].GetType().GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                        EventHandlerList list = (EventHandlerList)pi.GetValue(mRbOptionItemName[i, k], null);
+                        list.RemoveHandler(obj, list[obj]);
+
+
+                        mRbOptionItemName[i, k].Checked = false;
+
+
+                    }
+
+                }
+
+
+                for (int i = 0; i < thisTempOption.Count; i++)
+                {
+                    if (thisTempOption[i].option_id == link_option_id)
+                    {
+                        display_option_seq(thisTempOption[i].option_seq);
                     }
                 }
 
@@ -335,7 +437,7 @@ namespace thepos
                         if (mRbOptionItemName[i, k].Checked)
                         {
                             orderOptionItem orderOptionItem = new orderOptionItem();
-                            orderOptionItem.option_item_no = (int)mRbOptionItemName[i, k].Tag;
+                            orderOptionItem.option_item_no = convert_number(mRbOptionItemName[i, k].Tag.ToString());
                             orderOptionItem.option_item_name = mRbOptionItemName[i, k].Text;
                             orderOptionItem.option_code = mLblOptionName[i].Tag.ToString();
                             orderOptionItem.option_name = mLblOptionName[i].Text;

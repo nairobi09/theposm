@@ -40,8 +40,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbBadges = new System.Windows.Forms.ComboBox();
+            this.lblBadgesTitle = new System.Windows.Forms.Label();
+            this.lblNoticeTitle = new System.Windows.Forms.Label();
+            this.tbGoodsNotice = new System.Windows.Forms.TextBox();
             this.cbOptionTemplate = new System.Windows.Forms.ComboBox();
             this.lblOptionTitle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -78,9 +80,9 @@
             this.soldout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.badges_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.badges_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.cbBadges = new System.Windows.Forms.ComboBox();
-            this.lblBadgesTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -197,8 +199,8 @@
             // 
             this.groupBox1.Controls.Add(this.cbBadges);
             this.groupBox1.Controls.Add(this.lblBadgesTitle);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.lblNoticeTitle);
+            this.groupBox1.Controls.Add(this.tbGoodsNotice);
             this.groupBox1.Controls.Add(this.cbOptionTemplate);
             this.groupBox1.Controls.Add(this.lblOptionTitle);
             this.groupBox1.Controls.Add(this.label2);
@@ -230,26 +232,52 @@
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             // 
-            // label3
+            // cbBadges
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(4, 133);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 64;
-            this.label3.Text = "부가정보";
+            this.cbBadges.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbBadges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbBadges.FormattingEnabled = true;
+            this.cbBadges.Items.AddRange(new object[] {
+            "",
+            "NEW",
+            "BEST",
+            "사장픽"});
+            this.cbBadges.Location = new System.Drawing.Point(306, 100);
+            this.cbBadges.Name = "cbBadges";
+            this.cbBadges.Size = new System.Drawing.Size(145, 21);
+            this.cbBadges.TabIndex = 65;
             // 
-            // textBox1
+            // lblBadgesTitle
             // 
-            this.textBox1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.Location = new System.Drawing.Point(58, 127);
-            this.textBox1.MaxLength = 30;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 23);
-            this.textBox1.TabIndex = 5;
+            this.lblBadgesTitle.AutoSize = true;
+            this.lblBadgesTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBadgesTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblBadgesTitle.Location = new System.Drawing.Point(271, 106);
+            this.lblBadgesTitle.Name = "lblBadgesTitle";
+            this.lblBadgesTitle.Size = new System.Drawing.Size(29, 12);
+            this.lblBadgesTitle.TabIndex = 66;
+            this.lblBadgesTitle.Text = "배지";
+            // 
+            // lblNoticeTitle
+            // 
+            this.lblNoticeTitle.AutoSize = true;
+            this.lblNoticeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNoticeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblNoticeTitle.Location = new System.Drawing.Point(4, 133);
+            this.lblNoticeTitle.Name = "lblNoticeTitle";
+            this.lblNoticeTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblNoticeTitle.TabIndex = 64;
+            this.lblNoticeTitle.Text = "부가정보";
+            // 
+            // tbGoodsNotice
+            // 
+            this.tbGoodsNotice.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbGoodsNotice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbGoodsNotice.Location = new System.Drawing.Point(58, 127);
+            this.tbGoodsNotice.MaxLength = 30;
+            this.tbGoodsNotice.Name = "tbGoodsNotice";
+            this.tbGoodsNotice.Size = new System.Drawing.Size(117, 23);
+            this.tbGoodsNotice.TabIndex = 5;
             // 
             // cbOptionTemplate
             // 
@@ -470,7 +498,7 @@
             // 
             // goodsname
             // 
-            this.goodsname.Text = "상품명(국문)";
+            this.goodsname.Text = "상품명";
             this.goodsname.Width = 120;
             // 
             // amt
@@ -509,7 +537,7 @@
             // memo
             // 
             this.memo.Text = "비고";
-            this.memo.Width = 100;
+            this.memo.Width = 70;
             // 
             // goodscode
             // 
@@ -534,6 +562,8 @@
             this.soldout,
             this.option_id,
             this.option_name,
+            this.badges_id,
+            this.badges_name,
             this.memo});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -579,32 +609,21 @@
             this.option_name.Text = "옵션";
             this.option_name.Width = 90;
             // 
+            // badges_id
+            // 
+            this.badges_id.Text = "";
+            this.badges_id.Width = 0;
+            // 
+            // badges_name
+            // 
+            this.badges_name.Text = "배지";
+            this.badges_name.Width = 50;
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "image_add_32x32.png");
-            // 
-            // cbBadges
-            // 
-            this.cbBadges.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbBadges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbBadges.FormattingEnabled = true;
-            this.cbBadges.Location = new System.Drawing.Point(306, 100);
-            this.cbBadges.Name = "cbBadges";
-            this.cbBadges.Size = new System.Drawing.Size(145, 21);
-            this.cbBadges.TabIndex = 65;
-            // 
-            // lblBadgesTitle
-            // 
-            this.lblBadgesTitle.AutoSize = true;
-            this.lblBadgesTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBadgesTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBadgesTitle.Location = new System.Drawing.Point(271, 106);
-            this.lblBadgesTitle.Name = "lblBadgesTitle";
-            this.lblBadgesTitle.Size = new System.Drawing.Size(29, 12);
-            this.lblBadgesTitle.TabIndex = 66;
-            this.lblBadgesTitle.Text = "배지";
             // 
             // frmSysGoods
             // 
@@ -675,9 +694,11 @@
         private System.Windows.Forms.Label lblOptionTitle;
         private System.Windows.Forms.ColumnHeader option_name;
         private System.Windows.Forms.ColumnHeader option_id;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblNoticeTitle;
+        private System.Windows.Forms.TextBox tbGoodsNotice;
         private System.Windows.Forms.ComboBox cbBadges;
         private System.Windows.Forms.Label lblBadgesTitle;
+        private System.Windows.Forms.ColumnHeader badges_id;
+        private System.Windows.Forms.ColumnHeader badges_name;
     }
 }

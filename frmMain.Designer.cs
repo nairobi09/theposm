@@ -111,7 +111,7 @@
             this.btnExit.BackColor = System.Drawing.Color.Black;
             this.btnExit.FlatAppearance.BorderSize = 2;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnExit.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Location = new System.Drawing.Point(168, 3);
             this.btnExit.Name = "btnExit";
@@ -127,7 +127,7 @@
             this.btnSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnSupport.FlatAppearance.BorderSize = 2;
             this.btnSupport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSupport.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSupport.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSupport.ForeColor = System.Drawing.Color.White;
             this.btnSupport.Location = new System.Drawing.Point(168, 229);
             this.btnSupport.Name = "btnSupport";
@@ -143,7 +143,7 @@
             this.btnSetup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnSetup.FlatAppearance.BorderSize = 2;
             this.btnSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetup.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSetup.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSetup.ForeColor = System.Drawing.Color.White;
             this.btnSetup.Location = new System.Drawing.Point(168, 116);
             this.btnSetup.Name = "btnSetup";
@@ -159,7 +159,7 @@
             this.btnBusiness.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnBusiness.FlatAppearance.BorderSize = 2;
             this.btnBusiness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBusiness.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBusiness.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBusiness.ForeColor = System.Drawing.Color.White;
             this.btnBusiness.Location = new System.Drawing.Point(3, 116);
             this.btnBusiness.Name = "btnBusiness";
@@ -175,7 +175,7 @@
             this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReports.FlatAppearance.BorderSize = 2;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnReports.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Location = new System.Drawing.Point(3, 229);
             this.btnReports.Name = "btnReports";
@@ -191,7 +191,7 @@
             this.btnSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(86)))), ((int)(((byte)(156)))));
             this.btnSales.FlatAppearance.BorderSize = 2;
             this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSales.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSales.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSales.ForeColor = System.Drawing.Color.White;
             this.btnSales.Location = new System.Drawing.Point(3, 3);
             this.btnSales.Name = "btnSales";
@@ -232,7 +232,7 @@
             this.panelLogin.Controls.Add(this.panelKeyDisplayWhite);
             this.panelLogin.Controls.Add(this.panelNumpad);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelLogin.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelLogin.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelLogin.Location = new System.Drawing.Point(684, 0);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(340, 768);
@@ -268,7 +268,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.LightGray;
             this.btnClose.Location = new System.Drawing.Point(231, 71);
             this.btnClose.Name = "btnClose";
@@ -282,7 +282,7 @@
             // lblPW
             // 
             this.lblPW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPW.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPW.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblPW.Location = new System.Drawing.Point(18, 235);
             this.lblPW.Name = "lblPW";
@@ -294,7 +294,7 @@
             // lblID
             // 
             this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblID.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblID.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblID.Location = new System.Drawing.Point(18, 180);
             this.lblID.Name = "lblID";
@@ -317,7 +317,7 @@
             // 
             this.tbID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.tbID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbID.Font = new System.Drawing.Font("Gulim", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbID.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbID.ForeColor = System.Drawing.Color.Gold;
             this.tbID.Location = new System.Drawing.Point(10, 13);
             this.tbID.MaxLength = 4;
@@ -355,7 +355,7 @@
             // 
             this.tbPW.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.tbPW.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbPW.Font = new System.Drawing.Font("Gulim", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbPW.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPW.ForeColor = System.Drawing.Color.Gold;
             this.tbPW.Location = new System.Drawing.Point(10, 13);
             this.tbPW.MaxLength = 4;
@@ -588,7 +588,7 @@
             // 
             // lblSiteName
             // 
-            this.lblSiteName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.ForeColor = System.Drawing.Color.Gold;
             this.lblSiteName.Location = new System.Drawing.Point(7, 49);
             this.lblSiteName.Name = "lblSiteName";
@@ -599,7 +599,7 @@
             // 
             // lblUserNameTitle
             // 
-            this.lblUserNameTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUserNameTitle.ForeColor = System.Drawing.Color.White;
             this.lblUserNameTitle.Location = new System.Drawing.Point(-1, 5);
             this.lblUserNameTitle.Name = "lblUserNameTitle";
@@ -611,7 +611,7 @@
             // 
             // lblUserName
             // 
-            this.lblUserName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUserName.ForeColor = System.Drawing.Color.Gold;
             this.lblUserName.Location = new System.Drawing.Point(137, 5);
             this.lblUserName.Name = "lblUserName";
@@ -642,7 +642,7 @@
             // 
             // lblSiteAlias
             // 
-            this.lblSiteAlias.Font = new System.Drawing.Font("Gulim", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteAlias.ForeColor = System.Drawing.Color.Gold;
             this.lblSiteAlias.Location = new System.Drawing.Point(6, 11);
             this.lblSiteAlias.Name = "lblSiteAlias";
@@ -664,7 +664,7 @@
             // 
             // lblPosNoTitle
             // 
-            this.lblPosNoTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.White;
             this.lblPosNoTitle.Location = new System.Drawing.Point(-1, 5);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
@@ -676,7 +676,7 @@
             // 
             // lblPosNo
             // 
-            this.lblPosNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
             this.lblPosNo.Location = new System.Drawing.Point(137, 5);
             this.lblPosNo.Name = "lblPosNo";
@@ -687,13 +687,13 @@
             // 
             // lblCallCenterNo
             // 
-            this.lblCallCenterNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCallCenterNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenterNo.ForeColor = System.Drawing.Color.LightGray;
             this.lblCallCenterNo.Location = new System.Drawing.Point(222, 38);
             this.lblCallCenterNo.Name = "lblCallCenterNo";
             this.lblCallCenterNo.Size = new System.Drawing.Size(438, 22);
             this.lblCallCenterNo.TabIndex = 8;
-            this.lblCallCenterNo.Text = "고객지원 02-1234-5678";
+            this.lblCallCenterNo.Text = "문의 1522-9926";
             this.lblCallCenterNo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblCallCenterNo.Click += new System.EventHandler(this.lblCallCenterNo_Click);
             // 
@@ -706,7 +706,7 @@
             // 
             // lblLocalModeTitle
             // 
-            this.lblLocalModeTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLocalModeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
             this.lblLocalModeTitle.Location = new System.Drawing.Point(84, 38);
             this.lblLocalModeTitle.Name = "lblLocalModeTitle";
@@ -739,7 +739,7 @@
             // 
             this.lblIsTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblIsTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblIsTest.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblIsTest.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblIsTest.ForeColor = System.Drawing.Color.Orange;
             this.lblIsTest.Location = new System.Drawing.Point(705, 654);
             this.lblIsTest.Name = "lblIsTest";

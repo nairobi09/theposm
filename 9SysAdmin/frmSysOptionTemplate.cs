@@ -24,8 +24,8 @@ namespace thepos
         int max_option_item_id = 0;
 
 
-        List<String> link_option_id = new List<String>();
-        List<String> link_option_name = new List<String>();
+        List<String> this_option_id = new List<String>();
+        List<String> this_option_name = new List<String>();
 
 
         public frmSysOptionTemplate()
@@ -80,7 +80,7 @@ namespace thepos
         {
             //
             lvwOption.Items.Clear();
-            chkInitDsp.Checked = false;
+            chkTurnoff.Checked = false;
             tbOptionName.Text = "";
             tbOptionNameEN.Text = "";
             tbOptionNameCH.Text = "";
@@ -132,7 +132,11 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["optionNameEn"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionNameCh"].ToString());
                         lvItem.SubItems.Add(arr[i]["optionNameJp"].ToString());
-                        lvItem.SubItems.Add(arr[i]["optionInitDsp"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["nextOptionId"].ToString());
+                        lvItem.SubItems.Add(get_temp_option_name(arr[i]["nextOptionId"].ToString()));
+                        lvItem.SubItems.Add(arr[i]["isTurnoff"].ToString());
+
                         lvItem.Tag = arr[i]["optionId"].ToString();
 
                         lvwOption.Items.Add(lvItem);
@@ -145,7 +149,18 @@ namespace thepos
                         }
                     }
 
-                    set_link_option();
+                    //
+                    set_this_option();
+
+                    for (int i = 0; i < lvwOption.Items.Count; i++)
+                    {
+                        if (lvwOption.Items[i].SubItems[lvwOption.Columns.IndexOf(next_option_id)].Text != "")
+                        {
+                            lvwOption.Items[i].SubItems[lvwOption.Columns.IndexOf(next_option_name)].Text = get_temp_option_name(lvwOption.Items[i].SubItems[lvwOption.Columns.IndexOf(next_option_id)].Text);
+                        }
+                    }
+
+
 
                 }
                 else
@@ -253,7 +268,7 @@ namespace thepos
             tbOptionNameEN.Text = "";
             tbOptionNameCH.Text = "";
             tbOptionNameJP.Text = "";
-            chkInitDsp.Checked = false;
+            chkTurnoff.Checked = false;
 
             clear_option_item_console();
 
@@ -264,13 +279,24 @@ namespace thepos
             selected_option_id = lvwOption.SelectedItems[0].Tag.ToString();
 
 
-            tbOptionName.Text = lvwOption.SelectedItems[0].SubItems[1].Text;
-            tbOptionNameEN.Text = lvwOption.SelectedItems[0].SubItems[2].Text;
-            tbOptionNameCH.Text = lvwOption.SelectedItems[0].SubItems[3].Text;
-            tbOptionNameJP.Text = lvwOption.SelectedItems[0].SubItems[4].Text;
-            if (lvwOption.SelectedItems[0].SubItems[5].Text.ToString() == "Y")
+            tbOptionName.Text = lvwOption.SelectedItems[0].SubItems[lvwOption.Columns.IndexOf(option_name)].Text;
+            tbOptionNameEN.Text = lvwOption.SelectedItems[0].SubItems[lvwOption.Columns.IndexOf(option_name_en)].Text;
+            tbOptionNameCH.Text = lvwOption.SelectedItems[0].SubItems[lvwOption.Columns.IndexOf(option_name_ch)].Text;
+            tbOptionNameJP.Text = lvwOption.SelectedItems[0].SubItems[lvwOption.Columns.IndexOf(option_name_jp)].Text;
+
+            //
+            for (int i = 0; i < this_option_id.Count; i++)
             {
-                chkInitDsp.Checked = true;
+                if (lvwOption.SelectedItems[0].SubItems[lvwOption.Columns.IndexOf(next_option_id)].Text == this_option_id[i])
+                {
+                    cbNextOption.SelectedIndex = i;
+                }
+            }
+
+            //
+            if (lvwOption.SelectedItems[0].SubItems[lvwOption.Columns.IndexOf(is_turnoff)].Text.ToString() == "Y")
+            {
+                chkTurnoff.Checked = true;
             }
 
 
@@ -329,14 +355,13 @@ namespace thepos
 
         private String get_temp_option_name(String option_id)
         {
-            for (int i = 0; i < lvwOption.Items.Count; i++)
+            for (int i = 0; i < this_option_id.Count; i++)
             {
-                if (lvwOption.Items[i].Tag.ToString() == option_id)
+                if (this_option_id[i] == option_id)
                 {
-                    return lvwOption.Items[i].SubItems[1].Text;
+                    return this_option_name[i];
                 }
             }
-
             return option_id;
         }
 
@@ -344,7 +369,7 @@ namespace thepos
 
         private void btnAdd1_Click(object sender, EventArgs e)
         {
-            if (lvwOption.Items.Count >= 5)
+            if (lvwOption.Items.Count >= 10)
             {
                 MessageBox.Show("옵션은 최대 5개까지 입력가능합니다.", "thepos");
                 return;
@@ -355,8 +380,14 @@ namespace thepos
             lvItem.SubItems.Add(tbOptionNameEN.Text);
             lvItem.SubItems.Add(tbOptionNameCH.Text);
             lvItem.SubItems.Add(tbOptionNameJP.Text);
-            
-            if (chkInitDsp.Checked)
+
+            if (cbNextOption.SelectedIndex == -1) cbNextOption.SelectedIndex = 0;
+
+            lvItem.SubItems.Add(this_option_id[cbNextOption.SelectedIndex]);
+            lvItem.SubItems.Add(this_option_name[cbNextOption.SelectedIndex]);
+
+
+            if (chkTurnoff.Checked)
             {
                 lvItem.SubItems.Add("Y");
             }
@@ -381,13 +412,16 @@ namespace thepos
             lvwOption.SelectedItems[0].SubItems[3].Text = tbOptionNameCH.Text;
             lvwOption.SelectedItems[0].SubItems[4].Text = tbOptionNameJP.Text;
 
-            if (chkInitDsp.Checked)
+            lvwOption.SelectedItems[0].SubItems[5].Text = this_option_id[cbNextOption.SelectedIndex];
+            lvwOption.SelectedItems[0].SubItems[6].Text = this_option_name[cbNextOption.SelectedIndex];
+
+            if (chkTurnoff.Checked)
             {
-                lvwOption.SelectedItems[0].SubItems[5].Text = "Y";
+                lvwOption.SelectedItems[0].SubItems[7].Text = "Y";
             }
             else
             {
-                lvwOption.SelectedItems[0].SubItems[5].Text = "";
+                lvwOption.SelectedItems[0].SubItems[7].Text = "";
             }
 
         }
@@ -404,7 +438,7 @@ namespace thepos
 
             lvwOption.SelectedItems[0].Remove();
 
-            set_link_option();
+            set_this_option();
         }
 
         private void btnOptionUp_Click(object sender, EventArgs e)
@@ -484,7 +518,10 @@ namespace thepos
                 parameters["optionTemplateId"] = selected_option_template_id;
                 parameters["optionId"] = lvwOption.Items[i].Tag.ToString();
                 parameters["optionSeq"] = lvwOption.Items[i].Text;
-                parameters["optionInitDsp"] = lvwOption.Items[i].SubItems[5].Text;
+
+                parameters["isTurnoff"] = lvwOption.Items[i].SubItems[lvwOption.Columns.IndexOf(is_turnoff)].Text;
+                parameters["nextOptionId"] = lvwOption.Items[i].SubItems[lvwOption.Columns.IndexOf(next_option_id)].Text;
+
                 parameters["optionName"] = lvwOption.Items[i].SubItems[1].Text;
                 parameters["optionNameEn"] = lvwOption.Items[i].SubItems[2].Text;
                 parameters["optionNameCh"] = lvwOption.Items[i].SubItems[3].Text;
@@ -509,7 +546,7 @@ namespace thepos
                 }
             }
 
-            set_link_option();
+            set_this_option();
 
             //
             set_version_basic_db_change();
@@ -521,28 +558,41 @@ namespace thepos
 
 
 
-        private void set_link_option()
+        private void set_this_option()
         {
-            link_option_id.Clear();
-            link_option_name.Clear();
-            cbLinkOption.Items.Clear();
-            cbLinkOption.Text = "";
+            //
+            this_option_id.Clear();
+            this_option_name.Clear();
+
+            this_option_id.Add("");
+            this_option_name.Add("");
 
             for (int i = 0; i < lvwOption.Items.Count; i++) 
             {
-                link_option_id.Add(lvwOption.Items[i].Tag.ToString());
-                link_option_name.Add(lvwOption.Items[i].SubItems[1].Text);
+                this_option_id.Add(lvwOption.Items[i].Tag.ToString());
+                this_option_name.Add(lvwOption.Items[i].SubItems[1].Text);
+            }
 
-                cbLinkOption.Items.Add(lvwOption.Items[i].SubItems[1].Text);
+            //
+            cbNextOption.Items.Clear();
+            cbNextOption.Text = "";
+
+            cbLinkOption.Items.Clear();
+            cbLinkOption.Text = "";
+
+            for (int i = 0; i < this_option_id.Count; i++)
+            {
+                cbNextOption.Items.Add(this_option_name[i]);
+                cbLinkOption.Items.Add(this_option_name[i]);
             }
         }
+
+
 
 
         private void lvwOptionItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwOptionItem.SelectedItems.Count == 0) { return; }
-
-
 
 
             //
@@ -552,6 +602,13 @@ namespace thepos
             tbOptionItemNameJP.Text = lvwOptionItem.SelectedItems[0].SubItems[4].Text;
             tbOptionItemAmt.Text = lvwOptionItem.SelectedItems[0].SubItems[5].Text;
 
+            for (int i = 0; i < this_option_id.Count; i++)
+            {
+                if (lvwOptionItem.SelectedItems[0].SubItems[6].Text == this_option_id[i])
+                {
+                    cbLinkOption.SelectedIndex = i;
+                }
+            }
             
 
 
@@ -583,8 +640,8 @@ namespace thepos
 
             if (cbLinkOption.SelectedIndex > -1)
             {
-                lvItem.SubItems.Add(link_option_id[cbLinkOption.SelectedIndex]);
-                lvItem.SubItems.Add(link_option_name[cbLinkOption.SelectedIndex]);
+                lvItem.SubItems.Add(this_option_id[cbLinkOption.SelectedIndex]);
+                lvItem.SubItems.Add(this_option_name[cbLinkOption.SelectedIndex]);
             }
             else
             {
@@ -616,8 +673,8 @@ namespace thepos
 
             if (cbLinkOption.SelectedIndex > -1)
             {
-                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_id1)].Text = link_option_id[cbLinkOption.SelectedIndex];
-                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_name1)].Text = link_option_name[cbLinkOption.SelectedIndex];
+                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_id1)].Text = this_option_id[cbLinkOption.SelectedIndex];
+                lvwOptionItem.SelectedItems[0].SubItems[lvwOptionItem.Columns.IndexOf(link_option_name1)].Text = this_option_name[cbLinkOption.SelectedIndex];
             }
             else
             {

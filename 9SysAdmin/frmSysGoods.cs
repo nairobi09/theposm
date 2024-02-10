@@ -41,6 +41,7 @@ namespace thepos._9SysAdmin
         String sv_cutout = "";
         String sv_soldout = "";
         String sv_option_template_id = "";
+        String sv_badges_id = "";
         String sv_memo = "";
         String ch_imagePath = "";
 
@@ -65,11 +66,13 @@ namespace thepos._9SysAdmin
             lblEN.Font = font9;
             lblCH.Font = font9;
             lblJP.Font = font9;
+            lblNoticeTitle.Font = font9;
 
             tbGoodsName.Font = font10;
             tbGoodsNameEN.Font = font10;
             tbGoodsNameCH.Font = font10;
             tbGoodsNameJP.Font = font10;
+            tbGoodsNotice.Font = font10;
 
             cbTicket.Font = font10;
             cbTaxFree.Font = font10;
@@ -84,6 +87,9 @@ namespace thepos._9SysAdmin
 
             lblOptionTitle.Font = font10;
             cbOptionTemplate.Font = font10;
+
+            lblBadgesTitle.Font = font10;
+            cbBadges.Font = font10;
 
             lblMemoTitle.Font = font10;
             tbMemo.Font = font10;
@@ -111,6 +117,17 @@ namespace thepos._9SysAdmin
             {
                 cbOptionTemplate.Items.Add(mOptionTemplate[i].option_template_name);
             }
+
+
+
+
+            cbBadges.Items.Clear();
+            for (int i = 0; i < mBadges.Length; i++)
+            {
+                cbBadges.Items.Add(mBadges[i].badges_name);
+            }
+
+
         }
 
         private void clear_console()
@@ -163,6 +180,7 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[i]["goodsNameCh"].ToString());
                         lvItem.SubItems.Add(arr[i]["goodsNameJp"].ToString());
 
+
                         // goodscode
                         lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
 
@@ -187,6 +205,10 @@ namespace thepos._9SysAdmin
 
                         lvItem.SubItems.Add(arr[i]["optionTemplateId"].ToString());
                         lvItem.SubItems.Add(get_option_template_name(arr[i]["optionTemplateId"].ToString()));
+
+                        lvItem.SubItems.Add(arr[i]["badgesId"].ToString());
+                        lvItem.SubItems.Add(get_badges_name(arr[i]["badgesId"].ToString()));
+
 
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
@@ -300,7 +322,13 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[0]["optionTemplateId"].ToString());
                         lvItem.SubItems.Add(get_option_template_name(arr[0]["optionTemplateId"].ToString()));
 
+                        lvItem.SubItems.Add(arr[0]["badgesId"].ToString());
+                        lvItem.SubItems.Add(get_badges_name(arr[0]["badgesId"].ToString()));
+
+
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
+
+
 
                         if (tCutout == "Y")  // 중지
                         {
@@ -374,19 +402,6 @@ namespace thepos._9SysAdmin
             tbGoodsNameCH.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameCH)].Text;
             tbGoodsNameJP.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameJP)].Text;
 
-            tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(amt)].Text;
-
-            String shop_code = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(shopcode)].Text;
-
-
-            cbShop.SelectedIndex = -1;
-            for (int i = 0; i < mShop.Length; i++)
-            {
-                if (mShop[i].shop_code == shop_code)
-                {
-                    cbShop.SelectedIndex = i;
-                }
-            }
 
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(ticket)].Text == "Y")
@@ -409,6 +424,22 @@ namespace thepos._9SysAdmin
             else
                 cbSoldout.Checked = false;
 
+
+            //
+            tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(amt)].Text;
+
+            String shop_code = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(shopcode)].Text;
+
+
+            cbShop.SelectedIndex = -1;
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                if (mShop[i].shop_code == shop_code)
+                {
+                    cbShop.SelectedIndex = i;
+                }
+            }
+
             //
 
             String id = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(option_id)].Text;
@@ -423,10 +454,23 @@ namespace thepos._9SysAdmin
                 {
                     if (mOptionTemplate[i].option_template_id == id)
                     {
-                        cbOptionTemplate.SelectedIndex = 1;
+                        cbOptionTemplate.SelectedIndex = i;
                     }
                 }
             }
+
+
+            // 배지
+            id = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(badges_id)].Text;
+
+            for (int i = 0; i < mBadges.Length; i++)
+            {
+                if (mBadges[i].badges_id == id)
+                {
+                    cbBadges.SelectedIndex = i;
+                }
+            }
+
 
 
             tbMemo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(memo)].Text;
@@ -465,6 +509,7 @@ namespace thepos._9SysAdmin
             sv_soldout = cbSoldout.Checked + "";
 
             sv_option_template_id = cbOptionTemplate.SelectedIndex + "";
+            sv_badges_id = cbBadges.SelectedIndex + "";
 
             sv_memo = tbMemo.Text;
             ch_imagePath = "0";
@@ -518,14 +563,9 @@ namespace thepos._9SysAdmin
             if (sv_goodsNameJP != tbGoodsNameJP.Text.Trim())
                 parameters["goodsNameJp"] = tbGoodsNameJP.Text.Trim();
 
+            // notice
 
-            //
-            if (sv_amt != tbGoodsAmt.Text)
-                parameters["amt"] = tbGoodsAmt.Text;
 
-            //
-            if (sv_shopCode != cbShop.SelectedIndex + "")
-                parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
 
             //
             if (sv_ticketYn != cbTicket.Checked + "")
@@ -564,6 +604,14 @@ namespace thepos._9SysAdmin
             }
 
 
+            //
+            if (sv_amt != tbGoodsAmt.Text)
+                parameters["amt"] = tbGoodsAmt.Text;
+
+            //
+            if (sv_shopCode != cbShop.SelectedIndex + "")
+                parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
+
 
             //
             if (sv_option_template_id != cbOptionTemplate.SelectedIndex + "")
@@ -575,6 +623,20 @@ namespace thepos._9SysAdmin
                 else
                 {
                     parameters["optionTemplateId"] = "";
+                }
+            }
+
+
+            // 배지
+            if (sv_badges_id != cbBadges.SelectedIndex + "")
+            {
+                if (cbBadges.SelectedIndex > -1)
+                {
+                    parameters["badgesId"] = mBadges[cbBadges.SelectedIndex].badges_id;
+                }
+                else
+                {
+                    parameters["badgesId"] = "";
                 }
             }
 
@@ -667,9 +729,7 @@ namespace thepos._9SysAdmin
             parameters["goodsNameCH"] = tbGoodsNameCH.Text.Trim();
             parameters["goodsNameJP"] = tbGoodsNameJP.Text.Trim();
 
-            parameters["amt"] = tbGoodsAmt.Text;
 
-            parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
 
 
             if (cbTicket.Checked)
@@ -693,8 +753,21 @@ namespace thepos._9SysAdmin
                 parameters["soldout"] = "N";
 
 
+            parameters["amt"] = tbGoodsAmt.Text;
+
+            parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
 
 
+
+            //
+            if (cbOptionTemplate.SelectedIndex > -1)
+            {
+                parameters["optionTemplateId"] = mOptionTemplate[cbOptionTemplate.SelectedIndex].option_template_id;
+            }
+            else
+            {
+                parameters["optionTemplateId"] = "";
+            }
 
 
             parameters["memo"] = tbMemo.Text;

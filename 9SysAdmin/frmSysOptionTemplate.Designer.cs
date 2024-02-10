@@ -57,6 +57,7 @@
             this.tbOptionItemName = new System.Windows.Forms.TextBox();
             this.lvwOptionItem = new System.Windows.Forms.ListView();
             this.link_option_id1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.link_option_name1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_name_jp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.templete_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.templete_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,7 +66,9 @@
             this.option_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_name_en = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_name_ch = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.init_dsp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.next_option_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.next_option_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.is_turnoff = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwTemplete = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lblJP = new System.Windows.Forms.Label();
@@ -77,7 +80,9 @@
             this.tbOptionNameEN = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkInitDsp = new System.Windows.Forms.CheckBox();
+            this.cbNextOption = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chkTurnoff = new System.Windows.Forms.CheckBox();
             this.btnSave1 = new System.Windows.Forms.Button();
             this.btnOptionUp = new System.Windows.Forms.Button();
             this.btnAdd1 = new System.Windows.Forms.Button();
@@ -96,7 +101,6 @@
             this.tbOptionTemplateId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.link_option_name1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -110,22 +114,22 @@
             // option_item_name_kr
             // 
             this.option_item_name_kr.Text = "옵션항목(국문)";
-            this.option_item_name_kr.Width = 120;
+            this.option_item_name_kr.Width = 100;
             // 
             // option_item_name_en
             // 
             this.option_item_name_en.Text = "(영문)";
-            this.option_item_name_en.Width = 90;
+            this.option_item_name_en.Width = 80;
             // 
             // option_item_name_ch
             // 
             this.option_item_name_ch.Text = "(중문)";
-            this.option_item_name_ch.Width = 90;
+            this.option_item_name_ch.Width = 70;
             // 
             // option_item_name_jp
             // 
             this.option_item_name_jp.Text = "(일문)";
-            this.option_item_name_jp.Width = 90;
+            this.option_item_name_jp.Width = 70;
             // 
             // option_item_amt
             // 
@@ -138,9 +142,9 @@
             this.btnSave2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave2.ForeColor = System.Drawing.Color.White;
-            this.btnSave2.Location = new System.Drawing.Point(703, 61);
+            this.btnSave2.Location = new System.Drawing.Point(466, 62);
             this.btnSave2.Name = "btnSave2";
-            this.btnSave2.Size = new System.Drawing.Size(100, 62);
+            this.btnSave2.Size = new System.Drawing.Size(63, 62);
             this.btnSave2.TabIndex = 64;
             this.btnSave2.TabStop = false;
             this.btnSave2.Text = "저장";
@@ -168,9 +172,9 @@
             this.groupBox2.Controls.Add(this.tbOptionItemNameEN);
             this.groupBox2.Controls.Add(this.tbOptionItemName);
             this.groupBox2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox2.Location = new System.Drawing.Point(19, 555);
+            this.groupBox2.Location = new System.Drawing.Point(309, 555);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(823, 134);
+            this.groupBox2.Size = new System.Drawing.Size(543, 135);
             this.groupBox2.TabIndex = 89;
             this.groupBox2.TabStop = false;
             // 
@@ -179,9 +183,9 @@
             this.cbLinkOption.BackColor = System.Drawing.Color.White;
             this.cbLinkOption.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbLinkOption.FormattingEnabled = true;
-            this.cbLinkOption.Location = new System.Drawing.Point(327, 49);
+            this.cbLinkOption.Location = new System.Drawing.Point(184, 94);
             this.cbLinkOption.Name = "cbLinkOption";
-            this.cbLinkOption.Size = new System.Drawing.Size(135, 21);
+            this.cbLinkOption.Size = new System.Drawing.Size(117, 21);
             this.cbLinkOption.TabIndex = 65;
             this.cbLinkOption.TabStop = false;
             // 
@@ -189,7 +193,7 @@
             // 
             this.tbOptionItemAmt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionItemAmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionItemAmt.Location = new System.Drawing.Point(327, 22);
+            this.tbOptionItemAmt.Location = new System.Drawing.Point(184, 45);
             this.tbOptionItemAmt.MaxLength = 30;
             this.tbOptionItemAmt.Name = "tbOptionItemAmt";
             this.tbOptionItemAmt.Size = new System.Drawing.Size(78, 23);
@@ -201,11 +205,11 @@
             this.lblJP2.AutoSize = true;
             this.lblJP2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblJP2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblJP2.Location = new System.Drawing.Point(89, 105);
+            this.lblJP2.Location = new System.Drawing.Point(14, 105);
             this.lblJP2.Name = "lblJP2";
-            this.lblJP2.Size = new System.Drawing.Size(29, 12);
+            this.lblJP2.Size = new System.Drawing.Size(39, 12);
             this.lblJP2.TabIndex = 59;
-            this.lblJP2.Text = "일문";
+            this.lblJP2.Text = "(일문)";
             // 
             // btnOptionItemUp
             // 
@@ -213,7 +217,7 @@
             this.btnOptionItemUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionItemUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionItemUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionItemUp.Location = new System.Drawing.Point(529, 39);
+            this.btnOptionItemUp.Location = new System.Drawing.Point(313, 41);
             this.btnOptionItemUp.Name = "btnOptionItemUp";
             this.btnOptionItemUp.Size = new System.Drawing.Size(40, 40);
             this.btnOptionItemUp.TabIndex = 57;
@@ -228,9 +232,9 @@
             this.btnAdd2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd2.Location = new System.Drawing.Point(575, 40);
+            this.btnAdd2.Location = new System.Drawing.Point(359, 20);
             this.btnAdd2.Name = "btnAdd2";
-            this.btnAdd2.Size = new System.Drawing.Size(100, 25);
+            this.btnAdd2.Size = new System.Drawing.Size(100, 35);
             this.btnAdd2.TabIndex = 59;
             this.btnAdd2.TabStop = false;
             this.btnAdd2.Text = "추가";
@@ -243,7 +247,7 @@
             this.btnOptionItemDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionItemDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionItemDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionItemDn.Location = new System.Drawing.Point(529, 82);
+            this.btnOptionItemDn.Location = new System.Drawing.Point(313, 84);
             this.btnOptionItemDn.Name = "btnOptionItemDn";
             this.btnOptionItemDn.Size = new System.Drawing.Size(40, 40);
             this.btnOptionItemDn.TabIndex = 56;
@@ -258,9 +262,9 @@
             this.btnUpdate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUpdate2.Location = new System.Drawing.Point(575, 69);
+            this.btnUpdate2.Location = new System.Drawing.Point(359, 59);
             this.btnUpdate2.Name = "btnUpdate2";
-            this.btnUpdate2.Size = new System.Drawing.Size(100, 25);
+            this.btnUpdate2.Size = new System.Drawing.Size(100, 35);
             this.btnUpdate2.TabIndex = 58;
             this.btnUpdate2.TabStop = false;
             this.btnUpdate2.Text = "수정";
@@ -272,11 +276,11 @@
             this.lblCH2.AutoSize = true;
             this.lblCH2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCH2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCH2.Location = new System.Drawing.Point(89, 80);
+            this.lblCH2.Location = new System.Drawing.Point(14, 80);
             this.lblCH2.Name = "lblCH2";
-            this.lblCH2.Size = new System.Drawing.Size(29, 12);
+            this.lblCH2.Size = new System.Drawing.Size(39, 12);
             this.lblCH2.TabIndex = 58;
-            this.lblCH2.Text = "중문";
+            this.lblCH2.Text = "(중문)";
             // 
             // btnDelete2
             // 
@@ -284,7 +288,7 @@
             this.btnDelete2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDelete2.Location = new System.Drawing.Point(575, 98);
+            this.btnDelete2.Location = new System.Drawing.Point(359, 98);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(100, 25);
             this.btnDelete2.TabIndex = 60;
@@ -298,18 +302,18 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(262, 53);
+            this.label3.Location = new System.Drawing.Point(184, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 57;
-            this.label3.Text = "종속옵션";
+            this.label3.Text = "연결옵션";
             // 
             // lblAmtTitle
             // 
             this.lblAmtTitle.AutoSize = true;
             this.lblAmtTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmtTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblAmtTitle.Location = new System.Drawing.Point(262, 30);
+            this.lblAmtTitle.Location = new System.Drawing.Point(184, 30);
             this.lblAmtTitle.Name = "lblAmtTitle";
             this.lblAmtTitle.Size = new System.Drawing.Size(29, 12);
             this.lblAmtTitle.TabIndex = 57;
@@ -320,28 +324,28 @@
             this.lblEN2.AutoSize = true;
             this.lblEN2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblEN2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblEN2.Location = new System.Drawing.Point(89, 53);
+            this.lblEN2.Location = new System.Drawing.Point(14, 53);
             this.lblEN2.Name = "lblEN2";
-            this.lblEN2.Size = new System.Drawing.Size(29, 12);
+            this.lblEN2.Size = new System.Drawing.Size(39, 12);
             this.lblEN2.TabIndex = 57;
-            this.lblEN2.Text = "영문";
+            this.lblEN2.Text = "(영문)";
             // 
             // lblKR2
             // 
             this.lblKR2.AutoSize = true;
             this.lblKR2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblKR2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblKR2.Location = new System.Drawing.Point(89, 26);
+            this.lblKR2.Location = new System.Drawing.Point(3, 26);
             this.lblKR2.Name = "lblKR2";
-            this.lblKR2.Size = new System.Drawing.Size(29, 12);
+            this.lblKR2.Size = new System.Drawing.Size(53, 12);
             this.lblKR2.TabIndex = 56;
-            this.lblKR2.Text = "국문";
+            this.lblKR2.Text = "아이템명";
             // 
             // tbOptionItemNameJP
             // 
             this.tbOptionItemNameJP.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionItemNameJP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionItemNameJP.Location = new System.Drawing.Point(121, 101);
+            this.tbOptionItemNameJP.Location = new System.Drawing.Point(56, 101);
             this.tbOptionItemNameJP.MaxLength = 30;
             this.tbOptionItemNameJP.Name = "tbOptionItemNameJP";
             this.tbOptionItemNameJP.Size = new System.Drawing.Size(117, 23);
@@ -351,7 +355,7 @@
             // 
             this.tbOptionItemNameCH.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionItemNameCH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionItemNameCH.Location = new System.Drawing.Point(121, 74);
+            this.tbOptionItemNameCH.Location = new System.Drawing.Point(56, 74);
             this.tbOptionItemNameCH.MaxLength = 30;
             this.tbOptionItemNameCH.Name = "tbOptionItemNameCH";
             this.tbOptionItemNameCH.Size = new System.Drawing.Size(117, 23);
@@ -361,7 +365,7 @@
             // 
             this.tbOptionItemNameEN.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionItemNameEN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionItemNameEN.Location = new System.Drawing.Point(121, 47);
+            this.tbOptionItemNameEN.Location = new System.Drawing.Point(56, 47);
             this.tbOptionItemNameEN.MaxLength = 30;
             this.tbOptionItemNameEN.Name = "tbOptionItemNameEN";
             this.tbOptionItemNameEN.Size = new System.Drawing.Size(117, 23);
@@ -371,7 +375,7 @@
             // 
             this.tbOptionItemName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionItemName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionItemName.Location = new System.Drawing.Point(121, 20);
+            this.tbOptionItemName.Location = new System.Drawing.Point(56, 20);
             this.tbOptionItemName.MaxLength = 30;
             this.tbOptionItemName.Name = "tbOptionItemName";
             this.tbOptionItemName.Size = new System.Drawing.Size(117, 23);
@@ -394,10 +398,10 @@
             this.lvwOptionItem.FullRowSelect = true;
             this.lvwOptionItem.GridLines = true;
             this.lvwOptionItem.HideSelection = false;
-            this.lvwOptionItem.Location = new System.Drawing.Point(19, 412);
+            this.lvwOptionItem.Location = new System.Drawing.Point(309, 412);
             this.lvwOptionItem.MultiSelect = false;
             this.lvwOptionItem.Name = "lvwOptionItem";
-            this.lvwOptionItem.Size = new System.Drawing.Size(823, 140);
+            this.lvwOptionItem.Size = new System.Drawing.Size(543, 140);
             this.lvwOptionItem.TabIndex = 88;
             this.lvwOptionItem.TabStop = false;
             this.lvwOptionItem.UseCompatibleStateImageBehavior = false;
@@ -409,20 +413,25 @@
             this.link_option_id1.Text = "";
             this.link_option_id1.Width = 0;
             // 
+            // link_option_name1
+            // 
+            this.link_option_name1.Text = "연결옵션";
+            this.link_option_name1.Width = 100;
+            // 
             // option_name_jp
             // 
             this.option_name_jp.Text = "(일문)";
-            this.option_name_jp.Width = 90;
+            this.option_name_jp.Width = 80;
             // 
             // templete_id
             // 
             this.templete_id.Text = "ID";
-            this.templete_id.Width = 70;
+            this.templete_id.Width = 50;
             // 
             // templete_name
             // 
             this.templete_name.Text = "템플릿명";
-            this.templete_name.Width = 180;
+            this.templete_name.Width = 190;
             // 
             // lvwOption
             // 
@@ -433,16 +442,18 @@
             this.option_name_en,
             this.option_name_ch,
             this.option_name_jp,
-            this.init_dsp});
+            this.next_option_id,
+            this.next_option_name,
+            this.is_turnoff});
             this.lvwOption.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwOption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwOption.FullRowSelect = true;
             this.lvwOption.GridLines = true;
             this.lvwOption.HideSelection = false;
-            this.lvwOption.Location = new System.Drawing.Point(370, 50);
+            this.lvwOption.Location = new System.Drawing.Point(309, 50);
             this.lvwOption.MultiSelect = false;
             this.lvwOption.Name = "lvwOption";
-            this.lvwOption.Size = new System.Drawing.Size(472, 140);
+            this.lvwOption.Size = new System.Drawing.Size(543, 181);
             this.lvwOption.TabIndex = 87;
             this.lvwOption.TabStop = false;
             this.lvwOption.UseCompatibleStateImageBehavior = false;
@@ -456,7 +467,7 @@
             // 
             // option_name
             // 
-            this.option_name.Text = "옵션(국문)";
+            this.option_name.Text = "옵션명";
             this.option_name.Width = 100;
             // 
             // option_name_en
@@ -467,12 +478,23 @@
             // option_name_ch
             // 
             this.option_name_ch.Text = "(중문)";
-            this.option_name_ch.Width = 90;
+            this.option_name_ch.Width = 80;
             // 
-            // init_dsp
+            // next_option_id
             // 
-            this.init_dsp.Text = "표시";
-            this.init_dsp.Width = 40;
+            this.next_option_id.Text = "";
+            this.next_option_id.Width = 0;
+            // 
+            // next_option_name
+            // 
+            this.next_option_name.DisplayIndex = 5;
+            this.next_option_name.Text = "연결옵션";
+            this.next_option_name.Width = 100;
+            // 
+            // is_turnoff
+            // 
+            this.is_turnoff.Text = "분기";
+            this.is_turnoff.Width = 40;
             // 
             // lvwTemplete
             // 
@@ -488,7 +510,7 @@
             this.lvwTemplete.Location = new System.Drawing.Point(19, 50);
             this.lvwTemplete.MultiSelect = false;
             this.lvwTemplete.Name = "lvwTemplete";
-            this.lvwTemplete.Size = new System.Drawing.Size(314, 140);
+            this.lvwTemplete.Size = new System.Drawing.Size(266, 502);
             this.lvwTemplete.TabIndex = 84;
             this.lvwTemplete.UseCompatibleStateImageBehavior = false;
             this.lvwTemplete.View = System.Windows.Forms.View.Details;
@@ -505,50 +527,50 @@
             this.lblJP.AutoSize = true;
             this.lblJP.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblJP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblJP.Location = new System.Drawing.Point(7, 105);
+            this.lblJP.Location = new System.Drawing.Point(14, 103);
             this.lblJP.Name = "lblJP";
-            this.lblJP.Size = new System.Drawing.Size(29, 12);
+            this.lblJP.Size = new System.Drawing.Size(39, 12);
             this.lblJP.TabIndex = 59;
-            this.lblJP.Text = "일문";
+            this.lblJP.Text = "(일문)";
             // 
             // lblCH
             // 
             this.lblCH.AutoSize = true;
             this.lblCH.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCH.Location = new System.Drawing.Point(7, 79);
+            this.lblCH.Location = new System.Drawing.Point(14, 77);
             this.lblCH.Name = "lblCH";
-            this.lblCH.Size = new System.Drawing.Size(29, 12);
+            this.lblCH.Size = new System.Drawing.Size(39, 12);
             this.lblCH.TabIndex = 58;
-            this.lblCH.Text = "중문";
+            this.lblCH.Text = "(중문)";
             // 
             // lblEN
             // 
             this.lblEN.AutoSize = true;
             this.lblEN.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblEN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblEN.Location = new System.Drawing.Point(7, 52);
+            this.lblEN.Location = new System.Drawing.Point(14, 50);
             this.lblEN.Name = "lblEN";
-            this.lblEN.Size = new System.Drawing.Size(29, 12);
+            this.lblEN.Size = new System.Drawing.Size(39, 12);
             this.lblEN.TabIndex = 57;
-            this.lblEN.Text = "영문";
+            this.lblEN.Text = "(영문)";
             // 
             // lblKR
             // 
             this.lblKR.AutoSize = true;
             this.lblKR.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblKR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblKR.Location = new System.Drawing.Point(7, 25);
+            this.lblKR.Location = new System.Drawing.Point(14, 23);
             this.lblKR.Name = "lblKR";
-            this.lblKR.Size = new System.Drawing.Size(29, 12);
+            this.lblKR.Size = new System.Drawing.Size(41, 12);
             this.lblKR.TabIndex = 56;
-            this.lblKR.Text = "국문";
+            this.lblKR.Text = "옵션명";
             // 
             // tbOptionNameJP
             // 
             this.tbOptionNameJP.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionNameJP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionNameJP.Location = new System.Drawing.Point(39, 100);
+            this.tbOptionNameJP.Location = new System.Drawing.Point(56, 98);
             this.tbOptionNameJP.MaxLength = 30;
             this.tbOptionNameJP.Name = "tbOptionNameJP";
             this.tbOptionNameJP.Size = new System.Drawing.Size(117, 23);
@@ -558,7 +580,7 @@
             // 
             this.tbOptionNameCH.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionNameCH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionNameCH.Location = new System.Drawing.Point(39, 73);
+            this.tbOptionNameCH.Location = new System.Drawing.Point(56, 71);
             this.tbOptionNameCH.MaxLength = 30;
             this.tbOptionNameCH.Name = "tbOptionNameCH";
             this.tbOptionNameCH.Size = new System.Drawing.Size(117, 23);
@@ -568,7 +590,7 @@
             // 
             this.tbOptionNameEN.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionNameEN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionNameEN.Location = new System.Drawing.Point(39, 46);
+            this.tbOptionNameEN.Location = new System.Drawing.Point(56, 44);
             this.tbOptionNameEN.MaxLength = 30;
             this.tbOptionNameEN.Name = "tbOptionNameEN";
             this.tbOptionNameEN.Size = new System.Drawing.Size(117, 23);
@@ -587,7 +609,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkInitDsp);
+            this.groupBox1.Controls.Add(this.cbNextOption);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.chkTurnoff);
             this.groupBox1.Controls.Add(this.lblJP);
             this.groupBox1.Controls.Add(this.btnSave1);
             this.groupBox1.Controls.Add(this.btnOptionUp);
@@ -603,21 +627,43 @@
             this.groupBox1.Controls.Add(this.tbOptionNameEN);
             this.groupBox1.Controls.Add(this.tbOptionName);
             this.groupBox1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(370, 192);
+            this.groupBox1.Location = new System.Drawing.Point(309, 237);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(472, 164);
+            this.groupBox1.Size = new System.Drawing.Size(543, 135);
             this.groupBox1.TabIndex = 86;
             this.groupBox1.TabStop = false;
             // 
-            // chkInitDsp
+            // cbNextOption
             // 
-            this.chkInitDsp.AutoSize = true;
-            this.chkInitDsp.Location = new System.Drawing.Point(186, 24);
-            this.chkInitDsp.Name = "chkInitDsp";
-            this.chkInitDsp.Size = new System.Drawing.Size(82, 18);
-            this.chkInitDsp.TabIndex = 63;
-            this.chkInitDsp.Text = "최초표시";
-            this.chkInitDsp.UseVisualStyleBackColor = true;
+            this.cbNextOption.BackColor = System.Drawing.Color.White;
+            this.cbNextOption.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbNextOption.FormattingEnabled = true;
+            this.cbNextOption.Location = new System.Drawing.Point(184, 44);
+            this.cbNextOption.Name = "cbNextOption";
+            this.cbNextOption.Size = new System.Drawing.Size(117, 21);
+            this.cbNextOption.TabIndex = 66;
+            this.cbNextOption.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(187, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "연결옵션";
+            // 
+            // chkTurnoff
+            // 
+            this.chkTurnoff.AutoSize = true;
+            this.chkTurnoff.Location = new System.Drawing.Point(191, 81);
+            this.chkTurnoff.Name = "chkTurnoff";
+            this.chkTurnoff.Size = new System.Drawing.Size(54, 18);
+            this.chkTurnoff.TabIndex = 63;
+            this.chkTurnoff.Text = "분기";
+            this.chkTurnoff.UseVisualStyleBackColor = true;
             // 
             // btnSave1
             // 
@@ -625,9 +671,9 @@
             this.btnSave1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave1.ForeColor = System.Drawing.Color.White;
-            this.btnSave1.Location = new System.Drawing.Point(352, 79);
+            this.btnSave1.Location = new System.Drawing.Point(466, 41);
             this.btnSave1.Name = "btnSave1";
-            this.btnSave1.Size = new System.Drawing.Size(100, 63);
+            this.btnSave1.Size = new System.Drawing.Size(63, 80);
             this.btnSave1.TabIndex = 62;
             this.btnSave1.TabStop = false;
             this.btnSave1.Text = "저장";
@@ -640,9 +686,9 @@
             this.btnOptionUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionUp.Location = new System.Drawing.Point(186, 59);
+            this.btnOptionUp.Location = new System.Drawing.Point(313, 27);
             this.btnOptionUp.Name = "btnOptionUp";
-            this.btnOptionUp.Size = new System.Drawing.Size(40, 40);
+            this.btnOptionUp.Size = new System.Drawing.Size(40, 45);
             this.btnOptionUp.TabIndex = 57;
             this.btnOptionUp.TabStop = false;
             this.btnOptionUp.Text = "▲";
@@ -655,9 +701,9 @@
             this.btnAdd1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd1.Location = new System.Drawing.Point(232, 60);
+            this.btnAdd1.Location = new System.Drawing.Point(359, 19);
             this.btnAdd1.Name = "btnAdd1";
-            this.btnAdd1.Size = new System.Drawing.Size(100, 25);
+            this.btnAdd1.Size = new System.Drawing.Size(100, 35);
             this.btnAdd1.TabIndex = 59;
             this.btnAdd1.TabStop = false;
             this.btnAdd1.Text = "추가";
@@ -670,9 +716,9 @@
             this.btnOptionDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOptionDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOptionDn.Location = new System.Drawing.Point(186, 102);
+            this.btnOptionDn.Location = new System.Drawing.Point(313, 76);
             this.btnOptionDn.Name = "btnOptionDn";
-            this.btnOptionDn.Size = new System.Drawing.Size(40, 40);
+            this.btnOptionDn.Size = new System.Drawing.Size(40, 45);
             this.btnOptionDn.TabIndex = 56;
             this.btnOptionDn.TabStop = false;
             this.btnOptionDn.Text = "▼";
@@ -685,9 +731,9 @@
             this.btnUpdate1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUpdate1.Location = new System.Drawing.Point(232, 89);
+            this.btnUpdate1.Location = new System.Drawing.Point(359, 58);
             this.btnUpdate1.Name = "btnUpdate1";
-            this.btnUpdate1.Size = new System.Drawing.Size(100, 25);
+            this.btnUpdate1.Size = new System.Drawing.Size(100, 35);
             this.btnUpdate1.TabIndex = 58;
             this.btnUpdate1.TabStop = false;
             this.btnUpdate1.Text = "수정";
@@ -700,7 +746,7 @@
             this.btnDelete1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDelete1.Location = new System.Drawing.Point(232, 117);
+            this.btnDelete1.Location = new System.Drawing.Point(359, 96);
             this.btnDelete1.Name = "btnDelete1";
             this.btnDelete1.Size = new System.Drawing.Size(100, 25);
             this.btnDelete1.TabIndex = 60;
@@ -713,7 +759,7 @@
             // 
             this.tbOptionName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbOptionName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbOptionName.Location = new System.Drawing.Point(39, 19);
+            this.tbOptionName.Location = new System.Drawing.Point(56, 17);
             this.tbOptionName.MaxLength = 30;
             this.tbOptionName.Name = "tbOptionName";
             this.tbOptionName.Size = new System.Drawing.Size(117, 23);
@@ -730,9 +776,9 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.tbOptionTemplateId);
             this.groupBox3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(19, 192);
+            this.groupBox3.Location = new System.Drawing.Point(19, 555);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(314, 164);
+            this.groupBox3.Size = new System.Drawing.Size(266, 135);
             this.groupBox3.TabIndex = 90;
             this.groupBox3.TabStop = false;
             // 
@@ -763,7 +809,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(64, 107);
+            this.btnAdd.Location = new System.Drawing.Point(19, 87);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 35);
             this.btnAdd.TabIndex = 59;
@@ -778,7 +824,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(158, 107);
+            this.btnUpdate.Location = new System.Drawing.Point(111, 87);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(80, 35);
             this.btnUpdate.TabIndex = 58;
@@ -793,7 +839,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(244, 107);
+            this.btnDelete.Location = new System.Drawing.Point(195, 87);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(55, 35);
             this.btnDelete.TabIndex = 60;
@@ -807,7 +853,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(161, 25);
+            this.label2.Location = new System.Drawing.Point(142, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 12);
             this.label2.TabIndex = 56;
@@ -831,7 +877,7 @@
             this.tbOptionTemplateId.Location = new System.Drawing.Point(64, 19);
             this.tbOptionTemplateId.MaxLength = 30;
             this.tbOptionTemplateId.Name = "tbOptionTemplateId";
-            this.tbOptionTemplateId.Size = new System.Drawing.Size(88, 23);
+            this.tbOptionTemplateId.Size = new System.Drawing.Size(72, 23);
             this.tbOptionTemplateId.TabIndex = 1;
             // 
             // label5
@@ -839,7 +885,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(376, 27);
+            this.label5.Location = new System.Drawing.Point(311, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 14);
             this.label5.TabIndex = 91;
@@ -850,16 +896,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(25, 391);
+            this.label6.Location = new System.Drawing.Point(311, 394);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 14);
             this.label6.TabIndex = 92;
             this.label6.Text = "옵션아이템";
-            // 
-            // link_option_name1
-            // 
-            this.link_option_name1.Text = "종속옵션";
-            this.link_option_name1.Width = 160;
             // 
             // frmSysOptionTemplate
             // 
@@ -950,11 +991,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbLinkOption;
-        private System.Windows.Forms.CheckBox chkInitDsp;
+        private System.Windows.Forms.CheckBox chkTurnoff;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ColumnHeader init_dsp;
+        private System.Windows.Forms.ColumnHeader is_turnoff;
         private System.Windows.Forms.ColumnHeader link_option_id1;
         private System.Windows.Forms.ColumnHeader link_option_name1;
+        private System.Windows.Forms.ColumnHeader next_option_name;
+        private System.Windows.Forms.ComboBox cbNextOption;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ColumnHeader next_option_id;
     }
 }

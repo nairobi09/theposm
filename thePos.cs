@@ -204,6 +204,12 @@ namespace thepos
         public static PayConsol[] mPayConsol;
 
 
+        public struct Badges
+        {
+            public string badges_id;
+            public string badges_name;
+        }
+        public static Badges[] mBadges = new Badges[4];
 
 
         public struct OptionTemplate
@@ -214,13 +220,13 @@ namespace thepos
         public static OptionTemplate[] mOptionTemplate;
 
 
-
         public struct TempOption
         {
             public string option_template_id;
             public string option_id;
             public int option_seq;
-            public string option_init_dsp;
+            public string is_turnoff;
+            public string next_option_id;
             public string option_name;
             public string option_name_en;
             public string option_name_ch;
@@ -884,7 +890,19 @@ namespace thepos
             return template_id;
         }
 
+        public static String get_badges_name(String badgese_id)
+        {
+            for (int i = 0; i < mBadges.Length; i++)
+            {
+                if (mBadges[i].badges_id == badgese_id)
+                {
+                    return mBadges[i].badges_name;
+                }
+            }
 
+            return badgese_id;
+
+        }
 
 
         public static String get_shop_name(String shop_code)

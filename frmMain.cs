@@ -237,6 +237,16 @@ namespace thepos
 
 
 
+            //
+            mBadges[0].badges_id = "";
+            mBadges[1].badges_id = "new";
+            mBadges[2].badges_id = "best";
+            mBadges[3].badges_id = "pick";
+
+            mBadges[0].badges_name = "";
+            mBadges[1].badges_name = "NEW";
+            mBadges[2].badges_name = "BEST";
+            mBadges[3].badges_name = "사장픽";
 
         }
 
@@ -1389,12 +1399,16 @@ namespace thepos
                         String data = mObj["optionTemp"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        mOptionTemplate = new OptionTemplate[arr.Count];
+                        mOptionTemplate = new OptionTemplate[arr.Count + 1];
+
+                        mOptionTemplate[0].option_template_id = "";
+                        mOptionTemplate[0].option_template_name = "";
+
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mOptionTemplate[i].option_template_id = arr[i]["optionTemplateId"].ToString();
-                            mOptionTemplate[i].option_template_name = arr[i]["optionTemplateName"].ToString();
+                            mOptionTemplate[i+1].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            mOptionTemplate[i+1].option_template_name = arr[i]["optionTemplateName"].ToString();
                         }
                     }
                     else
@@ -1429,7 +1443,8 @@ namespace thepos
                             mTempOption[i].option_template_id = arr[i]["optionTemplateId"].ToString();
                             mTempOption[i].option_id = arr[i]["optionId"].ToString();
                             mTempOption[i].option_seq = convert_number(arr[i]["optionSeq"].ToString());
-                            mTempOption[i].option_init_dsp = arr[i]["optionInitDsp"].ToString();
+                            mTempOption[i].is_turnoff = arr[i]["isTurnoff"].ToString();
+                            mTempOption[i].next_option_id = arr[i]["nextOptionId"].ToString();
                             mTempOption[i].option_name = arr[i]["optionName"].ToString();
                         }
                     }
@@ -1498,14 +1513,19 @@ namespace thepos
                         String data = mObj["shops"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        mShop = new Shop[arr.Count];
+                        mShop = new Shop[arr.Count + 1];
+
+                        mShop[0].shop_code = "";
+                        mShop[0].shop_name = "";
+                        mShop[0].printer_type = "";
+                        mShop[0].network_printer_name = "";
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mShop[i].shop_code = arr[i]["shopCode"].ToString();
-                            mShop[i].shop_name = arr[i]["shopName"].ToString();
-                            mShop[i].printer_type = arr[i]["printerType"].ToString();
-                            mShop[i].network_printer_name = arr[i]["networkPrinterName"].ToString();
+                            mShop[i+1].shop_code = arr[i]["shopCode"].ToString();
+                            mShop[i+1].shop_name = arr[i]["shopName"].ToString();
+                            mShop[i+1].printer_type = arr[i]["printerType"].ToString();
+                            mShop[i+1].network_printer_name = arr[i]["networkPrinterName"].ToString();
                         }
                     }
                     else
@@ -1965,14 +1985,15 @@ namespace thepos
                                 String optionTemplateId = arr[i]["optionTemplateId"].ToString();
                                 String optionId = arr[i]["optionId"].ToString();
                                 int optionSeq = int.Parse(arr[i]["optionSeq"].ToString());
-                                String optionInitDsp = arr[i]["optionInitDsp"].ToString();
+                                String isTurnoff = arr[i]["isTurnoff"].ToString();
+                                String nextOptionId = arr[i]["nextOptionId"].ToString();
                                 String optionName = arr[i]["optionName"].ToString();
                                 String optionNameEn = arr[i]["optionNameEn"].ToString();
                                 String optionNameCh = arr[i]["optionNameCh"].ToString();
                                 String optionNameJp = arr[i]["optionNameJp"].ToString();
 
-                                String sql = "INSERT INTO tempOption (siteId, optionTemplateId, optionId, optionSeq, optionInitDsp, optionName, optionNameEn, optionNameCh, optionNameJp) " +
-                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionSeq + ",'" + optionInitDsp + "','" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
+                                String sql = "INSERT INTO tempOption (siteId, optionTemplateId, optionId, optionSeq, isTurnoff, nextOptionId, optionName, optionNameEn, optionNameCh, optionNameJp) " +
+                                    "values ('" + siteId + "','" + optionTemplateId + "','" + optionId + "'," + optionSeq + ",'" + isTurnoff + "','" + nextOptionId + "','" + optionName + "','" + optionNameEn + "','" + optionNameCh + "','" + optionNameJp + "')";
                                 ret = sql_excute_local_db(sql);
                             }
 
@@ -2493,7 +2514,7 @@ namespace thepos
                     mTempOption[i].option_template_id = dr["optionTemplateId"].ToString();
                     mTempOption[i].option_id = dr["optionId"].ToString();
                     mTempOption[i].option_seq = int.Parse(dr["optionSeq"].ToString());
-                    mTempOption[i].option_init_dsp = dr["optionInitDsp"].ToString();
+                    mTempOption[i].is_turnoff = dr["isTurnoff"].ToString();
                     mTempOption[i].option_name = dr["optionName"].ToString();
 
                     i++;

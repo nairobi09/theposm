@@ -587,7 +587,7 @@ namespace thepos
                     {
                         btnGoodsItem.Font = font9;
                     }
-                    else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 2)
+                    else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 3)
                     {
                         btnGoodsItem.Font = font20;
                     }
@@ -4279,22 +4279,50 @@ namespace thepos
                                         String data2 = mObj["orderOptionItems"].ToString();
                                         JArray arr2 = JArray.Parse(data2);
 
-                                        tStr = "  ";
+                                        //## 항목이 길어지면 옆항목으로 밀리고...
+                                        String tName = "  ";
                                         for (int k = 0; k < arr2.Count; k++)
                                         {
-                                            tStr += arr2[k]["optionItemName"].ToString() + " ";
+                                            tName += arr2[k]["optionItemName"].ToString() + " ";
                                         }
-                                        strPrintOrder += tStr + Space(18 - encodelen(tStr));
 
-                                        tStr = option_amt.ToString("N0");     //단가
-                                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+                                        String tAmt = option_amt.ToString("N0");     //단가
 
-                                        tStr = cnt.ToString("N0");     // 수량
-                                        strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
+                                        int tLen = encodelen(tName) + encodelen(tAmt);
 
-                                        tStr = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
-                                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+                                        if (tLen > 26) tLen = 26;
 
+                                        String tNameAmt = tName + Space(27 - tLen) + tAmt;  // 27
+
+                                        //
+                                        int tLenNameAmt = encodelen(tNameAmt);
+
+                                        String tCnt = cnt.ToString("N0");     // 수량
+
+                                        int tLenCnt = encodelen(tCnt);
+
+                                        tLen = encodelen(tNameAmt) + encodelen(tCnt);
+
+                                        if (tLen > 32) tLen = 32;
+
+                                        String tNameAmtCnt = tNameAmt + Space(33 - tLen) + tCnt;
+
+
+                                        //
+                                        int tLenNameAmtCnt = encodelen(tNameAmtCnt);
+
+                                        String tAmount = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
+
+                                        int tLenAmount = encodelen(tAmount);
+
+                                        tLen = encodelen(tNameAmtCnt) + encodelen(tAmount);
+
+                                        if (tLen > 41) tLen = 41;
+
+                                        String tNameAmtCntAmount = tNameAmtCnt + Space(42 - tLen) + tAmount;
+
+                                        //
+                                        strPrintOrder += tNameAmtCntAmount;
                                         strPrintOrder += "\r\n";
                                     }
                                 }
