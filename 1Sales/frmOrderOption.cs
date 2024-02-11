@@ -227,6 +227,8 @@ namespace thepos
 
                             if (thisTempOption[i].is_turnoff == "Y")
                             {
+                                //
+                                btnOK.Visible = false;
                                 return;
                             }
                             else
@@ -245,6 +247,7 @@ namespace thepos
 
                         if (thisTempOption[i].is_turnoff == "Y")
                         {
+                            btnOK.Visible = false;
                             return;
                         }
                         else
@@ -252,9 +255,11 @@ namespace thepos
                             m_next_optionid = thisTempOption[i].next_option_id;
                         }
                     }
-
                 }
             }
+
+            btnOK.Visible = true;
+
         }
 
         private void display_option(TempOption tempOption)
@@ -303,7 +308,7 @@ namespace thepos
 
 
 
-                    // 분기점 아니면 버튼 체크
+                    // 분기점 아니면 버튼 checked = true
                     if (tempOption.is_turnoff != "Y" & item_dsp_idx == 0)
                     {
                         mRbOptionItemName[option_dsp_idx, item_dsp_idx].Checked = true;
@@ -402,7 +407,9 @@ namespace thepos
             goods_amount = (goodsItem.amt + option_item_amt ) * goods_cnt;
 
             lblAmount.Text = "₩ " + goods_amount.ToString("N0");
+
         }
+
 
         private void lblCntDn_Click(object sender, EventArgs e)
         {

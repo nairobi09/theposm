@@ -5310,6 +5310,8 @@ namespace thepos
                 }
                 else
                 {
+
+
                     // 업장주문서 출력 -> shop 등록정보 프린터
                     print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
 
@@ -5357,11 +5359,8 @@ namespace thepos
             String printer_type = "";
             String printer_name = "";
 
-            if (to_printer == "to_local")
-            {
-                printer_name = mBillPrinterPort;
-            }
-            else if (to_printer == "to_shop")
+
+            if (to_printer == "to_shop")
             {
                 for (int i = 0; i < mShop.Length; i++ )
                 {
@@ -5378,6 +5377,25 @@ namespace thepos
                         }
                     }
                 }                
+            }
+            else if (to_printer == "to_local")
+            {
+                for (int i = 0; i < mShop.Length; i++)
+                {
+                    if (mShop[i].shop_code == shop)
+                    {
+                        printer_type = mShop[i].printer_type;
+
+                        if (mShop[i].printer_type == "R")                 // Recept
+                        {
+                            printer_name = mBillPrinterPort;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
             }
 
 
@@ -5541,19 +5559,15 @@ namespace thepos
             String printer_type = "";
             String printer_name = "";
 
-            if (to_printer == "to_local")
+            if (to_printer == "to_shop")
             {
-                printer_name = mBillPrinterPort;
-            }
-            else if (to_printer == "to_shop")
-            {
-                for (int i = 0; i < mShop.Length; i++ )
+                for (int i = 0; i < mShop.Length; i++)
                 {
                     if (mShop[i].shop_code == shop)
                     {
                         printer_type = mShop[i].printer_type;
 
-                        if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;    // Network
+                        if (mShop[i].printer_type == "N") printer_name = mShop[i].network_printer_name;    // Network
                         else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;                // Local
                         else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;                 // Recept
                         else
@@ -5561,7 +5575,26 @@ namespace thepos
                             return;
                         }
                     }
-                }                
+                }
+            }
+            else if (to_printer == "to_local")
+            {
+                for (int i = 0; i < mShop.Length; i++)
+                {
+                    if (mShop[i].shop_code == shop)
+                    {
+                        printer_type = mShop[i].printer_type;
+
+                        if (mShop[i].printer_type == "R")                 // Recept
+                        {
+                            printer_name = mBillPrinterPort;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
             }
 
 

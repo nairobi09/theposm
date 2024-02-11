@@ -346,7 +346,7 @@ namespace thepos
 
 
                 
-                if ((mNetworkState != tServerStatus) | (mSyncLinkWaitCnt >= 300))  // 10분
+                if ((mNetworkState != tServerStatus) | (mSyncLinkWaitCnt >= 300 * 6))  // 1시간
                 {
                     tServerStatus = check_server_status();
 

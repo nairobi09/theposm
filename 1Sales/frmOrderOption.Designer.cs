@@ -83,6 +83,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelOrange = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelFront.SuspendLayout();
             this.panelOption4.SuspendLayout();
             this.panelOption3.SuspendLayout();
@@ -95,6 +96,8 @@
             // panelFront
             // 
             this.panelFront.BackColor = System.Drawing.Color.White;
+            this.panelFront.Controls.Add(this.btnOK);
+            this.panelFront.Controls.Add(this.button1);
             this.panelFront.Controls.Add(this.panelOption4);
             this.panelFront.Controls.Add(this.lblGoodsInfo);
             this.panelFront.Controls.Add(this.lblCntUp);
@@ -106,7 +109,6 @@
             this.panelFront.Controls.Add(this.panelOption1);
             this.panelFront.Controls.Add(this.panelOption0);
             this.panelFront.Controls.Add(this.btnCancel);
-            this.panelFront.Controls.Add(this.btnOK);
             this.panelFront.Controls.Add(this.lblTitle);
             this.panelFront.ForeColor = System.Drawing.Color.Black;
             this.panelFront.Location = new System.Drawing.Point(1, 1);
@@ -723,9 +725,9 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(295, 562);
+            this.btnOK.Location = new System.Drawing.Point(295, 563);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(142, 59);
+            this.btnOK.Size = new System.Drawing.Size(142, 57);
             this.btnOK.TabIndex = 3;
             this.btnOK.TabStop = false;
             this.btnOK.Text = "선택";
@@ -751,6 +753,21 @@
             this.panelOrange.Name = "panelOrange";
             this.panelOrange.Size = new System.Drawing.Size(588, 639);
             this.panelOrange.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button1.Location = new System.Drawing.Point(295, 564);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 55);
+            this.button1.TabIndex = 16;
+            this.button1.TabStop = false;
+            this.button1.Text = "선택";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // frmOrderOption
             // 
@@ -831,5 +848,6 @@
         private System.Windows.Forms.RadioButton rbOption4Item1Name;
         private System.Windows.Forms.RadioButton rbOption4Item0Name;
         private System.Windows.Forms.Label lblOption4Name;
+        private System.Windows.Forms.Button button1;
     }
 }
