@@ -43,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[9];
+        Setup[] listSetup = new Setup[8];
 
 
         bool isAdd = false;
@@ -61,16 +61,15 @@ namespace thepos
             setupItem.code = "PosType";               setupItem.name = "기기유형";          setupItem.value = "";   setupItem.memo = "";    listSetup[0] = setupItem;
             setupItem.code = "CustomerMonitor";       setupItem.name = "고객용모니터사용";  setupItem.value = "";   setupItem.memo = "";    listSetup[1] = setupItem;
             
-            setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
-            setupItem.code = "BillPrinterSpeed";      setupItem.name = "영수증프린터속도";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
+            setupItem.code = "OrderPrintType";        setupItem.name = "교환권 출력타입";    setupItem.value = "";   setupItem.memo = "";    listSetup[2] = setupItem;
 
-            setupItem.code = "OrderPrinterPort";      setupItem.name = "주문서프린터포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
-            setupItem.code = "OrderPrinterSpeed";     setupItem.name = "주문서프린터속도";  setupItem.value = "";   setupItem.memo = "";    listSetup[5] = setupItem;
+            setupItem.code = "BillPrinterPort";       setupItem.name = "영수증프린터 포트";  setupItem.value = "";   setupItem.memo = "";    listSetup[3] = setupItem;
+            setupItem.code = "BillPrinterSpeed";      setupItem.name = "영수증프린터 속도";  setupItem.value = "";   setupItem.memo = "";    listSetup[4] = setupItem;
 
-            setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓프린터포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[6] = setupItem;
-            setupItem.code = "TicketPrinterSpeed";    setupItem.name = "티켓프린터속도";    setupItem.value = "";   setupItem.memo = "";    listSetup[7] = setupItem;
+            setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓전용프린터 포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[5] = setupItem;
+            setupItem.code = "TicketPrinterSpeed";    setupItem.name = "티켓전용프린터 속도";    setupItem.value = "";   setupItem.memo = "";    listSetup[6] = setupItem;
 
-            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[8] = setupItem;
+            setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[7] = setupItem;
 
 
             reload_setup_pos();
@@ -239,7 +238,16 @@ namespace thepos
                 cbValue.Items.Add("Y");
                 cbValue.Items.Add("N");
             }
-            else if (code == listSetup[2].code | code == listSetup[4].code | code == listSetup[6].code) // BillPrinterPort TicketPrinterPort ScannerPort
+            else if (code == listSetup[2].code)  // 교환권출력타입
+            {
+                cbValue.Visible = true;
+
+                cbValue.Items.Clear();
+                cbValue.Items.Add(" ");  // 출력없음
+                cbValue.Items.Add("Print");  // 영수증프린터
+                cbValue.Items.Add("Display");  // 화면
+            }
+            else if (code == listSetup[3].code | code == listSetup[5].code) // 
             {
                 cbValue.Visible = true;
 
@@ -250,7 +258,7 @@ namespace thepos
                     cbValue.Items.Add(s);
                 }
             }
-            else if (code == listSetup[3].code | code == listSetup[5].code | code == listSetup[7].code) // BillPrinterPort TicketPrinterPort ScannerPort
+            else if (code == listSetup[4].code | code == listSetup[6].code) // BillPrinterPort TicketPrinterPort ScannerPort
             {
                 cbValue.Visible = true;
 
@@ -262,7 +270,7 @@ namespace thepos
                 cbValue.Items.Add("57600");
                 cbValue.Items.Add("115200");
             }
-            else if (code == listSetup[8].code)  // t-id
+            else if (code == listSetup[7].code)  // t-id
             {
                 tbValue.Visible = true;
 
@@ -387,8 +395,7 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "CustomerMonitor") mCustomerMonitor = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "BillPrinterPort") mBillPrinterPort = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "BillPrinterSpeed") mBillPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
-                else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterPort") mOrderPrinterPort = lvwList.Items[i].SubItems[1].Text;
-                else if (lvwList.Items[i].Tag.ToString() == "OrderPrinterSpeed") mOrderPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "OrderPrintType") mOrderPrintType = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[1].Text;

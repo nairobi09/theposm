@@ -32,6 +32,7 @@ using System.Net;
 using System.Windows.Forms.DataVisualization.Charting;
 
 
+
 /* 과제
     + 마우스 포인터 표시 : pc pos 구분필요 
     + 리스트뷰 아이템외 클릭시 selected item의 highlight(backcolor)가 사라지는 현상 수정필요
@@ -4949,8 +4950,10 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, sizeLine());
-                
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
+                //BytesValue = PrintExtensions.AddBytes(BytesValue, sizeLine());
+
 
                 // 로고이미지 서버등록 이미지로 교체
                 if (mByteLogoImage == null)
@@ -4985,15 +4988,7 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
@@ -5360,7 +5355,7 @@ namespace thepos
             String printer_name = "";
 
 
-            if (to_printer == "to_shop")
+            if (to_printer == "to_shop")  // 주문서
             {
                 for (int i = 0; i < mShop.Length; i++ )
                 {
@@ -5369,7 +5364,6 @@ namespace thepos
                         printer_type = mShop[i].printer_type;
 
                         if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;    // Network
-                        else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;                // Local
                         else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;                 // Recept
                         else
                         {
@@ -5378,20 +5372,34 @@ namespace thepos
                     }
                 }                
             }
-            else if (to_printer == "to_local")
+            else if (to_printer == "to_local")  // 교환권
             {
                 for (int i = 0; i < mShop.Length; i++)
                 {
                     if (mShop[i].shop_code == shop)
                     {
-                        printer_type = mShop[i].printer_type;
-
-                        if (mShop[i].printer_type == "R")                 // Recept
+                        if (mShop[i].printer_type != "")
                         {
-                            printer_name = mBillPrinterPort;
+                            if (mOrderPrintType == "Print") 
+                            {
+                                printer_name = mBillPrinterPort;
+                                
+                            }
+                            else if (mOrderPrintType == "Display")
+                            {
+                                // 화면출력
+                                //MessageBox.Show("교환권 화면출력", "thepos");
+                                return;
+                            }
+                            else
+                            {
+                                // "" 출력없음.
+                                return;
+                            }
                         }
                         else
                         {
+                            // "" 출력없음. - 주문서가 없으니 교환권도 없다.
                             return;
                         }
                     }
@@ -5478,16 +5486,11 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
-            
-
-
 
             strPrint = "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-            BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -5529,8 +5532,8 @@ namespace thepos
                 try
                 {
                     SerialPort mySerialPort = new SerialPort();
-                    mySerialPort.PortName = mOrderPrinterPort;
-                    mySerialPort.BaudRate = convert_number(mOrderPrinterSpeed);
+                    mySerialPort.PortName = mBillPrinterPort;
+                    mySerialPort.BaudRate = convert_number(mBillPrinterSpeed);
                     mySerialPort.Parity = Parity.None;
                     mySerialPort.StopBits = StopBits.One;
                     mySerialPort.DataBits = 8;
@@ -5568,8 +5571,7 @@ namespace thepos
                         printer_type = mShop[i].printer_type;
 
                         if (mShop[i].printer_type == "N") printer_name = mShop[i].network_printer_name;    // Network
-                        else if (mShop[i].printer_type == "L") printer_name = mOrderPrinterPort;                // Local
-                        else if (mShop[i].printer_type == "R") printer_name = mBillPrinterPort;                 // Recept
+                        else if (mShop[i].printer_type == "L") printer_name = mBillPrinterPort;                 // Recept
                         else
                         {
                             return;
@@ -5583,14 +5585,28 @@ namespace thepos
                 {
                     if (mShop[i].shop_code == shop)
                     {
-                        printer_type = mShop[i].printer_type;
-
-                        if (mShop[i].printer_type == "R")                 // Recept
+                        if (mShop[i].printer_type != "")
                         {
-                            printer_name = mBillPrinterPort;
+                            if (mOrderPrintType == "Print")
+                            {
+                                printer_name = mBillPrinterPort;
+
+                            }
+                            else if (mOrderPrintType == "Display")
+                            {
+                                // 화면출력
+                                MessageBox.Show("교환권 화면출력", "thepos");
+                                return;
+                            }
+                            else
+                            {
+                                // "" 출력없음.
+                                return;
+                            }
                         }
                         else
                         {
+                            // "" 출력없음. - 주문서가 없으니 교환권도 없다.
                             return;
                         }
                     }
@@ -5700,8 +5716,8 @@ namespace thepos
                 try
                 {
                     SerialPort mySerialPort = new SerialPort();
-                    mySerialPort.PortName = mOrderPrinterPort;
-                    mySerialPort.BaudRate = convert_number(mOrderPrinterSpeed);
+                    mySerialPort.PortName = mBillPrinterPort;
+                    mySerialPort.BaudRate = convert_number(mBillPrinterSpeed);
                     mySerialPort.Parity = Parity.None;
                     mySerialPort.StopBits = StopBits.One;
                     mySerialPort.DataBits = 8;

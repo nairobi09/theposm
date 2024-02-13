@@ -684,8 +684,9 @@ namespace thepos
         public static String mBillPrinterSpeed = "";
         public static String mTicketPrinterPort = "";
         public static String mTicketPrinterSpeed = "";
-        public static String mOrderPrinterPort = "";
-        public static String mOrderPrinterSpeed = "";
+
+        public static String mOrderPrintType = "";  // 교환권 -> "P" 영수증프린터 출력, "D" 화면출력
+
         public static String mPosType = ""; // 기종 : POS PC KIOSK
         public static String mCustomerMonitor = "";  // Y N
         public static String mVanTID = "";    // 결제밴 T-ID

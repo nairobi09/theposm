@@ -15,8 +15,8 @@ namespace thepos._9SysAdmin
     public partial class frmSysShop : Form
     {
 
-        String[] mPrinterTypeCode = new string[5];
-        String[] mPrinterTypeName = new string[5];
+        String[] mPrinterTypeCode = new string[3];
+        String[] mPrinterTypeName = new string[3];
 
 
         public frmSysShop()
@@ -63,14 +63,10 @@ namespace thepos._9SysAdmin
             mPrinterTypeCode[0] = "";
             mPrinterTypeCode[1] = "N";
             mPrinterTypeCode[2] = "L";
-            mPrinterTypeCode[3] = "R";
-            mPrinterTypeCode[4] = "D"; // TEST DISPLAY
 
             mPrinterTypeName[0] = "";
             mPrinterTypeName[1] = "네트워크프린터";
-            mPrinterTypeName[2] = "로컬전용프린터";
-            mPrinterTypeName[3] = "영수증프린터";
-            mPrinterTypeName[4] = "(테스트)";
+            mPrinterTypeName[2] = "영수증프린터";
 
 
             cbPrinterType.Items.Clear();

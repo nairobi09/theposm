@@ -1591,8 +1591,7 @@ namespace thepos
                             if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "BillPrinterSpeed") mBillPrinterSpeed = arr[i]["setupValue"].ToString();
 
-                            else if (arr[i]["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "OrderPrinterSpeed") mOrderPrinterSpeed = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "OrderPrintType") mOrderPrintType = arr[i]["setupValue"].ToString();
 
                             else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = arr[i]["setupValue"].ToString();
@@ -2625,8 +2624,10 @@ namespace thepos
                 while (dr.Read())
                 {
                     if (dr["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "BillPrinterSpeed") mBillPrinterSpeed = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = dr["setupValue"].ToString();
-                    else if (dr["setupCode"].ToString() == "OrderPrinterPort") mOrderPrinterPort = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "OrderPrintType") mOrderPrintType = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "PosType") mPosType = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = dr["setupValue"].ToString();
                     i++;
