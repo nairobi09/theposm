@@ -78,19 +78,15 @@ namespace thepos
             lvwPayOrder.SmallImageList = imgList;
 
             cbPosNo.Items.Clear();
+
+            cbPosNo.Items.Add("");
+
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
             }
 
-            for (int i = 0;i < cbPosNo.Items.Count;i++)
-            {
-                if (cbPosNo.Items[i].ToString() == mPosNo) 
-                { 
-                    cbPosNo.SelectedIndex = i; 
-                    break; 
-                }
-            }
+            cbPosNo.SelectedIndex = 0;
 
 
             saveKeyDisplay = mTbKeyDisplayController;

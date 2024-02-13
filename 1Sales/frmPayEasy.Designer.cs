@@ -78,6 +78,7 @@
             this.chkKakao.TabIndex = 59;
             this.chkKakao.Text = "카카오페이";
             this.chkKakao.UseVisualStyleBackColor = true;
+            this.chkKakao.Visible = false;
             // 
             // btnEasyAuth
             // 
