@@ -180,6 +180,7 @@ namespace thepos
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["optionTemplateId"] = tbOptionTemplateId.Text;
@@ -618,9 +619,9 @@ namespace thepos
 
         private void btnAdd2_Click(object sender, EventArgs e)
         {
-            if (lvwOptionItem.Items.Count >= 3)
+            if (lvwOptionItem.Items.Count >= 4)
             {
-                MessageBox.Show("옵션항목은 최대 3개까지 입력가능합니다.", "thepos");
+                MessageBox.Show("옵션항목은 최대 4개까지 입력가능합니다.", "thepos");
                 return;
             }
 

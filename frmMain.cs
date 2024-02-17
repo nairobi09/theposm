@@ -1501,45 +1501,44 @@ namespace thepos
 
 
 
-
             // 4. 샵
             if (true)
+        {
+            String sUrl = "shop?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
             {
-                String sUrl = "shop?siteId=" + mSiteId;
-                if (mRequestGet(sUrl))
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    if (mObj["resultCode"].ToString() == "200")
+                    String data = mObj["shops"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    mShop = new Shop[arr.Count + 1];
+
+                    mShop[0].shop_code = "";
+                    mShop[0].shop_name = "";
+                    mShop[0].printer_type = "";
+                    mShop[0].network_printer_name = "";
+
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        String data = mObj["shops"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        mShop = new Shop[arr.Count + 1];
-
-                        mShop[0].shop_code = "";
-                        mShop[0].shop_name = "";
-                        mShop[0].printer_type = "";
-                        mShop[0].network_printer_name = "";
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            mShop[i+1].shop_code = arr[i]["shopCode"].ToString();
-                            mShop[i+1].shop_name = arr[i]["shopName"].ToString();
-                            mShop[i+1].printer_type = arr[i]["printerType"].ToString();
-                            mShop[i+1].network_printer_name = arr[i]["networkPrinterName"].ToString();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
+                        mShop[i+1].shop_code = arr[i]["shopCode"].ToString();
+                        mShop[i+1].shop_name = arr[i]["shopName"].ToString();
+                        mShop[i+1].printer_type = arr[i]["printerType"].ToString();
+                        mShop[i+1].network_printer_name = arr[i]["networkPrinterName"].ToString();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
 
 
             // 5. 포스
@@ -1677,8 +1676,6 @@ namespace thepos
             }
 
         }
-
-
 
 
         public static byte[] GetImage(Bitmap bill_image, int printWidth)

@@ -83,6 +83,7 @@
             this.badges_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.badges_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.notice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -245,7 +246,7 @@
             this.cbBadges.Location = new System.Drawing.Point(306, 100);
             this.cbBadges.Name = "cbBadges";
             this.cbBadges.Size = new System.Drawing.Size(145, 21);
-            this.cbBadges.TabIndex = 65;
+            this.cbBadges.TabIndex = 13;
             // 
             // lblBadgesTitle
             // 
@@ -263,11 +264,11 @@
             this.lblNoticeTitle.AutoSize = true;
             this.lblNoticeTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNoticeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblNoticeTitle.Location = new System.Drawing.Point(4, 133);
+            this.lblNoticeTitle.Location = new System.Drawing.Point(13, 133);
             this.lblNoticeTitle.Name = "lblNoticeTitle";
-            this.lblNoticeTitle.Size = new System.Drawing.Size(53, 12);
+            this.lblNoticeTitle.Size = new System.Drawing.Size(41, 12);
             this.lblNoticeTitle.TabIndex = 64;
-            this.lblNoticeTitle.Text = "부가정보";
+            this.lblNoticeTitle.Text = "노티스";
             // 
             // tbGoodsNotice
             // 
@@ -287,7 +288,7 @@
             this.cbOptionTemplate.Location = new System.Drawing.Point(306, 74);
             this.cbOptionTemplate.Name = "cbOptionTemplate";
             this.cbOptionTemplate.Size = new System.Drawing.Size(145, 21);
-            this.cbOptionTemplate.TabIndex = 11;
+            this.cbOptionTemplate.TabIndex = 12;
             // 
             // lblOptionTitle
             // 
@@ -441,7 +442,7 @@
             this.cbShop.Location = new System.Drawing.Point(306, 48);
             this.cbShop.Name = "cbShop";
             this.cbShop.Size = new System.Drawing.Size(117, 21);
-            this.cbShop.TabIndex = 10;
+            this.cbShop.TabIndex = 11;
             // 
             // tbMemo
             // 
@@ -451,7 +452,7 @@
             this.tbMemo.MaxLength = 16;
             this.tbMemo.Name = "tbMemo";
             this.tbMemo.Size = new System.Drawing.Size(145, 23);
-            this.tbMemo.TabIndex = 12;
+            this.tbMemo.TabIndex = 14;
             // 
             // lblMemoTitle
             // 
@@ -499,7 +500,7 @@
             // goodsname
             // 
             this.goodsname.Text = "상품명";
-            this.goodsname.Width = 120;
+            this.goodsname.Width = 140;
             // 
             // amt
             // 
@@ -552,6 +553,7 @@
             this.goodsnameEN,
             this.goodsnameCH,
             this.goodsnameJP,
+            this.notice,
             this.goodscode,
             this.amt,
             this.shopcode,
@@ -585,14 +587,17 @@
             // goodsnameEN
             // 
             this.goodsnameEN.Text = "(영문)";
+            this.goodsnameEN.Width = 0;
             // 
             // goodsnameCH
             // 
             this.goodsnameCH.Text = "(중문)";
+            this.goodsnameCH.Width = 0;
             // 
             // goodsnameJP
             // 
             this.goodsnameJP.Text = "(일문)";
+            this.goodsnameJP.Width = 0;
             // 
             // soldout
             // 
@@ -607,7 +612,7 @@
             // option_name
             // 
             this.option_name.Text = "옵션";
-            this.option_name.Width = 90;
+            this.option_name.Width = 120;
             // 
             // badges_id
             // 
@@ -617,13 +622,17 @@
             // badges_name
             // 
             this.badges_name.Text = "배지";
-            this.badges_name.Width = 50;
             // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "image_add_32x32.png");
+            // 
+            // notice
+            // 
+            this.notice.Text = "노티스";
+            this.notice.Width = 120;
             // 
             // frmSysGoods
             // 
@@ -700,5 +709,6 @@
         private System.Windows.Forms.Label lblBadgesTitle;
         private System.Windows.Forms.ColumnHeader badges_id;
         private System.Windows.Forms.ColumnHeader badges_name;
+        private System.Windows.Forms.ColumnHeader notice;
     }
 }

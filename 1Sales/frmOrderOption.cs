@@ -14,12 +14,12 @@ namespace thepos
 {
     public partial class frmOrderOption : Form
     {
-        Panel[] mPanelOption = new Panel[5];
+        Panel[] mPanelOption = new Panel[6];
 
-        Label[] mLblOptionName = new Label[5];
+        Label[] mLblOptionName = new Label[6];
 
-        RadioButton[ , ] mRbOptionItemName = new RadioButton[5, 3];
-        Label[ , ] mLblOrderItemAmt = new Label[5, 3];
+        RadioButton[ , ] mRbOptionItemName = new RadioButton[6, 4];
+        Label[ , ] mLblOrderItemAmt = new Label[6, 4];
 
 
         String thisOptionTemplateId = "";
@@ -68,47 +68,69 @@ namespace thepos
             lblOption2Name.Font = font12;
             lblOption3Name.Font = font12;
             lblOption4Name.Font = font12;
+            lblOption5Name.Font = font12;
 
-            rbOption0Item0Name.Font = font12;
-            rbOption0Item1Name.Font = font12;
-            rbOption0Item2Name.Font = font12;
+            rbOption0Item0Name.Font = font10;
+            rbOption0Item1Name.Font = font10;
+            rbOption0Item2Name.Font = font10;
+            rbOption0Item3Name.Font = font10;
 
-            rbOption1Item0Name.Font = font12;
-            rbOption1Item1Name.Font = font12;
-            rbOption1Item2Name.Font = font12;
+            rbOption1Item0Name.Font = font10;
+            rbOption1Item1Name.Font = font10;
+            rbOption1Item2Name.Font = font10;
+            rbOption1Item3Name.Font = font10;
 
-            rbOption2Item0Name.Font = font12;
-            rbOption2Item1Name.Font = font12;
-            rbOption2Item2Name.Font = font12;
+            rbOption2Item0Name.Font = font10;
+            rbOption2Item1Name.Font = font10;
+            rbOption2Item2Name.Font = font10;
+            rbOption2Item3Name.Font = font10;
 
-            rbOption3Item0Name.Font = font12;
-            rbOption3Item1Name.Font = font12;
-            rbOption3Item2Name.Font = font12;
+            rbOption3Item0Name.Font = font10;
+            rbOption3Item1Name.Font = font10;
+            rbOption3Item2Name.Font = font10;
+            rbOption3Item3Name.Font = font10;
 
-            rbOption4Item0Name.Font = font12;
-            rbOption4Item1Name.Font = font12;
-            rbOption4Item2Name.Font = font12;
+            rbOption4Item0Name.Font = font10;
+            rbOption4Item1Name.Font = font10;
+            rbOption4Item2Name.Font = font10;
+            rbOption4Item3Name.Font = font10;
+
+            rbOption5Item0Name.Font = font10;
+            rbOption5Item1Name.Font = font10;
+            rbOption5Item2Name.Font = font10;
+            rbOption5Item3Name.Font = font10;
 
 
-            lblOrder0Item0Amt.Font = font10;
-            lblOrder0Item1Amt.Font = font10;
-            lblOrder0Item2Amt.Font = font10;
 
-            lblOrder1Item0Amt.Font = font10;
-            lblOrder1Item1Amt.Font = font10;
-            lblOrder1Item2Amt.Font = font10;
+            lblOrder0Item0Amt.Font = font9;
+            lblOrder0Item1Amt.Font = font9;
+            lblOrder0Item2Amt.Font = font9;
+            lblOrder0Item3Amt.Font = font9;
 
-            lblOrder2Item0Amt.Font = font10;
-            lblOrder2Item1Amt.Font = font10;
-            lblOrder2Item2Amt.Font = font10;
+            lblOrder1Item0Amt.Font = font9;
+            lblOrder1Item1Amt.Font = font9;
+            lblOrder1Item2Amt.Font = font9;
+            lblOrder1Item3Amt.Font = font9;
 
-            lblOrder3Item0Amt.Font = font10;
-            lblOrder3Item1Amt.Font = font10;
-            lblOrder3Item2Amt.Font = font10;
+            lblOrder2Item0Amt.Font = font9;
+            lblOrder2Item1Amt.Font = font9;
+            lblOrder2Item2Amt.Font = font9;
+            lblOrder2Item3Amt.Font = font9;
 
-            lblOrder4Item0Amt.Font = font10;
-            lblOrder4Item1Amt.Font = font10;
-            lblOrder4Item2Amt.Font = font10;
+            lblOrder3Item0Amt.Font = font9;
+            lblOrder3Item1Amt.Font = font9;
+            lblOrder3Item2Amt.Font = font9;
+            lblOrder3Item3Amt.Font = font9;
+
+            lblOrder4Item0Amt.Font = font9;
+            lblOrder4Item1Amt.Font = font9;
+            lblOrder4Item2Amt.Font = font9;
+            lblOrder4Item3Amt.Font = font9;
+
+            lblOrder5Item0Amt.Font = font9;
+            lblOrder5Item1Amt.Font = font9;
+            lblOrder5Item2Amt.Font = font9;
+            lblOrder5Item3Amt.Font = font9;
 
             btnOK.Font = font12;
             btnCancel.Font = font12;
@@ -122,54 +144,76 @@ namespace thepos
             mPanelOption[2] = panelOption2;
             mPanelOption[3] = panelOption3;
             mPanelOption[4] = panelOption4;
+            mPanelOption[5] = panelOption5;
 
             mLblOptionName[0] = lblOption0Name;
             mLblOptionName[1] = lblOption1Name;
             mLblOptionName[2] = lblOption2Name;
             mLblOptionName[3] = lblOption3Name;
             mLblOptionName[4] = lblOption4Name;
+            mLblOptionName[5] = lblOption5Name;
 
 
             mRbOptionItemName[0, 0] = rbOption0Item0Name;
             mRbOptionItemName[0, 1] = rbOption0Item1Name;
             mRbOptionItemName[0, 2] = rbOption0Item2Name;
+            mRbOptionItemName[0, 3] = rbOption0Item3Name;
 
             mRbOptionItemName[1, 0] = rbOption1Item0Name;
             mRbOptionItemName[1, 1] = rbOption1Item1Name;
             mRbOptionItemName[1, 2] = rbOption1Item2Name;
+            mRbOptionItemName[1, 3] = rbOption1Item3Name;
 
             mRbOptionItemName[2, 0] = rbOption2Item0Name;
             mRbOptionItemName[2, 1] = rbOption2Item1Name;
             mRbOptionItemName[2, 2] = rbOption2Item2Name;
+            mRbOptionItemName[2, 3] = rbOption2Item3Name;
 
             mRbOptionItemName[3, 0] = rbOption3Item0Name;
             mRbOptionItemName[3, 1] = rbOption3Item1Name;
             mRbOptionItemName[3, 2] = rbOption3Item2Name;
+            mRbOptionItemName[3, 3] = rbOption3Item3Name;
 
             mRbOptionItemName[4, 0] = rbOption4Item0Name;
             mRbOptionItemName[4, 1] = rbOption4Item1Name;
             mRbOptionItemName[4, 2] = rbOption4Item2Name;
+            mRbOptionItemName[4, 3] = rbOption4Item3Name;
+
+            mRbOptionItemName[5, 0] = rbOption5Item0Name;
+            mRbOptionItemName[5, 1] = rbOption5Item1Name;
+            mRbOptionItemName[5, 2] = rbOption5Item2Name;
+            mRbOptionItemName[5, 3] = rbOption5Item3Name;
 
 
             mLblOrderItemAmt[0, 0] = lblOrder0Item0Amt;
             mLblOrderItemAmt[0, 1] = lblOrder0Item1Amt;
             mLblOrderItemAmt[0, 2] = lblOrder0Item2Amt;
+            mLblOrderItemAmt[0, 3] = lblOrder0Item3Amt;
 
             mLblOrderItemAmt[1, 0] = lblOrder1Item0Amt;
             mLblOrderItemAmt[1, 1] = lblOrder1Item1Amt;
             mLblOrderItemAmt[1, 2] = lblOrder1Item2Amt;
+            mLblOrderItemAmt[1, 3] = lblOrder1Item3Amt;
 
             mLblOrderItemAmt[2, 0] = lblOrder2Item0Amt;
             mLblOrderItemAmt[2, 1] = lblOrder2Item1Amt;
             mLblOrderItemAmt[2, 2] = lblOrder2Item2Amt;
+            mLblOrderItemAmt[2, 3] = lblOrder2Item3Amt;
 
             mLblOrderItemAmt[3, 0] = lblOrder3Item0Amt;
             mLblOrderItemAmt[3, 1] = lblOrder3Item1Amt;
             mLblOrderItemAmt[3, 2] = lblOrder3Item2Amt;
+            mLblOrderItemAmt[3, 3] = lblOrder3Item3Amt;
 
             mLblOrderItemAmt[4, 0] = lblOrder4Item0Amt;
             mLblOrderItemAmt[4, 1] = lblOrder4Item1Amt;
             mLblOrderItemAmt[4, 2] = lblOrder4Item2Amt;
+            mLblOrderItemAmt[4, 3] = lblOrder4Item3Amt;
+
+            mLblOrderItemAmt[5, 0] = lblOrder5Item0Amt;
+            mLblOrderItemAmt[5, 1] = lblOrder5Item1Amt;
+            mLblOrderItemAmt[5, 2] = lblOrder5Item2Amt;
+            mLblOrderItemAmt[5, 3] = lblOrder5Item3Amt;
 
             /*
             for (int i = 0; i < 5; i++)
@@ -266,7 +310,7 @@ namespace thepos
         {
             int option_dsp_idx = -1;
             //
-            for (int i = 0;i < 5; i++)
+            for (int i = 0;i < 6; i++)
             {
                 if (mPanelOption[i].Visible == false)
                 {
@@ -297,7 +341,7 @@ namespace thepos
                 if (mTempOptionItem[k].option_template_id == tempOption.option_template_id & mTempOptionItem[k].option_id == tempOption.option_id)
                 {
                     mRbOptionItemName[option_dsp_idx, item_dsp_idx].Visible = true;
-                    mRbOptionItemName[option_dsp_idx, item_dsp_idx].Text = mTempOptionItem[k].option_item_name;
+                    mRbOptionItemName[option_dsp_idx, item_dsp_idx].Text = mTempOptionItem[k].option_item_name.Replace("  ", " "); // 공란2개 : 키오스크는 줄바꿈하지만, POS는 무시하고 공란1개 취금.
                     mRbOptionItemName[option_dsp_idx, item_dsp_idx].Tag = mTempOptionItem[k].option_item_id;
 
                     // 종속옵션 이벤트 설정
@@ -342,7 +386,7 @@ namespace thepos
         {
             if (link_option_id != "")
             {
-                for (int i = dsp_idx + 1; i < 5; i++)
+                for (int i = dsp_idx + 1; i < 6; i++)
                 {
                     mPanelOption[i].Visible = false;
                     mLblOptionName[i].Text = "";
@@ -350,7 +394,7 @@ namespace thepos
 
 
                     // 클릭이벤트 삭제
-                    for (int k = 0; k < 3; k++)
+                    for (int k = 0; k < 4; k++)
                     {
 
                         FieldInfo f1 = typeof(Control).GetField("EventClick", BindingFlags.Static | BindingFlags.NonPublic);
@@ -364,7 +408,8 @@ namespace thepos
 
                         mRbOptionItemName[i, k].Checked = false;
 
-
+                        mRbOptionItemName[i, k].Visible = false;
+                        mLblOrderItemAmt[i, k].Visible = false;
                     }
 
                 }
@@ -387,9 +432,9 @@ namespace thepos
         {
             int option_item_amt = 0;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
-                for (int k = 0; k < 3; k++)
+                for (int k = 0; k < 4; k++)
                 {
                     if (mRbOptionItemName[i, k].Visible)
                     {
@@ -435,9 +480,9 @@ namespace thepos
         {
             mOrderOptionItemList.Clear();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
-                for (int k = 0; k < 3; k++)
+                for (int k = 0; k < 4; k++)
                 {
                     if (mRbOptionItemName[i, k].Visible)
                     {
@@ -467,7 +512,6 @@ namespace thepos
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
 
     }
 }

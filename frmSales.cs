@@ -4952,7 +4952,7 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
-                //BytesValue = PrintExtensions.AddBytes(BytesValue, sizeLine());
+                //BytesValue = PrintExtensions.AddBytes(BytesValue, sizeLine());  
 
 
                 // 로고이미지 서버등록 이미지로 교체
@@ -5306,12 +5306,13 @@ namespace thepos
                 else
                 {
 
-
                     // 업장주문서 출력 -> shop 등록정보 프린터
                     print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
 
-                    // 주문교환권 출력 -> 영수증프린터
+
+                    // 주문교환권 출력 -> 영수증프린터 : 함수내부에서 출력타입 Print Display 구분한다. 
                     print_order_str("to_local", t_shop_code, "교환권", t_order_no, order_pack_list, t_order_dt);
+
 
                     //
                     order_pack_list.Clear();
@@ -5344,7 +5345,8 @@ namespace thepos
             // 업장주문서 출력 -> shop 등록정보 프린터
             print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
 
-            // 주문교환권 출력 -> 영수증프린터
+
+            // 주문교환권 출력 -> 영수증프린터 : 함수내부에서 출력타입 Print Display 구분한다. 
             print_order_str("to_local", t_shop_code, "교환권", t_order_no, order_pack_list, t_order_dt);
 
         }
@@ -5594,8 +5596,8 @@ namespace thepos
                             }
                             else if (mOrderPrintType == "Display")
                             {
-                                // 화면출력
-                                MessageBox.Show("교환권 화면출력", "thepos");
+                                // 화면출력 -> 현재 없음
+                                //MessageBox.Show("교환권 화면출력", "thepos");
                                 return;
                             }
                             else

@@ -64,24 +64,18 @@
             this.tbCutoffTime = new System.Windows.Forms.TextBox();
             this.lblCutoffTime = new System.Windows.Forms.Label();
             this.lblCutoffType = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnX2 = new System.Windows.Forms.Button();
-            this.pbKioskLogoImage = new System.Windows.Forms.PictureBox();
-            this.lblKioskLogoImage = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).BeginInit();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbKioskLogoImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Location = new System.Drawing.Point(658, 600);
             this.btnUpdate.Name = "btnUpdate";
@@ -95,7 +89,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(68, 26);
             this.lblTitle.Name = "lblTitle";
@@ -106,7 +100,7 @@
             // lblSiteName
             // 
             this.lblSiteName.AutoSize = true;
-            this.lblSiteName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblSiteName.Location = new System.Drawing.Point(13, 24);
             this.lblSiteName.Name = "lblSiteName";
@@ -116,7 +110,7 @@
             // 
             // tbSiteName
             // 
-            this.tbSiteName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSiteName.Location = new System.Drawing.Point(98, 18);
             this.tbSiteName.Name = "tbSiteName";
@@ -146,7 +140,7 @@
             // 
             // tbBizTelNo
             // 
-            this.tbBizTelNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizTelNo.Location = new System.Drawing.Point(98, 158);
             this.tbBizTelNo.Name = "tbBizTelNo";
@@ -156,7 +150,7 @@
             // 
             // tbBizAddr
             // 
-            this.tbBizAddr.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizAddr.Location = new System.Drawing.Point(98, 130);
             this.tbBizAddr.Name = "tbBizAddr";
@@ -166,7 +160,7 @@
             // 
             // tbCapName
             // 
-            this.tbCapName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCapName.Location = new System.Drawing.Point(98, 102);
             this.tbCapName.Name = "tbCapName";
@@ -176,7 +170,7 @@
             // 
             // tbRegistNo
             // 
-            this.tbRegistNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbRegistNo.Location = new System.Drawing.Point(98, 74);
             this.tbRegistNo.Name = "tbRegistNo";
@@ -186,7 +180,7 @@
             // 
             // tbSiteAlias
             // 
-            this.tbSiteAlias.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSiteAlias.Location = new System.Drawing.Point(98, 46);
             this.tbSiteAlias.Name = "tbSiteAlias";
@@ -197,7 +191,7 @@
             // lblBizTelNo
             // 
             this.lblBizTelNo.AutoSize = true;
-            this.lblBizTelNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizTelNo.Location = new System.Drawing.Point(13, 164);
             this.lblBizTelNo.Name = "lblBizTelNo";
@@ -208,7 +202,7 @@
             // lblBizAddr
             // 
             this.lblBizAddr.AutoSize = true;
-            this.lblBizAddr.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizAddr.Location = new System.Drawing.Point(23, 145);
             this.lblBizAddr.Name = "lblBizAddr";
@@ -219,7 +213,7 @@
             // lblCapName
             // 
             this.lblCapName.AutoSize = true;
-            this.lblCapName.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCapName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCapName.Location = new System.Drawing.Point(13, 108);
             this.lblCapName.Name = "lblCapName";
@@ -230,7 +224,7 @@
             // lblRegistNo
             // 
             this.lblRegistNo.AutoSize = true;
-            this.lblRegistNo.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRegistNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRegistNo.Location = new System.Drawing.Point(13, 80);
             this.lblRegistNo.Name = "lblRegistNo";
@@ -241,7 +235,7 @@
             // lblSiteAlias
             // 
             this.lblSiteAlias.AutoSize = true;
-            this.lblSiteAlias.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSiteAlias.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblSiteAlias.Location = new System.Drawing.Point(13, 52);
             this.lblSiteAlias.Name = "lblSiteAlias";
@@ -267,7 +261,7 @@
             // 
             // cbVanCode
             // 
-            this.cbVanCode.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbVanCode.FormattingEnabled = true;
             this.cbVanCode.Location = new System.Drawing.Point(98, 75);
@@ -278,7 +272,7 @@
             // 
             // cbTicketMedia
             // 
-            this.cbTicketMedia.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTicketMedia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbTicketMedia.FormattingEnabled = true;
             this.cbTicketMedia.Location = new System.Drawing.Point(98, 47);
@@ -289,7 +283,7 @@
             // 
             // cbTicketType
             // 
-            this.cbTicketType.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbTicketType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbTicketType.FormattingEnabled = true;
             this.cbTicketType.Location = new System.Drawing.Point(98, 19);
@@ -300,7 +294,7 @@
             // 
             // tbCallCenter
             // 
-            this.tbCallCenter.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCallCenter.Location = new System.Drawing.Point(98, 104);
             this.tbCallCenter.Name = "tbCallCenter";
@@ -311,7 +305,7 @@
             // lblCallCenter
             // 
             this.lblCallCenter.AutoSize = true;
-            this.lblCallCenter.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCallCenter.Location = new System.Drawing.Point(13, 109);
             this.lblCallCenter.Name = "lblCallCenter";
@@ -322,7 +316,7 @@
             // lblVanCode
             // 
             this.lblVanCode.AutoSize = true;
-            this.lblVanCode.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblVanCode.Location = new System.Drawing.Point(13, 78);
             this.lblVanCode.Name = "lblVanCode";
@@ -333,7 +327,7 @@
             // lblTicketMedia
             // 
             this.lblTicketMedia.AutoSize = true;
-            this.lblTicketMedia.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketMedia.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketMedia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTicketMedia.Location = new System.Drawing.Point(13, 50);
             this.lblTicketMedia.Name = "lblTicketMedia";
@@ -344,7 +338,7 @@
             // lblTicketType
             // 
             this.lblTicketType.AutoSize = true;
-            this.lblTicketType.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTicketType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTicketType.Location = new System.Drawing.Point(13, 22);
             this.lblTicketType.Name = "lblTicketType";
@@ -366,7 +360,7 @@
             // btnX1
             // 
             this.btnX1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnX1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnX1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnX1.ForeColor = System.Drawing.Color.DimGray;
             this.btnX1.Location = new System.Drawing.Point(382, 60);
             this.btnX1.Name = "btnX1";
@@ -391,7 +385,7 @@
             // lblBillImage
             // 
             this.lblBillImage.AutoSize = true;
-            this.lblBillImage.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBillImage.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBillImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBillImage.Location = new System.Drawing.Point(13, 19);
             this.lblBillImage.Name = "lblBillImage";
@@ -420,7 +414,7 @@
             // lblCutoffTime1
             // 
             this.lblCutoffTime1.AutoSize = true;
-            this.lblCutoffTime1.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCutoffTime1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCutoffTime1.Location = new System.Drawing.Point(233, 55);
             this.lblCutoffTime1.Name = "lblCutoffTime1";
@@ -431,7 +425,7 @@
             // lblCutoffTime2
             // 
             this.lblCutoffTime2.AutoSize = true;
-            this.lblCutoffTime2.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCutoffTime2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCutoffTime2.Location = new System.Drawing.Point(98, 78);
             this.lblCutoffTime2.Name = "lblCutoffTime2";
@@ -441,7 +435,7 @@
             // 
             // cbCutoffType
             // 
-            this.cbCutoffType.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbCutoffType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbCutoffType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbCutoffType.FormattingEnabled = true;
             this.cbCutoffType.Location = new System.Drawing.Point(98, 18);
@@ -452,7 +446,7 @@
             // 
             // tbCutoffTime
             // 
-            this.tbCutoffTime.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCutoffTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCutoffTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCutoffTime.Location = new System.Drawing.Point(98, 49);
             this.tbCutoffTime.MaxLength = 4;
@@ -464,7 +458,7 @@
             // lblCutoffTime
             // 
             this.lblCutoffTime.AutoSize = true;
-            this.lblCutoffTime.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCutoffTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCutoffTime.Location = new System.Drawing.Point(13, 54);
             this.lblCutoffTime.Name = "lblCutoffTime";
@@ -475,7 +469,7 @@
             // lblCutoffType
             // 
             this.lblCutoffType.AutoSize = true;
-            this.lblCutoffType.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCutoffType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCutoffType.Location = new System.Drawing.Point(13, 22);
             this.lblCutoffType.Name = "lblCutoffType";
@@ -483,58 +477,10 @@
             this.lblCutoffType.TabIndex = 54;
             this.lblCutoffType.Text = "마감유형";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.btnX2);
-            this.groupBox5.Controls.Add(this.pbKioskLogoImage);
-            this.groupBox5.Controls.Add(this.lblKioskLogoImage);
-            this.groupBox5.Location = new System.Drawing.Point(71, 591);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(548, 93);
-            this.groupBox5.TabIndex = 59;
-            this.groupBox5.TabStop = false;
-            // 
-            // btnX2
-            // 
-            this.btnX2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnX2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnX2.ForeColor = System.Drawing.Color.DimGray;
-            this.btnX2.Location = new System.Drawing.Point(481, 29);
-            this.btnX2.Name = "btnX2";
-            this.btnX2.Size = new System.Drawing.Size(33, 30);
-            this.btnX2.TabIndex = 55;
-            this.btnX2.TabStop = false;
-            this.btnX2.Text = "X";
-            this.btnX2.UseVisualStyleBackColor = true;
-            this.btnX2.Click += new System.EventHandler(this.btnX2_Click);
-            // 
-            // pbKioskLogoImage
-            // 
-            this.pbKioskLogoImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbKioskLogoImage.Location = new System.Drawing.Point(98, 19);
-            this.pbKioskLogoImage.Name = "pbKioskLogoImage";
-            this.pbKioskLogoImage.Size = new System.Drawing.Size(360, 40);
-            this.pbKioskLogoImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbKioskLogoImage.TabIndex = 56;
-            this.pbKioskLogoImage.TabStop = false;
-            this.pbKioskLogoImage.Click += new System.EventHandler(this.pbKioskLogoImage_Click);
-            // 
-            // lblKioskLogoImage
-            // 
-            this.lblKioskLogoImage.AutoSize = true;
-            this.lblKioskLogoImage.Font = new System.Drawing.Font("Gulim", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblKioskLogoImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblKioskLogoImage.Location = new System.Drawing.Point(13, 19);
-            this.lblKioskLogoImage.Name = "lblKioskLogoImage";
-            this.lblKioskLogoImage.Size = new System.Drawing.Size(77, 56);
-            this.lblKioskLogoImage.TabIndex = 54;
-            this.lblKioskLogoImage.Text = "KIOSK\r\n로고이미지\r\n(JPG)\r\n1080*120";
-            // 
             // frmSysSite
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
-            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -553,9 +499,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbKioskLogoImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,9 +541,5 @@
         private System.Windows.Forms.Label lblCutoffType;
         private System.Windows.Forms.Label lblCutoffTime1;
         private System.Windows.Forms.Label lblCutoffTime2;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnX2;
-        private System.Windows.Forms.PictureBox pbKioskLogoImage;
-        private System.Windows.Forms.Label lblKioskLogoImage;
     }
 }

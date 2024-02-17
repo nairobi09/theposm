@@ -33,6 +33,7 @@ namespace thepos._9SysAdmin
         String sv_goodsNameEN = "";
         String sv_goodsNameCH = "";
         String sv_goodsNameJP = "";
+        String sv_goodsNotice = "";
 
         String sv_amt = "";
         String sv_shopCode = "";
@@ -72,6 +73,7 @@ namespace thepos._9SysAdmin
             tbGoodsNameEN.Font = font10;
             tbGoodsNameCH.Font = font10;
             tbGoodsNameJP.Font = font10;
+
             tbGoodsNotice.Font = font10;
 
             cbTicket.Font = font10;
@@ -106,18 +108,58 @@ namespace thepos._9SysAdmin
             lvwList.HideSelection = true;
 
 
+
             cbShop.Items.Clear();
             for (int i = 0; i < mShop.Length; i++)
             {
                 cbShop.Items.Add(mShop[i].shop_name);
             }
 
+
+            // 옵션은 자주 변경을 예상하여 상품화면띄울때마다 옵션정보 로드한다...
+
+            // 3-1. optionTemplate
+            if (true)
+            {
+                String sUrl = "optionTemplate?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["optionTemp"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mOptionTemplate = new OptionTemplate[arr.Count + 1];
+
+                        mOptionTemplate[0].option_template_id = "";
+                        mOptionTemplate[0].option_template_name = "";
+
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mOptionTemplate[i + 1].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            mOptionTemplate[i + 1].option_template_name = arr[i]["optionTemplateName"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("옵션템플릿정보 오류. optionTemplate\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
             cbOptionTemplate.Items.Clear();
             for (int i = 0; i < mOptionTemplate.Length; i++)
             {
                 cbOptionTemplate.Items.Add(mOptionTemplate[i].option_template_name);
             }
-
 
 
 
@@ -136,6 +178,8 @@ namespace thepos._9SysAdmin
             tbGoodsNameEN.Text = "";
             tbGoodsNameCH.Text = "";
             tbGoodsNameJP.Text = "";
+
+            tbGoodsNotice.Text = "";
 
             tbGoodsName.Tag = "";
             tbGoodsAmt.Text = "";
@@ -159,7 +203,7 @@ namespace thepos._9SysAdmin
 
             String tTicket, tTaxFree, tCutout, tSoldout = "";
 
-            String sUrl = "goods?siteId=" + mSiteId;
+            String sUrl = "goods?siteId=" + mSiteId + "&imageYn=Y";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -179,6 +223,8 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[i]["goodsNameEn"].ToString());
                         lvItem.SubItems.Add(arr[i]["goodsNameCh"].ToString());
                         lvItem.SubItems.Add(arr[i]["goodsNameJp"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["goodsNotice"].ToString());
 
 
                         // goodscode
@@ -277,7 +323,7 @@ namespace thepos._9SysAdmin
         {
             String tTicket, tTaxFree, tCutout, tSoldout = "";
 
-            String sUrl = "goods?siteId=" + mSiteId + "&goodsCode=" + code;
+            String sUrl = "goods?siteId=" + mSiteId + "&goodsCode=" + code + "&imageYn=Y";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -297,6 +343,8 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[0]["goodsNameEn"].ToString());
                         lvItem.SubItems.Add(arr[0]["goodsNameCh"].ToString());
                         lvItem.SubItems.Add(arr[0]["goodsNameJp"].ToString());
+
+                        lvItem.SubItems.Add(arr[0]["goodsNotice"].ToString());
 
                         // goodscode
                         lvItem.SubItems.Add(arr[0]["goodsCode"].ToString());
@@ -402,6 +450,7 @@ namespace thepos._9SysAdmin
             tbGoodsNameCH.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameCH)].Text;
             tbGoodsNameJP.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameJP)].Text;
 
+            tbGoodsNotice.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(notice)].Text;
 
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(ticket)].Text == "Y")
@@ -501,6 +550,8 @@ namespace thepos._9SysAdmin
             sv_goodsNameCH = tbGoodsNameCH.Text;
             sv_goodsNameJP = tbGoodsNameJP.Text;
 
+            sv_goodsNotice = tbGoodsNotice.Text;
+
             sv_amt = tbGoodsAmt.Text;
             sv_shopCode = cbShop.SelectedIndex + "";
             sv_ticketYn = cbTicket.Checked + "";
@@ -564,7 +615,8 @@ namespace thepos._9SysAdmin
                 parameters["goodsNameJp"] = tbGoodsNameJP.Text.Trim();
 
             // notice
-
+            if (sv_goodsNotice != tbGoodsNotice.Text.Trim())
+                parameters["goodsNotice"] = tbGoodsNotice.Text.Trim();
 
 
             //
@@ -729,7 +781,7 @@ namespace thepos._9SysAdmin
             parameters["goodsNameCH"] = tbGoodsNameCH.Text.Trim();
             parameters["goodsNameJP"] = tbGoodsNameJP.Text.Trim();
 
-
+            parameters["goodsNotice"] = tbGoodsNotice.Text.Trim();
 
 
             if (cbTicket.Checked)
