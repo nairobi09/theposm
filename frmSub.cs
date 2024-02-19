@@ -39,15 +39,11 @@ namespace thepos
             initialize_font();
             initialize_the();
 
-            lblSiteAlias.Text = mSiteAlias;
-            lblSiteName.Text = mSiteName;
-
         }
 
 
         private void initialize_font()
         {
-            lblTitle1.Font = font10;
             //lvwOrderItem.Font = font16;
 
             lblOrderAmountSumTitle.Font = font14;
@@ -61,10 +57,6 @@ namespace thepos
             lblOrderAmountReceive.Font = font16;
             lblOrderAmountRest.Font = font16;
             lblOrderAmountNet.Font = font24;
-
-            lblSiteAlias.Font = font24;
-            lblSiteName.Font = font12;
-
 
         }
 
