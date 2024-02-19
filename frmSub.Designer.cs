@@ -36,6 +36,7 @@
             this.lblOrderAmountDCTitle = new System.Windows.Forms.Label();
             this.lblOrderAmountSumTitle = new System.Windows.Forms.Label();
             this.panelOrderInfo = new System.Windows.Forms.Panel();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lvwOrderItem = new BrightIdeasSoftware.ObjectListView();
             this.lv_no = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.lv_name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -54,8 +55,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.panelOrderInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -63,14 +64,13 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOrderAmountNet
             // 
             this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblOrderAmountNet.Location = new System.Drawing.Point(261, 13);
+            this.lblOrderAmountNet.Location = new System.Drawing.Point(291, 13);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
             this.lblOrderAmountNet.Size = new System.Drawing.Size(303, 50);
             this.lblOrderAmountNet.TabIndex = 1;
@@ -148,6 +148,15 @@
             this.panelOrderInfo.TabIndex = 39;
             this.panelOrderInfo.Visible = false;
             // 
+            // picLogo
+            // 
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(31, 35);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(300, 700);
+            this.picLogo.TabIndex = 47;
+            this.picLogo.TabStop = false;
+            // 
             // lvwOrderItem
             // 
             this.lvwOrderItem.AllColumns.Add(this.lv_no);
@@ -173,12 +182,12 @@
             this.lvwOrderItem.GridLines = true;
             this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrderItem.HideSelection = false;
-            this.lvwOrderItem.Location = new System.Drawing.Point(401, 37);
+            this.lvwOrderItem.Location = new System.Drawing.Point(358, 35);
             this.lvwOrderItem.MultiSelect = false;
             this.lvwOrderItem.Name = "lvwOrderItem";
             this.lvwOrderItem.RowHeight = 50;
             this.lvwOrderItem.ShowGroups = false;
-            this.lvwOrderItem.Size = new System.Drawing.Size(600, 505);
+            this.lvwOrderItem.Size = new System.Drawing.Size(637, 505);
             this.lvwOrderItem.TabIndex = 46;
             this.lvwOrderItem.TabStop = false;
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
@@ -244,9 +253,9 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.lblOrderAmountDCTitle);
             this.panel5.Controls.Add(this.lblOrderAmountDC);
-            this.panel5.Location = new System.Drawing.Point(401, 603);
+            this.panel5.Location = new System.Drawing.Point(358, 601);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(287, 55);
+            this.panel5.Size = new System.Drawing.Size(317, 55);
             this.panel5.TabIndex = 44;
             // 
             // panel4
@@ -255,9 +264,9 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.lblOrderAmountRestTitle);
             this.panel4.Controls.Add(this.lblOrderAmountRest);
-            this.panel4.Location = new System.Drawing.Point(687, 603);
+            this.panel4.Location = new System.Drawing.Point(674, 601);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(314, 55);
+            this.panel4.Size = new System.Drawing.Size(321, 55);
             this.panel4.TabIndex = 45;
             // 
             // lblOrderAmountRestTitle
@@ -288,9 +297,9 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblOrderAmountReceiveTitle);
             this.panel3.Controls.Add(this.lblOrderAmountReceive);
-            this.panel3.Location = new System.Drawing.Point(687, 549);
+            this.panel3.Location = new System.Drawing.Point(674, 547);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(314, 55);
+            this.panel3.Size = new System.Drawing.Size(321, 55);
             this.panel3.TabIndex = 44;
             // 
             // lblOrderAmountReceiveTitle
@@ -321,9 +330,9 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.lblOrderAmountSumTitle);
             this.panel2.Controls.Add(this.lblOrderAmount);
-            this.panel2.Location = new System.Drawing.Point(401, 549);
+            this.panel2.Location = new System.Drawing.Point(358, 547);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(287, 55);
+            this.panel2.Size = new System.Drawing.Size(317, 55);
             this.panel2.TabIndex = 43;
             // 
             // panel1
@@ -332,9 +341,9 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblOrderAmountNetTitle);
             this.panel1.Controls.Add(this.lblOrderAmountNet);
-            this.panel1.Location = new System.Drawing.Point(401, 657);
+            this.panel1.Location = new System.Drawing.Point(358, 655);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 80);
+            this.panel1.Size = new System.Drawing.Size(637, 80);
             this.panel1.TabIndex = 42;
             // 
             // pictureBox1
@@ -346,15 +355,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 40;
             this.pictureBox1.TabStop = false;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.Location = new System.Drawing.Point(21, 37);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(370, 700);
-            this.picLogo.TabIndex = 47;
-            this.picLogo.TabStop = false;
             // 
             // frmSub
             // 
@@ -369,6 +369,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmSub";
             this.panelOrderInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -376,7 +377,6 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
