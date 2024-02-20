@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -44,7 +43,6 @@
             this.cbGroup = new System.Windows.Forms.ComboBox();
             this.lblGroupTitle = new System.Windows.Forms.Label();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
-            this.taxfree = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwGoodsLink = new System.Windows.Forms.ListView();
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,12 +58,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ticket
-            // 
-            this.ticket.Text = "티켓";
-            this.ticket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ticket.Width = 45;
             // 
             // memo
             // 
@@ -245,12 +237,6 @@
             this.lblPosNoTitle.TabIndex = 97;
             this.lblPosNoTitle.Text = "포스";
             // 
-            // taxfree
-            // 
-            this.taxfree.Text = "면세";
-            this.taxfree.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.taxfree.Width = 45;
-            // 
             // shop
             // 
             this.shop.Text = "업장";
@@ -301,8 +287,6 @@
             this.item_name,
             this.amt1,
             this.shop,
-            this.ticket,
-            this.taxfree,
             this.memo});
             this.lvwGoods.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwGoods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -317,11 +301,12 @@
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
             this.lvwGoods.View = System.Windows.Forms.View.Details;
+            this.lvwGoods.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwGoods_ColumnClick);
             // 
             // item_name
             // 
             this.item_name.Text = "상품명";
-            this.item_name.Width = 80;
+            this.item_name.Width = 163;
             // 
             // amt1
             // 
@@ -413,8 +398,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ColumnHeader ticket;
         private System.Windows.Forms.ColumnHeader memo;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Button btnDelete;
@@ -430,7 +413,6 @@
         private System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Label lblGroupTitle;
         private System.Windows.Forms.Label lblPosNoTitle;
-        private System.Windows.Forms.ColumnHeader taxfree;
         private System.Windows.Forms.ColumnHeader shop;
         private System.Windows.Forms.ListView lvwGoodsLink;
         private System.Windows.Forms.ColumnHeader name;

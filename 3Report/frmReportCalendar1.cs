@@ -186,7 +186,6 @@ namespace thepos
 
 
             cbShop.Items.Clear();
-            cbShop.Items.Add("");
             for (int i = 0; i < mShop.Length; i++)
             {
                 cbShop.Items.Add(mShop[i].shop_name);

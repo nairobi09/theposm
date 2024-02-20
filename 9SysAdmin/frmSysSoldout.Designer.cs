@@ -54,7 +54,7 @@
             this.lblGoodsTitle.AutoSize = true;
             this.lblGoodsTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGoodsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblGoodsTitle.Location = new System.Drawing.Point(93, 23);
+            this.lblGoodsTitle.Location = new System.Drawing.Point(25, 23);
             this.lblGoodsTitle.Name = "lblGoodsTitle";
             this.lblGoodsTitle.Size = new System.Drawing.Size(35, 14);
             this.lblGoodsTitle.TabIndex = 50;
@@ -73,10 +73,10 @@
             this.lvwGoodsList.FullRowSelect = true;
             this.lvwGoodsList.GridLines = true;
             this.lvwGoodsList.HideSelection = false;
-            this.lvwGoodsList.Location = new System.Drawing.Point(90, 58);
+            this.lvwGoodsList.Location = new System.Drawing.Point(25, 58);
             this.lvwGoodsList.MultiSelect = false;
             this.lvwGoodsList.Name = "lvwGoodsList";
-            this.lvwGoodsList.Size = new System.Drawing.Size(330, 460);
+            this.lvwGoodsList.Size = new System.Drawing.Size(395, 460);
             this.lvwGoodsList.TabIndex = 51;
             this.lvwGoodsList.TabStop = false;
             this.lvwGoodsList.UseCompatibleStateImageBehavior = false;
@@ -91,7 +91,7 @@
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 120;
+            this.name.Width = 179;
             // 
             // goods_amt
             // 
@@ -109,9 +109,9 @@
             // 
             this.groupBox1.Controls.Add(this.btnGoodsUpdate);
             this.groupBox1.Controls.Add(this.cbGoodsSoldout);
-            this.groupBox1.Location = new System.Drawing.Point(90, 535);
+            this.groupBox1.Location = new System.Drawing.Point(25, 535);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(330, 115);
+            this.groupBox1.Size = new System.Drawing.Size(395, 115);
             this.groupBox1.TabIndex = 64;
             this.groupBox1.TabStop = false;
             // 
@@ -199,7 +199,7 @@
             this.lvwGroupList.Location = new System.Drawing.Point(446, 58);
             this.lvwGroupList.MultiSelect = false;
             this.lvwGroupList.Name = "lvwGroupList";
-            this.lvwGroupList.Size = new System.Drawing.Size(330, 460);
+            this.lvwGroupList.Size = new System.Drawing.Size(385, 460);
             this.lvwGroupList.TabIndex = 65;
             this.lvwGroupList.TabStop = false;
             this.lvwGroupList.UseCompatibleStateImageBehavior = false;

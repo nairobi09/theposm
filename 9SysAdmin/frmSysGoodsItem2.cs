@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace thepos._9SysAdmin
 {
     public partial class frmSysGoodsItem2 : Form
     {
+        private int sortColumn = -1;
+
         String mSelectedPosNo = "";
         String mSelectedGroupCode = "";
 
@@ -682,6 +685,47 @@ namespace thepos._9SysAdmin
             MessageBox.Show("복사완료", "thepos");
 
             reload_server();
+        }
+
+        private void lvwGoods_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column != sortColumn)
+            {
+                sortColumn = e.Column;
+                lvwGoods.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                if (lvwGoods.Sorting == SortOrder.Ascending)
+                {
+                    lvwGoods.Sorting = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwGoods.Sorting = SortOrder.Ascending;
+                }
+            }
+
+
+            lvwGoods.Sort();
+            this.lvwGoods.ListViewItemSorter = new MyListViewComparer(e.Column, lvwGoods.Sorting);
+        }
+
+        class MyListViewComparer : IComparer
+        {
+            private int col; private SortOrder order; public MyListViewComparer() { col = 0; order = SortOrder.Ascending; }
+
+            public MyListViewComparer(int column, SortOrder order) { col = column; this.order = order; }
+
+            public int Compare(object x, object y)
+            {
+                int returnVal = -1; returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+
+                // Determine whether the sort order is descending. 
+                if (order == SortOrder.Descending) returnVal *= -1; // Invert the value returned by String.Compare. 
+
+                return returnVal;
+            }
         }
     }
 }

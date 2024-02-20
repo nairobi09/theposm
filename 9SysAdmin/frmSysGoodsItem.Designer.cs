@@ -49,8 +49,6 @@
             this.item_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amt1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.taxfree = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelItem = new System.Windows.Forms.TableLayoutPanel();
@@ -266,8 +264,6 @@
             this.item_name,
             this.amt1,
             this.shop,
-            this.ticket,
-            this.taxfree,
             this.memo});
             this.lvwGoods.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwGoods.FullRowSelect = true;
@@ -281,11 +277,12 @@
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
             this.lvwGoods.View = System.Windows.Forms.View.Details;
+            this.lvwGoods.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwGoods_ColumnClick);
             // 
             // item_name
             // 
             this.item_name.Text = "상품명";
-            this.item_name.Width = 80;
+            this.item_name.Width = 165;
             // 
             // amt1
             // 
@@ -296,18 +293,6 @@
             // shop
             // 
             this.shop.Text = "업장";
-            // 
-            // ticket
-            // 
-            this.ticket.Text = "티켓";
-            this.ticket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ticket.Width = 45;
-            // 
-            // taxfree
-            // 
-            this.taxfree.Text = "면세";
-            this.taxfree.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.taxfree.Width = 45;
             // 
             // memo
             // 
@@ -613,8 +598,6 @@
         private System.Windows.Forms.ListView lvwGoods;
         private System.Windows.Forms.ColumnHeader item_name;
         private System.Windows.Forms.ColumnHeader amt1;
-        private System.Windows.Forms.ColumnHeader ticket;
-        private System.Windows.Forms.ColumnHeader taxfree;
         private System.Windows.Forms.ColumnHeader memo;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelItem;
