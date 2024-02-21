@@ -1512,6 +1512,8 @@ namespace thepos
                     String data = mObj["shops"].ToString();
                     JArray arr = JArray.Parse(data);
 
+
+                    // 업장콤보에 첫줄빈칸을 추가하기위함. -> 수정시  주문서/교환권 출력시 [코너 : 업장명] 출력생략부분을 확인해라!!
                     mShop = new Shop[arr.Count + 1];
 
                     mShop[0].shop_code = "";
