@@ -4988,6 +4988,8 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
@@ -5442,6 +5444,8 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
 
 
+            /* 삼삼공카페 : 단독업장이기에 일단 코너명 제외. 추후 멀티업장인 경우 업장명 출력 개발예정
+             
             // 멀티업장인 경우만 코너명을 출력한다.
             if (mShop.Length > 2)  // 콤보박스 첫칸 공백을 주기위해 [0]번 포함해서 단독업장이면 배열 2가 됨.
             {
@@ -5450,7 +5454,7 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             }
 
-
+            */
 
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
@@ -5657,6 +5661,9 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
 
 
+
+            /* 삼삼공카페 : 단독업장이기에 일단 코너명 제외. 추후 멀티업장인 경우 업장명 출력 개발예정
+             
             // 멀티업장인 경우만 코너명을 출력한다.
             if (mShop.Length > 2)  // 콤보박스 첫칸 공백을 주기위해 [0]번 포함해서 단독업장이면 배열 2가 됨.
             {
@@ -5664,7 +5671,7 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes("코너 : " + get_shop_name(shop)));
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             }
-
+            */
 
 
 
