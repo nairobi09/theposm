@@ -180,6 +180,27 @@ namespace thepos
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < lvwTemplete.Items.Count; i++)
+            {
+                if (lvwTemplete.Items[i].Text.Trim() == tbOptionTemplateId.Text.Trim())
+                {
+                    MessageBox.Show("동일한 템플릿ID가 이미 있습니다..", "thepos");
+                    return;
+                }
+            }
+
+            for (int i = 0; i < lvwTemplete.Items.Count; i++)
+            {
+                if (lvwTemplete.Items[i].SubItems[1].Text.Trim() == tbOptionTemplateName.Text.Trim())
+                {
+                    MessageBox.Show("동일한 템플릿명이 이미 있습니다..", "thepos");
+                    return;
+                }
+            }
+
+
+
+
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
@@ -203,12 +224,18 @@ namespace thepos
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
-
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (tbOptionTemplateId.Text.Trim() != lvwTemplete.SelectedItems[0].Text.Trim())
+            {
+                MessageBox.Show("템프릿ID는 수정할 수 없습니다.", "thepos");
+                return;
+            }
+
+
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["optionTemplateId"] = tbOptionTemplateId.Text;

@@ -565,7 +565,6 @@ namespace thepos._9SysAdmin
             sv_memo = tbMemo.Text;
             ch_imagePath = "0";
 
-
         }
 
 
@@ -587,7 +586,25 @@ namespace thepos._9SysAdmin
                 return;
             }
 
-            if (cbShop.SelectedIndex == -1) return;
+            if (cbShop.SelectedIndex == -1)
+            {
+                MessageBox.Show("샵(업장) 선택 오류.", "thepos");
+                return;
+            }
+
+
+
+            if (tbGoodsName.Text.Trim() != lvwList.SelectedItems[0].Text.Trim())
+            {
+                DialogResult ret = MessageBox.Show("상품명 변경 : " + lvwList.SelectedItems[0].Text.Trim() + " -> " + tbGoodsName.Text.Trim() + " ", "thepos", MessageBoxButtons.OKCancel);
+
+                if (ret == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+
 
 
             //
@@ -765,6 +782,19 @@ namespace thepos._9SysAdmin
                 MessageBox.Show("상품단가 오류.", "thepos");
                 return;
             }
+
+            
+            for (int i = 0; i < lvwList.Items.Count; i++)
+            {
+                if (lvwList.Items[i].Text.Trim() == tbGoodsName.Text.Trim())
+                {
+                    MessageBox.Show("동일한 상품명이 이미 있습니다..", "thepos");
+                    return;
+                }
+            }
+
+
+
 
             if (cbShop.SelectedIndex == -1) return;
 

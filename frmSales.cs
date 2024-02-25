@@ -5847,19 +5847,5 @@ namespace thepos
             MessageBox.Show(msg, "thepos");
         }
 
-        private void btnOrder1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnOrder2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnOrder3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
