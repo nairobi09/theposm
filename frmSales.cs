@@ -3836,15 +3836,29 @@ namespace thepos
                 else                                 // 일반상품항목
                 {
                     // 상품아이템
+                    
+                    String tGoodsName = "";
+
                     if (dr["taxFree"].ToString() == "Y")
-                        tStr = "*" + dr["goodsName"].ToString();
+                        tGoodsName = "*" + dr["goodsName"].ToString();
                     else
-                        tStr = dr["goodsName"].ToString();
+                        tGoodsName = dr["goodsName"].ToString();
 
-                    strPrintOrder += tStr + Space(18 - encodelen(tStr));
+                    String tGoodsAmt = amt.ToString("N0");     //단가
 
-                    tStr = amt.ToString("N0");     //단가
-                    strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                    int tLenGoodsNameAmt = encodelen(tGoodsName) + encodelen(tGoodsAmt);
+
+                    if (tLenGoodsNameAmt > 26)
+                    {
+                        strPrintOrder += tGoodsName + "\r\n";
+                        strPrintOrder += Space(18) + Space(9 - encodelen(tGoodsAmt)) + tGoodsAmt;
+                    }
+                    else
+                    {
+                        strPrintOrder += tGoodsName + Space(27 - tLenGoodsNameAmt) + tGoodsAmt;
+                    }
+
 
                     tStr = cnt.ToString("N0");     // 수량
                     strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
@@ -3855,21 +3869,37 @@ namespace thepos
                     strPrintOrder += "\r\n";
 
 
-                    String mmm = dr["optionNo"].ToString();
 
                     // 옵션아이템
                     if (dr["optionNo"].ToString().Length > 0)
                     {
-                        tStr = "  ";
+                        String tOptionName = "  ";
                         SQLiteDataReader dr2 = sql_select_local_db("SELECT * FROM orderOptionItem WHERE optionNo='" + dr["optionNo"].ToString() + "'");
                         while (dr2.Read())
                         {
-                            tStr += dr2["optionItemName"].ToString() + " ";
+                            tOptionName += dr2["optionItemName"].ToString() + " ";
                         }
-                        strPrintOrder += tStr + Space(18 - encodelen(tStr));
 
-                        tStr = option_amt.ToString("N0");     //단가
-                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+                        String tOptionAmt = option_amt.ToString("N0");     //단가
+
+                        int tLenOptionNameAmt = encodelen(tOptionName) + encodelen(tOptionAmt);
+
+
+                        if (tLenOptionNameAmt > 26)
+                        {
+                            if (encodelen(tOptionName) > 42)
+                                strPrintOrder += tOptionName + "\r\n";
+                            else
+                                strPrintOrder += tOptionName + Space(42 - encodelen(tOptionName)) + "\r\n";
+
+
+                            strPrintOrder += Space(18) + Space(9 - encodelen(tOptionAmt)) + tOptionAmt;
+                        }
+                        else
+                        {
+                            strPrintOrder += tOptionName + Space(27 - tLenOptionNameAmt) + tOptionAmt;
+                        }
+
 
                         tStr = cnt.ToString("N0");     // 수량
                         strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
@@ -4250,15 +4280,30 @@ namespace thepos
                         else                                 // 일반상품항목
                         {
                             // 상품아이템
+
+                            String tGoodsName = "";
+
                             if (arr[i]["taxFree"].ToString() == "Y")
-                                tStr = "*" + arr[i]["goodsName"].ToString();
+                                tGoodsName = "*" + arr[i]["goodsName"].ToString();
                             else
-                                tStr = arr[i]["goodsName"].ToString();
+                                tGoodsName = arr[i]["goodsName"].ToString();
 
-                            strPrintOrder += tStr + Space(18 - encodelen(tStr));
+                            String tGoodsAmt = amt.ToString("N0");     //단가
 
-                            tStr = amt.ToString("N0");     //단가
-                            strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                            int tLenGoodsNameAmt = encodelen(tGoodsName) + encodelen(tGoodsAmt);
+
+                            if (tLenGoodsNameAmt > 26)
+                            {
+                                strPrintOrder += tGoodsName + Space(42 - encodelen(tGoodsName)) + "\r\n";
+                                strPrintOrder += Space(18) + Space(9 - encodelen(tGoodsAmt)) + tGoodsAmt;
+                            }
+                            else
+                            {
+                                strPrintOrder += tGoodsName + Space(27 - tLenGoodsNameAmt) + tGoodsAmt;
+                            }
+
+
 
                             tStr = cnt.ToString("N0");     // 수량
                             strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
@@ -4280,50 +4325,41 @@ namespace thepos
                                         String data2 = mObj["orderOptionItems"].ToString();
                                         JArray arr2 = JArray.Parse(data2);
 
-                                        //## 항목이 길어지면 옆항목으로 밀리고...
-                                        String tName = "  ";
+                                        
+                                        String tOptionName = "  ";
                                         for (int k = 0; k < arr2.Count; k++)
                                         {
-                                            tName += arr2[k]["optionItemName"].ToString() + " ";
+                                            tOptionName += arr2[k]["optionItemName"].ToString() + " ";
                                         }
 
-                                        String tAmt = option_amt.ToString("N0");     //단가
-
-                                        int tLen = encodelen(tName) + encodelen(tAmt);
-
-                                        if (tLen > 26) tLen = 26;
-
-                                        String tNameAmt = tName + Space(27 - tLen) + tAmt;  // 27
-
-                                        //
-                                        int tLenNameAmt = encodelen(tNameAmt);
-
-                                        String tCnt = cnt.ToString("N0");     // 수량
-
-                                        int tLenCnt = encodelen(tCnt);
-
-                                        tLen = encodelen(tNameAmt) + encodelen(tCnt);
-
-                                        if (tLen > 32) tLen = 32;
-
-                                        String tNameAmtCnt = tNameAmt + Space(33 - tLen) + tCnt;
+                                        String tOptionAmt = option_amt.ToString("N0");     //단가
 
 
-                                        //
-                                        int tLenNameAmtCnt = encodelen(tNameAmtCnt);
+                                        int tLenOptionNameAmt = encodelen(tOptionName) + encodelen(tOptionAmt);
 
-                                        String tAmount = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
+                                        
+                                        if (tLenOptionNameAmt > 26)
+                                        {
+                                            if (encodelen(tOptionName) > 42) 
+                                                strPrintOrder += tOptionName + "\r\n";
+                                            else
+                                                strPrintOrder += tOptionName + Space(42 - encodelen(tOptionName)) + "\r\n";
 
-                                        int tLenAmount = encodelen(tAmount);
+                                            
+                                            strPrintOrder += Space(18) + Space(9 - encodelen(tOptionAmt)) + tOptionAmt;
+                                        }
+                                        else
+                                        {
+                                            strPrintOrder += tOptionName + Space(27 - tLenOptionNameAmt) + tOptionAmt;
+                                        }
 
-                                        tLen = encodelen(tNameAmtCnt) + encodelen(tAmount);
 
-                                        if (tLen > 41) tLen = 41;
+                                        tStr = cnt.ToString("N0");     // 수량
+                                        strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
 
-                                        String tNameAmtCntAmount = tNameAmtCnt + Space(42 - tLen) + tAmount;
+                                        tStr = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
+                                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
 
-                                        //
-                                        strPrintOrder += tNameAmtCntAmount;
                                         strPrintOrder += "\r\n";
                                     }
                                 }
@@ -5473,8 +5509,16 @@ namespace thepos
 
                 int len = encodelen(orderPackList[i].goods_name) + encodelen(strCnt);
 
+                if (len > 20)
+                {
+                    strPrint = strName + Space(41 - len) + strCnt; // 2줄
+                }
+                else
+                {
+                    strPrint = strName + Space(21 - len) + strCnt;
+                }
 
-                strPrint = strName + Space(21 - len) + strCnt;
+
                 strPrint += "\r\n";
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
@@ -5689,8 +5733,16 @@ namespace thepos
 
                 int len = encodelen(strName) + encodelen(strCnt);
 
+                if (len > 20)
+                {
+                    strPrint = strName + Space(41 - len) + strCnt; // 2줄
+                }
+                else
+                {
+                    strPrint = strName + Space(21 - len) + strCnt;
+                }
 
-                strPrint = strName + Space(21 - len) + strCnt;
+
                 strPrint += "\r\n";
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));

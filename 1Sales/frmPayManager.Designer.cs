@@ -134,7 +134,7 @@
             // pay_goods
             // 
             this.pay_goods.Text = "상품/결제";
-            this.pay_goods.Width = 100;
+            this.pay_goods.Width = 130;
             // 
             // amount_cnt
             // 
@@ -145,7 +145,7 @@
             // dc_shop
             // 
             this.dc_shop.Text = "업장";
-            this.dc_shop.Width = 80;
+            this.dc_shop.Width = 50;
             // 
             // btnPrintBillex
             // 

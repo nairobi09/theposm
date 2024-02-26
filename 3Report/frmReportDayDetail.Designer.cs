@@ -268,7 +268,7 @@
             // p_cardno
             // 
             this.p_cardno.Text = "번호";
-            this.p_cardno.Width = 140;
+            this.p_cardno.Width = 100;
             // 
             // type2
             // 
@@ -278,6 +278,7 @@
             // acq_name
             // 
             this.acq_name.Text = "기관";
+            this.acq_name.Width = 110;
             // 
             // p_authno
             // 
