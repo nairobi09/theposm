@@ -109,5 +109,10 @@ namespace thepos
 
             return (renderer);
         }
+
+        private void frmSub_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            fSub = null;
+        }
     }
 }

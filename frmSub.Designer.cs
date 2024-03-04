@@ -368,6 +368,7 @@
             this.Name = "frmSub";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmSub";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSub_FormClosed);
             this.panelOrderInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).EndInit();
