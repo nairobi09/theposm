@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static thepos.thePos;
 
 namespace thepos
@@ -401,11 +403,38 @@ namespace thepos
             PaymentEasy paymentEasy = new PaymentEasy();
             pEasy = paymentEasy;
 
+
+            // 나이스는 리더기 스캐너에서 읽는다. 
+            // 다른밴은 확인후 개발해야한다.
+
+            if (tBarcodeNo == "")
+            {
+                byte[] hwType = System.Text.Encoding.GetEncoding(1252).GetBytes("1");
+                byte[] recv_barcode = new byte[2048];
+
+                int ret2 = REQ_BARCODE(hwType, recv_barcode);
+
+                if (ret2 == 1)
+                {
+                    //정상
+                    tBarcodeNo = Encoding.Default.GetString(recv_barcode).Trim('\0');
+                }
+                else
+                {
+                    mErrorMsg = nice_resp_msg(ret2);
+                    return -1;
+                }
+
+            }
+
+
+
             string FS = ((char)28).ToString();
             string SendData = "";
 
-//          SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS +              FS + "" +  FS + FS + FS +      FS + "신용승인" + FS;
-            SendData = "0300" + FS + "10" + FS + "L" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + "00" +  FS + "" + FS + "" + FS + "" + FS + FS + FS + tBarcodeNo + FS +       FS + FS + FS + "" + FS + "" +         FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
+
+            //          SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS +              FS + "" +  FS + FS + FS +      FS + "신용승인" + FS;
+            SendData = "0300" + FS + "10" + FS + "L" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + "00" +  FS + "" + FS + "" + FS + "" + FS + FS + FS + tBarcodeNo.Trim() + FS +       FS + FS + FS + "" + FS + "" +         FS + FS + "PRO" + FS + "" + FS + "" + FS + FS + FS + "" + FS;
 
 
 
@@ -416,7 +445,7 @@ namespace thepos
 
             if (ret != 1)
             {
-                mErrorMsg = "NICE VCAT 오류.";
+                mErrorMsg = nice_resp_msg(ret);
                 return -1;
             }
 
@@ -641,5 +670,27 @@ namespace thepos
             return mNiceResponse;
         }
 
+
+        private String nice_resp_msg(int code)
+        {
+            String msg = "NICE VCAT 오류.";
+
+            if (code == -1) msg = "응답데이터 수신 실패";
+            else if (code == -3) msg = "연결된장비 응답 없음";
+            else if (code == -6) msg = "서명패드 리딩 타임아웃";
+            else if (code == -7) msg = "사용자 및 서명패드 요청 취소";
+            else if (code == -8) msg = "서명패드 미사용(환경설정에서 사용 필요)";
+            else if (code == -9) msg = "기타오류";
+            else if (code == -11) msg = "서명패드 PORT OEPN 오류";
+            else if (code == -17) msg = "중복 요청 불가";
+
+
+            return msg;
+
+
+        }
     }
+
+
+
 }

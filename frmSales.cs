@@ -1505,7 +1505,9 @@ namespace thepos
                 dcAmount += mOrderItemList[i].dc_amount;
             }
 
-            shop_code_list.Distinct().ToList();
+            //#  이거때문에 주문번호가 시리얼하지않고 중간에 빈다. 2024-03-07
+            //shop_code_list.Distinct().ToList();
+            shop_code_list = shop_code_list.Distinct().ToList();
 
 
             for (int i = 0; i < shop_code_list.Count; i++)
