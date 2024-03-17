@@ -3887,7 +3887,7 @@ namespace thepos
                         int tLenOptionNameAmt = encodelen(tOptionName) + encodelen(tOptionAmt);
 
 
-                        if (tLenOptionNameAmt > 26)
+                        if (tLenOptionNameAmt > 27)
                         {
                             if (encodelen(tOptionName) > 42)
                                 strPrintOrder += tOptionName + "\r\n";
@@ -4295,7 +4295,7 @@ namespace thepos
 
                             int tLenGoodsNameAmt = encodelen(tGoodsName) + encodelen(tGoodsAmt);
 
-                            if (tLenGoodsNameAmt > 26)
+                            if (tLenGoodsNameAmt > 27)
                             {
                                 strPrintOrder += tGoodsName + Space(42 - encodelen(tGoodsName)) + "\r\n";
                                 strPrintOrder += Space(18) + Space(9 - encodelen(tGoodsAmt)) + tGoodsAmt;
@@ -4340,7 +4340,7 @@ namespace thepos
                                         int tLenOptionNameAmt = encodelen(tOptionName) + encodelen(tOptionAmt);
 
                                         
-                                        if (tLenOptionNameAmt > 26)
+                                        if (tLenOptionNameAmt > 27)
                                         {
                                             if (encodelen(tOptionName) > 42) 
                                                 strPrintOrder += tOptionName + "\r\n";

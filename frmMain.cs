@@ -389,7 +389,7 @@ namespace thepos
                             }
                             else
                             {
-                                if (string.Compare(ver_server, ver_local) == 1)
+                                if (string.Compare(ver_server, ver_local) != 0)
                                 {
                                     sync_data_server_to_local();
                                     synclink_log("다운로드 : 원장 " + ver_local + "-> " + ver_server);

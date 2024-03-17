@@ -180,7 +180,8 @@ namespace thepos
                         String dcr_value = arr[i]["dcrValue"].ToString();
 
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = (i + 1).ToString();
+                        //lvItem.Text = (i + 1).ToString();
+                        lvItem.Text = arr[i]["shopOrderNo"].ToString();
                         lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(amt.ToString("N0"));
                         lvItem.SubItems.Add(cnt.ToString("N0"));

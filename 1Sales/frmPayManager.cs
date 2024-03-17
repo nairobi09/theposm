@@ -897,7 +897,7 @@ namespace thepos
 
 
 
-            String str_bill = make_bill_header() + make_bill_body(tTheNo, tran_type, "", pay_keep) + make_bill_trailer();
+            //String str_bill = make_bill_header() + make_bill_body(tTheNo, tran_type, "", pay_keep) + make_bill_trailer();
 
 
             frmDisplayBill f = new frmDisplayBill(tTheNo, tran_type, pay_keep);
