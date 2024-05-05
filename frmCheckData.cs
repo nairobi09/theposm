@@ -36,6 +36,7 @@ namespace thepos
             get_payment_card();
             get_payment_easy();
             get_payment_point();
+            get_payment_cert();
             get_ticket_flow();
 
         }
@@ -191,6 +192,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["amountCard"].ToString());
                         lvItem.SubItems.Add(arr[i]["amountEasy"].ToString());
                         lvItem.SubItems.Add(arr[i]["amountPoint"].ToString());
+                        lvItem.SubItems.Add(arr[i]["amountCert"].ToString());
 
                         lvItem.SubItems.Add(arr[i]["dcAmount"].ToString());
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
@@ -390,6 +392,48 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
 
                         lvwPaymentPoint.Items.Add(lvItem);
+                    }
+                }
+            }
+        }
+
+        private void get_payment_cert()
+        {
+            lvwPaymentCert.Items.Clear();
+
+            String sUrl = "paymentCert?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["paymentCerts"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Text = arr[i]["siteId"].ToString();
+                        lvItem.SubItems.Add(arr[i]["posNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["bizDt"].ToString());
+                        lvItem.SubItems.Add(arr[i]["theNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["refNo"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["payDate"].ToString());
+                        lvItem.SubItems.Add(arr[i]["payTime"].ToString());
+                        lvItem.SubItems.Add(arr[i]["payType"].ToString());
+                        lvItem.SubItems.Add(arr[i]["tranType"].ToString());
+                        lvItem.SubItems.Add(arr[i]["payClass"].ToString());
+                        lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["paySeq"].ToString());
+                        lvItem.SubItems.Add(arr[i]["tranDate"].ToString());
+                        lvItem.SubItems.Add(arr[i]["amount"].ToString());
+                        lvItem.SubItems.Add(arr[i]["couponNo"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
+                        lvItem.SubItems.Add(arr[i]["vanCode"].ToString());
+
+                        lvwPaymentCert.Items.Add(lvItem);
                     }
                 }
             }

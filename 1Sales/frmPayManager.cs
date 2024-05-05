@@ -104,7 +104,7 @@ namespace thepos
 
 
 
-        private void add_viewList(String t_theNo, String t_billNo, String t_payClass, int t_amountCash, int t_amountCard, int t_amountPoint, int t_amountEasy, String t_payDate, String t_payTime, String t_posNo, int t_netAmount, int t_dcAmount, String t_isCancel)
+        private void add_viewList(String t_theNo, String t_billNo, String t_payClass, int t_amountCash, int t_amountCard, int t_amountPoint, int t_amountEasy, int t_amountCert, String t_payDate, String t_payTime, String t_posNo, int t_netAmount, int t_dcAmount, String t_isCancel)
         {
             ListViewItem lvItem = new ListViewItem();
 
@@ -116,14 +116,16 @@ namespace thepos
             String is_card = "0";
             String is_point = "0";
             String is_easy = "0";
+            String is_cert = "0";
             String pay_keep = "";
 
             if (t_amountCash > 0) is_cash = "1";
             if (t_amountCard > 0) is_card = "1";
             if (t_amountPoint > 0) is_point = "1";
             if (t_amountEasy > 0) is_easy = "1";
+            if (t_amountCert > 0) is_cert = "1";
 
-            pay_keep = is_cash + is_card + is_point + is_easy;
+            pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
 
 
             lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
@@ -208,6 +210,7 @@ namespace thepos
                     int t_amountCard = convert_number(dr["amountCard"].ToString());
                     int t_amountPoint = convert_number(dr["amountPoint"].ToString());
                     int t_amountEasy = convert_number(dr["amountEasy"].ToString());
+                    int t_amountCert = convert_number(dr["amountCert"].ToString());
                     String t_payDate = dr["payDate"].ToString();
                     String t_payTime = dr["payTime"].ToString();
                     String t_posNo = dr["posNo"].ToString();
@@ -215,7 +218,7 @@ namespace thepos
                     int t_dcAmount = convert_number(dr["dcAmount"].ToString());
                     String t_isCancel = dr["isCancel"].ToString();
 
-                    add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
+                    add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_amountCert, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
                 }
                 dr.Close();
 
@@ -239,6 +242,7 @@ namespace thepos
                             int t_amountCard = convert_number(arr[i]["amountCard"].ToString());
                             int t_amountPoint = convert_number(arr[i]["amountPoint"].ToString());
                             int t_amountEasy = convert_number(arr[i]["amountEasy"].ToString());
+                            int t_amountCert = convert_number(arr[i]["amountCert"].ToString());
                             String t_payDate = arr[i]["payDate"].ToString();
                             String t_payTime = arr[i]["payTime"].ToString();
                             String t_posNo = arr[i]["posNo"].ToString();
@@ -246,7 +250,7 @@ namespace thepos
                             int t_dcAmount = convert_number(arr[i]["dcAmount"].ToString());
                             String t_isCancel = arr[i]["isCancel"].ToString();
 
-                            add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
+                            add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_amountCert, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
                         }
                     }
                     else
@@ -273,6 +277,7 @@ namespace thepos
             int t_amountCard = 0;
             int t_amountPoint = 0;
             int t_amountEasy = 0;
+            int t_amountCert = 0;
             String t_payDate = "";
             String t_payTime = "";
             String t_posNo = "";
@@ -294,6 +299,7 @@ namespace thepos
                     t_amountCard = convert_number(dr["amountCard"].ToString());
                     t_amountPoint = convert_number(dr["amountPoint"].ToString());
                     t_amountEasy = convert_number(dr["amountEasy"].ToString());
+                    t_amountCert = convert_number(dr["amountCert"].ToString());
                     t_payDate = dr["payDate"].ToString();
                     t_payTime = dr["payTime"].ToString();
                     t_posNo = dr["posNo"].ToString();
@@ -323,6 +329,7 @@ namespace thepos
                             t_amountCard = convert_number(arr[0]["amountCard"].ToString());
                             t_amountPoint = convert_number(arr[0]["amountPoint"].ToString());
                             t_amountEasy = convert_number(arr[0]["amountEasy"].ToString());
+                            t_amountCert = convert_number(arr[0]["amountCert"].ToString());
                             t_payDate = arr[0]["payDate"].ToString();
                             t_payTime = arr[0]["payTime"].ToString();
                             t_posNo = arr[0]["posNo"].ToString();
@@ -354,14 +361,16 @@ namespace thepos
             String is_card = "0";
             String is_point = "0";
             String is_easy = "0";
+            String is_cert = "0";
             String pay_keep = "";
 
             if (t_amountCash > 0) is_cash = "1";
             if (t_amountCard > 0) is_card = "1";
             if (t_amountPoint > 0) is_point = "1";
             if (t_amountEasy > 0) is_easy = "1";
+            if (t_amountCert > 0) is_cert = "1";
 
-            pay_keep = is_cash + is_card + is_point + is_easy;
+            pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
 
 
             lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
@@ -673,6 +682,7 @@ namespace thepos
             String pay_keep_card = pay_keep.Substring(1, 1);
             String pay_keep_point = pay_keep.Substring(2, 1);
             String pay_keep_easy = pay_keep.Substring(3, 1);
+            String pay_keep_cert = pay_keep.Substring(4, 1);
 
             String sUrl = "";
             String pay_name = "";
@@ -811,6 +821,42 @@ namespace thepos
                                 lvItem.Tag = "P";
                                 lvItem.Text = "(결제)";
                                 lvItem.SubItems.Add(pay_name);
+                                lvItem.SubItems.Add(pay_amount.ToString("N0"));
+                                lvItem.SubItems.Add("");
+                                lvwPayOrder.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+
+            //! 쿠폰인증
+            if (pay_keep_cert == "1")
+            {
+                sUrl = "paymentCert?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCerts"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                pay_name = get_pay_type_name(arr[i]["payType"].ToString());
+                                pay_amount = convert_number(arr[i]["amount"].ToString());
+                                String coupon_no = arr[i]["couponNo"].ToString();
+
+                                if (tranType == "C")
+                                    pay_amount = -pay_amount;
+
+                                //
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Tag = "P";
+                                lvItem.Text = "(결제)";
+                                lvItem.SubItems.Add(pay_name + " " + coupon_no);
                                 lvItem.SubItems.Add(pay_amount.ToString("N0"));
                                 lvItem.SubItems.Add("");
                                 lvwPayOrder.Items.Add(lvItem);

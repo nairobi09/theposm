@@ -279,7 +279,7 @@ namespace thepos
 
                     // 영수증 출력
                     // 안에서 여부를 물어보고 출력한다. 
-                    print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
+                    print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
 
 
                     if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
@@ -325,7 +325,11 @@ namespace thepos
             }
             else if (mVanCode == "KOVAN")
             {
-                paymentKovan p = new paymentKovan();
+                //
+            }
+            else if (mVanCode == "TOSS")
+            {
+                //
             }
 
             mPaymentEasy = mPaymentEasy2;

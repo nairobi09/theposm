@@ -104,7 +104,7 @@ namespace thepos._9SysAdmin
             tmTicketMedia = new String[3] { "", "BC", "RF" };
             tmTicketMediaText = new String[3] { "", "띠지", "팔찌" };
 
-            tmVanCode = new String[3] { "NICE", "KCP", "KOVAN" };
+            tmVanCode = new String[4] { "NICE", "KCP", "KOVAN", "TOSS" };
 
 
             tmCutoffType = new String[2] { "A", "M" };

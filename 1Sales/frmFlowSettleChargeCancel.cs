@@ -638,7 +638,7 @@ namespace thepos
                         // 영수증 출력
                         if (is_last_cancel_in_the_no(selected_the_no))
                         {
-                            print_bill(selected_the_no, "C", "", "1000", true); // cash
+                            print_bill(selected_the_no, "C", "", "10000", true); // cash
                         }
 
                     }
@@ -910,7 +910,7 @@ namespace thepos
             // 
             if (is_last_cancel_in_the_no(selected_the_no))
             {
-                print_bill(selected_the_no, "C", "", "1101", true);
+                print_bill(selected_the_no, "C", "", "11010", true);
             }
 
 

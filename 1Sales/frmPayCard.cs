@@ -378,9 +378,9 @@ namespace thepos
 
                 // 영수증 출력
                 if (mPaySeq == 1)
-                    print_bill(mTheNo, "A", "", "0100", true); // card
+                    print_bill(mTheNo, "A", "", "01000", true); // card
                 else
-                    print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
+                    print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
 
 
                 if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
@@ -598,9 +598,9 @@ namespace thepos
 
                     // 영수증 출력
                     if (mPaySeq == 1)
-                        print_bill(mTheNo, "A", "", "0100", true); // card
+                        print_bill(mTheNo, "A", "", "01000", true); // card
                     else
-                        print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
+                        print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
 
                     
                     // 정산-포인트사용분에 대해 취소마킹
@@ -736,6 +736,11 @@ namespace thepos
             {
                 paymentKovan p = new paymentKovan();
                 ret = p.requestKovanCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard2);
+            }
+            else if (mVanCode == "TOSS")
+            {
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, out mPaymentCard2);
             }
 
             mPaymentCard = mPaymentCard2;

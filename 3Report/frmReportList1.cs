@@ -25,6 +25,7 @@ namespace thepos
         double[] p_amount_cash = new double[32];
         double[] p_amount_card = new double[32];
         double[] p_amount_easy = new double[32];
+        double[] p_amount_cert = new double[32];
 
 
         int last_date = 0;
@@ -157,6 +158,7 @@ namespace thepos
                 p_amount_cash[i] = 0;
                 p_amount_card[i] = 0;
                 p_amount_easy[i] = 0;
+                p_amount_cert[i] = 0;
 
             }
 
@@ -221,6 +223,7 @@ namespace thepos
                             p_amount_cash[day_idx] = convert_number(arr[i]["amountCash"].ToString());
                             p_amount_card[day_idx] = convert_number(arr[i]["amountCard"].ToString());
                             p_amount_easy[day_idx] = convert_number(arr[i]["amountEasy"].ToString());
+                            p_amount_cert[day_idx] = convert_number(arr[i]["amountCert"].ToString());
                             p_net_amount[day_idx] = convert_number(arr[i]["netAmount"].ToString());
                         }
 
@@ -232,6 +235,7 @@ namespace thepos
                             Item.SubItems.Add(p_amount_cash[i].ToString("N0"));
                             Item.SubItems.Add(p_amount_card[i].ToString("N0"));
                             Item.SubItems.Add(p_amount_easy[i].ToString("N0"));
+                            Item.SubItems.Add(p_amount_cert[i].ToString("N0"));
                             Item.SubItems.Add(p_net_amount[i].ToString("N0"));
                             lvwList.Items.Add(Item);
                         }
@@ -379,7 +383,8 @@ namespace thepos
                 lvwList.Columns[1].Text = "현금금액";
                 lvwList.Columns[2].Text = "카드금액";
                 lvwList.Columns[3].Text = "간편금액";
-                lvwList.Columns[4].Text = "매출금액";
+                lvwList.Columns[4].Text = "쿠폰금액";
+                lvwList.Columns[5].Text = "매출금액";
             }
             else if (mode == "SHOP")
             {
@@ -387,6 +392,7 @@ namespace thepos
                 lvwList.Columns[2].Text = "상품금액";
                 lvwList.Columns[3].Text = "할인금액";
                 lvwList.Columns[4].Text = "매출금액";
+                lvwList.Columns[5].Text = "";
             }
 
         }

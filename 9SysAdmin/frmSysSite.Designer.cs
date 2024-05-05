@@ -154,7 +154,7 @@
             this.tbBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizAddr.Location = new System.Drawing.Point(98, 130);
             this.tbBizAddr.Name = "tbBizAddr";
-            this.tbBizAddr.Size = new System.Drawing.Size(331, 23);
+            this.tbBizAddr.Size = new System.Drawing.Size(423, 23);
             this.tbBizAddr.TabIndex = 54;
             this.tbBizAddr.TabStop = false;
             // 
@@ -298,7 +298,7 @@
             this.tbCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCallCenter.Location = new System.Drawing.Point(98, 104);
             this.tbCallCenter.Name = "tbCallCenter";
-            this.tbCallCenter.Size = new System.Drawing.Size(330, 23);
+            this.tbCallCenter.Size = new System.Drawing.Size(422, 23);
             this.tbCallCenter.TabIndex = 55;
             this.tbCallCenter.TabStop = false;
             // 

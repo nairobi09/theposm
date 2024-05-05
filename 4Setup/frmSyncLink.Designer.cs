@@ -51,6 +51,7 @@
             this.lblPaymentCnt = new System.Windows.Forms.Label();
             this.btnViewRecord = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDbLoad = new System.Windows.Forms.Button();
             this.lblOrderOptionItemCnt = new System.Windows.Forms.Label();
             this.lblOrderOptionItemTitle = new System.Windows.Forms.Label();
             this.lblTitle3 = new System.Windows.Forms.Label();
@@ -62,7 +63,8 @@
             this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.msg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSyncLink = new System.Windows.Forms.Button();
-            this.btnDbLoad = new System.Windows.Forms.Button();
+            this.lblPaymentCertCnt = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -373,6 +375,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblPaymentCertCnt);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnDbLoad);
             this.groupBox1.Controls.Add(this.lblOrderOptionItemCnt);
             this.groupBox1.Controls.Add(this.lblOrderOptionItemTitle);
@@ -403,6 +407,22 @@
             this.groupBox1.Size = new System.Drawing.Size(379, 618);
             this.groupBox1.TabIndex = 106;
             this.groupBox1.TabStop = false;
+            // 
+            // btnDbLoad
+            // 
+            this.btnDbLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDbLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDbLoad.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDbLoad.ForeColor = System.Drawing.Color.White;
+            this.btnDbLoad.Location = new System.Drawing.Point(137, 544);
+            this.btnDbLoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDbLoad.Name = "btnDbLoad";
+            this.btnDbLoad.Size = new System.Drawing.Size(211, 50);
+            this.btnDbLoad.TabIndex = 110;
+            this.btnDbLoad.TabStop = false;
+            this.btnDbLoad.Text = "수동 다운로드/업로드";
+            this.btnDbLoad.UseVisualStyleBackColor = false;
+            this.btnDbLoad.Click += new System.EventHandler(this.btnDbLoad_Click);
             // 
             // lblOrderOptionItemCnt
             // 
@@ -541,21 +561,33 @@
             this.btnSyncLink.UseVisualStyleBackColor = false;
             this.btnSyncLink.Click += new System.EventHandler(this.btnSyncLink_Click);
             // 
-            // btnDbLoad
+            // lblPaymentCertCnt
             // 
-            this.btnDbLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDbLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDbLoad.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDbLoad.ForeColor = System.Drawing.Color.White;
-            this.btnDbLoad.Location = new System.Drawing.Point(137, 544);
-            this.btnDbLoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDbLoad.Name = "btnDbLoad";
-            this.btnDbLoad.Size = new System.Drawing.Size(211, 50);
-            this.btnDbLoad.TabIndex = 110;
-            this.btnDbLoad.TabStop = false;
-            this.btnDbLoad.Text = "수동 다운로드/업로드";
-            this.btnDbLoad.UseVisualStyleBackColor = false;
-            this.btnDbLoad.Click += new System.EventHandler(this.btnDbLoad_Click);
+            this.lblPaymentCertCnt.BackColor = System.Drawing.Color.LightGray;
+            this.lblPaymentCertCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPaymentCertCnt.ForeColor = System.Drawing.Color.Blue;
+            this.lblPaymentCertCnt.Location = new System.Drawing.Point(134, 492);
+            this.lblPaymentCertCnt.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPaymentCertCnt.Name = "lblPaymentCertCnt";
+            this.lblPaymentCertCnt.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPaymentCertCnt.Size = new System.Drawing.Size(214, 30);
+            this.lblPaymentCertCnt.TabIndex = 112;
+            this.lblPaymentCertCnt.Text = "0";
+            this.lblPaymentCertCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.DarkGray;
+            this.label4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(26, 492);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(5);
+            this.label4.Size = new System.Drawing.Size(104, 30);
+            this.label4.TabIndex = 111;
+            this.label4.Text = "쿠폰인증";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmSyncLink
             // 
@@ -613,5 +645,7 @@
         private System.Windows.Forms.Label lblOrderOptionItemCnt;
         private System.Windows.Forms.Label lblOrderOptionItemTitle;
         private System.Windows.Forms.Button btnDbLoad;
+        private System.Windows.Forms.Label lblPaymentCertCnt;
+        private System.Windows.Forms.Label label4;
     }
 }

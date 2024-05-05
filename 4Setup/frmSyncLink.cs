@@ -150,6 +150,16 @@ namespace thepos
                 lblPaymentCardCnt.Text = dr["cnt"].ToString();
             }
             dr.Close();
+
+
+            //
+            sql = "SELECT count(*) as cnt FROM paymentCert";
+            dr = sql_select_local_db(sql);
+            if (dr.Read())
+            {
+                lblPaymentCertCnt.Text = dr["cnt"].ToString();
+            }
+            dr.Close();
         }
 
         private void btnSyncLink_Click(object sender, EventArgs e)

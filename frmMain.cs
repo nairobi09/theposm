@@ -779,6 +779,7 @@ namespace thepos
                 parameters["amountCard"] = dr["amountCard"].ToString();
                 parameters["amountEasy"] = dr["amountPoint"].ToString();
                 parameters["amountPoint"] = dr["amountEasy"].ToString();
+                parameters["amountCert"] = dr["amountCert"].ToString();
 
                 parameters["dcAmount"] = dr["dcAmount"].ToString();
                 parameters["isCancel"] = dr["isCancel"].ToString();
@@ -948,6 +949,71 @@ namespace thepos
 
 
 
+
+
+            // paymentCert
+            cnt = 0;
+            sql = "SELECT * FROM paymentCert";
+            dr = sql_select_local_db(sql);
+            while (dr.Read())
+            {
+                String seq_key = dr["seq_key"].ToString();
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = dr["siteId"].ToString();
+                parameters["posNo"] = dr["posNo"].ToString();
+                parameters["bizDt"] = dr["bizDt"].ToString();
+                parameters["theNo"] = dr["theNo"].ToString();
+                parameters["refNo"] = dr["refNo"].ToString();
+
+                parameters["payDate"] = dr["payDate"].ToString();
+                parameters["payTime"] = dr["payTime"].ToString();
+                parameters["payType"] = dr["payType"].ToString();
+                parameters["tranType"] = dr["tranType"].ToString();
+                parameters["payClass"] = dr["payClass"].ToString();
+
+                parameters["ticketNo"] = dr["ticketNo"].ToString();
+                parameters["paySeq"] = dr["paySeq"].ToString();
+                parameters["tranDate"] = dr["tranDate"].ToString();
+                parameters["amount"] = dr["amount"].ToString();
+
+                parameters["couponNo"] = dr["coupondNo"].ToString();
+
+                parameters["isCancel"] = dr["isCancel"].ToString();
+                parameters["vanCode"] = dr["vanCode"].ToString();
+
+                if (mRequestPost("paymentCert", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        sql = "DELETE FROM paymentCert WHERE seq_key = " + seq_key + "";
+                        int ret = sql_excute_local_db(sql);
+                        cnt++;
+                    }
+                    else
+                    {
+                        error_cnt++;
+                    }
+                }
+                else
+                {
+                    error_cnt++;
+                }
+            }
+            dr.Close();
+
+            upload_cnt += cnt;
+
+            //
+            synclink_log("업로드 : paymentCash = " + cnt);
+            Thread.Sleep(1000 * 1); // 1초
+
+
+
+
+
+
             if (error_cnt > 0)
             {
                 synclink_log("업로드 : 오류 = " + error_cnt);
@@ -1078,8 +1144,8 @@ namespace thepos
 
 
             // 데이터 체크 임시
-            //Form f = new frmCheckData();
-            //f.Show();
+            Form f = new frmCheckData();
+            f.Show();
 
         }
 

@@ -374,6 +374,8 @@ namespace thepos
             public String ticket_no;     // 충전, 사용인경우
             public String shop_order_no;
 
+            public String coupon_no;
+
             public String lv_memo;
         }
         public static List<MemOrderItem> listWaitingItem = new List<MemOrderItem>();
@@ -412,36 +414,7 @@ namespace thepos
             public String is_cancel;    // Y
         }
         public static List<dbOrder> listOrder = new List<dbOrder>();
-        /*
-        public struct dbOrderItem
-        {
-            public String site_id;
-            public String biz_dt;       // yyyyMMdd
-            public String pos_no;
-            public String the_no;       // 
-            public String ref_no;       // 
-            public String tran_type;
-            public String order_date;
-            public String order_time;
-            public String goods_code;         // 상품code(6) or 전체할인코드고정("EDC")
-            public String goods_name;         // 상품name or 전체할인명("할인")
-            public int cnt;
-            public int amt;
-            public String ticket;
-            public String taxfree;
-            public int dc_amount;       // 실할인금액
-            public String dcr_type;     // type - "A" : 정액, "R" : 정율 
-            public String dcr_des;      // 전체"E", 선택"S"
-            public int dcr_value;       // 할인금액 or 할인율
-            public String pay_class;
-            public String ticket_no;
-            public String is_cancel;    // Y
-            public String shop_code;
-            public String shop_order_no;
-            public String option_no;
-        }
-        public static List<dbOrderItem> listOrderItem = new List<dbOrderItem>();
-        */
+
 
 
         // 서버
@@ -462,6 +435,7 @@ namespace thepos
             public int amount_card;
             public int amount_easy;
             public int amount_point;
+            public int amount_cert;
             public int dc_amount;       // 할인금액
             public String is_cancel;   // 취소여부 : 미취소"", 취소중0, 취소1
         }
@@ -593,6 +567,28 @@ namespace thepos
         public static List<PaymentPoint> mPaymentPoints = new List<PaymentPoint>();
 
 
+        public struct PaymentCert
+        {
+            public String site_id;
+            public String biz_dt;  // yyyyMMdd
+            public string pos_no;
+            public String the_no;   // 결제단위
+            public String ref_no;   // 입장단위
+            public String pay_date;
+            public String pay_time;
+            public String pay_type;     // 결제구분 : 신용카드(C1), 임의등록(C0)
+            public String tran_type;    // 승인 A 취소 C
+            public String pay_class;
+            public String ticket_no;
+
+            public int pay_seq;
+            public String tran_date;
+            public int amount;          // 결제금액
+            public String coupon_no;    // 
+            public String is_cancel;    // 취소여부
+            public String van_code;
+        }
+        public static List<PaymentCert> mPaymentCerts = new List<PaymentCert>();
 
 
         public struct Cert
@@ -738,11 +734,12 @@ namespace thepos
         public static String get_pay_type_group_name(String group)
         {
             //is_cash + is_card + is_point + is_easy;
-            if (group == "1000") return "현금";
-            else if (group == "0100") return "카드";
-            else if (group == "0010") return "포인트";
-            else if (group == "0001") return "간편";
-            else if (group == "0000") return "";
+            if (group == "10000") return "현금";
+            else if (group == "01000") return "카드";
+            else if (group == "00100") return "포인트";
+            else if (group == "00010") return "간편";
+            else if (group == "00001") return "쿠폰";
+            else if (group == "00000") return "";
             else return "복합";
         }
 
@@ -758,6 +755,7 @@ namespace thepos
             else if (code == "PA") name = "포인트선불";
             else if (code == "PD") name = "포인트후불";
             else if (code == "E1") name = "간편";
+            else if (code == "M0") name = "쿠폰";
             else name = code;
 
             return name;

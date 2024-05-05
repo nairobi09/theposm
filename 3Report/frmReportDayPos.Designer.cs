@@ -37,6 +37,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
+            this.amount_cert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -46,7 +47,8 @@
             this.net_amount,
             this.amount_cash,
             this.amount_card,
-            this.amount_easy});
+            this.amount_easy,
+            this.amount_cert});
             this.lvwList.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -125,6 +127,12 @@
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 88;
             // 
+            // amount_cert
+            // 
+            this.amount_cert.Text = "쿠폰금액";
+            this.amount_cert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amount_cert.Width = 90;
+            // 
             // frmReportDayPos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -152,5 +160,6 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.DateTimePicker dtpBizDate;
+        private System.Windows.Forms.ColumnHeader amount_cert;
     }
 }

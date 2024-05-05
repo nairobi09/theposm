@@ -1210,7 +1210,7 @@ namespace thepos
 
 
 
-        private static Boolean isPreCheck(out String error_msg)
+        public static Boolean isPreCheck(out String error_msg)
         {
             error_msg = "";
 
@@ -1941,17 +1941,19 @@ namespace thepos
                 parameters["netAmount"] = amount + "";
 
 
-                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0;
+                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0, amount_cert = 0;
 
                 if (payType == "Cash") amount_cash = amount;
                 else if (payType == "Card") amount_card = amount;
                 else if (payType == "Easy") amount_easy = amount;
                 else if (payType == "Point") amount_point = amount;
+                else if (payType == "Cert") amount_cert = amount;
 
                 parameters["amountCash"] = amount_cash + "";
                 parameters["amountCard"] = amount_card + "";
                 parameters["amountEasy"] = amount_easy + "";
                 parameters["amountPoint"] = amount_point + "";
+                parameters["amountCert"] = amount_cert + "";
 
                 parameters["dcAmount"] = dcAmount + "";
                 parameters["isCancel"] = "";
@@ -1982,6 +1984,7 @@ namespace thepos
                 int amount_card = 0;
                 int amount_easy = 0;
                 int amount_point = 0;
+                int amount_cert = 0;
 
 
                 // GET
@@ -2005,6 +2008,7 @@ namespace thepos
                         amount_card = convert_number(arr[0]["amountCard"].ToString());
                         amount_easy = convert_number(arr[0]["amountEasy"].ToString());
                         amount_point = convert_number(arr[0]["amountPoint"].ToString());
+                        amount_cert = convert_number(arr[0]["amountCert"].ToString());
                     }
                     else
                     {
@@ -2024,7 +2028,7 @@ namespace thepos
                 else if (payType == "Card") amount_card += amount;
                 else if (payType == "Easy") amount_easy += amount;
                 else if (payType == "Point") amount_point += amount;
-
+                else if (payType == "Cert") amount_cert += amount;
 
 
                 //
@@ -2039,6 +2043,7 @@ namespace thepos
                 parameters["amountCard"] = amount_card + "";
                 parameters["amountEasy"] = amount_easy + "";
                 parameters["amountPoint"] = amount_point + "";
+                parameters["amountCert"] = amount_cert + "";
 
                 if (mRequestPatch("payment", parameters))
                 {
@@ -3369,7 +3374,7 @@ namespace thepos
         }
 
 
-        private bool get_amounts(out int t과세금액, out int t면세금액)
+        public static bool get_amounts(out int t과세금액, out int t면세금액)
         { 
             // 결제진행시 과세 면세 부가세 계산을 위해서..
             // 주문금액 과세금액 부가세액 면세금액
@@ -3773,6 +3778,8 @@ namespace thepos
             String pay_keep_cash = pay_keep.Substring(0, 1);
             String pay_keep_card = pay_keep.Substring(1, 1);
 
+            String pay_keep_cert = pay_keep.Substring(4, 1); //?# 쿠폰인증
+
 
             //!
             SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orders WHERE theNo='" + tTheNo + "'");
@@ -4169,6 +4176,48 @@ namespace thepos
             }
 
 
+            //! 쿠폰
+            if (pay_keep_cert == "1")
+            {
+                dr = sql_select_local_db("SELECT * FROM paymentCert WHERE theNo='" + tTheNo + "'");
+                while (dr.Read())
+                {
+                    if (dr["tranType"].ToString() == tranType)
+                    {
+                        if (dr["payType"].ToString() == "M0") tStr = "쿠폰";
+
+                        if (tranType == "C")
+                        {
+                            tStr += "취소";
+                        }
+
+                        int amount = convert_number(dr["amount"].ToString());
+
+
+                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                        if (tranType == "C")
+                            tStr = (-amount).ToString("N0");
+                        else
+                            tStr = amount.ToString("N0");
+
+                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                        strPrintPayment += "\r\n";
+
+
+                        tStr = dr["vanCode"].ToString();
+                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                        tStr = dr["couponNo"].ToString();
+                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                        strPrintPayment += "\r\n";
+
+                        strPrintPayment += "\r\n";
+
+                    }
+                }
+            }
+
 
 
             strPrintPayment += "------------------------------------------\r\n";  // 42
@@ -4199,6 +4248,7 @@ namespace thepos
             String pay_keep_card = pay_keep.Substring(1, 1);
             String pay_keep_point = pay_keep.Substring(2, 1);
             String pay_keep_easy = pay_keep.Substring(3, 1);
+            String pay_keep_cert = pay_keep.Substring(4, 1);   //?# 쿠폰인증
 
 
             //!
@@ -4793,6 +4843,60 @@ namespace thepos
                     }
                 }
             }
+
+            //?#  쿠폰인증 추가개발 필요
+            if (pay_keep_cert == "1")
+            {
+                sUrl = "paymentCert?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCerts"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["tranType"].ToString() == tranType)
+                            {
+                                tStr = "";
+                                if (arr[i]["payType"].ToString() == "M0") tStr = "쿠폰";
+
+                                if (tranType == "C")
+                                {
+                                    tStr += "취소";
+                                }
+
+                                int amount = convert_number(arr[i]["amount"].ToString());
+
+
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                if (tranType == "C")
+                                    tStr = (-amount).ToString("N0");
+                                else
+                                    tStr = amount.ToString("N0");
+
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+
+
+                                tStr = arr[i]["vanCode"].ToString();
+                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+
+                                tStr = arr[i]["couponNo"].ToString();
+                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                strPrintPayment += "\r\n";
+
+                                strPrintPayment += "\r\n";
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
 
 
 
@@ -5838,6 +5942,11 @@ namespace thepos
                 paymentKovan p = new paymentKovan();
                 ret = p.requestKovanCardCancel(pCardAuth, out pCardCancel);
             }
+            else if (mVanCode == "TOSS")
+            {
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCardCancel(pCardAuth, out pCardCancel);
+            }
 
 
             return ret;
@@ -5865,6 +5974,11 @@ namespace thepos
                 paymentKovan p = new paymentKovan();
                 ret = p.requestKovanCashCancel(paymentCash, out pCashCancel);
             }
+            else if (mVanCode == "TOSS")
+            {
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCashCancel(paymentCash, out pCashCancel);
+            }
 
             return ret;
         }
@@ -5888,13 +6002,33 @@ namespace thepos
             }
             else if (mVanCode == "KOVAN")
             {
-                paymentKovan p = new paymentKovan();
-                //   ret = p.requestKovanEasyCancel(paymentEasy, out pEasyCancel);
+                //
+
+            }
+            else if (mVanCode == "TOSS")
+            {
+                // 
+
             }
 
             return ret;
         }
 
+
+        public static int requestCertCancel(PaymentCert paymentCert, out PaymentCert pCertCancel)
+        {
+            int ret = 0;
+            PaymentCert certCancel = new PaymentCert();
+            pCertCancel = certCancel;
+
+            if (mVanCode == "PM")
+            {
+                couponPM p = new couponPM();
+                ret = p.requestPmCertCancel(paymentCert.coupon_no);
+            }
+
+            return ret;
+        }
 
         public static void display_error_msg(string msg)
         {

@@ -158,7 +158,7 @@ namespace thepos._9SysAdmin
             parameters["networkPrinterName"] = tbNetworkPrinterName.Text;
 
 
-            if (mRequestPost("shop", parameters))
+            if (mRequestPost("shop", parameters))  //? Add시 2개필들 누락되는것같음. 서버쪽 확인필요
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {

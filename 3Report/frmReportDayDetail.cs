@@ -87,12 +87,14 @@ namespace thepos
                         String is_card = "0";
                         String is_point = "0";
                         String is_easy = "0";
+                        String is_cert = "0";
                         String pay_keep = "";
                         if (convert_number(arr[i]["amountCash"].ToString()) > 0) is_cash = "1";
                         if (convert_number(arr[i]["amountCard"].ToString()) > 0) is_card = "1";
                         if (convert_number(arr[i]["amountPoint"].ToString()) > 0) is_point = "1";
                         if (convert_number(arr[i]["amountEasy"].ToString()) > 0) is_easy = "1";
-                        pay_keep = is_cash + is_card + is_point + is_easy;
+                        if (convert_number(arr[i]["amountCert"].ToString()) > 0) is_cert = "1";
+                        pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
                         lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
 
                         lvItem.SubItems.Add((convert_number(arr[i]["dcAmount"].ToString())).ToString("N0"));
@@ -262,6 +264,7 @@ namespace thepos
             String pay_keep_card = pay_keep.Substring(1, 1);
             String pay_keep_point = pay_keep.Substring(2, 1);
             String pay_keep_easy = pay_keep.Substring(3, 1);
+            String pay_keep_cert = pay_keep.Substring(4, 1);
 
 
             if (pay_keep_cash == "1")
@@ -427,7 +430,6 @@ namespace thepos
                     MessageBox.Show("시스템오류. paymentEasy\n\n" + mErrorMsg, "thepos");
                     return;
                 }
-
             }
 
             if (pay_keep_point == "1")
@@ -474,6 +476,52 @@ namespace thepos
                     return;
                 }
 
+            }
+
+
+            if (pay_keep_cert == "1")
+            {
+                sUrl = "paymentCert?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCerts"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            ListViewItem lvItem = new ListViewItem();
+                            lvItem.Text = (++seq_no).ToString();
+                            lvItem.SubItems.Add(get_tran_type_name(arr[i]["tranType"].ToString()));
+                            lvItem.SubItems.Add(get_pay_type_name(arr[i]["payType"].ToString()));
+                            lvItem.SubItems.Add(convert_number(arr[i]["amount"].ToString()).ToString("N0"));
+                            lvItem.SubItems.Add(arr[i]["couponNo"].ToString());
+                            lvItem.SubItems.Add("");
+                            lvItem.SubItems.Add(arr[i]["vanCode"].ToString());
+                            lvItem.SubItems.Add("");
+
+                            if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
+                                lvItem.SubItems.Add("취소됨");
+                            else if (arr[i]["isCancel"].ToString() == "0")
+                                lvItem.SubItems.Add("취소중");
+                            else
+                                lvItem.SubItems.Add("");
+
+                            lvwPayment.Items.Add(lvItem);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("데이터 오류, paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentEasy\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
             }
 
         }

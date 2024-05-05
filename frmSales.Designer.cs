@@ -606,7 +606,7 @@ namespace thepos
             this.btnFlowCert.Size = new System.Drawing.Size(124, 48);
             this.btnFlowCert.TabIndex = 0;
             this.btnFlowCert.TabStop = false;
-            this.btnFlowCert.Text = "인증";
+            this.btnFlowCert.Text = "쿠폰";
             this.btnFlowCert.UseVisualStyleBackColor = false;
             this.btnFlowCert.Click += new System.EventHandler(this.btnFlowCert_Click);
             // 

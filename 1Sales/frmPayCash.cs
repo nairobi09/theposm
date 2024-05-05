@@ -343,9 +343,9 @@ namespace thepos
 
                 // 영수증 출력
                 if (mPaySeq == 1)
-                    print_bill(mTheNo, "A", "", "1000", true); // cash
+                    print_bill(mTheNo, "A", "", "10000", true); // cash
                 else
-                    print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
+                    print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
 
 
 
@@ -566,9 +566,9 @@ namespace thepos
 
                     // 영수증 출력
                     if (mPaySeq == 1)
-                        print_bill(mTheNo, "A", "", "1000", true); // cash
+                        print_bill(mTheNo, "A", "", "10000", true); // cash
                     else
-                        print_bill(mTheNo, "A", "", "1101", true); // cash card point easy
+                        print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
 
 
                     // 정산-포인트사용분에 대해 취소마킹
@@ -691,7 +691,11 @@ namespace thepos
                 paymentKovan p = new paymentKovan();
                 ret = p.requestKovanCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, out mPaymentCash2);
             }
-
+            else if (mVanCode == "TOSS")
+            {
+                paymentToss p = new paymentToss();
+                ret = p.requestTossCashAuth(tAmount, receipt_type, "", out mPaymentCash2);
+            }
 
 
             mPaymentCash = mPaymentCash2;

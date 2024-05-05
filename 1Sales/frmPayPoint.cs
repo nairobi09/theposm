@@ -212,7 +212,7 @@ namespace thepos
 
             // 영수증 출력
             // 안에서 여부를 물어보고 출력한다. 
-            print_bill(mTheNo, "A", "", "0010", true); // cash card point easy
+            print_bill(mTheNo, "A", "", "00100", true); // cash card point easy
 
 
 

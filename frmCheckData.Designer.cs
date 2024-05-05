@@ -68,6 +68,7 @@
             this.oi_isCancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.oi_shopCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ol_shopOrderNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ol_optionNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwPayment = new System.Windows.Forms.ListView();
             this.p_siteId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_posNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -226,7 +227,26 @@
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label10 = new System.Windows.Forms.Label();
-            this.ol_optionNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvwPaymentCert = new System.Windows.Forms.ListView();
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label11 = new System.Windows.Forms.Label();
+            this.p_amountCert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -488,6 +508,11 @@
             // 
             this.ol_shopOrderNo.Text = "shopOrderNo";
             // 
+            // ol_optionNo
+            // 
+            this.ol_optionNo.Text = "optionNo";
+            this.ol_optionNo.Width = 120;
+            // 
             // lvwPayment
             // 
             this.lvwPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -508,6 +533,7 @@
             this.p_amountCard,
             this.p_amountEasy,
             this.p_amountPoint,
+            this.p_amountCert,
             this.p_dcAmount,
             this.p_isCancel});
             this.lvwPayment.FullRowSelect = true;
@@ -567,22 +593,27 @@
             // p_netAmount
             // 
             this.p_netAmount.Text = "netAmount";
+            this.p_netAmount.Width = 80;
             // 
             // p_amountCash
             // 
             this.p_amountCash.Text = "amountCash";
+            this.p_amountCash.Width = 80;
             // 
             // p_amountCard
             // 
             this.p_amountCard.Text = "amountCard";
+            this.p_amountCard.Width = 80;
             // 
             // p_amountEasy
             // 
             this.p_amountEasy.Text = "amountEasy";
+            this.p_amountEasy.Width = 80;
             // 
             // p_amountPoint
             // 
             this.p_amountPoint.Text = "amountPoint";
+            this.p_amountPoint.Width = 80;
             // 
             // p_dcAmount
             // 
@@ -1218,7 +1249,7 @@
             this.lvwTicketFlow.FullRowSelect = true;
             this.lvwTicketFlow.GridLines = true;
             this.lvwTicketFlow.HideSelection = false;
-            this.lvwTicketFlow.Location = new System.Drawing.Point(43, 1143);
+            this.lvwTicketFlow.Location = new System.Drawing.Point(43, 1262);
             this.lvwTicketFlow.Name = "lvwTicketFlow";
             this.lvwTicketFlow.Size = new System.Drawing.Size(1671, 104);
             this.lvwTicketFlow.TabIndex = 16;
@@ -1313,7 +1344,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 1171);
+            this.label9.Location = new System.Drawing.Point(5, 1291);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 12);
             this.label9.TabIndex = 15;
@@ -1429,15 +1460,132 @@
             this.label10.Text = "order\r\nOption\r\nItem";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ol_optionNo
+            // lvwPaymentCert
             // 
-            this.ol_optionNo.Text = "optionNo";
-            this.ol_optionNo.Width = 120;
+            this.lvwPaymentCert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwPaymentCert.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader20,
+            this.columnHeader21,
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader25,
+            this.columnHeader26,
+            this.columnHeader27,
+            this.columnHeader28,
+            this.columnHeader29,
+            this.columnHeader31,
+            this.columnHeader34,
+            this.columnHeader35});
+            this.lvwPaymentCert.FullRowSelect = true;
+            this.lvwPaymentCert.GridLines = true;
+            this.lvwPaymentCert.HideSelection = false;
+            this.lvwPaymentCert.Location = new System.Drawing.Point(43, 1142);
+            this.lvwPaymentCert.Name = "lvwPaymentCert";
+            this.lvwPaymentCert.Size = new System.Drawing.Size(1671, 115);
+            this.lvwPaymentCert.TabIndex = 20;
+            this.lvwPaymentCert.UseCompatibleStateImageBehavior = false;
+            this.lvwPaymentCert.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "siteId";
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "posNo";
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "bizDt";
+            this.columnHeader17.Width = 100;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "theNo";
+            this.columnHeader18.Width = 140;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "refNo";
+            this.columnHeader19.Width = 140;
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Text = "payDate";
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Text = "payTime";
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Text = "payType";
+            this.columnHeader22.Width = 80;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Text = "tran";
+            this.columnHeader23.Width = 40;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Text = "payClass";
+            // 
+            // columnHeader26
+            // 
+            this.columnHeader26.Text = "ticketNo";
+            this.columnHeader26.Width = 150;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.Text = "paySeq";
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Text = "tranDate";
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Text = "amount";
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Text = "couponNo";
+            // 
+            // columnHeader34
+            // 
+            this.columnHeader34.Text = "isCancel";
+            // 
+            // columnHeader35
+            // 
+            this.columnHeader35.Text = "vanCode";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 1146);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 12);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Cert";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // p_amountCert
+            // 
+            this.p_amountCert.Text = "amountCert";
             // 
             // frmCheckData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1726, 1253);
+            this.ClientSize = new System.Drawing.Size(1726, 1373);
+            this.Controls.Add(this.lvwPaymentCert);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.lvwOrderIOptiontem);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lvwOrder);
@@ -1667,5 +1815,25 @@
         private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ColumnHeader ol_optionNo;
+        private System.Windows.Forms.ListView lvwPaymentCert;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
+        private System.Windows.Forms.ColumnHeader columnHeader21;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.ColumnHeader columnHeader26;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader31;
+        private System.Windows.Forms.ColumnHeader columnHeader34;
+        private System.Windows.Forms.ColumnHeader columnHeader35;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ColumnHeader p_amountCert;
     }
 }

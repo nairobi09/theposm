@@ -117,7 +117,6 @@ namespace thepos
                         MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
                     }
                 }
-
             }
 
             if (pay_keep.Substring(1, 1) == "1") // card
@@ -193,6 +192,38 @@ namespace thepos
                 else
                 {
                     MessageBox.Show("시스템오류. paymentEasy\n\n" + mErrorMsg, "thepos");
+                }
+            }
+
+            if (pay_keep.Substring(4, 1) == "1") // cert
+            {
+                //#
+                if (mTheMode == "Local")
+                {
+                    string sql = "SELECT * FROM paymentCert WHERE siteId='" + mSiteId + "' AND bizDt='" + selected_biz_date + "' AND theNo='" + the_no + "' AND tranType='A'";
+                    SQLiteDataReader dr = sql_select_local_db(sql);
+                    add_listview_local(dr);
+                    dr.Close();
+                }
+                else
+                {
+                    String url = "paymentCert?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
+                    if (mRequestGet(url))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                            String data = mObj["paymentCerts"].ToString();
+                            add_listview_server(data);
+                        }
+                        else
+                        {
+                            MessageBox.Show("결제 데이터 오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
+                    }
                 }
             }
 
@@ -722,7 +753,7 @@ namespace thepos
                 // 영수증인쇄
                 if (is_cancel_stat == "Y")
                 {
-                    print_bill(pCardAuth.the_no, "C", "", "1101", true);
+                    print_bill(pCardAuth.the_no, "C", "", "11010", true);
                 }
 
             }
@@ -1060,7 +1091,7 @@ namespace thepos
                 // 영수증인쇄
                 if (is_cancel_stat == "Y")
                 {
-                    print_bill(pCashAuth.the_no, "C", "", "1101", true);
+                    print_bill(pCashAuth.the_no, "C", "", "11010", true);
                 }
 
             }
@@ -1261,7 +1292,7 @@ namespace thepos
                         // 영수증인쇄
                         if (is_cancel_stat == "Y")
                         {
-                            print_bill(pEasyAuth.the_no, "C", "", "1101", true);
+                            print_bill(pEasyAuth.the_no, "C", "", "11010", true);
                         }
 
                     }
@@ -1408,13 +1439,190 @@ namespace thepos
                     // 영수증인쇄
                     if (is_cancel_stat == "Y")
                     {
-                        print_bill(pPointAuth.the_no, "C", "", "0010", true); // 
+                        print_bill(pPointAuth.the_no, "C", "", "00100", true); // 
                     }
 
                 }
 
             }
+            else if (pay_type == "M0")
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                PaymentCert pCertAuth = new PaymentCert();
 
+                String sUrl = "paymentCert?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A&paySeq=" + pay_seq;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["paymentCerts"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count == 1)
+                        {
+                            pCertAuth.site_id = arr[0]["siteId"].ToString();
+                            pCertAuth.biz_dt = arr[0]["bizDt"].ToString();
+                            pCertAuth.pos_no = arr[0]["posNo"].ToString();
+                            pCertAuth.the_no = arr[0]["theNo"].ToString();
+                            pCertAuth.ref_no = arr[0]["refNo"].ToString();
+
+                            pCertAuth.pay_date = arr[0]["payDate"].ToString();
+                            pCertAuth.pay_time = arr[0]["payTime"].ToString();
+                            pCertAuth.pay_type = arr[0]["payType"].ToString();
+                            pCertAuth.tran_type = arr[0]["tranType"].ToString();
+                            pCertAuth.pay_class = arr[0]["payClass"].ToString();
+
+                            pCertAuth.ticket_no = arr[0]["ticketNo"].ToString();
+                            pCertAuth.pay_seq = convert_number(arr[0]["paySeq"].ToString());
+                            pCertAuth.tran_date = arr[0]["tranDate"].ToString();
+                            pCertAuth.amount = convert_number(arr[0]["amount"].ToString());
+
+                            pCertAuth.coupon_no = arr[0]["couponNo"].ToString();
+                            pCertAuth.van_code = arr[0]["vanCode"].ToString();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("결제자료 오류. paymentCert\n\n", "thepos");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("결제자료 오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+
+                // 티켓 확인 및 취소
+                if (mTheMode == "Local")
+                {
+                    // PASS
+                }
+                else
+                {
+                    int ret = CheckCancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, "");
+                    if (ret < 0)
+                    {
+                        return;
+                    }
+                }
+
+
+
+
+                if (pCertAuth.pay_type == "M0")
+                {
+                    //
+                    PaymentCert pCertCancel = new PaymentCert();
+
+                    if (requestCertCancel(pCertAuth, out pCertCancel) != 0)
+                    {
+                        display_error_msg(mErrorMsg);
+                    }
+                    else
+                    {
+                        cancel_orders(pay_seq, pCertAuth.amount);
+
+                        cancel_payment(pay_seq, pCertAuth.amount, pay_type, is_cancel_stat);
+
+
+                        parameters["siteId"] = mSiteId;
+                        parameters["posNo"] = mPosNo;
+                        parameters["bizDt"] = mBizDate;
+                        parameters["theNo"] = pCertAuth.the_no;
+                        parameters["refNo"] = pCertAuth.ref_no;
+                        parameters["payDate"] = get_today_date();
+                        parameters["payTime"] = get_today_time();
+                        parameters["payType"] = "M0";       // 결제구분 : , 쿠폰(M0)
+                        parameters["tranType"] = "C";       // 승인 A 취소 C
+                        parameters["payClass"] = pCertAuth.pay_class;
+                        parameters["ticketNo"] = pCertAuth.ticket_no;
+                        parameters["paySeq"] = pCertAuth.pay_seq + "";
+                        parameters["tranDate"] = pCertCancel.tran_date;
+                        parameters["amount"] = pCertAuth.amount + "";
+                        parameters["couponNo"] = pCertAuth.coupon_no;
+                        parameters["isCancel"] = "Y";
+                        parameters["vanCode"] = pCertAuth.van_code;
+
+                        if (mRequestPost("paymentCert", parameters))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+                                is_apply = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("시스템오류 paymentEasy\n\n" + mErrorMsg, "thepos");
+                            return;
+                        }
+
+
+
+                        //! 승인건에 취소마킹
+                        parameters.Clear();
+                        parameters["siteId"] = mSiteId;
+                        parameters["bizDt"] = selected_biz_date;
+                        parameters["theNo"] = pCertAuth.the_no;
+                        parameters["payType"] = "M0";
+                        parameters["tranType"] = "A";
+                        parameters["paySeq"] = pCertAuth.pay_seq + "";
+                        parameters["isCancel"] = "Y";
+
+                        if (mRequestPatch("paymentCert", parameters))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+                                is_apply = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
+                            return;
+                        }
+
+
+                        SetDisplayAlarm("I", "쿠폰사용 취소.");
+
+
+                        // 티켓 취소
+                        if (mTheMode == "Local")
+                        {
+                            // PASS
+                        }
+                        else
+                        {
+                            CancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, pCertAuth.ticket_no, pCertAuth.amount);
+                        }
+
+                        // 영수증인쇄
+                        if (is_cancel_stat == "Y")
+                        {
+                            print_bill(pCertAuth.the_no, "C", "", "00001", true);
+                        }
+
+                    }
+                }
+
+            }
 
 
             if (is_cancel_stat == "Y")
@@ -1896,7 +2104,6 @@ namespace thepos
                 }
             }
 
-
         }
         
 
@@ -1929,6 +2136,7 @@ namespace thepos
                     payment.amount_card = convert_number(dr["amountCard"].ToString());
                     payment.amount_easy = convert_number(dr["amountEasy"].ToString());
                     payment.amount_point = convert_number(dr["amountPoint"].ToString());
+                    payment.amount_cert = convert_number(dr["amountCert"].ToString());
 
                     payment.dc_amount = convert_number(dr["dcAmount"].ToString());
                     payment.is_cancel = dr["isCancel"].ToString();
@@ -1973,6 +2181,7 @@ namespace thepos
                             payment.amount_card = convert_number(arr[0]["amountCard"].ToString());
                             payment.amount_easy = convert_number(arr[0]["amountEasy"].ToString());
                             payment.amount_point = convert_number(arr[0]["amountPoint"].ToString());
+                            payment.amount_cert = convert_number(arr[0]["amountCert"].ToString());
 
                             payment.dc_amount = convert_number(arr[0]["dcAmount"].ToString());
                             payment.is_cancel = arr[0]["isCancel"].ToString();

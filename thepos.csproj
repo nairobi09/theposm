@@ -162,6 +162,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="van\Toss\paymentToss.cs" />
+    <Compile Include="van\PM\couponPM.cs" />
     <Compile Include="frmDevAdmin.cs">
       <SubType>Form</SubType>
     </Compile>

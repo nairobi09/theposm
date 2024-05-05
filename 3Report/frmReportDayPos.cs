@@ -56,11 +56,13 @@ namespace thepos
             int cash_amt = 0;
             int card_amt = 0;
             int easy_amt = 0;
+            int cert_amt = 0;
 
             int tot_net_amt = 0;
             int tot_cash_amt = 0;
             int tot_card_amt = 0;
             int tot_easy_amt = 0;
+            int tot_cert_amt = 0;
 
 
 
@@ -83,6 +85,7 @@ namespace thepos
                         cash_amt = convert_number(arr[i]["amountCash"].ToString());
                         card_amt = convert_number(arr[i]["amountCard"].ToString());
                         easy_amt = convert_number(arr[i]["amountEasy"].ToString());
+                        cert_amt = convert_number(arr[i]["amountCert"].ToString());
 
                         ListViewItem Item = new ListViewItem();
                         Item.Text = arr[i]["posNo"].ToString();
@@ -90,12 +93,14 @@ namespace thepos
                         Item.SubItems.Add(cash_amt.ToString("N0"));
                         Item.SubItems.Add(card_amt.ToString("N0"));
                         Item.SubItems.Add(easy_amt.ToString("N0"));
+                        Item.SubItems.Add(cert_amt.ToString("N0"));
 
                         Item.ForeColor = Color.Gray;
                         Item.SubItems[1].ForeColor = Color.Gray;
                         Item.SubItems[2].ForeColor = Color.Gray;
                         Item.SubItems[3].ForeColor = Color.Gray;
                         Item.SubItems[4].ForeColor = Color.Gray;
+                        Item.SubItems[5].ForeColor = Color.Gray;
 
                         lvwList.Items.Add(Item);
 
@@ -103,6 +108,7 @@ namespace thepos
                         tot_cash_amt += cash_amt;
                         tot_card_amt += card_amt;
                         tot_easy_amt += easy_amt;
+                        tot_cert_amt += cert_amt;
                     }
 
                     // 합계 표시
@@ -112,6 +118,7 @@ namespace thepos
                     tItem.SubItems.Add(tot_cash_amt.ToString("N0"));
                     tItem.SubItems.Add(tot_card_amt.ToString("N0"));
                     tItem.SubItems.Add(tot_easy_amt.ToString("N0"));
+                    tItem.SubItems.Add(tot_cert_amt.ToString("N0"));
                     lvwList.Items.Add(tItem);
 
                 }

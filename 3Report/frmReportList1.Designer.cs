@@ -41,6 +41,7 @@
             this.c4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tvwList = new System.Windows.Forms.TreeView();
             this.lblListPath = new System.Windows.Forms.Label();
+            this.c5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnNext
@@ -118,7 +119,8 @@
             this.c1,
             this.c2,
             this.c3,
-            this.c4});
+            this.c4,
+            this.c5});
             this.lvwList.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -178,6 +180,12 @@
             this.lblListPath.TabIndex = 91;
             this.lblListPath.Text = ">";
             // 
+            // c5
+            // 
+            this.c5.Text = "";
+            this.c5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.c5.Width = 90;
+            // 
             // frmReportList1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -212,5 +220,6 @@
         private System.Windows.Forms.ColumnHeader c3;
         private System.Windows.Forms.ColumnHeader c4;
         private System.Windows.Forms.Label lblListPath;
+        private System.Windows.Forms.ColumnHeader c5;
     }
 }
