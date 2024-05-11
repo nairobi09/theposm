@@ -1144,8 +1144,8 @@ namespace thepos
 
 
             // 데이터 체크 임시
-            Form f = new frmCheckData();
-            f.Show();
+            //Form f = new frmCheckData();
+            //f.Show();
 
         }
 
@@ -1666,6 +1666,9 @@ namespace thepos
                             else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "CouponChPM") mCouponChPM = arr[i]["setupValue"].ToString();
+
                         }
                     }
                 }
@@ -2695,6 +2698,7 @@ namespace thepos
                     else if (dr["setupCode"].ToString() == "OrderPrintType") mOrderPrintType = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "PosType") mPosType = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "CouponChPM") mCouponChPM = dr["setupValue"].ToString();
                     i++;
                 }
                 dr.Close();

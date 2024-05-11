@@ -60,11 +60,11 @@ namespace thepos
 
             btnPrintBill.Font = font10;
             btnPrintBillex.Font = font9;
-            btnPrintBilldisp.Font = font9;
+            btnPrintBilldisp.Font = font10;
 
-            btnPrintOrder.Font = font10;
+            btnPrintOrder.Font = font9;
 
-            btnCancel.Font = font10;
+            btnCancel.Font = font9;
 
         }
         private void initialize_the()

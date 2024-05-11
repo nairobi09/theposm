@@ -6021,7 +6021,7 @@ namespace thepos
             PaymentCert certCancel = new PaymentCert();
             pCertCancel = certCancel;
 
-            if (mVanCode == "PM")
+            if (paymentCert.van_code == "PM")
             {
                 couponPM p = new couponPM();
                 ret = p.requestPmCertCancel(paymentCert.coupon_no);

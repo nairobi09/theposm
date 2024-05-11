@@ -32,6 +32,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblQty = new System.Windows.Forms.Label();
             this.lblGoodsName = new System.Windows.Forms.Label();
+            this.btnCouponCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblCushp = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCoupon = new System.Windows.Forms.Button();
             this.btnPayCert = new System.Windows.Forms.Button();
-            this.btnCouponCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbNo = new System.Windows.Forms.TextBox();
             this.lblNoMemo = new System.Windows.Forms.Label();
@@ -79,7 +79,6 @@
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelback.Controls.Add(this.panel2);
             this.panelback.Controls.Add(this.btnPayCert);
-            this.panelback.Controls.Add(this.btnCouponCancel);
             this.panelback.Controls.Add(this.panel1);
             this.panelback.Controls.Add(this.btnClose);
             this.panelback.Controls.Add(this.lblTitle);
@@ -95,6 +94,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.lblQty);
             this.panel2.Controls.Add(this.lblGoodsName);
+            this.panel2.Controls.Add(this.btnCouponCancel);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lblCushp);
@@ -134,6 +134,20 @@
             this.lblGoodsName.TabIndex = 71;
             this.lblGoodsName.Text = "_";
             this.lblGoodsName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnCouponCancel
+            // 
+            this.btnCouponCancel.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnCouponCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCouponCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCouponCancel.Location = new System.Drawing.Point(403, 93);
+            this.btnCouponCancel.Name = "btnCouponCancel";
+            this.btnCouponCancel.Size = new System.Drawing.Size(61, 50);
+            this.btnCouponCancel.TabIndex = 79;
+            this.btnCouponCancel.TabStop = false;
+            this.btnCouponCancel.Text = "취소";
+            this.btnCouponCancel.UseVisualStyleBackColor = false;
+            this.btnCouponCancel.Click += new System.EventHandler(this.btnCouponCancel_Click);
             // 
             // label1
             // 
@@ -280,7 +294,7 @@
             this.btnCoupon.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCoupon.ForeColor = System.Drawing.Color.White;
-            this.btnCoupon.Location = new System.Drawing.Point(313, 93);
+            this.btnCoupon.Location = new System.Drawing.Point(259, 93);
             this.btnCoupon.Name = "btnCoupon";
             this.btnCoupon.Size = new System.Drawing.Size(138, 50);
             this.btnCoupon.TabIndex = 78;
@@ -294,7 +308,7 @@
             this.btnPayCert.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnPayCert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayCert.ForeColor = System.Drawing.Color.White;
-            this.btnPayCert.Location = new System.Drawing.Point(43, 620);
+            this.btnPayCert.Location = new System.Drawing.Point(156, 626);
             this.btnPayCert.Name = "btnPayCert";
             this.btnPayCert.Size = new System.Drawing.Size(205, 50);
             this.btnPayCert.TabIndex = 80;
@@ -302,20 +316,6 @@
             this.btnPayCert.Text = "주문/발권";
             this.btnPayCert.UseVisualStyleBackColor = false;
             this.btnPayCert.Click += new System.EventHandler(this.btnPayCert_Click);
-            // 
-            // btnCouponCancel
-            // 
-            this.btnCouponCancel.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnCouponCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCouponCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCouponCancel.Location = new System.Drawing.Point(411, 620);
-            this.btnCouponCancel.Name = "btnCouponCancel";
-            this.btnCouponCancel.Size = new System.Drawing.Size(61, 50);
-            this.btnCouponCancel.TabIndex = 79;
-            this.btnCouponCancel.TabStop = false;
-            this.btnCouponCancel.Text = "사용\r\n취소";
-            this.btnCouponCancel.UseVisualStyleBackColor = false;
-            this.btnCouponCancel.Click += new System.EventHandler(this.btnCouponCancel_Click);
             // 
             // panel1
             // 
@@ -354,12 +354,12 @@
             // lblNoTitle
             // 
             this.lblNoTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblNoTitle.Location = new System.Drawing.Point(27, 27);
+            this.lblNoTitle.Location = new System.Drawing.Point(8, 27);
             this.lblNoTitle.Name = "lblNoTitle";
-            this.lblNoTitle.Size = new System.Drawing.Size(53, 18);
+            this.lblNoTitle.Size = new System.Drawing.Size(74, 18);
             this.lblNoTitle.TabIndex = 71;
             this.lblNoTitle.Text = "검색번호";
-            this.lblNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnView
             // 

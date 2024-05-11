@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmMain;
+using thepos._1Sales;
 
 namespace thepos
 {
@@ -134,6 +135,18 @@ namespace thepos
             panelReport.Controls.Clear();
 
             frmReportShopOrder fBiz = new frmReportShopOrder() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportCoupon_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "CouponCert") return;
+
+            mThisButtonClick = "CouponCert";
+            panelReport.Controls.Clear();
+
+            frmReportCoupon fBiz = new frmReportCoupon() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }

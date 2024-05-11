@@ -92,12 +92,12 @@
             // 
             this.btnPrintBilldisp.BackColor = System.Drawing.Color.White;
             this.btnPrintBilldisp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintBilldisp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrintBilldisp.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBilldisp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnPrintBilldisp.Location = new System.Drawing.Point(382, 534);
             this.btnPrintBilldisp.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrintBilldisp.Name = "btnPrintBilldisp";
-            this.btnPrintBilldisp.Size = new System.Drawing.Size(119, 45);
+            this.btnPrintBilldisp.Size = new System.Drawing.Size(119, 55);
             this.btnPrintBilldisp.TabIndex = 81;
             this.btnPrintBilldisp.TabStop = false;
             this.btnPrintBilldisp.Text = "영수증\r\n(화면보기)";
@@ -153,10 +153,10 @@
             this.btnPrintBillex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintBillex.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBillex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintBillex.Location = new System.Drawing.Point(382, 486);
+            this.btnPrintBillex.Location = new System.Drawing.Point(382, 491);
             this.btnPrintBillex.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrintBillex.Name = "btnPrintBillex";
-            this.btnPrintBillex.Size = new System.Drawing.Size(119, 45);
+            this.btnPrintBillex.Size = new System.Drawing.Size(119, 40);
             this.btnPrintBillex.TabIndex = 79;
             this.btnPrintBillex.TabStop = false;
             this.btnPrintBillex.Text = "영수증\r\n(상품제외)";
@@ -167,11 +167,11 @@
             // 
             this.btnPrintOrder.BackColor = System.Drawing.Color.White;
             this.btnPrintOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintOrder.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrintOrder.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintOrder.Location = new System.Drawing.Point(382, 587);
+            this.btnPrintOrder.Location = new System.Drawing.Point(382, 597);
             this.btnPrintOrder.Name = "btnPrintOrder";
-            this.btnPrintOrder.Size = new System.Drawing.Size(119, 50);
+            this.btnPrintOrder.Size = new System.Drawing.Size(119, 40);
             this.btnPrintOrder.TabIndex = 78;
             this.btnPrintOrder.TabStop = false;
             this.btnPrintOrder.Text = "#주문서";
@@ -332,7 +332,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(382, 645);
             this.btnCancel.Name = "btnCancel";
@@ -351,7 +351,7 @@
             this.btnPrintBill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnPrintBill.Location = new System.Drawing.Point(382, 433);
             this.btnPrintBill.Name = "btnPrintBill";
-            this.btnPrintBill.Size = new System.Drawing.Size(120, 50);
+            this.btnPrintBill.Size = new System.Drawing.Size(120, 55);
             this.btnPrintBill.TabIndex = 48;
             this.btnPrintBill.TabStop = false;
             this.btnPrintBill.Text = "영수증";

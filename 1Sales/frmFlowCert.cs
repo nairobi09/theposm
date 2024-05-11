@@ -27,31 +27,9 @@ namespace thepos
     {
 
         String PLACEM_URL = "https://gateway.sparo.cc/extra/kiosk/v1/";
-        String PLACEM_CH = "3590";
 
 
-        struct CertOrder
-        {
-            public string state;
-            public string ustaten;
-            public string order_no;
-            public string coupon_no;
-            public string menu_code;
-            public string menu_name;
-            public int qty;
-            public string exp_date;
-            
-            public string ustate;
-            public string cus_nm;
-            public string cus_hp;
-            public string cus_opt;
 
-            public string is_usage;
-        }
-
-        CertOrder certOrder = new CertOrder();
-
-        List<CertOrder> mCertOrders = new List<CertOrder>();
 
 
 
@@ -92,6 +70,12 @@ namespace thepos
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (mLvwOrderItem.Items.Count > 0)
+            {
+                SetDisplayAlarm("W", "쿠폰사용 주문목록이 있으면 쿠폰창을 닫을 수 없습니다.");
+                return;
+            }
+
             this.Close();
         }
 
@@ -105,18 +89,20 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            //? 쿠폰업체 추가시 아래 구분필요
+            if (mCouponChPM == "")
+            {
+                MessageBox.Show("쿠픈판매 업체코드 미등록상태입니다.", "thepos");
+                return;
+            }
+
+
             view_reload();
         }
 
 
         private void view_reload()
         { 
-
-            String sUrl = "";
-            String rcode = "";
-            String rmsg = "";
-            String rcnt = "";
-
 
             if (tbNo.Text.Length == 4 |  tbNo.Text.Length >= 8)
             {
@@ -130,84 +116,17 @@ namespace thepos
 
 
 
-
-
             mCertOrders.Clear();
             lvwList.Items.Clear();
             clear_info();
 
 
 
-            sUrl = PLACEM_URL + "req.php?pc=SS&pval=" + tbNo.Text + "&ch=" + PLACEM_CH + "&fcno=" + mPosNo;
+            couponPM p = new couponPM();
+            int ret = p.requestPmCertView(tbNo.Text);
 
-
-            try
+            if (ret == 0)
             {
-                var response = mHttpClient.GetAsync(sUrl).Result;
-
-                var responseContent = response.Content;
-                string responseString = responseContent.ReadAsStringAsync().Result;
-
-
-                XmlDocument xdoc = new XmlDocument();
-                xdoc.LoadXml(responseString);
-
-
-                XmlNodeList nodes = xdoc.SelectNodes("/RESULT");
-                foreach (XmlNode res in nodes)
-                {
-                    rcode = res.SelectSingleNode("RCODE").InnerText;
-                    rmsg = res.SelectSingleNode("RMSG").InnerText;
-                    rcnt = res.SelectSingleNode("RCNT").InnerText;
-                }
-
-
-
-                if (rcode == "E")
-                {
-                    MessageBox.Show(rmsg, "thepos");
-                    return;
-                }
-
-
-                if (rcode != "S" | rcnt == "0")
-                {
-                    return;
-                }
-
-
-
-                nodes = xdoc.SelectNodes("/RESULT/ORDERS/ORDER");
-
-
-                foreach (XmlNode order in nodes)
-                {
-
-                    certOrder.order_no = order.SelectSingleNode("ORDERNO").InnerText;
-                    certOrder.coupon_no = order.SelectSingleNode("COUPONNO").InnerText;
-                    certOrder.menu_code = order.SelectSingleNode("MENUCODE").InnerText;
-                    certOrder.menu_name = order.SelectSingleNode("MENUNAME").InnerText;
-                    certOrder.qty = convert_number(order.SelectSingleNode("QTY").InnerText);
-                    certOrder.exp_date = order.SelectSingleNode("EXPDATE").InnerText;
-                    certOrder.state = order.SelectSingleNode("STATE").InnerText;
-                    certOrder.ustate = order.SelectSingleNode("USTATE").InnerText;
-                    certOrder.cus_nm = order.SelectSingleNode("CUSNM").InnerText;
-                    certOrder.cus_hp = order.SelectSingleNode("CUSHP").InnerText;
-                    certOrder.cus_opt = order.SelectSingleNode("CUSOPT").InnerText;
-
-
-                    if (certOrder.state == "예약완료" & certOrder.ustate == "2")  // 2 미사용
-                        certOrder.is_usage = "Y";
-                    else 
-                        certOrder.is_usage = "N";
-
-
-
-                    mCertOrders.Add(certOrder);
-                }
-
-
-
                 for (int i = 0; i < mCertOrders.Count; i++)
                 {
                     ListViewItem lvItem = new ListViewItem();
@@ -240,11 +159,6 @@ namespace thepos
 
                     lvwList.Items.Add(lvItem);
                 }
-
-            }
-            catch (Exception ex)
-            {
-                mErrorMsg = ex.Message;
 
             }
 
@@ -295,9 +209,9 @@ namespace thepos
 
 
 
-
+            //? 이후 삭제
             /***** 임시 테스트 ****/
-            if (t_menu_code == "1234") t_menu_code = "100157";
+            if (t_menu_code == "1234") t_menu_code = "100001";
 
 
 
@@ -318,7 +232,7 @@ namespace thepos
             {
                 lblGoodsName.Text = "";
 
-                MessageBox.Show("상품정보 연결 오류", "thepos");
+                SetDisplayAlarm("W", "상품정보 연결 오류.");
                 return;
             }
 
@@ -350,7 +264,7 @@ namespace thepos
 
             if (mLvwOrderItem.Items.Count > 0)
             {
-                MessageBox.Show("쿠폰인증은 1건씩만 가능합니다.", "thepos");
+                SetDisplayAlarm("W", "쿠폰인증은 1건씩만 가능합니다.");
                 return;
             }
 
@@ -360,20 +274,14 @@ namespace thepos
             if (lvwList.Items[lvwList.SelectedItems[0].Index].SubItems[lvwList.Columns.IndexOf(ustate_code)].Text == "2")   // 미사용
             {
 
-                t_coupon_no = lvwList.Items[lvwList.SelectedItems[0].Index].SubItems[lvwList.Columns.IndexOf(coupon_no)].Text;
                 t_coupon_goods_code = lvwList.Items[lvwList.SelectedItems[0].Index].SubItems[lvwList.Columns.IndexOf(menu_code)].Text;
                 t_coupon_cnt = convert_number(lvwList.Items[lvwList.SelectedItems[0].Index].SubItems[lvwList.Columns.IndexOf(qty)].Text);
 
-
-
                 
                 
-                
+                //? 이후 삭제
                 /***** 임시 테스트 ****/
-                if (t_coupon_goods_code == "1234")  t_coupon_goods_code = "100157";
-
-
-
+                if (t_coupon_goods_code == "1234")  t_coupon_goods_code = "100001";
 
 
 
@@ -396,12 +304,12 @@ namespace thepos
 
                 if (goods_idx == -1)
                 {
-                    MessageBox.Show("상품정보 연결오류.\r\n관리자 문의바랍니다.", "thepos");
+                    SetDisplayAlarm("W", "상품정보 연결오류.\r\n관리자 문의바랍니다.");
                     return;
                 }
                 else if (isUsage != "Y")
                 {
-                    MessageBox.Show("선택 쿠폰은 사용요청할 수 없습니다.", "thepos");
+                    SetDisplayAlarm("W", "선택 쿠폰은 사용요청할 수 없습니다.");
                     return;
                 }
 
@@ -488,7 +396,11 @@ namespace thepos
                     ReCalculateAmount();
 
                 }
-
+            }
+            else
+            {
+                SetDisplayAlarm("W", "사용요청할 수 없는 쿠폰입니다.");
+                return;
 
             }
 
@@ -503,36 +415,31 @@ namespace thepos
             String rcnt = "";
 
 
-            if (lvwList.SelectedItems.Count < 1)
+            if (mLvwOrderItem.SelectedItems.Count != 1)
             {
+                SetDisplayAlarm("W", "주문목록에 추가된 사용쿠폰만 사용취소할 수 있습니다.");
                 return;
             }
 
 
+            t_coupon_no = mOrderItemList[0].coupon_no;
 
-            if (lvwList.Items[lvwList.SelectedItems[0].Index].SubItems[lvwList.Columns.IndexOf(ustate_code)].Text == "1")   // 사용
+
+            //? 쿠폰 판매회사 구분 필요
+
+            couponPM p = new couponPM();
+            if (p.requestPmCertCancel(t_coupon_no) == 0)
             {
+                mOrderItemList.Clear();
+                mLvwOrderItem.SetObjects(mOrderItemList);
 
-                t_coupon_no = lvwList.Items[lvwList.SelectedItems[0].Index].SubItems[lvwList.Columns.IndexOf(coupon_no)].Text;
+                view_reload();
 
-
-                couponPM p = new couponPM();
-                if (p.requestPmCertCancel(t_coupon_no) == 0)
-                {
-
-
-
-
-
-                    view_reload();
-
-                    ReCalculateAmount();
-
-                }
-
-
+                ReCalculateAmount();
 
             }
+
+
         }
 
 

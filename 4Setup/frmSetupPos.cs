@@ -43,7 +43,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[8];
+        Setup[] listSetup = new Setup[9];
 
 
         bool isAdd = false;
@@ -71,6 +71,7 @@ namespace thepos
 
             setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[7] = setupItem;
 
+            setupItem.code = "CouponChPM";            setupItem.name = "플레이스엠 업체코드(CMS)"; setupItem.value = ""; setupItem.memo = ""; listSetup[8] = setupItem;
 
             reload_setup_pos();
         }
@@ -270,7 +271,7 @@ namespace thepos
                 cbValue.Items.Add("57600");
                 cbValue.Items.Add("115200");
             }
-            else if (code == listSetup[7].code)  // t-id
+            else if (code == listSetup[7].code | code == listSetup[8].code)  // t-id
             {
                 tbValue.Visible = true;
 
@@ -399,6 +400,7 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "CouponChPM") mCouponChPM = lvwList.Items[i].SubItems[1].Text;
 
             }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,16 +14,91 @@ namespace thepos
     internal class couponPM
     {
         String PLACEM_URL = "https://gateway.sparo.cc/extra/kiosk/v1/";
-        String PLACEM_CH = "3590";
 
+        String sUrl = "";
         String rcode = "";
         String rmsg = "";
+        String rcnt = "";
+
+
+
+
+        public int requestPmCertView(String tNo)
+        {
+            sUrl = PLACEM_URL + "req.php?pc=SS&pval=" + tNo + "&ch=" + mCouponChPM + "&fcno=" + mPosNo;
+
+            try
+            {
+                var response = mHttpClient.GetAsync(sUrl).Result;
+
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
+
+                XmlDocument xdoc = new XmlDocument();
+                xdoc.LoadXml(responseString);
+
+                XmlNodeList nodes = xdoc.SelectNodes("/RESULT");
+                foreach (XmlNode res in nodes)
+                {
+                    rcode = res.SelectSingleNode("RCODE").InnerText;
+                    rmsg = res.SelectSingleNode("RMSG").InnerText;
+                    rcnt = res.SelectSingleNode("RCNT").InnerText;
+                }
+
+
+                if (rcode == "E")
+                {
+                    MessageBox.Show(rmsg, "thepos");
+                    return -1;
+                }
+
+
+                if (rcode != "S" | rcnt == "0")
+                {
+                    return -1;
+                }
+
+
+                nodes = xdoc.SelectNodes("/RESULT/ORDERS/ORDER");
+
+                foreach (XmlNode order in nodes)
+                {
+                    CertOrder certOrder = new CertOrder();
+                    certOrder.order_no = order.SelectSingleNode("ORDERNO").InnerText;
+                    certOrder.coupon_no = order.SelectSingleNode("COUPONNO").InnerText;
+                    certOrder.menu_code = order.SelectSingleNode("MENUCODE").InnerText;
+                    certOrder.menu_name = order.SelectSingleNode("MENUNAME").InnerText;
+                    certOrder.qty = convert_number(order.SelectSingleNode("QTY").InnerText);
+                    certOrder.exp_date = order.SelectSingleNode("EXPDATE").InnerText;
+                    certOrder.state = order.SelectSingleNode("STATE").InnerText;
+                    certOrder.ustate = order.SelectSingleNode("USTATE").InnerText;
+                    certOrder.cus_nm = order.SelectSingleNode("CUSNM").InnerText;
+                    certOrder.cus_hp = order.SelectSingleNode("CUSHP").InnerText;
+                    certOrder.cus_opt = order.SelectSingleNode("CUSOPT").InnerText;
+
+                    if (certOrder.state == "예약완료" & certOrder.ustate == "2")  // 2 미사용
+                        certOrder.is_usage = "Y";
+                    else
+                        certOrder.is_usage = "N";
+
+                    mCertOrders.Add(certOrder);
+                }
+            }
+            catch (Exception ex)
+            {
+                mErrorMsg = ex.Message;
+                return -1;
+            }
+
+            return 0;
+        }
+
 
 
 
         public int requestPmCertAuth(String tCouponNo)
         {
-            String sUrl = PLACEM_URL + "req.php?pc=US&pval=" + tCouponNo + "&ch=" + PLACEM_CH + "&fcno=POS_" + mPosNo;
+            String sUrl = PLACEM_URL + "req.php?pc=US&pval=" + tCouponNo + "&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo;
 
             try
             {
@@ -64,7 +141,7 @@ namespace thepos
 
         public int requestPmCertCancel(String tCouponNo)
         {
-            String sUrl = PLACEM_URL + "req.php?pc=RC&pval=" + tCouponNo + "&ch=" + PLACEM_CH + "&fcno=POS_" + mPosNo;
+            String sUrl = PLACEM_URL + "req.php?pc=RC&pval=" + tCouponNo + "&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo;
 
             try
             {
@@ -104,5 +181,79 @@ namespace thepos
             }
 
         }
+    
+    
+        public int requestPmReportView(String from_dt, String to_dt)
+        {
+
+            mCertOrders.Clear();
+
+
+            sUrl = PLACEM_URL + "req.php?pc=CL&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo + "&sdate=" + from_dt + "&edate=" + to_dt;
+
+            try
+            {
+                var response = mHttpClient.GetAsync(sUrl).Result;
+
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
+
+                XmlDocument xdoc = new XmlDocument();
+                xdoc.LoadXml(responseString);
+
+                XmlNodeList nodes = xdoc.SelectNodes("/RESULT");
+                foreach (XmlNode res in nodes)
+                {
+                    rcode = res.SelectSingleNode("RCODE").InnerText;
+                    rmsg = res.SelectSingleNode("RMSG").InnerText;
+                    rcnt = res.SelectSingleNode("RCNT").InnerText;
+                }
+
+
+                if (rcode == "E")
+                {
+                    MessageBox.Show(rmsg, "thepos");
+                    return -1;
+                }
+
+
+                if (rcode != "S" | rcnt == "0")
+                {
+                    return -1;
+                }
+
+
+                nodes = xdoc.SelectNodes("/RESULT/ORDERS/ORDER");
+
+                foreach (XmlNode order in nodes)
+                {
+                    CertOrder certOrder = new CertOrder();
+                    certOrder.order_no = "";
+                    certOrder.coupon_no = order.SelectSingleNode("COUPONNO").InnerText;
+                    certOrder.menu_code = order.SelectSingleNode("MENUCODE").InnerText;
+                    certOrder.menu_name = "";
+                    certOrder.qty = convert_number(order.SelectSingleNode("QTY").InnerText);
+                    certOrder.exp_date = order.SelectSingleNode("USEDATE").InnerText;   // 사용일자
+                    certOrder.state = "";
+                    certOrder.ustate = "";
+                    certOrder.cus_nm = "";
+                    certOrder.cus_hp = "";
+                    certOrder.cus_opt = "";
+                    certOrder.is_usage = "";
+
+                    mCertOrders.Add(certOrder);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "thepos");
+                return -1;
+            }
+
+            return 0;
+        }    
+    
+    
+    
     }
 }

@@ -591,31 +591,26 @@ namespace thepos
         public static List<PaymentCert> mPaymentCerts = new List<PaymentCert>();
 
 
-        public struct Cert
-        {
-            public String site_id;
-            public String biz_dt;  // yyyyMMdd
-            public string pos_no;
-            public String the_no;   // 결제단위
-            public String ref_no;   // 입장단위
-            public String pay_date;
-            public String pay_time;
-            public String pay_type;     // 결제구분 : 인증(T1)
-            public String isu_code;     // M0 플레이스엠
-            public String ticket_no;
 
-            public String order_no;     // 주문번호
-            public String coupon_no;    // 쿠폰번호
-            public String menu_code;    // 메뉴코드 - 상품코드
-            public string menu_name;    // 메뉴명   - 상품명
-            public string qty;          // 수량
-            public string exp_date;     // 유효기간, 이용일
-            public String state;        // 예약상태 (예약완료, 완료, , 취소 )
-            public String ustate;       // 사용상태 (1: 사용, 2: 미사용)
-            public String cusnm;        // 고객명
-            public String cushp;        // 고객연락처
-            public String cusopt;       // 주문옵션
+        public struct CertOrder
+        {
+            public string state;
+            public string ustaten;
+            public string order_no;
+            public string coupon_no;
+            public string menu_code;
+            public string menu_name;
+            public int qty;
+            public string exp_date;
+
+            public string ustate;
+            public string cus_nm;
+            public string cus_hp;
+            public string cus_opt;
+
+            public string is_usage;
         }
+        public static List<CertOrder> mCertOrders = new List<CertOrder>();
 
 
 
@@ -687,11 +682,18 @@ namespace thepos
         public static String mCustomerMonitor = "";  // Y N
         public static String mVanTID = "";    // 결제밴 T-ID
 
+        // 앞으로 쿠폰 채널 
+        public static String mCouponChPM = "";   // 플레이스엠 쿠폰 채널 부여 번호      "3590";
+
 
         //Local DB
         public static SQLiteConnection mConn;
 
         public static Label mLblTheModeStatus;
+
+
+
+
 
 
 

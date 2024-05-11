@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnReportCoupon = new System.Windows.Forms.Button();
+            this.btnReportShopOreder = new System.Windows.Forms.Button();
             this.btnReportDayDetail = new System.Windows.Forms.Button();
             this.btnReportDayShop = new System.Windows.Forms.Button();
             this.btnReportList1 = new System.Windows.Forms.Button();
@@ -41,10 +45,6 @@
             this.panelTitleConsole = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelReport = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnReportShopOreder = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
@@ -55,7 +55,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnReportCoupon);
             this.panel1.Controls.Add(this.btnReportShopOreder);
             this.panel1.Controls.Add(this.btnReportDayDetail);
             this.panel1.Controls.Add(this.btnReportDayShop);
@@ -68,6 +68,66 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(207, 700);
             this.panel1.TabIndex = 38;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(123, 343);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(79, 80);
+            this.button3.TabIndex = 31;
+            this.button3.TabStop = false;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(123, 259);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 80);
+            this.button2.TabIndex = 30;
+            this.button2.TabStop = false;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // btnReportCoupon
+            // 
+            this.btnReportCoupon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportCoupon.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportCoupon.ForeColor = System.Drawing.Color.White;
+            this.btnReportCoupon.Location = new System.Drawing.Point(0, 343);
+            this.btnReportCoupon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportCoupon.Name = "btnReportCoupon";
+            this.btnReportCoupon.Size = new System.Drawing.Size(120, 80);
+            this.btnReportCoupon.TabIndex = 29;
+            this.btnReportCoupon.TabStop = false;
+            this.btnReportCoupon.Text = "쿠폰사용내역";
+            this.btnReportCoupon.UseVisualStyleBackColor = false;
+            this.btnReportCoupon.Click += new System.EventHandler(this.btnReportCoupon_Click);
+            // 
+            // btnReportShopOreder
+            // 
+            this.btnReportShopOreder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportShopOreder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportShopOreder.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportShopOreder.ForeColor = System.Drawing.Color.White;
+            this.btnReportShopOreder.Location = new System.Drawing.Point(0, 259);
+            this.btnReportShopOreder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportShopOreder.Name = "btnReportShopOreder";
+            this.btnReportShopOreder.Size = new System.Drawing.Size(120, 80);
+            this.btnReportShopOreder.TabIndex = 28;
+            this.btnReportShopOreder.TabStop = false;
+            this.btnReportShopOreder.Text = "업장주문내역";
+            this.btnReportShopOreder.UseVisualStyleBackColor = false;
+            this.btnReportShopOreder.Click += new System.EventHandler(this.btnReportShopOreder_Click);
             // 
             // btnReportDayDetail
             // 
@@ -223,64 +283,6 @@
             this.panelReport.Size = new System.Drawing.Size(800, 700);
             this.panelReport.TabIndex = 39;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 343);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 80);
-            this.button1.TabIndex = 29;
-            this.button1.TabStop = false;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(123, 259);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 80);
-            this.button2.TabIndex = 30;
-            this.button2.TabStop = false;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // btnReportShopOreder
-            // 
-            this.btnReportShopOreder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnReportShopOreder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportShopOreder.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportShopOreder.ForeColor = System.Drawing.Color.White;
-            this.btnReportShopOreder.Location = new System.Drawing.Point(0, 259);
-            this.btnReportShopOreder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReportShopOreder.Name = "btnReportShopOreder";
-            this.btnReportShopOreder.Size = new System.Drawing.Size(120, 80);
-            this.btnReportShopOreder.TabIndex = 28;
-            this.btnReportShopOreder.TabStop = false;
-            this.btnReportShopOreder.Text = "업장주문내역";
-            this.btnReportShopOreder.UseVisualStyleBackColor = false;
-            this.btnReportShopOreder.Click += new System.EventHandler(this.btnReportShopOreder_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(123, 343);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 80);
-            this.button3.TabIndex = 31;
-            this.button3.TabStop = false;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
             // frmReports
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -318,7 +320,7 @@
         private System.Windows.Forms.Panel panelReport;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReportCoupon;
         private System.Windows.Forms.Button btnReportShopOreder;
     }
 }
