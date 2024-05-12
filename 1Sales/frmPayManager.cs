@@ -988,6 +988,29 @@ namespace thepos
             //
             String billNo = tbBillNo.Text;
 
+            if (billNo.Length == 6)
+            {
+                if (cbPosNo.Text.Length == 2)
+                {
+
+                }
+                else
+                {
+                    SetDisplayAlarm("I", "포스번호 입력 누락.");
+                    return;
+                }
+
+            }
+            else if (billNo.Length == 0)
+            {
+
+            }
+            else
+            {
+                SetDisplayAlarm("I", "주문번호 입력오류: 6자리.");
+                return;
+            }
+
 
             selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
             selected_pos_no = cbPosNo.Text;
