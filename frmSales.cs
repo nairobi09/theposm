@@ -799,6 +799,23 @@ namespace thepos
         //
         private void btnFlowCert_Click(object sender, EventArgs e)
         {
+            // 클리어 확인후
+            if (mLvwOrderItem.Items.Count > 0)
+            {
+                if (MessageBox.Show("주문항목이 있는 경우 쿠폰인증을 할 수 없습니다.\r\n목록제외후 진행할까요?", "thepos", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    mOrderItemList.Clear();
+                    lvwOrderItem.SetObjects(mOrderItemList);
+
+                    ReCalculateAmount();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+
             if (mTheMode == "Local")
             {
                 SetDisplayAlarm("W", "로컬모드에서 사용불가.");
@@ -944,7 +961,7 @@ namespace thepos
 
             if (!get_amounts(out int t과세금액, out int t면세금액))
             {
-                MessageBox.Show("과세금액, 면세금액 계산오류");
+                MessageBox.Show("과세금액, 면세금액 계산오류", "thepos");
                 return;
             }
 
@@ -4927,8 +4944,6 @@ namespace thepos
         {
             return Encoding.Default.GetBytes(str).Length;
         }
-
-
 
 
 

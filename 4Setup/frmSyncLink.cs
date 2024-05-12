@@ -63,6 +63,9 @@ namespace thepos
             lblPaymentCashCnt.Font = font10;
             lblPaymentCardTitle.Font = font10;
             lblPaymentCardCnt.Font = font10;
+            lblPaymentCertTitle.Font = font10;
+            lblPaymentCertCnt.Font = font10;
+
             btnViewRecord.Font = font10;
 
         }
