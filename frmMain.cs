@@ -503,7 +503,7 @@ namespace thepos
                 return dr["basicDbVer"].ToString();
             }
 
-            return "";
+            return "0";
 
         }
 

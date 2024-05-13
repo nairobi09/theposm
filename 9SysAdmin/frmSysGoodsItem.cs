@@ -39,13 +39,13 @@ namespace thepos
             get_goods();
             get_posno_from_setupPos();
 
-            
+            /*
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
             }
-            
+            */
 
         }
 
@@ -116,7 +116,9 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        //cbPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+                        cbPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+                        cbSourcePosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+
 
                         pos_no.Add(arr[i]["posNo"].ToString());
                         pos_type.Add(arr[i]["setupValue"].ToString());
@@ -157,14 +159,6 @@ namespace thepos
                             lvItem.SubItems.Add(arr[i]["amt"].ToString());
                             lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
 
-                            tTicket = "";
-                            tTaxFree = "";
-
-                            if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
-                            if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
-
-                            lvItem.SubItems.Add(tTicket);
-                            lvItem.SubItems.Add(tTaxFree);
                             lvItem.SubItems.Add(arr[i]["memo"].ToString());
 
                             lvItem.Tag = arr[i]["goodsCode"].ToString();
