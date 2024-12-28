@@ -86,7 +86,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::thepos.Properties.Resources.logo1;
+            this.pictureBox1.Image = global::theposm.Properties.Resources.logo1;
             this.pictureBox1.Location = new System.Drawing.Point(235, 198);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";

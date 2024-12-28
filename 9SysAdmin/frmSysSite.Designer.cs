@@ -64,11 +64,19 @@
             this.tbCutoffTime = new System.Windows.Forms.TextBox();
             this.lblCutoffTime = new System.Windows.Forms.Label();
             this.lblCutoffType = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cbAllimTN = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -91,7 +99,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle.Location = new System.Drawing.Point(68, 26);
+            this.lblTitle.Location = new System.Drawing.Point(29, 26);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(82, 14);
             this.lblTitle.TabIndex = 51;
@@ -132,9 +140,9 @@
             this.groupBox1.Controls.Add(this.lblRegistNo);
             this.groupBox1.Controls.Add(this.lblSiteAlias);
             this.groupBox1.Controls.Add(this.lblSiteName);
-            this.groupBox1.Location = new System.Drawing.Point(72, 47);
+            this.groupBox1.Location = new System.Drawing.Point(33, 47);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(548, 193);
+            this.groupBox1.Size = new System.Drawing.Size(465, 193);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             // 
@@ -154,7 +162,7 @@
             this.tbBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizAddr.Location = new System.Drawing.Point(98, 130);
             this.tbBizAddr.Name = "tbBizAddr";
-            this.tbBizAddr.Size = new System.Drawing.Size(423, 23);
+            this.tbBizAddr.Size = new System.Drawing.Size(353, 23);
             this.tbBizAddr.TabIndex = 54;
             this.tbBizAddr.TabStop = false;
             // 
@@ -253,9 +261,9 @@
             this.groupBox2.Controls.Add(this.lblVanCode);
             this.groupBox2.Controls.Add(this.lblTicketMedia);
             this.groupBox2.Controls.Add(this.lblTicketType);
-            this.groupBox2.Location = new System.Drawing.Point(72, 241);
+            this.groupBox2.Location = new System.Drawing.Point(33, 241);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(548, 140);
+            this.groupBox2.Size = new System.Drawing.Size(465, 140);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
             // 
@@ -298,7 +306,7 @@
             this.tbCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCallCenter.Location = new System.Drawing.Point(98, 104);
             this.tbCallCenter.Name = "tbCallCenter";
-            this.tbCallCenter.Size = new System.Drawing.Size(422, 23);
+            this.tbCallCenter.Size = new System.Drawing.Size(352, 23);
             this.tbCallCenter.TabIndex = 55;
             this.tbCallCenter.TabStop = false;
             // 
@@ -351,9 +359,9 @@
             this.groupBox3.Controls.Add(this.btnX1);
             this.groupBox3.Controls.Add(this.pbBillImage);
             this.groupBox3.Controls.Add(this.lblBillImage);
-            this.groupBox3.Location = new System.Drawing.Point(73, 488);
+            this.groupBox3.Location = new System.Drawing.Point(34, 488);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(547, 102);
+            this.groupBox3.Size = new System.Drawing.Size(464, 102);
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
             // 
@@ -405,9 +413,9 @@
             this.groupBox4.Controls.Add(this.tbCutoffTime);
             this.groupBox4.Controls.Add(this.lblCutoffTime);
             this.groupBox4.Controls.Add(this.lblCutoffType);
-            this.groupBox4.Location = new System.Drawing.Point(71, 383);
+            this.groupBox4.Location = new System.Drawing.Point(32, 383);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(548, 102);
+            this.groupBox4.Size = new System.Drawing.Size(465, 102);
             this.groupBox4.TabIndex = 58;
             this.groupBox4.TabStop = false;
             // 
@@ -477,10 +485,89 @@
             this.lblCutoffType.TabIndex = 54;
             this.lblCutoffType.Text = "마감유형";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cbAllimTN);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Location = new System.Drawing.Point(516, 47);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(287, 119);
+            this.groupBox5.TabIndex = 59;
+            this.groupBox5.TabStop = false;
+            // 
+            // cbAllimTN
+            // 
+            this.cbAllimTN.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbAllimTN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbAllimTN.FormattingEnabled = true;
+            this.cbAllimTN.Location = new System.Drawing.Point(107, 21);
+            this.cbAllimTN.Name = "cbAllimTN";
+            this.cbAllimTN.Size = new System.Drawing.Size(156, 21);
+            this.cbAllimTN.TabIndex = 57;
+            this.cbAllimTN.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox1.Location = new System.Drawing.Point(107, 80);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(157, 23);
+            this.textBox1.TabIndex = 55;
+            this.textBox1.TabStop = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox2.Location = new System.Drawing.Point(107, 52);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(157, 23);
+            this.textBox2.TabIndex = 56;
+            this.textBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(23, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 14);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "결제밴사";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(23, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 14);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "티켓수단";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(23, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 14);
+            this.label4.TabIndex = 54;
+            this.label4.Text = "알림톡사용";
+            // 
             // frmSysSite
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -499,6 +586,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -541,5 +630,12 @@
         private System.Windows.Forms.Label lblCutoffType;
         private System.Windows.Forms.Label lblCutoffTime1;
         private System.Windows.Forms.Label lblCutoffTime2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox cbAllimTN;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -213,10 +213,10 @@ namespace thepos
 #if DEBUG
                 var enviroment = System.Environment.CurrentDirectory;
                 string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
-                cs = @"URI=file:" + projectDirectory + "\\local_thepos.db";
+                cs = @"URI=file:" + projectDirectory + "\\local_theposm.db";
 
 #else
-                cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_thepos.db";
+                cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_theposm.db";
 #endif
 
                 mConn = new SQLiteConnection(cs);
