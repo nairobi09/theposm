@@ -239,14 +239,14 @@ namespace thepos
                 cbValue.Items.Add("Y");
                 cbValue.Items.Add("N");
             }
-            else if (code == listSetup[2].code)  // 교환권출력타입
+            else if (code == listSetup[2].code)  // 주문건 교환권타입
             {
                 cbValue.Visible = true;
 
                 cbValue.Items.Clear();
-                cbValue.Items.Add(" ");  // 출력없음
+                cbValue.Items.Add(" ");  // 출력없음 - Display만 
                 cbValue.Items.Add("Print");  // 영수증프린터
-                cbValue.Items.Add("Display");  // 화면
+                cbValue.Items.Add("알림톡");  // 알림톡
             }
             else if (code == listSetup[3].code | code == listSetup[5].code) // 
             {

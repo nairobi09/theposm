@@ -85,6 +85,7 @@
             this.p_amountCard = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_amountEasy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_amountPoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.p_amountCert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_dcAmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.p_isCancel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
@@ -246,7 +247,6 @@
             this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader35 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label11 = new System.Windows.Forms.Label();
-            this.p_amountCert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // tbTheNo
@@ -614,6 +614,10 @@
             // 
             this.p_amountPoint.Text = "amountPoint";
             this.p_amountPoint.Width = 80;
+            // 
+            // p_amountCert
+            // 
+            this.p_amountCert.Text = "amountCert";
             // 
             // p_dcAmount
             // 
@@ -1575,10 +1579,6 @@
             this.label11.TabIndex = 19;
             this.label11.Text = "Cert";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // p_amountCert
-            // 
-            this.p_amountCert.Text = "amountCert";
             // 
             // frmCheckData
             // 

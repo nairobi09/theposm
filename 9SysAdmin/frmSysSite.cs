@@ -87,6 +87,14 @@ namespace thepos._9SysAdmin
             btnX1.Font = font10;
 
 
+            lblAllimTN.Font = font10;
+            cbAllimTN.Font = font10;
+
+            lblSenderProfile.Font = font10;
+            tbSenderProfile.Font = font10;
+
+
+
             btnUpdate.Font = font10;
 
 
@@ -99,7 +107,7 @@ namespace thepos._9SysAdmin
 
 
             tmTicketType = new String[3] { "", "PA", "PD" };
-            tmTicketTypeText = new String[3] {"", "선불", "후불" };
+            tmTicketTypeText = new String[3] { "", "선불", "후불" };
 
             tmTicketMedia = new String[3] { "", "BC", "RF" };
             tmTicketMediaText = new String[3] { "", "띠지", "팔찌" };
@@ -110,7 +118,7 @@ namespace thepos._9SysAdmin
             tmCutoffType = new String[2] { "A", "M" };
             tmCutoffTypeText = new String[2] { "자동", "수동" };
 
-            
+
             cbTicketType.Items.Clear();
             for (int i = 0; i < tmTicketTypeText.Length; i++)
             {
@@ -134,6 +142,11 @@ namespace thepos._9SysAdmin
             {
                 cbCutoffType.Items.Add(tmCutoffTypeText[i]);
             }
+
+
+            //
+            cbAllimTN.Items.Add("사용");
+            cbAllimTN.Items.Add("미사용");
 
 
         }
@@ -228,6 +241,21 @@ namespace thepos._9SysAdmin
                         {
 
                         }
+
+
+                        // 알림톡
+                        if (arr[0]["allimYn"].ToString().Equals("Y"))
+                        {
+                            cbAllimTN.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            cbAllimTN.SelectedIndex = 1;
+                        }
+
+                        tbSenderProfile.Text = arr[0]["senderProfile"].ToString();
+
+
 
 
                     }
@@ -327,7 +355,7 @@ namespace thepos._9SysAdmin
                     mRegistNo = tbCapName.Text;
                     mBizAddr = tbBizAddr.Text;
                     mBizTelNo = tbBizTelNo.Text;
-                    
+
                     if (cbTicketType.SelectedIndex < 0)
                         mTicketType = "";
                     else
@@ -388,5 +416,54 @@ namespace thepos._9SysAdmin
             ch_bill_image = "1";
         }
 
+        private void btnViewProfile_Click(object sender, EventArgs e)
+        {
+            //
+            String sUrl = "siteAllim?siteId=" + mSiteId;
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["sites"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count > 0)
+                    {
+                        String site_allim_msg = "";
+
+                        site_allim_msg += "발신프로필 : ";
+                        site_allim_msg += arr[0]["senderProfile"].ToString() + "\r\n";
+
+                        site_allim_msg += "발신프로필키 : ";
+                        site_allim_msg += arr[0]["senderProfileKey"].ToString() + "\r\n";
+
+                        site_allim_msg += "사이트명 : ";
+                        site_allim_msg += arr[0]["siteName"].ToString() + "\r\n";
+
+                        site_allim_msg += "알림톡아이디 : ";
+                        site_allim_msg += arr[0]["allimUserId"].ToString() + "\r\n";
+
+                        site_allim_msg += "알림톡회사코드 : ";
+                        site_allim_msg += arr[0]["allimCorpCode"].ToString() + "\r\n";
+
+                        site_allim_msg += "주문알림톡 코드 : ";
+                        site_allim_msg += arr[0]["orAllimCode"].ToString() + "\r\n";
+
+                        site_allim_msg += "완료알림톡 코드 : ";
+                        site_allim_msg += arr[0]["cpAllimCode"].ToString() + "\r\n";
+
+                        site_allim_msg += "기타알림톡 코드 : ";
+                        site_allim_msg += arr[0]["etcAllimCode"].ToString() + "\r\n";
+
+
+
+                        MessageBox.Show(site_allim_msg, "알림프로필보기");
+
+
+                    }
+                }
+            }
+        }
     }
 }

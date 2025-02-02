@@ -13,17 +13,35 @@ namespace thepos._1Sales
 {
     public partial class frmYesNo : Form
     {
-        public frmYesNo()
+        public frmYesNo(String[] order_no_arr)
         {
             InitializeComponent();
 
             initialize_font();
 
+            lblOrderNo.Text = order_no_arr[0];
+
+
+            if (order_no_arr[0] == order_no_arr[1])
+            {
+
+            }
+            else if (order_no_arr[1] == "")
+            {
+
+            }
+            else
+            {
+                lblOrderNo2.Visible = true;
+                lblFromToChar.Visible = true;
+                lblOrderNo2.Text = order_no_arr[1];
+            }
+
         }
 
         private void initialize_font()
         {
-            lblTitle.Font = font16;
+            //lblTitle.Font = font16;
             btnYes.Font = font12;
             btnNo.Font = font12;
         }
@@ -39,5 +57,6 @@ namespace thepos._1Sales
             this.DialogResult = DialogResult.No;
             this.Close();
         }
+
     }
 }

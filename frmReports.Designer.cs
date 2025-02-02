@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnReportAllim = new System.Windows.Forms.Button();
             this.btnReportCoupon = new System.Windows.Forms.Button();
             this.btnReportShopOreder = new System.Windows.Forms.Button();
             this.btnReportDayDetail = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnReportAllim);
             this.panel1.Controls.Add(this.btnReportCoupon);
             this.panel1.Controls.Add(this.btnReportShopOreder);
             this.panel1.Controls.Add(this.btnReportDayDetail);
@@ -83,19 +83,21 @@
             this.button3.TabStop = false;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnReportAllim
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(123, 259);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 80);
-            this.button2.TabIndex = 30;
-            this.button2.TabStop = false;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnReportAllim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportAllim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportAllim.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportAllim.ForeColor = System.Drawing.Color.White;
+            this.btnReportAllim.Location = new System.Drawing.Point(123, 259);
+            this.btnReportAllim.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportAllim.Name = "btnReportAllim";
+            this.btnReportAllim.Size = new System.Drawing.Size(79, 80);
+            this.btnReportAllim.TabIndex = 30;
+            this.btnReportAllim.TabStop = false;
+            this.btnReportAllim.Text = "알림톡";
+            this.btnReportAllim.UseVisualStyleBackColor = false;
+            this.btnReportAllim.Click += new System.EventHandler(this.btnReportAllim_Click);
             // 
             // btnReportCoupon
             // 
@@ -319,7 +321,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelReport;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnReportAllim;
         private System.Windows.Forms.Button btnReportCoupon;
         private System.Windows.Forms.Button btnReportShopOreder;
     }

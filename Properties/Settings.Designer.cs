@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace theposm.Properties {
+namespace theposw.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -106,7 +106,19 @@ namespace thepos
         public static String mTicketMedia;  // 띠지BC   팔찌RF
         public static String mVanCode = "";
 
-        
+
+        // 알림톡
+        public static String mAllimYn = "";
+        public static String mAllimSenderProfile = "";
+        public static String mAllimSenderProfileKey = "";
+        public static String mAllimSiteName = "";
+        public static String mAllimUserId = "";
+        public static String mAllimCorpCode = "";
+        public static String mAllimOrCode = "";
+        public static String mAllimCpCode = "";
+        public static String mAllimEtcCode = "";
+
+
 
         // 콜센터 연락처
         public static String mCallCenterNo = "";

@@ -1322,6 +1322,11 @@ namespace thepos
                             mVanCode = arr[0]["vanCode"].ToString();
                             mCallCenterNo = arr[0]["callCenterNo"].ToString();
 
+                            // 알림톡
+                            mAllimYn = arr[0]["allimYn"].ToString();
+                            mAllimSenderProfile = arr[0]["senderProfile"].ToString();
+
+
                             String image_str = arr[0]["billImage"].ToString();
 
                             if (image_str == "")
@@ -1363,6 +1368,49 @@ namespace thepos
                     return;
                 }
             }
+
+
+
+            // 1-2. site_allim
+            if (mAllimYn == "Y")
+            {
+                String sUrl = "siteAllim?siteId=" + mSiteId;
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["sites"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        if (arr.Count > 0)
+                        {
+                            mAllimSenderProfile = arr[0]["senderProfile"].ToString();
+                            mAllimSenderProfileKey = arr[0]["senderProfileKey"].ToString();
+                            mAllimSiteName = arr[0]["siteName"].ToString();
+                            mAllimUserId = arr[0]["allimUserId"].ToString();
+                            mAllimCorpCode = arr[0]["allimCorpCode"].ToString();
+                            mAllimOrCode = arr[0]["orAllimCode"].ToString();
+                            mAllimCpCode = arr[0]["cpAllimCode"].ToString();
+                            mAllimEtcCode = arr[0]["etcAllimCode"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("알림톡정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+
+            }
+
+
+
 
             // 2. goodsGroup
             if (true)

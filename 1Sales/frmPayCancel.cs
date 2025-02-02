@@ -753,7 +753,7 @@ namespace thepos
                 // 영수증인쇄
                 if (is_cancel_stat == "Y")
                 {
-                    print_bill(pCardAuth.the_no, "C", "", "11010", true);
+                    _print_bill(pCardAuth.the_no, "C", "", "11010", true);
                 }
 
             }
@@ -1091,7 +1091,7 @@ namespace thepos
                 // 영수증인쇄
                 if (is_cancel_stat == "Y")
                 {
-                    print_bill(pCashAuth.the_no, "C", "", "11010", true);
+                    _print_bill(pCashAuth.the_no, "C", "", "11010", true);
                 }
 
             }
@@ -1292,7 +1292,7 @@ namespace thepos
                         // 영수증인쇄
                         if (is_cancel_stat == "Y")
                         {
-                            print_bill(pEasyAuth.the_no, "C", "", "11010", true);
+                            _print_bill(pEasyAuth.the_no, "C", "", "11010", true);
                         }
 
                     }
@@ -1439,7 +1439,7 @@ namespace thepos
                     // 영수증인쇄
                     if (is_cancel_stat == "Y")
                     {
-                        print_bill(pPointAuth.the_no, "C", "", "00100", true); // 
+                        _print_bill(pPointAuth.the_no, "C", "", "00100", true); // 
                     }
 
                 }
@@ -1616,7 +1616,7 @@ namespace thepos
                         // 영수증인쇄
                         if (is_cancel_stat == "Y")
                         {
-                            print_bill(pCertAuth.the_no, "C", "", "00001", true);
+                            _print_bill(pCertAuth.the_no, "C", "", "00001", true);
                         }
 
                     }

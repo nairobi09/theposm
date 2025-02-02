@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{541EB486-DE86-4554-BA25-4F9E14D3B0D6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>theposm</RootNamespace>
-    <AssemblyName>theposm</AssemblyName>
+    <RootNamespace>theposw</RootNamespace>
+    <AssemblyName>theposw</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -16,7 +16,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>ftp://thepos.co.kr/public_html/theposm/setup/tp1/</PublishUrl>
+    <PublishUrl>ftp://thepos.co.kr/public_html/theposw/setup/tp1/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://thepos.co.kr/setup/theposm/tp1/</InstallUrl>
+    <InstallUrl>http://thepos.co.kr/setup/theposw/tp1/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>101</ApplicationRevision>
@@ -162,11 +162,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="3Report\frmReportAllim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportAllim.Designer.cs">
+      <DependentUpon>frmReportAllim.cs</DependentUpon>
+    </Compile>
     <Compile Include="3Report\frmReportCoupon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="3Report\frmReportCoupon.Designer.cs">
       <DependentUpon>frmReportCoupon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="1Sales\frmAllim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmAllim.Designer.cs">
+      <DependentUpon>frmAllim.cs</DependentUpon>
     </Compile>
     <Compile Include="van\Toss\paymentToss.cs" />
     <Compile Include="van\PM\couponPM.cs" />
@@ -532,8 +544,14 @@
     <Content Include="x86\SQLite.Interop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="3Report\frmReportAllim.resx">
+      <DependentUpon>frmReportAllim.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportCoupon.resx">
       <DependentUpon>frmReportCoupon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmAllim.resx">
+      <DependentUpon>frmAllim.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevAdmin.resx">
       <DependentUpon>frmDevAdmin.cs</DependentUpon>

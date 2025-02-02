@@ -335,17 +335,35 @@ namespace thepos
 
 
                 // 주문서 출력 : 업장용 + 고객용
+                String[] order_no_from_to = new String[2];
+
+                order_no_from_to[0] = "";
+                order_no_from_to[1] = "";
+
                 if (mPayClass == "OR")
                 {
-                    print_order();
+                    //
+
+                    List<shop_order_pack> shopOrderPackList = new List<shop_order_pack>();
+
+                    order_no_from_to = print_order(ref shopOrderPackList);
+
+
+                    //
+                    frmAllim fAllim = new frmAllim(shopOrderPackList);
+                    fAllim.ShowDialog();
+
+
                 }
+
+
 
 
                 // 영수증 출력
                 if (mPaySeq == 1)
-                    print_bill(mTheNo, "A", "", "10000", true); // cash
+                    print_bill(mTheNo, "A", "", "10000", true, order_no_from_to); // cash
                 else
-                    print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
+                    print_bill(mTheNo, "A", "", "11010", true, order_no_from_to); // cash card point easy
 
 
 
@@ -558,17 +576,31 @@ namespace thepos
 
 
                     // 주문서 출력
+                    String[] order_no_from_to = new String[2];
+
+                    order_no_from_to[0] = "";
+                    order_no_from_to[1] = "";
+
                     if (mPayClass == "OR")
                     {
-                        print_order();
+
+                        List<shop_order_pack> shopOrderPackList = new List<shop_order_pack>();
+
+                        order_no_from_to = print_order(ref shopOrderPackList);
+
+
+                        //
+                        frmAllim fAllim = new frmAllim(shopOrderPackList);
+                        fAllim.ShowDialog();
+
                     }
 
 
                     // 영수증 출력
                     if (mPaySeq == 1)
-                        print_bill(mTheNo, "A", "", "10000", true); // cash
+                        print_bill(mTheNo, "A", "", "10000", true, order_no_from_to); // cash
                     else
-                        print_bill(mTheNo, "A", "", "11010", true); // cash card point easy
+                        print_bill(mTheNo, "A", "", "11010", true, order_no_from_to); // cash card point easy
 
 
                     // 정산-포인트사용분에 대해 취소마킹

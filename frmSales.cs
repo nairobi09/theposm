@@ -5065,7 +5065,17 @@ namespace thepos
         }
 
 
-        public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep, bool isQuestion)
+        public static void _print_bill(String the_no, String tran_type, String except_order, String pay_keep, bool isQuestion)
+        {
+            String[] order_no_from_to = new String[2];
+
+            order_no_from_to[0] = "";
+            order_no_from_to[1] = "";
+
+            print_bill(the_no, tran_type, except_order, pay_keep, isQuestion, order_no_from_to);
+        }
+
+        public static void print_bill(String the_no, String tran_type, String except_order, String pay_keep, bool isQuestion, String[] order_no_from_to)
         {
 
             if (mBillPrinterPort.Trim().Length == 0)
@@ -5077,8 +5087,8 @@ namespace thepos
 
             if (isQuestion == true)
             {
-                frmYesNo fYesNo = new frmYesNo();
-                var result = fYesNo.ShowDialog();
+                frmYesNo fEnd = new frmYesNo(order_no_from_to);
+                var result = fEnd.ShowDialog();
                 if (result == DialogResult.Yes)
                 {
 
@@ -5359,6 +5369,15 @@ namespace thepos
 
 
 
+        public struct shop_order_pack
+        {
+            public string shop_code;
+            public string order_no;
+            public string order_dt;
+            public List<order_pack> orderPackList;
+
+        }
+
         public struct order_pack
         {
             public string goods_name;
@@ -5366,12 +5385,30 @@ namespace thepos
             public List<string> option_name;
             public List<string> option_item_name;
         }
-        
+
+        //public static List<shop_order_pack> shopOrderPackList = new List<shop_order_pack>();
+        public static shop_order_pack shopOrderPack = new shop_order_pack();
 
 
-        public static void print_order()
+
+        public static String[] print_order(ref List<shop_order_pack> shopOrderPackList)
         {
+            // 여기서는 아래와 같이
+            // 1. 주문서, 교환권 출력
+            // 2. 주문번호(From ~ To)  Return
+            // 3. out파라메터 방식으로  정렬되는 상점별로 리스팅된 주문데이터 반환
+
+
+
+            shopOrderPackList.Clear();
+
+            String[] return_order_no_arr = new string[2];
+
+            return_order_no_arr[0] = "";   // 첫주문번호
+            return_order_no_arr[1] = "";   // 마지막주문번호
+
             int shop_order_count = 0;
+
 
             for (int i = 0; i < mOrderItemList.Count; i++)
             {
@@ -5398,11 +5435,11 @@ namespace thepos
 
 
             if (orderItemArr.Length == 0)
-                return;
+                return return_order_no_arr;
 
 
 
-             
+
             // 업장코드별로 정렬
             bool order_sort_complete = false;
             MemOrderItem memOrderItemTemp;
@@ -5424,9 +5461,14 @@ namespace thepos
             }
 
 
-            //
-            List<order_pack> order_pack_list = new List<order_pack>();
+
+            // 
+
+
+
+            List<order_pack> orderPackList = new List<order_pack>();
             order_pack orderPack = new order_pack();
+
             List<String> option_name_list = new List<String>();
             List<String> option_item_name_list = new List<String>();
 
@@ -5437,7 +5479,8 @@ namespace thepos
             t_shop_code = orderItemArr[0].shop_code;
             t_order_no = orderItemArr[0].shop_order_no;
 
-
+            // 첫주문번호
+            return_order_no_arr[0] = t_order_no;
 
             //
             orderPack.goods_name = orderItemArr[0].goods_name;
@@ -5452,7 +5495,7 @@ namespace thepos
             orderPack.option_name = option_name_list.ToList();
             orderPack.option_item_name = option_item_name_list.ToList();
 
-            order_pack_list.Add(orderPack);
+            orderPackList.Add(orderPack);
 
 
 
@@ -5465,18 +5508,20 @@ namespace thepos
                 else
                 {
 
-                    // 업장주문서 출력 -> shop 등록정보 프린터
-                    print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
+                    shopOrderPack.shop_code = t_shop_code;
+                    shopOrderPack.order_no = t_order_no;
+                    shopOrderPack.order_dt = t_order_dt;
+                    shopOrderPack.orderPackList = orderPackList;
 
+                    shopOrderPackList.Add(shopOrderPack);
 
-                    // 주문교환권 출력 -> 영수증프린터 : 함수내부에서 출력타입 Print Display 구분한다. 
-                    print_order_str("to_local", t_shop_code, "교환권", t_order_no, order_pack_list, t_order_dt);
 
 
                     //
-                    order_pack_list.Clear();
+                    orderPackList.Clear();
                     t_shop_code = orderItemArr[i + 1].shop_code;
                     t_order_no = orderItemArr[i + 1].shop_order_no;
+
                 }
 
 
@@ -5497,20 +5542,45 @@ namespace thepos
                 orderPack.option_name = option_name_list.ToList();
                 orderPack.option_item_name = option_item_name_list.ToList();
 
-                order_pack_list.Add(orderPack);
+                orderPackList.Add(orderPack);
+            }
+
+
+            
+
+            shopOrderPack.shop_code = t_shop_code;
+            shopOrderPack.order_no = t_order_no;
+            shopOrderPack.order_dt = t_order_dt;
+            shopOrderPack.orderPackList = orderPackList;
+
+            shopOrderPackList.Add(shopOrderPack);
+
+
+
+
+            // 마지막주문번호
+            return_order_no_arr[1] = t_order_no;
+
+
+
+            for (int i = 0; i < shopOrderPackList.Count; i++)
+            {
+
+                // 업장주문서 출력 -> shop 등록정보 프린터
+                print_order_str("to_shop", "주문서", shopOrderPackList[i]);
+
+
+                // 주문교환권 출력 -> 영수증프린터 : 함수내부에서 출력타입 Print Display 구분한다. 
+                print_order_str("to_local", "교환권", shopOrderPackList[i]);
 
             }
 
-            // 업장주문서 출력 -> shop 등록정보 프린터
-            print_order_str("to_shop", t_shop_code, "주문서", t_order_no, order_pack_list, t_order_dt);
 
-
-            // 주문교환권 출력 -> 영수증프린터 : 함수내부에서 출력타입 Print Display 구분한다. 
-            print_order_str("to_local", t_shop_code, "교환권", t_order_no, order_pack_list, t_order_dt);
+            return return_order_no_arr;
 
         }
 
-        public static void print_order_str(String to_printer, String shop, String title, String order_no, List<order_pack> orderPackList, String order_dt)  // 주문서
+        public static void print_order_str(String to_printer, String title, shop_order_pack shopOrderPack)  // 주문서
         {
             String printer_type = "";
             String printer_name = "";
@@ -5520,7 +5590,7 @@ namespace thepos
             {
                 for (int i = 0; i < mShop.Length; i++ )
                 {
-                    if (mShop[i].shop_code == shop)
+                    if (mShop[i].shop_code == shopOrderPack.shop_code)
                     {
                         printer_type = mShop[i].printer_type;
 
@@ -5537,7 +5607,7 @@ namespace thepos
             {
                 for (int i = 0; i < mShop.Length; i++)
                 {
-                    if (mShop[i].shop_code == shop)
+                    if (mShop[i].shop_code == shopOrderPack.shop_code)
                     {
                         if (mShop[i].printer_type != "")
                         {
@@ -5593,7 +5663,7 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharLarge());   // 주문번호 크게 인쇄
-            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(order_no));
+            BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(shopOrderPack.order_no));
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
@@ -5619,16 +5689,16 @@ namespace thepos
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 
-            for (int i = 0; i < orderPackList.Count; i++)
+            for (int i = 0; i < shopOrderPack.orderPackList.Count; i++)
             {
                 //
                 BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
 
 
-                String strName = orderPackList[i].goods_name;
-                String strCnt = orderPackList[i].goods_cnt.ToString("N0");     // 수량
+                String strName = shopOrderPack.orderPackList[i].goods_name;
+                String strCnt = shopOrderPack.orderPackList[i].goods_cnt.ToString("N0");     // 수량
 
-                int len = encodelen(orderPackList[i].goods_name) + encodelen(strCnt);
+                int len = encodelen(shopOrderPack.orderPackList[i].goods_name) + encodelen(strCnt);
 
                 if (len > 20)
                 {
@@ -5648,10 +5718,10 @@ namespace thepos
                 //
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.CharSize.Nomarl());
 
-                for (int k = 0; k < orderPackList[i].option_name.Count; k++)
+                for (int k = 0; k < shopOrderPack.orderPackList[i].option_name.Count; k++)
                 {
-                    strPrint = "     [" + orderPackList[i].option_name[k] + "]" + Space(18 - encodelen(orderPackList[i].option_name[k]));
-                    String strTmp= orderPackList[i].option_item_name[k];     // 수량
+                    strPrint = "     [" + shopOrderPack.orderPackList[i].option_name[k] + "]" + Space(18 - encodelen(shopOrderPack.orderPackList[i].option_name[k]));
+                    String strTmp= shopOrderPack.orderPackList[i].option_item_name[k];     // 수량
                     strPrint += strTmp;
                     strPrint += "\r\n";
 
@@ -5666,7 +5736,7 @@ namespace thepos
 
 
 
-            strPrint = "주문시간 : " + order_dt.Substring(0, 4) + "-" + order_dt.Substring(4, 2) + "-" + order_dt.Substring(6, 2) + " " + order_dt.Substring(8, 2) + ":" + order_dt.Substring(10, 2) + "\r\n";
+            strPrint = "주문시간 : " + shopOrderPack.order_dt.Substring(0, 4) + "-" + shopOrderPack.order_dt.Substring(4, 2) + "-" + shopOrderPack.order_dt.Substring(6, 2) + " " + shopOrderPack.order_dt.Substring(8, 2) + ":" + shopOrderPack.order_dt.Substring(10, 2) + "\r\n";
             BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
 

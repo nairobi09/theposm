@@ -150,5 +150,17 @@ namespace thepos
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
+        private void btnReportAllim_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Allim") return;
+
+            mThisButtonClick = "Allim";
+            panelReport.Controls.Clear();
+
+            frmReportAllim fBiz = new frmReportAllim() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
     }
 }

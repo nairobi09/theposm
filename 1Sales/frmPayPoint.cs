@@ -206,13 +206,25 @@ namespace thepos
 
 
             // 주문서 출력
-            print_order();
+            String[] order_no_from_to = new String[2];
+
+            order_no_from_to[0] = "";
+            order_no_from_to[1] = "";
+
+            List<shop_order_pack> shopOrderPackList = new List<shop_order_pack>();
+
+            order_no_from_to = print_order(ref shopOrderPackList);
+
+
+            //
+            frmAllim fAllim = new frmAllim(shopOrderPackList);
+            fAllim.ShowDialog();
 
 
 
             // 영수증 출력
             // 안에서 여부를 물어보고 출력한다. 
-            print_bill(mTheNo, "A", "", "00100", true); // cash card point easy
+            print_bill(mTheNo, "A", "", "00100", true, order_no_from_to); // cash card point easy
 
 
 

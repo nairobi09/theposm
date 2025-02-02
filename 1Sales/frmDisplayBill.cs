@@ -48,13 +48,13 @@ namespace thepos._1Sales
 
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
-            print_bill(theNo, tranType, "", payKeep, false);
+            _print_bill(theNo, tranType, "", payKeep, false);
             Close();
         }
 
         private void btnPrintBillex_Click(object sender, EventArgs e)
         {
-            print_bill(theNo, tranType, "Y", payKeep, false);
+            _print_bill(theNo, tranType, "Y", payKeep, false);
             Close();
         }
 

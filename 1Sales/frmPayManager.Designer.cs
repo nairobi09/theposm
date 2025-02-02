@@ -199,7 +199,7 @@
             this.btnScanner.BackColor = System.Drawing.Color.White;
             this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnScanner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnScanner.Image = global::theposm.Properties.Resources.scanbar4;
+            this.btnScanner.Image = global::theposw.Properties.Resources.scanbar4;
             this.btnScanner.Location = new System.Drawing.Point(386, 13);
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(80, 40);

@@ -213,7 +213,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::theposm.Properties.Resources.thepos;
+            this.pictureBox1.Image = global::theposw.Properties.Resources.thepos;
             this.pictureBox1.Location = new System.Drawing.Point(112, 273);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(386, 109);
@@ -718,7 +718,7 @@
             // 
             // pbNetworkConn
             // 
-            this.pbNetworkConn.Image = global::theposm.Properties.Resources.net_connect;
+            this.pbNetworkConn.Image = global::theposw.Properties.Resources.net_connect;
             this.pbNetworkConn.Location = new System.Drawing.Point(49, 40);
             this.pbNetworkConn.Name = "pbNetworkConn";
             this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
@@ -728,7 +728,7 @@
             // 
             // pbNetworkDisconn
             // 
-            this.pbNetworkDisconn.Image = global::theposm.Properties.Resources.net_disconnect;
+            this.pbNetworkDisconn.Image = global::theposw.Properties.Resources.net_disconnect;
             this.pbNetworkDisconn.Location = new System.Drawing.Point(49, 39);
             this.pbNetworkDisconn.Name = "pbNetworkDisconn";
             this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 21);

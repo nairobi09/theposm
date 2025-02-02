@@ -923,7 +923,7 @@ namespace thepos
                 // 출력
                 for (int j = 0; j < theNoList.Count; j++)
                 {
-                    print_bill(theNoList[j], "C", "", "11010", false);
+                    _print_bill(theNoList[j], "C", "", "11010", false);
                 }
 
             }
@@ -937,7 +937,7 @@ namespace thepos
                 // 출력
                 for (int j = 0; j < theNoList.Count; j++)
                 {
-                    print_bill(theNoList[j], "A", "", "11010", false);
+                    _print_bill(theNoList[j], "A", "", "11010", false);
                 }
 
             }

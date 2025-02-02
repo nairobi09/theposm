@@ -891,7 +891,7 @@ namespace thepos
                 tran_type = "C";
             }
 
-            print_bill(tTheNo, tran_type, "", pay_keep, false);
+            _print_bill(tTheNo, tran_type, "", pay_keep, false);
 
         }
 
@@ -915,7 +915,7 @@ namespace thepos
                 tran_type = "C";
             }
 
-            print_bill(tTheNo, tran_type, "Y", pay_keep, false);  // Y 상품정보제외
+            _print_bill(tTheNo, tran_type, "Y", pay_keep, false);  // Y 상품정보제외
 
         }
 
@@ -1060,8 +1060,15 @@ namespace thepos
             String tTheNo = lvwPayManager.SelectedItems[0].Tag.ToString();
 
 
-            List<order_pack> order_pack_list = new List<order_pack>();
+
+
+            shop_order_pack shopOrderPack = new shop_order_pack();
+
+            List<order_pack> orderPackList = new List<order_pack>();
             order_pack orderPack = new order_pack();
+
+
+
             List<String> option_name_list = new List<String>();
             List<String> option_item_name_list = new List<String>();
 
@@ -1103,8 +1110,14 @@ namespace thepos
                         }
                         orderPack.option_name = option_name_list.ToList();
                         orderPack.option_item_name = option_item_name_list.ToList();
+                        orderPackList.Add(orderPack);
 
-                        order_pack_list.Add(orderPack);
+
+                        //
+                        shopOrderPack.order_no = t_order_no;
+                        shopOrderPack.shop_code = t_shop_code;
+                        shopOrderPack.order_dt = t_order_dt;
+                        shopOrderPack.orderPackList = orderPackList;
                     }
                 }
                 dr.Close();
@@ -1155,9 +1168,12 @@ namespace thepos
 
                                 orderPack.option_name = option_name_list.ToList();
                                 orderPack.option_item_name = option_item_name_list.ToList();
+                                orderPackList.Add(orderPack);
 
-                                order_pack_list.Add(orderPack);
-
+                                shopOrderPack.order_no = t_order_no;
+                                shopOrderPack.shop_code = t_shop_code;
+                                shopOrderPack.order_dt = t_order_dt;
+                                shopOrderPack.orderPackList = orderPackList;
                             }
                         }
                     }
@@ -1180,18 +1196,18 @@ namespace thepos
             if (tran_type == "A")
             {
                 // 업장주문서 출력 -> shop 등록정보 프린터
-                print_order_str("to_shop", t_shop_code, "주문서[재발급]", t_order_no, order_pack_list, t_order_dt);
+                print_order_str("to_shop", "주문서[재발급]", shopOrderPack);
 
                 // 주문교환권 출력 -> 영수증프린터
-                print_order_str("to_local", t_shop_code, "교환권[재발급]", t_order_no, order_pack_list, t_order_dt);
+                print_order_str("to_local", "교환권[재발급]", shopOrderPack);
             }
             else
             {
                 // 업장주문서 출력 -> shop 등록정보 프린터
-                print_order_str("to_shop", t_shop_code, "취소주문서[재발급]", t_order_no, order_pack_list, t_order_dt);
+                print_order_str("to_shop", "취소주문서[재발급]", shopOrderPack);
 
                 //주문교환권 출력 -> 영수증프린터
-                print_order_str("to_local", t_shop_code, "취소교환권[재발급]", t_order_no, order_pack_list, t_order_dt);
+                print_order_str("to_local", "취소교환권[재발급]", shopOrderPack);
             }
 
 

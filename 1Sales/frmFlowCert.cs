@@ -576,14 +576,27 @@ namespace thepos
 
 
             // 주문서 출력 : 업장용 + 고객용
+            // 주문서 출력
+            String[] order_no_from_to = new String[2];
+
+            order_no_from_to[0] = "";
+            order_no_from_to[1] = "";
+
             if (mPayClass == "OR")
             {
-                print_order();
+                List<shop_order_pack> shopOrderPackList = new List<shop_order_pack>();
+
+                order_no_from_to = print_order(ref shopOrderPackList);
+
+
+                //
+                //frmAllim fAllim = new frmAllim(shopOrderPackList);
+                //fAllim.ShowDialog();
             }
 
 
             // 영수증 출력
-            print_bill(mTheNo, "A", "", "00001", true); // cert
+            _print_bill(mTheNo, "A", "", "00001", true); // cert
 
 
 
