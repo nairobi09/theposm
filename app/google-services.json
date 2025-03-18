@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654416240687",
+    "project_id": "thepos-d095d",
+    "storage_bucket": "thepos-d095d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654416240687:android:1fe32b3f22889592f526da",
+        "android_client_info": {
+          "package_name": "kr.co.theposm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxbjghbSgZDD1CUvvdg4ILW91L7iEA79M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
