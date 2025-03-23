@@ -5,8 +5,11 @@ import static kr.co.theposm.myGlobal.okHttpClient;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -189,6 +192,28 @@ public class MainActivity extends Activity {
     }
 
 
+
+    public BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getStringExtra("action");
+
+            // UI 수정
+            load_order_shop_data();
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(myReceiver, new IntentFilter("INTENT_ORDER_SHOP"));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(myReceiver);
+    }
 
 
     ListView.OnItemClickListener mListShopClickListener = new AdapterView.OnItemClickListener() {
@@ -399,17 +424,15 @@ public class MainActivity extends Activity {
 
                         for (int i = 0; i < arr.length(); i++)
                         {
-                            String allimAllimStatus = arr.getJSONObject(i).getString("orderAllimStatus");
+                            String orderAllimStatus = arr.getJSONObject(i).getString("orderAllimStatus");
                             String time = arr.getJSONObject(i).getString("orderTime");
                             String shopOrderNo = arr.getJSONObject(i).getString("shopOrderNo");
                             String cnt = arr.getJSONObject(i).getString("cnt");
-                            String shopMemo = arr.getJSONObject(i).getString("orderAllimMemo");
+                            String orderAllimMemo = arr.getJSONObject(i).getString("orderAllimMemo");
                             String orderAllimType = arr.getJSONObject(i).getString("orderAllimType");
                             String isCancel = arr.getJSONObject(i).getString("isCancel");
 
-                            String allim_type_code = arr.getJSONObject(i).getString("isCancel");
                             String theNo = arr.getJSONObject(i).getString("theNo");
-
 
 
 
@@ -420,7 +443,7 @@ public class MainActivity extends Activity {
                                 orderTime = time.substring(0,2) + ":" + time.substring(2,4) + ":" +time.substring(4,6);
                             }
 
-                            mListOrderShop.add(new orderShop(allimAllimStatus, shopOrderNo, orderTime, cnt, shopMemo, orderAllimType, isCancel, theNo));
+                            mListOrderShop.add(new orderShop(orderAllimStatus, shopOrderNo, orderTime, cnt, orderAllimMemo, orderAllimType, isCancel, theNo));
 
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -1056,7 +1079,6 @@ public class MainActivity extends Activity {
         String allim_type;
         String is_cancel;
         String the_no;
-
 
         public orderShop(String flow_step, String order_no, String order_time, String order_cnt, String order_memo, String allim_type, String is_cancel, String the_no) {
             this.flow_step = flow_step;
