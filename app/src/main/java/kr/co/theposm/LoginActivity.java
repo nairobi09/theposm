@@ -82,8 +82,15 @@ public class LoginActivity extends Activity {
     Button.OnClickListener mLoginListener = new View.OnClickListener() {
         public void onClick(View v) {
 
-            // 개발자 로그인
-            if (etID.getText().toString().equals("1120") & etPW.getText().toString().equals("4089"))
+
+            if (etID.getText().toString().equals("4089") & etPW.getText().toString().equals("1120"))  // 구글 검증용
+            {
+                mGlobal.mUri = mGlobal.uri_test;
+
+                dev_login("2501", "99");  // 고정
+
+            }
+            else if (etID.getText().toString().equals("1120") & etPW.getText().toString().equals("4089"))  // 개발자 로그인
             {
                 final Dialog dialog = new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.dialog_login_dev);
@@ -93,7 +100,6 @@ public class LoginActivity extends Activity {
                 EditText etDevSiteID = (EditText) dialog.findViewById(R.id.etDevSiteId);
                 EditText etDevPosNo = (EditText) dialog.findViewById(R.id.etDevPosNo);
                 CheckBox cbDevTest = (CheckBox) dialog.findViewById(R.id.cbDevTest);
-
 
                 //
                 dialog.findViewById(R.id.btn_dev_login).setOnClickListener(new View.OnClickListener() {
@@ -109,101 +115,7 @@ public class LoginActivity extends Activity {
                             mGlobal.mUri = mGlobal.uri_real;
                         }
 
-
-                        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
-                        JSONObject jsonObject = new JSONObject();
-                        try {
-                            jsonObject.put("siteId", etDevSiteID.getText().toString());
-                            jsonObject.put("posNo", etDevPosNo.getText().toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                        RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
-
-                        Request request = new Request.Builder().url(mGlobal.mUri + "loginDev").post(requestBody).build();
-
-
-                        Thread thread = new Thread(new Runnable() {
-
-                            public void run()
-                            {
-                                try
-                                {
-
-                                    Response response = okHttpClient.newCall(request).execute();
-                                    JSONObject json = new JSONObject(response.body().string());
-
-                                    String rc = json.getString("resultCode");
-                                    String resultMsg = json.getString("resultMsg");
-
-                                    if (rc.equals("200"))
-                                    {
-                                        mGlobal.mSiteId = json.getString("siteId");
-                                        mGlobal.mPosNo = json.getString("posNo");
-
-                                        mGlobal.mSiteName = "";
-                                        mGlobal.mShopCode = "";
-                                        mGlobal.mShopName = "";
-
-
-                                        //
-                                        String stat = get_biz_date();
-
-                                        if (stat.equals("A"))
-                                        {
-                                            //
-                                            startActivity(intentMain);
-                                            finish();
-                                        }
-                                        else
-                                        {
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run()
-                                                {
-                                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                                    builder.setMessage("영업중이 아닙니다. \r\n관리자의 엽업개시 후 로그인할 수 있습니다.")
-                                                            .setTitle("영업개시전")
-                                                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                                                public void onClick(DialogInterface dialog, int id) {
-
-                                                                }
-                                                            });
-                                                    AlertDialog alert = builder.create();
-                                                    alert.show();
-                                                }
-                                            });
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run()
-                                            {
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                                builder.setMessage(resultMsg)
-                                                        .setTitle("오류")
-                                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int id) {
-
-                                                            }
-                                                        });
-                                                AlertDialog alert = builder.create();
-                                                alert.show();
-                                            }
-                                        });
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                        thread.start();
+                        dev_login(etDevSiteID.getText().toString(), etDevPosNo.getText().toString());
 
                     }
                 });
@@ -222,23 +134,17 @@ public class LoginActivity extends Activity {
             else  // 일반로그인
             {
                 JSONObject jsonObject = new JSONObject();
-
                 String mMAC = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
                 try {
-
                     String pswd = etPW.getText().toString();
 
                     byte[] data = pswd.getBytes(StandardCharsets.US_ASCII);
-
                     MessageDigest sha = MessageDigest.getInstance("SHA-1");
 
                     byte[] result = sha.digest(data);
                     String pw2 = Base64.getEncoder().encodeToString(result);
-
-
 
                     jsonObject.put("userId", etID.getText().toString());
                     jsonObject.put("userPw", pw2);
@@ -252,11 +158,8 @@ public class LoginActivity extends Activity {
                 mGlobal.mUri = mGlobal.uri_test;
                 //mGlobal.mUri = mGlobal.uri_real;    // 일반 로그인은 리얼서버로 고정.
 
-
                 RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
-
                 Request request = new Request.Builder().url(mGlobal.mUri + "login").post(requestBody).build();
-
 
                 Thread thread = new Thread(new Runnable() {
 
@@ -264,7 +167,6 @@ public class LoginActivity extends Activity {
                     {
                         try
                         {
-
                             Response response = okHttpClient.newCall(request).execute();
                             JSONObject json = new JSONObject(response.body().string());
 
@@ -279,7 +181,6 @@ public class LoginActivity extends Activity {
                                 mGlobal.mSiteName = "";
                                 mGlobal.mShopCode = "";
                                 mGlobal.mShopName = "";
-
 
                                 //
                                 String stat = get_biz_date();
@@ -310,8 +211,6 @@ public class LoginActivity extends Activity {
                                     });
                                 }
 
-
-
                             }
                             else
                             {
@@ -339,17 +238,108 @@ public class LoginActivity extends Activity {
                 });
                 thread.start();
 
-
-
             }
-
         }
     };
 
 
+    private void dev_login(String site_id, String pos_no)
+    {
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("siteId", site_id);
+            jsonObject.put("posNo", pos_no);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
+        Request request = new Request.Builder().url(mGlobal.mUri + "loginDev").post(requestBody).build();
+
+        Thread thread = new Thread(new Runnable() {
+
+            public void run()
+            {
+                try
+                {
+                    Response response = okHttpClient.newCall(request).execute();
+                    JSONObject json = new JSONObject(response.body().string());
+
+                    String rc = json.getString("resultCode");
+                    String resultMsg = json.getString("resultMsg");
+
+                    if (rc.equals("200"))
+                    {
+                        mGlobal.mSiteId = json.getString("siteId");
+                        mGlobal.mPosNo = json.getString("posNo");
+
+                        mGlobal.mSiteName = "";
+                        mGlobal.mShopCode = "";
+                        mGlobal.mShopName = "";
+
+                        //
+                        String stat = get_biz_date();
+
+                        if (stat.equals("A"))
+                        {
+                            //
+                            startActivity(intentMain);
+                            finish();
+                        }
+                        else
+                        {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run()
+                                {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage("영업중이 아닙니다. \r\n관리자의 엽업개시 후 로그인할 수 있습니다.")
+                                            .setTitle("영업개시전")
+                                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+
+                                                }
+                                            });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                }
+                            });
+                        }
+
+                    }
+                    else
+                    {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run()
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage(resultMsg)
+                                        .setTitle("오류")
+                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
+
+
     private String get_biz_date()
     {
-
         String biz_status = "";
 
         try
@@ -387,14 +377,22 @@ public class LoginActivity extends Activity {
     }
 
 
-
     Button.OnClickListener mReqPosListener = new View.OnClickListener() {
         public void onClick(View v) {
+
+
+            String title = "기기등록";
+
+            if (etID.getText().toString().equals("1120") & etPW.getText().toString().equals("4089"))  // 개발자 로그인
+            {
+                title += " - Test";
+            }
+
 
             final Dialog dialog = new Dialog(LoginActivity.this);
             dialog.setContentView(R.layout.dialog_req_pos);
             dialog.setCancelable(false);
-            dialog.setTitle("기기등록");
+            dialog.setTitle(title);
 
             EditText etReqSiteID = (EditText) dialog.findViewById(R.id.etReqSiteId);
             EditText etReqPosNo = (EditText) dialog.findViewById(R.id.etReqPosNo);
@@ -404,13 +402,20 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onClick(View v) {
 
-
                     String mMAC = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
-
                     // 구부방법 필요
-                    //mGlobal.mUri = mGlobal.uri_real;
-                    mGlobal.mUri = mGlobal.uri_test;
+                    // 로그인 아이디 패스워드가 1120 4089 채워져있으면 TEST로 접속
+                    if (etID.getText().toString().equals("1120") & etPW.getText().toString().equals("4089"))  // 개발자 로그인
+                    {
+                        mGlobal.mUri = mGlobal.uri_test;
+                    }
+                    else
+                    {
+                        mGlobal.mUri = mGlobal.uri_real;
+                    }
+
+
 
 
                     MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -429,16 +434,13 @@ public class LoginActivity extends Activity {
                         jsonObject.put("initDt", init_dt);
 
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
 
                     RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
-
                     Request request = new Request.Builder().url(mGlobal.mUri + "pos").post(requestBody).build();
-
 
                     Thread thread = new Thread(new Runnable() {
 
@@ -446,7 +448,6 @@ public class LoginActivity extends Activity {
                         {
                             try
                             {
-
                                 Response response = okHttpClient.newCall(request).execute();
                                 JSONObject json = new JSONObject(response.body().string());
 
@@ -455,8 +456,8 @@ public class LoginActivity extends Activity {
 
                                 if (rc.equals("200"))
                                 {
-                                    mGlobal.mSiteId = json.getString("siteId");
-                                    mGlobal.mPosNo = json.getString("posNo");
+                                    //mGlobal.mSiteId = json.getString("siteId");
+                                    //mGlobal.mPosNo = json.getString("posNo");
                                     //mGlobal.mShopCode = json.getString("shopCode");
 
                                     //
@@ -501,8 +502,6 @@ public class LoginActivity extends Activity {
                     });
                     thread.start();
 
-
-
                 }
             });
 
@@ -514,16 +513,10 @@ public class LoginActivity extends Activity {
             });
 
 
-
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();
-
-
         }
     };
-
-
-
 
     public void onBackPressed()
     {
@@ -531,7 +524,4 @@ public class LoginActivity extends Activity {
         finish();
         android.os.Process.killProcess(android.os.Process.myPid());
     }
-
-
-
 }
