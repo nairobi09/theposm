@@ -228,42 +228,47 @@ public class MainActivity extends Activity {
 
             // 알림버튼상테 세트
             String selected_allim_type = ((ImageView) view.findViewById(R.id.allim_type)).getTag().toString();
-
-            if (selected_allim_type.equals("AT"))
-            {
-                ((Button)findViewById(R.id.btn_allim)).setEnabled(true);
-            }
-            else
-            {
-                ((Button)findViewById(R.id.btn_allim)).setEnabled(false);
-            }
-
-
-            // 알림버튼상테 세트
+            // 완료버튼상테 세트
             String selected_flow_step = ((ImageView) view.findViewById(R.id.flow_step)).getTag().toString();
-
-            if (selected_flow_step.equals("0"))  // 접수
-            {
-                ((Button)findViewById(R.id.btn_finish)).setEnabled(true);
-            }
-            else if (selected_flow_step.equals("1"))  // 알림톡 전송
-            {
-                ((Button)findViewById(R.id.btn_finish)).setEnabled(true);
-            }
-            else
-            {
-                ((Button)findViewById(R.id.btn_finish)).setEnabled(false);
-            }
-
-
             //
             String selected_is_cancel = ((TextView) view.findViewById(R.id.is_cancel)).getTag().toString();
 
-            if (selected_is_cancel.equals("Y"))
+
+            // 알림전송버튼
+            if (selected_allim_type.equals("AT"))
+            {
+                if (selected_flow_step.equals("0") | selected_flow_step.equals("1"))  // 접수, 발송
+                {
+                    if (selected_is_cancel.equals("Y"))  // 취소
+                    {
+                        ((Button)findViewById(R.id.btn_allim)).setEnabled(false);
+                    }
+                    else
+                    {
+                        ((Button)findViewById(R.id.btn_allim)).setEnabled(true);
+                    }
+                }
+                else if (selected_flow_step.equals("2"))  // 완료
+                {
+                    ((Button)findViewById(R.id.btn_allim)).setEnabled(false);
+                }
+            }
+            else
             {
                 ((Button)findViewById(R.id.btn_allim)).setEnabled(false);
+            }
+
+
+            // 완료버튼
+            if (selected_flow_step.equals("0") | selected_flow_step.equals("1"))  // 접수, 발송
+            {
+                ((Button)findViewById(R.id.btn_finish)).setEnabled(true);
+            }
+            else if (selected_flow_step.equals("2"))  // 완료
+            {
                 ((Button)findViewById(R.id.btn_finish)).setEnabled(false);
             }
+
 
 
             //
