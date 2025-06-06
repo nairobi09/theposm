@@ -410,6 +410,9 @@ public class MainActivity extends Activity {
         mListViewItem.invalidateViews();
 
 
+        ((Button)findViewById(R.id.btn_allim)).setEnabled(false);
+        ((Button)findViewById(R.id.btn_finish)).setEnabled(false);
+
         //
         Thread thread = new Thread(new Runnable() {
             public void run()
