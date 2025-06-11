@@ -155,8 +155,8 @@ public class LoginActivity extends Activity {
                 }
 
 
-                mGlobal.mUri = mGlobal.uri_test;
-                //mGlobal.mUri = mGlobal.uri_real;    // 일반 로그인은 리얼서버로 고정.
+                //mGlobal.mUri = mGlobal.uri_test;
+                mGlobal.mUri = mGlobal.uri_real;    // 일반 로그인은 리얼서버로 고정.
 
                 RequestBody requestBody = RequestBody.create(JSON, jsonObject.toString());
                 Request request = new Request.Builder().url(mGlobal.mUri + "login").post(requestBody).build();
