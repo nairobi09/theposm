@@ -280,7 +280,7 @@ public class MainActivity extends Activity {
                         String order_no = ((TextView)view.findViewById(R.id.order_no)).getText().toString();
 
 
-                        Request request1 = new Request.Builder().url(mGlobal.mUri + "orderItem?siteId=" + mGlobal.mSiteId + "&bizDt=" + mGlobal.mBizDt + "&shopCode=" + mGlobal.mShopCode + "&shopOrderNo=" + order_no + "&tranType=A").get().build();
+                        Request request1 = new Request.Builder().url(mGlobal.mUri + "orderItem?siteId=" + mGlobal.mSiteId + "&bizDt=" + mGlobal.mBizDt + "&shopCode=" + mGlobal.mShopCode + "&shopOrderNo=" + order_no + "&tranType=A" + "&allim=Y").get().build();
                         Response response1 = okHttpClient.newCall(request1).execute();
 
                         JSONObject json1 = new JSONObject(response1.body().string());
@@ -419,7 +419,7 @@ public class MainActivity extends Activity {
             {
                 try
                 {
-                    Request request = new Request.Builder().url(mGlobal.mUri + "orderShop?siteId=" + mGlobal.mSiteId + "&bizDt=" + mGlobal.mBizDt + "&shopCode=" + mGlobal.mShopCode).get().build();
+                    Request request = new Request.Builder().url(mGlobal.mUri + "orderShop?siteId=" + mGlobal.mSiteId + "&bizDt=" + mGlobal.mBizDt + "&shopCode=" + mGlobal.mShopCode + "&allim=Y").get().build();
                     Response response = okHttpClient.newCall(request).execute();
 
                     JSONObject json = new JSONObject(response.body().string());
