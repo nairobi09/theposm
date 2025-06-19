@@ -206,7 +206,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(myReceiver, new IntentFilter("INTENT_ORDER_SHOP"));
+        registerReceiver(myReceiver, new IntentFilter("INTENT_ORDER_SHOP"), Context.RECEIVER_EXPORTED);
     }
 
     @Override
